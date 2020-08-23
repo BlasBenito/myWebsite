@@ -13,7 +13,7 @@ education:
   - course: course name
     institution: institution name
     year: year
-email: ""
+email: "blasbenito at gmail dot com"
 interests:
 - Interest 1
 - Interest 2

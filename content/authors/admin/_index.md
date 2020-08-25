@@ -43,6 +43,8 @@ user_groups:
 - Visitors
 ---
 
+[WORK IN PROGRESS]
+
 I am an ecological modeler and biogeographer with a PhD in Global Change Ecology, a Degree in Biology, a Master in Geographical Information Systems, and a Master in Environmental Management.
 
 Reaching a deeper understanding on the role of climate and land-use-change in shaping species’ ecology and distribution through state-of-the-art quantitative methods is a pivotal objective of my research, that is structured around five research lines:

@@ -47,17 +47,18 @@ I am an ecological modeler and biogeographer with a PhD in Global Change Ecology
 
 Reaching a deeper understanding on the role of climate and land-use-change in shaping species’ ecology and distribution through state-of-the-art quantitative methods is a pivotal objective of my research, that is structured around five research lines:
 
-**Biodiversity conservation**: I have contributed to plant conservation books and have contributed to field work campaigns that resulted in the finding of plant species never reported before in the Iberian Peninsula (Peñas et al. 2008; Lorite et al. 2010).
+**Biodiversity conservation**
 
-forecast extinction risk of endangered plants in semi-arid grasslands (Benito et al. 2009, also Maxent and Biomod).  
+The first half of my PhD thesis was focused on understanding the threat posed by the expansion of greenhouses and habitat degradation on rare and endemic annual plants in the drylands of the Iberian Southwest. For example, I analyzed the historical habitat fragmentation of the habitat of *Linaria nigricans* using landscape fragmentation metrics ([Peñas, Benito *et al*. 2011](https://www.dropbox.com/s/f4szr8r2jmb55vz/2011_BMB_Environmental_management.pdf?dl=1)), and modelled future greenhouse expansion on protected dryland habitats through correlative ([Benito *et al*. 2009](https://www.dropbox.com/s/v3vz6yhkifki2ix/2009_BMB_Biodiversity_and_Conservation.pdf?dl=1)) and mechanistic models ([Benito and Peñas 2008](https://www.dropbox.com/s/jym53771y7pv8zv/2008_BMB_Environmental_Dynamics.pdf?dl=1)). 
 
-evaluate habitat fragmentation (Peñas et al. 2011)
+Wthin this research line I have also also engaged in collaborations to better understand the distribution and conservation status of an endemic butterfly ([Azcón, Benito *et al* 2014](https://www.dropbox.com/s/rbp8q4k6qd8zntz/2014_BMB_Biodiversity_and_Conservation.pdf?dl=1)),  assess how well Special Protected Areas protect birds in Europe ([Albuquerque et al. 2013](https://www.dropbox.com/s/16nggzhg6yhx565/2013_BMB_Biological_Conservation.pdf?dl=1)), define the role of palaeoecology in conservation strategies ([Gill *et al*. 2015](https://www.dropbox.com/s/w0gx08dgzjytp0i/2015_BMB_Conservation_Biology.pdf?dl=1)), and find conservation gaps for tree diversity in Mesoamerica ([Albuquerque, Benito *et al*. 2015](https://www.dropbox.com/s/34u4vowgixcje2x/2015_BMB_Naturaleza_Conservacao.pdf?dl=1)).
 
 
-study of tree conservation gaps in Mesoamerica (Albuquerque
-et al. 2015)
+**Biogeography**
 
-**Biogeography**:
+Understanding why biological species are where they are or where they were 
+
+the potential distribution of Neanderthals during the Last Interglacial ([Benito et al. 2016](https://www.dropbox.com/s/asn5h45l4j5fy3c/2016_BMB_Journal_of_Biogeography.pdf?dl=1) and [Kellberg-Nielsen, Benito *et al*. 2017](https://www.dropbox.com/s/p8zfrqb68gi23qr/2016_BMB_Quaternary_International.pdf?dl=1)). The former paper was highlighted at the Editor’s Picks section of Science ([Sugen 2017](https://www.dropbox.com/s/6k308eczv7i6kbj/2016_BMB_Journal_of_Biogeography_editors_choice.pdf?dl=1)), and was among the top 20 most downloaded papers of the journal of bigeography during 2018. 
 
 
 evaluate how long-term climatic stability leads to phylogenetically diverse plant assemblages with large age differences among tree species (Feng et al. 2017). 
@@ -66,7 +67,7 @@ evaluate how long-term climatic stability leads to phylogenetically diverse plan
 geographic and climatic history on their phenological responses to Climate Change (Zohner et al.
 2016; Zohner et al., 2017)
 
-**Palaeoecology**: During the last years I have focused on applying state-of-the-art quantitative methods to better understand past ecological dynamics and human palaeoecology. I have collaborated with a multidisciplinary group of researchers to reconstructBlas Benito is a biogeographer and ecological modeller... [work in progress] the potential distribution of Neanderthals during the Last Interglacial (Benito et al. 2016; Kellberg-Nielsen 2017). Benito et al. (2016) was highlighted at the Editor’s Picks section of science (Sugen 2017), and was among the top 20 most downloaded papers of the journal of bigeography during 2018. paper to highlight the importance of palaeoecological knowledge
-in supporting decision making in biodiversity conservation (Gill et al. 2015)
+**Palaeoecology**: During the last years I have focused on applying state-of-the-art quantitative methods to better understand past ecological dynamics and human palaeoecology. I have collaborated with a multidisciplinary group of researchers to reconstructBlas Benito is a biogeographer and ecological modeller... [work in progress] 
+
 
 **Testing and development of quantitative methods**: I have used statistical and machine learning methods to evaluate the performance of different methods to model the distribution of tree diversity in Mesoamerica (Benito et al. 2013).

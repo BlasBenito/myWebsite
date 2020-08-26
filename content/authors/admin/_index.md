@@ -36,6 +36,9 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/BlasBenito
+- icon: fa-orcid
+  icon_pack: fab
+  link: https://orcid.org/0000-0001-5105-7232
 superuser: true
 title: Blas M. Benito
 user_groups:
@@ -45,17 +48,15 @@ user_groups:
 
 [WORK IN PROGRESS]
 
-I am an ecological modeler and biogeographer with a PhD in Global Change Ecology, a Degree in Biology, a Master in Geographical Information Systems, and a Master in Environmental Management.
+I am biogeographer and ecological modeler with a PhD in Global Change Ecology, a Master in Geographical Information Systems, a Degree in Biology, and quite a bit of experience in applying state-of-the-art quantitative methods to better understand the processes shaping the distribution of biodiversity across space and time. 
 
-Reaching a deeper understanding on the role of climate and land-use-change in shaping species’ ecology and distribution through state-of-the-art quantitative methods is a pivotal objective of my research, that is structured around five research lines:
-
-
+My research activity is structured around five research lines:
 
 **Biogeography**
 
-Why are species where they are? Finding answers to such question both in the present and the past drives most of my research activity. 
+Why are species where they are? is a question I have been passionate about since I was a child.
 
-A clear example of my personal interest in this topic is a multidisciplinary study I led on the distribution of Neanderthals during the Last Interglacial ([Benito et al. 2016](https://www.dropbox.com/s/asn5h45l4j5fy3c/2016_BMB_Journal_of_Biogeography.pdf?dl=1), that was highlighted at the Editor’s Picks section of Science ([Sugen 2017](https://www.dropbox.com/s/6k308eczv7i6kbj/2016_BMB_Journal_of_Biogeography_editors_choice.pdf?dl=1)), and was among the top 20 most downloaded papers of the journal of bigeography during 2018. In [Kellberg-Nielsen, Benito *et al*. (2017)](https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1) we discuss in detail the dispersal dynamics of Neanderthals in their northern edge.
+A keystone result of my personal interest in this topic is the multidisciplinary study I led on the distribution of Neanderthals during the Last Interglacial ([Benito et al. 2016](https://www.dropbox.com/s/asn5h45l4j5fy3c/2016_BMB_Journal_of_Biogeography.pdf?dl=1), that was highlighted at the Editor’s Picks section of Science ([Sugen 2017](https://www.dropbox.com/s/6k308eczv7i6kbj/2016_BMB_Journal_of_Biogeography_editors_choice.pdf?dl=1)), and was among the top 20 most downloaded papers of the journal of bigeography during 2018. In [Kellberg-Nielsen *et al*. (2017)](https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1), led by my brilliant colleague [Trine Kellberg-Nielsen](https://trinekellbergnielsen.wordpress.com/) we further discuss the dispersal dynamics of Neanderthals in their northern edge.
 
 
 

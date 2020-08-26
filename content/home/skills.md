@@ -17,20 +17,34 @@ subtitle = ""
 [[feature]]
   icon = "r-project"
   icon_pack = "fab"
-  name = "R"
-  description = "90%"
+  name = "R programming"
+  description = "100%"
+  
+[[feature]]
+  icon = "sitemap"
+  icon_pack = "fas"
+  name = "Machine Learning"
+  description = "100%"
   
 [[feature]]
   icon = "chart-line"
   icon_pack = "fas"
-  name = "Statistics"
+  name = "Data Science"
   description = "100%"  
   
 [[feature]]
-  icon = "camera-retro"
+  icon = "turtle"
   icon_pack = "fas"
-  name = "Photography"
-  description = "10%"
+  name = "Agent-based modeling"
+  description = "100%"  
+  
+[[feature]]
+  icon = "globe-europe"
+  icon_pack = "fas"
+  name = "Geographic Information Systems"
+  description = "100%"  
+  
+
 
 # Uncomment to use emoji icons.
 # [[feature]]

@@ -50,7 +50,7 @@ user_groups:
 
 I am biogeographer and ecological modeler with a PhD in Global Change Ecology, a Master in Geographical Information Systems, a Degree in Biology, and quite a bit of experience in applying state-of-the-art quantitative methods to better understand the processes shaping the distribution of biodiversity across space and time. 
 
-My research activity is structured around five research lines:
+My research activity is structured around five main lines:
 
 **Biogeography**
 

@@ -44,6 +44,12 @@ subtitle = ""
   name = "Geographic Information Systems"
   description = "100%"  
   
+[[feature]]
+  icon = "globe-europe"
+  icon_pack = "fas"
+  name = "Geographic Information Systems"
+  description = "100%" 
+  
 
 
 # Uncomment to use emoji icons.

@@ -36,7 +36,7 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/BlasBenito
-- icon: fa-orcid
+- icon: fa-orcidhttps://ghr.nlm.nih.gov/condition/leigh-syndrome
   icon_pack: fab
   link: https://orcid.org/0000-0001-5105-7232
 superuser: true
@@ -45,8 +45,6 @@ user_groups:
 - Researchers
 - Visitors
 ---
-
-[WORK IN PROGRESS]
 
 I am biogeographer and ecological modeler with a PhD in Global Change Ecology, a Master in Geographical Information Systems, a Degree in Biology, and quite a bit of experience in applying state-of-the-art quantitative methods to better understand the processes shaping the distribution of biodiversity across space and time. 
 

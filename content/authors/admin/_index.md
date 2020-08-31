@@ -5,28 +5,41 @@ bio:
 
 education:
   courses:
-  - course: course name
-    institution: institution name
-    year: year
-  - course: course name
-    institution: institution name
-    year: year
-  - course: course name
-    institution: institution name
-    year: year
+  - course: Ph.D. in Plant Ecology and Global Change
+    institution: University of Granada
+    year: 2006 - 2009
+  - course: UNIGIS International Masters Degree in Geographical Information Sys-tems
+    institution: University of Girona
+    year: 2007 - 2009
+  - course: Masters Degree in Management and Environmental Auditing
+    institution: University of Cadiz
+    year: 2005 - 2006
+  - course: Degree in Biology
+    institution: University of Granada
+    year: 1999 - 2003
+    
 email: "blasbenito at gmail dot com"
+
 interests:
-- Interest 1
-- Interest 2
-- Interest 3
+- Biogeography
+- Quantitative ecology
+- Modeling and simulation
+- Machine learning
+- R language
+- Netlogo 
+
 organizations:
 - name: University of Alicante (Spain)
   url: ""
 role: Senior Researcher
+# Social/Academic Networking
+# For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
+#   For an email link, use "fas" icon pack, "envelope" icon, and a link in the
+#   form "mailto:your-email@example.com" or "#contact" for contact widget.
 social:
 - icon: envelope
   icon_pack: fas
-  link: '#contact'
+  link: mailto:blasbenito@gmail.com
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/blasbenito
@@ -46,17 +59,19 @@ user_groups:
 - Visitors
 ---
 
-I am biogeographer and ecological modeler with a PhD in Global Change Ecology, a Master in Geographical Information Systems, a Degree in Biology, and quite a bit of experience in applying state-of-the-art quantitative methods to better understand the processes shaping the distribution of biodiversity across space and time. 
+I am biogeographer and ecological modeler with a PhD in Plant Ecology and Global Change, a Master in Geographical Information Systems, a Degree in Biology, and quite a bit of experience in applying state-of-the-art quantitative methods to better understand the processes shaping the distribution of biodiversity across space and time. 
 
 My research activity is structured around five main lines:
 
 **Biogeography**
 
-Why are species where they are? is a question I have been passionate about since I was a child.
+"Why are species where they are?" is a question I have been passionate about since I was a child.
 
-A keystone result of my personal interest in this topic is the multidisciplinary study I led on the distribution of Neanderthals during the Last Interglacial ([Benito et al. 2016](https://www.dropbox.com/s/asn5h45l4j5fy3c/2016_BMB_Journal_of_Biogeography.pdf?dl=1), that was highlighted at the Editor’s Picks section of Science ([Sugen 2017](https://www.dropbox.com/s/6k308eczv7i6kbj/2016_BMB_Journal_of_Biogeography_editors_choice.pdf?dl=1)), and was among the top 20 most downloaded papers of the journal of bigeography during 2018. In [Kellberg-Nielsen *et al*. (2017)](https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1), led by my brilliant colleague [Trine Kellberg-Nielsen](https://trinekellbergnielsen.wordpress.com/) we further discuss the dispersal dynamics of Neanderthals in their northern edge.
+A keystone result of my personal interest in this topic is the multidisciplinary study I led on the distribution of Neanderthals during the Last Interglacial ([Benito et al. 2016](https://www.dropbox.com/s/asn5h45l4j5fy3c/2016_BMB_Journal_of_Biogeography.pdf?dl=1). This paper was highlighted at the Editor’s Picks section of Science ([Sugen 2017](https://www.dropbox.com/s/6k308eczv7i6kbj/2016_BMB_Journal_of_Biogeography_editors_choice.pdf?dl=1)), and was among the top 20 most downloaded papers of the journal of bigeography during 2018. In [Kellberg-Nielsen *et al*. (2017)](https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1), led by my brilliant colleague [Trine Kellberg-Nielsen](https://trinekellbergnielsen.wordpress.com/) we further discuss the dispersal dynamics of Neanderthals in their northern edge.
 
 
+
+Other interesting papers I have coautored are the ones led by the rising star [Constantin Zohner](https://constantinzohner.wordpress.com/ueber/)
 
 evaluate how long-term climatic stability leads to phylogenetically diverse plant assemblages with large age differences among tree species (Feng et al. 2017). 
 

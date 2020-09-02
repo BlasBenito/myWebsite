@@ -61,21 +61,50 @@ user_groups:
 
 I am biogeographer and ecological modeler with a PhD in Plant Ecology and Global Change, a Master in Geographical Information Systems, a Degree in Biology, and quite a bit of experience in applying state-of-the-art quantitative methods to better understand the processes shaping the distribution of biodiversity across space and time. 
 
-My research activity is structured around five main lines:
+My research activity is structured around five main lines, namely [*biogeography*](#biogeography), [*palaeoecology*](#palaeoecology),  [*testing and development of quantitative methods*](#methods), [*range shift*](#rangeshift), and [*biodiversity conservation*](#conservation). 
+
+<a name="biogeography">
+</a>
 
 **Biogeography**
 
-"Why are species where they are?" is a question I have been passionate about since I was a child.
+*Why are species where they are?* is a question I have been passionate about since I was a child.
 
-A keystone result of my personal interest in this topic is the multidisciplinary study I led on the distribution of Neanderthals during the Last Interglacial ([Benito et al. 2016](https://www.dropbox.com/s/asn5h45l4j5fy3c/2016_BMB_Journal_of_Biogeography.pdf?dl=1). This paper was highlighted at the Editor’s Picks section of Science ([Sugen 2017](https://www.dropbox.com/s/6k308eczv7i6kbj/2016_BMB_Journal_of_Biogeography_editors_choice.pdf?dl=1)), and was among the top 20 most downloaded papers of the journal of bigeography during 2018. In [Kellberg-Nielsen *et al*. (2017)](https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1), led by my brilliant colleague [Trine Kellberg-Nielsen](https://trinekellbergnielsen.wordpress.com/) we further discuss the dispersal dynamics of Neanderthals in their northern edge.
+A keystone result of my personal interest in this topic is the multidisciplinary study I led on the distribution of Neanderthals during the Last Interglacial ([Benito *et al*. 2016](https://www.dropbox.com/s/asn5h45l4j5fy3c/2016_BMB_Journal_of_Biogeography.pdf?dl=1). This paper was highlighted at the Editor’s Picks section of Science ([Sugen 2017](https://www.dropbox.com/s/6k308eczv7i6kbj/2016_BMB_Journal_of_Biogeography_editors_choice.pdf?dl=1)), and was among the top 20 most downloaded papers of the journal of bigeography during 2018. In [Kellberg-Nielsen *et al*. (2017)](https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1), led by my brilliant colleague [Trine Kellberg-Nielsen](https://trinekellbergnielsen.wordpress.com/) we further discuss the dispersal dynamics of Neanderthals in their northern edge.
 
+I have also learned a a fair deal about the biogeography of plant phenology through my collaboration with the outstanding [Constantin Zohner](https://constantinzohner.wordpress.com/ueber/). In [Zohner *et al*. (2016)](https://www.dropbox.com/s/hmyovgva3c86e41/2016_BMB_Nature_Climate_Change.pdf?dl=1) we found that plant species from lower latitudes use spring photoperiod to trigger leaf-out, while boreal species do not use photoperiod as leaf-out signal. In a complementary study ([Zohner *et al*. (2017)](https://www.dropbox.com/s/8o1bgu4p5w51gjt/2017_BMB_Ecology_Letters.pdf?dl=1)) we found that plant species from regions with high spring temperature variability have higher winter chilling requirements than species living in more predictable environments. More recently, in [Zohner *et al*. (2020)](https://www.dropbox.com/s/jg5hnkdwojgbb9m/2020_BMB_PNAS.pdf?dl=1), we report increasing risks of late spring frosts in significant portions of European and Asian forests.
 
-
-Other interesting papers I have coautored are the ones led by the rising star [Constantin Zohner](https://constantinzohner.wordpress.com/ueber/)
-
-evaluate how long-term climatic stability leads to phylogenetically diverse plant assemblages with large age differences among tree species (Feng et al. 2017). 
+Last, but not least in this section are my collaborations with the excellent biogeographer [Gang Feng](https://gangfeng.weebly.com/index.html) on the links between climatic and anthropogenetic legacies and plant distributions. In [Feng *et al*. (2017)](https://www.dropbox.com/s/ptx20e8pjhbdybj/2017_BMB_Global_Ecology_and_Biogeography.pdf?dl=1) we found that tree assemblages with large phylogenetic age differences among species mostly inhabit areas with relatively high long‐term climate stability. The same year, in [Feng *et al*. (2017)](https://www.dropbox.com/s/lb4sw4um9391koh/2017_BMB_Biological_Conservation.pdf?dl=1) we evaluated the relationship between the distribution of threatened species and land-use change legacies, to find that the current distribution of threatened plants in China happens in places where historical land-use intensity was low, but has increased in the last decades.
 
 
+<a name="palaeoecology">
+</a>
+
+**Palaeoecology**
+
+During the last years I have focused on applying state-of-the-art quantitative methods to better understand past ecological dynamics. Most of this work is a result of my ongoing collaboration with the bright [Graciela Gil-Romera](https://gilromera.com/). Together we learned how to properly calibrate bayesian age-depth models to model the ages and sediment accumulation rates of the longest terrestrial sediment core obtained in the Iberian Peninsula ([Valero-Garcés *et al*. 2019](https://www.dropbox.com/s/tx6uxf7o2qlv1gn/2019_BMB_Quaternary_Geochronology.pdf?dl=1))
+
+<a name="methods">
+</a>
+
+**Testing and development of quantitative methods**
+
+I have used statistical and machine learning methods to evaluate the performance of different methods to model the distribution of tree diversity in Mesoamerica (Benito et al. 2013).
+
+
+<a name="rangeshift">
+</a>
+
+**Range shift**
+
+forecast suitability changes under climate change in a high mountain with species distribution models (Benito et al. 2011). Furthermore, to overcome the conceptual limitations of species distribution models to fully capture complex ecological dynamics, I have applied theoretical models and mechanistic simulations to forecast plant range shift under climate change with downscaled climate models (Benito et al. 2013 b). and the Sonoran desert (Albuquerque et al. 2018), assess the effect of species’
+
+
+
+
+
+<a name="conservation">
+</a>
 
 **Biodiversity conservation**
 
@@ -84,11 +113,4 @@ The first half of my PhD thesis was focused on understanding the threat posed by
 Wthin this research line I have also also engaged in collaborations to better understand the distribution and conservation status of an endemic butterfly ([Azcón, Benito *et al* 2014](https://www.dropbox.com/s/rbp8q4k6qd8zntz/2014_BMB_Biodiversity_and_Conservation.pdf?dl=1)),  assess how well Special Protected Areas protect birds in Europe ([Albuquerque et al. 2013](https://www.dropbox.com/s/16nggzhg6yhx565/2013_BMB_Biological_Conservation.pdf?dl=1)), define the role of palaeoecology in conservation strategies ([Gill *et al*. 2015](https://www.dropbox.com/s/w0gx08dgzjytp0i/2015_BMB_Conservation_Biology.pdf?dl=1)), and find conservation gaps for tree diversity in Mesoamerica ([Albuquerque, Benito *et al*. 2015](https://www.dropbox.com/s/34u4vowgixcje2x/2015_BMB_Naturaleza_Conservacao.pdf?dl=1)).
 
 
-**Global change ecology**: forecast suitability changes under climate change in a high mountain with species distribution models (Benito et al. 2011). Furthermore, to overcome the conceptual limitations of species distribution models to fully capture complex ecological dynamics, I have applied theoretical models and mechanistic simulations to forecast plant range shift under climate change with downscaled climate models (Benito et al. 2013 b). and the Sonoran desert (Albuquerque et al. 2018), assess the effect of species’
-geographic and climatic history on their phenological responses to Climate Change (Zohner et al.
-2016; Zohner et al., 2017)
 
-**Palaeoecology**: During the last years I have focused on applying state-of-the-art quantitative methods to better understand past ecological dynamics and human palaeoecology. I have collaborated with a multidisciplinary group of researchers to reconstructBlas Benito is a biogeographer and ecological modeller... [work in progress] 
-
-
-**Testing and development of quantitative methods**: I have used statistical and machine learning methods to evaluate the performance of different methods to model the distribution of tree diversity in Mesoamerica (Benito et al. 2013).

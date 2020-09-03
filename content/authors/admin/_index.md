@@ -82,7 +82,14 @@ Last, but not least in this section are my collaborations with the excellent bio
 
 **Palaeoecology**
 
-During the last years I have focused on applying state-of-the-art quantitative methods to better understand past ecological dynamics. Most of this work is a result of my ongoing collaboration with the bright [Graciela Gil-Romera](https://gilromera.com/). Together we learned how to properly calibrate bayesian age-depth models to model the ages and sediment accumulation rates of the longest terrestrial sediment core obtained in the Iberian Peninsula ([Valero-Garcés *et al*. 2019](https://www.dropbox.com/s/tx6uxf7o2qlv1gn/2019_BMB_Quaternary_Geochronology.pdf?dl=1))
+During the last years I have focused on applying state-of-the-art quantitative methods to better understand past ecological dynamics. Most of this work is a result of my ongoing collaboration with the bright [Graciela Gil-Romera](https://gilromera.com/). We recently developed a framework to apply ecological memory concepts to millennial timescales in [Benito *et al.* 2020](https://www.dropbox.com/s/uqaf717qf73nrxb/2020_BMB_Ecography_b.pdf?dl=1). This paper was highlighted as an *Editor's Choice* in the number 43 of the *Ecography* journal, and made it to the [top 10% most downloaded papers](https://www.dropbox.com/s/oacsy1xqx4omv1b/2020_BMB_Ecography_b_top_downloaded.png?dl=1) of the journal in the period 2018-2019, after it was published as *early view* in October 22, 2019. A very kind reviewer wrote the following to the handling editor: *"In my years of reviewing papers, this is by far one of the best and cleanest reviews I have encountered and the authors should be commended for that."*. This was a first in my research career!
+
+
+
+
+We have also worked together in calibrating the age-depth model of the longest terrestrial sediment core obtained in the Iberian Peninsula (74m, Villarquemado, described in [Valero-Garcés *et al*. 2019](https://www.dropbox.com/s/tx6uxf7o2qlv1gn/2019_BMB_Quaternary_Geochronology.pdf?dl=1)).
+
+
 
 <a name="methods">
 </a>

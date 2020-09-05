@@ -88,10 +88,7 @@ During the last years I have focused on applying state-of-the-art quantitative m
 
 ![ecological_memory](media/ecological_memory.png) 
 
-Such ecological memory concepts were later applied to better understand the relationship between fire and *Erica spp.* in the Bale Mountains of Ethiopia during the Holocene ([Gil-Romera *et al.* 2019](https://www.dropbox.com/s/w5784kc2b9j8ewa/2019_BMB_Biology_Letters.pdf?dl=1)).
-
-We have also worked together in calibrating the age-depth model of the longest terrestrial sediment core obtained in the Iberian Peninsula (74m, Villarquemado, described in [Valero-Garcés *et al*. 2019](https://www.dropbox.com/s/tx6uxf7o2qlv1gn/2019_BMB_Quaternary_Geochronology.pdf?dl=1)).
-
+I helped implement these memory conceptsto better understand the relationship between fire and *Erica spp.* in the Bale Mountains of Ethiopia during the Holocene ([Gil-Romera *et al.* 2019](https://www.dropbox.com/s/w5784kc2b9j8ewa/2019_BMB_Biology_Letters.pdf?dl=1)) and the Pyrenees [(Leunda *et al*. 2020)](https://www.dropbox.com/s/btya8msbt37anks/2020_BMB_Catena.pdf?dl=1).
 
 
 <a name="methods">
@@ -99,7 +96,14 @@ We have also worked together in calibrating the age-depth model of the longest t
 
 **Testing and development of quantitative methods**
 
-I have used statistical and machine learning methods to evaluate the performance of different methods to model the distribution of tree diversity in Mesoamerica (Benito et al. 2013).
+Understanding how quantitative methods work, developing new ones, and finding their limits of application are key axes of my research. 
+
+This research line started with a comparison of the ability of stacked species distribution models based on statistical and machine learning methods to predict tree species richness and composition in Mesoamerica [(Benito *et al.* 2013)](https://www.dropbox.com/s/fq2dvwnm1uhl265/2013_BMB_Methods_in_Ecology_and_Evolution.pdf?dl=1).
+
+![heatmap](media/heatmap.png) 
+
+
+
 
 
 <a name="rangeshift">

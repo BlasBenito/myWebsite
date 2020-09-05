@@ -774,9 +774,23 @@
 </a>
 <p><strong>Testing and development of quantitative methods</strong></p>
 <p>Understanding how quantitative methods work, developing new ones, and finding their limits of application are key axes of my research.</p>
-<p>This research line started with a comparison of the ability of stacked species distribution models based on statistical and machine learning methods to predict tree species richness and composition in Mesoamerica 
-<a href="https://www.dropbox.com/s/fq2dvwnm1uhl265/2013_BMB_Methods_in_Ecology_and_Evolution.pdf?dl=1" target="_blank" rel="noopener">(Benito <em>et al.</em> 2013)</a>.</p>
-<p><img src="media/heatmap.png" alt="heatmap"></p>
+<p>However, this line of research started by designing and creating an infrastructure to document, store and execute the ecological models named <em>ModeleR</em>. This system, used to run the ecological models required by the 
+<a href="https://obsnev.es/en/" target="_blank" rel="noopener">Global Change Observatory of Sierra Nevada</a>, is described in 
+<a href="https://www.dropbox.com/s/tc9uueq8oljenam/2012_BMB_Expert_systems_with_applications.pdf?dl=1" target="_blank" rel="noopener">Perez, Benito and Bonet (2012)</a> and 
+<a href="https://www.dropbox.com/s/04vx2e8b39zu43q/2014_BMB_Environmental_Modelling_and_Software.pdf?dl=1" target="_blank" rel="noopener">Bonet <em>et al</em> (2014)</a>.</p>
+<p>In 2013 I compared the ability of stacked species distribution models based on different statistical and machine learning methods to predict tree species richness and composition in Mesoamerica 
+<a href="https://www.dropbox.com/s/fq2dvwnm1uhl265/2013_BMB_Methods_in_Ecology_and_Evolution.pdf?dl=1" target="_blank" rel="noopener">(Benito <em>et al.</em> 2013)</a>, and contributed to a comparison of SDMs to forecast the distribution of the seaweed <em>Zostera marina</em> in the Wadden Sea 
+<a href="https://www.dropbox.com/s/lypd6105c50nkwt/2013_BMB_Journal_Sea_Research.pdf?dl=1" target="_blank" rel="noopener">(Tovar <em>et al.</em> 2013)</a>.</p>
+<p>After 10 years working with R I recently started to develop R packages. For example, the package 
+<a href="https://CRAN.R-project.org/package=distantia" target="_blank" rel="noopener">distantia</a> 
+<a href="https://www.dropbox.com/s/yepcz1i7ajzdci5/2020_BMB_Ecography_a.pdf?dl=1" target="_blank" rel="noopener">(Benito <em>et al.</em> 2020)</a> implements several methods to quantify the dissimilarity among irregular multivariate time series.</p>
+<p>The package 
+<a href="https://CRAN.R-project.org/package=memoria" target="_blank" rel="noopener">memoria</a> implements a method based on Random Forest to evaluate ecological memory (effect of antecedent conditions on a response variable) in time series data.</p>
+<p>I also designed a mechanistical simulation to produce virtual pollen curves in the package 
+<a href="https://CRAN.R-project.org/package=virtualPollen" target="_blank" rel="noopener">virtualPollen</a>. The model uses a set of drivers, the ecological niches of a virtual species for these drivers, the traits life-span and fecundity, and the carrying capacity of the forest plot to simulate population dynamics over thousands of years.</p>
+<p><img src="media/virtualPollen.png" alt="virtualPollen"></p>
+<p>Currently I am working on two other packages. 
+<a href="https://github.com/BlasBenito/sdmflow" target="_blank" rel="noopener">sdmflow</a> pretends to fully streamline the production of species distribution models based on the concept &ldquo;use versus availability&rdquo;, where the background data (a comprehensive sampling of the ecological conditions available in the study area) represents the <em>availability</em>, and the presence represents the <em>use</em>. This is a project I am developing in my free time, so it will take some time to get it done. The second package remains nameless yet, but implements solutions to incorporate temporal and spatial autocorrelation to machine learning models such as random forest, gradient boosting, or artificial neural networks, among others.</p>
 <a name="rangeshift">
 </a>
 <p><strong>Range shift</strong></p>

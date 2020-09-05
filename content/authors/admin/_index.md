@@ -98,13 +98,19 @@ I helped implement these memory conceptsto better understand the relationship be
 
 Understanding how quantitative methods work, developing new ones, and finding their limits of application are key axes of my research. 
 
-This research line started with a comparison of the ability of stacked species distribution models based on statistical and machine learning methods to predict tree species richness and composition in Mesoamerica [(Benito *et al.* 2013)](https://www.dropbox.com/s/fq2dvwnm1uhl265/2013_BMB_Methods_in_Ecology_and_Evolution.pdf?dl=1).
+However, this line of research started by designing and creating an infrastructure to document, store and execute the ecological models named *ModeleR*. This system, used to run the ecological models required by the [Global Change Observatory of Sierra Nevada](https://obsnev.es/en/), is described in [Perez, Benito and Bonet (2012)](https://www.dropbox.com/s/tc9uueq8oljenam/2012_BMB_Expert_systems_with_applications.pdf?dl=1) and [Bonet *et al* (2014)](https://www.dropbox.com/s/04vx2e8b39zu43q/2014_BMB_Environmental_Modelling_and_Software.pdf?dl=1).
 
-![heatmap](media/heatmap.png) 
+In 2013 I compared the ability of stacked species distribution models based on different statistical and machine learning methods to predict tree species richness and composition in Mesoamerica [(Benito *et al.* 2013)](https://www.dropbox.com/s/fq2dvwnm1uhl265/2013_BMB_Methods_in_Ecology_and_Evolution.pdf?dl=1), and contributed to a comparison of SDMs to forecast the distribution of the seaweed *Zostera marina* in the Wadden Sea [(Tovar *et al.* 2013)](https://www.dropbox.com/s/lypd6105c50nkwt/2013_BMB_Journal_Sea_Research.pdf?dl=1).
 
+After 10 years working with R I recently started to develop R packages. For example, the package [distantia](https://CRAN.R-project.org/package=distantia) [(Benito *et al.* 2020)](https://www.dropbox.com/s/yepcz1i7ajzdci5/2020_BMB_Ecography_a.pdf?dl=1) implements several methods to quantify the dissimilarity among irregular multivariate time series. 
 
+The package [memoria](https://CRAN.R-project.org/package=memoria) implements a method based on Random Forest to evaluate ecological memory (effect of antecedent conditions on a response variable) in time series data. 
 
+I also designed a mechanistical simulation to produce virtual pollen curves in the package [virtualPollen](https://CRAN.R-project.org/package=virtualPollen). The model uses a set of drivers, the ecological niches of a virtual species for these drivers, the traits life-span and fecundity, and the carrying capacity of the forest plot to simulate population dynamics over thousands of years.  
 
+![virtualPollen](media/virtualPollen.png) 
+
+Currently I am working on two other packages. [sdmflow](https://github.com/BlasBenito/sdmflow) pretends to fully streamline the production of species distribution models based on the concept "use versus availability", where the background data (a comprehensive sampling of the ecological conditions available in the study area) represents the *availability*, and the presence represents the *use*. This is a project I am developing in my free time, so it will take some time to get it done. The second package remains nameless yet, but implements solutions to incorporate temporal and spatial autocorrelation to machine learning models such as random forest, gradient boosting, or artificial neural networks, among others.
 
 <a name="rangeshift">
 </a>

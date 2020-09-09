@@ -110,12 +110,15 @@ I also designed a mechanistical simulation to produce virtual pollen curves in t
 
 ![virtualPollen](media/virtualPollen.png) 
 
-Currently I am working on two other packages. [sdmflow](https://github.com/BlasBenito/sdmflow) pretends to fully streamline the production of species distribution models based on the concept "use versus availability", where the background data (a comprehensive sampling of the ecological conditions available in the study area) represents the *availability*, and the presence represents the *use*. This is a project I am developing in my free time, so it will take some time to get it done. The second package remains nameless yet, but implements solutions to incorporate temporal and spatial autocorrelation to machine learning models such as random forest, gradient boosting, or artificial neural networks, among others.
+Currently I am working on two other packages: [sdmflow](https://github.com/BlasBenito/sdmflow) intentds to streamline the production of species distribution models based on the concept "use versus availability", where the background data (a comprehensive sampling of the ecological conditions available in the study area) represents the *availability*, and the presence represents the *use*. The second package (still nameless) incorporates temporal and spatial autocorrelation through [Moran Eigenvector Maps](https://www.jstor.org/stable/40602939) to machine learning models such as random forest, gradient boosting, or artificial neural networks, among others.
 
 <a name="rangeshift">
 </a>
 
 **Range shift**
+
+Global warming is changing the geographic distribution of climate, and organisms respond by either shifting their distributions through dispersal and colonization of new habitats, resisting change *in situ*, or going extinct. Species distribution models (SDM), with the help of future climate simulations, allow to model changes in habitat suitability over time. For example, in [Benito *et al*. (2011)](https://www.dropbox.com/s/7cai34zh603vidr/2011_BMB_Climate_Change.pdf?dl=0)
+
 
 forecast suitability changes under climate change in a high mountain with species distribution models (Benito et al. 2011). Furthermore, to overcome the conceptual limitations of species distribution models to fully capture complex ecological dynamics, I have applied theoretical models and mechanistic simulations to forecast plant range shift under climate change with downscaled climate models (Benito et al. 2013 b). and the Sonoran desert (Albuquerque et al. 2018), assess the effect of species’
 

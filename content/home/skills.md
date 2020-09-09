@@ -41,8 +41,14 @@ subtitle = ""
 [[feature]]
   icon = "th"
   icon_pack = "fas"
-  name = "Agent-based modeling"
+  name = "Dynamic simulation"
   description = "80%"  
+  
+[[feature]]
+  icon = "creative-commons"
+  icon_pack = "fab"
+  name = "Reproducible research"
+  description = "90%"  
   
 [[feature]]
   icon = "creative-commons"

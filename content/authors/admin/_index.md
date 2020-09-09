@@ -61,6 +61,8 @@ user_groups:
 
 I am biogeographer and ecological modeler with a PhD in Plant Ecology and Global Change, a Master in Geographical Information Systems, a Degree in Biology, and quite a bit of experience in applying state-of-the-art quantitative methods to better understand the processes shaping the distribution of biodiversity across space and time. 
 
+I have developed my research career at: PhD student at the Department of Botany of the University of Granada (2006 - 2009), staff researcher at [IISTA](http://www.iista.es/en/), postdoctoral researcher at ECOINFO (2014 - 2017, Aarhus University, Denmark), led by [Jens-Christian Svenning](https://pure.au.dk/portal/en/svenning@biology.au.dk), postdoctoral researcher at [EECRG](https://www.uib.no/en/rg/EECRG) (2017 - 2019), and currently as senior researcher at [Maestre Lab](https://maestrelab.com/en/), led by [Fernando T. Maestre](https://maestrelab.com/en/fernando-t-maestre-biographical-sketch/).
+
 My research activity is structured around five main lines, namely [*biogeography*](#biogeography), [*testing and development of quantitative methods*](#methods), [*palaeoecology*](#palaeoecology), [*range shift*](#rangeshift), and [*biodiversity conservation*](#conservation). 
 
 <a name="biogeography">

@@ -50,11 +50,6 @@ subtitle = ""
   name = "Reproducible research"
   description = "90%"  
   
-[[feature]]
-  icon = "creative-commons"
-  icon_pack = "fab"
-  name = "Reproducible research"
-  description = "90%"  
   
 
   

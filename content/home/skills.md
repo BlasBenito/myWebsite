@@ -18,37 +18,39 @@ subtitle = ""
   icon = "r-project"
   icon_pack = "fab"
   name = "R programming"
-  description = "100%"
+  description = "90%"
   
 [[feature]]
-  icon = "sitemap"
+  icon = "globe-europe"
   icon_pack = "fas"
-  name = "Machine Learning"
-  description = "100%"
+  name = "Geographic Information Systems"
+  description = "90%"
   
 [[feature]]
   icon = "chart-line"
   icon_pack = "fas"
   name = "Data Science"
-  description = "100%"  
+  description = "80%"  
   
 [[feature]]
-  icon = "turtle"
+  icon = "sitemap"
+  icon_pack = "fas"
+  name = "Machine Learning"
+  description = "80%"
+  
+[[feature]]
+  icon = "th"
   icon_pack = "fas"
   name = "Agent-based modeling"
-  description = "100%"  
+  description = "80%"  
   
 [[feature]]
-  icon = "globe-europe"
-  icon_pack = "fas"
-  name = "Geographic Information Systems"
-  description = "100%"  
+  icon = "creative-commons"
+  icon_pack = "fab"
+  name = "Reproducible research"
+  description = "90%"  
   
-[[feature]]
-  icon = "globe-europe"
-  icon_pack = "fas"
-  name = "Geographic Information Systems"
-  description = "100%" 
+
   
 
 

@@ -26,7 +26,7 @@ interests:
 - Modeling and simulation
 - Machine learning
 - R language
-- Netlogo 
+- Agent-based models 
 
 organizations:
 - name: University of Alicante (Spain)
@@ -61,7 +61,7 @@ user_groups:
 
 I am biogeographer and ecological modeler with a PhD in Plant Ecology and Global Change, a Master in Geographical Information Systems, a Degree in Biology, and quite a bit of experience in applying state-of-the-art quantitative methods to better understand the processes shaping the distribution of biodiversity across space and time. 
 
-My research activity is structured around five main lines, namely [*biogeography*](#biogeography), [*palaeoecology*](#palaeoecology),  [*testing and development of quantitative methods*](#methods), [*range shift*](#rangeshift), and [*biodiversity conservation*](#conservation). 
+My research activity is structured around five main lines, namely [*biogeography*](#biogeography), [*testing and development of quantitative methods*](#methods), [*palaeoecology*](#palaeoecology), [*range shift*](#rangeshift), and [*biodiversity conservation*](#conservation). 
 
 <a name="biogeography">
 </a>
@@ -78,6 +78,31 @@ I have also learned a a fair deal about the biogeography of plant phenology thro
 
 Last, but not least in this section are my collaborations with the excellent biogeographer [Gang Feng](https://gangfeng.weebly.com/index.html) on the links between climatic and anthropogenetic legacies and plant distributions. In [Feng *et al*. (2017)](https://www.dropbox.com/s/ptx20e8pjhbdybj/2017_BMB_Global_Ecology_and_Biogeography.pdf?dl=1) we found that tree assemblages with large phylogenetic age differences among species mostly inhabit areas with relatively high long‐term climate stability. The same year, in [Feng *et al*. (2017)](https://www.dropbox.com/s/lb4sw4um9391koh/2017_BMB_Biological_Conservation.pdf?dl=1) we evaluated the relationship between the distribution of threatened species and land-use change legacies, to find that the current distribution of threatened plants in China happens in places where historical land-use intensity was low, but has increased in the last decades.
 
+<a name="methods">
+</a>
+
+**Testing and development of quantitative methods**
+
+Understanding how quantitative methods work, developing new ones, and finding their limits of application are key axes of my research. 
+
+However, this line of research started by designing and creating an infrastructure to document, store and execute the ecological models named *ModeleR*. This system, used to run the ecological models required by the [Global Change Observatory of Sierra Nevada](https://obsnev.es/en/), is described in [Perez, Benito and Bonet (2012)](https://www.dropbox.com/s/tc9uueq8oljenam/2012_BMB_Expert_systems_with_applications.pdf?dl=1) and [Bonet *et al* (2014)](https://www.dropbox.com/s/04vx2e8b39zu43q/2014_BMB_Environmental_Modelling_and_Software.pdf?dl=1).
+
+In 2013 I compared the ability of stacked species distribution models based on different statistical and machine learning methods to predict tree species richness and composition in Mesoamerica [(Benito *et al.* 2013)](https://www.dropbox.com/s/fq2dvwnm1uhl265/2013_BMB_Methods_in_Ecology_and_Evolution.pdf?dl=1), and contributed to a comparison of SDMs to forecast the distribution of the seaweed *Zostera marina* in the Wadden Sea [(Tovar *et al.* 2013)](https://www.dropbox.com/s/lypd6105c50nkwt/2013_BMB_Journal_Sea_Research.pdf?dl=1).
+
+Recently I engaged in a collaboration with modelers and epidemiologists to warn against the use of species distribution models to forecast the expansion of SARS-CoV-2. In [Carlson *et al*. (2020)](https://www.dropbox.com/s/abulu2exwn6r7eo/2020_Nature_Ecology_%26_Evolution_a.pdf?dl=1) we discuss the limitations of SDMs to model the direct transmission of the virus, and in [Carlson *et al*. (2020)](https://www.dropbox.com/s/v1mnj9mwizpjacp/2020_Nature_Ecology_%26_Evolution_b.pdf?dl=1) we point out that speculation on the relationships between the distribution of the virus and climate hinder decision making and preparedness. In the preprint [Chipperfield et al. (2020)](https://www.dropbox.com/s/0kxp5g1h2stspni/2020_BMB_EcoEvoRxiv.pdf?dl=1) and in Contina et al. (2020, in press) we criticize two different misapplications of SDMs to the expansion of the virus.
+
+**R packages**
+
+After 10 years working with R I recently started to develop R packages. For example, the package [distantia](https://CRAN.R-project.org/package=distantia) [(Benito *et al.* 2020)](https://www.dropbox.com/s/yepcz1i7ajzdci5/2020_BMB_Ecography_a.pdf?dl=1) implements several methods to quantify the dissimilarity among irregular multivariate time series. 
+
+The package [memoria](https://CRAN.R-project.org/package=memoria) implements a method based on Random Forest to evaluate ecological memory (effect of antecedent conditions on a response variable) in time series data. 
+
+I also designed a mechanistical simulation to produce virtual pollen curves in the package [virtualPollen](https://CRAN.R-project.org/package=virtualPollen). The model uses a set of drivers, the ecological niches of a virtual species for these drivers, the traits life-span and fecundity, and the carrying capacity of the forest plot to simulate population dynamics over thousands of years.  
+
+![virtualPollen](media/virtualPollen.png) 
+
+Currently I am working on two other packages: [sdmflow](https://github.com/BlasBenito/sdmflow) intentds to streamline the production of species distribution models based on the concept "use versus availability", where the background data (a comprehensive sampling of the ecological conditions available in the study area) represents the *availability*, and the presence represents the *use*. The second package (still nameless) incorporates temporal and spatial autocorrelation through [Moran Eigenvector Maps](https://www.jstor.org/stable/40602939) to machine learning models such as random forest, gradient boosting, or artificial neural networks, among others.
+
 
 <a name="palaeoecology">
 </a>
@@ -91,40 +116,13 @@ During the last years I have focused on applying state-of-the-art quantitative m
 I helped implement these memory conceptsto better understand the relationship between fire and *Erica spp.* in the Bale Mountains of Ethiopia during the Holocene ([Gil-Romera *et al.* 2019](https://www.dropbox.com/s/w5784kc2b9j8ewa/2019_BMB_Biology_Letters.pdf?dl=1)) and the Pyrenees [(Leunda *et al*. 2020)](https://www.dropbox.com/s/btya8msbt37anks/2020_BMB_Catena.pdf?dl=1).
 
 
-<a name="methods">
-</a>
-
-**Testing and development of quantitative methods**
-
-Understanding how quantitative methods work, developing new ones, and finding their limits of application are key axes of my research. 
-
-However, this line of research started by designing and creating an infrastructure to document, store and execute the ecological models named *ModeleR*. This system, used to run the ecological models required by the [Global Change Observatory of Sierra Nevada](https://obsnev.es/en/), is described in [Perez, Benito and Bonet (2012)](https://www.dropbox.com/s/tc9uueq8oljenam/2012_BMB_Expert_systems_with_applications.pdf?dl=1) and [Bonet *et al* (2014)](https://www.dropbox.com/s/04vx2e8b39zu43q/2014_BMB_Environmental_Modelling_and_Software.pdf?dl=1).
-
-In 2013 I compared the ability of stacked species distribution models based on different statistical and machine learning methods to predict tree species richness and composition in Mesoamerica [(Benito *et al.* 2013)](https://www.dropbox.com/s/fq2dvwnm1uhl265/2013_BMB_Methods_in_Ecology_and_Evolution.pdf?dl=1), and contributed to a comparison of SDMs to forecast the distribution of the seaweed *Zostera marina* in the Wadden Sea [(Tovar *et al.* 2013)](https://www.dropbox.com/s/lypd6105c50nkwt/2013_BMB_Journal_Sea_Research.pdf?dl=1).
-
-After 10 years working with R I recently started to develop R packages. For example, the package [distantia](https://CRAN.R-project.org/package=distantia) [(Benito *et al.* 2020)](https://www.dropbox.com/s/yepcz1i7ajzdci5/2020_BMB_Ecography_a.pdf?dl=1) implements several methods to quantify the dissimilarity among irregular multivariate time series. 
-
-The package [memoria](https://CRAN.R-project.org/package=memoria) implements a method based on Random Forest to evaluate ecological memory (effect of antecedent conditions on a response variable) in time series data. 
-
-I also designed a mechanistical simulation to produce virtual pollen curves in the package [virtualPollen](https://CRAN.R-project.org/package=virtualPollen). The model uses a set of drivers, the ecological niches of a virtual species for these drivers, the traits life-span and fecundity, and the carrying capacity of the forest plot to simulate population dynamics over thousands of years.  
-
-![virtualPollen](media/virtualPollen.png) 
-
-Currently I am working on two other packages: [sdmflow](https://github.com/BlasBenito/sdmflow) intentds to streamline the production of species distribution models based on the concept "use versus availability", where the background data (a comprehensive sampling of the ecological conditions available in the study area) represents the *availability*, and the presence represents the *use*. The second package (still nameless) incorporates temporal and spatial autocorrelation through [Moran Eigenvector Maps](https://www.jstor.org/stable/40602939) to machine learning models such as random forest, gradient boosting, or artificial neural networks, among others.
 
 <a name="rangeshift">
 </a>
 
 **Range shift**
 
-Global warming is changing the geographic distribution of climate, and organisms respond by either shifting their distributions through dispersal and colonization of new habitats, resisting change *in situ*, or going extinct. Species distribution models (SDM), with the help of future climate simulations, allow to model changes in habitat suitability over time. For example, in [Benito *et al*. (2011)](https://www.dropbox.com/s/7cai34zh603vidr/2011_BMB_Climate_Change.pdf?dl=0)
-
-
-forecast suitability changes under climate change in a high mountain with species distribution models (Benito et al. 2011). Furthermore, to overcome the conceptual limitations of species distribution models to fully capture complex ecological dynamics, I have applied theoretical models and mechanistic simulations to forecast plant range shift under climate change with downscaled climate models (Benito et al. 2013 b). and the Sonoran desert (Albuquerque et al. 2018), assess the effect of species’
-
-
-
-
+Global warming is changing the geographic distribution of climate, and organisms respond by either shifting their distributions through dispersal and colonization of new habitats, resisting change *in situ*, or going extinct. Species distribution models (SDM), with the help of future climate simulations, allow to model changes in habitat suitability over time. For example, in [Benito *et al*. (2011)](https://www.dropbox.com/s/7cai34zh603vidr/2011_BMB_Climate_Change.pdf?dl=1) I evaluated future suitability change for four vegetation types in the Sierra Nevada mountain range (Granada, Spain). I have also contributed to future suitability change projections for the emblematic *saguaro* (*Carnegiea gigantea*) in the Sonoran Desert [(Albuquerque *et al*. 2018)](https://www.dropbox.com/s/6gpuw96uvcrgt3n/2018_BMB_PeerJ.pdf?dl=1), and three grouse species in [Kozma *et al* (2018)](https://www.dropbox.com/s/xyjtl77swdda4az/2018_BMB_Ecology_and_Evolution.pdf?dl=1). I have also worked with mechanistic models simulating dispersal to forecast plant range shift and extinction in the southern Iberian Peninsula [(Benito *et al* 2014)](https://www.dropbox.com/s/ghg131gt5iaamyj/2014_BMB_Diversity_and_Distributions.pdf?dl=1).
 
 <a name="conservation">
 </a>

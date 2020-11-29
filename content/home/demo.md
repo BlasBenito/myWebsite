@@ -9,7 +9,7 @@ active = true  # Activate this widget? true/false
 weight = 15  # Order that this section will appear.
 
 title = "Welcome!"
-subtitle = "I am Blas, a quantitative ecologist and biogeographer currently working at [Maestre Lab](https://maestrelab.com/en/) (University of Alicante). Here you can find out who I am, what my research is about through my CV, publications, and blog posts related to my work and expertise."
+subtitle = "I am Blas, a researcher working at [Maestre Lab](https://maestrelab.com/en/) with a broad interest in ecology, biogeography, quantitative methods, machine learning, and the R language. "
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.

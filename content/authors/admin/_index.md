@@ -21,17 +21,15 @@ education:
 email: "blasbenito at gmail dot com"
 
 interests:
-- Biogeography
-- Quantitative ecology
-- Modeling and simulation
-- Machine learning
-- R language
-- Agent-based models 
+- Processes shaping the distribution of biodiversity.
+- Application of state-of-the-art quantitative methods to answer ecological questions.
+- Design of efficient scientific workflows.
+- R language, machine learning, agent-based models 
 
 organizations:
-- name: University of Alicante (Spain)
-  url: ""
-role: Senior Researcher
+- name: Maestre Lab, University of Alicante (Spain)
+  url: "https://maestrelab.com/en/"
+role: Staff Researcher
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
 #   For an email link, use "fas" icon pack, "envelope" icon, and a link in the
@@ -61,7 +59,7 @@ user_groups:
 
 I am biogeographer and ecological modeler with a PhD in Plant Ecology and Global Change, a Master in Geographical Information Systems, a Degree in Biology, and quite a bit of experience in applying state-of-the-art quantitative methods to better understand the processes shaping the distribution of biodiversity across space and time. 
 
-I have developed my research career at: PhD student at the Department of Botany of the University of Granada (2006 - 2009), staff researcher at [IISTA](http://www.iista.es/en/), postdoctoral researcher at ECOINFO (2014 - 2017, Aarhus University, Denmark), led by [Jens-Christian Svenning](https://pure.au.dk/portal/en/svenning@biology.au.dk), postdoctoral researcher at [EECRG](https://www.uib.no/en/rg/EECRG) (2017 - 2019), and currently as senior researcher at [Maestre Lab](https://maestrelab.com/en/), led by [Fernando T. Maestre](https://maestrelab.com/en/fernando-t-maestre-biographical-sketch/).
+I have developed my research career as PhD student at the Department of Botany of the University of Granada (2006 - 2009), staff researcher at [IISTA](http://www.iista.es/en/), postdoctoral researcher at ECOINFO (2014 - 2017, Aarhus University, Denmark), led by [Jens-Christian Svenning](https://pure.au.dk/portal/en/svenning@biology.au.dk), postdoctoral researcher at [EECRG](https://www.uib.no/en/rg/EECRG) (2017 - 2019), and currently as senior researcher at [Maestre Lab](https://maestrelab.com/en/), led by [Fernando T. Maestre](https://maestrelab.com/en/fernando-t-maestre-biographical-sketch/).
 
 My research activity is structured around five main lines, namely [*biogeography*](#biogeography), [*testing and development of quantitative methods*](#methods), [*palaeoecology*](#palaeoecology), [*range shift*](#rangeshift), and [*biodiversity conservation*](#conservation). 
 
@@ -72,11 +70,11 @@ My research activity is structured around five main lines, namely [*biogeography
 
 *Why are species where they are?* is a question I have been passionate about since I was a child.
 
-A keystone result of my personal interest in this topic is the multidisciplinary study I led on the distribution of Neanderthals during the Last Interglacial ([Benito *et al*. 2016](https://www.dropbox.com/s/asn5h45l4j5fy3c/2016_BMB_Journal_of_Biogeography.pdf?dl=1). This paper was highlighted at the Editor’s Picks section of Science ([Sugen 2017](https://www.dropbox.com/s/6k308eczv7i6kbj/2016_BMB_Journal_of_Biogeography_editors_choice.pdf?dl=1)), and was among the top 20 most downloaded papers of the journal of bigeography during 2018. In [Kellberg-Nielsen *et al*. (2017)](https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1), led by my brilliant colleague [Trine Kellberg-Nielsen](https://trinekellbergnielsen.wordpress.com/) we further discuss the dispersal dynamics of Neanderthals in their northern edge.
+A keystone result of my personal interest in this topic is the multidisciplinary study I led on the distribution of Neanderthals during the Last Interglacial ([Benito *et al*. 2016](https://www.dropbox.com/s/asn5h45l4j5fy3c/2016_BMB_Journal_of_Biogeography.pdf?dl=1). This paper was highlighted at the Editor’s Picks section of Science ([Sugen 2017](https://www.dropbox.com/s/6k308eczv7i6kbj/2016_BMB_Journal_of_Biogeography_editors_choice.pdf?dl=1)), and was among the top 20 most downloaded papers of the Journal of Bigeography during 2018. In [Kellberg-Nielsen *et al*. (2017)](https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1), led by my brilliant colleague [Trine Kellberg-Nielsen](https://trinekellbergnielsen.wordpress.com/) we further discuss the dispersal dynamics of Neanderthals in their northern edge.
 
 ![neanderthal](media/neanderthal.png) 
 
-I have also learned a a fair deal about the biogeography of plant phenology through my collaboration with the outstanding [Constantin Zohner](https://constantinzohner.wordpress.com/ueber/). In [Zohner *et al*. (2016)](https://www.dropbox.com/s/hmyovgva3c86e41/2016_BMB_Nature_Climate_Change.pdf?dl=1) we found that plant species from lower latitudes use spring photoperiod to trigger leaf-out, while boreal species do not use photoperiod as leaf-out signal. In a complementary study ([Zohner *et al*. (2017)](https://www.dropbox.com/s/8o1bgu4p5w51gjt/2017_BMB_Ecology_Letters.pdf?dl=1)) we found that plant species from regions with high spring temperature variability have higher winter chilling requirements than species living in more predictable environments. More recently, in [Zohner *et al*. (2020)](https://www.dropbox.com/s/jg5hnkdwojgbb9m/2020_BMB_PNAS.pdf?dl=1), we report increasing risks of late spring frosts in significant portions of European and Asian forests.
+I have also learned a a fair deal about the biogeography of plant phenological strategies through my collaboration with the outstanding [Constantin Zohner](https://constantinzohner.wordpress.com/ueber/). In [Zohner *et al*. (2016)](https://www.dropbox.com/s/hmyovgva3c86e41/2016_BMB_Nature_Climate_Change.pdf?dl=1) we found that plant species from lower latitudes use spring photoperiod to trigger leaf-out, while boreal species do not use photoperiod as leaf-out signal. In a complementary study ([Zohner *et al*. (2017)](https://www.dropbox.com/s/8o1bgu4p5w51gjt/2017_BMB_Ecology_Letters.pdf?dl=1)) we found that plant species from regions with high spring temperature variability have higher winter chilling requirements than species living in more predictable environments. More recently, in [Zohner *et al*. (2020)](https://www.dropbox.com/s/jg5hnkdwojgbb9m/2020_BMB_PNAS.pdf?dl=1), we report increasing risks of late spring frosts in significant portions of European and Asian forests.
 
 Last, but not least in this section are my collaborations with the excellent biogeographer [Gang Feng](https://gangfeng.weebly.com/index.html) on the links between climatic and anthropogenetic legacies and plant distributions. In [Feng *et al*. (2017)](https://www.dropbox.com/s/ptx20e8pjhbdybj/2017_BMB_Global_Ecology_and_Biogeography.pdf?dl=1) we found that tree assemblages with large phylogenetic age differences among species mostly inhabit areas with relatively high long‐term climate stability. The same year, in [Feng *et al*. (2017)](https://www.dropbox.com/s/lb4sw4um9391koh/2017_BMB_Biological_Conservation.pdf?dl=1) we evaluated the relationship between the distribution of threatened species and land-use change legacies, to find that the current distribution of threatened plants in China happens in places where historical land-use intensity was low, but has increased in the last decades.
 
@@ -133,7 +131,7 @@ Global warming is changing the geographic distribution of climate, and organisms
 
 The first half of my PhD thesis was focused on understanding the threat posed by the expansion of greenhouses and habitat degradation on rare and endemic annual plants in the drylands of the Iberian Southwest. For example, I analyzed the historical habitat fragmentation of the habitat of *Linaria nigricans* using landscape fragmentation metrics ([Peñas, Benito *et al*. 2011](https://www.dropbox.com/s/f4szr8r2jmb55vz/2011_BMB_Environmental_management.pdf?dl=1)), and modelled future greenhouse expansion on protected dryland habitats through correlative ([Benito *et al*. 2009](https://www.dropbox.com/s/v3vz6yhkifki2ix/2009_BMB_Biodiversity_and_Conservation.pdf?dl=1)) and mechanistic models ([Benito and Peñas 2008](https://www.dropbox.com/s/jym53771y7pv8zv/2008_BMB_Environmental_Dynamics.pdf?dl=1)). 
 
-Wthin this research line I have also also engaged in collaborations to better understand the distribution and conservation status of an endemic butterfly ([Azcón, Benito *et al* 2014](https://www.dropbox.com/s/rbp8q4k6qd8zntz/2014_BMB_Biodiversity_and_Conservation.pdf?dl=1)),  assess how well Special Protected Areas protect birds in Europe ([Albuquerque et al. 2013](https://www.dropbox.com/s/16nggzhg6yhx565/2013_BMB_Biological_Conservation.pdf?dl=1)), define the role of palaeoecology in conservation strategies ([Gill *et al*. 2015](https://www.dropbox.com/s/w0gx08dgzjytp0i/2015_BMB_Conservation_Biology.pdf?dl=1)), and find conservation gaps for tree diversity in Mesoamerica ([Albuquerque, Benito *et al*. 2015](https://www.dropbox.com/s/34u4vowgixcje2x/2015_BMB_Naturaleza_Conservacao.pdf?dl=1)).
+Within this research line I have also also engaged in collaborations to better understand the distribution and conservation status of an endemic butterfly ([Azcón, Benito *et al* 2014](https://www.dropbox.com/s/rbp8q4k6qd8zntz/2014_BMB_Biodiversity_and_Conservation.pdf?dl=1)),  assess how well Special Protected Areas protect birds in Europe ([Albuquerque et al. 2013](https://www.dropbox.com/s/16nggzhg6yhx565/2013_BMB_Biological_Conservation.pdf?dl=1)), define the role of palaeoecology in conservation strategies ([Gill *et al*. 2015](https://www.dropbox.com/s/w0gx08dgzjytp0i/2015_BMB_Conservation_Biology.pdf?dl=1)), and find conservation gaps for tree diversity in Mesoamerica ([Albuquerque, Benito *et al*. 2015](https://www.dropbox.com/s/34u4vowgixcje2x/2015_BMB_Naturaleza_Conservacao.pdf?dl=1)).
 
 
 

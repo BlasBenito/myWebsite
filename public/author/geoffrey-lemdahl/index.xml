@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Geoffrey Lemdahl | Blas M. Benito</title>
+    <link>/author/geoffrey-lemdahl/</link>
+      <atom:link href="/author/geoffrey-lemdahl/index.xml" rel="self" type="application/rss+xml" />
+    <description>Geoffrey Lemdahl</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 14 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Geoffrey Lemdahl</title>
+      <link>/author/geoffrey-lemdahl/</link>
+    </image>
+    
+    <item>
+      <title>Evaluating fossil charcoal representation in small peat bogs: Detailed Holocene fire records from southern Sweden</title>
+      <link>/publication/2020_cui_the_holocene/</link>
+      <pubDate>Tue, 14 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/2020_cui_the_holocene/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

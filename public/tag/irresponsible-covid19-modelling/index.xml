@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Irresponsible Covid19 modelling | Blas M. Benito</title>
+    <link>/tag/irresponsible-covid19-modelling/</link>
+      <atom:link href="/tag/irresponsible-covid19-modelling/index.xml" rel="self" type="application/rss+xml" />
+    <description>Irresponsible Covid19 modelling</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 21 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Irresponsible Covid19 modelling</title>
+      <link>/tag/irresponsible-covid19-modelling/</link>
+    </image>
+    
+    <item>
+      <title>Comment on “A global-scale ecological niche model to predict SARS-CoV-2 coronavirus infection rate”, author Coro</title>
+      <link>/publication/2020_contina_ecological_modelling/</link>
+      <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/2020_contina_ecological_modelling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Don’t gamble the COVID-19 response on ecological hypotheses</title>
+      <link>/publication/2020_carlson_nature_ecology_and_evolution/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2020_carlson_nature_ecology_and_evolution/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

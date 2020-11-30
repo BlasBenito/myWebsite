@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quantitative methods | Blas M. Benito</title>
+    <link>/tag/quantitative-methods/</link>
+      <atom:link href="/tag/quantitative-methods/index.xml" rel="self" type="application/rss+xml" />
+    <description>Quantitative methods</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 23 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Quantitative methods</title>
+      <link>/tag/quantitative-methods/</link>
+    </image>
+    
+    <item>
+      <title>distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series</title>
+      <link>/publication/2020_benito_ecography/</link>
+      <pubDate>Thu, 23 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/2020_benito_ecography/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

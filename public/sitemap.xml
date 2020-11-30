@@ -208,6 +208,41 @@
   </url>
   
   <url>
+    <loc>/author/joseph-d.-chipperfield/</loc>
+    <lastmod>2020-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/species-distribution-models/</loc>
+    <lastmod>2020-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2020_carlson_nature_ecology_and_evolution_b/</loc>
+    <lastmod>2020-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2020_benito_ecography/</loc>
+    <lastmod>2020-01-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/h.-john.-b.-birks/</loc>
+    <lastmod>2020-01-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/quantitative-methods/</loc>
+    <lastmod>2020-01-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/r-packages/</loc>
+    <lastmod>2020-01-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
     <lastmod>2019-09-05T00:00:00+00:00</lastmod>
   </url>
@@ -220,21 +255,6 @@
   <url>
     <loc>/courses/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication-type/3/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/preprint-copy/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/preprint/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -328,11 +348,6 @@
   </url>
   
   <url>
-    <loc>/author/joseph-d.-chipperfield/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/2015-07-23-r-rmarkdown/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url>
@@ -355,6 +370,206 @@
   <url>
     <loc>/tag/regression/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/alain-paquette/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/alejandro-ordonez/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/andrzej-m.-jagodzinski/</loc>
+  </url>
+  
+  <url>
+    <loc>/tag/biogeography/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/bogdan-jaroszewicz/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/chelsea-chisholm/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/chunyu-zhang/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/clara-anton-fernandez/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/constantin-m.-zohner/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/damiano-gianelle/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/diana-laarmann/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/elena-tikhonova/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/emil-cienciala/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/frederik-baumgarten/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/gert-jan-nabuurs/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/giorgio-alberti/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/han-y.-h.-chen/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/hans-pretzsch/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/helder-viana/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/henn-korjus/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/hyun-seok-kim/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/jean-francois-bastin/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/jens-christian-svenning/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/jingjing-liang/</loc>
+  </url>
+  
+  <url>
+    <loc>/publication/2020_zohner_pnas/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/lidong-mo/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/lorenzo-frizzera/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/mait-lang/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/miroslav-svoboda/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/mohammed-latif-khan/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/pascal-a.-niklaus/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/peter-b.-reich/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/peter-schall/</loc>
+  </url>
+  
+  <url>
+    <loc>/tag/phenology/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/purabi-saikia/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/radomir-balazy/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/sebastian-kepfer-rojas/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/selvadurai-dayanandan/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/sergio-de-miguel/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/susanne-s.-renner/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/thomas-w.-crowther/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/tom-m.-fayle/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/tomasz-zawila-niedzwiecki/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/tommaso-jucker/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/urs-beat-brandli/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/veronica-sebald/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/vivian-kvist-johannsen/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/vladimir-seben/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/xiuhai-zhao/</loc>
+  </url>
+  
+  <url>
+    <loc>/author/yann-vitasse/</loc>
   </url>
   
 </urlset>

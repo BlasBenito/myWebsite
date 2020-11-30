@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vladimír Šebeň | Blas M. Benito</title>
+    <link>/author/vladimir-seben/</link>
+      <atom:link href="/author/vladimir-seben/index.xml" rel="self" type="application/rss+xml" />
+    <description>Vladimír Šebeň</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Vladimír Šebeň</title>
+      <link>/author/vladimir-seben/</link>
+    </image>
+    
+    <item>
+      <title>Late-spring frost risk between 1959 and 2017 decreased in North America but increased in Europe and Asia</title>
+      <link>/publication/2020_zohner_pnas/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/publication/2020_zohner_pnas/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

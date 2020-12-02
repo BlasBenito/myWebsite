@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Graciela Gil-Romera | Blas M. Benito</title>
+    <link>/author/graciela-gil-romera/</link>
+      <atom:link href="/author/graciela-gil-romera/index.xml" rel="self" type="application/rss+xml" />
+    <description>Graciela Gil-Romera</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 01 May 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Graciela Gil-Romera</title>
+      <link>/author/graciela-gil-romera/</link>
+    </image>
+    
+    <item>
+      <title>Holocene fire and vegetation dynamics in the Central Pyrenees (Spain)</title>
+      <link>/publication/2020_leunda_catena/</link>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/2020_leunda_catena/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features</title>
+      <link>/publication/2019_benito_ecography/</link>
+      <pubDate>Tue, 22 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/2019_benito_ecography/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

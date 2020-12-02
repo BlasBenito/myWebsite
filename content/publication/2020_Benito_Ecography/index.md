@@ -3,7 +3,6 @@ abstract: There is a large array of methods to extract knowledge and perform eco
 
 authors:
 - admin
-- H. John. B. Birks
 date: "2020-01-23T00:00:00Z"
 doi: "https://doi.org/10.1111/ecog.04895"
 featured: true

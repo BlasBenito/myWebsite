@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>et al. | Blas M. Benito</title>
+    <link>/author/et-al./</link>
+      <atom:link href="/author/et-al./index.xml" rel="self" type="application/rss+xml" />
+    <description>et al.</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>et al.</title>
+      <link>/author/et-al./</link>
+    </image>
+    
+    <item>
+      <title>Compositional turnover and variation in Eemian pollen sequences in Europe</title>
+      <link>/publication/2020_felde_vegetation_history_and_archaeobotany/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/2020_felde_vegetation_history_and_archaeobotany/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

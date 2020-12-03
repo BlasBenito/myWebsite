@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clusterfuck | Blas M. Benito</title>
+    <link>/tag/clusterfuck/</link>
+      <atom:link href="/tag/clusterfuck/index.xml" rel="self" type="application/rss+xml" />
+    <description>Clusterfuck</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 01 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Clusterfuck</title>
+      <link>/tag/clusterfuck/</link>
+    </image>
+    
+    <item>
+      <title>Compositional turnover and variation in Eemian pollen sequences in Europe</title>
+      <link>/publication/2020_felde_vegetation_history_and_archaeobotany/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/2020_felde_vegetation_history_and_archaeobotany/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

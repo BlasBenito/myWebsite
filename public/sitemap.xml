@@ -508,6 +508,16 @@
   </url>
   
   <url>
+    <loc>/tag/clusterfuck/</loc>
+    <lastmod>2020-04-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2020_felde_vegetation_history_and_archaeobotany/</loc>
+    <lastmod>2020-04-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/publication/2020_chipperfield_ecoevorxiv/</loc>
     <lastmod>2020-03-28T00:00:00+00:00</lastmod>
   </url>
@@ -530,6 +540,71 @@
   <url>
     <loc>/publication/2019_benito_ecography/</loc>
     <lastmod>2019-10-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2019_valero-garces_quaternary_geochronology/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/a.-moreno/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/b.-oliva-urcia/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/b.l-valero-garces/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/c.s.-lane/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/e.-garcia-prieto/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/j.-aranbarri/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/l.j.-arnold/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/m.-demuro/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/m.-frugone/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/m.-hardiman/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/m.-morellon/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/s.p.e.-blockey/</loc>
+    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -655,6 +730,14 @@
   <url>
     <loc>/tag/regression/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/et-al./</loc>
+  </url>
+  
+  <url>
+    <loc>/author/felde-v.-a./</loc>
   </url>
   
 </urlset>

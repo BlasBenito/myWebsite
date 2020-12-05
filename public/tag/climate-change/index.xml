@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Climate change | Blas M. Benito</title>
+    <link>/tag/climate-change/</link>
+      <atom:link href="/tag/climate-change/index.xml" rel="self" type="application/rss+xml" />
+    <description>Climate change</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 19 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Climate change</title>
+      <link>/tag/climate-change/</link>
+    </image>
+    
+    <item>
+      <title>Potential changes in the distribution of Carnegiea gigantea under future scenarios</title>
+      <link>/publication/2018_albuquerque_peerj/</link>
+      <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/publication/2018_albuquerque_peerj/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

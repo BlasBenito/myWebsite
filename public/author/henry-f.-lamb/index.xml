@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Henry F. Lamb | Blas M. Benito</title>
+    <link>/author/henry-f.-lamb/</link>
+      <atom:link href="/author/henry-f.-lamb/index.xml" rel="self" type="application/rss+xml" />
+    <description>Henry F. Lamb</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 24 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Henry F. Lamb</title>
+      <link>/author/henry-f.-lamb/</link>
+    </image>
+    
+    <item>
+      <title>Long-term fire resilience of the Ericaceous Belt, Bale Mountains, Ethiopia</title>
+      <link>/publication/2019_gil_romera_biology_letters/</link>
+      <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/2019_gil_romera_biology_letters/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

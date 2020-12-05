@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Species Distribution Models | Blas M. Benito</title>
+    <title>Species distribution models | Blas M. Benito</title>
     <link>/tag/species-distribution-models/</link>
       <atom:link href="/tag/species-distribution-models/index.xml" rel="self" type="application/rss+xml" />
-    <description>Species Distribution Models</description>
+    <description>Species distribution models</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 06 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/avatar.jpg</url>
-      <title>Species Distribution Models</title>
+      <title>Species distribution models</title>
       <link>/tag/species-distribution-models/</link>
     </image>
     
@@ -25,6 +25,14 @@
       <link>/publication/2020_chipperfield_ecoevorxiv/</link>
       <pubDate>Sat, 28 Mar 2020 00:00:00 +0000</pubDate>
       <guid>/publication/2020_chipperfield_ecoevorxiv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Potential changes in the distribution of Carnegiea gigantea under future scenarios</title>
+      <link>/publication/2018_albuquerque_peerj/</link>
+      <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/publication/2018_albuquerque_peerj/</guid>
       <description></description>
     </item>
     

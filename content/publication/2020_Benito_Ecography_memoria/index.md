@@ -5,7 +5,7 @@ abstract: 'Ecological memory describes how antecedent conditions drive the dynam
 authors:
 - admin
 - Graciela Gil-Romera
-date: "2019-10-22T00:00:00Z"
+date: "2020-01-01T00:00:00Z"
 doi: https://doi.org/10.1111/ecog.04772
 featured: true
 image:
@@ -15,12 +15,13 @@ image:
 publication: '*Ecography*'
 publication_types:
 - "2"
-publishDate: "2019-10-22T00:00:00Z"
+publishDate: "2020-01-01T00:00:00Z"
 summary: Ecological memory describes how antecedent conditions drive the dynamics of an ecological system. Palaeoecological records are paramount to understand ecological memory at millennial time‐scales, but the concept is widely neglected in the literature, and a formal approach is lacking. Here, we fill such a gap by introducing a quantitative framework for ecological memory in palaeoecology, and assessing how data constraints and taxa traits shape ecological memory patterns.
 tags:
 - Quantitative methods
 - R packages
 - Palaeoecology
+- Ecological memory
 title: 'Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features'
 url_code: "https://github.com/BlasBenito/EcologicalMemory"
 url_pdf: https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.04772

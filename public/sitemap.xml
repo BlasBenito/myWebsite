@@ -483,6 +483,11 @@
   </url>
   
   <url>
+    <loc>/tag/ecological-memory/</loc>
+    <lastmod>2020-05-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tag/fire-dynamics/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
   </url>
@@ -523,7 +528,7 @@
   </url>
   
   <url>
-    <loc>/publication/2020_benito_ecography/</loc>
+    <loc>/publication/2020_benito_ecography_distantia/</loc>
     <lastmod>2020-01-23T00:00:00+00:00</lastmod>
   </url>
   
@@ -538,8 +543,8 @@
   </url>
   
   <url>
-    <loc>/publication/2019_benito_ecography/</loc>
-    <lastmod>2019-10-22T00:00:00+00:00</lastmod>
+    <loc>/publication/2020_benito_ecography_memoria/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -608,6 +613,76 @@
   </url>
   
   <url>
+    <loc>/author/betelhem-mekonnen/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/bruk-lemma/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/bruno-glaser/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/carole-adolf/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/david-a.-grady/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/georg-miaha/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/henry-f.-lamb/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2019_gil_romera_biology_letters/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/lucas-bittner/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/maria-u.-johansson/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/mekbib-fekadu/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/michael-zech/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/miguel-sevilla-callejo/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/wolfgang-zech/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
     <lastmod>2019-09-05T00:00:00+00:00</lastmod>
   </url>
@@ -635,6 +710,16 @@
   <url>
     <loc>/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/climate-change/</loc>
+    <lastmod>2018-09-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2018_albuquerque_peerj/</loc>
+    <lastmod>2018-09-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -733,11 +818,23 @@
   </url>
   
   <url>
+    <loc>/author/albuquerque-f./</loc>
+  </url>
+  
+  <url>
     <loc>/author/et-al./</loc>
   </url>
   
   <url>
     <loc>/author/felde-v.-a./</loc>
+  </url>
+  
+  <url>
+    <loc>/author/gray-c./</loc>
+  </url>
+  
+  <url>
+    <loc>/author/rodriguez-mam./</loc>
   </url>
   
 </urlset>

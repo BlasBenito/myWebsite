@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Threatened plants | Blas M. Benito</title>
+    <link>/tag/threatened-plants/</link>
+      <atom:link href="/tag/threatened-plants/index.xml" rel="self" type="application/rss+xml" />
+    <description>Threatened plants</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 01 May 2017 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Threatened plants</title>
+      <link>/tag/threatened-plants/</link>
+    </image>
+    
+    <item>
+      <title>Historical anthropogenic footprints in the distribution of threatened plants in China</title>
+      <link>/publication/2017_feng_biological_conservation/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      <guid>/publication/2017_feng_biological_conservation/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -13,7 +13,7 @@ image:
   caption: 'Image credit: '
   focal_point: ""
   preview_only: false
-publication: '*PeerJ*'
+publication: '*PeerJ+*'
 publication_types:
 - "2"
 date: "2018-09-19T00:00:00Z"

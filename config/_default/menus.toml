@@ -15,29 +15,29 @@
   url = "files/cv.pdf"
   weight = 70
   
-[[main]]
-  name = "Projects"
-  url = "#projects"
-  weight = 30
+# [[main]]
+#   name = "Projects"
+#   url = "#projects"
+#   weight = 30
   
 [[main]]
   name = "Publications"
   url = "#featured"
   weight = 40
   
-[[main]]
-  name = "Courses"
-  url = "courses/"
-  weight = 50
+# [[main]]
+#   name = "Courses"
+#   url = "courses/"
+#   weight = 50
 
 [[main]]
   name = "Posts"
   url = "#posts"
   weight = 20
 
-[[main]]
-  name = "Contact"
-  url = "#contact"
-  weight = 60
+# [[main]]
+#   name = "Contact"
+#   url = "#contact"
+#  weight = 60
 
 

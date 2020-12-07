@@ -11,7 +11,7 @@ draft: true
 
 ## Summary
 
-In this post I explain how to setup a home [Beowulf cluster](https://en.wikipedia.org/wiki/Beowulf_cluster) with a personal PC with Ubuntu 20.04 (but the instructions may work for many different Linux distros) and a couple of [Intel NUCs](https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html).
+In this post I explain how to setup a home [Beowulf cluster](https://en.wikipedia.org/wiki/Beowulf_cluster) with a personal PC with Ubuntu 20.04 (but the instructions may work for many different Linux distros), and a couple of [Intel NUCs](https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html).
 
 The topics I cover here are:
 
@@ -20,7 +20,7 @@ The topics I cover here are:
   + Installing the secure shell protocol
   + Installing Ubuntu server in the NUCs
   + Installing R in the NUCs
-  + Managing the cluster
+  + Managing the cluster's network
 
 ## Preamble
 
@@ -28,21 +28,21 @@ I have a little but nice HP ENVY model *TE01-0008ns* with 32 GB RAM, 8 CPUs, and
 
 {{< tweet 1254754362389417987 >}}
 
-It was just a draft cluster running on WIFI, but it served me to think about getting a more permanent solution not requiring two additional laptops in my desk.
+It was just a draft cluster running on a wireless network, but it served me to think about getting a more permanent solution not requiring two additional laptops in my desk.
 
-That's were the nice INTEL NUCs (from [*Next Unit of Computing*](https://en.wikipedia.org/wiki/Next_Unit_of_Computing)) come into play. NUCs are full-fledged computers fitted in small boxes usually sold without RAM memory sticks and no hard disk (henc ethe term *barebone*). Since they have a low energy consumption footprint, I thought these would be ideal units for my soon-to-be home cluster.
+That's were the nice INTEL NUCs (from [*Next Unit of Computing*](https://en.wikipedia.org/wiki/Next_Unit_of_Computing)) come into play. NUCs are full-fledged computers fitted in small boxes usually sold without RAM memory sticks and no hard disk (hence the term *barebone*). Since they have a low energy consumption footprint, I thought these would be ideal units for my soon-to-be home cluster.
 
 ## Material
 
-And so, I gifted myself with:
+I gifted myself with:
 
   + 2 [Intel Barebone BOXNUC6CAYH](https://ark.intel.com/content/www/us/en/ark/products/95062/intel-nuc-kit-nuc6cayh.html), each with 4 cores, and a maximum RAM memory of 32GB (you might read they only accept 8GB, but that's not the case anymore). Notice that these NUCs aren't state-of-the-art now, they were released by the end of 2016.
   + 2 Hard disks SSD 2.5" [Western Digital WDS250G2B0A WD Blue](https://shop.westerndigital.com/es-es/products/internal-drives/wd-blue-sata-ssd#WDS250G2B0A) (250GB)
   + 4 Crucial CT102464BF186D DDR3 SODIMM (204 pins) RAM sticks with 8GB each. 
   + 1 ethernet switch Netgear GS308-300PES with 8 ports.
-  + 3 ethernet wires NanoCable 10.20.0400-BL of cat 6 quality.
+  + 3 ethernet wires NanoCable 10.20.0400-BL of [cat 6](https://www.electronics-notes.com/articles/connectivity/ethernet-ieee-802-3/how-to-buy-best-ethernet-cables-cat-5-6-7.php) quality.
   
-The whole set came to cost around 530€, but please notice that I had a clear goal in mind: duplicating my computing power with the minimum number of NUCs, while preserving a share of 4GB of RAM memory per CPU throughout the cluster (based on the features of my desk computer). A more basic setting with more modest NUCs and smaller RAM would cost half of that.
+The whole set came to cost around 530€, but please notice that I had a clear goal in mind: "duplicating" my computing power with the minimum number of NUCs, while preserving a share of 4GB of RAM memory per CPU throughout the cluster (based on the features of my desk computer). A more basic setting with more modest NUCs and smaller RAM would cost half of that.
 
 This instructive video by [David Harry](https://www.youtube.com/channel/UCYa3XeSHenvosy5wMRpeIww) shows how to install the SSD and the RAM sticks in an Intel NUC. It really takes 5 minutes tops, one only has to be a bit careful with the RAM sticks, the pins need to go all the way in into their slots before securing the sticks in place.
 
@@ -50,11 +50,10 @@ This instructive video by [David Harry](https://www.youtube.com/channel/UCYa3XeS
 
 ## Network settings
 
-Before starting to install an operating system in the NUCS, I setup the network as follows:
+Before starting to install an operating system in the NUCS, the network setup goes as follows:
 
   + My desktop PC is connected to a router via WIFI and dynamic IP (DHCP).
-  + The PC is connected to the switch with a cat6 ethernet wire.
-  + Each NUC is connected to the switch the same kind of wire.
+  + The PC and each NUC are connected to the switch with cat6 ethernet wires.
 
 ![Example image](network.png)
 
@@ -69,13 +68,15 @@ wlp3s0  wifi      connected    my_wifi
 enp2s0  ethernet  unavailable  --          
 lo      loopback  unmanaged    --      
 ```
-There I can see that my ethernet interface is named `enp2s0`. Second, I have to configure the connection.
+There I can see that my ethernet interface is named `enp2s0`. 
+
+Second, I have to configure the shared connection.
 
 ```bash
 nmcli connection add type ethernet ifname enp2s0 ipv4.method shared con-name cluster
 ```
 
-Were `ifname enp2s0` is the name of the interface I want to use fo rthe new connection, `ipv4.method shared` is the type of connection, and `con-name cluster` is the name I want the connection to have. This operation adds firewall rules to manage traffic within the `cluster` network, starts a DHCP server in the computer that serves IPs to the NUCS, and a DNS server that allows the NUCs to translate internet addresses.
+Were `ifname enp2s0` is the name of the interface I want to use for the new connection, `ipv4.method shared` is the type of connection, and `con-name cluster` is the name I want the connection to have. This operation adds firewall rules to manage traffic within the `cluster` network, starts a DHCP server in the computer that serves IPs to the NUCS, and a DNS server that allows the NUCs to translate internet addresses.
 
 After turning on the switch, I can check the connection status again with
 
@@ -87,13 +88,13 @@ wlp3s0  wifi      connected  my_wifi
 lo      loopback  unmanaged  --    
 ```
 
-When checking the IP of the device with ```bash ifconfig``` it should yield `10.42.0.1`. Any other computer in the `cluster` network will have a dynamic IP in the range `10.42.0.1/24`
+When checking the IP of the device with ```bash ifconfig``` it should yield `10.42.0.1`. Any other computer in the `cluster` network will have a dynamic IP in the range `10.42.0.1/24`. 
 
 Further details about how to set a shared connection with `NetworkManager` can be found in [this nice post by Beniamino Galvani](https://fedoramagazine.org/internet-connection-sharing-networkmanager/).
 
-## Installing OpenSSH in the PC and uploading SSH key to GitHub
+## SSH setup
 
-My PC, as the director of the cluster, needs `SSH` running. `SSH` (**S**ecure **Sh**ell) is a remote authentication protocol that allows secure connections to remote servers that I will be using all the time to manage the cluster. To install, run, and check its status I just have to run these lines in the console:
+My PC, as the director of the cluster, needs an `SSH client` running, while the NUCs need an `SSH server`. [`SSH` (**S**ecure **Sh**ell)](https://www.ionos.com/digitalguide/server/tools/ssh-secure-shell/) is a remote authentication protocol that allows secure connections to remote servers that I will be using all the time to manage the cluster. To install, run, and check its status I just have to run these lines in the console:
 
 ```bash
 sudo apt install ssh 
@@ -101,32 +102,38 @@ sudo systemctl enable --now ssh
 sudo systemctl status ssh
 ```
 
-Now, a ssh-key needs to be generated. It is a secure certificate of the identity of a given computer that allows access to remote ssh servers and services. 
+Now, a secure certificate of the identity of a given computer, named `ssh-key`, that grants access to remote ssh servers and services needs to be generated. 
 
 ```bash
 ssh-keygen "label"
 ```
 
-Here, I substitute "label" by the name of my computer (the one I will be using as the cluster's "director"). The system will ask for a file name and a [passphrase](https://www.ssh.com/ssh/passphrase) that will be used to encrypt the ssh-key.
+Here, substitute "label" by the name of the computer to be used as cluster's "director". The system will ask for a file name and a [passphrase](https://www.ssh.com/ssh/passphrase) that will be used to encrypt the ssh-key.
 
-COPYING THE SSH-KEY TO GITHUB
+The ssh-key needs to be added to the [`ssh-agent`](https://www.ssh.com/ssh/agent).
 
-more about using ssh: https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04
+```bash
+ssh-add ~/.ssh/id_rsa
+```
+
+To copy the ssh-key to my GitHub account, I have to copy the contents of the file `~/.ssh/id_rsa.pub` (can be done just opening it with `gedit ~/.ssh/id_rsa.pub` + `Ctrl + a` + `Ctrl + c`), and paste it on `GitHub account > Settings >  SSH and GPG keys > New SSH Key` (green button in the upper right part of the window).
+
+**Note:** If you don't use GitHub, you'll need to copy your ssh-key to the NUCs once they are up and running with `ssh-copy-id -i ~/.ssh/id_rsa.pub user_name@nuc_IP`.
 
 ## Installing and preparing ubuntu server in each NUC
 
-The NUCs don't need to waste resources in a graphical interface I won't be using whatsoever. Since they will work in a *headless* configuration once the cluster is ready (no keyboard, no mouse, no display), a Linux distro without graphical user interface such as Ubuntu server is the way to go.
+The NUCs don't need to waste resources in a user graphical interface I won't be using whatsoever. Since they will work in a [*headless* configuration](https://www.howtogeek.com/660841/what-is-a-headless-server/) once the cluster is ready, a Linux distro without graphical user interface such as Ubuntu server is the way to go.
 
 ### Installing Ubuntu server
 
-First it is important to connect a display, a keyboard, and a mouse to the NUC we are preparing, and turn it on while pushing F2 to start the visual BIOS. In the BIOS I have to modify these parameters.
+First it is important to connect a display, a keyboard, and a mouse to the NUC in preparation, and turn it on while pushing F2 to start the visual BIOS. These BIOS parameters need to be modified:
 
-  + Boot > OS Selection: select Linux.
-  + Set USB devices to boot first.
-  + Set it up to turn on automatically when it receives energy.
+  + Advanced (upper right) > Boot > Boot Configuration > UEFI Boot > OS Selection: Linux
+  + Advanced > Boot > Boot Configuration > UEFI Boot > OS Selection: mark "Boot USB Devices First".
+  + [optional] Advanced > Power > Secondary Power Settings > After Power Failure: "Power On". I have the switch and nucs connected to an outlet plug extender with an interrupter. When I switch it on, the NUCs (and the switch) boot automatically after this option is enabled, so I only need to push one button to power up the cluster.
   + F10 to save, and shutdown.
   
-To prepare the USB boot device with Ubuntu server 20.04 I first download the .iso from [here](), and use XXXX to write it to the USB stick. Plugin the stick into the NUC and reboot it.
+To prepare the USB boot device with Ubuntu server 20.04 I first download the .iso from [here](https://ubuntu.com/download/server), by choosing "Option 3", which leads to the manual install. Once the .iso file is downloaded, I use [Ubuntu's `Startup Disk Creator`](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview) to prepare a bootable USB stick. Now I just have to plug the stick in the NUC and reboot it.
 
 The Ubuntu server install is pretty straightforward, and only a few things need to be decided along the way:
 
@@ -135,7 +142,7 @@ The Ubuntu server install is pretty straightforward, and only a few things need 
   + As password, for comfort I use the same I have in my personal computer.
   + During the network setup, choose DHCP. If the network is properly configured and the switch is powered on, after a few seconds the NUC will acquire an IP in the range `10.42.0.1/24`, as any other machine within the `cluster` network.
   + When asked, mark the option "Install in the whole disk", unless you have other plans for your NUC.
-  + Mark "Install OPenSSH".
+  + Mark "Install OpenSSH".
   + Provide it with your GitHub user name if you have your ssh-key there, and it will download it right away, facilitating a lot the ssh setup.
   
 Reboot once the install is completed. Now I keep configuring the NUC's operating system from my PC through ssh.
@@ -173,7 +180,7 @@ sudo apt-get upgrade
 Now I have to install a set of software packages that will facilitate managing the cluster's network and the NUC itself.
 
 ```bash
-sudo apt install net-tools arp-scan lm-sensors dirmngr gnupg apt-transport-https ca-certificates software-properties-common samba
+sudo apt install net-tools arp-scan lm-sensors dirmngr gnupg apt-transport-https ca-certificates software-properties-common samba libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common
 ```
 
 ### Setting the system time
@@ -193,355 +200,113 @@ sudo timedatectl set-ntp on
 
 The operating systems of the NUCs and the PC need to have the same locale. It can be set by editing the file `/etc/default/locale` with either `nano` (in the NUCS) or `gedit` (in the PC) and adding these lines, just replacing `en_US.UTF-8` with your preferred locale.
 
-LANG="en_US.UTF-8"
-LANGUAGE="en_US:en"
-LC_NUMERIC="en_US.UTF-8"
-LC_TIME="en_US.UTF-8"
-LC_MONETARY="en_US.UTF-8"
-LC_PAPER="en_US.UTF-8"
-LC_IDENTIFICATION="en_US.UTF-8"
-LC_NAME="en_US.UTF-8"
-LC_ADDRESS="en_US.UTF-8"
-LC_TELEPHONE="en_US.UTF-8"
-LC_MEASUREMENT="en_US.UTF-8"
+LANG="en_US.UTF-8"  
+LANGUAGE="en_US:en"  
+LC_NUMERIC="en_US.UTF-8"  
+LC_TIME="en_US.UTF-8"  
+LC_MONETARY="en_US.UTF-8"  
+LC_PAPER="en_US.UTF-8"  
+LC_IDENTIFICATION="en_US.UTF-8"  
+LC_NAME="en_US.UTF-8"  
+LC_ADDRESS="en_US.UTF-8"  
+LC_TELEPHONE="en_US.UTF-8"  
+LC_MEASUREMENT="en_US.UTF-8"  
+
 
 
 ### Temperature monitoring
 
-NUCs are prone to overheating FIND LINKS when they are under heavy loads for prolonged times. 
+NUCs are [prone to overheating](https://www.intel.com/content/www/us/en/support/articles/000033327/intel-nuc.html) when under heavy loads for prolonged times. Therefore, monitoring the temperature of the NUCs CPUs is kinda important. In a step before I installed `lm-sensors` in the NUC, which provides the tools to do so. To setup the sensors from an ssh session in the NUC:
 
-https://www.cyberciti.biz/faq/how-to-check-cpu-temperature-on-ubuntu-linux/
-
-sudo apt install lm-sensors
+```bash
 sudo sensors-detect
+```
+
+The program will request permission to find sensors in the NUC. I answered "yes" to every request. Once all sensors are identified, to check them
+
+```bash
 sensors
-watch sensors
 
+iwlwifi_1-virtual-0
+Adapter: Virtual device
+temp1:            N/A  
 
-## Installing R https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/
+acpitz-acpi-0
+Adapter: ACPI interface
+temp1:        +32.0°C  (crit = +100.0°C)
 
-install deps required to add new repositories from https
-sudo apt install dirmngr gnupg apt-transport-https ca-certificates software-properties-common
+coretemp-isa-0000
+Adapter: ISA adapter
+Package id 0:  +30.0°C  (high = +105.0°C, crit = +105.0°C)
+Core 0:        +30.0°C  (high = +105.0°C, crit = +105.0°C)
+Core 1:        +30.0°C  (high = +105.0°C, crit = +105.0°C)
+Core 2:        +29.0°C  (high = +105.0°C, crit = +105.0°C)
+Core 3:        +30.0°C  (high = +105.0°C, crit = +105.0°C)
+```
 
-add cran repo
+which gives the cpu temperatures at the moment the command was executed. The command `watch sensors` gives continuous temperature readings instead.
+
+To control overheating in my NUCs I removed their top lids, and installed them into a custom LEGO "rack" with [external USB fans](http://www.eluteng.com/module/fan/12cm/details003.html) with velocity control, as shown in the picture at the beginning of the post.
+
+### Installing R 
+
+To install R in the NUCs I just proceed as I would when installing it in my personal computer. There is a thorough guide [here](https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/).
+
+In a step above I installed all the pre-required software packages. Now I only have to add the security key of the R repository, add the repository itself, update the information on the packages available in the new repository, and finally install R.
+
+```bash
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
-
-updating repos
 sudo apt update
-
-install
 sudo apt install r-base
+```
 
-#set locale for R (in system console)
-check locale: "locale" it should be en_US.UTF-8
+**Note:** If R has issues to recognize the system locale
+
+```bash
 nano ~/.profile
+```
 
-add rows
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+add the following lines, replacing `en_US.UTF-8` with your preferred locale
 
-execute file
+`export LANG=en_US.UTF-8`
+`export LC_ALL=en_US.UTF-8`
+
+save, and execute the file to export the locale so R can read it.
+
+```bash
 . ~/.profile
+```
 
-##activate firewall
+### Finalizing the network configuration
+
+Each NUC needs firewall rules to grant access from other computers withinn the cluster network. To activate the NUC's firewall and check what ports are open:
+
+```bash
 sudo ufw enable
-
-check that the computer is listening in the right ports
 sudo ufw status
+```
 
-open ports
+To grant access from the PC to the NUC through ssh, and later through R for parallel computing, the ports `22` and `11000` must be open for the IP of the PC (`10.42.0.1`).
+
+```bash
+sudo ufw allow ssh
 sudo ufw allow from 10.42.0.1 to any port 11000
 sudo ufw allow from 10.42.0.1 to any port 22
-sudo ufw allow ssh
-
-
-
-##install openmpi
-sudo apt install libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common
-
-
-**Highlight your code snippets, take notes on math classes, and draw diagrams from textual representation.**
-
-On this page, you'll find some examples of the types of technical content that can be rendered with Academic.
-
-## Examples
-
-### Code
-
-Academic supports a Markdown extension for highlighting code syntax. You can enable this feature by toggling the `highlight` option in your `config/_default/params.toml` file.
-
-    ```python
-    import pandas as pd
-    data = pd.read_csv("data.csv")
-    data.head()
-    ```
-
-renders as
-
-```python
-import pandas as pd
-data = pd.read_csv("data.csv")
-data.head()
 ```
 
-### Math
+Finally, the other members of the cluster network must be declared in the `/etc/hosts` file of each computer. 
 
-Academic supports a Markdown extension for $\LaTeX$ math. You can enable this feature by toggling the `math` option in your `config/_default/params.toml` file.
+In each NUC edit the file through ssh with `bash sudo nano /etc/hosts` and add the lines
 
-To render *inline* or *block* math, wrap your LaTeX math with `$...$` or `$$...$$`, respectively.
+`10.42.0.1 pc_name`  
+`10.42.0.XXX name_of_the_other_nuc`
 
-Example **math block**:
+In the PC, add the lines
 
-```tex
-$$\gamma_{n} = \frac{ 
-\left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T 
-\left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}
-{\left \|\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right \|^2}$$
-```
+`10.42.0.XXX name_of_one_nuc`  
+`10.42.0.XXX name_of_the_other_nuc`
 
-renders as
+At this point, after rebooting every machine, the NUCs must be accessible through ssh by using their names (`ssh username@nuc_name`) instead of their IPs (`ssh username@n10.42.0.XXX`). Just take in mind that, since the `cluster` network works with dynamic IPs (and such setting cannot be changed in a shared connection), the IPs of the NUCs might change if a new device is added to the network. That's something you need to check from the PC with `sudo arp-scan 10.42.0.1/24`, to update every `/etc/hosts` file accordingly.
 
-$$\gamma_{n} = \frac{ \left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T \left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}{\left \|\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right \|^2}$$
-
-Example **inline math** `$\nabla F(\mathbf{x}_{n})$` renders as $\nabla F(\mathbf{x}_{n})$.
-
-Example **multi-line math** using the `\\\\` math linebreak:
-
-```tex
-$$f(k;p_0^*) = \begin{cases} p_0^* & \text{if }k=1, \\\\
-1-p_0^* & \text {if }k=0.\end{cases}$$
-```
-
-renders as
-
-$$f(k;p_0^*) = \begin{cases} p_0^* & \text{if }k=1, \\\\
-1-p_0^* & \text {if }k=0.\end{cases}$$
-
-### Diagrams
-
-Academic supports a Markdown extension for diagrams. You can enable this feature by toggling the `diagram` option in your `config/_default/params.toml` file or by adding `diagram: true` to your page front matter.
-
-An example **flowchart**:
-
-    ```mermaid
-    graph TD
-    A[Hard] -->|Text| B(Round)
-    B --> C{Decision}
-    C -->|One| D[Result 1]
-    C -->|Two| E[Result 2]
-    ```
-
-renders as
-
-```mermaid
-graph TD
-A[Hard] -->|Text| B(Round)
-B --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-An example **sequence diagram**:
-
-    ```mermaid
-    sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->>John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts!
-    John-->>Alice: Great!
-    John->>Bob: How about you?
-    Bob-->>John: Jolly good!
-    ```
-
-renders as
-
-```mermaid
-sequenceDiagram
-Alice->>John: Hello John, how are you?
-loop Healthcheck
-    John->>John: Fight against hypochondria
-end
-Note right of John: Rational thoughts!
-John-->>Alice: Great!
-John->>Bob: How about you?
-Bob-->>John: Jolly good!
-```
-
-An example **Gantt diagram**:
-
-    ```mermaid
-    gantt
-    section Section
-    Completed :done,    des1, 2014-01-06,2014-01-08
-    Active        :active,  des2, 2014-01-07, 3d
-    Parallel 1   :         des3, after des1, 1d
-    Parallel 2   :         des4, after des1, 1d
-    Parallel 3   :         des5, after des3, 1d
-    Parallel 4   :         des6, after des4, 1d
-    ```
-
-renders as
-
-```mermaid
-gantt
-section Section
-Completed :done,    des1, 2014-01-06,2014-01-08
-Active        :active,  des2, 2014-01-07, 3d
-Parallel 1   :         des3, after des1, 1d
-Parallel 2   :         des4, after des1, 1d
-Parallel 3   :         des5, after des3, 1d
-Parallel 4   :         des6, after des4, 1d
-```
-
-An example **class diagram**:
-
-    ```mermaid
-    classDiagram
-    Class01 <|-- AveryLongClass : Cool
-    <<interface>> Class01
-    Class09 --> C2 : Where am i?
-    Class09 --* C3
-    Class09 --|> Class07
-    Class07 : equals()
-    Class07 : Object[] elementData
-    Class01 : size()
-    Class01 : int chimp
-    Class01 : int gorilla
-    class Class10 {
-      <<service>>
-      int id
-      size()
-    }
-    ```
-
-renders as
-
-```mermaid
-classDiagram
-Class01 <|-- AveryLongClass : Cool
-<<interface>> Class01
-Class09 --> C2 : Where am i?
-Class09 --* C3
-Class09 --|> Class07
-Class07 : equals()
-Class07 : Object[] elementData
-Class01 : size()
-Class01 : int chimp
-Class01 : int gorilla
-class Class10 {
-  <<service>>
-  int id
-  size()
-}
-```
-
-An example **state diagram**:
-
-    ```mermaid
-    stateDiagram
-    [*] --> Still
-    Still --> [*]
-    Still --> Moving
-    Moving --> Still
-    Moving --> Crash
-    Crash --> [*]
-    ```
-
-renders as
-
-```mermaid
-stateDiagram
-[*] --> Still
-Still --> [*]
-Still --> Moving
-Moving --> Still
-Moving --> Crash
-Crash --> [*]
-```
-
-### Todo lists
-
-You can even write your todo lists in Academic too:
-
-```markdown
-- [x] Write math example
-- [x] Write diagram example
-- [ ] Do something else
-```
-
-renders as
-
-- [x] Write math example
-- [x] Write diagram example
-- [ ] Do something else
-
-### Tables
-
-Represent your data in tables:
-
-```markdown
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-```
-
-renders as
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
-### Asides
-
-Academic supports a [shortcode for asides](https://sourcethemes.com/academic/docs/writing-markdown-latex/#alerts), also referred to as *notices*, *hints*, or *alerts*. By wrapping a paragraph in `{{%/* alert note */%}} ... {{%/* /alert */%}}`, it will render as an aside.
-
-```markdown
-{{%/* alert note */%}}
-A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-{{%/* /alert */%}}
-```
-
-renders as
-
-{{% alert note %}}
-A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-{{% /alert %}}
-
-### Spoilers
-
-Add a spoiler to a page to reveal text, such as an answer to a question, after a button is clicked.
-
-```markdown
-{{</* spoiler text="Click to view the spoiler" */>}}
-You found me!
-{{</* /spoiler */>}}
-```
-
-renders as
-
-{{< spoiler text="Click to view the spoiler" >}} You found me! {{< /spoiler >}}
-
-### Icons
-
-Academic enables you to use a wide range of [icons from _Font Awesome_ and _Academicons_](https://sourcethemes.com/academic/docs/page-builder/#icons) in addition to [emojis](https://sourcethemes.com/academic/docs/writing-markdown-latex/#emojis).
-
-Here are some examples using the `icon` shortcode to render icons:
-
-```markdown
-{{</* icon name="terminal" pack="fas" */>}} Terminal  
-{{</* icon name="python" pack="fab" */>}} Python  
-{{</* icon name="r-project" pack="fab" */>}} R
-```
-
-renders as
-
-{{< icon name="terminal" pack="fas" >}} Terminal  
-{{< icon name="python" pack="fab" >}} Python  
-{{< icon name="r-project" pack="fab" >}} R
-
-### Did you find this page helpful? Consider sharing it 🙌
+I think that's all folks. Good luck setting your home cluster! Next time I will describe how to use it for parallel computing in R.

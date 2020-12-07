@@ -52,6 +52,89 @@
 &lt;li&gt;Each NUC is connected to the switch through a cat6 ethernet cable.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;network.png&#34; alt=&#34;Example image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;MY NOTES&lt;/p&gt;
+&lt;h2 id=&#34;preparing-the-network&#34;&gt;Preparing the network&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://fedoramagazine.org/internet-connection-sharing-networkmanager/&#34;&gt;https://fedoramagazine.org/internet-connection-sharing-networkmanager/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;add new connection&lt;/p&gt;
+&lt;p&gt;nmcli connection add type ethernet ifname enp2s0 ipv4.method shared con-name cluster&lt;/p&gt;
+&lt;p&gt;this enables IP forwarding, adds firewall rules, and starts dnsmasq as dhcp and dns server.&lt;/p&gt;
+&lt;p&gt;To check the status: nmcli device&lt;/p&gt;
+&lt;h2 id=&#34;installing-ubuntu-server-in-the-nucs&#34;&gt;Installing ubuntu server in the NUCs&lt;/h2&gt;
+&lt;p&gt;I prepared a usb with ubuntu server 20.04.&lt;/p&gt;
+&lt;p&gt;When starting the nuc, push F2 to start the visual BIOS. There, in Boot &amp;gt; Os Selection, choose Linux, and set USB devices to boot first. I also unchecked network boot options. PUsh F10 to save options.&lt;/p&gt;
+&lt;p&gt;Insert the USB with ubuntu server, and reboot the nuc.&lt;/p&gt;
+&lt;p&gt;DHCP (after configuring the network as above). It should show an address in the range 10.42.0.1/24&lt;/p&gt;
+&lt;p&gt;Install in the whole disk.&lt;/p&gt;
+&lt;p&gt;Install OpenSSH, and let it recover your rsa keys from github&lt;/p&gt;
+&lt;p&gt;find the ip of the new machine by either installing ifconfig, or by typing &amp;ldquo;arp -a&amp;rdquo; in the main machine. A more thorough scanner comes from &amp;ldquo;sudo arp-scan -I enp2s0 &amp;ndash;localnet&amp;rdquo; and &amp;ldquo;sudo arp-scan 10.42.0.1/24&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;Install samba in the nuc with &amp;ldquo;sudo apt-get install samba&amp;rdquo; so the machine can broadcast its hostname. PROBABLY NOT IMPORTANT&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;sudo apt install net-tools&amp;rdquo; to get ifconfig&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;sudo apt isntall arp-scan&amp;rdquo; to get the network scanner&lt;/p&gt;
+&lt;p&gt;What is important is to change the ip in /etc/resolv.conf to the ip of the main computer, that is 10.42.0.1, with sudo nano /etc/resolv.conf&lt;/p&gt;
+&lt;h2 id=&#34;software-updates-sudo-apt-get-upgrade&#34;&gt;software updates: &amp;ldquo;sudo apt-get upgrade&amp;rdquo;&lt;/h2&gt;
+&lt;p&gt;##Set system time&lt;/p&gt;
+&lt;p&gt;to set the correct system time: &lt;a href=&#34;https://askubuntu.com/questions/679988/how-to-change-ubuntus-server-date-and-time-via-command-line&#34;&gt;https://askubuntu.com/questions/679988/how-to-change-ubuntus-server-date-and-time-via-command-line&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;list time zones: timedatectl list-timezones
+set time zone: sudo timedatectl set-timezone Europe/Madrid
+Enable timesyncd: sudo timedatectl set-ntp on&lt;/p&gt;
+&lt;p&gt;##install zsh
+&lt;a href=&#34;https://linuxhint.com/install_zsh_shell_ubuntu_1804/&#34;&gt;https://linuxhint.com/install_zsh_shell_ubuntu_1804/&lt;/a&gt;
+sudo apt install zsh
+sudo usermod -s /usr/bin/zsh blas
+sh -c &amp;ldquo;$(curl -fsSL &lt;a href=&#34;https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)%22&#34;&gt;https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&amp;quot;&lt;/a&gt;
+sudo reboot
+sudo apt install powerline fonts-powerline
+sudo apt install zsh-theme-powerlevel9k
+echo &amp;ldquo;source /usr/share/powerlevel9k/powerlevel9k.zsh-theme&amp;rdquo; &amp;raquo; ~/.zshrc
+sudo apt install zsh-syntax-highlighting
+echo &amp;ldquo;source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&amp;rdquo; &amp;raquo; ~/.zshrc&lt;/p&gt;
+&lt;p&gt;nano ~/.zshrc
+export LANG=en_US.UTF-8&lt;/p&gt;
+&lt;p&gt;sudo nano /etc/default/locale&lt;/p&gt;
+&lt;p&gt;LANG=&amp;quot;en_US.UTF-8&amp;rdquo;
+LANGUAGE=&amp;quot;en_US:en&amp;rdquo;
+LC_NUMERIC=&amp;quot;en_US.UTF-8&amp;rdquo;
+LC_TIME=&amp;quot;en_US.UTF-8&amp;rdquo;
+LC_MONETARY=&amp;quot;en_US.UTF-8&amp;rdquo;
+LC_PAPER=&amp;quot;en_US.UTF-8&amp;rdquo;
+LC_IDENTIFICATION=&amp;quot;en_US.UTF-8&amp;rdquo;
+LC_NAME=&amp;quot;en_US.UTF-8&amp;rdquo;
+LC_ADDRESS=&amp;quot;en_US.UTF-8&amp;rdquo;
+LC_TELEPHONE=&amp;quot;en_US.UTF-8&amp;rdquo;
+LC_MEASUREMENT=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;/p&gt;
+&lt;h2 id=&#34;temperature-monitoring-httpswwwcybercitibizfaqhow-to-check-cpu-temperature-on-ubuntu-linux&#34;&gt;Temperature monitoring &lt;a href=&#34;https://www.cyberciti.biz/faq/how-to-check-cpu-temperature-on-ubuntu-linux/&#34;&gt;https://www.cyberciti.biz/faq/how-to-check-cpu-temperature-on-ubuntu-linux/&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;sudo apt install lm-sensors
+sudo sensors-detect
+sensors
+watch sensors&lt;/p&gt;
+&lt;h2 id=&#34;installing-r-httpslinuxizecomposthow-to-install-r-on-ubuntu-20-04&#34;&gt;Installing R &lt;a href=&#34;https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/&#34;&gt;https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;install deps required to add new repositories from https
+sudo apt install dirmngr gnupg apt-transport-https ca-certificates software-properties-common&lt;/p&gt;
+&lt;p&gt;add cran repo
+sudo apt-key adv &amp;ndash;keyserver keyserver.ubuntu.com &amp;ndash;recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+sudo add-apt-repository &amp;lsquo;deb &lt;a href=&#34;https://cloud.r-project.org/bin/linux/ubuntu&#34;&gt;https://cloud.r-project.org/bin/linux/ubuntu&lt;/a&gt; focal-cran40/&amp;rsquo;&lt;/p&gt;
+&lt;p&gt;updating repos
+sudo apt update&lt;/p&gt;
+&lt;p&gt;install
+sudo apt install r-base&lt;/p&gt;
+&lt;p&gt;#set locale for R (in system console)
+check locale: &amp;ldquo;locale&amp;rdquo; it should be en_US.UTF-8
+nano ~/.profile&lt;/p&gt;
+&lt;p&gt;add rows
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8&lt;/p&gt;
+&lt;p&gt;execute file
+. ~/.profile&lt;/p&gt;
+&lt;p&gt;##activate firewall
+sudo ufw enable&lt;/p&gt;
+&lt;p&gt;check that the computer is listening in the right ports
+sudo ufw status&lt;/p&gt;
+&lt;p&gt;open ports
+sudo ufw allow from 10.42.0.1 to any port 11000
+sudo ufw allow from 10.42.0.1 to any port 22
+sudo ufw allow ssh&lt;/p&gt;
+&lt;p&gt;##install openmpi
+sudo apt install libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Highlight your code snippets, take notes on math classes, and draw diagrams from textual representation.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;On this page, you&amp;rsquo;ll find some examples of the types of technical content that can be rendered with Academic.&lt;/p&gt;
 &lt;h2 id=&#34;examples&#34;&gt;Examples&lt;/h2&gt;

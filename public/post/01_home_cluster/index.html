@@ -616,7 +616,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    7 min read
+    9 min read
   </span>
   
 
@@ -694,6 +694,89 @@
 <li>Each NUC is connected to the switch through a cat6 ethernet cable.</li>
 </ul>
 <p><img src="network.png" alt="Example image"></p>
+<p>MY NOTES</p>
+<h2 id="preparing-the-network">Preparing the network</h2>
+<p><a href="https://fedoramagazine.org/internet-connection-sharing-networkmanager/">https://fedoramagazine.org/internet-connection-sharing-networkmanager/</a></p>
+<p>add new connection</p>
+<p>nmcli connection add type ethernet ifname enp2s0 ipv4.method shared con-name cluster</p>
+<p>this enables IP forwarding, adds firewall rules, and starts dnsmasq as dhcp and dns server.</p>
+<p>To check the status: nmcli device</p>
+<h2 id="installing-ubuntu-server-in-the-nucs">Installing ubuntu server in the NUCs</h2>
+<p>I prepared a usb with ubuntu server 20.04.</p>
+<p>When starting the nuc, push F2 to start the visual BIOS. There, in Boot &gt; Os Selection, choose Linux, and set USB devices to boot first. I also unchecked network boot options. PUsh F10 to save options.</p>
+<p>Insert the USB with ubuntu server, and reboot the nuc.</p>
+<p>DHCP (after configuring the network as above). It should show an address in the range 10.42.0.1/24</p>
+<p>Install in the whole disk.</p>
+<p>Install OpenSSH, and let it recover your rsa keys from github</p>
+<p>find the ip of the new machine by either installing ifconfig, or by typing &ldquo;arp -a&rdquo; in the main machine. A more thorough scanner comes from &ldquo;sudo arp-scan -I enp2s0 &ndash;localnet&rdquo; and &ldquo;sudo arp-scan 10.42.0.1/24&rdquo;</p>
+<p>Install samba in the nuc with &ldquo;sudo apt-get install samba&rdquo; so the machine can broadcast its hostname. PROBABLY NOT IMPORTANT</p>
+<p>&ldquo;sudo apt install net-tools&rdquo; to get ifconfig</p>
+<p>&ldquo;sudo apt isntall arp-scan&rdquo; to get the network scanner</p>
+<p>What is important is to change the ip in /etc/resolv.conf to the ip of the main computer, that is 10.42.0.1, with sudo nano /etc/resolv.conf</p>
+<h2 id="software-updates-sudo-apt-get-upgrade">software updates: &ldquo;sudo apt-get upgrade&rdquo;</h2>
+<p>##Set system time</p>
+<p>to set the correct system time: <a href="https://askubuntu.com/questions/679988/how-to-change-ubuntus-server-date-and-time-via-command-line">https://askubuntu.com/questions/679988/how-to-change-ubuntus-server-date-and-time-via-command-line</a></p>
+<p>list time zones: timedatectl list-timezones
+set time zone: sudo timedatectl set-timezone Europe/Madrid
+Enable timesyncd: sudo timedatectl set-ntp on</p>
+<p>##install zsh
+<a href="https://linuxhint.com/install_zsh_shell_ubuntu_1804/">https://linuxhint.com/install_zsh_shell_ubuntu_1804/</a>
+sudo apt install zsh
+sudo usermod -s /usr/bin/zsh blas
+sh -c &ldquo;$(curl -fsSL <a href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)%22">https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</a>
+sudo reboot
+sudo apt install powerline fonts-powerline
+sudo apt install zsh-theme-powerlevel9k
+echo &ldquo;source /usr/share/powerlevel9k/powerlevel9k.zsh-theme&rdquo; &raquo; ~/.zshrc
+sudo apt install zsh-syntax-highlighting
+echo &ldquo;source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&rdquo; &raquo; ~/.zshrc</p>
+<p>nano ~/.zshrc
+export LANG=en_US.UTF-8</p>
+<p>sudo nano /etc/default/locale</p>
+<p>LANG=&quot;en_US.UTF-8&rdquo;
+LANGUAGE=&quot;en_US:en&rdquo;
+LC_NUMERIC=&quot;en_US.UTF-8&rdquo;
+LC_TIME=&quot;en_US.UTF-8&rdquo;
+LC_MONETARY=&quot;en_US.UTF-8&rdquo;
+LC_PAPER=&quot;en_US.UTF-8&rdquo;
+LC_IDENTIFICATION=&quot;en_US.UTF-8&rdquo;
+LC_NAME=&quot;en_US.UTF-8&rdquo;
+LC_ADDRESS=&quot;en_US.UTF-8&rdquo;
+LC_TELEPHONE=&quot;en_US.UTF-8&rdquo;
+LC_MEASUREMENT=&quot;en_US.UTF-8&rdquo;</p>
+<h2 id="temperature-monitoring-httpswwwcybercitibizfaqhow-to-check-cpu-temperature-on-ubuntu-linux">Temperature monitoring <a href="https://www.cyberciti.biz/faq/how-to-check-cpu-temperature-on-ubuntu-linux/">https://www.cyberciti.biz/faq/how-to-check-cpu-temperature-on-ubuntu-linux/</a></h2>
+<p>sudo apt install lm-sensors
+sudo sensors-detect
+sensors
+watch sensors</p>
+<h2 id="installing-r-httpslinuxizecomposthow-to-install-r-on-ubuntu-20-04">Installing R <a href="https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/">https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/</a></h2>
+<p>install deps required to add new repositories from https
+sudo apt install dirmngr gnupg apt-transport-https ca-certificates software-properties-common</p>
+<p>add cran repo
+sudo apt-key adv &ndash;keyserver keyserver.ubuntu.com &ndash;recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+sudo add-apt-repository &lsquo;deb <a href="https://cloud.r-project.org/bin/linux/ubuntu">https://cloud.r-project.org/bin/linux/ubuntu</a> focal-cran40/&rsquo;</p>
+<p>updating repos
+sudo apt update</p>
+<p>install
+sudo apt install r-base</p>
+<p>#set locale for R (in system console)
+check locale: &ldquo;locale&rdquo; it should be en_US.UTF-8
+nano ~/.profile</p>
+<p>add rows
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8</p>
+<p>execute file
+. ~/.profile</p>
+<p>##activate firewall
+sudo ufw enable</p>
+<p>check that the computer is listening in the right ports
+sudo ufw status</p>
+<p>open ports
+sudo ufw allow from 10.42.0.1 to any port 11000
+sudo ufw allow from 10.42.0.1 to any port 22
+sudo ufw allow ssh</p>
+<p>##install openmpi
+sudo apt install libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common</p>
 <p><strong>Highlight your code snippets, take notes on math classes, and draw diagrams from textual representation.</strong></p>
 <p>On this page, you&rsquo;ll find some examples of the types of technical content that can be rendered with Academic.</p>
 <h2 id="examples">Examples</h2>

@@ -705,7 +705,7 @@
 <li>My desktop PC is connected to a router via WIFI and dynamic IP (DHCP).</li>
 <li>The PC and each NUC are connected to the switch with cat6 ethernet wires.</li>
 </ul>
-<p><img src="network.png" alt="Example image"></p>
+<p><img src="network.png" alt="Network diagram"></p>
 <p>To share my PC&rsquo;s WIFI connection with the NUCs I have to prepare a new <em>connection profile</em> with the command line tool of Ubuntu&rsquo;s 
 <a href="https://en.wikipedia.org/wiki/NetworkManager" target="_blank" rel="noopener"><code>NetworkManager</code></a>, named <code>nmcli</code>, as follows.</p>
 <p>First, I need to find the name of my ethernet interface by checking the status of my network devices with the command line.</p>
@@ -783,13 +783,16 @@ sudo systemctl status ssh
 </code></pre>
 <p>Add a new line there: <code>10.42.0.XXX nuc1</code> and save the file.</p>
 <p>Now I access the NUC trough ssh to keep preparing it without a keyboard and a display. I do it from <code>Tilix</code>, that allows to open different command line tabs in the same window, which is quite handy to manage several NUCs at once.</p>
+<p><img src="htop.png" alt="Tilix showing htop on my PC and the two NUCS"></p>
+<p>Another great option to manage the NUCs through ssh would be <code>terminator</code>, that apparently allows to 
+<a href="https://opensource.com/article/20/2/terminator-ssh" target="_blank" rel="noopener">send the same commands to several ssh sessions at once</a>, which sounds incredibly handy.</p>
 <pre><code class="language-bash">ssh blas@10.42.0.XXX
 </code></pre>
 <p>The NUC&rsquo;s operating system probably has a bunch of pending software updates. To install these:</p>
 <pre><code class="language-bash">sudo apt-get upgrade
 </code></pre>
 <p>Now I have to install a set of software packages that will facilitate managing the cluster&rsquo;s network and the NUC itself.</p>
-<pre><code class="language-bash">sudo apt install net-tools arp-scan lm-sensors dirmngr gnupg apt-transport-https ca-certificates software-properties-common samba libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common
+<pre><code class="language-bash">sudo apt install net-tools arp-scan lm-sensors dirmngr gnupg apt-transport-https ca-certificates software-properties-common samba libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common htop
 </code></pre>
 <h3 id="setting-the-system-time">Setting the system time</h3>
 <p>To set the system time of the NUC to the same you have in your computer, just repeat these steps in every computer in the cluster network.</p>

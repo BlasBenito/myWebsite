@@ -53,7 +53,7 @@ Before starting to install an operating system in the NUCS, the network setup go
   + My desktop PC is connected to a router via WIFI and dynamic IP (DHCP).
   + The PC and each NUC are connected to the switch with cat6 ethernet wires.
 
-![Example image](network.png)
+![Network diagram](network.png)
 
 To share my PC's WIFI connection with the NUCs I have to prepare a new *connection profile* with the command line tool of Ubuntu's [`NetworkManager`](https://en.wikipedia.org/wiki/NetworkManager), named `nmcli`, as follows.
 
@@ -165,6 +165,10 @@ Add a new line there: `10.42.0.XXX nuc1` and save the file.
 
 Now I access the NUC trough ssh to keep preparing it without a keyboard and a display. I do it from `Tilix`, that allows to open different command line tabs in the same window, which is quite handy to manage several NUCs at once.
 
+![Tilix showing htop on my PC and the two NUCS](htop.png)
+
+Another great option to manage the NUCs through ssh would be `terminator`, that apparently allows to [send the same commands to several ssh sessions at once](https://opensource.com/article/20/2/terminator-ssh), which sounds incredibly handy.
+
 ```bash
 ssh blas@10.42.0.XXX
 ```
@@ -178,7 +182,7 @@ sudo apt-get upgrade
 Now I have to install a set of software packages that will facilitate managing the cluster's network and the NUC itself.
 
 ```bash
-sudo apt install net-tools arp-scan lm-sensors dirmngr gnupg apt-transport-https ca-certificates software-properties-common samba libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common
+sudo apt install net-tools arp-scan lm-sensors dirmngr gnupg apt-transport-https ca-certificates software-properties-common samba libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common htop
 ```
 
 ### Setting the system time

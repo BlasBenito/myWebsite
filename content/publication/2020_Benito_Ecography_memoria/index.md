@@ -9,14 +9,14 @@ date: "2020-01-01T00:00:00Z"
 doi: https://doi.org/10.1111/ecog.04772
 featured: true
 image:
-  caption: 'Image credit: '
+  caption: 'Image credit: **Blas M. Benito**'
   focal_point: "Top"
   preview_only: false
 publication: '*Ecography*'
 publication_types:
 - "2"
 publishDate: "2020-01-01T00:00:00Z"
-summary: Ecological memory describes how antecedent conditions drive the dynamics of an ecological system. Palaeoecological records are paramount to understand ecological memory at millennial time‐scales, but the concept is widely neglected in the literature, and a formal approach is lacking. Here, we fill such a gap by introducing a quantitative framework for ecological memory in palaeoecology, and assessing how data constraints and taxa traits shape ecological memory patterns.
+summary: Paper published in the section "Editor's Choice" of the *Ecography* journal. It received [an award](https://www.dropbox.com/s/oacsy1xqx4omv1b/2019_BMB_Ecography_b_top_downloaded.png?dl=1) for the number of downloads during the 12 months after its publication.
 tags:
 - Quantitative methods
 - R packages

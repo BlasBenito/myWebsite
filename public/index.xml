@@ -231,7 +231,7 @@
 &lt;li&gt;My desktop PC is connected to a router via WIFI and dynamic IP (DHCP).&lt;/li&gt;
 &lt;li&gt;The PC and each NUC are connected to the switch with cat6 ethernet wires.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;network.png&#34; alt=&#34;Example image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;network.png&#34; alt=&#34;Network diagram&#34;&gt;&lt;/p&gt;
 &lt;p&gt;To share my PC&amp;rsquo;s WIFI connection with the NUCs I have to prepare a new &lt;em&gt;connection profile&lt;/em&gt; with the command line tool of Ubuntu&amp;rsquo;s 
 &lt;a href=&#34;https://en.wikipedia.org/wiki/NetworkManager&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;NetworkManager&lt;/code&gt;&lt;/a&gt;, named &lt;code&gt;nmcli&lt;/code&gt;, as follows.&lt;/p&gt;
 &lt;p&gt;First, I need to find the name of my ethernet interface by checking the status of my network devices with the command line.&lt;/p&gt;
@@ -309,13 +309,16 @@ sudo systemctl status ssh
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Add a new line there: &lt;code&gt;10.42.0.XXX nuc1&lt;/code&gt; and save the file.&lt;/p&gt;
 &lt;p&gt;Now I access the NUC trough ssh to keep preparing it without a keyboard and a display. I do it from &lt;code&gt;Tilix&lt;/code&gt;, that allows to open different command line tabs in the same window, which is quite handy to manage several NUCs at once.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;htop.png&#34; alt=&#34;Tilix showing htop on my PC and the two NUCS&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Another great option to manage the NUCs through ssh would be &lt;code&gt;terminator&lt;/code&gt;, that apparently allows to 
+&lt;a href=&#34;https://opensource.com/article/20/2/terminator-ssh&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;send the same commands to several ssh sessions at once&lt;/a&gt;, which sounds incredibly handy.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ssh blas@10.42.0.XXX
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The NUC&amp;rsquo;s operating system probably has a bunch of pending software updates. To install these:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get upgrade
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now I have to install a set of software packages that will facilitate managing the cluster&amp;rsquo;s network and the NUC itself.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install net-tools arp-scan lm-sensors dirmngr gnupg apt-transport-https ca-certificates software-properties-common samba libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install net-tools arp-scan lm-sensors dirmngr gnupg apt-transport-https ca-certificates software-properties-common samba libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common htop
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;setting-the-system-time&#34;&gt;Setting the system time&lt;/h3&gt;
 &lt;p&gt;To set the system time of the NUC to the same you have in your computer, just repeat these steps in every computer in the cluster network.&lt;/p&gt;
@@ -889,6 +892,22 @@ Three
       <link>/publication/2017_feng_biological_conservation/</link>
       <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
       <guid>/publication/2017_feng_biological_conservation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The ecological niche and distribution of Neanderthals during the Last Interglacial</title>
+      <link>/publication/2017_benito_journal_of_biogeography/</link>
+      <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
+      <guid>/publication/2017_benito_journal_of_biogeography/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Investigating Neanderthal dispersal above 55°N in Europe during the Last Interglacial Complex</title>
+      <link>/publication/2017_kellberg-nielsen_quaternary_international/</link>
+      <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/publication/2017_kellberg-nielsen_quaternary_international/</guid>
       <description></description>
     </item>
     

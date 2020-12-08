@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Luseadra McKerracher | Blas M. Benito</title>
+    <link>/author/luseadra-mckerracher/</link>
+      <atom:link href="/author/luseadra-mckerracher/index.xml" rel="self" type="application/rss+xml" />
+    <description>Luseadra McKerracher</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 28 Feb 2017 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Luseadra McKerracher</title>
+      <link>/author/luseadra-mckerracher/</link>
+    </image>
+    
+    <item>
+      <title>Investigating Neanderthal dispersal above 55°N in Europe during the Last Interglacial Complex</title>
+      <link>/publication/2017_kellberg-nielsen_quaternary_international/</link>
+      <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
+      <guid>/publication/2017_kellberg-nielsen_quaternary_international/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

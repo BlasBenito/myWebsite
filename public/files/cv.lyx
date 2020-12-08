@@ -3044,7 +3044,7 @@ Citations
 \series bold
 : 
 \series default
-942
+951
 \series bold
 
 \begin_inset Argument 1
@@ -3077,6 +3077,15 @@ status open
 \begin_layout Plain Layout
 
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+name "an award for the high number of downloads"
+target "https://www.dropbox.com/s/oacsy1xqx4omv1b/2019_BMB_Ecography_b_top_downloaded.png?dl=0+1"
+literal "false"
 
 \end_inset
 
@@ -3832,7 +3841,26 @@ literal "false"
 
 \end_inset
 
-)
+).
+ Published in the 
+\begin_inset Quotes eld
+\end_inset
+
+Editor's Picks
+\begin_inset Quotes erd
+\end_inset
+
+ section of the journal.
+ Received 
+\begin_inset CommandInset href
+LatexCommand href
+name "an award for the high number of downloads during the 12 months after publication."
+target "https://www.dropbox.com/s/oacsy1xqx4omv1b/2019_BMB_Ecography_b_top_downloaded.png?dl=1"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -4606,6 +4634,15 @@ status open
 \end_inset
 
 
+\begin_inset CommandInset href
+LatexCommand href
+name "science"
+target "http://science.sciencemag.org/content/355/6324/491.1"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Entry
@@ -4695,7 +4732,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-2016
+2017
 \end_layout
 
 \end_inset
@@ -4758,12 +4795,12 @@ literal "false"
 \begin_inset CommandInset href
 LatexCommand href
 name "top 20 most downloaded papers in the journal"
-target "https://www.dropbox.com/s/sowq1h4bdngmipy/2016_BMB_Journal_of_Biogeography.png%3Fdl%3D0"
+target "https://www.dropbox.com/s/sowq1h4bdngmipy/2017_BMB_Journal_of_Biogeography.png?dl=1"
 literal "false"
 
 \end_inset
 
-, highlighted in 
+, highlighted in the Editor's Picks of 
 \noun on
 
 \begin_inset CommandInset href

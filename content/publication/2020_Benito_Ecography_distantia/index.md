@@ -7,7 +7,7 @@ date: "2020-01-23T00:00:00Z"
 doi: "https://doi.org/10.1111/ecog.04895"
 featured: true
 image:
-  caption: 'Image credit: '
+  caption: 'Image credit: **Blas M. Benito**'
   focal_point: ""
   preview_only: false
 publication: '*Ecography*'

@@ -167,7 +167,7 @@ Now I access the NUC trough ssh to keep preparing it without a keyboard and a di
 
 ![Tilix showing htop on my PC and the two NUCS](htop.png)
 
-Another great option to manage the NUCs through ssh would be `terminator`, that apparently allows to [send the same commands to several ssh sessions at once](https://opensource.com/article/20/2/terminator-ssh), which sounds incredibly handy.
+Another great option to manage the NUCs through ssh is `terminator`, that allows to [broadcast the same commands to several ssh sessions at once](https://opensource.com/article/20/2/terminator-ssh). I have been trying it, and it is much better for cluster management purposes than Tilix. Actually, using it would simplify this workflow a lot, because once Ubuntu server is installed on each NUC, the rest of the configuration commands can be broadcasted at once to both NUCs. It's a bummer I discovered this possibility way too late!
 
 ```bash
 ssh blas@10.42.0.XXX

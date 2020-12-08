@@ -58,6 +58,3 @@ subtitle = "I am Blas, a researcher working at [Maestre Lab](https://maestrelab.
 &nbsp;
 &nbsp;
 
-{{% alert note %}}
-This website is under construction.
-{{% /alert %}}

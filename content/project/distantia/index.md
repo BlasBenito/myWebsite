@@ -4,6 +4,7 @@ external_link: ""
 image:
   caption: Graph by Blas M. Benito
   focal_point: Smart
+  margin: auto
 links:
 - icon: github
   icon_pack: fab
@@ -26,6 +27,14 @@ url_pdf: ""
 url_slides: ""
 url_video: ""
 ---
+
+<!-- badges: start -->
+
+[![DOI](https://zenodo.org/badge/187805264.svg)](https://zenodo.org/badge/latestdoi/187805264)
+[![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/distantia)](https://CRAN.R-project.org/package=distantia)
+[![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/distantia)](https://CRAN.R-project.org/package=distantia)
+
+<!-- badges: end -->
 
 The package *distantia* allows to measure the dissimilarity between multivariate time-series. The package assumes that the target sequences are ordered along a given dimension, being depth and time the most common ones, but others such as latitude or elevation are also possible. Furthermore, the target time-series can be regular or irregular, and have their samples aligned (same age/time/depth) or unaligned (different age/time/depth). The only requirement is that the sequences must have at least two (but ideally more) columns with the same name and units representing different variables relevant to the dynamics of a system of interest.
 

@@ -43,6 +43,26 @@
   </url>
   
   <url>
+    <loc>/project/memoria/</loc>
+    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/virtualpollen/</loc>
+    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/r-packages/</loc>
+    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/publication-type/2/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
   </url>
@@ -99,11 +119,6 @@
   
   <url>
     <loc>/author/stefano-mammola/</loc>
-    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -544,11 +559,6 @@
   
   <url>
     <loc>/tag/quantitative-methods/</loc>
-    <lastmod>2020-01-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/r-packages/</loc>
     <lastmod>2020-01-23T00:00:00+00:00</lastmod>
   </url>
   

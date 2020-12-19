@@ -5,12 +5,119 @@
     <link>/tag/r-packages/</link>
       <atom:link href="/tag/r-packages/index.xml" rel="self" type="application/rss+xml" />
     <description>R packages</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 23 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 19 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/avatar.jpg</url>
       <title>R packages</title>
       <link>/tag/r-packages/</link>
     </image>
+    
+    <item>
+      <title>R package &#34;distantia&#34;</title>
+      <link>/project/distantia/</link>
+      <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/project/distantia/</guid>
+      <description>&lt;!-- badges: start --&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://zenodo.org/badge/latestdoi/187805264&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/187805264.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;http://www.r-pkg.org/badges/version-ago/distantia&#34; alt=&#34;CRAN\_Release\_Badge&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;http://cranlogs.r-pkg.org/badges/distantia&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;!-- badges: end --&gt;
+&lt;p&gt;The package &lt;em&gt;distantia&lt;/em&gt; allows to measure the dissimilarity between multivariate time-series. The package assumes that the target sequences are ordered along a given dimension, being depth and time the most common ones, but others such as latitude or elevation are also possible. Furthermore, the target time-series can be regular or irregular, and have their samples aligned (same age/time/depth) or unaligned (different age/time/depth). The only requirement is that the sequences must have at least two (but ideally more) columns with the same name and units representing different variables relevant to the dynamics of a system of interest.&lt;/p&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://github.com/BlasBenito/distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub page&lt;/a&gt; of the project contains a thorough explanation of the statistics behind the method. The 
+&lt;a href=&#34;https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04895&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paper published in the Ecography journal&lt;/a&gt; describes the method, the package, and a couple of practical examples. The code and data used to develop the examples can be found in 
+&lt;a href=&#34;https://github.com/BlasBenito/distantiaPaper&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt; and 
+&lt;a href=&#34;https://zenodo.org/record/3520959#.X94GNtYo-1c&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Zenodo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Please, if you find this package useful, please cite it as:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Benito, B.M. and Birks, H.J.B. (2020), distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series. Ecography, 43: 660-667. &lt;a href=&#34;https://doi.org/10.1111/ecog.04895&#34;&gt;https://doi.org/10.1111/ecog.04895&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R package &#34;memoria&#34;</title>
+      <link>/project/memoria/</link>
+      <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/project/memoria/</guid>
+      <description>&lt;p&gt;
+&lt;a href=&#34;https://zenodo.org/badge/latestdoi/179102027&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/179102027.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=memoria&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;http://www.r-pkg.org/badges/version-ago/memoria&#34; alt=&#34;CRAN\_Release\_Badge&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=memoria&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;http://cranlogs.r-pkg.org/badges/memoria&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The goal of &lt;em&gt;memoria&lt;/em&gt; is to provide the tools to quantify &lt;strong&gt;ecological
+memory&lt;/strong&gt; in long time-series involving environmental drivers and biotic
+responses, including palaeoecological datasets.&lt;/p&gt;
+&lt;p&gt;Ecological memory has two main components: the &lt;em&gt;endogenous&lt;/em&gt; component,
+which represents the effect of antecedent values of the response on
+itself, and &lt;em&gt;endogenous&lt;/em&gt; component, which represents the effect of
+antecedent values of the driver or drivers on the current state of the
+biotic response. Additionally, the &lt;em&gt;concurrent effect&lt;/em&gt;, which represents
+the synchronic effect of the environmental drivers over the response is
+measured. The functions in the package allow the user&lt;/p&gt;
+&lt;p&gt;The package &lt;em&gt;memoria&lt;/em&gt; uses the fast implementation of Random Forest
+available in the 
+&lt;a href=&#34;https://CRAN.R-project.org/package=ranger&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ranger&lt;/a&gt;
+package to fit a model of the form shown in &lt;strong&gt;Equation 1&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Equation 1&lt;/strong&gt; (simplified from the one in the paper):
+$$p_{t} = p_{t-1} +&amp;hellip;+ p_{t-n} + d_{t} + d_{t-1} +&amp;hellip;+ d_{t-n}$$&lt;/p&gt;
+&lt;p&gt;Where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$p$ is the response variable, &lt;em&gt;Pollen&lt;/em&gt; counts were used in this particular case..&lt;/li&gt;
+&lt;li&gt;$d$ is an environmental &lt;em&gt;Driver&lt;/em&gt; influencing the response variable.&lt;/li&gt;
+&lt;li&gt;$t$ is the time of any given value of the response $p$.&lt;/li&gt;
+&lt;li&gt;$t-1$ is the lag 1.&lt;/li&gt;
+&lt;li&gt;$p_{t-1} +&amp;hellip;+ p_{t-n}$ represents the endogenous component of
+ecological memory.&lt;/li&gt;
+&lt;li&gt;$d_{t-1} +&amp;hellip;+ d_{t-n}$ represents the exogenous component of
+ecological memory.&lt;/li&gt;
+&lt;li&gt;$d_{t}$ represents the concurrent effect of the driver over the
+response.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Random Forest returns an importance score for each model term, and the
+functions in &lt;em&gt;memoria&lt;/em&gt; let the user to plot the importance scores across
+time lags for each ecological memory components, and to compute
+different features of each memory component (length, strength, and
+dominance).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;output.png&#34; alt=&#34;Outputs produced by memoria from the analysis of a multivariate time series&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://github.com/BlasBenito/memoria&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub page&lt;/a&gt; of the package features complete examples on how to use the package. The 
+&lt;a href=&#34;https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04772&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paper published in the Ecography journal&lt;/a&gt; describes ecological memory concepts and the method based on Random Forest used to assess ecological memory components. The code used to generate the supplementary materials can be found in 
+&lt;a href=&#34;https://github.com/BlasBenito/EcologicalMemory&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt; and 
+&lt;a href=&#34;https://zenodo.org/record/3236128#.X941v9Yo-1c&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Zenodo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you ever use the package, please, cite it as:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Benito, B.M., Gil‐Romera, G. and Birks, H.J.B. (2020), Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features. Ecography, 43: 1-10. &lt;a href=&#34;https://doi.org/10.1111/ecog.04772&#34;&gt;https://doi.org/10.1111/ecog.04772&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R package &#34;vitualPollen&#34;</title>
+      <link>/project/virtualpollen/</link>
+      <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/project/virtualpollen/</guid>
+      <description>&lt;p&gt;
+&lt;a href=&#34;https://CRAN.R-project.org/package=virtualPollen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;http://www.r-pkg.org/badges/version-ago/virtualPollen&#34; alt=&#34;CRAN\_Release\_Badge&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=virtualPollen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;http://cranlogs.r-pkg.org/badges/virtualPollen&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The goal of virtualPollen is to provide the tools to simulate pollen
+curves over millenial time-scales generated by virtual taxa with
+different life traits (life-span, fecundity, growth-rate) and niche
+features (niche position and breadth) as a response to virtual
+environmental drivers with a given temporal autocorrelation. It furthers
+allow to simulate specific data properties of fossil pollen datasets,
+such as sediment accumulation rate, and depth intervals between
+consecutive pollen samples. The simulation outcomes are useful to better
+understand the role of plant traits, niche properties, and climatic
+variability in defining the shape of pollen curves.&lt;/p&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://github.com/BlasBenito/virtualPollen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub page&lt;/a&gt; of the package offers a complete tutorial on how to use the package. The 
+&lt;a href=&#34;https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04772&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paper published in the Ecography journal&lt;/a&gt; describes the foundations of the model in brief.&lt;/p&gt;
+&lt;p&gt;If you ever use the package, please, cite it as:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Benito, B.M., Gil‐Romera, G. and Birks, H.J.B. (2020), Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features. Ecography, 43: 1-10. &lt;a href=&#34;https://doi.org/10.1111/ecog.04772&#34;&gt;https://doi.org/10.1111/ecog.04772&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series</title>

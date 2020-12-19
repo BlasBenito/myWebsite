@@ -18,8 +18,8 @@ links:
   name: Ecography
   url: https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.04895
 summary: R package to compare multivariate time-series.
-tags:
-- 
+tags: 
+- R packages
 title: R package "distantia"
 url_code: ""
 url_pdf: ""

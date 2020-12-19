@@ -33,6 +33,16 @@
   </url>
   
   <url>
+    <loc>/project/</loc>
+    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/distantia/</loc>
+    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/publication-type/2/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
   </url>
@@ -518,11 +528,6 @@
   </url>
   
   <url>
-    <loc>/tag/clusterfuck/</loc>
-    <lastmod>2020-04-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/publication/2020_felde_vegetation_history_and_archaeobotany/</loc>
     <lastmod>2020-04-01T00:00:00+00:00</lastmod>
   </url>
@@ -763,12 +768,7 @@
   </url>
   
   <url>
-    <loc>/author/gang-feng/</loc>
-    <lastmod>2017-07-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/lingfeng-mao/</loc>
+    <loc>/tag/conservation/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -778,7 +778,17 @@
   </url>
   
   <url>
-    <loc>/tag/phylogenetics/</loc>
+    <loc>/author/gang-feng/</loc>
+    <lastmod>2017-07-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/habitat-loss/</loc>
+    <lastmod>2017-07-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/lingfeng-mao/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -868,6 +878,11 @@
   </url>
   
   <url>
+    <loc>/publication/2016_zohner_nature_climate_change/</loc>
+    <lastmod>2016-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tag/demo/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url>
@@ -948,7 +963,159 @@
   </url>
   
   <url>
+    <loc>/publication/2015_gill_conservation_biology/</loc>
+    <lastmod>2015-04-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/biodiversity-conservation/</loc>
+    <lastmod>2015-04-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/jacquelyn-l.-gill/</loc>
+    <lastmod>2015-04-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/jenny-l.-mcguire/</loc>
+    <lastmod>2015-04-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/jessica-l.-blois/</loc>
+    <lastmod>2015-04-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/solomon-dobrowski/</loc>
+    <lastmod>2015-04-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/forests/</loc>
+    <lastmod>2015-03-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/mesoamerica/</loc>
+    <lastmod>2015-03-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2015_albuquerque_naturaleza_and_conservacao/</loc>
+    <lastmod>2015-03-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/a.j.-mendoza-fernandez/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/e.-salmeron-sanchez/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2015_mendoza-fernandez_plant_biosystems/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/f.-martinez-hernandez/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/f.j.-perez-garcia/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/j.-guirado/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/j.a.-garrido-becerra/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/j.f.-mota/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/m.e.-merlo/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/species-distribution-modeling/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/antonio-l.-garcia/</loc>
+    <lastmod>2014-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/blas-m.-benito-shared-first-coauthorship/</loc>
+    <lastmod>2014-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</loc>
+    <lastmod>2014-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/francisco-j.-olivares/</loc>
+    <lastmod>2014-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/helena-ruiz/</loc>
+    <lastmod>2014-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/javier-martin/</loc>
+    <lastmod>2014-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/jose-miguel-barea-azcon/</loc>
+    <lastmod>2014-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/rogelio-lopez/</loc>
+    <lastmod>2014-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/species-distribution-modelling/</loc>
+    <lastmod>2014-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/author/albuquerque-f./</loc>
+  </url>
+  
+  <url>
+    <loc>/author/assuncao-albuquerque-m.j./</loc>
+  </url>
+  
+  <url>
+    <loc>/author/beier-p./</loc>
+  </url>
+  
+  <url>
+    <loc>/author/cayuela-l./</loc>
   </url>
   
   <url>
@@ -961,6 +1128,10 @@
   
   <url>
     <loc>/author/gray-c./</loc>
+  </url>
+  
+  <url>
+    <loc>/author/malcolm-l.-hunter-jr./</loc>
   </url>
   
   <url>

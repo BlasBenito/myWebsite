@@ -142,8 +142,8 @@ sudo systemctl status ssh
 &lt;p&gt;Add a new line there: &lt;code&gt;10.42.0.XXX nuc1&lt;/code&gt; and save the file.&lt;/p&gt;
 &lt;p&gt;Now I access the NUC trough ssh to keep preparing it without a keyboard and a display. I do it from &lt;code&gt;Tilix&lt;/code&gt;, that allows to open different command line tabs in the same window, which is quite handy to manage several NUCs at once.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;htop.png&#34; alt=&#34;Tilix showing htop on my PC and the two NUCS&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Another great option to manage the NUCs through ssh would be &lt;code&gt;terminator&lt;/code&gt;, that apparently allows to 
-&lt;a href=&#34;https://opensource.com/article/20/2/terminator-ssh&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;send the same commands to several ssh sessions at once&lt;/a&gt;, which sounds incredibly handy.&lt;/p&gt;
+&lt;p&gt;Another great option to manage the NUCs through ssh is &lt;code&gt;terminator&lt;/code&gt;, that allows to 
+&lt;a href=&#34;https://opensource.com/article/20/2/terminator-ssh&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;broadcast the same commands to several ssh sessions at once&lt;/a&gt;. I have been trying it, and it is much better for cluster management purposes than Tilix. Actually, using it would simplify this workflow a lot, because once Ubuntu server is installed on each NUC, the rest of the configuration commands can be broadcasted at once to both NUCs. It&amp;rsquo;s a bummer I discovered this possibility way too late!&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ssh blas@10.42.0.XXX
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The NUC&amp;rsquo;s operating system probably has a bunch of pending software updates. To install these:&lt;/p&gt;

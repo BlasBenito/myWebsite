@@ -182,7 +182,7 @@ date: 2019-09-01
     </item>
     
     <item>
-      <title>Phylogenetic age differences in tree assemblages across the Northern Hemisphere increase with long‐term climate stability in unstable regions</title>
+      <title>Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea</title>
       <link>/publication/2017_feng_global_ecology_and_biogeography/</link>
       <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
       <guid>/publication/2017_feng_global_ecology_and_biogeography/</guid>
@@ -218,6 +218,14 @@ date: 2019-09-01
       <link>/publication/2017_zohner_ecology_letters/</link>
       <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
       <guid>/publication/2017_zohner_ecology_letters/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Day length unlikely to constrain climate-driven shifts in leaf-out times of northern woody plants</title>
+      <link>/publication/2016_zohner_nature_climate_change/</link>
+      <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/publication/2016_zohner_nature_climate_change/</guid>
       <description></description>
     </item>
     
@@ -366,6 +374,30 @@ date: 2019-09-01
 &lt;p&gt;Released under the 
 &lt;a href=&#34;https://github.com/gcushen/hugo-academic/blob/master/LICENSE.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MIT&lt;/a&gt; license.&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>A 2.5‐million‐year perspective on coarse‐filter strategies for conserving nature&#39;s stage</title>
+      <link>/publication/2015_gill_conservation_biology/</link>
+      <pubDate>Tue, 28 Apr 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2015_gill_conservation_biology/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Supporting underrepresented forests in Mesoamerica</title>
+      <link>/publication/2015_albuquerque_naturaleza_and_conservacao/</link>
+      <pubDate>Tue, 03 Mar 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2015_albuquerque_naturaleza_and_conservacao/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea</title>
+      <link>/publication/2015_mendoza-fernandez_plant_biosystems/</link>
+      <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2015_mendoza-fernandez_plant_biosystems/</guid>
+      <description></description>
     </item>
     
   </channel>

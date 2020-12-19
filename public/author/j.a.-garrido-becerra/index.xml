@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>J.A. Garrido Becerra | Blas M. Benito</title>
+    <link>/author/j.a.-garrido-becerra/</link>
+      <atom:link href="/author/j.a.-garrido-becerra/index.xml" rel="self" type="application/rss+xml" />
+    <description>J.A. Garrido Becerra</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 13 Jan 2015 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>J.A. Garrido Becerra</title>
+      <link>/author/j.a.-garrido-becerra/</link>
+    </image>
+    
+    <item>
+      <title>Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea</title>
+      <link>/publication/2015_mendoza-fernandez_plant_biosystems/</link>
+      <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2015_mendoza-fernandez_plant_biosystems/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

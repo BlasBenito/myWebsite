@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Assunção-Albuquerque, M.J. | Blas M. Benito</title>
+    <link>/author/assuncao-albuquerque-m.j./</link>
+      <atom:link href="/author/assuncao-albuquerque-m.j./index.xml" rel="self" type="application/rss+xml" />
+    <description>Assunção-Albuquerque, M.J.</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Assunção-Albuquerque, M.J.</title>
+      <link>/author/assuncao-albuquerque-m.j./</link>
+    </image>
+    
+    <item>
+      <title>Supporting underrepresented forests in Mesoamerica</title>
+      <link>/publication/2015_albuquerque_naturaleza_and_conservacao/</link>
+      <pubDate>Tue, 03 Mar 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2015_albuquerque_naturaleza_and_conservacao/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

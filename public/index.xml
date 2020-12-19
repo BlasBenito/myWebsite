@@ -77,6 +77,22 @@
     </item>
     
     <item>
+      <title>R package &#34;distantia&#34;</title>
+      <link>/project/distantia/</link>
+      <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/project/distantia/</guid>
+      <description>&lt;p&gt;The package &lt;em&gt;distantia&lt;/em&gt; allows to measure the dissimilarity between multivariate time-series. The package assumes that the target sequences are ordered along a given dimension, being depth and time the most common ones, but others such as latitude or elevation are also possible. Furthermore, the target time-series can be regular or irregular, and have their samples aligned (same age/time/depth) or unaligned (different age/time/depth). The only requirement is that the sequences must have at least two (but ideally more) columns with the same name and units representing different variables relevant to the dynamics of a system of interest.&lt;/p&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://github.com/BlasBenito/distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub page&lt;/a&gt; of the project contains a thorough explanation of the statistics behind the method. The 
+&lt;a href=&#34;https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04895&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paper published in the Ecography journal&lt;/a&gt; describes the method, the package, and a couple of practical examples. The code and data used to develop the examples can be found in 
+&lt;a href=&#34;https://github.com/BlasBenito/distantiaPaper&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt; and 
+&lt;a href=&#34;https://zenodo.org/record/3520959#.X94GNtYo-1c&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Zenodo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Please, if you find this package useful, please cite it as:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Benito, B.M. and Birks, H.J.B. (2020), distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series. Ecography, 43: 660-667. &lt;a href=&#34;https://doi.org/10.1111/ecog.04895&#34;&gt;https://doi.org/10.1111/ecog.04895&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Explainable artificial intelligence enhances the ecological interpretability of black‐box species distribution models</title>
       <link>/publication/2020_ryo_ecography/</link>
       <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
@@ -310,8 +326,8 @@ sudo systemctl status ssh
 &lt;p&gt;Add a new line there: &lt;code&gt;10.42.0.XXX nuc1&lt;/code&gt; and save the file.&lt;/p&gt;
 &lt;p&gt;Now I access the NUC trough ssh to keep preparing it without a keyboard and a display. I do it from &lt;code&gt;Tilix&lt;/code&gt;, that allows to open different command line tabs in the same window, which is quite handy to manage several NUCs at once.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;htop.png&#34; alt=&#34;Tilix showing htop on my PC and the two NUCS&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Another great option to manage the NUCs through ssh would be &lt;code&gt;terminator&lt;/code&gt;, that apparently allows to 
-&lt;a href=&#34;https://opensource.com/article/20/2/terminator-ssh&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;send the same commands to several ssh sessions at once&lt;/a&gt;, which sounds incredibly handy.&lt;/p&gt;
+&lt;p&gt;Another great option to manage the NUCs through ssh is &lt;code&gt;terminator&lt;/code&gt;, that allows to 
+&lt;a href=&#34;https://opensource.com/article/20/2/terminator-ssh&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;broadcast the same commands to several ssh sessions at once&lt;/a&gt;. I have been trying it, and it is much better for cluster management purposes than Tilix. Actually, using it would simplify this workflow a lot, because once Ubuntu server is installed on each NUC, the rest of the configuration commands can be broadcasted at once to both NUCs. It&amp;rsquo;s a bummer I discovered this possibility way too late!&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ssh blas@10.42.0.XXX
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The NUC&amp;rsquo;s operating system probably has a bunch of pending software updates. To install these:&lt;/p&gt;
@@ -880,7 +896,7 @@ Three
     </item>
     
     <item>
-      <title>Phylogenetic age differences in tree assemblages across the Northern Hemisphere increase with long‐term climate stability in unstable regions</title>
+      <title>Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea</title>
       <link>/publication/2017_feng_global_ecology_and_biogeography/</link>
       <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
       <guid>/publication/2017_feng_global_ecology_and_biogeography/</guid>
@@ -916,6 +932,14 @@ Three
       <link>/publication/2017_zohner_ecology_letters/</link>
       <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
       <guid>/publication/2017_zohner_ecology_letters/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Day length unlikely to constrain climate-driven shifts in leaf-out times of northern woody plants</title>
+      <link>/publication/2016_zohner_nature_climate_change/</link>
+      <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
+      <guid>/publication/2016_zohner_nature_climate_change/</guid>
       <description></description>
     </item>
     
@@ -1135,6 +1159,38 @@ Figure 1: A fancy pie chart.
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>A 2.5‐million‐year perspective on coarse‐filter strategies for conserving nature&#39;s stage</title>
+      <link>/publication/2015_gill_conservation_biology/</link>
+      <pubDate>Tue, 28 Apr 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2015_gill_conservation_biology/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Supporting underrepresented forests in Mesoamerica</title>
+      <link>/publication/2015_albuquerque_naturaleza_and_conservacao/</link>
+      <pubDate>Tue, 03 Mar 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2015_albuquerque_naturaleza_and_conservacao/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea</title>
+      <link>/publication/2015_mendoza-fernandez_plant_biosystems/</link>
+      <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2015_mendoza-fernandez_plant_biosystems/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Distribution and conservation of the relict interaction between the butterfly Agriades zullichi and its larval foodplant (Androsace vitaliana nevadensis)</title>
+      <link>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</link>
+      <pubDate>Thu, 20 Feb 2014 00:00:00 +0000</pubDate>
+      <guid>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</guid>
+      <description></description>
     </item>
     
   </channel>

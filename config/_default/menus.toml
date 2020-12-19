@@ -15,10 +15,10 @@
   url = "files/cv.pdf"
   weight = 70
   
-# [[main]]
-#   name = "Projects"
-#   url = "#projects"
-#   weight = 30
+ [[main]]
+  name = "Software"
+   url = "#projects"
+   weight = 30
   
 [[main]]
   name = "Publications"

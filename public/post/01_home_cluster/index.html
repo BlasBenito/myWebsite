@@ -492,6 +492,35 @@
         
 
         <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Software</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
           <a class="nav-link " href="/#featured"><span>Publications</span></a>
         </li>
 
@@ -616,7 +645,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    11 min read
+    12 min read
   </span>
   
 
@@ -647,7 +676,7 @@
 </div>
 
 
-<div class="article-header container-fluid featured-image-wrapper mt-4 mb-4" style="max-width: 3836px; max-height: 2360px;">
+<div class="article-header container-fluid featured-image-wrapper mt-4 mb-4" style="max-width: 1500px; max-height: 923px;">
   <div style="position: relative">
     <img src="/post/01_home_cluster/featured.jpg" alt="" class="featured-image">
     <span class="article-header-caption">Image credit: <strong>Blas M. Benito</strong></span>
@@ -784,8 +813,8 @@ sudo systemctl status ssh
 <p>Add a new line there: <code>10.42.0.XXX nuc1</code> and save the file.</p>
 <p>Now I access the NUC trough ssh to keep preparing it without a keyboard and a display. I do it from <code>Tilix</code>, that allows to open different command line tabs in the same window, which is quite handy to manage several NUCs at once.</p>
 <p><img src="htop.png" alt="Tilix showing htop on my PC and the two NUCS"></p>
-<p>Another great option to manage the NUCs through ssh would be <code>terminator</code>, that apparently allows to 
-<a href="https://opensource.com/article/20/2/terminator-ssh" target="_blank" rel="noopener">send the same commands to several ssh sessions at once</a>, which sounds incredibly handy.</p>
+<p>Another great option to manage the NUCs through ssh is <code>terminator</code>, that allows to 
+<a href="https://opensource.com/article/20/2/terminator-ssh" target="_blank" rel="noopener">broadcast the same commands to several ssh sessions at once</a>. I have been trying it, and it is much better for cluster management purposes than Tilix. Actually, using it would simplify this workflow a lot, because once Ubuntu server is installed on each NUC, the rest of the configuration commands can be broadcasted at once to both NUCs. It&rsquo;s a bummer I discovered this possibility way too late!</p>
 <pre><code class="language-bash">ssh blas@10.42.0.XXX
 </code></pre>
 <p>The NUC&rsquo;s operating system probably has a bunch of pending software updates. To install these:</p>

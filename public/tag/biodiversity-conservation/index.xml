@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Biodiversity conservation | Blas M. Benito</title>
+    <link>/tag/biodiversity-conservation/</link>
+      <atom:link href="/tag/biodiversity-conservation/index.xml" rel="self" type="application/rss+xml" />
+    <description>Biodiversity conservation</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 28 Apr 2015 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Biodiversity conservation</title>
+      <link>/tag/biodiversity-conservation/</link>
+    </image>
+    
+    <item>
+      <title>A 2.5‐million‐year perspective on coarse‐filter strategies for conserving nature&#39;s stage</title>
+      <link>/publication/2015_gill_conservation_biology/</link>
+      <pubDate>Tue, 28 Apr 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2015_gill_conservation_biology/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea</title>
+      <link>/publication/2015_mendoza-fernandez_plant_biosystems/</link>
+      <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2015_mendoza-fernandez_plant_biosystems/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Distribution and conservation of the relict interaction between the butterfly Agriades zullichi and its larval foodplant (Androsace vitaliana nevadensis)</title>
+      <link>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</link>
+      <pubDate>Thu, 20 Feb 2014 00:00:00 +0000</pubDate>
+      <guid>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

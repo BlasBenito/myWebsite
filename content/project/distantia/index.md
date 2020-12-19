@@ -31,8 +31,8 @@ url_video: ""
 <!-- badges: start -->
 
 [![DOI](https://zenodo.org/badge/187805264.svg)](https://zenodo.org/badge/latestdoi/187805264)
-[![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/distantia)](https://CRAN.R-project.org/package=distantia)
-[![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/distantia)](https://CRAN.R-project.org/package=distantia)
+[![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/distantia)](https://CRAN.R-project.org/package=distantia)
+[![CRAN\_Download\_Badge](https://cranlogs.r-pkg.org/badges/distantia)](https://CRAN.R-project.org/package=distantia)
 
 <!-- badges: end -->
 

@@ -29,8 +29,8 @@ url_video: ""
 ---
 
 [![DOI](https://zenodo.org/badge/179102027.svg)](https://zenodo.org/badge/latestdoi/179102027)
-[![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/memoria)](https://CRAN.R-project.org/package=memoria)
-[![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/memoria)](https://CRAN.R-project.org/package=memoria)
+[![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/memoria)](https://CRAN.R-project.org/package=memoria)
+[![CRAN\_Download\_Badge](https://cranlogs.r-pkg.org/badges/memoria)](https://CRAN.R-project.org/package=memoria)
 
 The goal of *memoria* is to provide the tools to quantify **ecological
 memory** in long time-series involving environmental drivers and biotic

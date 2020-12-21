@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lorena Gómez-Aparicio | Blas M. Benito</title>
+    <link>/author/lorena-gomez-aparicio/</link>
+      <atom:link href="/author/lorena-gomez-aparicio/index.xml" rel="self" type="application/rss+xml" />
+    <description>Lorena Gómez-Aparicio</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 01 Jan 2014 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Lorena Gómez-Aparicio</title>
+      <link>/author/lorena-gomez-aparicio/</link>
+    </image>
+    
+    <item>
+      <title>Forecasting plant range collapse in a mediterranean hotspot: when dispersal uncertainties matter</title>
+      <link>/publication/2014_benito_diversity_and_distributions/</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
+      <guid>/publication/2014_benito_diversity_and_distributions/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

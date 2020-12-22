@@ -21,7 +21,9 @@ summary: "The goals of this study are to provide a map of actual habitat suitabi
 tags:
 - Biogeography
 - Climate change
-- Species distribution models
+- Species Distribution Models
+- Machine Learning
+- Gradient Boosting
 title: 'Potential changes in the distribution of Carnegiea gigantea under future scenarios'
 url_pdf: https://peerj.com/articles/5623.pdf
 ---

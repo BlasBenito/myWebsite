@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Biodiversity conservation | Blas M. Benito</title>
+    <title>Biodiversity Conservation | Blas M. Benito</title>
     <link>/tag/biodiversity-conservation/</link>
       <atom:link href="/tag/biodiversity-conservation/index.xml" rel="self" type="application/rss+xml" />
-    <description>Biodiversity conservation</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 28 Apr 2015 00:00:00 +0000</lastBuildDate>
+    <description>Biodiversity Conservation</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 17 Jul 2017 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/avatar.jpg</url>
-      <title>Biodiversity conservation</title>
+      <title>Biodiversity Conservation</title>
       <link>/tag/biodiversity-conservation/</link>
     </image>
+    
+    <item>
+      <title>Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea</title>
+      <link>/publication/2017_feng_global_ecology_and_biogeography/</link>
+      <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>/publication/2017_feng_global_ecology_and_biogeography/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>A 2.5‐million‐year perspective on coarse‐filter strategies for conserving nature&#39;s stage</title>
       <link>/publication/2015_gill_conservation_biology/</link>
       <pubDate>Tue, 28 Apr 2015 00:00:00 +0000</pubDate>
       <guid>/publication/2015_gill_conservation_biology/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Supporting underrepresented forests in Mesoamerica</title>
+      <link>/publication/2015_albuquerque_naturaleza_and_conservacao/</link>
+      <pubDate>Tue, 03 Mar 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/2015_albuquerque_naturaleza_and_conservacao/</guid>
       <description></description>
     </item>
     
@@ -33,6 +49,14 @@
       <link>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</link>
       <pubDate>Thu, 20 Feb 2014 00:00:00 +0000</pubDate>
       <guid>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Comparing the performance of species distribution models of Zostera marina: Implications for conservation</title>
+      <link>/publication/2013_valle_journal_of_sea_research/</link>
+      <pubDate>Fri, 15 Mar 2013 00:00:00 +0000</pubDate>
+      <guid>/publication/2013_valle_journal_of_sea_research/</guid>
       <description></description>
     </item>
     

@@ -23,6 +23,7 @@ publishDate: "2020-09-21T00:00:00Z"
 summary: In this letter we present comments on the article “A global-scale ecological niche model to predict SARS-CoV-2 coronavirus” by Coro published in 2020.
 tags:
 - Irresponsible Covid19 modelling
+- Species Distribution Models
 title: Comment on “A global-scale ecological niche model to predict SARS-CoV-2 coronavirus infection rate”, author Coro
 url_pdf: https://www.dropbox.com/s/sk1smnohxo00sda/2020_BMB_Ecological_Modelling.pdf?dl=1
 ---

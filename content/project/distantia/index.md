@@ -21,6 +21,7 @@ links:
 summary: R package to compare multivariate time-series.
 tags: 
 - R packages
+- Time Series Analysis
 title: R package "distantia"
 url_code: ""
 url_pdf: ""

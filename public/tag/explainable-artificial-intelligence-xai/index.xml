@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Explainable Artificial Intelligence (xAI) | Blas M. Benito</title>
+    <link>/tag/explainable-artificial-intelligence-xai/</link>
+      <atom:link href="/tag/explainable-artificial-intelligence-xai/index.xml" rel="self" type="application/rss+xml" />
+    <description>Explainable Artificial Intelligence (xAI)</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 17 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Explainable Artificial Intelligence (xAI)</title>
+      <link>/tag/explainable-artificial-intelligence-xai/</link>
+    </image>
+    
+    <item>
+      <title>Explainable artificial intelligence enhances the ecological interpretability of black‐box species distribution models</title>
+      <link>/publication/2020_ryo_ecography/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/2020_ryo_ecography/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

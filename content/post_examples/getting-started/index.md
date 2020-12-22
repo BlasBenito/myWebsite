@@ -18,8 +18,6 @@ projects: []
 subtitle: 'Create a beautifully simple website in under 10 minutes :rocket:'
 summary: Create a beautifully simple website in under 10 minutes.
 tags:
-- Academic
-- 开源
 title: 'Academic: the website builder for Hugo'
 ---
 

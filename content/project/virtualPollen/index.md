@@ -21,6 +21,9 @@ links:
 summary: R package to simulate pollen production of mono-specific tree populations over millennia.
 tags: 
 - R packages
+- Time Series Analysis
+- Palaeoecology
+- Mechanistic simulation
 title: R package "vitualPollen"
 url_code: ""
 url_pdf: ""

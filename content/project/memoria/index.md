@@ -21,6 +21,10 @@ links:
 summary: R package to assess ecological memory in multivariate time-series.
 tags: 
 - R packages
+- Ecological Memory
+- Time Series Analysis
+- Machine Learning
+- Random Forest
 title: R package "memoria"
 url_code: ""
 url_pdf: ""

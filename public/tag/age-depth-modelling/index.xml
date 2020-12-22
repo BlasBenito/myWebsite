@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Age-depth modelling | Blas M. Benito</title>
+    <link>/tag/age-depth-modelling/</link>
+      <atom:link href="/tag/age-depth-modelling/index.xml" rel="self" type="application/rss+xml" />
+    <description>Age-depth modelling</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 01 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Age-depth modelling</title>
+      <link>/tag/age-depth-modelling/</link>
+    </image>
+    
+    <item>
+      <title>A multi-dating approach to age-modelling long continental records: The 135 ka El Cañizar de Villarquemado sequence (NE Spain)</title>
+      <link>/publication/2019_valero-garces_quaternary_geochronology/</link>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/2019_valero-garces_quaternary_geochronology/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

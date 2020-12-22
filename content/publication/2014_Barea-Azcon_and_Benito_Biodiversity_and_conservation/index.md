@@ -22,8 +22,12 @@ publication_types:
 publishDate: "2014-02-20T00:00:00Z"
 summary: "Herein we investigate the distribution and conservation problems of a relict interaction in the Sierra Nevada mountains (southern Europe) between the butterfly *Agriades zullichi* —a rare and threatened butterfly— and its larval foodplant *Androsace vitaliana* subsp. *nevadensis*. We designed an intensive field survey to obtain a comprehensive presence dataset. This was used to calibrate species distribution models with absences taken at local and regional extents, analyze the potential distribution, evaluate the influence of environmental factors in different geographical contexts, and evaluate conservation threats for both organisms."
 tags:
-- Biodiversity conservation
-- Species distribution modelling
+- Biodiversity Conservation
+- Species Distribution Models
+- Ecoinformatics
+- Biogeography
+- Random Forest
+- Machine Learning
 title: "Distribution and conservation of the relict interaction between the butterfly Agriades zullichi and its larval foodplant (Androsace vitaliana nevadensis)"
 url_pdf: https://www.dropbox.com/s/rbp8q4k6qd8zntz/2014_BMB_Biodiversity_and_Conservation.pdf?dl=1
 ---

@@ -1,5 +1,5 @@
 ---
-abstract: "Maytenus senegalensis subsp. europaea communities are unique vegetal formations in Europe. In fact, they are considered Priority Habitat by Directive 92/43/EEC. These are ecologically valuable plant communities found in the southeast of Spain. By combining modeling methods of environmental variables, historical photo-interpretation, and fieldwork, a chronosequence of the evolution of their extent of occurrence (EOO) has been reconstructed in 1957 and 2011. Results showed a strong regression range of M. senegalensis subsp. europaea populations. More than 26,000 ha of EOO for this species have been lost in the province of Almería. Considering the final number of polygons, this area has been fragmented 18 times since the 1950s. These results reinforce the idea that the alteration and fragmentation of habitat due to human activities is one of the most important drivers of biodiversity loss and global change. These activities are mostly intensive greenhouse agriculture and urbanization without sustainable land planning. Knowledge about the distribution of M. senegalensis subsp. europaea is of great interest for future habitat restoration. Therefore, this would be the key species to recover these damaged ecosystems."
+abstract: "Long‐term climate stability is hypothesized to drive the emergence of species assemblages with large species age differences due to the accumulation of relict species and relatively newly arisen species via reduced extinction and increased speciation. Few studies have addressed these predictions and so far no study has done so for plants across the Northern Hemisphere. Here, we linked Quaternary‐scale climate variability to phylogenetic age differences between the oldest and youngest group of species in tree assemblages in 100 km × 100 km grid cells across the Northern Hemisphere to test these predictions. Last Glacial Maximum (LGM)‐to‐present shifts in temperature and precipitation were used as proxies for Quaternary‐scale glacial–interglacial climate variability. Simultaneous autoregressive (SAR) models were used to assess the relationships between phylogenetic age differences and Quaternary‐scale climate variability. We found that phylogenetic age differences overall were largest in China and smallest in Europe, and they declined with increasing temperature instability as predicted, but only in Europe and North America. In China, the relatively mild Quaternary climate changes did not appear to have strongly affected phylogenetic age differences in tree assemblages. Our results show that phylogenetically diverse assemblages with large phylogenetic age differences among species are associated with relatively high long‐term climate stability, with intra‐regional links between long‐term climate variability and phylogenetic composition especially strong in the more unstable regions. These findings point to future climate change as a key risk to the preservation of the phylogenetically diverse assemblages in regions characterized by relatively high paleoclimate stability, with China as a key example."
 
 authors:
 - Gang Feng
@@ -19,10 +19,9 @@ publication_types:
 date: "2017-07-17T00:00:00Z"
 summary: "Our results show that phylogenetically diverse assemblages with large phylogenetic age differences among species are associated with relatively high long‐term climate stability, with intra‐regional links between long‐term climate variability and phylogenetic composition especially strong in the more unstable regions. These findings point to future climate change as a key risk to the preservation of the phylogenetically diverse assemblages in regions characterized by relatively high paleoclimate stability, with China as a key example."
 tags:
-- Biogeography
-- Conservation
-- Habitat loss
+- Biodiversity Conservation
+- Species Distribution Models
 title: 'Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea'
-url_pdf: https://www.dropbox.com/s/32m33c6s53yy71g/2015_BMB_Plant_Biosystems.pdf?dl=1
+url_pdf: https://www.dropbox.com/s/ptx20e8pjhbdybj/2017_BMB_Global_Ecology_and_Biogeography.pdf?dl=1
 ---
 

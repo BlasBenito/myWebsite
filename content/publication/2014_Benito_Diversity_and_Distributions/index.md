@@ -24,7 +24,12 @@ tags:
 - Climate change
 - Range shift
 - Species distribution models
+- Ecoinformatics
 - Mechanistic simulation
+- Cellular automata
+- Random Forest
+- Ensemble models
+- Conditional Inference Trees
 title: 'Forecasting plant range collapse in a mediterranean hotspot: when dispersal uncertainties matter'
 url_pdf: https://onlinelibrary.wiley.com/doi/pdf/10.1111/ddi.12148
 url_slides: https://www.dropbox.com/s/7sqlqkz1ga8kttq/2013_BMB_poster_ECOGENES.pdf?dl=1

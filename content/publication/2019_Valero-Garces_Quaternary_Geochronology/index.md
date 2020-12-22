@@ -28,6 +28,8 @@ publishDate: "2019-10-01T00:00:00Z"
 summary: We present a multidisciplinary dating approach - including radiocarbon, Uranium/Thorium series (U/Th), paleomagnetism, single-grain optically stimulated luminescence (OSL), polymineral fine-grain infrared stimulated luminescence (IRSL) and tephrochronology - used for the development of an age model for the Cañizar de Villarquemado sequence (VIL) for the last ca. 135 ka.
 tags:
 - Palaeoecology
+- Age-depth modelling
+- Bayesian models
 title: 'A multi-dating approach to age-modelling long continental records: The 135 ka El Cañizar de Villarquemado sequence (NE Spain)'
 url_pdf: https://www.dropbox.com/s/tx6uxf7o2qlv1gn/2019_BMB_Quaternary_Geochronology.pdf?dl=1
 ---

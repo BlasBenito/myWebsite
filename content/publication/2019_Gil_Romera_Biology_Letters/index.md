@@ -32,9 +32,10 @@ summary: "We hypothesize that fire has influenced Erica communities in the Bale 
 tags:
 - Palaeoecology
 - Fire dynamics
-- Ecological memory
+- Ecological Memory
 - Time Series Analysis
 - Generalized Least Squares
+- Plant Ecology
 title: 'Long-term fire resilience of the Ericaceous Belt, Bale Mountains, Ethiopia'
 url_code: https://github.com/BlasBenito/BaleFire
 url_pdf: https://royalsocietypublishing.org/doi/pdf/10.1098/rsbl.2019.0357

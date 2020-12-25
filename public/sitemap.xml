@@ -33,6 +33,66 @@
   </url>
   
   <url>
+    <loc>/publication-type/2/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/antonio-j.-perez-luque/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/biogeography/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/blas-m.-benito/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2020_perez-luque_forests/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/francisco-j.-bonet/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/plant-ecology/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication_types/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/regino-zamora/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tag/ecological-memory/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
   </url>
@@ -83,28 +143,8 @@
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tag/time-series-analysis/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication-type/2/</loc>
-    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/</loc>
-    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/blas-m.-benito/</loc>
-    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -134,16 +174,6 @@
   
   <url>
     <loc>/author/masahiro-ryo/</loc>
-    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/</loc>
-    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -284,11 +314,6 @@
   
   <url>
     <loc>/author/andrzej-m.-jagodzinski/</loc>
-    <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/biogeography/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
   </url>
   
@@ -823,22 +848,17 @@
   </url>
   
   <url>
-    <loc>/tag/biodiversity-conservation/</loc>
-    <lastmod>2017-07-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2017_feng_global_ecology_and_biogeography/</loc>
-    <lastmod>2017-07-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/author/gang-feng/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/author/lingfeng-mao/</loc>
+    <lastmod>2017-07-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2017_feng_global_ecology_and_biogeography/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -855,6 +875,11 @@
   <url>
     <loc>/author/ziyu-ma/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/biodiversity-conservation/</loc>
+    <lastmod>2017-05-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -1138,23 +1163,8 @@
   </url>
   
   <url>
-    <loc>/author/francisco-j.-bonet/</loc>
-    <lastmod>2014-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/author/ramon-perez-perez/</loc>
     <lastmod>2014-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/regino-zamora/</loc>
-    <lastmod>2014-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/cellular-automata/</loc>
-    <lastmod>2014-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -1183,8 +1193,68 @@
   </url>
   
   <url>
-    <loc>/tag/range-shift/</loc>
-    <lastmod>2014-01-01T00:00:00+00:00</lastmod>
+    <loc>/author/albert-barberan/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/amrei-binzer/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/bruno-moreira/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/catarina-vinagre/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/elise-s.-gornish/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2013_gornish_eos/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/jennifer-weaver/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/jill-a.-hamilton/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/julie-e.-demeester/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/pauline-vurain/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/robert-gruwez/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/sara-tomiolo/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/shirin-taheri/</loc>
+    <lastmod>2013-04-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -1230,6 +1300,21 @@
   <url>
     <loc>/author/angel-borja/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/fabio-s.-albuquerque/</loc>
+    <lastmod>2013-03-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/luis-cayuela/</loc>
+    <lastmod>2013-03-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2013_benito_methods_in_ecology_and_evolution/</loc>
+    <lastmod>2013-03-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>

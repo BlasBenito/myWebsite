@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fabio S. Albuquerque | Blas M. Benito</title>
+    <link>/author/fabio-s.-albuquerque/</link>
+      <atom:link href="/author/fabio-s.-albuquerque/index.xml" rel="self" type="application/rss+xml" />
+    <description>Fabio S. Albuquerque</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 06 Mar 2013 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Fabio S. Albuquerque</title>
+      <link>/author/fabio-s.-albuquerque/</link>
+    </image>
+    
+    <item>
+      <title>The impact of modelling choices in the predictive performance of richness maps derived from species‐distribution models: guidelines to build better diversity models</title>
+      <link>/publication/2013_benito_methods_in_ecology_and_evolution/</link>
+      <pubDate>Wed, 06 Mar 2013 00:00:00 +0000</pubDate>
+      <guid>/publication/2013_benito_methods_in_ecology_and_evolution/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

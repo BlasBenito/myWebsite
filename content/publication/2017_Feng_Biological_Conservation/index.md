@@ -19,6 +19,7 @@ tags:
 - Biogeography
 - Random Forest
 - Machine Learning
+- Biodiversity Conservation
 title: 'Historical anthropogenic footprints in the distribution of threatened plants in China'
 url_pdf: https://www.dropbox.com/s/lb4sw4um9391koh/2017_BMB_Biological_Conservation.pdf?dl=1
 ---

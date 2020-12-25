@@ -5,12 +5,20 @@
     <link>/publication-type/2/</link>
       <atom:link href="/publication-type/2/index.xml" rel="self" type="application/rss+xml" />
     <description>2</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 17 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/avatar.jpg</url>
       <title>2</title>
       <link>/publication-type/2/</link>
     </image>
+    
+    <item>
+      <title>Ecological Diversity within Rear-Edge: A Case Study from Mediterranean Quercus pyrenaica Willd.</title>
+      <link>/publication/2020_perez-luque_forests/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>/publication/2020_perez-luque_forests/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Explainable artificial intelligence enhances the ecological interpretability of black‐box species distribution models</title>
@@ -133,7 +141,7 @@
     </item>
     
     <item>
-      <title>Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea</title>
+      <title>Phylogenetic age differences in tree assemblages across the Northern Hemisphere increase with long-term climate stability in unstable regions</title>
       <link>/publication/2017_feng_global_ecology_and_biogeography/</link>
       <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
       <guid>/publication/2017_feng_global_ecology_and_biogeography/</guid>
@@ -229,10 +237,26 @@
     </item>
     
     <item>
+      <title>Interdisciplinary Climate Change Collaborations Are Essential for Early‐Career Scientists</title>
+      <link>/publication/2013_gornish_eos/</link>
+      <pubDate>Tue, 16 Apr 2013 00:00:00 +0000</pubDate>
+      <guid>/publication/2013_gornish_eos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Comparing the performance of species distribution models of Zostera marina: Implications for conservation</title>
       <link>/publication/2013_valle_journal_of_sea_research/</link>
       <pubDate>Fri, 15 Mar 2013 00:00:00 +0000</pubDate>
       <guid>/publication/2013_valle_journal_of_sea_research/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The impact of modelling choices in the predictive performance of richness maps derived from species‐distribution models: guidelines to build better diversity models</title>
+      <link>/publication/2013_benito_methods_in_ecology_and_evolution/</link>
+      <pubDate>Wed, 06 Mar 2013 00:00:00 +0000</pubDate>
+      <guid>/publication/2013_benito_methods_in_ecology_and_evolution/</guid>
       <description></description>
     </item>
     

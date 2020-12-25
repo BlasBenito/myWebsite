@@ -21,7 +21,10 @@ tags:
 - Quantitative methods
 - R packages
 - Palaeoecology
-- Ecological memory
+- Ecological Memory
+- Plant Ecology
+- Machine Learning
+- Random Forest
 title: 'Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features'
 url_code: "https://github.com/BlasBenito/EcologicalMemory"
 url_pdf: https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.04772

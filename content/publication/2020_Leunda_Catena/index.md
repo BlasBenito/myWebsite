@@ -20,6 +20,7 @@ tags:
 - Fire dynamics
 - Ecological Memory
 - Generalized Least Squares
+- Plant Ecology
 title: Holocene fire and vegetation dynamics in the Central Pyrenees (Spain)
 url_code: https://github.com/BlasBenito/PyreFire
 url_pdf: https://www.dropbox.com/s/btya8msbt37anks/2020_BMB_Catena.pdf?dl=1

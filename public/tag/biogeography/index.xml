@@ -5,12 +5,20 @@
     <link>/tag/biogeography/</link>
       <atom:link href="/tag/biogeography/index.xml" rel="self" type="application/rss+xml" />
     <description>Biogeography</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 11 May 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/avatar.jpg</url>
       <title>Biogeography</title>
       <link>/tag/biogeography/</link>
     </image>
+    
+    <item>
+      <title>Ecological Diversity within Rear-Edge: A Case Study from Mediterranean Quercus pyrenaica Willd.</title>
+      <link>/publication/2020_perez-luque_forests/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>/publication/2020_perez-luque_forests/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Late-spring frost risk between 1959 and 2017 decreased in North America but increased in Europe and Asia</title>
@@ -33,6 +41,14 @@
       <link>/publication/2018_kozma_ecology_and_evolution/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
       <guid>/publication/2018_kozma_ecology_and_evolution/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Phylogenetic age differences in tree assemblages across the Northern Hemisphere increase with long-term climate stability in unstable regions</title>
+      <link>/publication/2017_feng_global_ecology_and_biogeography/</link>
+      <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>/publication/2017_feng_global_ecology_and_biogeography/</guid>
       <description></description>
     </item>
     

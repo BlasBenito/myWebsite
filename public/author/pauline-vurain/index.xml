@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pauline Vurain | Blas M. Benito</title>
+    <link>/author/pauline-vurain/</link>
+      <atom:link href="/author/pauline-vurain/index.xml" rel="self" type="application/rss+xml" />
+    <description>Pauline Vurain</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 16 Apr 2013 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Pauline Vurain</title>
+      <link>/author/pauline-vurain/</link>
+    </image>
+    
+    <item>
+      <title>Interdisciplinary Climate Change Collaborations Are Essential for Early‐Career Scientists</title>
+      <link>/publication/2013_gornish_eos/</link>
+      <pubDate>Tue, 16 Apr 2013 00:00:00 +0000</pubDate>
+      <guid>/publication/2013_gornish_eos/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

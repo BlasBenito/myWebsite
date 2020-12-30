@@ -1,5 +1,5 @@
 ---
-date: "2019-07-12"
+date: "2020-12-07"
 diagram: true
 image:
   caption: 'Image credit: **Blas M. Benito**'
@@ -19,6 +19,8 @@ The topics I cover here are:
   + Installing Ubuntu server in the NUCs
   + Installing R in the NUCs
   + Managing the cluster's network
+  
+&nbsp;
 
 ## Preamble
 
@@ -29,6 +31,8 @@ I have a little but nice HP ENVY model *TE01-0008ns* with 32 GB RAM, 8 CPUs, and
 It was just a draft cluster running on a wireless network, but it served me to think about getting a more permanent solution not requiring two additional laptops in my desk.
 
 That's were the nice INTEL NUCs (from [*Next Unit of Computing*](https://en.wikipedia.org/wiki/Next_Unit_of_Computing)) come into play. NUCs are full-fledged computers fitted in small boxes usually sold without RAM memory sticks and no hard disk (hence the term *barebone*). Since they have a low energy consumption footprint, I thought these would be ideal units for my soon-to-be home cluster.
+
+&nbsp;
 
 ## Material
 
@@ -45,6 +49,8 @@ The whole set came to cost around 530€, but please notice that I had a clear g
 This instructive video by [David Harry](https://www.youtube.com/channel/UCYa3XeSHenvosy5wMRpeIww) shows how to install the SSD and the RAM sticks in an Intel NUC. It really takes 5 minutes tops, one only has to be a bit careful with the RAM sticks, the pins need to go all the way in into their slots before securing the sticks in place.
 
 {{< youtube 6hzj7DogqXU >}}
+
+&nbsp;
 
 ## Network settings
 
@@ -90,6 +96,8 @@ When checking the IP of the device with ```bash ifconfig``` it should yield `10.
 
 Further details about how to set a shared connection with `NetworkManager` can be found in [this nice post by Beniamino Galvani](https://fedoramagazine.org/internet-connection-sharing-networkmanager/).
 
+&nbsp;
+
 ## SSH setup
 
 My PC, as the director of the cluster, needs an `SSH client` running, while the NUCs need an `SSH server`. [`SSH` (**S**ecure **Sh**ell)](https://www.ionos.com/digitalguide/server/tools/ssh-secure-shell/) is a remote authentication protocol that allows secure connections to remote servers that I will be using all the time to manage the cluster. To install, run, and check its status I just have to run these lines in the console:
@@ -118,9 +126,13 @@ To copy the ssh-key to my GitHub account, I have to copy the contents of the fil
 
 **Note:** If you don't use GitHub, you'll need to copy your ssh-key to the NUCs once they are up and running with `ssh-copy-id -i ~/.ssh/id_rsa.pub user_name@nuc_IP`.
 
+&nbsp;
+
 ## Installing and preparing ubuntu server in each NUC
 
 The NUCs don't need to waste resources in a user graphical interface I won't be using whatsoever. Since they will work in a [*headless* configuration](https://www.howtogeek.com/660841/what-is-a-headless-server/) once the cluster is ready, a Linux distro without graphical user interface such as Ubuntu server is the way to go.
+
+&nbsp;
 
 ### Installing Ubuntu server
 
@@ -145,7 +157,9 @@ The Ubuntu server install is pretty straightforward, and only a few things need 
   
 Reboot once the install is completed. Now I keep configuring the NUC's operating system from my PC through ssh.
 
-### Configuring the NUC
+&nbsp;
+
+### Configuring a NUC
 
 First, to learn the IP of the NUC:
 
@@ -185,6 +199,8 @@ Now I have to install a set of software packages that will facilitate managing t
 sudo apt install net-tools arp-scan lm-sensors dirmngr gnupg apt-transport-https ca-certificates software-properties-common samba libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common htop
 ```
 
+&nbsp;
+
 ### Setting the system time
 
 To set the system time of the NUC to the same you have in your computer, just repeat these steps in every computer in the cluster network.
@@ -197,6 +213,8 @@ sudo timedatectl set-timezone Europe/Madrid
 #enable timesyncd
 sudo timedatectl set-ntp on
 ```
+
+&nbsp;
 
 ### Setting the locale
 
@@ -214,7 +232,7 @@ LC_ADDRESS="en_US.UTF-8"
 LC_TELEPHONE="en_US.UTF-8"  
 LC_MEASUREMENT="en_US.UTF-8"  
 
-
+&nbsp;
 
 ### Temperature monitoring
 
@@ -250,6 +268,8 @@ which gives the cpu temperatures at the moment the command was executed. The com
 
 To control overheating in my NUCs I removed their top lids, and installed them into a custom LEGO "rack" with [external USB fans](http://www.eluteng.com/module/fan/12cm/details003.html) with velocity control, as shown in the picture at the beginning of the post.
 
+&nbsp;
+
 ### Installing R 
 
 To install R in the NUCs I just proceed as I would when installing it in my personal computer. There is a thorough guide [here](https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/).
@@ -279,6 +299,8 @@ save, and execute the file to export the locale so R can read it.
 ```bash
 . ~/.profile
 ```
+
+&nbsp;
 
 ### Finalizing the network configuration
 

@@ -58,7 +58,7 @@
   </url>
   
   <url>
-    <loc>/publication/2020_perez-luque_forests/</loc>
+    <loc>/publication/2021_perez-luque_forests/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -90,6 +90,16 @@
   <url>
     <loc>/tags/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/02_parallelizing_loops_with_r/</loc>
+    <lastmod>2020-12-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-12-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -145,6 +155,11 @@
   <url>
     <loc>/tag/time-series-analysis/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/01_home_cluster/</loc>
+    <lastmod>2020-12-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -768,16 +783,6 @@
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2019-07-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/01_home_cluster/</loc>
-    <lastmod>2019-07-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post_examples/writing-technical-content/</loc>
     <lastmod>2019-07-12T00:00:00+00:00</lastmod>
   </url>
@@ -1318,6 +1323,21 @@
   </url>
   
   <url>
+    <loc>/publication/2013_albuquerque_biological_conservation/</loc>
+    <lastmod>2013-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2012_perez-perez_expert_systems_with_applications/</loc>
+    <lastmod>2012-02-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2011_benito_climate_change/</loc>
+    <lastmod>2011-02-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/author/albuquerque-f./</loc>
   </url>
   
@@ -1351,6 +1371,10 @@
   
   <url>
     <loc>/author/rodriguez-mam./</loc>
+  </url>
+  
+  <url>
+    <loc>/author/zamora-r./</loc>
   </url>
   
 </urlset>

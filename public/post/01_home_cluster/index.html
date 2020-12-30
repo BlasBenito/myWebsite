@@ -260,9 +260,9 @@
   <meta property="twitter:image" content="/post/01_home_cluster/featured.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2019-07-12T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2020-12-07T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2019-07-12T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2020-12-07T00:00:00&#43;00:00">
   
 
   
@@ -294,8 +294,8 @@
     "/post/01_home_cluster/featured.jpg"
   ],
   
-  "datePublished": "2019-07-12T00:00:00Z",
-  "dateModified": "2019-07-12T00:00:00Z",
+  "datePublished": "2020-12-07T00:00:00Z",
+  "dateModified": "2020-12-07T00:00:00Z",
   
   "author": {
     "@type": "Person",
@@ -636,7 +636,7 @@
     
       
     
-    Jul 12, 2019
+    Dec 7, 2020
   </span>
   
 
@@ -700,6 +700,7 @@
 <li>Installing R in the NUCs</li>
 <li>Managing the cluster&rsquo;s network</li>
 </ul>
+<p> </p>
 <h2 id="preamble">Preamble</h2>
 <p>I have a little but nice HP ENVY model <em>TE01-0008ns</em> with 32 GB RAM, 8 CPUs, and 3TB of hard disk running Ubuntu 20.04 that I use to do all my computational work (and most of my tweeting). A few months ago I connected it with my two laptops (one of them deceased now, RIP my dear <em>skynet</em>) to create a little cluster to run parallel tasks in R.</p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Today I made a home cluster to spread parallel R tasks across all my computers. That was fun! <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/ic4plvO3Y6">pic.twitter.com/ic4plvO3Y6</a></p>&mdash; Blas M. Benito (@BlasBenito) <a href="https://twitter.com/BlasBenito/status/1254754362389417987?ref_src=twsrc%5Etfw">April 27, 2020</a></blockquote>
@@ -708,6 +709,7 @@
 <p>It was just a draft cluster running on a wireless network, but it served me to think about getting a more permanent solution not requiring two additional laptops in my desk.</p>
 <p>That&rsquo;s were the nice INTEL NUCs (from 
 <a href="https://en.wikipedia.org/wiki/Next_Unit_of_Computing" target="_blank" rel="noopener"><em>Next Unit of Computing</em></a>) come into play. NUCs are full-fledged computers fitted in small boxes usually sold without RAM memory sticks and no hard disk (hence the term <em>barebone</em>). Since they have a low energy consumption footprint, I thought these would be ideal units for my soon-to-be home cluster.</p>
+<p> </p>
 <h2 id="material">Material</h2>
 <p>I gifted myself with:</p>
 <ul>
@@ -728,6 +730,7 @@
   <iframe src="https://www.youtube.com/embed/6hzj7DogqXU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
+<p> </p>
 <h2 id="network-settings">Network settings</h2>
 <p>Before starting to install an operating system in the NUCS, the network setup goes as follows:</p>
 <ul>
@@ -759,6 +762,7 @@ lo      loopback  unmanaged  --
 <p>When checking the IP of the device with <code>bash ifconfig</code> it should yield <code>10.42.0.1</code>. Any other computer in the <code>cluster</code> network will have a dynamic IP in the range <code>10.42.0.1/24</code>.</p>
 <p>Further details about how to set a shared connection with <code>NetworkManager</code> can be found in 
 <a href="https://fedoramagazine.org/internet-connection-sharing-networkmanager/" target="_blank" rel="noopener">this nice post by Beniamino Galvani</a>.</p>
+<p> </p>
 <h2 id="ssh-setup">SSH setup</h2>
 <p>My PC, as the director of the cluster, needs an <code>SSH client</code> running, while the NUCs need an <code>SSH server</code>. 
 <a href="https://www.ionos.com/digitalguide/server/tools/ssh-secure-shell/" target="_blank" rel="noopener"><code>SSH</code> (<strong>S</strong>ecure <strong>Sh</strong>ell)</a> is a remote authentication protocol that allows secure connections to remote servers that I will be using all the time to manage the cluster. To install, run, and check its status I just have to run these lines in the console:</p>
@@ -777,9 +781,11 @@ sudo systemctl status ssh
 </code></pre>
 <p>To copy the ssh-key to my GitHub account, I have to copy the contents of the file <code>~/.ssh/id_rsa.pub</code> (can be done just opening it with <code>gedit ~/.ssh/id_rsa.pub</code> + <code>Ctrl + a</code> + <code>Ctrl + c</code>), and paste it on <code>GitHub account &gt; Settings &gt;  SSH and GPG keys &gt; New SSH Key</code> (green button in the upper right part of the window).</p>
 <p><strong>Note:</strong> If you don&rsquo;t use GitHub, you&rsquo;ll need to copy your ssh-key to the NUCs once they are up and running with <code>ssh-copy-id -i ~/.ssh/id_rsa.pub user_name@nuc_IP</code>.</p>
+<p> </p>
 <h2 id="installing-and-preparing-ubuntu-server-in-each-nuc">Installing and preparing ubuntu server in each NUC</h2>
 <p>The NUCs don&rsquo;t need to waste resources in a user graphical interface I won&rsquo;t be using whatsoever. Since they will work in a 
 <a href="https://www.howtogeek.com/660841/what-is-a-headless-server/" target="_blank" rel="noopener"><em>headless</em> configuration</a> once the cluster is ready, a Linux distro without graphical user interface such as Ubuntu server is the way to go.</p>
+<p> </p>
 <h3 id="installing-ubuntu-server">Installing Ubuntu server</h3>
 <p>First it is important to connect a display, a keyboard, and a mouse to the NUC in preparation, and turn it on while pushing F2 to start the visual BIOS. These BIOS parameters need to be modified:</p>
 <ul>
@@ -802,7 +808,8 @@ sudo systemctl status ssh
 <li>Provide it with your GitHub user name if you have your ssh-key there, and it will download it right away, facilitating a lot the ssh setup.</li>
 </ul>
 <p>Reboot once the install is completed. Now I keep configuring the NUC&rsquo;s operating system from my PC through ssh.</p>
-<h3 id="configuring-the-nuc">Configuring the NUC</h3>
+<p> </p>
+<h3 id="configuring-a-nuc">Configuring a NUC</h3>
 <p>First, to learn the IP of the NUC:</p>
 <pre><code class="language-bash">sudo arp-scan 10.42.0.1/24
 </code></pre>
@@ -823,6 +830,7 @@ sudo systemctl status ssh
 <p>Now I have to install a set of software packages that will facilitate managing the cluster&rsquo;s network and the NUC itself.</p>
 <pre><code class="language-bash">sudo apt install net-tools arp-scan lm-sensors dirmngr gnupg apt-transport-https ca-certificates software-properties-common samba libopenmpi3 libopenmpi-dev openmpi-bin openmpi-common htop
 </code></pre>
+<p> </p>
 <h3 id="setting-the-system-time">Setting the system time</h3>
 <p>To set the system time of the NUC to the same you have in your computer, just repeat these steps in every computer in the cluster network.</p>
 <pre><code class="language-bash">#list time zones: 
@@ -832,6 +840,7 @@ sudo timedatectl set-timezone Europe/Madrid
 #enable timesyncd
 sudo timedatectl set-ntp on
 </code></pre>
+<p> </p>
 <h3 id="setting-the-locale">Setting the locale</h3>
 <p>The operating systems of the NUCs and the PC need to have the same locale. It can be set by editing the file <code>/etc/default/locale</code> with either <code>nano</code> (in the NUCS) or <code>gedit</code> (in the PC) and adding these lines, just replacing <code>en_US.UTF-8</code> with your preferred locale.</p>
 <p>LANG=&quot;en_US.UTF-8&rdquo;<br>
@@ -845,6 +854,7 @@ LC_NAME=&quot;en_US.UTF-8&rdquo;<br>
 LC_ADDRESS=&quot;en_US.UTF-8&rdquo;<br>
 LC_TELEPHONE=&quot;en_US.UTF-8&rdquo;<br>
 LC_MEASUREMENT=&quot;en_US.UTF-8&rdquo;</p>
+<p> </p>
 <h3 id="temperature-monitoring">Temperature monitoring</h3>
 <p>NUCs are 
 <a href="https://www.intel.com/content/www/us/en/support/articles/000033327/intel-nuc.html" target="_blank" rel="noopener">prone to overheating</a> when under heavy loads for prolonged times. Therefore, monitoring the temperature of the NUCs CPUs is kinda important. In a step before I installed <code>lm-sensors</code> in the NUC, which provides the tools to do so. To setup the sensors from an ssh session in the NUC:</p>
@@ -872,6 +882,7 @@ Core 3:        +30.0°C  (high = +105.0°C, crit = +105.0°C)
 <p>which gives the cpu temperatures at the moment the command was executed. The command <code>watch sensors</code> gives continuous temperature readings instead.</p>
 <p>To control overheating in my NUCs I removed their top lids, and installed them into a custom LEGO &ldquo;rack&rdquo; with 
 <a href="http://www.eluteng.com/module/fan/12cm/details003.html" target="_blank" rel="noopener">external USB fans</a> with velocity control, as shown in the picture at the beginning of the post.</p>
+<p> </p>
 <h3 id="installing-r">Installing R</h3>
 <p>To install R in the NUCs I just proceed as I would when installing it in my personal computer. There is a thorough guide 
 <a href="https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/" target="_blank" rel="noopener">here</a>.</p>
@@ -890,6 +901,7 @@ sudo apt install r-base
 <p>save, and execute the file to export the locale so R can read it.</p>
 <pre><code class="language-bash">. ~/.profile
 </code></pre>
+<p> </p>
 <h3 id="finalizing-the-network-configuration">Finalizing the network configuration</h3>
 <p>Each NUC needs firewall rules to grant access from other computers withinn the cluster network. To activate the NUC&rsquo;s firewall and check what ports are open:</p>
 <pre><code class="language-bash">sudo ufw enable

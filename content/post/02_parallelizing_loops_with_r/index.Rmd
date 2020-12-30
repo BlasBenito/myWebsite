@@ -9,7 +9,7 @@ title: Parallelized loops with R
 draft: false
 ---
 
-**Note:** to better follow this tutorial you can download the .Rmd file [from here](parallelized_loops.Rmd)
+**Note:** to better follow this tutorial you can download the .Rmd file [from here](https://www.dropbox.com/s/wsl2hcex3w0lr6u/parallelized_loops.Rmd?dl=1).
 
 In [a previous post](https://www.blasbenito.com/post/01_home_cluster/) I explained how to set up a small home cluster. Many things can be done with a cluster, and parallelizing loops is one of them. But there is no need of a cluster to parallelize loops and improve the efficiency of your coding! 
 

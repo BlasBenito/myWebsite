@@ -103,18 +103,26 @@
 &lt;li&gt;What is a parallel backend?&lt;/li&gt;
 &lt;li&gt;Setup of a parallel backend for a single computer.&lt;/li&gt;
 &lt;li&gt;Setup for a Beowulf cluster.&lt;/li&gt;
-&lt;li&gt;Practical examples&lt;/li&gt;
+&lt;li&gt;Practical examples.
+&lt;ul&gt;
+&lt;li&gt;Tuning of random forest hyperparameters.&lt;/li&gt;
+&lt;li&gt;Confidence intervals of the importance scores of the predictors in random forest models.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;div id=&#34;for-loops-are-fine-but&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;code&gt;for&lt;/code&gt; loops are fine, but…&lt;/h2&gt;
 &lt;p&gt;Many experienced R users frequently say that nobody should write loops with R because they are tacky or whatever. However, I find loops easy to write, read, and debug, and are therefore my workhorse whenever I need to repeat a task and I don’t feel like using &lt;code&gt;apply()&lt;/code&gt; and the likes. However, regular &lt;code&gt;for&lt;/code&gt; loops in R are highly inefficient, because they only use one of your computer cores to perform the iterations.&lt;/p&gt;
-&lt;p&gt;For example, the &lt;code&gt;for&lt;/code&gt; loop below sorts vectors of random numbers a given number of times, and will only work on one of your computer cores for a few seconds, while the others are there procrastinating with no shame.&lt;/p&gt;
+&lt;p&gt;For example, the &lt;code&gt;for&lt;/code&gt; loop below sorts vectors of random numbers a given number of times, and will only work on one of your computer cores for a few seconds, while the others are there, procrastinating with no shame.&lt;/p&gt;
+&lt;div class=&#34;tenor-gif-embed&#34; data-postid=&#34;16563810&#34; data-share-method=&#34;host&#34; data-width=&#34;60%&#34; data-aspect-ratio=&#34;1.7785714285714287&#34;&gt;
+&lt;a href=&#34;https://tenor.com/view/wot-cpu-danceing-break-dancing-cool-gif-16563810&#34;&gt;Wot Cpu GIF&lt;/a&gt; from &lt;a href=&#34;https://tenor.com/search/wot-gifs&#34;&gt;Wot GIFs&lt;/a&gt;
+&lt;/div&gt;
+&lt;script type=&#34;text/javascript&#34; async src=&#34;https://tenor.com/embed.js&#34;&gt;&lt;/script&gt;
+&lt;p&gt;(gif kindly suggested by &lt;a href=&#34;https://twitter.com/AndrosSpica&#34;&gt;Andreas Angourakis&lt;/a&gt;)&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;for(i in 1:10000){
   sort(runif(10000))
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If every &lt;code&gt;i&lt;/code&gt; could run in a different core, the operation would indeed run a bit faster, and we would get rid of lazy cores. This is were packages like &lt;a href=&#34;https://cran.r-project.org/web/packages/foreach&#34;&gt;&lt;code&gt;foreach&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://cran.r-project.org/web/packages/doParallel&#34;&gt;&lt;code&gt;doParallel&lt;/code&gt;&lt;/a&gt; come into play.&lt;/p&gt;
-&lt;p&gt;Let’s start installing these packages and a few others that will be useful throughout this tutorial.&lt;/p&gt;
+&lt;p&gt;If every &lt;code&gt;i&lt;/code&gt; could run in a different core, the operation would indeed run a bit faster, and we would get rid of lazy cores. This is were packages like &lt;a href=&#34;https://cran.r-project.org/web/packages/foreach&#34;&gt;&lt;code&gt;foreach&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://cran.r-project.org/web/packages/doParallel&#34;&gt;&lt;code&gt;doParallel&lt;/code&gt;&lt;/a&gt; come into play. Let’s start installing these packages and a few others that will be useful throughout this tutorial.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#automatic install of packages if they are not installed already
 list.of.packages &amp;lt;- c(
   &amp;quot;foreach&amp;quot;,
@@ -840,7 +848,7 @@ m&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#variable importance
 m$variable.importance&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
-##        0.30537983        0.16399290        0.22290424        0.07972736&lt;/code&gt;&lt;/pre&gt;
+##        0.30597367        0.17295810        0.19781290        0.08077256&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output shows that the percentage of misclassified cases is 2.63, and that &lt;em&gt;bill_length_mm&lt;/em&gt; is the variable that contributes the most to the accuracy of the classification.&lt;/p&gt;
 &lt;p&gt;If you are not familiar with random forest, &lt;a href=&#34;https://victorzhou.com/blog/intro-to-random-forests/&#34;&gt;this post&lt;/a&gt; and the video below do a pretty good job in explaining the basics:&lt;/p&gt;
 &lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/D_2LkhMJcfY&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;
@@ -853,7 +861,8 @@ m$variable.importance&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;code&gt;mtry&lt;/code&gt; is the number of variables selected by chance (from the total pool of variables) as candidates for a tree split. The minimum is 2, and the maximum is the total number of predictors.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;min.node.size&lt;/code&gt; is the minimum number of cases that shall go together in the terminal nodes of each tree. For classification models as the ones we are going to fit, 1 is the minimum.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Here we are going to explore how combinations of these values increase or decrease the prediction error of the model (percentage of misclassified cases) on the out-of-bag data (not used to train each decision tree). To create these combinations of hyperparameters we use &lt;code&gt;expand.grid()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Here we are going to explore how combinations of these values increase or decrease the prediction error of the model (percentage of misclassified cases) on the out-of-bag data (not used to train each decision tree). This operation is usually named &lt;strong&gt;grid search for hyperparameter optimization&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;To create these combinations of hyperparameters we use &lt;code&gt;expand.grid()&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sensitivity.df &amp;lt;- expand.grid(
   num.trees = c(500, 1000, 1500),
   mtry = 2:4,
@@ -1241,7 +1250,7 @@ prediction.error
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-1000
+500
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
 2
@@ -1301,7 +1310,7 @@ system.time(
   
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    user  system elapsed 
-##   0.280   0.029  11.749&lt;/code&gt;&lt;/pre&gt;
+##   0.275   0.024   6.683&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output of &lt;code&gt;system.time()&lt;/code&gt; goes as follows:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;user&lt;/em&gt;: seconds the R session has been using the CPU.&lt;/li&gt;
@@ -1343,7 +1352,7 @@ system.time(
   }
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    user  system elapsed 
-##  42.972   2.826  12.978&lt;/code&gt;&lt;/pre&gt;
+##  43.953   2.802  15.564&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As you can see, &lt;code&gt;ranger()&lt;/code&gt; takes longer to execute in a regular &lt;code&gt;for&lt;/code&gt; loop using several cores at once than in a parallel &lt;code&gt;foreach&lt;/code&gt; loop using one core at once. That’s a win for the parallelized loop!&lt;/p&gt;
 &lt;p&gt;We can stop our cluster now, we are done with it.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;parallel::stopCluster(cl = my.cluster)&lt;/code&gt;&lt;/pre&gt;

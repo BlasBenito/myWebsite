@@ -19,7 +19,9 @@ I believe that coding parallelized loops is an important asset for anyone workin
   + What is a parallel backend?
   + Setup of a parallel backend for a single computer.
   + Setup for a Beowulf cluster.
-  + Practical examples
+  + Practical examples.
+    + Tuning of random forest hyperparameters.
+    + Confidence intervals of the importance scores of the predictors in random forest models.
   
 &nbsp;
 
@@ -27,7 +29,11 @@ I believe that coding parallelized loops is an important asset for anyone workin
 
 Many experienced R users frequently say that nobody should write loops with R because they are tacky or whatever. However, I find loops easy to write, read, and debug, and are therefore my workhorse whenever I need to repeat a task and I don't feel like using `apply()` and the likes. However, regular `for` loops in R are highly inefficient, because they only use one of your computer cores to perform the iterations. 
 
-For example, the `for` loop below sorts vectors of random numbers a given number of times, and will only work on one of your computer cores for a few seconds, while the others are there procrastinating with no shame.
+For example, the `for` loop below sorts vectors of random numbers a given number of times, and will only work on one of your computer cores for a few seconds, while the others are there, procrastinating with no shame.
+
+<div class="tenor-gif-embed" data-postid="16563810" data-share-method="host" data-width="60%" data-aspect-ratio="1.7785714285714287"><a href="https://tenor.com/view/wot-cpu-danceing-break-dancing-cool-gif-16563810">Wot Cpu GIF</a> from <a href="https://tenor.com/search/wot-gifs">Wot GIFs</a></div><script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+(gif kindly suggested by [Andreas Angourakis](https://twitter.com/AndrosSpica))
 
 ```{r}
 for(i in 1:10000){
@@ -35,9 +41,7 @@ for(i in 1:10000){
 }
 ```
 
-If every `i` could run in a different core, the operation would indeed run a bit faster, and we would get rid of lazy cores. This is were packages like [`foreach`](https://cran.r-project.org/web/packages/foreach) and [`doParallel`](https://cran.r-project.org/web/packages/doParallel) come into play.
-
-Let's start installing these packages and a few others that will be useful throughout this tutorial.
+If every `i` could run in a different core, the operation would indeed run a bit faster, and we would get rid of lazy cores. This is were packages like [`foreach`](https://cran.r-project.org/web/packages/foreach) and [`doParallel`](https://cran.r-project.org/web/packages/doParallel) come into play. Let's start installing these packages and a few others that will be useful throughout this tutorial.
 
 ```{r}
 #automatic install of packages if they are not installed already
@@ -445,7 +449,9 @@ Random forest has several hyperparameters that influence model fit:
   + `mtry` is the number of variables selected by chance (from the total pool of variables) as candidates for a tree split. The minimum is 2, and the maximum is the total number of predictors.
   + `min.node.size` is the minimum number of cases that shall go together in the terminal nodes of each tree. For classification models as the ones we are going to fit, 1 is the minimum.
   
-Here we are going to explore how combinations of these values increase or decrease the prediction error of the model (percentage of misclassified cases) on the out-of-bag data (not used to train each decision tree). To create these combinations of hyperparameters we use `expand.grid()`.
+Here we are going to explore how combinations of these values increase or decrease the prediction error of the model (percentage of misclassified cases) on the out-of-bag data (not used to train each decision tree). This operation is usually named **grid search for hyperparameter optimization**.
+
+To create these combinations of hyperparameters we use `expand.grid()`.
 
 ```{r}
 sensitivity.df <- expand.grid(

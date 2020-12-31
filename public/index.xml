@@ -85,6 +85,19 @@
     </item>
     
     <item>
+      <title>Range-shift simulation</title>
+      <link>/project/quercus_range_shift/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/project/quercus_range_shift/</guid>
+      <description>&lt;p&gt;This Netlogo model simulates the dispersal of Quercus pyrenaica populations in Sierra Nevada (Spain) at a yearly resolution until 2100 while considering different levels of model complexity, from random dispersal and seedling establishment, to realistic dispersal based on the dispersal behavior of the Eurasian Jay.&lt;/p&gt;
+&lt;p&gt;The data required to run the model can be downloaded from 
+&lt;a href=&#34;https://www.dropbox.com/s/zsjja2g3yrgqyl1/data.zip?dl=1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;. It must be decompressed in the same folder containing the netlogo code of the model.&lt;/p&gt;
+&lt;p&gt;The video below shows the model in action for one population of &lt;em&gt;Quercus pyrenaica&lt;/em&gt;. On the left, it shows the effect of a random dispersal model, and on the right, a realistic dispersal model based on observations of the dispersal behavior of the Eurasian Jay.&lt;/p&gt;
+&lt;iframe src=&#34;https://player.vimeo.com/video/66052823&#34; width=&#34;640&#34; height=&#34;363&#34; frameborder=&#34;0&#34; allow=&#34;autoplay; fullscreen&#34; allowfullscreen&gt;&lt;/iframe&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Parallelized loops with R</title>
       <link>/post/02_parallelizing_loops_with_r/</link>
       <pubDate>Sat, 26 Dec 2020 00:00:00 +0000</pubDate>

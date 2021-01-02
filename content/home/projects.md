@@ -30,8 +30,8 @@ subtitle = ""
     tag = "R packages"
   
   [[content.filter_button]]
-    name = "ABM"
-    tag = "ABM"
+    name = "Agent-based models"
+    tag = "Agent-based models"
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.

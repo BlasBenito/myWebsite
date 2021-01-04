@@ -333,7 +333,8 @@ modelling.summary <- foreach(
 }
 ```
 
-Once this parallelized loop is executed, the folder `/home/blas/cluster_shared/output` should be filled with the results from the cluster workers
+Once this parallelized loop is executed, the folder `/home/blas/cluster_shared/output` should be filled with the results from the cluster workers, and the `modelling.summary` data frame contains the summary of each fitted model.
+
 
 ![Listing outputs in the shared folder](output.png)
 Now that the work is done, we can stop the cluster.

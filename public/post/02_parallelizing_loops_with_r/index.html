@@ -997,6 +997,8 @@ cluster_spec &lt;- function(
   return(spec)
   
 }</code></pre>
+<p>This function is also available in <a href="https://gist.github.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca">this GitHub Gist</a>, so you can load it into your R environment by executing:</p>
+<pre class="r"><code>source(&quot;https://gist.githubusercontent.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca/raw/de57b23740ca90bc02fbd0d5cd3551106ff2fb6d/cluster_spec.R&quot;)</code></pre>
 <p>Below I use it to generate the input to the <code>spec</code> argument to start the cluster with <code>parallel::makeCluster()</code>. Notice that I have added several arguments.</p>
 <ul>
 <li>The argument <code>outfile</code> determines where the workers write a log. In this case it is set to <em>nowhere</em> with the double quotes, but the path to a text file in the director could be provided here.</li>
@@ -1445,12 +1447,12 @@ m</code></pre>
 ## Target node size:                 1 
 ## Variable importance mode:         permutation 
 ## Splitrule:                        gini 
-## OOB prediction error:             2.63 %</code></pre>
+## OOB prediction error:             2.34 %</code></pre>
 <pre class="r"><code>#variable importance
 m$variable.importance</code></pre>
 <pre><code>##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
-##        0.30597367        0.17295810        0.19781290        0.08077256</code></pre>
-<p>The output shows that the percentage of misclassified cases is 2.63, and that <em>bill_length_mm</em> is the variable that contributes the most to the accuracy of the classification.</p>
+##        0.31452816        0.16948700        0.21670253        0.07988962</code></pre>
+<p>The output shows that the percentage of misclassified cases is 2.34, and that <em>bill_length_mm</em> is the variable that contributes the most to the accuracy of the classification.</p>
 <p>If you are not familiar with random forest, <a href="https://victorzhou.com/blog/intro-to-random-forests/">this post</a> and the video below do a pretty good job in explaining the basics:</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/D_2LkhMJcfY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -1911,7 +1913,7 @@ system.time(
   
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.275   0.024   6.683</code></pre>
+##   0.308   0.028   6.382</code></pre>
 <p>The output of <code>system.time()</code> goes as follows:</p>
 <ul>
 <li><em>user</em>: seconds the R session has been using the CPU.</li>
@@ -1953,7 +1955,7 @@ system.time(
   }
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##  43.953   2.802  15.564</code></pre>
+##  42.878   2.914  13.336</code></pre>
 <p>As you can see, <code>ranger()</code> takes longer to execute in a regular <code>for</code> loop using several cores at once than in a parallel <code>foreach</code> loop using one core at once. That’s a win for the parallelized loop!</p>
 <p>We can stop our cluster now, we are done with it.</p>
 <pre class="r"><code>parallel::stopCluster(cl = my.cluster)</code></pre>

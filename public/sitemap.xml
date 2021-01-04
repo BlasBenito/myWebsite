@@ -33,6 +33,16 @@
   </url>
   
   <url>
+    <loc>/post/</loc>
+    <lastmod>2021-01-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/03_shared_folder_in_cluster/</loc>
+    <lastmod>2021-01-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tag/abm/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
   </url>
@@ -149,11 +159,6 @@
   
   <url>
     <loc>/post/02_parallelizing_loops_with_r/</loc>
-    <lastmod>2020-12-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
     <lastmod>2020-12-26T00:00:00+00:00</lastmod>
   </url>
   

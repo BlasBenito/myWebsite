@@ -294,7 +294,7 @@ spec <- unlist(
 
 ```
 
-Generating the `spec` definition is a bit easier with the function below.
+Generating the `spec` definition is a bit easier with the function below. 
 
 ```{r, eval = FALSE}
 #function to generate cluster specifications from a vector of IPs, a vector with the number of cores to use on each IP, and a user name
@@ -336,6 +336,12 @@ cluster_spec <- function(
   return(spec)
   
 }
+```
+
+This function is also available in [this GitHub Gist](https://gist.github.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca), so you can load it into your R environment by executing:
+
+```{r, eval = FALSE}
+source("https://gist.githubusercontent.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca/raw/de57b23740ca90bc02fbd0d5cd3551106ff2fb6d/cluster_spec.R")
 ```
 
 Below I use it to generate the input to the `spec` argument to start the cluster with `parallel::makeCluster()`. Notice that I have added several arguments. 

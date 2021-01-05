@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Habitat Fragmentation | Blas M. Benito</title>
+    <link>/tag/habitat-fragmentation/</link>
+      <atom:link href="/tag/habitat-fragmentation/index.xml" rel="self" type="application/rss+xml" />
+    <description>Habitat Fragmentation</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 26 Mar 2011 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Habitat Fragmentation</title>
+      <link>/tag/habitat-fragmentation/</link>
+    </image>
+    
+    <item>
+      <title>Habitat Fragmentation in Arid Zones: A Case Study of Linaria nigricans Under Land Use Changes (SE Spain)</title>
+      <link>/publication/2011_penas_environmental_management/</link>
+      <pubDate>Sat, 26 Mar 2011 00:00:00 +0000</pubDate>
+      <guid>/publication/2011_penas_environmental_management/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

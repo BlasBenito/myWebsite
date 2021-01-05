@@ -321,7 +321,262 @@ modelling.summary &amp;lt;- foreach(
   )
   
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Once this parallelized loop is executed, the folder &lt;code&gt;/home/blas/cluster_shared/output&lt;/code&gt; should be filled with the results from the cluster workers&lt;/p&gt;
+&lt;p&gt;Once this parallelized loop is executed, the folder &lt;code&gt;/home/blas/cluster_shared/output&lt;/code&gt; should be filled with the results from the cluster workers, and the &lt;code&gt;modelling.summary&lt;/code&gt; data frame contains the summary of each fitted model.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;output.png&#34; alt=&#34;Listing outputs in the shared folder&#34; /&gt;
+Now that the work is done, we can stop the cluster.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;parallel::stopCluster(cl = my.cluster)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now you know how to work with data larger than memory in a parallelized loop!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Setup of a shared folder in a home cluster</title>
+      <link>/post_projects/template/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>/post_projects/template/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;In the previous posts I have covered how to &lt;a href=&#34;https://www.blasbenito.com/post/01_home_cluster/&#34;&gt;setup a home cluster&lt;/a&gt;, and how to &lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34;&gt;run parallel processes with &lt;code&gt;foreach&lt;/code&gt; in R&lt;/a&gt;. However, so far I haven’t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.&lt;/p&gt;
+&lt;p&gt;This post (developed on Ubuntu and Ubuntu Server 20.04) assumes that the home cluster runs on Linux, and covers the following topics.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Basics of the Network File System protocol (NFS).&lt;/li&gt;
+&lt;li&gt;Setup of an NFS folder in a home cluster.&lt;/li&gt;
+&lt;li&gt;Using an NFS folder in a parallelized loop.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;div id=&#34;the-network-file-system-protocol-nfs&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The Network File System protocol (NFS)&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Network_File_System&#34;&gt;Network File System&lt;/a&gt; protocol offers the means for a &lt;em&gt;host&lt;/em&gt; computer to allow other computers in the network (&lt;em&gt;clients&lt;/em&gt;) to read and write the contents of a given folder. The clients access such folder like if it was a local one, while in fact it is a &lt;em&gt;reference&lt;/em&gt; to the one in the host computer.&lt;/p&gt;
+&lt;p&gt;The image at the beginning of the post illustrates the concept. There is a &lt;em&gt;host&lt;/em&gt; computer with a folder in the path &lt;code&gt;/home/user/cluster_shared&lt;/code&gt; (were &lt;code&gt;user&lt;/code&gt; is your user name) that is broadcasted to the network, and there are one or several &lt;em&gt;clients&lt;/em&gt; that are mounting &lt;em&gt;mounting&lt;/em&gt; (making accessible) the same folder in their local paths &lt;code&gt;/home/user/cluster_shared&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If the host writes a file to the shared folder, it is available right away for the clients, and the other way around. At the end, the idea is to have a folder shared among all computers in the cluster, while having the same exact path on each one of them to write or read files from such shared folder.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;setup-of-an-nfs-folder-in-a-home-cluster&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Setup of an NFS folder in a home cluster&lt;/h2&gt;
+&lt;p&gt;To setup the shared folder we’ll need to do some things in the &lt;em&gt;host&lt;/em&gt;, and some things in the &lt;em&gt;clients&lt;/em&gt;. Let’s start with the host.&lt;/p&gt;
+&lt;div id=&#34;preparing-the-host-computer&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Preparing the host computer&lt;/h4&gt;
+&lt;p&gt;First we need to install the &lt;code&gt;nfs-kernel-server&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo apt update
+sudo apt install nfs-kernel-server&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we can create the shared folder. Remember to replace &lt;code&gt;user&lt;/code&gt; with your user name, and &lt;code&gt;cluster_shared&lt;/code&gt; with the actual folder name you want to use.&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;mkdir /home/user/cluster_shared&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To broadcast it we need to open the file &lt;code&gt;/etc/exports&lt;/code&gt;…&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo gedit /etc/exports&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;… and add the following line&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;/home/user/cluster_shared IP_CLIENT1(rw,no_subtree_check) IP_CLIENT2(rw,no_subtree_check) IP_CLIENT3(rw,no_subtree_check)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/home/user/cluster_shared&lt;/code&gt; is the path of the shared folder.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IP_CLIENTx&lt;/code&gt; are the IPs of each one of the clients.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rw&lt;/code&gt; gives reading and writing permission on the shared folder to the given client.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;no_subtree_check&lt;/code&gt; prevents the host from checking the complete tree of shares before attending a request (read or write) by a client.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, the last line of my &lt;code&gt;/etc/exports&lt;/code&gt; file looks like this:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;/home/blas/cluster_shared 10.42.0.34(rw,async,no_subtree_check) 10.42.0.104(rw,async,no_subtree_check)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Save the file, and to make the changes effective, execute:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo exportfs -ra&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To end preparing the host we have to update the firewall rules to allow nfs connections from the clients. Notice that one rule per client needs to be defined, using the clients IPs to identify them.&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo ufw allow from IP_CLIENT1 to any port nfs
+sudo ufw allow from IP_CLIENT2 to any port nfs
+sudo ufw status&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;preparing-the-clients&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Preparing the clients&lt;/h4&gt;
+&lt;p&gt;First we have to install the Linux package &lt;code&gt;nfs-common&lt;/code&gt; on each client.&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo apt update
+sudp apt install nfs-common&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we can create a folder in the clients and use it to mount the NFS folder of the host.&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;mkdir -p /home/user/cluster_shared
+sudo mount IP_HOST:/home/user/cluster_shared /home/user/cluster_shared&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The second line of code is mounting the folder &lt;code&gt;/home/user/cluster_shared&lt;/code&gt; of the host in the folder &lt;code&gt;/home/user/cluster_shared&lt;/code&gt; of the client.&lt;/p&gt;
+&lt;p&gt;To make the mount permanent, we have to open &lt;code&gt;/etc/fstab&lt;/code&gt; with super-user privilege in the clients…&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo gedit /etc/fstab&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;… and add the line&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;IP_HOST:/home/user/cluster_shared /home/user/cluster_shared   nfs     defaults 0 0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Remember to replace &lt;code&gt;IP_HOST&lt;/code&gt; and &lt;code&gt;user&lt;/code&gt; with the right values!&lt;/p&gt;
+&lt;p&gt;Now we can test that the shared folder works as intended by writing one file into it from each computer in the network using the code below in the command line.&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cd cluster_shared
+touch filename.txt&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;terminator.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Once the files are created, we can check they are visible from each computer using the &lt;code&gt;ls&lt;/code&gt; command.&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;ls&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;terminator2.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-an-nfs-folder-in-a-parallelized-loop&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Using an NFS folder in a parallelized loop&lt;/h2&gt;
+&lt;p&gt;In a &lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34;&gt;previous post&lt;/a&gt; I described how to run parallelized tasks with &lt;code&gt;foreach&lt;/code&gt; in R. This section intends to complete that post by showing how a shared NFS folder can be used to store input and output files during the execution of a parallelized loop&lt;/p&gt;
+&lt;div id=&#34;the-task&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The task&lt;/h3&gt;
+&lt;p&gt;In this hypothetical example we have a large number of data frames stored in &lt;code&gt;/home/user/cluster_shared/input&lt;/code&gt;. Each data frame has the same predictors &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;, &lt;code&gt;c&lt;/code&gt;, and &lt;code&gt;d&lt;/code&gt;, and a different response variable, named &lt;code&gt;y1&lt;/code&gt; for the data frame &lt;code&gt;y1&lt;/code&gt;, &lt;code&gt;y2&lt;/code&gt; for the data frame &lt;code&gt;y2&lt;/code&gt;, and so on. In the example we will be using 100 data frames, but there could be thousands. This example would be valid as well for any other kind of object, such as raster files, time-series, etc etc.&lt;/p&gt;
+&lt;p&gt;First we have to load the libraries we’ll be using.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#automatic install of packages if they are not installed already
+list.of.packages &amp;lt;- c(
+  &amp;quot;foreach&amp;quot;,
+  &amp;quot;doParallel&amp;quot;,
+  &amp;quot;ranger&amp;quot;
+  )
+
+new.packages &amp;lt;- list.of.packages[!(list.of.packages %in% installed.packages()[,&amp;quot;Package&amp;quot;])]
+
+if(length(new.packages) &amp;gt; 0){
+  install.packages(new.packages, dep=TRUE)
+}
+
+#loading packages
+for(package.i in list.of.packages){
+  suppressPackageStartupMessages(
+    library(
+      package.i, 
+      character.only = TRUE
+      )
+    )
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The code chunk below generates the folder &lt;code&gt;/home/user/cluster_shared/input&lt;/code&gt; and populates it with the dummy files.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#creating the input folder
+input.folder &amp;lt;- &amp;quot;/home/blas/cluster_shared/input&amp;quot;
+dir.create(input.folder)
+
+#data frame names
+df.names &amp;lt;- paste0(&amp;quot;y&amp;quot;, 1:100)
+
+#filling it with files
+for(i in df.names){
+  
+  #creating the df
+  df.i &amp;lt;- data.frame(
+    y = rnorm(1000),
+    a = rnorm(1000),
+    b = rnorm(1000),
+    c = rnorm(1000),
+    d = rnorm(1000)
+  )
+  
+  #changing name of the response variable
+  colnames(df.i)[1] &amp;lt;- i
+  
+  #assign to a variable with name i
+  assign(i, df.i)
+  
+  #saving the object
+  save(
+    list = i,
+    file = paste0(input.folder, &amp;quot;/&amp;quot;, i, &amp;quot;.RData&amp;quot;)
+  )
+  
+  #removing the generated data frame form the environment
+  rm(list = i, df.i, i)
+  
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Our target now will be to fit one &lt;code&gt;ranger::ranger()&lt;/code&gt; model per data frame stored in &lt;code&gt;/home/blas/cluster_shared/input&lt;/code&gt;, save the model result to a folder with the path &lt;code&gt;/home/blas/cluster_shared/input&lt;/code&gt;, and write a small summary of the model to the output of &lt;code&gt;foreach&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Such target is based on this rationale: When executing a &lt;code&gt;foreach&lt;/code&gt; loop as in &lt;code&gt;x &amp;lt;- foreach(...) %dopar% {...}&lt;/code&gt;, the variable &lt;code&gt;x&lt;/code&gt; is going to grow in memory very fast, competing for RAM resources with the worker nodes. Furthermore, since &lt;code&gt;x&lt;/code&gt; is being written on the fly, the results would be lost if the computer crashes. When the size of the input and the output of our parallelized operation is larger than memory, we can use an NFS folder to store inputs and outputs, while keeping the RAM memory free for computational tasks only, with the positive side effect of having our outputs already stored should our computer decide to crash.&lt;/p&gt;
+&lt;p&gt;Also, please notice that here I am focusing in a cluster setting, but using a folder to read and write data during a loop paralellized with &lt;code&gt;foreach&lt;/code&gt; can indeed be done in a single computer without an NFS folder. Any folder in your system will do the trick as well!&lt;/p&gt;
+&lt;p&gt;So, from here, we are going to prepare the cluster, and execute a parallelized loop fitting one model per data frame that reads the inputs and writes the outputs to the shared folder.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cluster-setup&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Cluster setup&lt;/h3&gt;
+&lt;p&gt;We will also need the function I showed in the previous post to generate the cluster specification from a &lt;a href=&#34;https://gist.github.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca&#34;&gt;GitHub Gist&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;source(&amp;quot;https://gist.githubusercontent.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca/raw/de57b23740ca90bc02fbd0d5cd3551106ff2fb6d/cluster_spec.R&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Below I use the function to create a cluster specification and initiate the cluster with &lt;code&gt;parallel::makeCluster()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#generate cluster specification
+spec &amp;lt;- cluster_spec(
+  ips = c(&amp;#39;10.42.0.1&amp;#39;, &amp;#39;10.42.0.34&amp;#39;, &amp;#39;10.42.0.104&amp;#39;),
+  cores = c(7, 4, 4),
+  user = &amp;quot;blas&amp;quot;
+)
+
+#define parallel port
+Sys.setenv(R_PARALLEL_PORT = 11000)
+Sys.getenv(&amp;quot;R_PARALLEL_PORT&amp;quot;)
+
+#setting up cluster
+my.cluster &amp;lt;- parallel::makeCluster(
+  master = &amp;#39;10.42.0.1&amp;#39;, 
+  spec = spec,
+  port = Sys.getenv(&amp;quot;R_PARALLEL_PORT&amp;quot;),
+  outfile = &amp;quot;&amp;quot;,
+  homogeneous = TRUE
+)
+
+#check cluster definition (optional)
+print(my.cluster)
+
+#register cluster
+doParallel::registerDoParallel(cl = my.cluster)
+
+#check number of workers
+foreach::getDoParWorkers()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;parallelized-loop&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Parallelized loop&lt;/h3&gt;
+&lt;p&gt;For everything to work as intended, we first need to create the output folder.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;output.folder &amp;lt;- &amp;quot;/home/blas/cluster_shared/output&amp;quot;
+dir.create(output.folder)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And now we are ready to execute the parallelized loop. Notice that I am using the output of &lt;code&gt;list.files()&lt;/code&gt; to have a vector of file names the loop will iterate over. The steps inside of the loop go as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;1.&lt;/em&gt; Remove the extension &lt;code&gt;.RData&lt;/code&gt; from the file name. We’ll later use the result to use &lt;code&gt;assign()&lt;/code&gt; on the fitted model to change its name to the same as the input file before saving it.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;2.&lt;/em&gt; Read the input data frame and store in an object named &lt;code&gt;df&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;3.&lt;/em&gt; Fit the model with ranger, using the first column of &lt;code&gt;df&lt;/code&gt; as respose variable.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;4.&lt;/em&gt; Change the model name to the name of the input file without extension, resulting from the first step described above.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;5.&lt;/em&gt; Save the model into the output folder with the extension &lt;code&gt;.RData&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;6.&lt;/em&gt; Return a data frame with one line with the name of the response variable, the r-squared, and the importance of each predictor.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#list of input files as iterator
+input.files &amp;lt;- list.files(
+  path = input.folder,
+  full.names = FALSE
+)
+
+modelling.summary &amp;lt;- foreach(
+  input.file = input.files,
+  .combine = &amp;#39;rbind&amp;#39;, 
+  .packages = &amp;quot;ranger&amp;quot;
+) %dopar% {
+  
+  # 1. input file name without extension
+  input.file.name &amp;lt;- tools::file_path_sans_ext(input.file)
+  
+  # 2. read input file
+  df &amp;lt;- get(load(paste0(input.folder, &amp;quot;/&amp;quot;, input.file)))
+  
+  # 3. fit model
+  m.i &amp;lt;- ranger::ranger(
+    data = df,
+    dependent.variable.name = colnames(df)[1],
+    importance = &amp;quot;permutation&amp;quot;
+  )
+  
+  # 4. change name of the model to one of the response variable
+  assign(input.file.name, m.i)
+  
+  # 5. save model
+  save(
+    list = input.file.name,
+    file = paste0(output.folder, &amp;quot;/&amp;quot;, input.file)
+  )
+  
+  # 6. returning summary
+  return(
+    data.frame(
+      response.variable = input.file.name,
+      r.squared = m.i$r.squared,
+      importance.a = m.i$variable.importance[&amp;quot;a&amp;quot;],
+      importance.b = m.i$variable.importance[&amp;quot;b&amp;quot;],
+      importance.c = m.i$variable.importance[&amp;quot;c&amp;quot;],
+      importance.d = m.i$variable.importance[&amp;quot;d&amp;quot;]
+    )
+  )
+  
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once this parallelized loop is executed, the folder &lt;code&gt;/home/blas/cluster_shared/output&lt;/code&gt; should be filled with the results from the cluster workers, and the &lt;code&gt;modelling.summary&lt;/code&gt; data frame contains the summary of each fitted model.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;output.png&#34; alt=&#34;Listing outputs in the shared folder&#34; /&gt;
 Now that the work is done, we can stop the cluster.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;parallel::stopCluster(cl = my.cluster)&lt;/code&gt;&lt;/pre&gt;
@@ -3118,10 +3373,42 @@ Figure 1: A fancy pie chart.
     </item>
     
     <item>
+      <title>Habitat Fragmentation in Arid Zones: A Case Study of Linaria nigricans Under Land Use Changes (SE Spain)</title>
+      <link>/publication/2011_penas_environmental_management/</link>
+      <pubDate>Sat, 26 Mar 2011 00:00:00 +0000</pubDate>
+      <guid>/publication/2011_penas_environmental_management/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Simulating potential effects of climatic warming on altitudinal patterns of key species in Mediterranean-alpine ecosystems</title>
       <link>/publication/2011_benito_climate_change/</link>
       <pubDate>Wed, 02 Feb 2011 00:00:00 +0000</pubDate>
       <guid>/publication/2011_benito_climate_change/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Conservation Status of the First Known Population of Polygala balansae in Europe</title>
+      <link>/publication/2010_lorite_annales_botanici_fennici/</link>
+      <pubDate>Mon, 01 Mar 2010 00:00:00 +0000</pubDate>
+      <guid>/publication/2010_lorite_annales_botanici_fennici/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Past and present potential distribution of the Iberian Abies species: a phytogeographic approach using fossil pollen data and species distribution models </title>
+      <link>/publication/2010_alba-sanchez_diversity_and_distributions/</link>
+      <pubDate>Sun, 21 Feb 2010 00:00:00 +0000</pubDate>
+      <guid>/publication/2010_alba-sanchez_diversity_and_distributions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Assessing extinction-risk of endangered plants using species distribution models: a case study of habitat depletion caused by the spread of greenhouses</title>
+      <link>/publication/2009_benito_biodiversity_and_conservation/</link>
+      <pubDate>Sat, 28 Feb 2009 00:00:00 +0000</pubDate>
+      <guid>/publication/2009_benito_biodiversity_and_conservation/</guid>
       <description></description>
     </item>
     

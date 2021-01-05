@@ -33,12 +33,22 @@
   </url>
   
   <url>
+    <loc>/post_projects/</loc>
+    <lastmod>2021-01-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/post/03_shared_folder_in_cluster/</loc>
+    <lastmod>2021-01-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post_projects/template/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url>
   
@@ -1373,8 +1383,103 @@
   </url>
   
   <url>
+    <loc>/tag/drylands/</loc>
+    <lastmod>2011-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/endangered-plants/</loc>
+    <lastmod>2011-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/eva-maria-canadas/</loc>
+    <lastmod>2011-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/habitat-fragmentation/</loc>
+    <lastmod>2011-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2011_penas_environmental_management/</loc>
+    <lastmod>2011-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/miguel-ballesteros/</loc>
+    <lastmod>2011-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/montserrat-martinez-ortega/</loc>
+    <lastmod>2011-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/publication/2011_benito_climate_change/</loc>
     <lastmod>2011-02-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/botany/</loc>
+    <lastmod>2010-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2010_lorite_annales_botanici_fennici/</loc>
+    <lastmod>2010-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/eva-canadas/</loc>
+    <lastmod>2010-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/francisco-valle/</loc>
+    <lastmod>2010-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/diego-nieto-lugilde/</loc>
+    <lastmod>2010-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/francisca-alba-sanchez/</loc>
+    <lastmod>2010-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/jose-a.-lopez-saez/</loc>
+    <lastmod>2010-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/juan-c.-linares/</loc>
+    <lastmod>2010-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/lourdes-lopez-merino/</loc>
+    <lastmod>2010-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2010_alba-sanchez_diversity_and_distributions/</loc>
+    <lastmod>2010-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2009_benito_biodiversity_and_conservation/</loc>
+    <lastmod>2009-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/luz-m.-munoz/</loc>
+    <lastmod>2009-02-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>

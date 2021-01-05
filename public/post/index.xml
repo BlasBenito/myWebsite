@@ -257,7 +257,7 @@ modelling.summary &amp;lt;- foreach(
   )
   
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Once this parallelized loop is executed, the folder &lt;code&gt;/home/blas/cluster_shared/output&lt;/code&gt; should be filled with the results from the cluster workers&lt;/p&gt;
+&lt;p&gt;Once this parallelized loop is executed, the folder &lt;code&gt;/home/blas/cluster_shared/output&lt;/code&gt; should be filled with the results from the cluster workers, and the &lt;code&gt;modelling.summary&lt;/code&gt; data frame contains the summary of each fitted model.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;output.png&#34; alt=&#34;Listing outputs in the shared folder&#34; /&gt;
 Now that the work is done, we can stop the cluster.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;parallel::stopCluster(cl = my.cluster)&lt;/code&gt;&lt;/pre&gt;

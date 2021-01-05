@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Luz M. Muñoz | Blas M. Benito</title>
+    <link>/author/luz-m.-munoz/</link>
+      <atom:link href="/author/luz-m.-munoz/index.xml" rel="self" type="application/rss+xml" />
+    <description>Luz M. Muñoz</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 28 Feb 2009 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Luz M. Muñoz</title>
+      <link>/author/luz-m.-munoz/</link>
+    </image>
+    
+    <item>
+      <title>Assessing extinction-risk of endangered plants using species distribution models: a case study of habitat depletion caused by the spread of greenhouses</title>
+      <link>/publication/2009_benito_biodiversity_and_conservation/</link>
+      <pubDate>Sat, 28 Feb 2009 00:00:00 +0000</pubDate>
+      <guid>/publication/2009_benito_biodiversity_and_conservation/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

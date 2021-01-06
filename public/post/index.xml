@@ -5,12 +5,938 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 03 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/avatar.jpg</url>
       <title>Posts</title>
       <link>/post/</link>
     </image>
+    
+    <item>
+      <title>Designing R functions to compute betadiversity indices from species lists</title>
+      <link>/post/04_betadiversity/</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>/post/04_betadiversity/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    This is a tutorial written for R users needing to compute betadiversity indices from species lists rather than from presence-absence matrices, and for R beginners or intermediate users that want to start using their own functions. If you are an advanced R user, this post will likely waste your time.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;p&gt;We ecologists like to measure all things in nature, and compositional changes in biological communities over time or space, a.k.a &lt;em&gt;betadiversity&lt;/em&gt;, is one of these things. I am not going to explain what betadiversity is because others that know better than me have done it already. Good examples are &lt;a href=&#34;https://methodsblog.com/2015/05/27/beta_diversity/&#34;&gt;this post published the blog of Methods in Ecology and Evolution&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/andres_baselga&#34;&gt;Andres Baselga&lt;/a&gt;, &lt;a href=&#34;https://www.youtube.com/watch?v=WQGN30YSc_U&#34;&gt;and this lecture by Tim Seipel&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;What I am actually going to do in this post is to explain how to write functions to compute betadiversity indices in R from species lists rather than from presence-absence matrices. For the latter there are a few packages such as &lt;a href=&#34;https://cran.r-project.org/package=vegan&#34;&gt;vegan&lt;/a&gt;, &lt;a href=&#34;https://cran.r-project.org/package=BAT&#34;&gt;BAT&lt;/a&gt;, &lt;a href=&#34;https://cran.r-project.org/package=MBI&#34;&gt;MBI&lt;/a&gt;, or &lt;a href=&#34;https://cran.r-project.org/package=betapart&#34;&gt;betapart&lt;/a&gt;, but for the former I was unable to find anything suitable. To make this post useful for R beginners, I will go step by step on the rationale behind the design of the functions to compute betadiversity indices, and by the end of the post I will explain how to organize them to achieve a clean R workflow.&lt;/p&gt;
+&lt;p&gt;Let’s go!&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;div id=&#34;betadiversity-indices&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Betadiversity indices&lt;/h2&gt;
+&lt;p&gt;There are a few betadiversity indices out there, and I totally recommend you to start with &lt;a href=&#34;https://besjournals.onlinelibrary.wiley.com/doi/10.1046/j.1365-2656.2003.00710.x&#34;&gt;Koleff &lt;em&gt;et al.&lt;/em&gt; (2003)&lt;/a&gt; as a primer. They review the literature and analyze the properties of 24 different indices to provide guidance on how to use them.&lt;/p&gt;
+&lt;div id=&#34;betadiversity-components-a-b-and-c&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Betadiversity components &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;Betadiversity indices are designed to compare the taxa pools of two sites at a time, and require the computation of three components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;a&lt;/strong&gt;: number of common taxa of both sites.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;b&lt;/strong&gt;: number of exclusive taxa of one site.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;c&lt;/strong&gt;: number of exclusive taxa of the other site.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s see how can we use these diversity components to compute betadiversity indices.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sørensens-beta&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Sørensen’s Beta&lt;/h3&gt;
+&lt;p&gt;Let’s start with the &lt;strong&gt;Sørensen’s Beta&lt;/strong&gt; (&lt;span class=&#34;math inline&#34;&gt;\(\beta_{sor}\)&lt;/span&gt; hereafter), as presented in Koleff &lt;em&gt;et al.&lt;/em&gt; (2003).&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\beta_{sor} = \frac{2a}{2a + b + c}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\beta_{sor}\)&lt;/span&gt; is a similarity index in the range [0, 1] (the closer to one, the more similar the taxa pools of both sites are) that puts a lot of weight in the &lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt; component, and is therefore a measure of &lt;em&gt;continuity&lt;/em&gt;, as it focuses the most in the common taxa among sites.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;simpsons-beta&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Simpson’s Beta&lt;/h3&gt;
+&lt;p&gt;Another popular betadiversity index is the &lt;strong&gt;Simpson’s Beta&lt;/strong&gt; (&lt;span class=&#34;math inline&#34;&gt;\(\beta_{sim}\)&lt;/span&gt; hereafter).&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\beta_{sim} = \frac{min(b, c)}{min(b, c) + a}\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(min()\)&lt;/span&gt; is a function that takes the minimum value among the diversity components within the parenthesis. &lt;span class=&#34;math inline&#34;&gt;\(\beta_{sim}\)&lt;/span&gt; is a dissimilarity measure that focuses on compositional turnover among sites because it focuses the most on the values of &lt;span class=&#34;math inline&#34;&gt;\(b\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(c\)&lt;/span&gt;. It has its lower bound in zero, and an open upper value.&lt;/p&gt;
+&lt;p&gt;To bring these ideas into R, first we have to load a few R packages, and generate some fake data to help us develop the functions.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(magrittr)
+library(foreach)
+library(doParallel)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: iterators&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: parallel&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The code chunk below generates 15 fake taxa names, from &lt;code&gt;taxon_1&lt;/code&gt; to &lt;code&gt;taxon_15&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;taxa &amp;lt;- paste0(&amp;quot;taxon_&amp;quot;, 1:15)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With these fake taxa we are going to generate taxa lists for four hypothetical sites named &lt;em&gt;site1&lt;/em&gt;, &lt;em&gt;site2&lt;/em&gt;, &lt;em&gt;site3&lt;/em&gt;, and &lt;em&gt;site4&lt;/em&gt;. Two of the sites will have identical taxa lists, two will have non-overlapping taxa lists, and two of them will have some overlap.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;site1 &amp;lt;- site2 &amp;lt;- taxa[1:7]
+site3 &amp;lt;- taxa[8:12]
+site4 &amp;lt;- taxa[10:15]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So now we have these taxa lists:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;site1 #and site2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;taxon_1&amp;quot; &amp;quot;taxon_2&amp;quot; &amp;quot;taxon_3&amp;quot; &amp;quot;taxon_4&amp;quot; &amp;quot;taxon_5&amp;quot; &amp;quot;taxon_6&amp;quot; &amp;quot;taxon_7&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;site3&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;taxon_8&amp;quot;  &amp;quot;taxon_9&amp;quot;  &amp;quot;taxon_10&amp;quot; &amp;quot;taxon_11&amp;quot; &amp;quot;taxon_12&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;site4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;taxon_10&amp;quot; &amp;quot;taxon_11&amp;quot; &amp;quot;taxon_12&amp;quot; &amp;quot;taxon_13&amp;quot; &amp;quot;taxon_14&amp;quot; &amp;quot;taxon_15&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-by-step-computation-of-betadiversity-indices-with-r&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step-by-step computation of betadiversity indices with R&lt;/h2&gt;
+&lt;p&gt;For a given pair of sites, how can we compute the diversity components &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt;?&lt;/p&gt;
+&lt;p&gt;Looking at it from an R perspective, each site is a character vector, so &lt;em&gt;a&lt;/em&gt; can be found by counting the number of common elements between two vectors. These common elements can be found with the function &lt;code&gt;intersect()&lt;/code&gt;, and the number of elements can be computed by applying &lt;code&gt;length()&lt;/code&gt; on the result of &lt;code&gt;intersect()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;a &amp;lt;- length(intersect(site3, site4))
+a&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To compute &lt;em&gt;b&lt;/em&gt; and &lt;em&gt;c&lt;/em&gt; we can use the function &lt;code&gt;setdiff()&lt;/code&gt;, that finds the exclusive elements of one character vector when comparing it with another. In this case, &lt;em&gt;b&lt;/em&gt; is computed for the first vector introduced in the function, &lt;em&gt;site3&lt;/em&gt; in this case…&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;b &amp;lt;- length(setdiff(site3, site4))
+b&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;… so to compute the &lt;em&gt;c&lt;/em&gt; component we only need to switch the sites.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;c &amp;lt;- length(setdiff(site4, site3))
+c&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that we know &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt;, we can compute &lt;span class=&#34;math inline&#34;&gt;\(\beta_{sor}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\beta_{sim}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Bsor &amp;lt;- 2 * a / (2 * a + b + c)
+Bsor&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5454545&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Bsim&amp;lt;- min(b, c) / (min(b, c) + a)
+Bsim&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.4&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Of course, if we have a long list of sites, computing betadiversity indices like this can get quite boring quite fast. Let’s put everything in a set of functions to make it easier to work with.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;writing-functions-to-compute-betadiversity-indices&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Writing functions to compute betadiversity indices&lt;/h2&gt;
+&lt;p&gt;The basic structure of a function definition in R looks as follows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;function_name &amp;lt;- function(x, y, ...){
+  body of the function
+  return(function_output)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;function_name&lt;/code&gt; is the name of your function. Ideally, a verb, or otherwise, something indicating somehow what the function will do with the input data and arguments.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;function()&lt;/code&gt; is a function to define functions, there isn’t much more to it…&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x&lt;/code&gt; is the first argument of the function, and ideally, represents the input data. If that is the case, you can later use &lt;a href=&#34;https://r4ds.had.co.nz/pipes.html&#34;&gt;pipes&lt;/a&gt; (&lt;code&gt;%&amp;gt;%&lt;/code&gt;) to chain functions together.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;y&lt;/code&gt; (it could have any other name) is another function argument, an can be either another input dataset, or an argument defining how the function has to behave.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;...&lt;/code&gt; refers to other arguments the function may require.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;body of the function&lt;/code&gt; is the code that operates with the function arguments to yield a result. This can be one line of code, or a thousand, it all comes down to the function’s objective. In any case, the &lt;code&gt;body of the function&lt;/code&gt; must return an object (or an error if something went wrong) that will be the function output. I have called this output &lt;code&gt;function_output&lt;/code&gt;, but it can have any name you want.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;return(function_output)&lt;/code&gt; tells the function that the value to return is stored in the variable &lt;code&gt;function_output&lt;/code&gt; (this variable can have any name you need). This &lt;code&gt;function_output&lt;/code&gt; must be the result of the operations performed by the &lt;code&gt;body of the function&lt;/code&gt;. It is important to remember that R functions can return one object only.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s start writing a function to compute &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; from a pair of sites.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#x: taxa list of one site
+#y: taxa list of another site
+abc &amp;lt;- function(x, y){
+  
+  #list to store output
+  out &amp;lt;- list()
+  
+  #filling the list
+  out$a &amp;lt;- length(intersect(x, y))
+  out$b &amp;lt;- length(setdiff(x, y))
+  out$c &amp;lt;- length(setdiff(y, x))
+  
+  #returning the output
+  return(out)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice that to to return the three values I am wrapping them in a list. Let’s run a little test.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- abc(
+  x = site3,
+  y = site4
+)
+x&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So far so good! From here we build the functions &lt;code&gt;sorensen_beta()&lt;/code&gt; and &lt;code&gt;simpson_beta()&lt;/code&gt; making sure they can accept the output of &lt;code&gt;abc()&lt;/code&gt;, and return it with an added slot. No matter what you might have heard about &lt;code&gt;return()&lt;/code&gt;, it must be included in these functions (you can try them without &lt;code&gt;return()&lt;/code&gt; to learn why).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sorensen_beta &amp;lt;- function(x){
+  x$bsor &amp;lt;- round(2 * x$a / (2 * x$a + x$b + x$c), 3)
+  return(x)
+}
+
+simpson_beta &amp;lt;- function(x){
+  x$bsim &amp;lt;- round(min(x$b, x$c) / (min(x$b, x$c) + x$a), 3)
+  return(x)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice that both functions are returning the input &lt;code&gt;x&lt;/code&gt; with an added slot named after the given betadiversity index. Let’s test them first, to later see why returning the input object gives these functions a lot of flexibility.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sorensen_beta(x)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsor
+## [1] 0.545&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;simpson_beta(x)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsim
+## [1] 0.4&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When I said that returning the input object with an added slot gave these functions a lot of flexibility I was talking about this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- abc(
+  x = site3, 
+  y = site4
+  ) %&amp;gt;% 
+  sorensen_beta() %&amp;gt;% 
+  simpson_beta()
+x&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsor
+## [1] 0.545
+## 
+## $bsim
+## [1] 0.4&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Chaining the functions through the &lt;code&gt;%&amp;gt;%&lt;/code&gt; pipe now allows us to combine their results in a single output no matter whether we use &lt;code&gt;sorensen_beta()&lt;/code&gt; or &lt;code&gt;sorensen_beta()&lt;/code&gt; first, or whether we omit one of them.&lt;/p&gt;
+&lt;p&gt;We can put that idea right away into a function to compute both betadiversity indices at once from the taxa list of a pair of sites.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;betadiversity &amp;lt;- function(x, y){
+  
+  require(magrittr)
+  
+  abc(x, y) %&amp;gt;%
+    sorensen_beta() %&amp;gt;%
+    simpson_beta() %&amp;gt;% 
+    return()
+  
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The function now works as follows.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- betadiversity(
+  x = site3, 
+  y = site4
+  )
+x&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsor
+## [1] 0.545
+## 
+## $bsim
+## [1] 0.4&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So far we have four functions…&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;abc()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;simpson_beta()&lt;/code&gt;, that requires &lt;code&gt;abc()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sorensen_beta()&lt;/code&gt;, that requires &lt;code&gt;abc()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;betadiversity()&lt;/code&gt;, that requires &lt;code&gt;abc()&lt;/code&gt;, &lt;code&gt;simpson_beta()&lt;/code&gt;, and &lt;code&gt;sorensen_beta()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;… and one limitation: so far we can only return betadiversity indices for two sites at a time. So at the moment, to compute betadiversity indices for all combinations of sites we have to do a pretty ridiculous thing:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x1 &amp;lt;- betadiversity(x = site1, y = site2)
+x2 &amp;lt;- betadiversity(x = site1, y = site3)
+x3 &amp;lt;- betadiversity(x = site1, y = site4)
+#... and so on&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If I see you doing this I’ll come to haunt you in your nightmares! Since a real analysis may involve hundreds of sites, the next step is to use the functions above to build a new one able to intake an arbitrary number of sites.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;writing-a-function-to-compute-betadiversity-indices-for-an-arbitrary-number-of-sites.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Writing a function to compute betadiversity indices for an arbitrary number of sites.&lt;/h2&gt;
+&lt;p&gt;First we have to organize our sites in a data frame with a &lt;em&gt;long format&lt;/em&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sites &amp;lt;- data.frame(
+  site = c(
+    rep(&amp;quot;site1&amp;quot;, length(site1)),
+    rep(&amp;quot;site2&amp;quot;, length(site2)),
+    rep(&amp;quot;site3&amp;quot;, length(site3)),
+    rep(&amp;quot;site4&amp;quot;, length(site4))
+    ),
+  taxon = c(
+    site1,
+    site2,
+    site3,
+    site4
+  )
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+site
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+taxon
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_3
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_5
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_6
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_7
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_3
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_5
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_6
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_7
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_8
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_9
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_10
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_11
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_12
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_10
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_11
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_12
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_13
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_14
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+taxon_15
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Our new function will need to do several things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Generate combinations of the unique values of the column &lt;code&gt;site&lt;/code&gt; two by two without repetition.&lt;/li&gt;
+&lt;li&gt;Iterate through these combinations of two sites to compute betadiversity components and indices.&lt;/li&gt;
+&lt;li&gt;Return a dataframe with the results to facilitate further analyses.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The combinations of site pairs are done with &lt;code&gt;utils::combn()&lt;/code&gt; as follows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;site.combinations &amp;lt;- utils::combn(
+  x = unique(sites$site),
+  m = 2
+  )
+site.combinations&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##      [,1]    [,2]    [,3]    [,4]    [,5]    [,6]   
+## [1,] &amp;quot;site1&amp;quot; &amp;quot;site1&amp;quot; &amp;quot;site1&amp;quot; &amp;quot;site2&amp;quot; &amp;quot;site2&amp;quot; &amp;quot;site3&amp;quot;
+## [2,] &amp;quot;site2&amp;quot; &amp;quot;site3&amp;quot; &amp;quot;site4&amp;quot; &amp;quot;site3&amp;quot; &amp;quot;site4&amp;quot; &amp;quot;site4&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The result is a matrix, and each pair of rows in a column contain a pair of sites. The idea now is to iterate over the matrix columns, obtain the set of taxa from each site from the &lt;code&gt;taxon&lt;/code&gt; column of the &lt;code&gt;sites&lt;/code&gt; data frame, and use these taxa lists to compute the betadiversity components and indices.&lt;/p&gt;
+&lt;p&gt;To easily generate the output data frame, I use the &lt;code&gt;foreach::foreach()&lt;/code&gt; function to iterate through pairs instead of a more traditional &lt;code&gt;for&lt;/code&gt; loop. You can read more about &lt;code&gt;foreach()&lt;/code&gt; in a &lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34;&gt;previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;betadiversity.df &amp;lt;- foreach::foreach(
+  i = 1:ncol(site.combinations), #iterates through columns of site.combinations
+  .combine = &amp;#39;rbind&amp;#39; #to produce a data frame
+  ) %do% {
+  
+  #site names
+  site.one &amp;lt;- site.combinations[1, i] #from column i, row 1
+  site.two &amp;lt;- site.combinations[2, i] #from column i, row 2
+  
+  #getting taxa lists
+  taxa.list.one &amp;lt;- sites[sites$site %in% site.one, &amp;quot;taxon&amp;quot;]
+  taxa.list.two &amp;lt;- sites[sites$site %in% site.two, &amp;quot;taxon&amp;quot;]
+  
+  #betadiversity
+  beta &amp;lt;- betadiversity(
+    x = taxa.list.one,
+    y = taxa.list.two
+  )
+  
+  #adding site names
+  beta$site.one &amp;lt;- site.one
+  beta$site.two &amp;lt;- site.two
+  
+  return(beta)
+  
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+a
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+b
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+c
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+bsor
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+bsim
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+site.one
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+site.two
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+5
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site3
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+6
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+5
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site3
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+6
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.545
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Now that we know it works, we can put everything together in a function. Notice that to make the function more general, I have added arguments requesting the names of the columns with the site and the taxa names.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;betadiversity_multisite &amp;lt;- function(
+  x, 
+  site.column, #column with site names
+  taxa.column #column with taxa names
+){
+  
+  #get site combinations
+  site.combinations &amp;lt;- utils::combn(
+    x = unique(x[, site.column]),
+    m = 2
+  )
+  
+  #iterating through site pairs
+  betadiversity.df &amp;lt;- foreach::foreach(
+    i = 1:ncol(site.combinations),
+    .combine = &amp;#39;rbind&amp;#39;
+  ) %do% {
+    
+    #site names
+    site.one &amp;lt;- site.combinations[1, i]
+    site.two &amp;lt;- site.combinations[2, i]
+    
+    #getting taxa lists
+    taxa.list.one &amp;lt;- x[x[, site.column] %in% site.one, taxa.column]
+    taxa.list.two &amp;lt;- x[x[, site.column] %in% site.two, taxa.column]
+    
+    #betadiversity
+    beta &amp;lt;- betadiversity(
+      x = taxa.list.one,
+      y = taxa.list.two
+    )
+    
+    #adding site names
+    beta$site.one &amp;lt;- site.one
+    beta$site.two &amp;lt;- site.two
+    
+    return(beta)
+    
+  }
+  
+  #remove bad rownames
+  rownames(betadiversity.df) &amp;lt;- NULL
+  
+  #reordering columns
+  betadiversity.df &amp;lt;- betadiversity.df[, c(
+    &amp;quot;site.one&amp;quot;,
+    &amp;quot;site.two&amp;quot;,
+    &amp;quot;a&amp;quot;,
+    &amp;quot;b&amp;quot;,
+    &amp;quot;c&amp;quot;,
+    &amp;quot;bsor&amp;quot;,
+    &amp;quot;bsim&amp;quot;
+    )]
+  
+  #returning output
+  return(betadiversity.df)
+  
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And the test!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sites.betadiversity &amp;lt;- betadiversity_multisite(
+  x = sites, 
+  site.column = &amp;quot;site&amp;quot;,
+  taxa.column = &amp;quot;taxon&amp;quot;
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+site.one
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+site.two
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+a
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+b
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+c
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+bsor
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+bsim
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+5
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+6
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+5
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+6
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+site4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.545
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;That went well!&lt;/p&gt;
+&lt;p&gt;Finally, to have these functions available in my R session I always put them all in a single file in the same folder where my Rstudio project lives, name it something like &lt;code&gt;functions_betadiversity.R&lt;/code&gt;, and source it at the beginning of my script or .Rmd file by running a line like the one below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;source(&amp;quot;functions_betadiversity.R&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I have placed the file &lt;code&gt;functions_betadiversity.R&lt;/code&gt; in &lt;a href=&#34;https://gist.github.com/BlasBenito/4c3740b056a0c9bb3602f33dfd35990c&#34;&gt;this GitHub Gist&lt;/a&gt; in case you want to give it a look. You can also source it right away to your R environment by executing the following line:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;source(&amp;quot;https://gist.githubusercontent.com/BlasBenito/4c3740b056a0c9bb3602f33dfd35990c/raw/bbb40d868787fc5d10e391a2121045eb5d75f165/functions_betadiversity.R&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I hope this post helped you to better understand how to write and organize R functions!&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Setup of a shared folder in a home cluster</title>

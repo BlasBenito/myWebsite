@@ -33,12 +33,17 @@
   </url>
   
   <url>
-    <loc>/post_projects/</loc>
-    <lastmod>2021-01-03T00:00:00+00:00</lastmod>
+    <loc>/post/04_betadiversity/</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/post/</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post_projects/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url>
   

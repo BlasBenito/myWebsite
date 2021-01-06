@@ -1,0 +1,2029 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Blas M. Benito">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="This is a tutorial written for R users needing to compute betadiversity indices from species lists rather than from presence-absence matrices, and for R beginners or intermediate users that want to start using their own functions.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/04_betadiversity/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu2d6899fea498e6f15fc5d1dc33ad82ba_13662_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu2d6899fea498e6f15fc5d1dc33ad82ba_13662_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/post/04_betadiversity/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@blasbenito">
+  <meta property="twitter:creator" content="@blasbenito">
+  
+  <meta property="og:site_name" content="Blas M. Benito">
+  <meta property="og:url" content="/post/04_betadiversity/">
+  <meta property="og:title" content="Designing R functions to compute betadiversity indices from species lists | Blas M. Benito">
+  <meta property="og:description" content="This is a tutorial written for R users needing to compute betadiversity indices from species lists rather than from presence-absence matrices, and for R beginners or intermediate users that want to start using their own functions."><meta property="og:image" content="/media/avatar.jpg">
+  <meta property="twitter:image" content="/media/avatar.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2021-01-06T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2021-01-06T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/04_betadiversity/"
+  },
+  "headline": "Designing R functions to compute betadiversity indices from species lists",
+  
+  "datePublished": "2021-01-06T00:00:00Z",
+  "dateModified": "2021-01-06T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Blas M. Benito"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blas M. Benito",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu2d6899fea498e6f15fc5d1dc33ad82ba_13662_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "This is a tutorial written for R users needing to compute betadiversity indices from species lists rather than from presence-absence matrices, and for R beginners or intermediate users that want to start using their own functions."
+}
+</script>
+
+  
+
+  
+
+
+  
+  
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" integrity="sha256-5VhCqFam2Cn+yjw61zbBNrbHVJ6SRydPeKopYlngbiQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" integrity="sha256-zQ0LblD/Af8vOppw18+2anxsuaz3pWYyVWi+bTvTH8Q=" crossorigin="anonymous">
+  
+  <script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#2962ff",
+          "text": "rgb(255, 255, 255)"
+        },
+        "button": {
+          "background": "rgb(255, 255, 255)",
+          "text": "#2962ff"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "/privacy/"
+      }
+    })});
+  </script>
+
+
+
+  
+
+
+
+
+
+  <title>Designing R functions to compute betadiversity indices from species lists | Blas M. Benito</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Blas M. Benito</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Blas M. Benito</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Software</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Designing R functions to compute betadiversity indices from species lists</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 6, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    12 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<p><div class="alert alert-note">
+  <div>
+    This is a tutorial written for R users needing to compute betadiversity indices from species lists rather than from presence-absence matrices, and for R beginners or intermediate users that want to start using their own functions. If you are an advanced R user, this post will likely waste your time.
+  </div>
+</div>
+</p>
+<p>We ecologists like to measure all things in nature, and compositional changes in biological communities over time or space, a.k.a <em>betadiversity</em>, is one of these things. I am not going to explain what betadiversity is because others that know better than me have done it already. Good examples are <a href="https://methodsblog.com/2015/05/27/beta_diversity/">this post published the blog of Methods in Ecology and Evolution</a> by <a href="https://twitter.com/andres_baselga">Andres Baselga</a>, <a href="https://www.youtube.com/watch?v=WQGN30YSc_U">and this lecture by Tim Seipel</a>.</p>
+<p>What I am actually going to do in this post is to explain how to write functions to compute betadiversity indices in R from species lists rather than from presence-absence matrices. For the latter there are a few packages such as <a href="https://cran.r-project.org/package=vegan">vegan</a>, <a href="https://cran.r-project.org/package=BAT">BAT</a>, <a href="https://cran.r-project.org/package=MBI">MBI</a>, or <a href="https://cran.r-project.org/package=betapart">betapart</a>, but for the former I was unable to find anything suitable. To make this post useful for R beginners, I will go step by step on the rationale behind the design of the functions to compute betadiversity indices, and by the end of the post I will explain how to organize them to achieve a clean R workflow.</p>
+<p>Let’s go!</p>
+<p> </p>
+<div id="betadiversity-indices" class="section level2">
+<h2>Betadiversity indices</h2>
+<p>There are a few betadiversity indices out there, and I totally recommend you to start with <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1046/j.1365-2656.2003.00710.x">Koleff <em>et al.</em> (2003)</a> as a primer. They review the literature and analyze the properties of 24 different indices to provide guidance on how to use them.</p>
+<div id="betadiversity-components-a-b-and-c" class="section level3">
+<h3>Betadiversity components <em>a</em>, <em>b</em>, and <em>c</em></h3>
+<p>Betadiversity indices are designed to compare the taxa pools of two sites at a time, and require the computation of three components:</p>
+<ul>
+<li><strong>a</strong>: number of common taxa of both sites.</li>
+<li><strong>b</strong>: number of exclusive taxa of one site.</li>
+<li><strong>c</strong>: number of exclusive taxa of the other site.</li>
+</ul>
+<p>Let’s see how can we use these diversity components to compute betadiversity indices.</p>
+</div>
+<div id="sørensens-beta" class="section level3">
+<h3>Sørensen’s Beta</h3>
+<p>Let’s start with the <strong>Sørensen’s Beta</strong> (<span class="math inline">\(\beta_{sor}\)</span> hereafter), as presented in Koleff <em>et al.</em> (2003).</p>
+<p><span class="math display">\[\beta_{sor} = \frac{2a}{2a + b + c}\]</span></p>
+<p><span class="math inline">\(\beta_{sor}\)</span> is a similarity index in the range [0, 1] (the closer to one, the more similar the taxa pools of both sites are) that puts a lot of weight in the <span class="math inline">\(a\)</span> component, and is therefore a measure of <em>continuity</em>, as it focuses the most in the common taxa among sites.</p>
+</div>
+<div id="simpsons-beta" class="section level3">
+<h3>Simpson’s Beta</h3>
+<p>Another popular betadiversity index is the <strong>Simpson’s Beta</strong> (<span class="math inline">\(\beta_{sim}\)</span> hereafter).</p>
+<p><span class="math display">\[\beta_{sim} = \frac{min(b, c)}{min(b, c) + a}\]</span>
+where <span class="math inline">\(min()\)</span> is a function that takes the minimum value among the diversity components within the parenthesis. <span class="math inline">\(\beta_{sim}\)</span> is a dissimilarity measure that focuses on compositional turnover among sites because it focuses the most on the values of <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span>. It has its lower bound in zero, and an open upper value.</p>
+<p>To bring these ideas into R, first we have to load a few R packages, and generate some fake data to help us develop the functions.</p>
+<pre class="r"><code>library(magrittr)
+library(foreach)
+library(doParallel)</code></pre>
+<pre><code>## Loading required package: iterators</code></pre>
+<pre><code>## Loading required package: parallel</code></pre>
+<p>The code chunk below generates 15 fake taxa names, from <code>taxon_1</code> to <code>taxon_15</code>.</p>
+<pre class="r"><code>taxa &lt;- paste0(&quot;taxon_&quot;, 1:15)</code></pre>
+<p>With these fake taxa we are going to generate taxa lists for four hypothetical sites named <em>site1</em>, <em>site2</em>, <em>site3</em>, and <em>site4</em>. Two of the sites will have identical taxa lists, two will have non-overlapping taxa lists, and two of them will have some overlap.</p>
+<pre class="r"><code>site1 &lt;- site2 &lt;- taxa[1:7]
+site3 &lt;- taxa[8:12]
+site4 &lt;- taxa[10:15]</code></pre>
+<p>So now we have these taxa lists:</p>
+<pre class="r"><code>site1 #and site2</code></pre>
+<pre><code>## [1] &quot;taxon_1&quot; &quot;taxon_2&quot; &quot;taxon_3&quot; &quot;taxon_4&quot; &quot;taxon_5&quot; &quot;taxon_6&quot; &quot;taxon_7&quot;</code></pre>
+<pre class="r"><code>site3</code></pre>
+<pre><code>## [1] &quot;taxon_8&quot;  &quot;taxon_9&quot;  &quot;taxon_10&quot; &quot;taxon_11&quot; &quot;taxon_12&quot;</code></pre>
+<pre class="r"><code>site4</code></pre>
+<pre><code>## [1] &quot;taxon_10&quot; &quot;taxon_11&quot; &quot;taxon_12&quot; &quot;taxon_13&quot; &quot;taxon_14&quot; &quot;taxon_15&quot;</code></pre>
+<p> </p>
+</div>
+</div>
+<div id="step-by-step-computation-of-betadiversity-indices-with-r" class="section level2">
+<h2>Step-by-step computation of betadiversity indices with R</h2>
+<p>For a given pair of sites, how can we compute the diversity components <em>a</em>, <em>b</em>, and <em>c</em>?</p>
+<p>Looking at it from an R perspective, each site is a character vector, so <em>a</em> can be found by counting the number of common elements between two vectors. These common elements can be found with the function <code>intersect()</code>, and the number of elements can be computed by applying <code>length()</code> on the result of <code>intersect()</code>.</p>
+<pre class="r"><code>a &lt;- length(intersect(site3, site4))
+a</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>To compute <em>b</em> and <em>c</em> we can use the function <code>setdiff()</code>, that finds the exclusive elements of one character vector when comparing it with another. In this case, <em>b</em> is computed for the first vector introduced in the function, <em>site3</em> in this case…</p>
+<pre class="r"><code>b &lt;- length(setdiff(site3, site4))
+b</code></pre>
+<pre><code>## [1] 2</code></pre>
+<p>… so to compute the <em>c</em> component we only need to switch the sites.</p>
+<pre class="r"><code>c &lt;- length(setdiff(site4, site3))
+c</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>Now that we know <em>a</em>, <em>b</em>, and <em>c</em>, we can compute <span class="math inline">\(\beta_{sor}\)</span> and <span class="math inline">\(\beta_{sim}\)</span>.</p>
+<pre class="r"><code>Bsor &lt;- 2 * a / (2 * a + b + c)
+Bsor</code></pre>
+<pre><code>## [1] 0.5454545</code></pre>
+<pre class="r"><code>Bsim&lt;- min(b, c) / (min(b, c) + a)
+Bsim</code></pre>
+<pre><code>## [1] 0.4</code></pre>
+<p>Of course, if we have a long list of sites, computing betadiversity indices like this can get quite boring quite fast. Let’s put everything in a set of functions to make it easier to work with.</p>
+<p> </p>
+</div>
+<div id="writing-functions-to-compute-betadiversity-indices" class="section level2">
+<h2>Writing functions to compute betadiversity indices</h2>
+<p>The basic structure of a function definition in R looks as follows:</p>
+<pre class="r"><code>function_name &lt;- function(x, y, ...){
+  body of the function
+  return(function_output)
+}</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>function_name</code> is the name of your function. Ideally, a verb, or otherwise, something indicating somehow what the function will do with the input data and arguments.</li>
+<li><code>function()</code> is a function to define functions, there isn’t much more to it…</li>
+<li><code>x</code> is the first argument of the function, and ideally, represents the input data. If that is the case, you can later use <a href="https://r4ds.had.co.nz/pipes.html">pipes</a> (<code>%&gt;%</code>) to chain functions together.</li>
+<li><code>y</code> (it could have any other name) is another function argument, an can be either another input dataset, or an argument defining how the function has to behave.</li>
+<li><code>...</code> refers to other arguments the function may require.</li>
+<li><code>body of the function</code> is the code that operates with the function arguments to yield a result. This can be one line of code, or a thousand, it all comes down to the function’s objective. In any case, the <code>body of the function</code> must return an object (or an error if something went wrong) that will be the function output. I have called this output <code>function_output</code>, but it can have any name you want.</li>
+<li><code>return(function_output)</code> tells the function that the value to return is stored in the variable <code>function_output</code> (this variable can have any name you need). This <code>function_output</code> must be the result of the operations performed by the <code>body of the function</code>. It is important to remember that R functions can return one object only.</li>
+</ul>
+<p>Let’s start writing a function to compute <em>a</em>, <em>b</em>, and <em>c</em> from a pair of sites.</p>
+<pre class="r"><code>#x: taxa list of one site
+#y: taxa list of another site
+abc &lt;- function(x, y){
+  
+  #list to store output
+  out &lt;- list()
+  
+  #filling the list
+  out$a &lt;- length(intersect(x, y))
+  out$b &lt;- length(setdiff(x, y))
+  out$c &lt;- length(setdiff(y, x))
+  
+  #returning the output
+  return(out)
+}</code></pre>
+<p>Notice that to to return the three values I am wrapping them in a list. Let’s run a little test.</p>
+<pre class="r"><code>x &lt;- abc(
+  x = site3,
+  y = site4
+)
+x</code></pre>
+<pre><code>## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3</code></pre>
+<p>So far so good! From here we build the functions <code>sorensen_beta()</code> and <code>simpson_beta()</code> making sure they can accept the output of <code>abc()</code>, and return it with an added slot. No matter what you might have heard about <code>return()</code>, it must be included in these functions (you can try them without <code>return()</code> to learn why).</p>
+<pre class="r"><code>sorensen_beta &lt;- function(x){
+  x$bsor &lt;- round(2 * x$a / (2 * x$a + x$b + x$c), 3)
+  return(x)
+}
+
+simpson_beta &lt;- function(x){
+  x$bsim &lt;- round(min(x$b, x$c) / (min(x$b, x$c) + x$a), 3)
+  return(x)
+}</code></pre>
+<p>Notice that both functions are returning the input <code>x</code> with an added slot named after the given betadiversity index. Let’s test them first, to later see why returning the input object gives these functions a lot of flexibility.</p>
+<pre class="r"><code>sorensen_beta(x)</code></pre>
+<pre><code>## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsor
+## [1] 0.545</code></pre>
+<pre class="r"><code>simpson_beta(x)</code></pre>
+<pre><code>## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsim
+## [1] 0.4</code></pre>
+<p>When I said that returning the input object with an added slot gave these functions a lot of flexibility I was talking about this:</p>
+<pre class="r"><code>x &lt;- abc(
+  x = site3, 
+  y = site4
+  ) %&gt;% 
+  sorensen_beta() %&gt;% 
+  simpson_beta()
+x</code></pre>
+<pre><code>## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsor
+## [1] 0.545
+## 
+## $bsim
+## [1] 0.4</code></pre>
+<p>Chaining the functions through the <code>%&gt;%</code> pipe now allows us to combine their results in a single output no matter whether we use <code>sorensen_beta()</code> or <code>sorensen_beta()</code> first, or whether we omit one of them.</p>
+<p>We can put that idea right away into a function to compute both betadiversity indices at once from the taxa list of a pair of sites.</p>
+<pre class="r"><code>betadiversity &lt;- function(x, y){
+  
+  require(magrittr)
+  
+  abc(x, y) %&gt;%
+    sorensen_beta() %&gt;%
+    simpson_beta() %&gt;% 
+    return()
+  
+}</code></pre>
+<p>The function now works as follows.</p>
+<pre class="r"><code>x &lt;- betadiversity(
+  x = site3, 
+  y = site4
+  )
+x</code></pre>
+<pre><code>## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsor
+## [1] 0.545
+## 
+## $bsim
+## [1] 0.4</code></pre>
+<p>So far we have four functions…</p>
+<ul>
+<li><code>abc()</code></li>
+<li><code>simpson_beta()</code>, that requires <code>abc()</code>.</li>
+<li><code>sorensen_beta()</code>, that requires <code>abc()</code>.</li>
+<li><code>betadiversity()</code>, that requires <code>abc()</code>, <code>simpson_beta()</code>, and <code>sorensen_beta()</code>.</li>
+</ul>
+<p>… and one limitation: so far we can only return betadiversity indices for two sites at a time. So at the moment, to compute betadiversity indices for all combinations of sites we have to do a pretty ridiculous thing:</p>
+<pre class="r"><code>x1 &lt;- betadiversity(x = site1, y = site2)
+x2 &lt;- betadiversity(x = site1, y = site3)
+x3 &lt;- betadiversity(x = site1, y = site4)
+#... and so on</code></pre>
+<p>If I see you doing this I’ll come to haunt you in your nightmares! Since a real analysis may involve hundreds of sites, the next step is to use the functions above to build a new one able to intake an arbitrary number of sites.</p>
+<p> </p>
+</div>
+<div id="writing-a-function-to-compute-betadiversity-indices-for-an-arbitrary-number-of-sites." class="section level2">
+<h2>Writing a function to compute betadiversity indices for an arbitrary number of sites.</h2>
+<p>First we have to organize our sites in a data frame with a <em>long format</em>.</p>
+<pre class="r"><code>sites &lt;- data.frame(
+  site = c(
+    rep(&quot;site1&quot;, length(site1)),
+    rep(&quot;site2&quot;, length(site2)),
+    rep(&quot;site3&quot;, length(site3)),
+    rep(&quot;site4&quot;, length(site4))
+    ),
+  taxon = c(
+    site1,
+    site2,
+    site3,
+    site4
+  )
+)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+site
+</th>
+<th style="text-align:left;">
+taxon
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+taxon_1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+taxon_2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+taxon_3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+taxon_4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+taxon_5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+taxon_6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+taxon_7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+taxon_1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+taxon_2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+taxon_3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+taxon_4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+taxon_5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+taxon_6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+taxon_7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site3
+</td>
+<td style="text-align:left;">
+taxon_8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site3
+</td>
+<td style="text-align:left;">
+taxon_9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site3
+</td>
+<td style="text-align:left;">
+taxon_10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site3
+</td>
+<td style="text-align:left;">
+taxon_11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site3
+</td>
+<td style="text-align:left;">
+taxon_12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site4
+</td>
+<td style="text-align:left;">
+taxon_10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site4
+</td>
+<td style="text-align:left;">
+taxon_11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site4
+</td>
+<td style="text-align:left;">
+taxon_12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site4
+</td>
+<td style="text-align:left;">
+taxon_13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site4
+</td>
+<td style="text-align:left;">
+taxon_14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site4
+</td>
+<td style="text-align:left;">
+taxon_15
+</td>
+</tr>
+</tbody>
+</table>
+<p>Our new function will need to do several things:</p>
+<ul>
+<li>Generate combinations of the unique values of the column <code>site</code> two by two without repetition.</li>
+<li>Iterate through these combinations of two sites to compute betadiversity components and indices.</li>
+<li>Return a dataframe with the results to facilitate further analyses.</li>
+</ul>
+<p>The combinations of site pairs are done with <code>utils::combn()</code> as follows:</p>
+<pre class="r"><code>site.combinations &lt;- utils::combn(
+  x = unique(sites$site),
+  m = 2
+  )
+site.combinations</code></pre>
+<pre><code>##      [,1]    [,2]    [,3]    [,4]    [,5]    [,6]   
+## [1,] &quot;site1&quot; &quot;site1&quot; &quot;site1&quot; &quot;site2&quot; &quot;site2&quot; &quot;site3&quot;
+## [2,] &quot;site2&quot; &quot;site3&quot; &quot;site4&quot; &quot;site3&quot; &quot;site4&quot; &quot;site4&quot;</code></pre>
+<p>The result is a matrix, and each pair of rows in a column contain a pair of sites. The idea now is to iterate over the matrix columns, obtain the set of taxa from each site from the <code>taxon</code> column of the <code>sites</code> data frame, and use these taxa lists to compute the betadiversity components and indices.</p>
+<p>To easily generate the output data frame, I use the <code>foreach::foreach()</code> function to iterate through pairs instead of a more traditional <code>for</code> loop. You can read more about <code>foreach()</code> in a <a href="https://www.blasbenito.com/post/02_parallelizing_loops_with_r/">previous post</a>.</p>
+<pre class="r"><code>betadiversity.df &lt;- foreach::foreach(
+  i = 1:ncol(site.combinations), #iterates through columns of site.combinations
+  .combine = &#39;rbind&#39; #to produce a data frame
+  ) %do% {
+  
+  #site names
+  site.one &lt;- site.combinations[1, i] #from column i, row 1
+  site.two &lt;- site.combinations[2, i] #from column i, row 2
+  
+  #getting taxa lists
+  taxa.list.one &lt;- sites[sites$site %in% site.one, &quot;taxon&quot;]
+  taxa.list.two &lt;- sites[sites$site %in% site.two, &quot;taxon&quot;]
+  
+  #betadiversity
+  beta &lt;- betadiversity(
+    x = taxa.list.one,
+    y = taxa.list.two
+  )
+  
+  #adding site names
+  beta$site.one &lt;- site.one
+  beta$site.two &lt;- site.two
+  
+  return(beta)
+  
+}</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+a
+</th>
+<th style="text-align:left;">
+b
+</th>
+<th style="text-align:left;">
+c
+</th>
+<th style="text-align:left;">
+bsor
+</th>
+<th style="text-align:left;">
+bsim
+</th>
+<th style="text-align:left;">
+site.one
+</th>
+<th style="text-align:left;">
+site.two
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+site2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+site3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+site4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+site3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+site4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+0.545
+</td>
+<td style="text-align:left;">
+0.4
+</td>
+<td style="text-align:left;">
+site3
+</td>
+<td style="text-align:left;">
+site4
+</td>
+</tr>
+</tbody>
+</table>
+<p>Now that we know it works, we can put everything together in a function. Notice that to make the function more general, I have added arguments requesting the names of the columns with the site and the taxa names.</p>
+<pre class="r"><code>betadiversity_multisite &lt;- function(
+  x, 
+  site.column, #column with site names
+  taxa.column #column with taxa names
+){
+  
+  #get site combinations
+  site.combinations &lt;- utils::combn(
+    x = unique(x[, site.column]),
+    m = 2
+  )
+  
+  #iterating through site pairs
+  betadiversity.df &lt;- foreach::foreach(
+    i = 1:ncol(site.combinations),
+    .combine = &#39;rbind&#39;
+  ) %do% {
+    
+    #site names
+    site.one &lt;- site.combinations[1, i]
+    site.two &lt;- site.combinations[2, i]
+    
+    #getting taxa lists
+    taxa.list.one &lt;- x[x[, site.column] %in% site.one, taxa.column]
+    taxa.list.two &lt;- x[x[, site.column] %in% site.two, taxa.column]
+    
+    #betadiversity
+    beta &lt;- betadiversity(
+      x = taxa.list.one,
+      y = taxa.list.two
+    )
+    
+    #adding site names
+    beta$site.one &lt;- site.one
+    beta$site.two &lt;- site.two
+    
+    return(beta)
+    
+  }
+  
+  #remove bad rownames
+  rownames(betadiversity.df) &lt;- NULL
+  
+  #reordering columns
+  betadiversity.df &lt;- betadiversity.df[, c(
+    &quot;site.one&quot;,
+    &quot;site.two&quot;,
+    &quot;a&quot;,
+    &quot;b&quot;,
+    &quot;c&quot;,
+    &quot;bsor&quot;,
+    &quot;bsim&quot;
+    )]
+  
+  #returning output
+  return(betadiversity.df)
+  
+}</code></pre>
+<p>And the test!</p>
+<pre class="r"><code>sites.betadiversity &lt;- betadiversity_multisite(
+  x = sites, 
+  site.column = &quot;site&quot;,
+  taxa.column = &quot;taxon&quot;
+)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+site.one
+</th>
+<th style="text-align:left;">
+site.two
+</th>
+<th style="text-align:left;">
+a
+</th>
+<th style="text-align:left;">
+b
+</th>
+<th style="text-align:left;">
+c
+</th>
+<th style="text-align:left;">
+bsor
+</th>
+<th style="text-align:left;">
+bsim
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+site3
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site1
+</td>
+<td style="text-align:left;">
+site4
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+site3
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site2
+</td>
+<td style="text-align:left;">
+site4
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+site3
+</td>
+<td style="text-align:left;">
+site4
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+0.545
+</td>
+<td style="text-align:left;">
+0.4
+</td>
+</tr>
+</tbody>
+</table>
+<p>That went well!</p>
+<p>Finally, to have these functions available in my R session I always put them all in a single file in the same folder where my Rstudio project lives, name it something like <code>functions_betadiversity.R</code>, and source it at the beginning of my script or .Rmd file by running a line like the one below.</p>
+<pre class="r"><code>source(&quot;functions_betadiversity.R&quot;)</code></pre>
+<p>I have placed the file <code>functions_betadiversity.R</code> in <a href="https://gist.github.com/BlasBenito/4c3740b056a0c9bb3602f33dfd35990c">this GitHub Gist</a> in case you want to give it a look. You can also source it right away to your R environment by executing the following line:</p>
+<pre class="r"><code>source(&quot;https://gist.githubusercontent.com/BlasBenito/4c3740b056a0c9bb3602f33dfd35990c/raw/bbb40d868787fc5d10e391a2121045eb5d75f165/functions_betadiversity.R&quot;)</code></pre>
+<p>I hope this post helped you to better understand how to write and organize R functions!</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/04_betadiversity/&amp;text=Designing%20R%20functions%20to%20compute%20betadiversity%20indices%20from%20species%20lists" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/04_betadiversity/&amp;t=Designing%20R%20functions%20to%20compute%20betadiversity%20indices%20from%20species%20lists" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Designing%20R%20functions%20to%20compute%20betadiversity%20indices%20from%20species%20lists&amp;body=/post/04_betadiversity/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/04_betadiversity/&amp;title=Designing%20R%20functions%20to%20compute%20betadiversity%20indices%20from%20species%20lists" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Designing%20R%20functions%20to%20compute%20betadiversity%20indices%20from%20species%20lists%20/post/04_betadiversity/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/04_betadiversity/&amp;title=Designing%20R%20functions%20to%20compute%20betadiversity%20indices%20from%20species%20lists" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/blas-m.-benito/avatar_hu540359786128d310fe40f64bfadab7c8_179471_270x270_fill_q90_lanczos_center.jpg" alt="Blas M. Benito">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Blas M. Benito</a></h5>
+        <h6 class="card-subtitle">Staff Researcher</h6>
+        
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:blasbenito@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/blasbenito" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=WBTp0McAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/BlasBenito" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://orcid.org/0000-0001-5105-7232" target="_blank" rel="noopener">
+        <i class="fab fa-fa-orcidhttps://ghr.nlm.nih.gov/condition/leigh-syndrome"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/sql.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/bash.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic Website Builder</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

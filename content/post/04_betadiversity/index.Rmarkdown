@@ -1,6 +1,6 @@
 ---
 date: "2021-01-06"
-diagram: false
+diagram: true
 image:
   caption: 'Image credit: **Blas M. Benito**'
   placement: 3
@@ -59,7 +59,6 @@ library(magrittr)
 library(foreach)
 library(doParallel)
 ```
-
 
 The code chunk below generates 15 fake taxa names, from `taxon_1` to `taxon_15`.
 
@@ -139,8 +138,8 @@ The basic structure of a function definition in R looks as follows:
 
 ```{r, eval = FALSE}
 function_name <- function(x, y, ...){
-  body of the function
-  return(function_output)
+  output <- [body]
+  output #also return(output)
 }
 ```
 
@@ -151,8 +150,8 @@ Where:
   + `x` is the first argument of the function, and ideally, represents the input data. If that is the case, you can later use [pipes](https://r4ds.had.co.nz/pipes.html) (`%>%`) to chain functions together.
   + `y` (it could have any other name) is another function argument, an can be either another input dataset, or an argument defining how the function has to behave.
   + `...` refers to other arguments the function may require.
-  + `body of the function` is the code that operates with the function arguments to yield a result. This can be one line of code, or a thousand, it all comes down to the function's objective. In any case, the `body of the function` must return an object (or an error if something went wrong) that will be the function output. I have called this output `function_output`, but it can have any name you want.
-  + `return(function_output)` tells the function that the value to return is stored in the variable `function_output` (this variable can have any name you need). This `function_output` must be the result of the operations performed by the `body of the function`. It is important to remember that R functions can return one object only.
+  + `body` is the code that operates with the data and function arguments. This can be one line of code, or a thousand, it all comes down to the function's objective. In any case, the `body` must return an object (or an error if something went wrong) that will be the function's `output`. 
+  + `output` is the object ultimately produced by the function. It can have any name, and can be any kind of structure, such a number, a vector, a data frame, a list, etc. R functions return one output object only. Since R functions return the last evaluated value, it is good practice to put the `output` object at the end of the function as an explicit way to state what the actual output of the function is. 
 
 Let's start writing a function to compute *a*, *b*, and *c* from a pair of sites.
 
@@ -170,7 +169,7 @@ abc <- function(x, y){
   out$c <- length(setdiff(y, x))
   
   #returning the output
-  return(out)
+  out
 }
 ```
 
@@ -184,17 +183,24 @@ x <- abc(
 x
 ```
 
-So far so good! From here we build the functions `sorensen_beta()` and `simpson_beta()` making sure they can accept the output of `abc()`, and return it with an added slot. No matter what you might have heard about `return()`, it must be included in these functions (you can try them without `return()` to learn why).
+So far so good! From here we build the functions `sorensen_beta()` and `simpson_beta()` making sure they can accept the output of `abc()`, and return it with an added slot.
 
 ```{r}
 sorensen_beta <- function(x){
+  
   x$bsor <- round(2 * x$a / (2 * x$a + x$b + x$c), 3)
-  return(x)
+  
+  x
+  
 }
 
+
 simpson_beta <- function(x){
+  
   x$bsim <- round(min(x$b, x$c) / (min(x$b, x$c) + x$a), 3)
-  return(x)
+  
+  x
+  
 }
 ```
 
@@ -230,8 +236,7 @@ betadiversity <- function(x, y){
   
   abc(x, y) %>%
     sorensen_beta() %>%
-    simpson_beta() %>% 
-    return()
+    simpson_beta()
   
 }
 ```
@@ -337,7 +342,8 @@ betadiversity.df <- foreach::foreach(
   beta$site.one <- site.one
   beta$site.two <- site.two
   
-  return(beta)
+  #returning output
+  beta
   
 }
 ```
@@ -386,7 +392,8 @@ betadiversity_multisite <- function(
     beta$site.one <- site.one
     beta$site.two <- site.two
     
-    return(beta)
+    #returning output
+    beta
     
   }
   

@@ -108,8 +108,8 @@ Bsim&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Writing functions to compute betadiversity indices&lt;/h2&gt;
 &lt;p&gt;The basic structure of a function definition in R looks as follows:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;function_name &amp;lt;- function(x, y, ...){
-  body of the function
-  return(function_output)
+  output &amp;lt;- [body]
+  output #also return(output)
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Where:&lt;/p&gt;
 &lt;ul&gt;
@@ -118,8 +118,8 @@ Bsim&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;code&gt;x&lt;/code&gt; is the first argument of the function, and ideally, represents the input data. If that is the case, you can later use &lt;a href=&#34;https://r4ds.had.co.nz/pipes.html&#34;&gt;pipes&lt;/a&gt; (&lt;code&gt;%&amp;gt;%&lt;/code&gt;) to chain functions together.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;y&lt;/code&gt; (it could have any other name) is another function argument, an can be either another input dataset, or an argument defining how the function has to behave.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;...&lt;/code&gt; refers to other arguments the function may require.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;body of the function&lt;/code&gt; is the code that operates with the function arguments to yield a result. This can be one line of code, or a thousand, it all comes down to the function’s objective. In any case, the &lt;code&gt;body of the function&lt;/code&gt; must return an object (or an error if something went wrong) that will be the function output. I have called this output &lt;code&gt;function_output&lt;/code&gt;, but it can have any name you want.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;return(function_output)&lt;/code&gt; tells the function that the value to return is stored in the variable &lt;code&gt;function_output&lt;/code&gt; (this variable can have any name you need). This &lt;code&gt;function_output&lt;/code&gt; must be the result of the operations performed by the &lt;code&gt;body of the function&lt;/code&gt;. It is important to remember that R functions can return one object only.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;body&lt;/code&gt; is the code that operates with the data and function arguments. This can be one line of code, or a thousand, it all comes down to the function’s objective. In any case, the &lt;code&gt;body&lt;/code&gt; must return an object (or an error if something went wrong) that will be the function’s &lt;code&gt;output&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;output&lt;/code&gt; is the object ultimately produced by the function. It can have any name, and can be any kind of structure, such a number, a vector, a data frame, a list, etc. R functions return one output object only. Since R functions return the last evaluated value, it is good practice to put the &lt;code&gt;output&lt;/code&gt; object at the end of the function as an explicit way to state what the actual output of the function is.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Let’s start writing a function to compute &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; from a pair of sites.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#x: taxa list of one site
@@ -135,7 +135,7 @@ abc &amp;lt;- function(x, y){
   out$c &amp;lt;- length(setdiff(y, x))
   
   #returning the output
-  return(out)
+  out
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Notice that to to return the three values I am wrapping them in a list. Let’s run a little test.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- abc(
@@ -151,15 +151,22 @@ x&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## $c
 ## [1] 3&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;So far so good! From here we build the functions &lt;code&gt;sorensen_beta()&lt;/code&gt; and &lt;code&gt;simpson_beta()&lt;/code&gt; making sure they can accept the output of &lt;code&gt;abc()&lt;/code&gt;, and return it with an added slot. No matter what you might have heard about &lt;code&gt;return()&lt;/code&gt;, it must be included in these functions (you can try them without &lt;code&gt;return()&lt;/code&gt; to learn why).&lt;/p&gt;
+&lt;p&gt;So far so good! From here we build the functions &lt;code&gt;sorensen_beta()&lt;/code&gt; and &lt;code&gt;simpson_beta()&lt;/code&gt; making sure they can accept the output of &lt;code&gt;abc()&lt;/code&gt;, and return it with an added slot.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sorensen_beta &amp;lt;- function(x){
+  
   x$bsor &amp;lt;- round(2 * x$a / (2 * x$a + x$b + x$c), 3)
-  return(x)
+  
+  x
+  
 }
 
+
 simpson_beta &amp;lt;- function(x){
+  
   x$bsim &amp;lt;- round(min(x$b, x$c) / (min(x$b, x$c) + x$a), 3)
-  return(x)
+  
+  x
+  
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Notice that both functions are returning the input &lt;code&gt;x&lt;/code&gt; with an added slot named after the given betadiversity index. Let’s test them first, to later see why returning the input object gives these functions a lot of flexibility.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sorensen_beta(x)&lt;/code&gt;&lt;/pre&gt;
@@ -216,8 +223,7 @@ x&lt;/code&gt;&lt;/pre&gt;
   
   abc(x, y) %&amp;gt;%
     sorensen_beta() %&amp;gt;%
-    simpson_beta() %&amp;gt;% 
-    return()
+    simpson_beta()
   
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The function now works as follows.&lt;/p&gt;
@@ -526,7 +532,8 @@ site.combinations&lt;/code&gt;&lt;/pre&gt;
   beta$site.one &amp;lt;- site.one
   beta$site.two &amp;lt;- site.two
   
-  return(beta)
+  #returning output
+  beta
   
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;table&gt;
@@ -733,7 +740,8 @@ site4
     beta$site.one &amp;lt;- site.one
     beta$site.two &amp;lt;- site.two
     
-    return(beta)
+    #returning output
+    beta
     
   }
   

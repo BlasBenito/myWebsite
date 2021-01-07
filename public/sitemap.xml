@@ -873,16 +873,6 @@
   </url>
   
   <url>
-    <loc>/privacy/</loc>
-    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/terms/</loc>
-    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tag/generalized-linear-models/</loc>
     <lastmod>2018-05-29T00:00:00+00:00</lastmod>
   </url>
@@ -1485,6 +1475,11 @@
   <url>
     <loc>/author/luz-m.-munoz/</loc>
     <lastmod>2009-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2008_penas_phyton/</loc>
+    <lastmod>2008-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>

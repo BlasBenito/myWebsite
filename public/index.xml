@@ -3927,24 +3927,6 @@ Three
     </item>
     
     <item>
-      <title>Privacy Policy</title>
-      <link>/privacy/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
-      <guid>/privacy/</guid>
-      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Terms</title>
-      <link>/terms/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
-      <guid>/terms/</guid>
-      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Past and potential future population dynamics of three grouse species using ecological and whole genome coalescent modeling</title>
       <link>/publication/2018_kozma_ecology_and_evolution/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
@@ -4343,6 +4325,14 @@ Figure 1: A fancy pie chart.
       <link>/publication/2009_benito_biodiversity_and_conservation/</link>
       <pubDate>Sat, 28 Feb 2009 00:00:00 +0000</pubDate>
       <guid>/publication/2009_benito_biodiversity_and_conservation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Greenhouses, land use change, and predictive models: MaxEnt and Geomod working together</title>
+      <link>/publication/2008_penas_phyton/</link>
+      <pubDate>Tue, 01 Jan 2008 00:00:00 +0000</pubDate>
+      <guid>/publication/2008_penas_phyton/</guid>
       <description></description>
     </item>
     

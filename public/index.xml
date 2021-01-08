@@ -279,7 +279,7 @@ x&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## $bsim
 ## [1] 0.4&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Chaining the functions through the &lt;code&gt;%&amp;gt;%&lt;/code&gt; pipe now allows us to combine their results in a single output no matter whether we use &lt;code&gt;sorensen_beta()&lt;/code&gt; or &lt;code&gt;sorensen_beta()&lt;/code&gt; first, or whether we omit one of them.&lt;/p&gt;
+&lt;p&gt;Chaining the functions through the &lt;code&gt;%&amp;gt;%&lt;/code&gt; pipe of the &lt;code&gt;magrittr&lt;/code&gt; package now allows us to combine their results in a single output no matter whether we use &lt;code&gt;sorensen_beta()&lt;/code&gt; or &lt;code&gt;sorensen_beta()&lt;/code&gt; first, or whether we omit one of them. The only thing the pipe is doing here is moving the output of the first function into the next. There are a couple of very nice tutorials about the &lt;code&gt;magrittr&lt;/code&gt; package and the &lt;code&gt;%&amp;gt;%&lt;/code&gt; &lt;a href=&#34;https://uc-r.github.io/pipe&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;https://towardsdatascience.com/an-introduction-to-the-pipe-in-r-823090760d64&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We can put that idea right away into a function to compute both betadiversity indices at once from the taxa list of a pair of sites.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;betadiversity &amp;lt;- function(x, y){
   

@@ -884,7 +884,7 @@ x</code></pre>
 ## 
 ## $bsim
 ## [1] 0.4</code></pre>
-<p>Chaining the functions through the <code>%&gt;%</code> pipe now allows us to combine their results in a single output no matter whether we use <code>sorensen_beta()</code> or <code>sorensen_beta()</code> first, or whether we omit one of them.</p>
+<p>Chaining the functions through the <code>%&gt;%</code> pipe of the <code>magrittr</code> package now allows us to combine their results in a single output no matter whether we use <code>sorensen_beta()</code> or <code>sorensen_beta()</code> first, or whether we omit one of them. The only thing the pipe is doing here is moving the output of the first function into the next. There are a couple of very nice tutorials about the <code>magrittr</code> package and the <code>%&gt;%</code> <a href="https://uc-r.github.io/pipe">here</a> and <a href="https://towardsdatascience.com/an-introduction-to-the-pipe-in-r-823090760d64">here</a>.</p>
 <p>We can put that idea right away into a function to compute both betadiversity indices at once from the taxa list of a pair of sites.</p>
 <pre class="r"><code>betadiversity &lt;- function(x, y){
   

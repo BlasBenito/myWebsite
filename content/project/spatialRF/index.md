@@ -32,8 +32,4 @@ url_slides: ""
 url_video: ""
 ---
 
-# [![DOI](https://zenodo.org/badge/179102027.svg)](https://zenodo.org/badge/latestdoi/179102027)
-# [![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/memoria)](https://CRAN.R-project.org/package=memoria)
-# [![CRAN\_Download\_Badge](https://cranlogs.r-pkg.org/badges/memoria)](https://CRAN.R-project.org/package=memoria)
-
-#COMING SOON
+**COMING SOON**

@@ -32,4 +32,9 @@ url_slides: ""
 url_video: ""
 ---
 
-**COMING SOON**
+<div class="alert alert-success" role="alert">
+COMING SOON
+</div>
+
+
+

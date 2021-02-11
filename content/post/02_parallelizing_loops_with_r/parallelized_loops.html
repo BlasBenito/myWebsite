@@ -734,12 +734,12 @@ m</code></pre>
 ## Target node size:                 1 
 ## Variable importance mode:         permutation 
 ## Splitrule:                        gini 
-## OOB prediction error:             2.34 %</code></pre>
+## OOB prediction error:             2.63 %</code></pre>
 <pre class="r"><code>#variable importance
 m$variable.importance</code></pre>
 <pre><code>##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
-##        0.31139794        0.16673334        0.21109643        0.07812254</code></pre>
-<p>The output shows that the percentage of misclassified cases is 2.34, and that <em>bill_length_mm</em> is the variable that contributes the most to the accuracy of the classification.</p>
+##        0.30550897        0.17034244        0.21402905        0.07565069</code></pre>
+<p>The output shows that the percentage of misclassified cases is 2.63, and that <em>bill_length_mm</em> is the variable that contributes the most to the accuracy of the classification.</p>
 <p>If you are not familiar with random forest, <a href="https://victorzhou.com/blog/intro-to-random-forests/">this post</a> does a pretty good job in explaining the basics:</p>
 <div id="tuning-random-forest-hyperparameters" class="section level3">
 <h3>Tuning random forest hyperparameters</h3>
@@ -1136,7 +1136,7 @@ prediction.error
 <tbody>
 <tr>
 <td style="text-align:right;">
-1000
+500
 </td>
 <td style="text-align:right;">
 2
@@ -1145,7 +1145,7 @@ prediction.error
 1
 </td>
 <td style="text-align:right;">
-2.339181
+2.046784
 </td>
 </tr>
 </tbody>
@@ -1196,7 +1196,7 @@ system.time(
   
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.285   0.024  12.278</code></pre>
+##   0.250   0.045   6.231</code></pre>
 <p>The output of <code>system.time()</code> goes as follows:</p>
 <ul>
 <li><em>user</em>: seconds the R session has been using the CPU.</li>
@@ -1237,7 +1237,7 @@ system.time(
   }
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##  43.025   2.971  14.288</code></pre>
+##  43.193   2.935  12.476</code></pre>
 <p>As you can see, <code>ranger()</code> takes longer to execute in a regular <code>for</code> loop using several cores at once than in a parallel <code>foreach</code> loop using one core at once. That’s a win for the parallelized loop!</p>
 <p>We can stop our cluster now, we are done with it.</p>
 <pre class="r"><code>parallel::stopCluster(cl = my.cluster)</code></pre>

@@ -198,6 +198,11 @@
   </url>
   
   <url>
+    <loc>/project/spatialrf/</loc>
+    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/project/virtualpollen/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
   </url>
@@ -209,6 +214,11 @@
   
   <url>
     <loc>/tag/random-forest/</loc>
+    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/spatial-regression/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
   </url>
   

@@ -2507,7 +2507,7 @@ m&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#variable importance
 m$variable.importance&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
-##        0.31452816        0.16948700        0.21670253        0.07988962&lt;/code&gt;&lt;/pre&gt;
+##        0.30725561        0.16313135        0.21295992        0.08357647&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output shows that the percentage of misclassified cases is 2.34, and that &lt;em&gt;bill_length_mm&lt;/em&gt; is the variable that contributes the most to the accuracy of the classification.&lt;/p&gt;
 &lt;p&gt;If you are not familiar with random forest, &lt;a href=&#34;https://victorzhou.com/blog/intro-to-random-forests/&#34;&gt;this post&lt;/a&gt; and the video below do a pretty good job in explaining the basics:&lt;/p&gt;
 &lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/D_2LkhMJcfY&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;
@@ -2969,7 +2969,7 @@ system.time(
   
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    user  system elapsed 
-##   0.308   0.028   6.382&lt;/code&gt;&lt;/pre&gt;
+##   0.264   0.025   6.177&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output of &lt;code&gt;system.time()&lt;/code&gt; goes as follows:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;user&lt;/em&gt;: seconds the R session has been using the CPU.&lt;/li&gt;
@@ -3011,7 +3011,7 @@ system.time(
   }
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    user  system elapsed 
-##  42.878   2.914  13.336&lt;/code&gt;&lt;/pre&gt;
+##  43.434   2.646  12.683&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As you can see, &lt;code&gt;ranger()&lt;/code&gt; takes longer to execute in a regular &lt;code&gt;for&lt;/code&gt; loop using several cores at once than in a parallel &lt;code&gt;foreach&lt;/code&gt; loop using one core at once. That’s a win for the parallelized loop!&lt;/p&gt;
 &lt;p&gt;We can stop our cluster now, we are done with it.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;parallel::stopCluster(cl = my.cluster)&lt;/code&gt;&lt;/pre&gt;
@@ -3107,6 +3107,21 @@ dominance).&lt;/p&gt;
 &lt;a href=&#34;https://zenodo.org/record/3236128#.X941v9Yo-1c&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Zenodo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you ever use the package, please, cite it as:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Benito, B.M., Gil‐Romera, G. and Birks, H.J.B. (2020), Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features. Ecography, 43: 1-10. &lt;a href=&#34;https://doi.org/10.1111/ecog.04772&#34;&gt;https://doi.org/10.1111/ecog.04772&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R package &#34;spatialRF&#34;</title>
+      <link>/project/spatialrf/</link>
+      <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/project/spatialrf/</guid>
+      <description>&lt;h1 id=&#34;doihttpszenodoorgbadge179102027svghttpszenodoorgbadgelatestdoi179102027&#34;&gt;
+&lt;a href=&#34;https://zenodo.org/badge/latestdoi/179102027&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/179102027.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;cran_release_badgehttpswwwr-pkgorgbadgesversion-agomemoriahttpscranr-projectorgpackagememoria&#34;&gt;
+&lt;a href=&#34;https://CRAN.R-project.org/package=memoria&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://www.r-pkg.org/badges/version-ago/memoria&#34; alt=&#34;CRAN\_Release\_Badge&#34;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;cran_download_badgehttpscranlogsr-pkgorgbadgesmemoriahttpscranr-projectorgpackagememoria&#34;&gt;
+&lt;a href=&#34;https://CRAN.R-project.org/package=memoria&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://cranlogs.r-pkg.org/badges/memoria&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;#COMING SOON&lt;/p&gt;
 </description>
     </item>
     
@@ -4156,6 +4171,9 @@ Three
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       <guid>/post_examples/2015-07-23-r-rmarkdown/</guid>
       <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
@@ -4191,7 +4209,7 @@ pie(
   init.angle = -50, border = NA
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/post_examples/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 1: A fancy pie chart.
 &lt;/p&gt;

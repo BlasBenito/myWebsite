@@ -22,6 +22,7 @@ summary: R package for spatial regression with Random Forest
 tags: 
 - R packages
 - Spatial Regression
+- Time Series Analysis
 - Machine Learning
 - Random Forest
 title: R package "spatialRF"

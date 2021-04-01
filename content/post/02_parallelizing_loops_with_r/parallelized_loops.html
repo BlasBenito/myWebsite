@@ -734,12 +734,12 @@ m</code></pre>
 ## Target node size:                 1 
 ## Variable importance mode:         permutation 
 ## Splitrule:                        gini 
-## OOB prediction error:             2.34 %</code></pre>
+## OOB prediction error:             2.63 %</code></pre>
 <pre class="r"><code>#variable importance
 m$variable.importance</code></pre>
 <pre><code>##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
-##        0.30666874        0.16786982        0.21262519        0.08505073</code></pre>
-<p>The output shows that the percentage of misclassified cases is 2.34, and that <em>bill_length_mm</em> is the variable that contributes the most to the accuracy of the classification.</p>
+##        0.30840440        0.17040271        0.20652779        0.08131772</code></pre>
+<p>The output shows that the percentage of misclassified cases is 2.63, and that <em>bill_length_mm</em> is the variable that contributes the most to the accuracy of the classification.</p>
 <p>If you are not familiar with random forest, <a href="https://victorzhou.com/blog/intro-to-random-forests/">this post</a> does a pretty good job in explaining the basics:</p>
 <div id="tuning-random-forest-hyperparameters" class="section level3">
 <h3>Tuning random forest hyperparameters</h3>
@@ -1196,7 +1196,7 @@ system.time(
   
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.252   0.047  11.604</code></pre>
+##   0.294   0.025  11.931</code></pre>
 <p>The output of <code>system.time()</code> goes as follows:</p>
 <ul>
 <li><em>user</em>: seconds the R session has been using the CPU.</li>
@@ -1237,7 +1237,7 @@ system.time(
   }
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##  43.308   3.055  12.401</code></pre>
+##  45.121   3.095  13.764</code></pre>
 <p>As you can see, <code>ranger()</code> takes longer to execute in a regular <code>for</code> loop using several cores at once than in a parallel <code>foreach</code> loop using one core at once. That’s a win for the parallelized loop!</p>
 <p>We can stop our cluster now, we are done with it.</p>
 <pre class="r"><code>parallel::stopCluster(cl = my.cluster)</code></pre>

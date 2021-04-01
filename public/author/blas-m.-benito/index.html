@@ -736,9 +736,13 @@
 <p>I also designed a mechanistical simulation to produce virtual pollen curves in the package 
 <a href="https://CRAN.R-project.org/package=virtualPollen" target="_blank" rel="noopener">virtualPollen</a>. The model uses a set of drivers, the ecological niches of a virtual species for these drivers, the traits life-span and fecundity, and the carrying capacity of the forest plot to simulate population dynamics over thousands of years.</p>
 <p><img src="media/virtualPollen.png" alt="virtualPollen"></p>
-<p>Currently I am working on two other packages: 
-<a href="https://github.com/BlasBenito/sdmflow" target="_blank" rel="noopener">sdmflow</a> intentds to streamline the production of species distribution models based on the concept &ldquo;use versus availability&rdquo;, where the background data (a comprehensive sampling of the ecological conditions available in the study area) represents the <em>availability</em>, and the presence represents the <em>use</em>. The second package (still nameless) incorporates temporal and spatial autocorrelation through 
-<a href="https://www.jstor.org/stable/40602939" target="_blank" rel="noopener">Moran Eigenvector Maps</a> to machine learning models such as random forest, gradient boosting, or artificial neural networks, among others.</p>
+<p>Currently I am working on two other packages:</p>
+<p>The R package 
+<a href="https://blasbenito.github.io/spatialRF/" target="_blank" rel="noopener">spatialRF</a> helps to fit spatial regression models with random forest while taking spatial autocorrelation into account via Moran&rsquo;s Eigenvector Maps 
+<a href="https://www.sciencedirect.com/science/article/abs/pii/S0304380006000925" target="_blank" rel="noopener">(Dray, Legendre, and Peres-Neto 2006)</a> or the RFsp method (using the complete distance matrix among records as spatial component in the model) by 
+<a href="https://peerj.com/articles/5518/" target="_blank" rel="noopener">Hengl <em>et al.</em> (2018)</a>. Currently it is in beta version, and I am polishing details and fixing small bugs while I write the paper before releasing it in CRAN. In the meantime, you can install it from GitHub.</p>
+<p>Another project in the works is 
+<a href="https://github.com/BlasBenito/sdmflow" target="_blank" rel="noopener">sdmflow</a>, which intends to streamline the production of species distribution models based on the concept &ldquo;use versus availability&rdquo;, where the background data (a comprehensive sampling of the ecological conditions available in the study area) represents the <em>availability</em>, and the presence represents the <em>use</em>. However, this is a low-priority side project at the moment, so its development will take some time.</p>
 <a name="palaeoecology">
 </a>
 <p><strong>Palaeoecology</strong></p>

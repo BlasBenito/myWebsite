@@ -101,7 +101,11 @@ I also designed a mechanistical simulation to produce virtual pollen curves in t
 
 ![virtualPollen](media/virtualPollen.png) 
 
-Currently I am working on two other packages: [sdmflow](https://github.com/BlasBenito/sdmflow) intentds to streamline the production of species distribution models based on the concept "use versus availability", where the background data (a comprehensive sampling of the ecological conditions available in the study area) represents the *availability*, and the presence represents the *use*. The second package (still nameless) incorporates temporal and spatial autocorrelation through [Moran Eigenvector Maps](https://www.jstor.org/stable/40602939) to machine learning models such as random forest, gradient boosting, or artificial neural networks, among others.
+Currently I am working on two other packages:
+
+The R package [spatialRF](https://blasbenito.github.io/spatialRF/) helps to fit spatial regression models with random forest while taking spatial autocorrelation into account via Moran's Eigenvector Maps [(Dray, Legendre, and Peres-Neto 2006)](https://www.sciencedirect.com/science/article/abs/pii/S0304380006000925) or the RFsp method (using the complete distance matrix among records as spatial component in the model) by [Hengl *et al.* (2018)](https://peerj.com/articles/5518/). Currently it is in beta version, and I am polishing details and fixing small bugs while I write the paper before releasing it in CRAN. In the meantime, you can install it from GitHub.
+
+Another project in the works is [sdmflow](https://github.com/BlasBenito/sdmflow), which intends to streamline the production of species distribution models based on the concept "use versus availability", where the background data (a comprehensive sampling of the ecological conditions available in the study area) represents the *availability*, and the presence represents the *use*. However, this is a low-priority side project at the moment, so its development will take some time.
 
 
 <a name="palaeoecology">

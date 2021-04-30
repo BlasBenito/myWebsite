@@ -33,6 +33,111 @@
   </url>
   
   <url>
+    <loc>/publication-type/2/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/biogeography/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/2021_maestre_new_phytologist/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/blas-m.-benito/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/david-j.-eldridge/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/dryland-ecology/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/emilio-guirado/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/fernando-t.-maestre/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/laura-concostrina-zubiri/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/manuel-delgado-baquerizo/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/miguel-berdugo/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/nicolas-gross/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/plant-ecology/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication_types/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/raul-ochoa-hueso/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/santiago-soliveres/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/sonia-kefi/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/yoann-le-bagousse-pinguet/</loc>
+    <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/04_betadiversity/</loc>
     <lastmod>2021-01-06T00:00:00+00:00</lastmod>
   </url>
@@ -98,32 +203,7 @@
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication-type/2/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/author/antonio-j.-perez-luque/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/biogeography/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/blas-m.-benito/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -134,21 +214,6 @@
   
   <url>
     <loc>/author/francisco-j.-bonet/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/plant-ecology/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url>
   

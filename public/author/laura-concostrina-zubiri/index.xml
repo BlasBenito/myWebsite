@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Laura Concostrina-Zubiri | Blas M. Benito</title>
+    <link>/author/laura-concostrina-zubiri/</link>
+      <atom:link href="/author/laura-concostrina-zubiri/index.xml" rel="self" type="application/rss+xml" />
+    <description>Laura Concostrina-Zubiri</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/avatar.jpg</url>
+      <title>Laura Concostrina-Zubiri</title>
+      <link>/author/laura-concostrina-zubiri/</link>
+    </image>
+    
+    <item>
+      <title>Biogeography of global drylands</title>
+      <link>/publication/2021_maestre_new_phytologist/</link>
+      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/publication/2021_maestre_new_phytologist/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

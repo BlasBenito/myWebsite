@@ -5,12 +5,20 @@
     <link>/tag/plant-ecology/</link>
       <atom:link href="/tag/plant-ecology/index.xml" rel="self" type="application/rss+xml" />
     <description>Plant Ecology</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/avatar.jpg</url>
       <title>Plant Ecology</title>
       <link>/tag/plant-ecology/</link>
     </image>
+    
+    <item>
+      <title>Biogeography of global drylands</title>
+      <link>/publication/2021_maestre_new_phytologist/</link>
+      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/publication/2021_maestre_new_phytologist/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Ecological Diversity within Rear-Edge: A Case Study from Mediterranean Quercus pyrenaica Willd.</title>

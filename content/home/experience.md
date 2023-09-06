@@ -60,7 +60,16 @@ date_format = "Jan 2006"
   location = "Alicante, Spain"
   date_start = "2020-01-07"
   date_end = ""
-  description = """I am working with [Fernando T. Maestre](https://maestrelab.com/en/fernando-t-maestre-biographical-sketch/) on improving our understanding on the biogeography of the global drylands."""
+  description = """Improving our understanding on the biogeography and plant richness of the global drylands."""
+  
+[[experience]]
+  title = "Data Scientist and Team Leader"
+  company = "Biome Makers Inc."
+  company_url = "https://biomemakers.com"
+  location = "US and Spain"
+  date_start = "2022-01-03"
+  date_end = ""
+  description = """Product development, precision agriculture, soil and crop mapping, data science and engineering."""
 
 
 

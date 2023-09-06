@@ -21,15 +21,16 @@ education:
 email: "blasbenito at gmail dot com"
 
 interests:
-- Processes shaping the distribution of biodiversity.
-- Application of state-of-the-art quantitative methods to answer ecological questions.
-- Design of efficient scientific workflows.
+- Spatial Data Science and Engineering
+- Soil/crop mapping and modeling
+- Machine Learning in AgTech
+- Scientific code development
 - R language, machine learning, agent-based models 
 
 organizations:
-- name: Maestre Lab, University of Alicante (Spain)
-  url: "https://maestrelab.com/en/"
-role: Staff Researcher
+- name: Biome Makers Inc.
+  url: "https://biomemakers.com/"
+role: Data Scientist and Engineer
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
 #   For an email link, use "fas" icon pack, "envelope" icon, and a link in the
@@ -38,9 +39,9 @@ social:
 - icon: envelope
   icon_pack: fas
   link: mailto:blasbenito@gmail.com
-- icon: twitter
+- icon: mastodon
   icon_pack: fab
-  link: https://twitter.com/blasbenito
+  link: https://fosstodon.org/@blasbenito
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.com/citations?user=WBTp0McAAAAJ&hl=en
@@ -57,7 +58,7 @@ user_groups:
 - Visitors
 ---
 
-I am biogeographer and ecological modeler with a PhD in Plant Ecology and Global Change, a Master in Geographical Information Systems, a Degree in Biology, and quite a bit of experience in applying state-of-the-art quantitative methods to better understand the processes shaping the distribution of biodiversity across space and time. 
+I am a PhD in Computational Ecology, a Master's in Geographic Information Systems, have a Degree in Biology, and quite a bit of experience in applying state-of-the-art quantitative methods to better understand the processes shaping the distribution of biodiversity across space and time. 
 
 I have developed my research career as PhD student at the Department of Botany of the University of Granada (2006 - 2009), staff researcher at [IISTA](http://www.iista.es/en/), postdoctoral researcher at ECOINFO (2014 - 2017, Aarhus University, Denmark), led by [Jens-Christian Svenning](https://pure.au.dk/portal/en/svenning@biology.au.dk), postdoctoral researcher at [EECRG](https://www.uib.no/en/rg/EECRG) (2017 - 2019), and currently as senior researcher at [Maestre Lab](https://maestrelab.com/en/), led by [Fernando T. Maestre](https://maestrelab.com/en/fernando-t-maestre-biographical-sketch/).
 

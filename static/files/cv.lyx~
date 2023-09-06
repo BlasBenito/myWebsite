@@ -2998,7 +2998,11 @@ status open
 \begin_layout Item
 
 \series bold
-Number of papers: 40
+Number of papers: 
+\series default
+38
+\series bold
+
 \begin_inset Argument 1
 status open
 
@@ -3014,7 +3018,11 @@ status open
 \begin_layout Item
 
 \series bold
-As first author/coauthor: 8
+As first author/coauthor: 
+\series default
+8
+\series bold
+
 \begin_inset Argument 1
 status open
 
@@ -3034,7 +3042,11 @@ Citations
 \series default
 (Google Scholar)
 \series bold
-: 1226
+: 
+\series default
+951
+\series bold
+
 \begin_inset Argument 1
 status open
 
@@ -3054,7 +3066,11 @@ H-index
 \series default
 (Google Scholar)
 \series bold
-: 17
+: 
+\series default
+16
+\series bold
+
 \begin_inset Argument 1
 status open
 

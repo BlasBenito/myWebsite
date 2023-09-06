@@ -23,14 +23,14 @@ email: "blasbenito at gmail dot com"
 interests:
 - Spatial Data Science and Engineering
 - Soil/crop mapping and modeling
-- Machine Learning adn Remote Sensing in AgTech
+- Machine Learning and Remote Sensing in AgTech
 - Scientific code development
-- Automated modeling pipelines
+- Automated data and modeling pipelines
 
 organizations:
 - name: Biome Makers Inc.
   url: "https://biomemakers.com/"
-role: Data Scientist and Engineer
+role: Data Scientist and Team Lead
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
 #   For an email link, use "fas" icon pack, "envelope" icon, and a link in the

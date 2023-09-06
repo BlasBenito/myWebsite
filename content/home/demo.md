@@ -8,7 +8,7 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 15  # Order that this section will appear.
 
-title = "Hola! I am Blas, a PhD in Computational Ecology and Spatial Data Scientist in AgriTech, passionate about building automated tools to enhance crop health and sustainability."
+title = "Hello there! I'm Blas, a PhD in Computational Ecology and Spatial Data Scientist in AgTech. My passion lies in crafting automated solutions that amplify crop health and sustainability."
 subtitle = ""
 
 [design]
@@ -50,12 +50,6 @@ subtitle = ""
  css_class = ""
 +++
 
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 &nbsp;
 
 

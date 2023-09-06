@@ -2998,11 +2998,7 @@ status open
 \begin_layout Item
 
 \series bold
-Number of papers: 
-\series default
-38
-\series bold
-
+Number of papers: 40
 \begin_inset Argument 1
 status open
 
@@ -3018,11 +3014,7 @@ status open
 \begin_layout Item
 
 \series bold
-As first author/coauthor: 
-\series default
-8
-\series bold
-
+As first author/coauthor: 8
 \begin_inset Argument 1
 status open
 
@@ -3042,11 +3034,7 @@ Citations
 \series default
 (Google Scholar)
 \series bold
-: 
-\series default
-951
-\series bold
-
+: 1226
 \begin_inset Argument 1
 status open
 
@@ -3066,26 +3054,13 @@ H-index
 \series default
 (Google Scholar)
 \series bold
-: 
-\series default
-16
-\series bold
-
+: 17
 \begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
 
 \end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset href
-LatexCommand href
-name "an award for the high number of downloads"
-target "https://www.dropbox.com/s/oacsy1xqx4omv1b/2019_BMB_Ecography_b_top_downloaded.png?dl=0+1"
-literal "false"
 
 \end_inset
 
@@ -3115,7 +3090,171 @@ literal "false"
 status open
 
 \begin_layout Plain Layout
-2020
+2021
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Biogeography of Global Drylands
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+F.T.
+ Maestre, ...,
+\series bold
+ Benito, B.M.
+\series default
+, ....
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 5
+status open
+
+\begin_layout Plain Layout
+
+\noun on
+new phytologist 
+\noun default
+(
+\begin_inset CommandInset href
+LatexCommand href
+name "view at publisher"
+target "https://nph.onlinelibrary.wiley.com/doi/full/10.1111/nph.17395"
+literal "false"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Entry
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+2021
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Ecological diversity within the rear-edge: a case study from Mediterranean
+ Quercus pyrenaica Willd.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+Pérez-Luque, A.,
+\series bold
+ Benito, B.M.
+\series default
+, Bonet-García, F.J., Zamora, R.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 5
+status open
+
+\begin_layout Plain Layout
+
+\noun on
+forests 
+\noun default
+(
+\begin_inset CommandInset href
+LatexCommand href
+name "view at publisher"
+target "https://www.mdpi.com/1999-4907/12/1/10"
+literal "false"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Entry
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+2021
 \end_layout
 
 \end_inset

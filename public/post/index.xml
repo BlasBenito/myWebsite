@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts | Blas M. Benito</title>
-    <link>/post/</link>
-      <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/post/</link>
+      <atom:link href="https://blasbenito.com/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Posts</title>
-      <link>/post/</link>
+      <link>https://blasbenito.com/post/</link>
     </image>
     
     <item>
       <title>Designing R functions to compute betadiversity indices from species lists</title>
-      <link>/post/04_betadiversity/</link>
+      <link>https://blasbenito.com/post/04_betadiversity/</link>
       <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/post/04_betadiversity/</guid>
+      <guid>https://blasbenito.com/post/04_betadiversity/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;&lt;div class=&#34;alert alert-note&#34;&gt;
@@ -948,13 +948,13 @@ site4
     
     <item>
       <title>Setup of a shared folder in a home cluster</title>
-      <link>/post/03_shared_folder_in_cluster/</link>
+      <link>https://blasbenito.com/post/03_shared_folder_in_cluster/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/post/03_shared_folder_in_cluster/</guid>
+      <guid>https://blasbenito.com/post/03_shared_folder_in_cluster/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;In the previous posts I have covered how to &lt;a href=&#34;https://www.blasbenito.com/post/01_home_cluster/&#34;&gt;setup a home cluster&lt;/a&gt;, and how to &lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34;&gt;run parallel processes with &lt;code&gt;foreach&lt;/code&gt; in R&lt;/a&gt;. However, so far I haven’t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.&lt;/p&gt;
@@ -1203,13 +1203,13 @@ Now that the work is done, we can stop the cluster.&lt;/p&gt;
     
     <item>
       <title>Parallelized loops with R</title>
-      <link>/post/02_parallelizing_loops_with_r/</link>
+      <link>https://blasbenito.com/post/02_parallelizing_loops_with_r/</link>
       <pubDate>Sat, 26 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/post/02_parallelizing_loops_with_r/</guid>
+      <guid>https://blasbenito.com/post/02_parallelizing_loops_with_r/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; to better follow this tutorial you can download the .Rmd file &lt;a href=&#34;https://www.dropbox.com/s/wsl2hcex3w0lr6u/parallelized_loops.Rmd?dl=1&#34;&gt;from here&lt;/a&gt;.&lt;/p&gt;
@@ -2492,9 +2492,9 @@ system.time(
     
     <item>
       <title>Setting up a home cluster</title>
-      <link>/post/01_home_cluster/</link>
+      <link>https://blasbenito.com/post/01_home_cluster/</link>
       <pubDate>Mon, 07 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/post/01_home_cluster/</guid>
+      <guid>https://blasbenito.com/post/01_home_cluster/</guid>
       <description>&lt;p&gt;In this post I explain how to setup a small 
 &lt;a href=&#34;https://en.wikipedia.org/wiki/Beowulf_cluster&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Beowulf cluster&lt;/a&gt; with a personal PC running Ubuntu 20.04 and a couple of 
 &lt;a href=&#34;https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Intel NUCs&lt;/a&gt; running Ubuntu Server 20.04, with the end-goal of parallelizing R tasks.&lt;/p&gt;
@@ -2510,9 +2510,6 @@ system.time(
 &lt;p&gt; &lt;/p&gt;
 &lt;h2 id=&#34;preamble&#34;&gt;Preamble&lt;/h2&gt;
 &lt;p&gt;I have a little but nice HP ENVY model &lt;em&gt;TE01-0008ns&lt;/em&gt; with 32 GB RAM, 8 CPUs, and 3TB of hard disk running Ubuntu 20.04 that I use to do all my computational work (and most of my tweeting). A few months ago I connected it with my two laptops (one of them deceased now, RIP my dear &lt;em&gt;skynet&lt;/em&gt;) to create a little cluster to run parallel tasks in R.&lt;/p&gt;
-&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Today I made a home cluster to spread parallel R tasks across all my computers. That was fun! &lt;a href=&#34;https://twitter.com/hashtag/rstats?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#rstats&lt;/a&gt; &lt;a href=&#34;https://t.co/ic4plvO3Y6&#34;&gt;pic.twitter.com/ic4plvO3Y6&lt;/a&gt;&lt;/p&gt;&amp;mdash; Blas M. Benito (@BlasBenito) &lt;a href=&#34;https://twitter.com/BlasBenito/status/1254754362389417987?ref_src=twsrc%5Etfw&#34;&gt;April 27, 2020&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
-
 &lt;p&gt;It was just a draft cluster running on a wireless network, but it served me to think about getting a more permanent solution not requiring two additional laptops in my desk.&lt;/p&gt;
 &lt;p&gt;That&amp;rsquo;s were the nice INTEL NUCs (from 
 &lt;a href=&#34;https://en.wikipedia.org/wiki/Next_Unit_of_Computing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Next Unit of Computing&lt;/em&gt;&lt;/a&gt;) come into play. NUCs are full-fledged computers fitted in small boxes usually sold without RAM memory sticks and no hard disk (hence the term &lt;em&gt;barebone&lt;/em&gt;). Since they have a low energy consumption footprint, I thought these would be ideal units for my soon-to-be home cluster.&lt;/p&gt;
@@ -2522,7 +2519,7 @@ system.time(
 &lt;ul&gt;
 &lt;li&gt;2 
 &lt;a href=&#34;https://ark.intel.com/content/www/us/en/ark/products/95062/intel-nuc-kit-nuc6cayh.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Intel Barebone BOXNUC6CAYH&lt;/a&gt;, each with 4 cores, and a maximum RAM memory of 32GB (you might read they only accept 8GB, but that&amp;rsquo;s not the case anymore). Notice that these NUCs aren&amp;rsquo;t state-of-the-art now, they were released by the end of 2016.&lt;/li&gt;
-&lt;li&gt;2 Hard disks SSD 2.5&amp;rdquo; 
+&lt;li&gt;2 Hard disks SSD 2.5&amp;quot; 
 &lt;a href=&#34;https://shop.westerndigital.com/es-es/products/internal-drives/wd-blue-sata-ssd#WDS250G2B0A&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Western Digital WDS250G2B0A WD Blue&lt;/a&gt; (250GB)&lt;/li&gt;
 &lt;li&gt;4 Crucial CT102464BF186D DDR3 SODIMM (204 pins) RAM sticks with 8GB each.&lt;/li&gt;
 &lt;li&gt;1 ethernet switch Netgear GS308-300PES with 8 ports.&lt;/li&gt;
@@ -2650,17 +2647,17 @@ sudo timedatectl set-ntp on
 &lt;p&gt; &lt;/p&gt;
 &lt;h3 id=&#34;setting-the-locale&#34;&gt;Setting the locale&lt;/h3&gt;
 &lt;p&gt;The operating systems of the NUCs and the PC need to have the same locale. It can be set by editing the file &lt;code&gt;/etc/default/locale&lt;/code&gt; with either &lt;code&gt;nano&lt;/code&gt; (in the NUCS) or &lt;code&gt;gedit&lt;/code&gt; (in the PC) and adding these lines, just replacing &lt;code&gt;en_US.UTF-8&lt;/code&gt; with your preferred locale.&lt;/p&gt;
-&lt;p&gt;LANG=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LANGUAGE=&amp;quot;en_US:en&amp;rdquo;&lt;br&gt;
-LC_NUMERIC=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_TIME=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_MONETARY=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_PAPER=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_IDENTIFICATION=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_NAME=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_ADDRESS=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_TELEPHONE=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_MEASUREMENT=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;LANG=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LANGUAGE=&amp;ldquo;en_US:en&amp;rdquo;&lt;br&gt;
+LC_NUMERIC=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_TIME=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_MONETARY=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_PAPER=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_IDENTIFICATION=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_NAME=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_ADDRESS=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_TELEPHONE=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_MEASUREMENT=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;h3 id=&#34;temperature-monitoring&#34;&gt;Temperature monitoring&lt;/h3&gt;
 &lt;p&gt;NUCs are 

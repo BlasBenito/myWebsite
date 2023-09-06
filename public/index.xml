@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blas M. Benito</title>
-    <link>/</link>
-      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/</link>
+      <atom:link href="https://blasbenito.com/index.xml" rel="self" type="application/rss+xml" />
     <description>Blas M. Benito</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Blas M. Benito</title>
-      <link>/</link>
+      <link>https://blasbenito.com/</link>
     </image>
     
     <item>
       <title>Example Page 1</title>
-      <link>/courses/example/example1/</link>
+      <link>https://blasbenito.com/courses/example/example1/</link>
       <pubDate>Sun, 05 May 2019 00:00:00 +0100</pubDate>
-      <guid>/courses/example/example1/</guid>
+      <guid>https://blasbenito.com/courses/example/example1/</guid>
       <description>&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
 &lt;h2 id=&#34;tip-1&#34;&gt;Tip 1&lt;/h2&gt;
 &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
@@ -35,9 +35,9 @@
     
     <item>
       <title>Example Page 2</title>
-      <link>/courses/example/example2/</link>
+      <link>https://blasbenito.com/courses/example/example2/</link>
       <pubDate>Sun, 05 May 2019 00:00:00 +0100</pubDate>
-      <guid>/courses/example/example2/</guid>
+      <guid>https://blasbenito.com/courses/example/example2/</guid>
       <description>&lt;p&gt;Here are some more tips for getting started with Academic:&lt;/p&gt;
 &lt;h2 id=&#34;tip-3&#34;&gt;Tip 3&lt;/h2&gt;
 &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
@@ -56,9 +56,9 @@
     
     <item>
       <title>Example Talk</title>
-      <link>/talk/example/</link>
+      <link>https://blasbenito.com/talk/example/</link>
       <pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate>
-      <guid>/talk/example/</guid>
+      <guid>https://blasbenito.com/talk/example/</guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
     Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
@@ -78,21 +78,21 @@
     
     <item>
       <title>Biogeography of global drylands</title>
-      <link>/publication/2021_maestre_new_phytologist/</link>
+      <link>https://blasbenito.com/publication/2021_maestre_new_phytologist/</link>
       <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/2021_maestre_new_phytologist/</guid>
+      <guid>https://blasbenito.com/publication/2021_maestre_new_phytologist/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Designing R functions to compute betadiversity indices from species lists</title>
-      <link>/post/04_betadiversity/</link>
+      <link>https://blasbenito.com/post/04_betadiversity/</link>
       <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/post/04_betadiversity/</guid>
+      <guid>https://blasbenito.com/post/04_betadiversity/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;&lt;div class=&#34;alert alert-note&#34;&gt;
@@ -1020,13 +1020,13 @@ site4
     
     <item>
       <title>Setup of a shared folder in a home cluster</title>
-      <link>/post/03_shared_folder_in_cluster/</link>
+      <link>https://blasbenito.com/post/03_shared_folder_in_cluster/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/post/03_shared_folder_in_cluster/</guid>
+      <guid>https://blasbenito.com/post/03_shared_folder_in_cluster/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;In the previous posts I have covered how to &lt;a href=&#34;https://www.blasbenito.com/post/01_home_cluster/&#34;&gt;setup a home cluster&lt;/a&gt;, and how to &lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34;&gt;run parallel processes with &lt;code&gt;foreach&lt;/code&gt; in R&lt;/a&gt;. However, so far I haven’t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.&lt;/p&gt;
@@ -1275,13 +1275,13 @@ Now that the work is done, we can stop the cluster.&lt;/p&gt;
     
     <item>
       <title>Setup of a shared folder in a home cluster</title>
-      <link>/post_projects/template/</link>
+      <link>https://blasbenito.com/post_projects/template/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/post_projects/template/</guid>
+      <guid>https://blasbenito.com/post_projects/template/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;In the previous posts I have covered how to &lt;a href=&#34;https://www.blasbenito.com/post/01_home_cluster/&#34;&gt;setup a home cluster&lt;/a&gt;, and how to &lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34;&gt;run parallel processes with &lt;code&gt;foreach&lt;/code&gt; in R&lt;/a&gt;. However, so far I haven’t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.&lt;/p&gt;
@@ -1530,16 +1530,10 @@ Now that the work is done, we can stop the cluster.&lt;/p&gt;
     
     <item>
       <title>Palaeo fire modeling</title>
-      <link>/project/palaeo_fire_modeling/</link>
+      <link>https://blasbenito.com/project/palaeo_fire_modeling/</link>
       <pubDate>Sat, 02 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/project/palaeo_fire_modeling/</guid>
+      <guid>https://blasbenito.com/project/palaeo_fire_modeling/</guid>
       <description>&lt;p&gt;This is a spatio-temporal simulation of the effect of fire regimes on the population dynamics of five forest species (Pinus sylvestris, Pinus uncinata, Betula pendula, Corylus avellana, and Quercus petraea) during the Lateglacial-Holocene transition (15-7 cal Kyr BP) at El Portalet, a subalpine bog located in the central Pyrenees region (1802m asl, Spain), that has served for palaeoenvironmental studies (González-Smapériz et al. 2006; Gil-Romera et al., 2014). This model is described in the paper in prep. titled &lt;em&gt;Forest - fire interactions in the Central Pyrenees: a data-model comparison for the Lateglacial-Holocene transition&lt;/em&gt;, and authored by Graciela Gil-Romera, Blas M. Benito, Juli G. Pausas, Penélope González-Sampériz, J. Julio. Camarero, Jens-Christian Svenning, and Blas Valero-Garcés.&lt;/p&gt;
-&lt;p&gt;A short description of the project was presented by 
-&lt;a href=&#34;https://gilromera.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Graciela Gil-Romera&lt;/a&gt; at the 
-&lt;a href=&#34;https://twitter.com/QUAPAL_18&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;1st Quaternary Palaeoecology Twitter Conference&lt;/a&gt;.&lt;/p&gt;
-&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;1 &lt;a href=&#34;https://twitter.com/hashtag/QUAPAL18?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#QUAPAL18&lt;/a&gt;  [Coauthored by P. González-Sampériz &lt;a href=&#34;https://twitter.com/jgpausas?ref_src=twsrc%5Etfw&#34;&gt;@jgpausas&lt;/a&gt; &lt;a href=&#34;https://twitter.com/2xeu?ref_src=twsrc%5Etfw&#34;&gt;@2xeu&lt;/a&gt; &lt;a href=&#34;https://twitter.com/JCSvenning?ref_src=twsrc%5Etfw&#34;&gt;@JCSvenning&lt;/a&gt; @Blas_Valero_Garces] &lt;a href=&#34;https://twitter.com/hashtag/Palaeofire?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#Palaeofire&lt;/a&gt; tells us a lot on past  burnt biomass, emissions &amp;amp; human impact (&lt;a href=&#34;https://t.co/biSuzCKWjX&#34;&gt;https://t.co/biSuzCKWjX&lt;/a&gt;) We lack though a good understanding of past  fire-vegetation interactions. &lt;a href=&#34;https://t.co/zEWaTpcKe3&#34;&gt;pic.twitter.com/zEWaTpcKe3&lt;/a&gt;&lt;/p&gt;&amp;mdash; Graciela Gil-Romera (@gilromera) &lt;a href=&#34;https://twitter.com/gilromera/status/1006865146189410305?ref_src=twsrc%5Etfw&#34;&gt;June 13, 2018&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
-
 &lt;h3 id=&#34;how-does-it-work&#34;&gt;HOW DOES IT WORK&lt;/h3&gt;
 &lt;h4 id=&#34;abiotic-component&#34;&gt;Abiotic component&lt;/h4&gt;
 &lt;p&gt;The abiotic layer of the model is represented by three main environmental factors:&lt;/p&gt;
@@ -1730,17 +1724,17 @@ Now that the work is done, we can stop the cluster.&lt;/p&gt;
     
     <item>
       <title>Ecological Diversity within Rear-Edge: A Case Study from Mediterranean Quercus pyrenaica Willd.</title>
-      <link>/publication/2021_perez-luque_forests/</link>
+      <link>https://blasbenito.com/publication/2021_perez-luque_forests/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/2021_perez-luque_forests/</guid>
+      <guid>https://blasbenito.com/publication/2021_perez-luque_forests/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Range-shift simulation</title>
-      <link>/project/quercus_range_shift/</link>
+      <link>https://blasbenito.com/project/quercus_range_shift/</link>
       <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/project/quercus_range_shift/</guid>
+      <guid>https://blasbenito.com/project/quercus_range_shift/</guid>
       <description>&lt;p&gt;This Netlogo model simulates the dispersal of Quercus pyrenaica populations in Sierra Nevada (Spain) at a yearly resolution until 2100 while considering different levels of model complexity, from random dispersal and seedling establishment, to realistic dispersal based on the dispersal behavior of the Eurasian Jay.&lt;/p&gt;
 &lt;p&gt;The data required to run the model can be downloaded from 
 &lt;a href=&#34;https://www.dropbox.com/s/zsjja2g3yrgqyl1/data.zip?dl=1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;. It must be decompressed in the same folder containing the netlogo code of the model.&lt;/p&gt;
@@ -1751,13 +1745,13 @@ Now that the work is done, we can stop the cluster.&lt;/p&gt;
     
     <item>
       <title>Parallelized loops with R</title>
-      <link>/post/02_parallelizing_loops_with_r/</link>
+      <link>https://blasbenito.com/post/02_parallelizing_loops_with_r/</link>
       <pubDate>Sat, 26 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/post/02_parallelizing_loops_with_r/</guid>
+      <guid>https://blasbenito.com/post/02_parallelizing_loops_with_r/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; to better follow this tutorial you can download the .Rmd file &lt;a href=&#34;https://www.dropbox.com/s/wsl2hcex3w0lr6u/parallelized_loops.Rmd?dl=1&#34;&gt;from here&lt;/a&gt;.&lt;/p&gt;
@@ -3040,9 +3034,9 @@ system.time(
     
     <item>
       <title>R package &#34;distantia&#34;</title>
-      <link>/project/distantia/</link>
+      <link>https://blasbenito.com/project/distantia/</link>
       <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/project/distantia/</guid>
+      <guid>https://blasbenito.com/project/distantia/</guid>
       <description>&lt;!-- badges: start --&gt;
 &lt;p&gt;
 &lt;a href=&#34;https://zenodo.org/badge/latestdoi/187805264&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/187805264.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;
@@ -3058,15 +3052,16 @@ system.time(
 &lt;a href=&#34;https://github.com/BlasBenito/distantiaPaper&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt; and 
 &lt;a href=&#34;https://zenodo.org/record/3520959#.X94GNtYo-1c&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Zenodo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Please, if you find this package useful, please cite it as:&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Benito, B.M. and Birks, H.J.B. (2020), distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series. Ecography, 43: 660-667. &lt;a href=&#34;https://doi.org/10.1111/ecog.04895&#34;&gt;https://doi.org/10.1111/ecog.04895&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Benito, B.M. and Birks, H.J.B. (2020), distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series. Ecography, 43: 660-667. 
+&lt;a href=&#34;https://doi.org/10.1111/ecog.04895&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/ecog.04895&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>R package &#34;memoria&#34;</title>
-      <link>/project/memoria/</link>
+      <link>https://blasbenito.com/project/memoria/</link>
       <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/project/memoria/</guid>
+      <guid>https://blasbenito.com/project/memoria/</guid>
       <description>&lt;p&gt;
 &lt;a href=&#34;https://zenodo.org/badge/latestdoi/179102027&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/179102027.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;
 
@@ -3114,19 +3109,20 @@ dominance).&lt;/p&gt;
 &lt;a href=&#34;https://github.com/BlasBenito/EcologicalMemory&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt; and 
 &lt;a href=&#34;https://zenodo.org/record/3236128#.X941v9Yo-1c&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Zenodo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you ever use the package, please, cite it as:&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Benito, B.M., Gil‐Romera, G. and Birks, H.J.B. (2020), Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features. Ecography, 43: 1-10. &lt;a href=&#34;https://doi.org/10.1111/ecog.04772&#34;&gt;https://doi.org/10.1111/ecog.04772&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Benito, B.M., Gil‐Romera, G. and Birks, H.J.B. (2020), Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features. Ecography, 43: 1-10. 
+&lt;a href=&#34;https://doi.org/10.1111/ecog.04772&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/ecog.04772&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>R package &#34;spatialRF&#34;</title>
-      <link>/project/spatialrf/</link>
+      <link>https://blasbenito.com/project/spatialrf/</link>
       <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/project/spatialrf/</guid>
+      <guid>https://blasbenito.com/project/spatialrf/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;!---
@@ -3883,9 +3879,9 @@ for(mem.i in colnames(mems)){
     
     <item>
       <title>R package &#34;vitualPollen&#34;</title>
-      <link>/project/virtualpollen/</link>
+      <link>https://blasbenito.com/project/virtualpollen/</link>
       <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/project/virtualpollen/</guid>
+      <guid>https://blasbenito.com/project/virtualpollen/</guid>
       <description>&lt;p&gt;
 &lt;a href=&#34;https://CRAN.R-project.org/package=virtualPollen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://www.r-pkg.org/badges/version-ago/virtualPollen&#34; alt=&#34;CRAN\_Release\_Badge&#34;&gt;&lt;/a&gt;
 
@@ -3904,15 +3900,16 @@ variability in defining the shape of pollen curves.&lt;/p&gt;
 &lt;a href=&#34;https://github.com/BlasBenito/virtualPollen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub page&lt;/a&gt; of the package offers a complete tutorial on how to use the package. The 
 &lt;a href=&#34;https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04772&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paper published in the Ecography journal&lt;/a&gt; describes the foundations of the model in brief.&lt;/p&gt;
 &lt;p&gt;If you ever use the package, please, cite it as:&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Benito, B.M., Gil‐Romera, G. and Birks, H.J.B. (2020), Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features. Ecography, 43: 1-10. &lt;a href=&#34;https://doi.org/10.1111/ecog.04772&#34;&gt;https://doi.org/10.1111/ecog.04772&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Benito, B.M., Gil‐Romera, G. and Birks, H.J.B. (2020), Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features. Ecography, 43: 1-10. 
+&lt;a href=&#34;https://doi.org/10.1111/ecog.04772&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/ecog.04772&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Setting up a home cluster</title>
-      <link>/post/01_home_cluster/</link>
+      <link>https://blasbenito.com/post/01_home_cluster/</link>
       <pubDate>Mon, 07 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/post/01_home_cluster/</guid>
+      <guid>https://blasbenito.com/post/01_home_cluster/</guid>
       <description>&lt;p&gt;In this post I explain how to setup a small 
 &lt;a href=&#34;https://en.wikipedia.org/wiki/Beowulf_cluster&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Beowulf cluster&lt;/a&gt; with a personal PC running Ubuntu 20.04 and a couple of 
 &lt;a href=&#34;https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Intel NUCs&lt;/a&gt; running Ubuntu Server 20.04, with the end-goal of parallelizing R tasks.&lt;/p&gt;
@@ -3928,9 +3925,6 @@ variability in defining the shape of pollen curves.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;h2 id=&#34;preamble&#34;&gt;Preamble&lt;/h2&gt;
 &lt;p&gt;I have a little but nice HP ENVY model &lt;em&gt;TE01-0008ns&lt;/em&gt; with 32 GB RAM, 8 CPUs, and 3TB of hard disk running Ubuntu 20.04 that I use to do all my computational work (and most of my tweeting). A few months ago I connected it with my two laptops (one of them deceased now, RIP my dear &lt;em&gt;skynet&lt;/em&gt;) to create a little cluster to run parallel tasks in R.&lt;/p&gt;
-&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Today I made a home cluster to spread parallel R tasks across all my computers. That was fun! &lt;a href=&#34;https://twitter.com/hashtag/rstats?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#rstats&lt;/a&gt; &lt;a href=&#34;https://t.co/ic4plvO3Y6&#34;&gt;pic.twitter.com/ic4plvO3Y6&lt;/a&gt;&lt;/p&gt;&amp;mdash; Blas M. Benito (@BlasBenito) &lt;a href=&#34;https://twitter.com/BlasBenito/status/1254754362389417987?ref_src=twsrc%5Etfw&#34;&gt;April 27, 2020&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
-
 &lt;p&gt;It was just a draft cluster running on a wireless network, but it served me to think about getting a more permanent solution not requiring two additional laptops in my desk.&lt;/p&gt;
 &lt;p&gt;That&amp;rsquo;s were the nice INTEL NUCs (from 
 &lt;a href=&#34;https://en.wikipedia.org/wiki/Next_Unit_of_Computing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Next Unit of Computing&lt;/em&gt;&lt;/a&gt;) come into play. NUCs are full-fledged computers fitted in small boxes usually sold without RAM memory sticks and no hard disk (hence the term &lt;em&gt;barebone&lt;/em&gt;). Since they have a low energy consumption footprint, I thought these would be ideal units for my soon-to-be home cluster.&lt;/p&gt;
@@ -3940,7 +3934,7 @@ variability in defining the shape of pollen curves.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;2 
 &lt;a href=&#34;https://ark.intel.com/content/www/us/en/ark/products/95062/intel-nuc-kit-nuc6cayh.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Intel Barebone BOXNUC6CAYH&lt;/a&gt;, each with 4 cores, and a maximum RAM memory of 32GB (you might read they only accept 8GB, but that&amp;rsquo;s not the case anymore). Notice that these NUCs aren&amp;rsquo;t state-of-the-art now, they were released by the end of 2016.&lt;/li&gt;
-&lt;li&gt;2 Hard disks SSD 2.5&amp;rdquo; 
+&lt;li&gt;2 Hard disks SSD 2.5&amp;quot; 
 &lt;a href=&#34;https://shop.westerndigital.com/es-es/products/internal-drives/wd-blue-sata-ssd#WDS250G2B0A&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Western Digital WDS250G2B0A WD Blue&lt;/a&gt; (250GB)&lt;/li&gt;
 &lt;li&gt;4 Crucial CT102464BF186D DDR3 SODIMM (204 pins) RAM sticks with 8GB each.&lt;/li&gt;
 &lt;li&gt;1 ethernet switch Netgear GS308-300PES with 8 ports.&lt;/li&gt;
@@ -4068,17 +4062,17 @@ sudo timedatectl set-ntp on
 &lt;p&gt; &lt;/p&gt;
 &lt;h3 id=&#34;setting-the-locale&#34;&gt;Setting the locale&lt;/h3&gt;
 &lt;p&gt;The operating systems of the NUCs and the PC need to have the same locale. It can be set by editing the file &lt;code&gt;/etc/default/locale&lt;/code&gt; with either &lt;code&gt;nano&lt;/code&gt; (in the NUCS) or &lt;code&gt;gedit&lt;/code&gt; (in the PC) and adding these lines, just replacing &lt;code&gt;en_US.UTF-8&lt;/code&gt; with your preferred locale.&lt;/p&gt;
-&lt;p&gt;LANG=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LANGUAGE=&amp;quot;en_US:en&amp;rdquo;&lt;br&gt;
-LC_NUMERIC=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_TIME=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_MONETARY=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_PAPER=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_IDENTIFICATION=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_NAME=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_ADDRESS=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_TELEPHONE=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;br&gt;
-LC_MEASUREMENT=&amp;quot;en_US.UTF-8&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;LANG=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LANGUAGE=&amp;ldquo;en_US:en&amp;rdquo;&lt;br&gt;
+LC_NUMERIC=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_TIME=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_MONETARY=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_PAPER=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_IDENTIFICATION=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_NAME=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_ADDRESS=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_TELEPHONE=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br&gt;
+LC_MEASUREMENT=&amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;h3 id=&#34;temperature-monitoring&#34;&gt;Temperature monitoring&lt;/h3&gt;
 &lt;p&gt;NUCs are 
@@ -4151,366 +4145,113 @@ sudo ufw allow from 10.42.0.1 to any port 22
     
     <item>
       <title>Explainable artificial intelligence enhances the ecological interpretability of black‐box species distribution models</title>
-      <link>/publication/2020_ryo_ecography/</link>
+      <link>https://blasbenito.com/publication/2020_ryo_ecography/</link>
       <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_ryo_ecography/</guid>
+      <guid>https://blasbenito.com/publication/2020_ryo_ecography/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Comment on “A global-scale ecological niche model to predict SARS-CoV-2 coronavirus infection rate”, author Coro</title>
-      <link>/publication/2020_contina_ecological_modelling/</link>
+      <link>https://blasbenito.com/publication/2020_contina_ecological_modelling/</link>
       <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_contina_ecological_modelling/</guid>
+      <guid>https://blasbenito.com/publication/2020_contina_ecological_modelling/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Don’t gamble the COVID-19 response on ecological hypotheses</title>
-      <link>/publication/2020_carlson_nature_ecology_and_evolution/</link>
+      <link>https://blasbenito.com/publication/2020_carlson_nature_ecology_and_evolution/</link>
       <pubDate>Wed, 29 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_carlson_nature_ecology_and_evolution/</guid>
+      <guid>https://blasbenito.com/publication/2020_carlson_nature_ecology_and_evolution/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Evaluating fossil charcoal representation in small peat bogs: Detailed Holocene fire records from southern Sweden</title>
-      <link>/publication/2020_cui_the_holocene/</link>
+      <link>https://blasbenito.com/publication/2020_cui_the_holocene/</link>
       <pubDate>Tue, 14 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_cui_the_holocene/</guid>
+      <guid>https://blasbenito.com/publication/2020_cui_the_holocene/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Late-spring frost risk between 1959 and 2017 decreased in North America but increased in Europe and Asia</title>
-      <link>/publication/2020_zohner_pnas/</link>
+      <link>https://blasbenito.com/publication/2020_zohner_pnas/</link>
       <pubDate>Mon, 11 May 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_zohner_pnas/</guid>
+      <guid>https://blasbenito.com/publication/2020_zohner_pnas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Species distribution models are inappropriate for COVID-19</title>
-      <link>/publication/2020_carlson_nature_ecology_and_evolution_b/</link>
+      <link>https://blasbenito.com/publication/2020_carlson_nature_ecology_and_evolution_b/</link>
       <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_carlson_nature_ecology_and_evolution_b/</guid>
+      <guid>https://blasbenito.com/publication/2020_carlson_nature_ecology_and_evolution_b/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Holocene fire and vegetation dynamics in the Central Pyrenees (Spain)</title>
-      <link>/publication/2020_leunda_catena/</link>
+      <link>https://blasbenito.com/publication/2020_leunda_catena/</link>
       <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_leunda_catena/</guid>
+      <guid>https://blasbenito.com/publication/2020_leunda_catena/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Compositional turnover and variation in Eemian pollen sequences in Europe</title>
-      <link>/publication/2020_felde_vegetation_history_and_archaeobotany/</link>
+      <link>https://blasbenito.com/publication/2020_felde_vegetation_history_and_archaeobotany/</link>
       <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_felde_vegetation_history_and_archaeobotany/</guid>
+      <guid>https://blasbenito.com/publication/2020_felde_vegetation_history_and_archaeobotany/</guid>
       <description></description>
     </item>
     
     <item>
       <title>On the inadequacy of species distribution models for modelling the spread of SARS-CoV-2: response to Araújo and Naimi</title>
-      <link>/publication/2020_chipperfield_ecoevorxiv/</link>
+      <link>https://blasbenito.com/publication/2020_chipperfield_ecoevorxiv/</link>
       <pubDate>Sat, 28 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_chipperfield_ecoevorxiv/</guid>
+      <guid>https://blasbenito.com/publication/2020_chipperfield_ecoevorxiv/</guid>
       <description></description>
     </item>
     
     <item>
       <title>distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series</title>
-      <link>/publication/2020_benito_ecography_distantia/</link>
+      <link>https://blasbenito.com/publication/2020_benito_ecography_distantia/</link>
       <pubDate>Thu, 23 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_benito_ecography_distantia/</guid>
+      <guid>https://blasbenito.com/publication/2020_benito_ecography_distantia/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features</title>
-      <link>/publication/2020_benito_ecography_memoria/</link>
+      <link>https://blasbenito.com/publication/2020_benito_ecography_memoria/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_benito_ecography_memoria/</guid>
+      <guid>https://blasbenito.com/publication/2020_benito_ecography_memoria/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A multi-dating approach to age-modelling long continental records: The 135 ka El Cañizar de Villarquemado sequence (NE Spain)</title>
-      <link>/publication/2019_valero-garces_quaternary_geochronology/</link>
+      <link>https://blasbenito.com/publication/2019_valero-garces_quaternary_geochronology/</link>
       <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/2019_valero-garces_quaternary_geochronology/</guid>
+      <guid>https://blasbenito.com/publication/2019_valero-garces_quaternary_geochronology/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Long-term fire resilience of the Ericaceous Belt, Bale Mountains, Ethiopia</title>
-      <link>/publication/2019_gil_romera_biology_letters/</link>
+      <link>https://blasbenito.com/publication/2019_gil_romera_biology_letters/</link>
       <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/2019_gil_romera_biology_letters/</guid>
+      <guid>https://blasbenito.com/publication/2019_gil_romera_biology_letters/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Writing technical content in Academic</title>
-      <link>/post_examples/writing-technical-content/</link>
-      <pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>/post_examples/writing-technical-content/</guid>
-      <description>&lt;p&gt;Academic is designed to give technical content creators a seamless experience. You can focus on the content and Academic handles the rest.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Highlight your code snippets, take notes on math classes, and draw diagrams from textual representation.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;On this page, you&amp;rsquo;ll find some examples of the types of technical content that can be rendered with Academic.&lt;/p&gt;
-&lt;h2 id=&#34;examples&#34;&gt;Examples&lt;/h2&gt;
-&lt;h3 id=&#34;code&#34;&gt;Code&lt;/h3&gt;
-&lt;p&gt;Academic supports a Markdown extension for highlighting code syntax. You can enable this feature by toggling the &lt;code&gt;highlight&lt;/code&gt; option in your &lt;code&gt;config/_default/params.toml&lt;/code&gt; file.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```python
-import pandas as pd
-data = pd.read_csv(&amp;quot;data.csv&amp;quot;)
-data.head()
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pandas as pd
-data = pd.read_csv(&amp;quot;data.csv&amp;quot;)
-data.head()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;math&#34;&gt;Math&lt;/h3&gt;
-&lt;p&gt;Academic supports a Markdown extension for $\LaTeX$ math. You can enable this feature by toggling the &lt;code&gt;math&lt;/code&gt; option in your &lt;code&gt;config/_default/params.toml&lt;/code&gt; file.&lt;/p&gt;
-&lt;p&gt;To render &lt;em&gt;inline&lt;/em&gt; or &lt;em&gt;block&lt;/em&gt; math, wrap your LaTeX math with &lt;code&gt;$...$&lt;/code&gt; or &lt;code&gt;$$...$$&lt;/code&gt;, respectively.&lt;/p&gt;
-&lt;p&gt;Example &lt;strong&gt;math block&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;$$\gamma_{n} = \frac{ 
-\left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T 
-\left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}
-{\left \|\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right \|^2}$$
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;p&gt;$$\gamma_{n} = \frac{ \left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T \left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}{\left |\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right |^2}$$&lt;/p&gt;
-&lt;p&gt;Example &lt;strong&gt;inline math&lt;/strong&gt; &lt;code&gt;$\nabla F(\mathbf{x}_{n})$&lt;/code&gt; renders as $\nabla F(\mathbf{x}_{n})$.&lt;/p&gt;
-&lt;p&gt;Example &lt;strong&gt;multi-line math&lt;/strong&gt; using the &lt;code&gt;\\\\&lt;/code&gt; math linebreak:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;$$f(k;p_0^*) = \begin{cases} p_0^* &amp;amp; \text{if }k=1, \\\\
-1-p_0^* &amp;amp; \text {if }k=0.\end{cases}$$
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;p&gt;$$f(k;p_0^*) = \begin{cases} p_0^* &amp;amp; \text{if }k=1, \\&lt;br&gt;
-1-p_0^* &amp;amp; \text {if }k=0.\end{cases}$$&lt;/p&gt;
-&lt;h3 id=&#34;diagrams&#34;&gt;Diagrams&lt;/h3&gt;
-&lt;p&gt;Academic supports a Markdown extension for diagrams. You can enable this feature by toggling the &lt;code&gt;diagram&lt;/code&gt; option in your &lt;code&gt;config/_default/params.toml&lt;/code&gt; file or by adding &lt;code&gt;diagram: true&lt;/code&gt; to your page front matter.&lt;/p&gt;
-&lt;p&gt;An example &lt;strong&gt;flowchart&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-graph TD
-A[Hard] --&amp;gt;|Text| B(Round)
-B --&amp;gt; C{Decision}
-C --&amp;gt;|One| D[Result 1]
-C --&amp;gt;|Two| E[Result 2]
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph TD
-A[Hard] --&amp;gt;|Text| B(Round)
-B --&amp;gt; C{Decision}
-C --&amp;gt;|One| D[Result 1]
-C --&amp;gt;|Two| E[Result 2]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;sequence diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-sequenceDiagram
-Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
-loop Healthcheck
-    John-&amp;gt;&amp;gt;John: Fight against hypochondria
-end
-Note right of John: Rational thoughts!
-John--&amp;gt;&amp;gt;Alice: Great!
-John-&amp;gt;&amp;gt;Bob: How about you?
-Bob--&amp;gt;&amp;gt;John: Jolly good!
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;sequenceDiagram
-Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
-loop Healthcheck
-    John-&amp;gt;&amp;gt;John: Fight against hypochondria
-end
-Note right of John: Rational thoughts!
-John--&amp;gt;&amp;gt;Alice: Great!
-John-&amp;gt;&amp;gt;Bob: How about you?
-Bob--&amp;gt;&amp;gt;John: Jolly good!
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;Gantt diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-gantt
-section Section
-Completed :done,    des1, 2014-01-06,2014-01-08
-Active        :active,  des2, 2014-01-07, 3d
-Parallel 1   :         des3, after des1, 1d
-Parallel 2   :         des4, after des1, 1d
-Parallel 3   :         des5, after des3, 1d
-Parallel 4   :         des6, after des4, 1d
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;gantt
-section Section
-Completed :done,    des1, 2014-01-06,2014-01-08
-Active        :active,  des2, 2014-01-07, 3d
-Parallel 1   :         des3, after des1, 1d
-Parallel 2   :         des4, after des1, 1d
-Parallel 3   :         des5, after des3, 1d
-Parallel 4   :         des6, after des4, 1d
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;class diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-classDiagram
-Class01 &amp;lt;|-- AveryLongClass : Cool
-&amp;lt;&amp;lt;interface&amp;gt;&amp;gt; Class01
-Class09 --&amp;gt; C2 : Where am i?
-Class09 --* C3
-Class09 --|&amp;gt; Class07
-Class07 : equals()
-Class07 : Object[] elementData
-Class01 : size()
-Class01 : int chimp
-Class01 : int gorilla
-class Class10 {
-  &amp;lt;&amp;lt;service&amp;gt;&amp;gt;
-  int id
-  size()
-}
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;classDiagram
-Class01 &amp;lt;|-- AveryLongClass : Cool
-&amp;lt;&amp;lt;interface&amp;gt;&amp;gt; Class01
-Class09 --&amp;gt; C2 : Where am i?
-Class09 --* C3
-Class09 --|&amp;gt; Class07
-Class07 : equals()
-Class07 : Object[] elementData
-Class01 : size()
-Class01 : int chimp
-Class01 : int gorilla
-class Class10 {
-  &amp;lt;&amp;lt;service&amp;gt;&amp;gt;
-  int id
-  size()
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;state diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-stateDiagram
-[*] --&amp;gt; Still
-Still --&amp;gt; [*]
-Still --&amp;gt; Moving
-Moving --&amp;gt; Still
-Moving --&amp;gt; Crash
-Crash --&amp;gt; [*]
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;stateDiagram
-[*] --&amp;gt; Still
-Still --&amp;gt; [*]
-Still --&amp;gt; Moving
-Moving --&amp;gt; Still
-Moving --&amp;gt; Crash
-Crash --&amp;gt; [*]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;todo-lists&#34;&gt;Todo lists&lt;/h3&gt;
-&lt;p&gt;You can even write your todo lists in Academic too:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;- [x] Write math example
-- [x] Write diagram example
-- [ ] Do something else
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Write math example&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Write diagram example&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Do something else&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;tables&#34;&gt;Tables&lt;/h3&gt;
-&lt;p&gt;Represent your data in tables:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;First Header&lt;/th&gt;
-&lt;th&gt;Second Header&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&#34;asides&#34;&gt;Asides&lt;/h3&gt;
-&lt;p&gt;Academic supports a 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/#alerts&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shortcode for asides&lt;/a&gt;, also referred to as &lt;em&gt;notices&lt;/em&gt;, &lt;em&gt;hints&lt;/em&gt;, or &lt;em&gt;alerts&lt;/em&gt;. By wrapping a paragraph in &lt;code&gt;{{% alert note %}} ... {{% /alert %}}&lt;/code&gt;, it will render as an aside.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% alert note %}}
-A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-{{% /alert %}}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;spoilers&#34;&gt;Spoilers&lt;/h3&gt;
-&lt;p&gt;Add a spoiler to a page to reveal text, such as an answer to a question, after a button is clicked.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; spoiler text=&amp;quot;Click to view the spoiler&amp;quot; &amp;gt;}}
-You found me!
-{{&amp;lt; /spoiler &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;div class=&#34;spoiler &#34; &gt;
-  &lt;p&gt;
-    &lt;a class=&#34;btn btn-primary&#34; data-toggle=&#34;collapse&#34; href=&#34;#spoiler-1&#34; role=&#34;button&#34; aria-expanded=&#34;false&#34; aria-controls=&#34;spoiler-1&#34;&gt;
-      Click to view the spoiler
-    &lt;/a&gt;
-  &lt;/p&gt;
-  &lt;div class=&#34;collapse card &#34; id=&#34;spoiler-1&#34;&gt;
-    &lt;div class=&#34;card-body&#34;&gt;
-      You found me!
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;icons&#34;&gt;Icons&lt;/h3&gt;
-&lt;p&gt;Academic enables you to use a wide range of 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/page-builder/#icons&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;icons from &lt;em&gt;Font Awesome&lt;/em&gt; and &lt;em&gt;Academicons&lt;/em&gt;&lt;/a&gt; in addition to 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/#emojis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;emojis&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Here are some examples using the &lt;code&gt;icon&lt;/code&gt; shortcode to render icons:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; icon name=&amp;quot;terminal&amp;quot; pack=&amp;quot;fas&amp;quot; &amp;gt;}} Terminal  
-{{&amp;lt; icon name=&amp;quot;python&amp;quot; pack=&amp;quot;fab&amp;quot; &amp;gt;}} Python  
-{{&amp;lt; icon name=&amp;quot;r-project&amp;quot; pack=&amp;quot;fab&amp;quot; &amp;gt;}} R
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;p&gt;
-  &lt;i class=&#34;fas fa-terminal  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Terminal&lt;br&gt;
-
-  &lt;i class=&#34;fab fa-python  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Python&lt;br&gt;
-
-  &lt;i class=&#34;fab fa-r-project  pr-1 fa-fw&#34;&gt;&lt;/i&gt; R&lt;/p&gt;
-&lt;h3 id=&#34;did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/h3&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Display Jupyter Notebooks with Academic</title>
-      <link>/post_examples/jupyter/</link>
+      <link>https://blasbenito.com/post_examples/jupyter/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>/post_examples/jupyter/</guid>
+      <guid>https://blasbenito.com/post_examples/jupyter/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.core.display import Image
 Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)
 &lt;/code&gt;&lt;/pre&gt;
@@ -4551,15 +4292,16 @@ date: 2019-09-01
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter nbconvert index.ipynb --to markdown --NbConvertApp.output_files_dir=.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-&lt;p&gt;This post was created with Jupyter. The orginal files can be found at &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&#34;&gt;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This post was created with Jupyter. The orginal files can be found at 
+&lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Slides</title>
-      <link>/slides/example/</link>
+      <link>https://blasbenito.com/slides/example/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>/slides/example/</guid>
+      <guid>https://blasbenito.com/slides/example/</guid>
       <description>&lt;h1 id=&#34;create-slides-in-markdown-with-academic&#34;&gt;Create slides in Markdown with Academic&lt;/h1&gt;
 &lt;p&gt;
 &lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Academic&lt;/a&gt; | 
@@ -4609,15 +4351,15 @@ $$&lt;/p&gt;
 {{% fragment %}} Three {{% /fragment %}}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
-One
+&lt;span class=&#34;fragment &#34; &gt;
+   One 
 &lt;/span&gt;
 &lt;span class=&#34;fragment &#34; &gt;
-&lt;strong&gt;Two&lt;/strong&gt;
+   **Two** 
 &lt;/span&gt;
 &lt;span class=&#34;fragment &#34; &gt;
-Three
-&lt;/span&gt;&lt;/p&gt;
+   Three 
+&lt;/span&gt;
 &lt;hr&gt;
 &lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
 &lt;ul&gt;
@@ -4691,81 +4433,81 @@ Three
     
     <item>
       <title>Potential changes in the distribution of Carnegiea gigantea under future scenarios</title>
-      <link>/publication/2018_albuquerque_peerj/</link>
+      <link>https://blasbenito.com/publication/2018_albuquerque_peerj/</link>
       <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/2018_albuquerque_peerj/</guid>
+      <guid>https://blasbenito.com/publication/2018_albuquerque_peerj/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Past and potential future population dynamics of three grouse species using ecological and whole genome coalescent modeling</title>
-      <link>/publication/2018_kozma_ecology_and_evolution/</link>
+      <link>https://blasbenito.com/publication/2018_kozma_ecology_and_evolution/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/2018_kozma_ecology_and_evolution/</guid>
+      <guid>https://blasbenito.com/publication/2018_kozma_ecology_and_evolution/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Phylogenetic age differences in tree assemblages across the Northern Hemisphere increase with long-term climate stability in unstable regions</title>
-      <link>/publication/2017_feng_global_ecology_and_biogeography/</link>
+      <link>https://blasbenito.com/publication/2017_feng_global_ecology_and_biogeography/</link>
       <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_feng_global_ecology_and_biogeography/</guid>
+      <guid>https://blasbenito.com/publication/2017_feng_global_ecology_and_biogeography/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Historical anthropogenic footprints in the distribution of threatened plants in China</title>
-      <link>/publication/2017_feng_biological_conservation/</link>
+      <link>https://blasbenito.com/publication/2017_feng_biological_conservation/</link>
       <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_feng_biological_conservation/</guid>
+      <guid>https://blasbenito.com/publication/2017_feng_biological_conservation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The ecological niche and distribution of Neanderthals during the Last Interglacial</title>
-      <link>/publication/2017_benito_journal_of_biogeography/</link>
+      <link>https://blasbenito.com/publication/2017_benito_journal_of_biogeography/</link>
       <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_benito_journal_of_biogeography/</guid>
+      <guid>https://blasbenito.com/publication/2017_benito_journal_of_biogeography/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Investigating Neanderthal dispersal above 55°N in Europe during the Last Interglacial Complex</title>
-      <link>/publication/2017_kellberg-nielsen_quaternary_international/</link>
+      <link>https://blasbenito.com/publication/2017_kellberg-nielsen_quaternary_international/</link>
       <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_kellberg-nielsen_quaternary_international/</guid>
+      <guid>https://blasbenito.com/publication/2017_kellberg-nielsen_quaternary_international/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Spring predictability explains different leaf‐out strategies in the woody floras of North America, Europe and East Asia</title>
-      <link>/publication/2017_zohner_ecology_letters/</link>
+      <link>https://blasbenito.com/publication/2017_zohner_ecology_letters/</link>
       <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_zohner_ecology_letters/</guid>
+      <guid>https://blasbenito.com/publication/2017_zohner_ecology_letters/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Day length unlikely to constrain climate-driven shifts in leaf-out times of northern woody plants</title>
-      <link>/publication/2016_zohner_nature_climate_change/</link>
+      <link>https://blasbenito.com/publication/2016_zohner_nature_climate_change/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/publication/2016_zohner_nature_climate_change/</guid>
+      <guid>https://blasbenito.com/publication/2016_zohner_nature_climate_change/</guid>
       <description></description>
     </item>
     
     <item>
       <title>External Project</title>
-      <link>/project_examples/external-project/</link>
+      <link>https://blasbenito.com/project_examples/external-project/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/project_examples/external-project/</guid>
+      <guid>https://blasbenito.com/project_examples/external-project/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Internal Project</title>
-      <link>/project_examples/internal-project/</link>
+      <link>https://blasbenito.com/project_examples/internal-project/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/project_examples/internal-project/</guid>
+      <guid>https://blasbenito.com/project_examples/internal-project/</guid>
       <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
 &lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
 &lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
@@ -4776,9 +4518,9 @@ Three
     
     <item>
       <title>Academic: the website builder for Hugo</title>
-      <link>/post_examples/getting-started/</link>
+      <link>https://blasbenito.com/post_examples/getting-started/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/post_examples/getting-started/</guid>
+      <guid>https://blasbenito.com/post_examples/getting-started/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Create a free website with Academic using Markdown, Jupyter, or RStudio. Choose a beautiful color theme and build anything with the Page Builder - over 40 &lt;em&gt;widgets&lt;/em&gt;, &lt;em&gt;themes&lt;/em&gt;, and &lt;em&gt;language packs&lt;/em&gt; included!&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;
 &lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Check out the latest &lt;strong&gt;demo&lt;/strong&gt;&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes, or 
@@ -4923,13 +4665,13 @@ Three
     
     <item>
       <title>Hello R Markdown</title>
-      <link>/post_examples/2015-07-23-r-rmarkdown/</link>
+      <link>https://blasbenito.com/post_examples/2015-07-23-r-rmarkdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      <guid>/post_examples/2015-07-23-r-rmarkdown/</guid>
+      <guid>https://blasbenito.com/post_examples/2015-07-23-r-rmarkdown/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
@@ -4965,7 +4707,7 @@ pie(
   init.angle = -50, border = NA
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post_examples/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://blasbenito.com/post_examples/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 1: A fancy pie chart.
 &lt;/p&gt;
@@ -4976,137 +4718,137 @@ Figure 1: A fancy pie chart.
     
     <item>
       <title>A 2.5‐million‐year perspective on coarse‐filter strategies for conserving nature&#39;s stage</title>
-      <link>/publication/2015_gill_conservation_biology/</link>
+      <link>https://blasbenito.com/publication/2015_gill_conservation_biology/</link>
       <pubDate>Tue, 28 Apr 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/2015_gill_conservation_biology/</guid>
+      <guid>https://blasbenito.com/publication/2015_gill_conservation_biology/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Supporting underrepresented forests in Mesoamerica</title>
-      <link>/publication/2015_albuquerque_naturaleza_and_conservacao/</link>
+      <link>https://blasbenito.com/publication/2015_albuquerque_naturaleza_and_conservacao/</link>
       <pubDate>Tue, 03 Mar 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/2015_albuquerque_naturaleza_and_conservacao/</guid>
+      <guid>https://blasbenito.com/publication/2015_albuquerque_naturaleza_and_conservacao/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea</title>
-      <link>/publication/2015_mendoza-fernandez_plant_biosystems/</link>
+      <link>https://blasbenito.com/publication/2015_mendoza-fernandez_plant_biosystems/</link>
       <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/2015_mendoza-fernandez_plant_biosystems/</guid>
+      <guid>https://blasbenito.com/publication/2015_mendoza-fernandez_plant_biosystems/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Distribution and conservation of the relict interaction between the butterfly Agriades zullichi and its larval foodplant (Androsace vitaliana nevadensis)</title>
-      <link>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</link>
+      <link>https://blasbenito.com/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</link>
       <pubDate>Thu, 20 Feb 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</guid>
+      <guid>https://blasbenito.com/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Documenting, storing, and executing models in Ecology: A conceptual framework and real implementation in a global change monitoring program</title>
-      <link>/publication/2014_bonet_environmental_modelling_and_software/</link>
+      <link>https://blasbenito.com/publication/2014_bonet_environmental_modelling_and_software/</link>
       <pubDate>Sat, 01 Feb 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/2014_bonet_environmental_modelling_and_software/</guid>
+      <guid>https://blasbenito.com/publication/2014_bonet_environmental_modelling_and_software/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Forecasting plant range collapse in a mediterranean hotspot: when dispersal uncertainties matter</title>
-      <link>/publication/2014_benito_diversity_and_distributions/</link>
+      <link>https://blasbenito.com/publication/2014_benito_diversity_and_distributions/</link>
       <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/2014_benito_diversity_and_distributions/</guid>
+      <guid>https://blasbenito.com/publication/2014_benito_diversity_and_distributions/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Interdisciplinary Climate Change Collaborations Are Essential for Early‐Career Scientists</title>
-      <link>/publication/2013_gornish_eos/</link>
+      <link>https://blasbenito.com/publication/2013_gornish_eos/</link>
       <pubDate>Tue, 16 Apr 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/2013_gornish_eos/</guid>
+      <guid>https://blasbenito.com/publication/2013_gornish_eos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Comparing the performance of species distribution models of Zostera marina: Implications for conservation</title>
-      <link>/publication/2013_valle_journal_of_sea_research/</link>
+      <link>https://blasbenito.com/publication/2013_valle_journal_of_sea_research/</link>
       <pubDate>Fri, 15 Mar 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/2013_valle_journal_of_sea_research/</guid>
+      <guid>https://blasbenito.com/publication/2013_valle_journal_of_sea_research/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The impact of modelling choices in the predictive performance of richness maps derived from species‐distribution models: guidelines to build better diversity models</title>
-      <link>/publication/2013_benito_methods_in_ecology_and_evolution/</link>
+      <link>https://blasbenito.com/publication/2013_benito_methods_in_ecology_and_evolution/</link>
       <pubDate>Wed, 06 Mar 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/2013_benito_methods_in_ecology_and_evolution/</guid>
+      <guid>https://blasbenito.com/publication/2013_benito_methods_in_ecology_and_evolution/</guid>
       <description></description>
     </item>
     
     <item>
       <title>European Bird distribution is “well” represented by Special Protected Areas: Mission accomplished?</title>
-      <link>/publication/2013_albuquerque_biological_conservation/</link>
+      <link>https://blasbenito.com/publication/2013_albuquerque_biological_conservation/</link>
       <pubDate>Mon, 21 Jan 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/2013_albuquerque_biological_conservation/</guid>
+      <guid>https://blasbenito.com/publication/2013_albuquerque_biological_conservation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ModeleR: An enviromental model repository as knowledge base for experts</title>
-      <link>/publication/2012_perez-perez_expert_systems_with_applications/</link>
+      <link>https://blasbenito.com/publication/2012_perez-perez_expert_systems_with_applications/</link>
       <pubDate>Sat, 04 Feb 2012 00:00:00 +0000</pubDate>
-      <guid>/publication/2012_perez-perez_expert_systems_with_applications/</guid>
+      <guid>https://blasbenito.com/publication/2012_perez-perez_expert_systems_with_applications/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Habitat Fragmentation in Arid Zones: A Case Study of Linaria nigricans Under Land Use Changes (SE Spain)</title>
-      <link>/publication/2011_penas_environmental_management/</link>
+      <link>https://blasbenito.com/publication/2011_penas_environmental_management/</link>
       <pubDate>Sat, 26 Mar 2011 00:00:00 +0000</pubDate>
-      <guid>/publication/2011_penas_environmental_management/</guid>
+      <guid>https://blasbenito.com/publication/2011_penas_environmental_management/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Simulating potential effects of climatic warming on altitudinal patterns of key species in Mediterranean-alpine ecosystems</title>
-      <link>/publication/2011_benito_climate_change/</link>
+      <link>https://blasbenito.com/publication/2011_benito_climate_change/</link>
       <pubDate>Wed, 02 Feb 2011 00:00:00 +0000</pubDate>
-      <guid>/publication/2011_benito_climate_change/</guid>
+      <guid>https://blasbenito.com/publication/2011_benito_climate_change/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Conservation Status of the First Known Population of Polygala balansae in Europe</title>
-      <link>/publication/2010_lorite_annales_botanici_fennici/</link>
+      <link>https://blasbenito.com/publication/2010_lorite_annales_botanici_fennici/</link>
       <pubDate>Mon, 01 Mar 2010 00:00:00 +0000</pubDate>
-      <guid>/publication/2010_lorite_annales_botanici_fennici/</guid>
+      <guid>https://blasbenito.com/publication/2010_lorite_annales_botanici_fennici/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Past and present potential distribution of the Iberian Abies species: a phytogeographic approach using fossil pollen data and species distribution models </title>
-      <link>/publication/2010_alba-sanchez_diversity_and_distributions/</link>
+      <link>https://blasbenito.com/publication/2010_alba-sanchez_diversity_and_distributions/</link>
       <pubDate>Sun, 21 Feb 2010 00:00:00 +0000</pubDate>
-      <guid>/publication/2010_alba-sanchez_diversity_and_distributions/</guid>
+      <guid>https://blasbenito.com/publication/2010_alba-sanchez_diversity_and_distributions/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Assessing extinction-risk of endangered plants using species distribution models: a case study of habitat depletion caused by the spread of greenhouses</title>
-      <link>/publication/2009_benito_biodiversity_and_conservation/</link>
+      <link>https://blasbenito.com/publication/2009_benito_biodiversity_and_conservation/</link>
       <pubDate>Sat, 28 Feb 2009 00:00:00 +0000</pubDate>
-      <guid>/publication/2009_benito_biodiversity_and_conservation/</guid>
+      <guid>https://blasbenito.com/publication/2009_benito_biodiversity_and_conservation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Greenhouses, land use change, and predictive models: MaxEnt and Geomod working together</title>
-      <link>/publication/2008_penas_phyton/</link>
+      <link>https://blasbenito.com/publication/2008_penas_phyton/</link>
       <pubDate>Tue, 01 Jan 2008 00:00:00 +0000</pubDate>
-      <guid>/publication/2008_penas_phyton/</guid>
+      <guid>https://blasbenito.com/publication/2008_penas_phyton/</guid>
       <description></description>
     </item>
     

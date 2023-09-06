@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>S.P.E. Blockey | Blas M. Benito</title>
-    <link>/author/s.p.e.-blockey/</link>
-      <atom:link href="/author/s.p.e.-blockey/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/s.p.e.-blockey/</link>
+      <atom:link href="https://blasbenito.com/author/s.p.e.-blockey/index.xml" rel="self" type="application/rss+xml" />
     <description>S.P.E. Blockey</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 01 Oct 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>S.P.E. Blockey</title>
-      <link>/author/s.p.e.-blockey/</link>
+      <link>https://blasbenito.com/author/s.p.e.-blockey/</link>
     </image>
     
     <item>
       <title>A multi-dating approach to age-modelling long continental records: The 135 ka El Cañizar de Villarquemado sequence (NE Spain)</title>
-      <link>/publication/2019_valero-garces_quaternary_geochronology/</link>
+      <link>https://blasbenito.com/publication/2019_valero-garces_quaternary_geochronology/</link>
       <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/2019_valero-garces_quaternary_geochronology/</guid>
+      <guid>https://blasbenito.com/publication/2019_valero-garces_quaternary_geochronology/</guid>
       <description></description>
     </item>
     

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Quantitative methods | Blas M. Benito</title>
-    <link>/tag/quantitative-methods/</link>
-      <atom:link href="/tag/quantitative-methods/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/tag/quantitative-methods/</link>
+      <atom:link href="https://blasbenito.com/tag/quantitative-methods/index.xml" rel="self" type="application/rss+xml" />
     <description>Quantitative methods</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 01 Jan 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Quantitative methods</title>
-      <link>/tag/quantitative-methods/</link>
+      <link>https://blasbenito.com/tag/quantitative-methods/</link>
     </image>
     
     <item>
       <title>Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features</title>
-      <link>/publication/2020_benito_ecography_memoria/</link>
+      <link>https://blasbenito.com/publication/2020_benito_ecography_memoria/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_benito_ecography_memoria/</guid>
+      <guid>https://blasbenito.com/publication/2020_benito_ecography_memoria/</guid>
       <description></description>
     </item>
     

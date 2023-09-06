@@ -2,109 +2,109 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Plant Ecology | Blas M. Benito</title>
-    <link>/tag/plant-ecology/</link>
-      <atom:link href="/tag/plant-ecology/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/tag/plant-ecology/</link>
+      <atom:link href="https://blasbenito.com/tag/plant-ecology/index.xml" rel="self" type="application/rss+xml" />
     <description>Plant Ecology</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Plant Ecology</title>
-      <link>/tag/plant-ecology/</link>
+      <link>https://blasbenito.com/tag/plant-ecology/</link>
     </image>
     
     <item>
       <title>Biogeography of global drylands</title>
-      <link>/publication/2021_maestre_new_phytologist/</link>
+      <link>https://blasbenito.com/publication/2021_maestre_new_phytologist/</link>
       <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/2021_maestre_new_phytologist/</guid>
+      <guid>https://blasbenito.com/publication/2021_maestre_new_phytologist/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ecological Diversity within Rear-Edge: A Case Study from Mediterranean Quercus pyrenaica Willd.</title>
-      <link>/publication/2021_perez-luque_forests/</link>
+      <link>https://blasbenito.com/publication/2021_perez-luque_forests/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/2021_perez-luque_forests/</guid>
+      <guid>https://blasbenito.com/publication/2021_perez-luque_forests/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Late-spring frost risk between 1959 and 2017 decreased in North America but increased in Europe and Asia</title>
-      <link>/publication/2020_zohner_pnas/</link>
+      <link>https://blasbenito.com/publication/2020_zohner_pnas/</link>
       <pubDate>Mon, 11 May 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_zohner_pnas/</guid>
+      <guid>https://blasbenito.com/publication/2020_zohner_pnas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Holocene fire and vegetation dynamics in the Central Pyrenees (Spain)</title>
-      <link>/publication/2020_leunda_catena/</link>
+      <link>https://blasbenito.com/publication/2020_leunda_catena/</link>
       <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_leunda_catena/</guid>
+      <guid>https://blasbenito.com/publication/2020_leunda_catena/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features</title>
-      <link>/publication/2020_benito_ecography_memoria/</link>
+      <link>https://blasbenito.com/publication/2020_benito_ecography_memoria/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_benito_ecography_memoria/</guid>
+      <guid>https://blasbenito.com/publication/2020_benito_ecography_memoria/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Long-term fire resilience of the Ericaceous Belt, Bale Mountains, Ethiopia</title>
-      <link>/publication/2019_gil_romera_biology_letters/</link>
+      <link>https://blasbenito.com/publication/2019_gil_romera_biology_letters/</link>
       <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/2019_gil_romera_biology_letters/</guid>
+      <guid>https://blasbenito.com/publication/2019_gil_romera_biology_letters/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Potential changes in the distribution of Carnegiea gigantea under future scenarios</title>
-      <link>/publication/2018_albuquerque_peerj/</link>
+      <link>https://blasbenito.com/publication/2018_albuquerque_peerj/</link>
       <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/2018_albuquerque_peerj/</guid>
+      <guid>https://blasbenito.com/publication/2018_albuquerque_peerj/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Phylogenetic age differences in tree assemblages across the Northern Hemisphere increase with long-term climate stability in unstable regions</title>
-      <link>/publication/2017_feng_global_ecology_and_biogeography/</link>
+      <link>https://blasbenito.com/publication/2017_feng_global_ecology_and_biogeography/</link>
       <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_feng_global_ecology_and_biogeography/</guid>
+      <guid>https://blasbenito.com/publication/2017_feng_global_ecology_and_biogeography/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Spring predictability explains different leaf‐out strategies in the woody floras of North America, Europe and East Asia</title>
-      <link>/publication/2017_zohner_ecology_letters/</link>
+      <link>https://blasbenito.com/publication/2017_zohner_ecology_letters/</link>
       <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_zohner_ecology_letters/</guid>
+      <guid>https://blasbenito.com/publication/2017_zohner_ecology_letters/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Day length unlikely to constrain climate-driven shifts in leaf-out times of northern woody plants</title>
-      <link>/publication/2016_zohner_nature_climate_change/</link>
+      <link>https://blasbenito.com/publication/2016_zohner_nature_climate_change/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/publication/2016_zohner_nature_climate_change/</guid>
+      <guid>https://blasbenito.com/publication/2016_zohner_nature_climate_change/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Forecasting plant range collapse in a mediterranean hotspot: when dispersal uncertainties matter</title>
-      <link>/publication/2014_benito_diversity_and_distributions/</link>
+      <link>https://blasbenito.com/publication/2014_benito_diversity_and_distributions/</link>
       <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/2014_benito_diversity_and_distributions/</guid>
+      <guid>https://blasbenito.com/publication/2014_benito_diversity_and_distributions/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Simulating potential effects of climatic warming on altitudinal patterns of key species in Mediterranean-alpine ecosystems</title>
-      <link>/publication/2011_benito_climate_change/</link>
+      <link>https://blasbenito.com/publication/2011_benito_climate_change/</link>
       <pubDate>Wed, 02 Feb 2011 00:00:00 +0000</pubDate>
-      <guid>/publication/2011_benito_climate_change/</guid>
+      <guid>https://blasbenito.com/publication/2011_benito_climate_change/</guid>
       <description></description>
     </item>
     

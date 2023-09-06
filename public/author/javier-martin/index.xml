@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Javier Martín | Blas M. Benito</title>
-    <link>/author/javier-martin/</link>
-      <atom:link href="/author/javier-martin/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/javier-martin/</link>
+      <atom:link href="https://blasbenito.com/author/javier-martin/index.xml" rel="self" type="application/rss+xml" />
     <description>Javier Martín</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 20 Feb 2014 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Javier Martín</title>
-      <link>/author/javier-martin/</link>
+      <link>https://blasbenito.com/author/javier-martin/</link>
     </image>
     
     <item>
       <title>Distribution and conservation of the relict interaction between the butterfly Agriades zullichi and its larval foodplant (Androsace vitaliana nevadensis)</title>
-      <link>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</link>
+      <link>https://blasbenito.com/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</link>
       <pubDate>Thu, 20 Feb 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</guid>
+      <guid>https://blasbenito.com/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</guid>
       <description></description>
     </item>
     

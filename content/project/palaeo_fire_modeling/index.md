@@ -10,10 +10,6 @@ links:
   icon_pack: fab
   name: GitHub
   url: "https://github.com/BlasBenito/PalaeoFireModeling"
-- icon: twitter
-  icon_pack: fab
-  name: Twitter
-  url: "https://twitter.com/gilromera/status/1006865146189410305?s=20"
 - icon: vimeo-v
   icon_pack: fab
   name: Vimeo
@@ -33,10 +29,6 @@ url_video: ""
 ---
 
 This is a spatio-temporal simulation of the effect of fire regimes on the population dynamics of five forest species (Pinus sylvestris, Pinus uncinata, Betula pendula, Corylus avellana, and Quercus petraea) during the Lateglacial-Holocene transition (15-7 cal Kyr BP) at El Portalet, a subalpine bog located in the central Pyrenees region (1802m asl, Spain), that has served for palaeoenvironmental studies (González-Smapériz et al. 2006; Gil-Romera et al., 2014). This model is described in the paper in prep. titled *Forest - fire interactions in the Central Pyrenees: a data-model comparison for the Lateglacial-Holocene transition*, and authored by Graciela Gil-Romera, Blas M. Benito, Juli G. Pausas, Penélope González-Sampériz, J. Julio. Camarero, Jens-Christian Svenning, and Blas Valero-Garcés.
-
-A short description of the project was presented by [Graciela Gil-Romera](https://gilromera.com/) at the [1st Quaternary Palaeoecology Twitter Conference](https://twitter.com/QUAPAL_18).
-
-{{< tweet 1006865146189410305 >}}
 
 ### HOW DOES IT WORK
 

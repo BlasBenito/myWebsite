@@ -1,1600 +1,955 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
-    <loc>/courses/example/example1/</loc>
+    <loc>https://blasbenito.com/courses/example/example1/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/courses/example/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/courses/example/</loc>
     <lastmod>2018-09-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/courses/example/example2/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/courses/example/example2/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/talk/example/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/talk/example/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/talk/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/talk/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication-type/2/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication-type/2/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/authors/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/biogeography/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/biogeography/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2021_maestre_new_phytologist/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2021_maestre_new_phytologist/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/blas-m.-benito/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/blas-m.-benito/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/david-j.-eldridge/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/david-j.-eldridge/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/dryland-ecology/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/dryland-ecology/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/emilio-guirado/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/emilio-guirado/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/fernando-t.-maestre/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/fernando-t.-maestre/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/laura-concostrina-zubiri/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/laura-concostrina-zubiri/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/manuel-delgado-baquerizo/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/manuel-delgado-baquerizo/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/miguel-berdugo/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/miguel-berdugo/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/nicolas-gross/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/nicolas-gross/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/plant-ecology/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/plant-ecology/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication_types/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/raul-ochoa-hueso/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/raul-ochoa-hueso/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/santiago-soliveres/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/santiago-soliveres/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/sonia-kefi/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/sonia-kefi/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tags/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/yoann-le-bagousse-pinguet/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/yoann-le-bagousse-pinguet/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/04_betadiversity/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/post/04_betadiversity/</loc>
     <lastmod>2021-01-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/post/</loc>
     <lastmod>2021-01-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post_projects/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/post_projects/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/03_shared_folder_in_cluster/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/post/03_shared_folder_in_cluster/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post_projects/template/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/post_projects/template/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/abm/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/abm/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/agent-based-models/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/agent-based-models/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/fire-dynamics/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/fire-dynamics/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/mechanistic-simulation/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/mechanistic-simulation/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/netlogo/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/netlogo/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/palaeo_fire_modeling/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/project/palaeo_fire_modeling/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/palaeoecology/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/palaeoecology/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/project/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/antonio-j.-perez-luque/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/antonio-j.-perez-luque/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2021_perez-luque_forests/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2021_perez-luque_forests/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/francisco-j.-bonet/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/francisco-j.-bonet/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/regino-zamora/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/regino-zamora/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/dispersal/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/dispersal/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/range-shift-simulation/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/range-shift-simulation/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/quercus_range_shift/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/project/quercus_range_shift/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/02_parallelizing_loops_with_r/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/post/02_parallelizing_loops_with_r/</loc>
     <lastmod>2020-12-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/ecological-memory/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/ecological-memory/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/machine-learning/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/machine-learning/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/distantia/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/project/distantia/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/memoria/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/project/memoria/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/spatialrf/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/project/spatialrf/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/virtualpollen/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/project/virtualpollen/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/r-packages/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/r-packages/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/random-forest/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/random-forest/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/spatial-regression/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/spatial-regression/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/time-series-analysis/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/time-series-analysis/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/01_home_cluster/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/post/01_home_cluster/</loc>
     <lastmod>2020-12-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/boyan-angelov/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/boyan-angelov/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/explainable-artificial-intelligence-xai/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/explainable-artificial-intelligence-xai/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2020_ryo_ecography/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2020_ryo_ecography/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/florian-hartig/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/florian-hartig/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jamie-m.-kass/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jamie-m.-kass/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/masahiro-ryo/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/masahiro-ryo/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/species-distribution-models/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/species-distribution-models/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/stefano-mammola/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/stefano-mammola/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/allison-k.-pierce/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/allison-k.-pierce/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/andrea-contina/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/andrea-contina/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/andreas-m.-neophytou/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/andreas-m.-neophytou/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/c.-phoebe-lostroh/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/c.-phoebe-lostroh/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/colin-j.-carlson/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/colin-j.-carlson/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2020_contina_ecological_modelling/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2020_contina_ecological_modelling/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/irresponsible-covid19-modelling/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/irresponsible-covid19-modelling/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/joseph-chipperfield/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/joseph-chipperfield/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/michael-b.-wunder/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/michael-b.-wunder/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/michelle-deprenger-levin/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/michelle-deprenger-levin/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/richard-j.-telford/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/richard-j.-telford/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/robert-b.-ohara/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/robert-b.-ohara/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/scott-w.-yanco/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/scott-w.-yanco/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2020_carlson_nature_ecology_and_evolution/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2020_carlson_nature_ecology_and_evolution/</loc>
     <lastmod>2020-07-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/joseph-d.-chipperfield/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/joseph-d.-chipperfield/</loc>
     <lastmod>2020-07-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/boris-vanniere/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/boris-vanniere/</loc>
     <lastmod>2020-07-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/daniele-colombaroli/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/daniele-colombaroli/</loc>
     <lastmod>2020-07-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2020_cui_the_holocene/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2020_cui_the_holocene/</loc>
     <lastmod>2020-07-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/fredrik-olsson/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/fredrik-olsson/</loc>
     <lastmod>2020-07-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/geoffrey-lemdahl/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/geoffrey-lemdahl/</loc>
     <lastmod>2020-07-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/marie-jose-gaillard/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/marie-jose-gaillard/</loc>
     <lastmod>2020-07-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/quai.yu-cui/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/quai.yu-cui/</loc>
     <lastmod>2020-07-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/yan-zhao/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/yan-zhao/</loc>
     <lastmod>2020-07-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/alain-paquette/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/alain-paquette/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/alejandro-ordonez/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/alejandro-ordonez/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/andrzej-m.-jagodzinski/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/andrzej-m.-jagodzinski/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/bogdan-jaroszewicz/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/bogdan-jaroszewicz/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/chelsea-chisholm/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/chelsea-chisholm/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/chunyu-zhang/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/chunyu-zhang/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/clara-anton-fernandez/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/clara-anton-fernandez/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/climate-change/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/climate-change/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/constantin-m.-zohner/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/constantin-m.-zohner/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/damiano-gianelle/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/damiano-gianelle/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/diana-laarmann/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/diana-laarmann/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/elena-tikhonova/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/elena-tikhonova/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/emil-cienciala/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/emil-cienciala/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/frederik-baumgarten/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/frederik-baumgarten/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/gert-jan-nabuurs/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/gert-jan-nabuurs/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/giorgio-alberti/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/giorgio-alberti/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/han-y.-h.-chen/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/han-y.-h.-chen/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/hans-pretzsch/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/hans-pretzsch/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/helder-viana/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/helder-viana/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/henn-korjus/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/henn-korjus/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/hyun-seok-kim/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/hyun-seok-kim/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jean-francois-bastin/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jean-francois-bastin/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jens-christian-svenning/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jens-christian-svenning/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jingjing-liang/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jingjing-liang/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2020_zohner_pnas/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2020_zohner_pnas/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/lidong-mo/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/lidong-mo/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/lorenzo-frizzera/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/lorenzo-frizzera/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/mait-lang/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/mait-lang/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/miroslav-svoboda/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/miroslav-svoboda/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/mohammed-latif-khan/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/mohammed-latif-khan/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/pascal-a.-niklaus/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/pascal-a.-niklaus/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/peter-b.-reich/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/peter-b.-reich/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/peter-schall/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/peter-schall/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/phenology/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/phenology/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/purabi-saikia/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/purabi-saikia/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/radomir-balazy/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/radomir-balazy/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/sebastian-kepfer-rojas/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/sebastian-kepfer-rojas/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/selvadurai-dayanandan/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/selvadurai-dayanandan/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/sergio-de-miguel/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/sergio-de-miguel/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/susanne-s.-renner/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/susanne-s.-renner/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/thomas-w.-crowther/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/thomas-w.-crowther/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/tom-m.-fayle/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/tom-m.-fayle/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/tomasz-zawila-niedzwiecki/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/tomasz-zawila-niedzwiecki/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/tommaso-jucker/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/tommaso-jucker/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/urs-beat-brandli/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/urs-beat-brandli/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/veronica-sebald/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/veronica-sebald/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/vivian-kvist-johannsen/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/vivian-kvist-johannsen/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/vladimir-seben/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/vladimir-seben/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/xiuhai-zhao/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/xiuhai-zhao/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/yann-vitasse/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/yann-vitasse/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2020_carlson_nature_ecology_and_evolution_b/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2020_carlson_nature_ecology_and_evolution_b/</loc>
     <lastmod>2020-05-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/anne-laure-daniau/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/anne-laure-daniau/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/generalized-least-squares/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/generalized-least-squares/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/graciela-gil-romera/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/graciela-gil-romera/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2020_leunda_catena/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2020_leunda_catena/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/maria-leunda/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/maria-leunda/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/penelope-gonzalez-samperiz/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/penelope-gonzalez-samperiz/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2020_felde_vegetation_history_and_archaeobotany/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2020_felde_vegetation_history_and_archaeobotany/</loc>
     <lastmod>2020-04-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2020_chipperfield_ecoevorxiv/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2020_chipperfield_ecoevorxiv/</loc>
     <lastmod>2020-03-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2020_benito_ecography_distantia/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2020_benito_ecography_distantia/</loc>
     <lastmod>2020-01-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2020_benito_ecography_memoria/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2020_benito_ecography_memoria/</loc>
     <lastmod>2020-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/quantitative-methods/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/quantitative-methods/</loc>
     <lastmod>2020-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2019_valero-garces_quaternary_geochronology/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2019_valero-garces_quaternary_geochronology/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/a.-moreno/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/a.-moreno/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/age-depth-modelling/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/age-depth-modelling/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/b.-oliva-urcia/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/b.-oliva-urcia/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/b.l-valero-garces/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/b.l-valero-garces/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/bayesian-models/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/bayesian-models/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/c.s.-lane/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/c.s.-lane/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/e.-garcia-prieto/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/e.-garcia-prieto/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/j.-aranbarri/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/j.-aranbarri/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/l.j.-arnold/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/l.j.-arnold/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/m.-demuro/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/m.-demuro/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/m.-frugone/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/m.-frugone/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/m.-hardiman/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/m.-hardiman/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/m.-morellon/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/m.-morellon/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/s.p.e.-blockey/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/s.p.e.-blockey/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/betelhem-mekonnen/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/betelhem-mekonnen/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/bruk-lemma/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/bruk-lemma/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/bruno-glaser/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/bruno-glaser/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/carole-adolf/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/carole-adolf/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/david-a.-grady/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/david-a.-grady/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/georg-miaha/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/georg-miaha/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/henry-f.-lamb/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/henry-f.-lamb/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2019_gil_romera_biology_letters/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2019_gil_romera_biology_letters/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/lucas-bittner/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/lucas-bittner/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/maria-u.-johansson/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/maria-u.-johansson/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/mekbib-fekadu/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/mekbib-fekadu/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/michael-zech/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/michael-zech/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/miguel-sevilla-callejo/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/miguel-sevilla-callejo/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/wolfgang-zech/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/wolfgang-zech/</loc>
     <lastmod>2019-07-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post_examples/</loc>
-    <lastmod>2019-09-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post_examples/writing-technical-content/</loc>
-    <lastmod>2019-07-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/courses/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/courses/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post_examples/jupyter/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/post_examples/jupyter/</loc>
     <lastmod>2019-09-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/slides/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/post_examples/</loc>
+    <lastmod>2019-09-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/slides/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/slides/example/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/gradient-boosting/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/gradient-boosting/</loc>
     <lastmod>2018-09-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2018_albuquerque_peerj/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2018_albuquerque_peerj/</loc>
     <lastmod>2018-09-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/generalized-linear-models/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/generalized-linear-models/</loc>
     <lastmod>2018-05-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jacob-hoglund/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jacob-hoglund/</loc>
     <lastmod>2018-05-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/mette-lillie/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/mette-lillie/</loc>
     <lastmod>2018-05-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2018_kozma_ecology_and_evolution/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2018_kozma_ecology_and_evolution/</loc>
     <lastmod>2018-05-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/radoslav-kozma/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/radoslav-kozma/</loc>
     <lastmod>2018-05-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/gang-feng/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/gang-feng/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/lingfeng-mao/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/lingfeng-mao/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2017_feng_global_ecology_and_biogeography/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2017_feng_global_ecology_and_biogeography/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/signe-normand/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/signe-normand/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/yi-jin/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/yi-jin/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/ziyu-ma/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/ziyu-ma/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/biodiversity-conservation/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/biodiversity-conservation/</loc>
     <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/biogeography-of-neanderthals/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/biogeography-of-neanderthals/</loc>
     <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/brody-sandel/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/brody-sandel/</loc>
     <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/ensemble-models/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/ensemble-models/</loc>
     <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/felix-riede/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/felix-riede/</loc>
     <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2017_feng_biological_conservation/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2017_feng_biological_conservation/</loc>
     <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/nathan-g.-swenson/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/nathan-g.-swenson/</loc>
     <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2017_benito_journal_of_biogeography/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2017_benito_journal_of_biogeography/</loc>
     <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/thomas-mailund/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/thomas-mailund/</loc>
     <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/trine-kellberg-nielsen/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/trine-kellberg-nielsen/</loc>
     <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2017_kellberg-nielsen_quaternary_international/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2017_kellberg-nielsen_quaternary_international/</loc>
     <lastmod>2017-02-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/luseadra-mckerracher/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/luseadra-mckerracher/</loc>
     <lastmod>2017-02-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jason-d.-fridley/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jason-d.-fridley/</loc>
     <lastmod>2017-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2017_zohner_ecology_letters/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2017_zohner_ecology_letters/</loc>
     <lastmod>2017-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2016_zohner_nature_climate_change/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2016_zohner_nature_climate_change/</loc>
     <lastmod>2016-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/demo/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/demo/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project_examples/external-project/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/project_examples/external-project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project_examples/internal-project/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/project_examples/internal-project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project_examples/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/project_examples/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post_examples/getting-started/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/post_examples/getting-started/</loc>
     <lastmod>2019-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/categories/</loc>
     <lastmod>2019-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/demo/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/category/demo/</loc>
     <lastmod>2019-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/%E5%90%B3%E6%81%A9%E9%81%94/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/%E5%90%B3%E6%81%A9%E9%81%94/</loc>
     <lastmod>2019-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/%E6%95%99%E7%A8%8B/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/category/%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2019-04-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post_examples/2015-07-23-r-rmarkdown/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/post_examples/2015-07-23-r-rmarkdown/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/plot/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/plot/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/r/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/category/r/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/r-markdown/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/r-markdown/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/regression/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/regression/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2015_gill_conservation_biology/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2015_gill_conservation_biology/</loc>
     <lastmod>2015-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jacquelyn-l.-gill/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jacquelyn-l.-gill/</loc>
     <lastmod>2015-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jenny-l.-mcguire/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jenny-l.-mcguire/</loc>
     <lastmod>2015-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jessica-l.-blois/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jessica-l.-blois/</loc>
     <lastmod>2015-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/solomon-dobrowski/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/solomon-dobrowski/</loc>
     <lastmod>2015-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/forests/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/forests/</loc>
     <lastmod>2015-03-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2015_albuquerque_naturaleza_and_conservacao/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2015_albuquerque_naturaleza_and_conservacao/</loc>
     <lastmod>2015-03-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/a.j.-mendoza-fernandez/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/a.j.-mendoza-fernandez/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/e.-salmeron-sanchez/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/e.-salmeron-sanchez/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/ecoinformatics/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/ecoinformatics/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2015_mendoza-fernandez_plant_biosystems/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2015_mendoza-fernandez_plant_biosystems/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/f.-martinez-hernandez/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/f.-martinez-hernandez/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/f.j.-perez-garcia/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/f.j.-perez-garcia/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/habitat-loss/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/habitat-loss/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/j.-guirado/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/j.-guirado/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/j.a.-garrido-becerra/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/j.a.-garrido-becerra/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/j.f.-mota/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/j.f.-mota/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/m.e.-merlo/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/m.e.-merlo/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/antonio-l.-garcia/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/antonio-l.-garcia/</loc>
     <lastmod>2014-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/blas-m.-benito-shared-first-coauthorship/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/blas-m.-benito-shared-first-coauthorship/</loc>
     <lastmod>2014-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</loc>
     <lastmod>2014-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/francisco-j.-olivares/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/francisco-j.-olivares/</loc>
     <lastmod>2014-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/helena-ruiz/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/helena-ruiz/</loc>
     <lastmod>2014-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/javier-martin/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/javier-martin/</loc>
     <lastmod>2014-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jose-miguel-barea-azcon/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jose-miguel-barea-azcon/</loc>
     <lastmod>2014-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/rogelio-lopez/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/rogelio-lopez/</loc>
     <lastmod>2014-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2014_bonet_environmental_modelling_and_software/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2014_bonet_environmental_modelling_and_software/</loc>
     <lastmod>2014-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/fabio-suzart-de-albuquerque/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/fabio-suzart-de-albuquerque/</loc>
     <lastmod>2014-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/ramon-perez-perez/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/ramon-perez-perez/</loc>
     <lastmod>2014-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/conditional-inference-trees/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/conditional-inference-trees/</loc>
     <lastmod>2014-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2014_benito_diversity_and_distributions/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2014_benito_diversity_and_distributions/</loc>
     <lastmod>2014-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/juan-lorite/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/juan-lorite/</loc>
     <lastmod>2014-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/julio-penas/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/julio-penas/</loc>
     <lastmod>2014-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/lorena-gomez-aparicio/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/lorena-gomez-aparicio/</loc>
     <lastmod>2014-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/albert-barberan/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/albert-barberan/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/amrei-binzer/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/amrei-binzer/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/bruno-moreira/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/bruno-moreira/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/catarina-vinagre/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/catarina-vinagre/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/elise-s.-gornish/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/elise-s.-gornish/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2013_gornish_eos/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2013_gornish_eos/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jennifer-weaver/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jennifer-weaver/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jill-a.-hamilton/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jill-a.-hamilton/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/julie-e.-demeester/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/julie-e.-demeester/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/pauline-vurain/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/pauline-vurain/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/robert-gruwez/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/robert-gruwez/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/sara-tomiolo/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/sara-tomiolo/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/shirin-taheri/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/shirin-taheri/</loc>
     <lastmod>2013-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/aafke-m.-schipper/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/aafke-m.-schipper/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2013_valle_journal_of_sea_research/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/angel-borja/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/dick-j.-de-jong/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2013_valle_journal_of_sea_research/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/guillem-chust/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/dick-j.-de-jong/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/joxe-m.-garmendia/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/guillem-chust/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/marieke-m.-van-katwijk/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/joxe-m.-garmendia/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/mireia-valle/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/marieke-m.-van-katwijk/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/tjeerd-j.-bouma/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/mireia-valle/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/angel-borja/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/tjeerd-j.-bouma/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/fabio-s.-albuquerque/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/fabio-s.-albuquerque/</loc>
     <lastmod>2013-03-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/luis-cayuela/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/luis-cayuela/</loc>
     <lastmod>2013-03-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2013_benito_methods_in_ecology_and_evolution/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2013_benito_methods_in_ecology_and_evolution/</loc>
     <lastmod>2013-03-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2013_albuquerque_biological_conservation/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2013_albuquerque_biological_conservation/</loc>
     <lastmod>2013-01-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2012_perez-perez_expert_systems_with_applications/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2012_perez-perez_expert_systems_with_applications/</loc>
     <lastmod>2012-02-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/drylands/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/drylands/</loc>
     <lastmod>2011-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/endangered-plants/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/endangered-plants/</loc>
     <lastmod>2011-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/eva-maria-canadas/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/eva-maria-canadas/</loc>
     <lastmod>2011-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/habitat-fragmentation/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/habitat-fragmentation/</loc>
     <lastmod>2011-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2011_penas_environmental_management/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2011_penas_environmental_management/</loc>
     <lastmod>2011-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/miguel-ballesteros/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/miguel-ballesteros/</loc>
     <lastmod>2011-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/montserrat-martinez-ortega/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/montserrat-martinez-ortega/</loc>
     <lastmod>2011-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2011_benito_climate_change/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2011_benito_climate_change/</loc>
     <lastmod>2011-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/botany/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/tag/botany/</loc>
     <lastmod>2010-03-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2010_lorite_annales_botanici_fennici/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2010_lorite_annales_botanici_fennici/</loc>
     <lastmod>2010-03-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/eva-canadas/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/eva-canadas/</loc>
     <lastmod>2010-03-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/francisco-valle/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/francisco-valle/</loc>
     <lastmod>2010-03-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/diego-nieto-lugilde/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/diego-nieto-lugilde/</loc>
     <lastmod>2010-02-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/francisca-alba-sanchez/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/francisca-alba-sanchez/</loc>
     <lastmod>2010-02-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jose-a.-lopez-saez/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/jose-a.-lopez-saez/</loc>
     <lastmod>2010-02-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/juan-c.-linares/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/juan-c.-linares/</loc>
     <lastmod>2010-02-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/lourdes-lopez-merino/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/lourdes-lopez-merino/</loc>
     <lastmod>2010-02-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2010_alba-sanchez_diversity_and_distributions/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2010_alba-sanchez_diversity_and_distributions/</loc>
     <lastmod>2010-02-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2009_benito_biodiversity_and_conservation/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2009_benito_biodiversity_and_conservation/</loc>
     <lastmod>2009-02-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/luz-m.-munoz/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/luz-m.-munoz/</loc>
     <lastmod>2009-02-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/2008_penas_phyton/</loc>
+  </url><url>
+    <loc>https://blasbenito.com/publication/2008_penas_phyton/</loc>
     <lastmod>2008-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/author/albuquerque-f./</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/assuncao-albuquerque-m.j./</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/beier-p./</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/cayuela-l./</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/et-al./</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/felde-v.-a./</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/gray-c./</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/malcolm-l.-hunter-jr./</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/rodriguez-mam./</loc>
+  </url><url>
+    <loc>https://blasbenito.com/author/zamora-r./</loc>
   </url>
-  
-  <url>
-    <loc>/author/albuquerque-f./</loc>
-  </url>
-  
-  <url>
-    <loc>/author/assuncao-albuquerque-m.j./</loc>
-  </url>
-  
-  <url>
-    <loc>/author/beier-p./</loc>
-  </url>
-  
-  <url>
-    <loc>/author/cayuela-l./</loc>
-  </url>
-  
-  <url>
-    <loc>/author/et-al./</loc>
-  </url>
-  
-  <url>
-    <loc>/author/felde-v.-a./</loc>
-  </url>
-  
-  <url>
-    <loc>/author/gray-c./</loc>
-  </url>
-  
-  <url>
-    <loc>/author/malcolm-l.-hunter-jr./</loc>
-  </url>
-  
-  <url>
-    <loc>/author/rodriguez-mam./</loc>
-  </url>
-  
-  <url>
-    <loc>/author/zamora-r./</loc>
-  </url>
-  
 </urlset>

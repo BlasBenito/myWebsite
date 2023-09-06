@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Catarina Vinagre | Blas M. Benito</title>
-    <link>/author/catarina-vinagre/</link>
-      <atom:link href="/author/catarina-vinagre/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/catarina-vinagre/</link>
+      <atom:link href="https://blasbenito.com/author/catarina-vinagre/index.xml" rel="self" type="application/rss+xml" />
     <description>Catarina Vinagre</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 16 Apr 2013 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Catarina Vinagre</title>
-      <link>/author/catarina-vinagre/</link>
+      <link>https://blasbenito.com/author/catarina-vinagre/</link>
     </image>
     
     <item>
       <title>Interdisciplinary Climate Change Collaborations Are Essential for Early‐Career Scientists</title>
-      <link>/publication/2013_gornish_eos/</link>
+      <link>https://blasbenito.com/publication/2013_gornish_eos/</link>
       <pubDate>Tue, 16 Apr 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/2013_gornish_eos/</guid>
+      <guid>https://blasbenito.com/publication/2013_gornish_eos/</guid>
       <description></description>
     </item>
     

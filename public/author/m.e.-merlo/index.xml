@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>M.E. Merlo | Blas M. Benito</title>
-    <link>/author/m.e.-merlo/</link>
-      <atom:link href="/author/m.e.-merlo/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/m.e.-merlo/</link>
+      <atom:link href="https://blasbenito.com/author/m.e.-merlo/index.xml" rel="self" type="application/rss+xml" />
     <description>M.E. Merlo</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 13 Jan 2015 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>M.E. Merlo</title>
-      <link>/author/m.e.-merlo/</link>
+      <link>https://blasbenito.com/author/m.e.-merlo/</link>
     </image>
     
     <item>
       <title>Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea</title>
-      <link>/publication/2015_mendoza-fernandez_plant_biosystems/</link>
+      <link>https://blasbenito.com/publication/2015_mendoza-fernandez_plant_biosystems/</link>
       <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/2015_mendoza-fernandez_plant_biosystems/</guid>
+      <guid>https://blasbenito.com/publication/2015_mendoza-fernandez_plant_biosystems/</guid>
       <description></description>
     </item>
     

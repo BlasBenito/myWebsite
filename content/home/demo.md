@@ -9,7 +9,7 @@ active = true  # Activate this widget? true/false
 weight = 15  # Order that this section will appear.
 
 title = "Welcome!"
-subtitle = "I am Blas M. Benito, PhD in Computational Ecology and Data Scientist and Team Leader at [Biome Makers Inc.](https://biomemakers.com)."
+subtitle = "I am Blas M. Benito, PhD in Computational Ecology and Data Scientist at [Biome Makers Inc.](https://biomemakers.com)."
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.

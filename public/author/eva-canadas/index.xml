@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Eva Cañadas | Blas M. Benito</title>
-    <link>/author/eva-canadas/</link>
-      <atom:link href="/author/eva-canadas/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/eva-canadas/</link>
+      <atom:link href="https://blasbenito.com/author/eva-canadas/index.xml" rel="self" type="application/rss+xml" />
     <description>Eva Cañadas</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 01 Mar 2010 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Eva Cañadas</title>
-      <link>/author/eva-canadas/</link>
+      <link>https://blasbenito.com/author/eva-canadas/</link>
     </image>
     
     <item>
       <title>Conservation Status of the First Known Population of Polygala balansae in Europe</title>
-      <link>/publication/2010_lorite_annales_botanici_fennici/</link>
+      <link>https://blasbenito.com/publication/2010_lorite_annales_botanici_fennici/</link>
       <pubDate>Mon, 01 Mar 2010 00:00:00 +0000</pubDate>
-      <guid>/publication/2010_lorite_annales_botanici_fennici/</guid>
+      <guid>https://blasbenito.com/publication/2010_lorite_annales_botanici_fennici/</guid>
       <description></description>
     </item>
     

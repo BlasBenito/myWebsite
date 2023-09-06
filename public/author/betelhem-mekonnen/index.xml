@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Betelhem Mekonnen | Blas M. Benito</title>
-    <link>/author/betelhem-mekonnen/</link>
-      <atom:link href="/author/betelhem-mekonnen/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/betelhem-mekonnen/</link>
+      <atom:link href="https://blasbenito.com/author/betelhem-mekonnen/index.xml" rel="self" type="application/rss+xml" />
     <description>Betelhem Mekonnen</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 24 Jul 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Betelhem Mekonnen</title>
-      <link>/author/betelhem-mekonnen/</link>
+      <link>https://blasbenito.com/author/betelhem-mekonnen/</link>
     </image>
     
     <item>
       <title>Long-term fire resilience of the Ericaceous Belt, Bale Mountains, Ethiopia</title>
-      <link>/publication/2019_gil_romera_biology_letters/</link>
+      <link>https://blasbenito.com/publication/2019_gil_romera_biology_letters/</link>
       <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/2019_gil_romera_biology_letters/</guid>
+      <guid>https://blasbenito.com/publication/2019_gil_romera_biology_letters/</guid>
       <description></description>
     </item>
     

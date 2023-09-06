@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Alejandro Ordoñez | Blas M. Benito</title>
-    <link>/author/alejandro-ordonez/</link>
-      <atom:link href="/author/alejandro-ordonez/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/alejandro-ordonez/</link>
+      <atom:link href="https://blasbenito.com/author/alejandro-ordonez/index.xml" rel="self" type="application/rss+xml" />
     <description>Alejandro Ordoñez</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 11 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Alejandro Ordoñez</title>
-      <link>/author/alejandro-ordonez/</link>
+      <link>https://blasbenito.com/author/alejandro-ordonez/</link>
     </image>
     
     <item>
       <title>Late-spring frost risk between 1959 and 2017 decreased in North America but increased in Europe and Asia</title>
-      <link>/publication/2020_zohner_pnas/</link>
+      <link>https://blasbenito.com/publication/2020_zohner_pnas/</link>
       <pubDate>Mon, 11 May 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_zohner_pnas/</guid>
+      <guid>https://blasbenito.com/publication/2020_zohner_pnas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Phylogenetic age differences in tree assemblages across the Northern Hemisphere increase with long-term climate stability in unstable regions</title>
-      <link>/publication/2017_feng_global_ecology_and_biogeography/</link>
+      <link>https://blasbenito.com/publication/2017_feng_global_ecology_and_biogeography/</link>
       <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_feng_global_ecology_and_biogeography/</guid>
+      <guid>https://blasbenito.com/publication/2017_feng_global_ecology_and_biogeography/</guid>
       <description></description>
     </item>
     

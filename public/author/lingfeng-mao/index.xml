@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lingfeng Mao | Blas M. Benito</title>
-    <link>/author/lingfeng-mao/</link>
-      <atom:link href="/author/lingfeng-mao/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/lingfeng-mao/</link>
+      <atom:link href="https://blasbenito.com/author/lingfeng-mao/index.xml" rel="self" type="application/rss+xml" />
     <description>Lingfeng Mao</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 17 Jul 2017 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Lingfeng Mao</title>
-      <link>/author/lingfeng-mao/</link>
+      <link>https://blasbenito.com/author/lingfeng-mao/</link>
     </image>
     
     <item>
       <title>Phylogenetic age differences in tree assemblages across the Northern Hemisphere increase with long-term climate stability in unstable regions</title>
-      <link>/publication/2017_feng_global_ecology_and_biogeography/</link>
+      <link>https://blasbenito.com/publication/2017_feng_global_ecology_and_biogeography/</link>
       <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_feng_global_ecology_and_biogeography/</guid>
+      <guid>https://blasbenito.com/publication/2017_feng_global_ecology_and_biogeography/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Historical anthropogenic footprints in the distribution of threatened plants in China</title>
-      <link>/publication/2017_feng_biological_conservation/</link>
+      <link>https://blasbenito.com/publication/2017_feng_biological_conservation/</link>
       <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_feng_biological_conservation/</guid>
+      <guid>https://blasbenito.com/publication/2017_feng_biological_conservation/</guid>
       <description></description>
     </item>
     

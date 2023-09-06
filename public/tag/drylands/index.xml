@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Drylands | Blas M. Benito</title>
-    <link>/tag/drylands/</link>
-      <atom:link href="/tag/drylands/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/tag/drylands/</link>
+      <atom:link href="https://blasbenito.com/tag/drylands/index.xml" rel="self" type="application/rss+xml" />
     <description>Drylands</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 26 Mar 2011 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Drylands</title>
-      <link>/tag/drylands/</link>
+      <link>https://blasbenito.com/tag/drylands/</link>
     </image>
     
     <item>
       <title>Habitat Fragmentation in Arid Zones: A Case Study of Linaria nigricans Under Land Use Changes (SE Spain)</title>
-      <link>/publication/2011_penas_environmental_management/</link>
+      <link>https://blasbenito.com/publication/2011_penas_environmental_management/</link>
       <pubDate>Sat, 26 Mar 2011 00:00:00 +0000</pubDate>
-      <guid>/publication/2011_penas_environmental_management/</guid>
+      <guid>https://blasbenito.com/publication/2011_penas_environmental_management/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Assessing extinction-risk of endangered plants using species distribution models: a case study of habitat depletion caused by the spread of greenhouses</title>
-      <link>/publication/2009_benito_biodiversity_and_conservation/</link>
+      <link>https://blasbenito.com/publication/2009_benito_biodiversity_and_conservation/</link>
       <pubDate>Sat, 28 Feb 2009 00:00:00 +0000</pubDate>
-      <guid>/publication/2009_benito_biodiversity_and_conservation/</guid>
+      <guid>https://blasbenito.com/publication/2009_benito_biodiversity_and_conservation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Greenhouses, land use change, and predictive models: MaxEnt and Geomod working together</title>
-      <link>/publication/2008_penas_phyton/</link>
+      <link>https://blasbenito.com/publication/2008_penas_phyton/</link>
       <pubDate>Tue, 01 Jan 2008 00:00:00 +0000</pubDate>
-      <guid>/publication/2008_penas_phyton/</guid>
+      <guid>https://blasbenito.com/publication/2008_penas_phyton/</guid>
       <description></description>
     </item>
     

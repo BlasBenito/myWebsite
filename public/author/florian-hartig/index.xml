@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Florian Hartig | Blas M. Benito</title>
-    <link>/author/florian-hartig/</link>
-      <atom:link href="/author/florian-hartig/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/florian-hartig/</link>
+      <atom:link href="https://blasbenito.com/author/florian-hartig/index.xml" rel="self" type="application/rss+xml" />
     <description>Florian Hartig</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 17 Nov 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Florian Hartig</title>
-      <link>/author/florian-hartig/</link>
+      <link>https://blasbenito.com/author/florian-hartig/</link>
     </image>
     
     <item>
       <title>Explainable artificial intelligence enhances the ecological interpretability of black‐box species distribution models</title>
-      <link>/publication/2020_ryo_ecography/</link>
+      <link>https://blasbenito.com/publication/2020_ryo_ecography/</link>
       <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_ryo_ecography/</guid>
+      <guid>https://blasbenito.com/publication/2020_ryo_ecography/</guid>
       <description></description>
     </item>
     

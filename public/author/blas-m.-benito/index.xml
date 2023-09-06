@@ -2,141 +2,141 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blas M. Benito</title>
-    <link>/author/blas-m.-benito/</link>
-      <atom:link href="/author/blas-m.-benito/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/blas-m.-benito/</link>
+      <atom:link href="https://blasbenito.com/author/blas-m.-benito/index.xml" rel="self" type="application/rss+xml" />
     <description>Blas M. Benito</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Blas M. Benito</title>
-      <link>/author/blas-m.-benito/</link>
+      <link>https://blasbenito.com/author/blas-m.-benito/</link>
     </image>
     
     <item>
       <title>Biogeography of global drylands</title>
-      <link>/publication/2021_maestre_new_phytologist/</link>
+      <link>https://blasbenito.com/publication/2021_maestre_new_phytologist/</link>
       <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/2021_maestre_new_phytologist/</guid>
+      <guid>https://blasbenito.com/publication/2021_maestre_new_phytologist/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ecological Diversity within Rear-Edge: A Case Study from Mediterranean Quercus pyrenaica Willd.</title>
-      <link>/publication/2021_perez-luque_forests/</link>
+      <link>https://blasbenito.com/publication/2021_perez-luque_forests/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/2021_perez-luque_forests/</guid>
+      <guid>https://blasbenito.com/publication/2021_perez-luque_forests/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Explainable artificial intelligence enhances the ecological interpretability of black‐box species distribution models</title>
-      <link>/publication/2020_ryo_ecography/</link>
+      <link>https://blasbenito.com/publication/2020_ryo_ecography/</link>
       <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_ryo_ecography/</guid>
+      <guid>https://blasbenito.com/publication/2020_ryo_ecography/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Comment on “A global-scale ecological niche model to predict SARS-CoV-2 coronavirus infection rate”, author Coro</title>
-      <link>/publication/2020_contina_ecological_modelling/</link>
+      <link>https://blasbenito.com/publication/2020_contina_ecological_modelling/</link>
       <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_contina_ecological_modelling/</guid>
+      <guid>https://blasbenito.com/publication/2020_contina_ecological_modelling/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Don’t gamble the COVID-19 response on ecological hypotheses</title>
-      <link>/publication/2020_carlson_nature_ecology_and_evolution/</link>
+      <link>https://blasbenito.com/publication/2020_carlson_nature_ecology_and_evolution/</link>
       <pubDate>Wed, 29 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_carlson_nature_ecology_and_evolution/</guid>
+      <guid>https://blasbenito.com/publication/2020_carlson_nature_ecology_and_evolution/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Evaluating fossil charcoal representation in small peat bogs: Detailed Holocene fire records from southern Sweden</title>
-      <link>/publication/2020_cui_the_holocene/</link>
+      <link>https://blasbenito.com/publication/2020_cui_the_holocene/</link>
       <pubDate>Tue, 14 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_cui_the_holocene/</guid>
+      <guid>https://blasbenito.com/publication/2020_cui_the_holocene/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Late-spring frost risk between 1959 and 2017 decreased in North America but increased in Europe and Asia</title>
-      <link>/publication/2020_zohner_pnas/</link>
+      <link>https://blasbenito.com/publication/2020_zohner_pnas/</link>
       <pubDate>Mon, 11 May 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_zohner_pnas/</guid>
+      <guid>https://blasbenito.com/publication/2020_zohner_pnas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Species distribution models are inappropriate for COVID-19</title>
-      <link>/publication/2020_carlson_nature_ecology_and_evolution_b/</link>
+      <link>https://blasbenito.com/publication/2020_carlson_nature_ecology_and_evolution_b/</link>
       <pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_carlson_nature_ecology_and_evolution_b/</guid>
+      <guid>https://blasbenito.com/publication/2020_carlson_nature_ecology_and_evolution_b/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Holocene fire and vegetation dynamics in the Central Pyrenees (Spain)</title>
-      <link>/publication/2020_leunda_catena/</link>
+      <link>https://blasbenito.com/publication/2020_leunda_catena/</link>
       <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_leunda_catena/</guid>
+      <guid>https://blasbenito.com/publication/2020_leunda_catena/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Compositional turnover and variation in Eemian pollen sequences in Europe</title>
-      <link>/publication/2020_felde_vegetation_history_and_archaeobotany/</link>
+      <link>https://blasbenito.com/publication/2020_felde_vegetation_history_and_archaeobotany/</link>
       <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_felde_vegetation_history_and_archaeobotany/</guid>
+      <guid>https://blasbenito.com/publication/2020_felde_vegetation_history_and_archaeobotany/</guid>
       <description></description>
     </item>
     
     <item>
       <title>On the inadequacy of species distribution models for modelling the spread of SARS-CoV-2: response to Araújo and Naimi</title>
-      <link>/publication/2020_chipperfield_ecoevorxiv/</link>
+      <link>https://blasbenito.com/publication/2020_chipperfield_ecoevorxiv/</link>
       <pubDate>Sat, 28 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_chipperfield_ecoevorxiv/</guid>
+      <guid>https://blasbenito.com/publication/2020_chipperfield_ecoevorxiv/</guid>
       <description></description>
     </item>
     
     <item>
       <title>distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series</title>
-      <link>/publication/2020_benito_ecography_distantia/</link>
+      <link>https://blasbenito.com/publication/2020_benito_ecography_distantia/</link>
       <pubDate>Thu, 23 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_benito_ecography_distantia/</guid>
+      <guid>https://blasbenito.com/publication/2020_benito_ecography_distantia/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features</title>
-      <link>/publication/2020_benito_ecography_memoria/</link>
+      <link>https://blasbenito.com/publication/2020_benito_ecography_memoria/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_benito_ecography_memoria/</guid>
+      <guid>https://blasbenito.com/publication/2020_benito_ecography_memoria/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A multi-dating approach to age-modelling long continental records: The 135 ka El Cañizar de Villarquemado sequence (NE Spain)</title>
-      <link>/publication/2019_valero-garces_quaternary_geochronology/</link>
+      <link>https://blasbenito.com/publication/2019_valero-garces_quaternary_geochronology/</link>
       <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/2019_valero-garces_quaternary_geochronology/</guid>
+      <guid>https://blasbenito.com/publication/2019_valero-garces_quaternary_geochronology/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Long-term fire resilience of the Ericaceous Belt, Bale Mountains, Ethiopia</title>
-      <link>/publication/2019_gil_romera_biology_letters/</link>
+      <link>https://blasbenito.com/publication/2019_gil_romera_biology_letters/</link>
       <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/2019_gil_romera_biology_letters/</guid>
+      <guid>https://blasbenito.com/publication/2019_gil_romera_biology_letters/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Display Jupyter Notebooks with Academic</title>
-      <link>/post_examples/jupyter/</link>
+      <link>https://blasbenito.com/post_examples/jupyter/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>/post_examples/jupyter/</guid>
+      <guid>https://blasbenito.com/post_examples/jupyter/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.core.display import Image
 Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)
 &lt;/code&gt;&lt;/pre&gt;
@@ -177,79 +177,80 @@ date: 2019-09-01
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter nbconvert index.ipynb --to markdown --NbConvertApp.output_files_dir=.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-&lt;p&gt;This post was created with Jupyter. The orginal files can be found at &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&#34;&gt;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This post was created with Jupyter. The orginal files can be found at 
+&lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Potential changes in the distribution of Carnegiea gigantea under future scenarios</title>
-      <link>/publication/2018_albuquerque_peerj/</link>
+      <link>https://blasbenito.com/publication/2018_albuquerque_peerj/</link>
       <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/2018_albuquerque_peerj/</guid>
+      <guid>https://blasbenito.com/publication/2018_albuquerque_peerj/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Past and potential future population dynamics of three grouse species using ecological and whole genome coalescent modeling</title>
-      <link>/publication/2018_kozma_ecology_and_evolution/</link>
+      <link>https://blasbenito.com/publication/2018_kozma_ecology_and_evolution/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/2018_kozma_ecology_and_evolution/</guid>
+      <guid>https://blasbenito.com/publication/2018_kozma_ecology_and_evolution/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Phylogenetic age differences in tree assemblages across the Northern Hemisphere increase with long-term climate stability in unstable regions</title>
-      <link>/publication/2017_feng_global_ecology_and_biogeography/</link>
+      <link>https://blasbenito.com/publication/2017_feng_global_ecology_and_biogeography/</link>
       <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_feng_global_ecology_and_biogeography/</guid>
+      <guid>https://blasbenito.com/publication/2017_feng_global_ecology_and_biogeography/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Historical anthropogenic footprints in the distribution of threatened plants in China</title>
-      <link>/publication/2017_feng_biological_conservation/</link>
+      <link>https://blasbenito.com/publication/2017_feng_biological_conservation/</link>
       <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_feng_biological_conservation/</guid>
+      <guid>https://blasbenito.com/publication/2017_feng_biological_conservation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The ecological niche and distribution of Neanderthals during the Last Interglacial</title>
-      <link>/publication/2017_benito_journal_of_biogeography/</link>
+      <link>https://blasbenito.com/publication/2017_benito_journal_of_biogeography/</link>
       <pubDate>Mon, 01 May 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_benito_journal_of_biogeography/</guid>
+      <guid>https://blasbenito.com/publication/2017_benito_journal_of_biogeography/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Investigating Neanderthal dispersal above 55°N in Europe during the Last Interglacial Complex</title>
-      <link>/publication/2017_kellberg-nielsen_quaternary_international/</link>
+      <link>https://blasbenito.com/publication/2017_kellberg-nielsen_quaternary_international/</link>
       <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_kellberg-nielsen_quaternary_international/</guid>
+      <guid>https://blasbenito.com/publication/2017_kellberg-nielsen_quaternary_international/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Spring predictability explains different leaf‐out strategies in the woody floras of North America, Europe and East Asia</title>
-      <link>/publication/2017_zohner_ecology_letters/</link>
+      <link>https://blasbenito.com/publication/2017_zohner_ecology_letters/</link>
       <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/2017_zohner_ecology_letters/</guid>
+      <guid>https://blasbenito.com/publication/2017_zohner_ecology_letters/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Day length unlikely to constrain climate-driven shifts in leaf-out times of northern woody plants</title>
-      <link>/publication/2016_zohner_nature_climate_change/</link>
+      <link>https://blasbenito.com/publication/2016_zohner_nature_climate_change/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/publication/2016_zohner_nature_climate_change/</guid>
+      <guid>https://blasbenito.com/publication/2016_zohner_nature_climate_change/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Academic: the website builder for Hugo</title>
-      <link>/post_examples/getting-started/</link>
+      <link>https://blasbenito.com/post_examples/getting-started/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/post_examples/getting-started/</guid>
+      <guid>https://blasbenito.com/post_examples/getting-started/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Create a free website with Academic using Markdown, Jupyter, or RStudio. Choose a beautiful color theme and build anything with the Page Builder - over 40 &lt;em&gt;widgets&lt;/em&gt;, &lt;em&gt;themes&lt;/em&gt;, and &lt;em&gt;language packs&lt;/em&gt; included!&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;
 &lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Check out the latest &lt;strong&gt;demo&lt;/strong&gt;&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes, or 
@@ -394,129 +395,129 @@ date: 2019-09-01
     
     <item>
       <title>A 2.5‐million‐year perspective on coarse‐filter strategies for conserving nature&#39;s stage</title>
-      <link>/publication/2015_gill_conservation_biology/</link>
+      <link>https://blasbenito.com/publication/2015_gill_conservation_biology/</link>
       <pubDate>Tue, 28 Apr 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/2015_gill_conservation_biology/</guid>
+      <guid>https://blasbenito.com/publication/2015_gill_conservation_biology/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Supporting underrepresented forests in Mesoamerica</title>
-      <link>/publication/2015_albuquerque_naturaleza_and_conservacao/</link>
+      <link>https://blasbenito.com/publication/2015_albuquerque_naturaleza_and_conservacao/</link>
       <pubDate>Tue, 03 Mar 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/2015_albuquerque_naturaleza_and_conservacao/</guid>
+      <guid>https://blasbenito.com/publication/2015_albuquerque_naturaleza_and_conservacao/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Extreme habitat loss in a Mediterranean habitat: Maytenus senegalensis subsp. europaea</title>
-      <link>/publication/2015_mendoza-fernandez_plant_biosystems/</link>
+      <link>https://blasbenito.com/publication/2015_mendoza-fernandez_plant_biosystems/</link>
       <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/2015_mendoza-fernandez_plant_biosystems/</guid>
+      <guid>https://blasbenito.com/publication/2015_mendoza-fernandez_plant_biosystems/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Documenting, storing, and executing models in Ecology: A conceptual framework and real implementation in a global change monitoring program</title>
-      <link>/publication/2014_bonet_environmental_modelling_and_software/</link>
+      <link>https://blasbenito.com/publication/2014_bonet_environmental_modelling_and_software/</link>
       <pubDate>Sat, 01 Feb 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/2014_bonet_environmental_modelling_and_software/</guid>
+      <guid>https://blasbenito.com/publication/2014_bonet_environmental_modelling_and_software/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Forecasting plant range collapse in a mediterranean hotspot: when dispersal uncertainties matter</title>
-      <link>/publication/2014_benito_diversity_and_distributions/</link>
+      <link>https://blasbenito.com/publication/2014_benito_diversity_and_distributions/</link>
       <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/2014_benito_diversity_and_distributions/</guid>
+      <guid>https://blasbenito.com/publication/2014_benito_diversity_and_distributions/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Interdisciplinary Climate Change Collaborations Are Essential for Early‐Career Scientists</title>
-      <link>/publication/2013_gornish_eos/</link>
+      <link>https://blasbenito.com/publication/2013_gornish_eos/</link>
       <pubDate>Tue, 16 Apr 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/2013_gornish_eos/</guid>
+      <guid>https://blasbenito.com/publication/2013_gornish_eos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Comparing the performance of species distribution models of Zostera marina: Implications for conservation</title>
-      <link>/publication/2013_valle_journal_of_sea_research/</link>
+      <link>https://blasbenito.com/publication/2013_valle_journal_of_sea_research/</link>
       <pubDate>Fri, 15 Mar 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/2013_valle_journal_of_sea_research/</guid>
+      <guid>https://blasbenito.com/publication/2013_valle_journal_of_sea_research/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The impact of modelling choices in the predictive performance of richness maps derived from species‐distribution models: guidelines to build better diversity models</title>
-      <link>/publication/2013_benito_methods_in_ecology_and_evolution/</link>
+      <link>https://blasbenito.com/publication/2013_benito_methods_in_ecology_and_evolution/</link>
       <pubDate>Wed, 06 Mar 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/2013_benito_methods_in_ecology_and_evolution/</guid>
+      <guid>https://blasbenito.com/publication/2013_benito_methods_in_ecology_and_evolution/</guid>
       <description></description>
     </item>
     
     <item>
       <title>European Bird distribution is “well” represented by Special Protected Areas: Mission accomplished?</title>
-      <link>/publication/2013_albuquerque_biological_conservation/</link>
+      <link>https://blasbenito.com/publication/2013_albuquerque_biological_conservation/</link>
       <pubDate>Mon, 21 Jan 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/2013_albuquerque_biological_conservation/</guid>
+      <guid>https://blasbenito.com/publication/2013_albuquerque_biological_conservation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ModeleR: An enviromental model repository as knowledge base for experts</title>
-      <link>/publication/2012_perez-perez_expert_systems_with_applications/</link>
+      <link>https://blasbenito.com/publication/2012_perez-perez_expert_systems_with_applications/</link>
       <pubDate>Sat, 04 Feb 2012 00:00:00 +0000</pubDate>
-      <guid>/publication/2012_perez-perez_expert_systems_with_applications/</guid>
+      <guid>https://blasbenito.com/publication/2012_perez-perez_expert_systems_with_applications/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Habitat Fragmentation in Arid Zones: A Case Study of Linaria nigricans Under Land Use Changes (SE Spain)</title>
-      <link>/publication/2011_penas_environmental_management/</link>
+      <link>https://blasbenito.com/publication/2011_penas_environmental_management/</link>
       <pubDate>Sat, 26 Mar 2011 00:00:00 +0000</pubDate>
-      <guid>/publication/2011_penas_environmental_management/</guid>
+      <guid>https://blasbenito.com/publication/2011_penas_environmental_management/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Simulating potential effects of climatic warming on altitudinal patterns of key species in Mediterranean-alpine ecosystems</title>
-      <link>/publication/2011_benito_climate_change/</link>
+      <link>https://blasbenito.com/publication/2011_benito_climate_change/</link>
       <pubDate>Wed, 02 Feb 2011 00:00:00 +0000</pubDate>
-      <guid>/publication/2011_benito_climate_change/</guid>
+      <guid>https://blasbenito.com/publication/2011_benito_climate_change/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Conservation Status of the First Known Population of Polygala balansae in Europe</title>
-      <link>/publication/2010_lorite_annales_botanici_fennici/</link>
+      <link>https://blasbenito.com/publication/2010_lorite_annales_botanici_fennici/</link>
       <pubDate>Mon, 01 Mar 2010 00:00:00 +0000</pubDate>
-      <guid>/publication/2010_lorite_annales_botanici_fennici/</guid>
+      <guid>https://blasbenito.com/publication/2010_lorite_annales_botanici_fennici/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Past and present potential distribution of the Iberian Abies species: a phytogeographic approach using fossil pollen data and species distribution models </title>
-      <link>/publication/2010_alba-sanchez_diversity_and_distributions/</link>
+      <link>https://blasbenito.com/publication/2010_alba-sanchez_diversity_and_distributions/</link>
       <pubDate>Sun, 21 Feb 2010 00:00:00 +0000</pubDate>
-      <guid>/publication/2010_alba-sanchez_diversity_and_distributions/</guid>
+      <guid>https://blasbenito.com/publication/2010_alba-sanchez_diversity_and_distributions/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Assessing extinction-risk of endangered plants using species distribution models: a case study of habitat depletion caused by the spread of greenhouses</title>
-      <link>/publication/2009_benito_biodiversity_and_conservation/</link>
+      <link>https://blasbenito.com/publication/2009_benito_biodiversity_and_conservation/</link>
       <pubDate>Sat, 28 Feb 2009 00:00:00 +0000</pubDate>
-      <guid>/publication/2009_benito_biodiversity_and_conservation/</guid>
+      <guid>https://blasbenito.com/publication/2009_benito_biodiversity_and_conservation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Greenhouses, land use change, and predictive models: MaxEnt and Geomod working together</title>
-      <link>/publication/2008_penas_phyton/</link>
+      <link>https://blasbenito.com/publication/2008_penas_phyton/</link>
       <pubDate>Tue, 01 Jan 2008 00:00:00 +0000</pubDate>
-      <guid>/publication/2008_penas_phyton/</guid>
+      <guid>https://blasbenito.com/publication/2008_penas_phyton/</guid>
       <description></description>
     </item>
     

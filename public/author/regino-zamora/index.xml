@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Regino Zamora | Blas M. Benito</title>
-    <link>/author/regino-zamora/</link>
-      <atom:link href="/author/regino-zamora/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/regino-zamora/</link>
+      <atom:link href="https://blasbenito.com/author/regino-zamora/index.xml" rel="self" type="application/rss+xml" />
     <description>Regino Zamora</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Regino Zamora</title>
-      <link>/author/regino-zamora/</link>
+      <link>https://blasbenito.com/author/regino-zamora/</link>
     </image>
     
     <item>
       <title>Ecological Diversity within Rear-Edge: A Case Study from Mediterranean Quercus pyrenaica Willd.</title>
-      <link>/publication/2021_perez-luque_forests/</link>
+      <link>https://blasbenito.com/publication/2021_perez-luque_forests/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/2021_perez-luque_forests/</guid>
+      <guid>https://blasbenito.com/publication/2021_perez-luque_forests/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Documenting, storing, and executing models in Ecology: A conceptual framework and real implementation in a global change monitoring program</title>
-      <link>/publication/2014_bonet_environmental_modelling_and_software/</link>
+      <link>https://blasbenito.com/publication/2014_bonet_environmental_modelling_and_software/</link>
       <pubDate>Sat, 01 Feb 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/2014_bonet_environmental_modelling_and_software/</guid>
+      <guid>https://blasbenito.com/publication/2014_bonet_environmental_modelling_and_software/</guid>
       <description></description>
     </item>
     

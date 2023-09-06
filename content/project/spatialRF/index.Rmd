@@ -71,7 +71,6 @@ This package is reaching its final form, and big changes are not expected at thi
 
   + Open a new issue in the [Issues GitHub page of the package](https://github.com/BlasBenito/spatialRF/issues).
   + Send me an email explaining the issue and the error messages with enough detail at blasbenito at gmail dot com.
-  + Send a direct message to [my twitter account](https://twitter.com/blasbenito) explaining the issue.
   
 I will do my best to solve any issues ASAP!
 

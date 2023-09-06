@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fabio Suzart de Albuquerque | Blas M. Benito</title>
-    <link>/author/fabio-suzart-de-albuquerque/</link>
-      <atom:link href="/author/fabio-suzart-de-albuquerque/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/fabio-suzart-de-albuquerque/</link>
+      <atom:link href="https://blasbenito.com/author/fabio-suzart-de-albuquerque/index.xml" rel="self" type="application/rss+xml" />
     <description>Fabio Suzart de Albuquerque</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 01 Feb 2014 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Fabio Suzart de Albuquerque</title>
-      <link>/author/fabio-suzart-de-albuquerque/</link>
+      <link>https://blasbenito.com/author/fabio-suzart-de-albuquerque/</link>
     </image>
     
     <item>
       <title>Documenting, storing, and executing models in Ecology: A conceptual framework and real implementation in a global change monitoring program</title>
-      <link>/publication/2014_bonet_environmental_modelling_and_software/</link>
+      <link>https://blasbenito.com/publication/2014_bonet_environmental_modelling_and_software/</link>
       <pubDate>Sat, 01 Feb 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/2014_bonet_environmental_modelling_and_software/</guid>
+      <guid>https://blasbenito.com/publication/2014_bonet_environmental_modelling_and_software/</guid>
       <description></description>
     </item>
     

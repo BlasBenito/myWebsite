@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Xiuhai Zhao | Blas M. Benito</title>
-    <link>/author/xiuhai-zhao/</link>
-      <atom:link href="/author/xiuhai-zhao/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://blasbenito.com/author/xiuhai-zhao/</link>
+      <atom:link href="https://blasbenito.com/author/xiuhai-zhao/index.xml" rel="self" type="application/rss+xml" />
     <description>Xiuhai Zhao</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 11 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/avatar.jpg</url>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Xiuhai Zhao</title>
-      <link>/author/xiuhai-zhao/</link>
+      <link>https://blasbenito.com/author/xiuhai-zhao/</link>
     </image>
     
     <item>
       <title>Late-spring frost risk between 1959 and 2017 decreased in North America but increased in Europe and Asia</title>
-      <link>/publication/2020_zohner_pnas/</link>
+      <link>https://blasbenito.com/publication/2020_zohner_pnas/</link>
       <pubDate>Mon, 11 May 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/2020_zohner_pnas/</guid>
+      <guid>https://blasbenito.com/publication/2020_zohner_pnas/</guid>
       <description></description>
     </item>
     

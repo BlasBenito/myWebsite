@@ -29,19 +29,44 @@ subtitle = ""
 [[feature]]
   icon = "chart-line"
   icon_pack = "fas"
-  name = "Data Science"
+  name = "Data Analysis and Reporting"
+  description = "100%"  
+  
+[[feature]]
+  icon = "satellite"
+  icon_pack = "fas"
+  name = "Remote Sensing"
   description = "100%"  
   
 [[feature]]
   icon = "sitemap"
   icon_pack = "fas"
-  name = "Machine Learning"
+  name = "Machine Learning and Statistics"
   description = "100%"
   
 [[feature]]
-  icon = "people-group"
+  icon = "users"
   icon_pack = "fas"
   name = "Team leadership"
+  description = "100%"
+  
+[[feature]]
+  icon = "database"
+  icon_pack = "fas"
+  name = "Data Engineering"
+  description = "100%"
+  
+  
+[[feature]]
+  icon = "unlock"
+  icon_pack = "fas"
+  name = "Problem Solving"
+  description = "100%"
+  
+[[feature]]
+  icon = "chalkboard-teacher"
+  icon_pack = "fas"
+  name = "Communication"
   description = "100%"
 
 

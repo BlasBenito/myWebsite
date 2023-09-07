@@ -8,7 +8,7 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 15  # Order that this section will appear.
 
-title = "Hello there! I'm Blas, a PhD in Computational Ecology and Spatial Data Scientist in AgTech. My passion lies in crafting automated solutions that amplify crop health and sustainability."
+title = "<span style='font-size: 35px;'>Hello there! I'm Blas, a PhD in Computational Ecology and Spatial Data Scientist in AgTech. My passion lies in crafting automated solutions that enhance crop health and sustainability</span>"
 subtitle = ""
 
 [design]
@@ -47,7 +47,7 @@ subtitle = ""
  css_style = ""
  
  # CSS class.
- css_class = ""
+ css_class = ".custom-title {font-size: 10px}"
 +++
 
 &nbsp;

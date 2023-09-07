@@ -18,41 +18,31 @@ subtitle = ""
   icon = "r-project"
   icon_pack = "fab"
   name = "R programming"
-  description = "90%"
+  description = "100%"
   
 [[feature]]
   icon = "globe-europe"
   icon_pack = "fas"
   name = "Geographic Information Systems"
-  description = "90%"
+  description = "100%"
   
 [[feature]]
   icon = "chart-line"
   icon_pack = "fas"
   name = "Data Science"
-  description = "80%"  
+  description = "100%"  
   
 [[feature]]
   icon = "sitemap"
   icon_pack = "fas"
   name = "Machine Learning"
-  description = "80%"
+  description = "100%"
   
 [[feature]]
-  icon = "th"
+  icon = "people-group"
   icon_pack = "fas"
-  name = "Dynamic simulation"
-  description = "80%"  
-  
-[[feature]]
-  icon = "creative-commons"
-  icon_pack = "fab"
-  name = "Reproducible research"
-  description = "90%"  
-  
-  
-
-  
+  name = "Team leadership"
+  description = "100%"
 
 
 # Uncomment to use emoji icons.

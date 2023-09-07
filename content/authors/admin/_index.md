@@ -22,6 +22,7 @@ email: "blasbenito at gmail dot com"
 
 interests:
 - Spatial Data Science and Engineering
+- Ecology of the soil microbiome
 - Soil/crop mapping and modeling
 - Machine Learning and Remote Sensing in AgTech
 - Scientific code development
@@ -62,7 +63,7 @@ user_groups:
 
 I am a Spatial Data Scientist and Engineer by trade, and a PhD in Computational Ecology and MSc in Geographic Information Systems by education. 
 
-I currently serve as the leader of the Environmental Data Team at [Biome Makers Inc](www.biomemakers.com). In this role, I am responsible for designing and developing an Environmental Data Infrastructure to enhance our flagship product, BeCrop®,  as well as conducting research and development in the field of remote sensing and machine learning for the advancement of smart farming technologies.
+I currently serve as the leader of the Environmental Data Team at [Biome Makers Inc](www.biomemakers.com). In this role, I am responsible for designing and developing an Environmental Data Infrastructure to enhance our flagship product, BeCrop®, as well as conducting research and development in the applications of remote sensing and machine learning to smart farming tech.
 
 ## My Tech Stack
 

@@ -59,7 +59,7 @@ date_format = "Jan 2006"
   company_url = "https://maestrelab.com/en/"
   location = "Alicante, Spain"
   date_start = "2020-01-07"
-  date_end = ""
+  date_end = "2021-12-31"
   description = """Improving our understanding on the biogeography and plant richness of the global drylands."""
   
 [[experience]]
@@ -69,7 +69,7 @@ date_format = "Jan 2006"
   location = "US and Spain"
   date_start = "2022-01-03"
   date_end = ""
-  description = """Product development, precision agriculture, soil and crop mapping, data science and engineering."""
+  description = """Leader of the Environmental Data Team; design and development of a Environmental Data Infrastructure; remote sensing and machine learning; high-resolution soil microbiome modeling and mapping; product development."""
 
 
 

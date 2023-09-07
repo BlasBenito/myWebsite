@@ -41,7 +41,7 @@ subtitle = ""
 [[feature]]
   icon = "sitemap"
   icon_pack = "fas"
-  name = "Machine Learning and Statistics"
+  name = "Machine Learning & Statistics"
   description = "100%"
   
 [[feature]]
@@ -56,6 +56,12 @@ subtitle = ""
   name = "Data Engineering"
   description = "100%"
   
+[[feature]]
+  icon = "language"
+  icon_pack = "fas"
+  name = "English"
+  description = "100%"
+  
   
 [[feature]]
   icon = "unlock"
@@ -67,6 +73,18 @@ subtitle = ""
   icon = "chalkboard-teacher"
   icon_pack = "fas"
   name = "Communication"
+  description = "100%"
+  
+[[feature]]
+  icon = "microscope"
+  icon_pack = "fas"
+  name = "Research & Development"
+  description = "100%"
+  
+[[feature]]
+  icon = "project-diagram"
+  icon_pack = "fas"
+  name = "Project Management"
   description = "100%"
 
 

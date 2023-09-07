@@ -31,8 +31,8 @@ date_format = "Jan 2006"
   - Completed a Master's in Geographic Information Systems.
   - Completed a Master's en Environmental Auditing.
   - Developed technical skills in GIS and R programming.
-  - Designed and taught a 60 hours Geographic Information Systems Master's course for the Universities of Granada (Spain) and Sucre (Bolivia).
-  - Taught (25 hours, 120 students) of General Botany for the Biology Degree.
+  - Designed and instructed a full Master's course on Geographic Information Systems (60 hours, 25 students).
+  - Instructed two undergraduate courses (25 hours, 120 students) .
   """
   
 [[experience]]
@@ -48,10 +48,10 @@ date_format = "Jan 2006"
   - Executed a €8000 contract with the Andalusian Government to enhance their Biodiversity Data Infrastructure.
   - Executed a €250000 grant to study the effects of Climate Change on the flora of Sierra Nevada National Park.
   - Published 11 papers in peer-reviewed international journals.
-  - Participated in an International Consortium to model and protect the plant diversity in Central America.
-  - Designed and taught (60 hours, 25 students) the Master's course 'Ecoinformatics'.
-  - Taught the courses Applied Ecology, Communities and Systems Ecology, and Foundations of Applied Ecology (40 hours, 200 students).
+  - Designed and instructed the Master's course 'Ecoinformatics' (60 hours, 25 students).
+  - Instructed 3 undergraduate ecology courses (40 hours, 200 students).
   - Enhanced my skills as independent researcher.
+  - Participated in an International Consortium to model and protect the plant diversity in Central America.
   """
   
 [[experience]]
@@ -62,7 +62,7 @@ date_format = "Jan 2006"
   date_start = "2017-01-01"
   date_end = "2017-12-31"
   description = """
-  - Designed and taught 1 editions (20 hours, 20 students) of the course "Practical Introduction to Species Distribution Modelling".
+  - Designed and instructed the post-graduate course "Practical Introduction to Species Distribution Modelling" (20 hours, 20 students).
   """
   
 [[experience]]
@@ -73,7 +73,7 @@ date_format = "Jan 2006"
   date_start = "2011-01-01"
   date_end = "2019-12-31"
   description = """
-  - Designed and taught 9 editions (184 hours, 225 students) of the course "Workshop in Ecological Niche Modelling".
+  - Designed and instructed 9 editions of the post-graduate course "Workshop in Ecological Niche Modelling" (184 hours, 225 students).
   """
   
 [[experience]]

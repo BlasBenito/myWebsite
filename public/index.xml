@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blas M. Benito</title>
+    <title>Blas M. Benito, PhD</title>
     <link>https://blasbenito.com/</link>
       <atom:link href="https://blasbenito.com/index.xml" rel="self" type="application/rss+xml" />
-    <description>Blas M. Benito</description>
+    <description>Blas M. Benito, PhD</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
     <image>
       <url>https://blasbenito.com/media/avatar.jpg</url>
-      <title>Blas M. Benito</title>
+      <title>Blas M. Benito, PhD</title>
       <link>https://blasbenito.com/</link>
     </image>
     

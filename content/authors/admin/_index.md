@@ -63,7 +63,7 @@ user_groups:
 
 I am a Spatial Data Scientist and Engineer by trade, and a PhD in Computational Ecology and MSc in Geographic Information Systems by education. 
 
-I currently serve team lead of the Environmental Data Team at [Biome Makers Inc](www.biomemakers.com). In this role, I am responsible for designing and developing an Environmental Data Infrastructure to enhance our flagship product, BeCrop®, as well as conducting research and development in the applications of remote sensing and machine learning to smart farming tech.
+I currently serve as the team lead of the Environmental Data Team at [Biome Makers Inc](www.biomemakers.com). In this role, I am responsible for designing and developing an Environmental Data Infrastructure to enhance our flagship product, BeCrop®,as well as conducting research and development in remote sensing and machine learning applications to smart farming tech.
 
 ## My Tech Stack
 

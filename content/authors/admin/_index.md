@@ -67,7 +67,7 @@ I currently serve as the team lead of the Environmental Data Team at [Biome Make
 
 ## My Tech Stack
 
-My tech stack is build entirely on open-source tools: I rely on [R](https://cran.r-project.org/) and [git](https://git-scm.com/)+[GitHub](https://github.com/) for collaborative software development and version control. For pipeline design I harness the power of [targets](https://docs.ropensci.org/targets/), and to encapsulate code I employ [renv](https://rstudio.github.io/renv/) and [docker](https://www.docker.com/).
+My tech stack is built entirely on open-source tools: I rely on [R](https://cran.r-project.org/) and [git](https://git-scm.com/)+[GitHub](https://github.com/) for collaborative software development and version control. For pipeline design, I harness the power of [targets](https://docs.ropensci.org/targets/), and to encapsulate code I employ [renv](https://rstudio.github.io/renv/) and [docker](https://www.docker.com/).
 
 For GIS tasks, I turn to industry-standard tools like [GRASS GIS](https://grass.osgeo.org/), [Quantum GIS](https://www.qgis.org/en/site/), and [PostGIS](https://postgis.net/).
 

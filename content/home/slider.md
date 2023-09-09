@@ -51,4 +51,22 @@ height = "250px"
   overlay_color = "#333"  # An HTML color value.
   overlay_img = "headers/tromso.jpg"  # Image path relative to your `static/media/` folder.
   overlay_filter = 0  # Darken the image. Value in range 0-1.
+  
+[[item]]
+  title = ""
+  content = ""
+  align = ""
+
+  overlay_color = "#333"  # An HTML color value.
+  overlay_img = "headers/neanderthal.jpg"  # Image path relative to your `static/media/` folder.
+  overlay_filter = 0  # Darken the image. Value in range 0-1.
+  
+[[item]]
+  title = ""
+  content = ""
+  align = ""
+
+  overlay_color = "#333"  # An HTML color value.
+  overlay_img = "headers/sdm.jpg"  # Image path relative to your `static/media/` folder.
+  overlay_filter = 0  # Darken the image. Value in range 0-1.
 +++

@@ -62,9 +62,13 @@ user_groups:
 - Visitors
 ---
 
-## About Me
+## Hello there! 
 
-I'm a spatial data scientist and engineer in AgTech, holding a PhD in computational ecology and an MSc in geographic information systems. My expertise lies at the intersection of spatial and temporal modeling, soil and plant ecology, remote sensing, machine learning, and environmental dynamics and monitoring.
+My name is Blas, and I live and work in Spain.
+
+I'm a spatial data scientist and engineer in AgTech, holding a PhD in computational ecology and an MSc in geographic information systems. 
+
+My expertise lies at the intersection of spatial and temporal modeling, soil and plant ecology, remote sensing, machine learning, and environmental dynamics and monitoring.
 
 I'm deeply passionate about crafting automated data and modeling pipelines to tackle complex environmental challenges.
 

@@ -62,13 +62,13 @@ user_groups:
 - Visitors
 ---
 
-## Hello there! 
+Hello there! 
 
-My name is Blas, and I live and work in Spain.
-
-I'm a spatial data scientist and engineer in AgTech, holding a PhD in computational ecology and an MSc in geographic information systems. 
+My name is Blas, and I am a spatial data scientist and engineer in AgTech, holding a PhD in computational ecology and an MSc in geographic information systems. 
 
 My expertise lies at the intersection of spatial and temporal modeling, soil and plant ecology, remote sensing, machine learning, and environmental dynamics and monitoring.
+
+## My work
 
 I'm deeply passionate about crafting automated data and modeling pipelines to tackle complex environmental challenges.
 
@@ -88,7 +88,9 @@ For developing and deploying REST APIs, I turn to [plumber](https://www.rplumber
 
 ## My Academic Journey
 
-Before delving into AgTech, I honed my research and technical skills during a successful academic career in Computational Ecology. I worked in world-class labs in Spain ([IISTA](http://www.iista.es/en/) and [Maestre Lab](https://maestrelab.com/en/)), Denmark ([Jens-Christian Svenning Lab](https://pure.au.dk/portal/en/svenning@biology.au.dk)), and Norway ([EECRG](https://www.uib.no/en/rg/EECRG)). My research  primarily focused on [unveiling the environmental drivers shaping the distribution of biological diversity in space and time](https://scholar.google.es/citations?user=WBTp0McAAAAJ&hl=en). During this journey, I developed scientific R packages for various purposes, such as [time-series comparison](https://CRAN.R-project.org/package=distantia) and [analysis of lagged effects](https://CRAN.R-project.org/package=memoria), [spatial modeling with Random Forest](https://CRAN.R-project.org/package=spatialRF), and [ecological simulation](https://CRAN.R-project.org/package=virtualPollen).
+Before delving into AgTech, I honed my research and technical skills during a successful academic career in Computational Ecology. I worked in world-class labs in Spain ([IISTA](http://www.iista.es/en/) and [Maestre Lab](https://maestrelab.com/en/)), Denmark ([Jens-Christian Svenning Lab](https://pure.au.dk/portal/en/svenning@biology.au.dk)), and Norway ([EECRG](https://www.uib.no/en/rg/EECRG)). 
+
+My research  primarily focused on [unveiling the environmental drivers shaping the distribution of biological diversity in space and time](https://scholar.google.es/citations?user=WBTp0McAAAAJ&hl=en). During this journey, I developed scientific R packages for various purposes, such as [time-series comparison](https://CRAN.R-project.org/package=distantia) and [analysis of lagged effects](https://CRAN.R-project.org/package=memoria), [spatial modeling with Random Forest](https://CRAN.R-project.org/package=spatialRF), and [ecological simulation](https://CRAN.R-project.org/package=virtualPollen).
 
 ## Beyond Work
 

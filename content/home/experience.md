@@ -74,6 +74,7 @@ date_format = "Jan 2006"
   date_end = "2019-12-31"
   description = """
   - Designed and instructed 9 editions of the post-graduate course "Workshop in Ecological Niche Modelling" (184 hours, 225 students).
+  - My lectures were recorded and made available in the outreach plataform of the National Research Council of Spain (CSIC).
   """
   
 [[experience]]
@@ -85,6 +86,7 @@ date_format = "Jan 2006"
   date_end = "2016-09-30"
   description = """
   - Published 8 papers in peer-reviewed international journals.
+  - [One paper](https://onlinelibrary.wiley.com/doi/abs/10.1111/jbi.12845) received the "Most Downloaded Paper Award" and was [highlighted as an Editor's Pick in Science](https://www.science.org/doi/10.1126/science.2017.355.6324.twil).
   - Executed a €300000 research project by the AU-Ideas Foundation (Aarhus University).
   - Expanded considerably my international collaboration network.
   - Contributed positively to the success of a world-class laboratory.
@@ -100,6 +102,7 @@ date_format = "Jan 2006"
   description = """
   - Executed a €199000 project by the Norwegian National Science Foundation (NFR).
   - Published 6 papers in peer-reviewed international journals.
+  - [One paper](https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04772) received the Most Downloaded Paper Award and was highlighted as an Editor's Pick by the Journal
   - Developed 3 R packages with a total of 53000 downloads for time-series comparison and analysis. 
   - Enhanced my skills in time-series analysis and developer of R packages.
   ."""
@@ -113,6 +116,7 @@ date_format = "Jan 2006"
   date_end = "2021-12-31"
   description = """
   - Published 15 papers in peer-reviewed international journals.
+  - [One paper](https://nph.onlinelibrary.wiley.com/doi/10.1111/nph.17395) received a "Most Downloaded Paper Award".
   - Developed the R package spatialRF for spatial modelling, with 8000 downloads.
   """
   

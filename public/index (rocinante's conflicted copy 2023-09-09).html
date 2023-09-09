@@ -1,0 +1,4884 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Blas M. Benito">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Blas M. Benito">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://blasbenito.com/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Blas M. Benito, PhD">
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu2d6899fea498e6f15fc5d1dc33ad82ba_13662_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu2d6899fea498e6f15fc5d1dc33ad82ba_13662_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://blasbenito.com/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Blas M. Benito, PhD">
+  <meta property="og:url" content="https://blasbenito.com/">
+  <meta property="og:title" content="Blas M. Benito, PhD">
+  <meta property="og:description" content="Blas M. Benito"><meta property="og:image" content="https://blasbenito.com/media/avatar.jpg">
+  <meta property="twitter:image" content="https://blasbenito.com/media/avatar.jpg"><meta property="og:locale" content="en-us">
+  
+    <meta property="og:updated_time" content="2030-06-01T13:00:00&#43;00:00">
+  
+
+  
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://blasbenito.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "url": "https://blasbenito.com/"
+}
+</script>
+
+
+  
+
+
+  
+  
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" integrity="sha256-5VhCqFam2Cn+yjw61zbBNrbHVJ6SRydPeKopYlngbiQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" integrity="sha256-zQ0LblD/Af8vOppw18+2anxsuaz3pWYyVWi+bTvTH8Q=" crossorigin="anonymous">
+  
+  <script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#2962ff",
+          "text": "rgb(255, 255, 255)"
+        },
+        "button": {
+          "background": "rgb(255, 255, 255)",
+          "text": "#2962ff"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "https://www.cookiesandyou.com"
+      }
+    })});
+  </script>
+
+
+
+  
+
+
+
+
+
+  <title>Blas M. Benito, PhD</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#navbar-main" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Blas M. Benito, PhD</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Blas M. Benito, PhD</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts" data-target="#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects" data-target="#projects"><span>Software</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured" data-target="#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+<span class="js-widget-page d-none"></span>
+
+
+
+
+
+  
+  
+  
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+      
+    
+  
+
+  
+    
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="demo" class="home-section wg-blank   bg-image parallax .custom-title {font-size: 10px}" style="background-image:  url(&#39;https://blasbenito.com/media/headers/evi.jpg&#39;);background-size: cover;background-position: center;padding: 20px 0 20px 0;" >
+    <div class="container">
+      
+
+
+<div class="row">
+  
+    <div class="col-lg-12">
+      <h1><span style='font-size: 35px;'>Hello there! I&rsquo;m Blas, a PhD in Computational Ecology and Spatial Data Scientist in AgTech. My passion lies in crafting automated solutions that enhance crop health and sustainability</span></h1>
+      
+      <p> </p>
+
+    </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="about" class="home-section wg-about   "  >
+    <div class="container">
+      
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-12 col-lg-4">
+    <div id="profile">
+
+      
+      
+      <img class="avatar avatar-circle" src="/author/blas-m.-benito/avatar_hu540359786128d310fe40f64bfadab7c8_179471_270x270_fill_q90_lanczos_center.jpg" alt="Blas M. Benito">
+      
+
+      <div class="portrait-title">
+        <h2>Blas M. Benito</h2>
+        <h3>Data Scientist and Team Lead</h3>
+
+        
+        <h3>
+          <a href="https://biomemakers.com/" target="_blank" rel="noopener">
+          <span>Biome Makers Inc.</span>
+          </a>
+        </h3>
+        
+      </div>
+
+      <ul class="network-icon" aria-hidden="true">
+        
+        
+        
+        
+          
+        
+        
+        
+        
+        
+        <li>
+          <a href="mailto:blasbenito@gmail.com" >
+            <i class="fas fa-envelope big-icon"></i>
+          </a>
+        </li>
+        
+        
+        
+        
+          
+        
+        
+        
+        
+        
+          
+        
+        <li>
+          <a href="https://fosstodon.org/@blasbenito" target="_blank" rel="noopener">
+            <i class="fab fa-mastodon big-icon"></i>
+          </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+          
+        
+        <li>
+          <a href="https://scholar.google.com/citations?user=WBTp0McAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+            <i class="ai ai-google-scholar big-icon"></i>
+          </a>
+        </li>
+        
+        
+        
+        
+          
+        
+        
+        
+        
+        
+          
+        
+        <li>
+          <a href="https://github.com/BlasBenito" target="_blank" rel="noopener">
+            <i class="fab fa-github big-icon"></i>
+          </a>
+        </li>
+        
+        
+        
+        
+          
+        
+        
+        
+        
+        
+          
+        
+        <li>
+          <a href="https://orcid.org/0000-0001-5105-7232" target="_blank" rel="noopener">
+            <i class="fab fa-fa-orcidhttps://ghr.nlm.nih.gov/condition/leigh-syndrome big-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+
+    </div>
+  </div>
+  <div class="col-12 col-lg-8">
+
+    
+    <h1>Bio</h1>
+
+    <h2 id="about-me">About Me</h2>
+<p>I am a Spatial Data Scientist and Engineer in AgTech by trade, and a PhD in Computational Ecology and MSc in Geographic Information Systems by education.</p>
+<p>I currently serve as the team lead of the Environmental Data Team at 
+<a href="www.biomemakers.com">Biome Makers Inc</a>. In this role, I am responsible for designing and developing an Environmental Data Infrastructure to enhance our flagship product, BeCrop®, and conduct research and development in remote sensing and machine learning applications to smart farming tech.</p>
+<h2 id="my-tech-stack">My Tech Stack</h2>
+<p>My tech stack is built entirely on open-source tools: I rely on 
+<a href="https://cran.r-project.org/" target="_blank" rel="noopener">R</a> and 
+<a href="https://git-scm.com/" target="_blank" rel="noopener">git</a>+
+<a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> for collaborative software development and version control. For pipeline design, I harness the power of 
+<a href="https://docs.ropensci.org/targets/" target="_blank" rel="noopener">targets</a>, and to encapsulate code I employ 
+<a href="https://rstudio.github.io/renv/" target="_blank" rel="noopener">renv</a> and 
+<a href="https://www.docker.com/" target="_blank" rel="noopener">docker</a>.</p>
+<p>For GIS tasks, I turn to industry-standard tools like 
+<a href="https://grass.osgeo.org/" target="_blank" rel="noopener">GRASS GIS</a>, 
+<a href="https://www.qgis.org/en/site/" target="_blank" rel="noopener">Quantum GIS</a>, and 
+<a href="https://postgis.net/" target="_blank" rel="noopener">PostGIS</a>.</p>
+<p>My data management and processing are handled by 
+<a href="https://www.postgresql.org/" target="_blank" rel="noopener">PostgreSQL</a>, 
+<a href="https://duckdb.org/" target="_blank" rel="noopener">DuckDB</a>, 
+<a href="https://arrow.apache.org/" target="_blank" rel="noopener">Apache Arrow</a>, and 
+<a href="https://spark.apache.org/" target="_blank" rel="noopener">Apache Spark</a>.</p>
+<p>Computationally-intensive pipelines find their home in my tiny home-cluster managed by 
+<a href="https://slurm.schedmd.com/documentation.html" target="_blank" rel="noopener">slurm</a>.</p>
+<p>For developing and deploying REST APIs, I turn to 
+<a href="https://www.rplumber.io/" target="_blank" rel="noopener">plumber</a>, while interactive apps are crafted with 
+<a href="https://shiny.posit.co/" target="_blank" rel="noopener">Shiny</a>. My interactive reports come to life using either 
+<a href="https://rmarkdown.rstudio.com/" target="_blank" rel="noopener">Rmarkdown</a> or 
+<a href="https://quarto.org/docs/computations/r.html" target="_blank" rel="noopener">Quarto</a>.</p>
+<h2 id="my-academic-journey">My Academic Journey</h2>
+<p>Before delving into AgTech, I honed my research and technical skills during a successful academic career in Computational Ecology. I worked in world-class labs in Spain (
+<a href="http://www.iista.es/en/" target="_blank" rel="noopener">IISTA</a> and 
+<a href="https://maestrelab.com/en/" target="_blank" rel="noopener">Maestre Lab</a>), Denmark (
+<a href="https://pure.au.dk/portal/en/svenning@biology.au.dk" target="_blank" rel="noopener">Jens-Christian Svenning Lab</a>), and Norway (
+<a href="https://www.uib.no/en/rg/EECRG" target="_blank" rel="noopener">EECRG</a>). My research  primarily focused on 
+<a href="https://scholar.google.es/citations?user=WBTp0McAAAAJ&amp;hl=en" target="_blank" rel="noopener">unveiling the environmental drivers shaping the distribution of biological diversity in space and time</a>. During this journey, I developed scientific R packages for various purposes, such as 
+<a href="https://CRAN.R-project.org/package=distantia" target="_blank" rel="noopener">time-series comparison</a> and 
+<a href="https://CRAN.R-project.org/package=memoria" target="_blank" rel="noopener">analysis of lagged effects</a>, 
+<a href="https://CRAN.R-project.org/package=spatialRF" target="_blank" rel="noopener">spatial modeling with Random Forest</a>, and 
+<a href="https://CRAN.R-project.org/package=virtualPollen" target="_blank" rel="noopener">ecological simulation</a>.</p>
+<h2 id="beyond-work">Beyond Work</h2>
+<p>In my leisure time, I cherish moments with my family, tinker on the piano with enthusiasm (regardless of the results!), embrace the serenity of the sea on my stand-up paddle board, and continue my passion for developing R packages.</p>
+
+
+    <div class="row">
+
+      
+      <div class="col-md-5">
+        <h3>Interests</h3>
+        <ul class="ul-interests">
+          
+          <li>Spatial Data Science and Engineering</li>
+          
+          <li>Ecology of the soil microbiome</li>
+          
+          <li>Soil/crop mapping and modeling</li>
+          
+          <li>Machine Learning and Remote Sensing in AgTech</li>
+          
+          <li>Scientific code development</li>
+          
+          <li>Automated data and modeling pipelines</li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <div class="col-md-7">
+        <h3>Education</h3>
+        <ul class="ul-edu fa-ul">
+          
+          <li>
+            <i class="fa-li fas fa-graduation-cap"></i>
+            <div class="description">
+              <p class="course">Ph.D. in Computational Ecology, 2006 - 2009</p>
+              <p class="institution">University of Granada</p>
+            </div>
+          </li>
+          
+          <li>
+            <i class="fa-li fas fa-graduation-cap"></i>
+            <div class="description">
+              <p class="course">UNIGIS International Masters Degree in Geographical Information Sys-tems, 2007 - 2009</p>
+              <p class="institution">University of Girona</p>
+            </div>
+          </li>
+          
+          <li>
+            <i class="fa-li fas fa-graduation-cap"></i>
+            <div class="description">
+              <p class="course">Masters Degree in Management and Environmental Auditing, 2005 - 2006</p>
+              <p class="institution">University of Cadiz</p>
+            </div>
+          </li>
+          
+          <li>
+            <i class="fa-li fas fa-graduation-cap"></i>
+            <div class="description">
+              <p class="course">Degree in Biology, 1999 - 2003</p>
+              <p class="institution">University of Granada</p>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+      
+
+    </div>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="skills" class="home-section wg-featurette   "  >
+    <div class="container">
+      
+
+
+<div class="row featurette">
+  
+  <div class="col-md-12 section-heading">
+    <h1>Skills</h1>
+    
+  </div>
+  
+
+  
+
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fab fa-r-project"></i></div>
+    
+    <h3>R programming</h3>
+    <p>100%</p>
+  </div>
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fas fa-globe-europe"></i></div>
+    
+    <h3>Geographic Information Systems</h3>
+    <p>100%</p>
+  </div>
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fas fa-chart-line"></i></div>
+    
+    <h3>Data Analysis and Reporting</h3>
+    <p>100%</p>
+  </div>
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fas fa-satellite"></i></div>
+    
+    <h3>Remote Sensing</h3>
+    <p>100%</p>
+  </div>
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fas fa-sitemap"></i></div>
+    
+    <h3>Machine Learning &amp; Statistics</h3>
+    <p>100%</p>
+  </div>
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fas fa-users"></i></div>
+    
+    <h3>Team leadership</h3>
+    <p>100%</p>
+  </div>
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fas fa-database"></i></div>
+    
+    <h3>Data Engineering</h3>
+    <p>100%</p>
+  </div>
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fas fa-language"></i></div>
+    
+    <h3>English</h3>
+    <p>100%</p>
+  </div>
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fas fa-unlock"></i></div>
+    
+    <h3>Problem Solving</h3>
+    <p>100%</p>
+  </div>
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+    
+    <h3>Communication</h3>
+    <p>100%</p>
+  </div>
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fas fa-microscope"></i></div>
+    
+    <h3>Research &amp; Development</h3>
+    <p>100%</p>
+  </div>
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-4">
+    
+    <div class="featurette-icon"><i class="fas fa-project-diagram"></i></div>
+    
+    <h3>Project Management</h3>
+    <p>100%</p>
+  </div>
+  
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="experience" class="home-section wg-experience   "  >
+    <div class="container">
+      
+
+
+
+<div class="row">
+  <div class="col-12 col-lg-4 section-heading">
+    <h1>Experience</h1>
+    
+  </div>
+  <div class="col-12 col-lg-8">
+    
+
+    
+    
+    
+    <div class="row experience">
+      
+      <div class="col-auto text-center flex-column d-none d-sm-flex">
+        <div class="row h-50">
+          <div class="col ">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+        <div class="m-2">
+          <span class="badge badge-pill border exp-fill">&nbsp;</span>
+        </div>
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+      </div>
+      
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title exp-title text-muted mt-0 mb-1">Data Scientist and Team Lead</h4>
+            <h4 class="card-title exp-company text-muted my-0"><a href="https://biomemakers.com" target="_blank" rel="noopener">Biome Makers Inc.</a></h4>
+            <div class="text-muted exp-meta">
+              Jan 2022 –
+              
+                Present
+              
+              
+                <span class="middot-divider"></span>
+                <span>US and Spain</span>
+              
+            </div>
+            <div class="card-text"><ul>
+<li>Founder and lead of the Environmental Data Team.</li>
+<li>Design and development of an automated Environmental Data Infrastructure to enhance the company flagship products.</li>
+<li>Development of 5 R packages to improve the workflow within the Data Science department.</li>
+<li>Introduced remote-sensing as a tool for product research and development.</li>
+<li>Acquired the skillset to put models and workflows in production.</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row experience">
+      
+      <div class="col-auto text-center flex-column d-none d-sm-flex">
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+        <div class="m-2">
+          <span class="badge badge-pill border ">&nbsp;</span>
+        </div>
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+      </div>
+      
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title exp-title text-muted mt-0 mb-1">Staff researcher</h4>
+            <h4 class="card-title exp-company text-muted my-0"><a href="https://www.ua.es/en/" target="_blank" rel="noopener">University of Alicante</a></h4>
+            <div class="text-muted exp-meta">
+              Jan 2020 –
+              
+                Dec 2021
+              
+              
+                <span class="middot-divider"></span>
+                <span>Alicante, Spain</span>
+              
+            </div>
+            <div class="card-text"><ul>
+<li>Published 15 papers in peer-reviewed international journals.</li>
+<li>Developed the R package spatialRF for spatial modelling, with 8000 downloads.</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row experience">
+      
+      <div class="col-auto text-center flex-column d-none d-sm-flex">
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+        <div class="m-2">
+          <span class="badge badge-pill border ">&nbsp;</span>
+        </div>
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+      </div>
+      
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title exp-title text-muted mt-0 mb-1">Invited Instructor</h4>
+            <h4 class="card-title exp-company text-muted my-0"><a href="https://www.su.se/english/" target="_blank" rel="noopener">Stockholm University</a></h4>
+            <div class="text-muted exp-meta">
+              Jan 2017 –
+              
+                Dec 2017
+              
+              
+                <span class="middot-divider"></span>
+                <span>Stockholm, Sweden</span>
+              
+            </div>
+            <div class="card-text"><ul>
+<li>Designed and instructed the post-graduate course &ldquo;Practical Introduction to Species Distribution Modelling&rdquo; (20 hours, 20 students).</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row experience">
+      
+      <div class="col-auto text-center flex-column d-none d-sm-flex">
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+        <div class="m-2">
+          <span class="badge badge-pill border ">&nbsp;</span>
+        </div>
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+      </div>
+      
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title exp-title text-muted mt-0 mb-1">Staff researcher</h4>
+            <h4 class="card-title exp-company text-muted my-0"><a href="https://www.uib.no/en/rg/EECRG" target="_blank" rel="noopener">University of Bergen (Norway)</a></h4>
+            <div class="text-muted exp-meta">
+              Sep 2016 –
+              
+                Aug 2019
+              
+              
+                <span class="middot-divider"></span>
+                <span>Bergen, Norway</span>
+              
+            </div>
+            <div class="card-text"><ul>
+<li>Executed a €199000 project by the Norwegian National Science Foundation (NFR).</li>
+<li>Published 6 papers in peer-reviewed international journals.</li>
+<li>Developed 3 R packages with a total of 53000 downloads for time-series comparison and analysis.</li>
+<li>Enhanced my skills in time-series analysis and developer of R packages.
+.</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row experience">
+      
+      <div class="col-auto text-center flex-column d-none d-sm-flex">
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+        <div class="m-2">
+          <span class="badge badge-pill border ">&nbsp;</span>
+        </div>
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+      </div>
+      
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title exp-title text-muted mt-0 mb-1">Staff researcher</h4>
+            <h4 class="card-title exp-company text-muted my-0"><a href="https://bio.au.dk/en/research/research-areas/ecoinformatics-and-biodiversity/" target="_blank" rel="noopener">Aarhus University</a></h4>
+            <div class="text-muted exp-meta">
+              Apr 2014 –
+              
+                Sep 2016
+              
+              
+                <span class="middot-divider"></span>
+                <span>Aarhus, Denmark</span>
+              
+            </div>
+            <div class="card-text"><ul>
+<li>Published 8 papers in peer-reviewed international journals.</li>
+<li>Executed a €300000 research project by the AU-Ideas Foundation (Aarhus University).</li>
+<li>Expanded considerably my international collaboration network.</li>
+<li>Contributed positively to the success of a world-class laboratory.</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row experience">
+      
+      <div class="col-auto text-center flex-column d-none d-sm-flex">
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+        <div class="m-2">
+          <span class="badge badge-pill border ">&nbsp;</span>
+        </div>
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+      </div>
+      
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title exp-title text-muted mt-0 mb-1">Invited Instructor</h4>
+            <h4 class="card-title exp-company text-muted my-0"><a href="https://www.gbif.es/" target="_blank" rel="noopener">GBIF.es</a></h4>
+            <div class="text-muted exp-meta">
+              Jan 2011 –
+              
+                Dec 2019
+              
+              
+                <span class="middot-divider"></span>
+                <span>Madrid, Spain</span>
+              
+            </div>
+            <div class="card-text"><ul>
+<li>Designed and instructed 9 editions of the post-graduate course &ldquo;Workshop in Ecological Niche Modelling&rdquo; (184 hours, 225 students).</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row experience">
+      
+      <div class="col-auto text-center flex-column d-none d-sm-flex">
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+        <div class="m-2">
+          <span class="badge badge-pill border ">&nbsp;</span>
+        </div>
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+      </div>
+      
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title exp-title text-muted mt-0 mb-1">Staff researcher</h4>
+            <h4 class="card-title exp-company text-muted my-0"><a href="http://www.iista.es/en/" target="_blank" rel="noopener">Institute for Earth System Research</a></h4>
+            <div class="text-muted exp-meta">
+              May 2010 –
+              
+                Apr 2014
+              
+              
+                <span class="middot-divider"></span>
+                <span>Granada, Spain</span>
+              
+            </div>
+            <div class="card-text"><ul>
+<li>Patented &lsquo;MODELER, a model repository as knowledge based for experts&rsquo;. Registration code 201299900779498, Expedient Number: GR-188-12.</li>
+<li>Executed a €12000 contract with the Andalusian Government for plant diversity mapping.</li>
+<li>Executed a €8000 contract with the Andalusian Government to enhance their Biodiversity Data Infrastructure.</li>
+<li>Executed a €250000 grant to study the effects of Climate Change on the flora of Sierra Nevada National Park.</li>
+<li>Published 11 papers in peer-reviewed international journals.</li>
+<li>Designed and instructed the Master&rsquo;s course &lsquo;Ecoinformatics&rsquo; (60 hours, 25 students).</li>
+<li>Instructed 3 undergraduate ecology courses (40 hours, 200 students).</li>
+<li>Enhanced my skills as independent researcher.</li>
+<li>Participated in an International Consortium to model and protect the plant diversity in Central America.</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row experience">
+      
+      <div class="col-auto text-center flex-column d-none d-sm-flex">
+        <div class="row h-50">
+          <div class="col border-right">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+        <div class="m-2">
+          <span class="badge badge-pill border ">&nbsp;</span>
+        </div>
+        <div class="row h-50">
+          <div class="col ">&nbsp;</div>
+          <div class="col">&nbsp;</div>
+        </div>
+      </div>
+      
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title exp-title text-muted mt-0 mb-1">PhD student</h4>
+            <h4 class="card-title exp-company text-muted my-0"><a href="https://botanica.ugr.es/" target="_blank" rel="noopener">University of Granada</a></h4>
+            <div class="text-muted exp-meta">
+              May 2006 –
+              
+                Apr 2010
+              
+              
+                <span class="middot-divider"></span>
+                <span>Granada, Spain</span>
+              
+            </div>
+            <div class="card-text"><ul>
+<li>Obtained a 120.000€ PhD grant (Andalusian Government).</li>
+<li>Completed a PhD in Computational Ecology.</li>
+<li>Published 9 papers in national and peer-reviewed international journals.</li>
+<li>Completed a Master&rsquo;s in Geographic Information Systems.</li>
+<li>Completed a Master&rsquo;s en Environmental Auditing.</li>
+<li>Developed technical skills in GIS and R programming.</li>
+<li>Designed and instructed a full Master&rsquo;s course on Geographic Information Systems (60 hours, 25 students).</li>
+<li>Instructed two undergraduate courses (25 hours, 120 students) .</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="posts" class="home-section wg-pages   "  >
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+<div class="row ">
+  
+    
+      <div class="col-12 col-lg-4 section-heading">
+        <h1>Recent Posts</h1>
+        
+      </div>
+    
+  
+  <div class="col-12 col-lg-8">
+
+    
+
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/post/04_betadiversity/" >Designing R functions to compute betadiversity indices from species lists</a>
+    </h3>
+
+    
+    <a href="/post/04_betadiversity/" class="summary-link">
+      <div class="article-style">
+        This is a tutorial written for R users needing to compute betadiversity indices from species lists rather than from presence-absence matrices, and for R beginners or intermediate users that want to start using their own functions.
+      </div>
+    </a>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 6, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    12 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+    
+    <a href="/post/04_betadiversity/" >
+      <img src="/post/04_betadiversity/featured_hu24cb5edf4be0f077d8ef83150fff1e3d_92386_150x0_resize_lanczos_3.png" alt="Designing R functions to compute betadiversity indices from species lists">
+    </a>
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/post/03_shared_folder_in_cluster/" >Setup of a shared folder in a home cluster</a>
+    </h3>
+
+    
+    <a href="/post/03_shared_folder_in_cluster/" class="summary-link">
+      <div class="article-style">
+        In the previous posts I have covered how to setup a home cluster, and how to run parallel processes with foreach in R. However, so far I haven’t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.
+      </div>
+    </a>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 3, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    8 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+    
+    <a href="/post/03_shared_folder_in_cluster/" >
+      <img src="/post/03_shared_folder_in_cluster/featured_hu8e1a9c458738b30e9c1ea0b78cd25313_84275_150x0_resize_lanczos_3.png" alt="Setup of a shared folder in a home cluster">
+    </a>
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/post/02_parallelizing_loops_with_r/" >Parallelized loops with R</a>
+    </h3>
+
+    
+    <a href="/post/02_parallelizing_loops_with_r/" class="summary-link">
+      <div class="article-style">
+        Note: to better follow this tutorial you can download the .Rmd file from here.
+In a previous post I explained how to set up a small home cluster. Many things can be done with a cluster, and parallelizing loops is one of them.
+      </div>
+    </a>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 26, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    19 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+    
+    <a href="/post/02_parallelizing_loops_with_r/" >
+      <img src="/post/02_parallelizing_loops_with_r/featured_hu31258c764bd811efb1bedc0765cc47fb_25576_150x0_resize_lanczos_3.png" alt="Parallelized loops with R">
+    </a>
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/post/01_home_cluster/" >Setting up a home cluster</a>
+    </h3>
+
+    
+    <a href="/post/01_home_cluster/" class="summary-link">
+      <div class="article-style">
+        In this post I explain how to setup a small Beowulf cluster with a personal PC running Ubuntu 20.04 and a couple of Intel NUCs running Ubuntu Server 20.04, with the end-goal of parallelizing R tasks.
+      </div>
+    </a>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 7, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    11 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+    
+    <a href="/post/01_home_cluster/" >
+      <img src="/post/01_home_cluster/featured_huf92214acd9495626bf7e65e51eac5df4_519872_150x0_resize_q90_lanczos.jpg" alt="Setting up a home cluster">
+    </a>
+    
+  </div>
+</div>
+
+      
+    
+
+    
+    
+    
+
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="projects" class="home-section wg-portfolio   "  >
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-12 col-lg-4 section-heading">
+
+    <h1>Software</h1>
+    
+
+  </div>
+  <div class="col-12 col-lg-8">
+
+
+
+    
+
+    
+
+      
+
+      
+      
+      
+      
+        
+      
+
+      <span class="d-none default-project-filter">*</span>
+
+      
+      
+      <div class="project-toolbar">
+        <div class="project-filters">
+          <div class="btn-toolbar">
+            <div class="btn-group flex-wrap">
+              
+                
+                
+                
+                  
+                
+                <a href="#" data-filter="*" class="btn btn-primary btn-lg active">All</a>
+              
+                
+                
+                
+                <a href="#" data-filter=".js-id-R-packages" class="btn btn-primary btn-lg">R packages</a>
+              
+                
+                
+                
+                <a href="#" data-filter=".js-id-Agent-based-models" class="btn btn-primary btn-lg">Agent-based models</a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    
+
+    <div class="isotope projects-container js-layout-masonry ">
+      
+
+        
+        
+        
+
+        
+          
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<div class="project-card project-item isotope-item js-id-ABM js-id-Netlogo js-id-Fire-dynamics js-id-Mechanistic-simulation js-id-Palaeoecology js-id-Agent-based-models">
+  <div class="card">
+    
+    
+    <a href="/project/palaeo_fire_modeling/"  class="card-image hover-overlay">
+      <img src="/project/palaeo_fire_modeling/featured_hu66e01f915e3803516dc44b4bd7ac1ec8_611971_550x0_resize_q90_lanczos_3.png" alt="" class="img-responsive">
+    </a>
+    
+    <div class="card-text">
+      <h4><a href="/project/palaeo_fire_modeling/" >Palaeo fire modeling</a></h4>
+      
+      <div class="article-style">
+        <p>This is a spatio-temporal simulation of the effect of fire regimes on the population dynamics of five forest species during the Lateglacial-Holocene transition (15-7 cal Kyr BP) at El Portalet, a subalpine bog located in the central Pyrenees region (1802m asl, Spain)</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+        
+
+      
+
+        
+        
+        
+
+        
+          
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<div class="project-card project-item isotope-item js-id-ABM js-id-Netlogo js-id-Range-shift-simulation js-id-Mechanistic-simulation js-id-Dispersal js-id-Agent-based-models">
+  <div class="card">
+    
+    
+    <a href="/project/quercus_range_shift/"  class="card-image hover-overlay">
+      <img src="/project/quercus_range_shift/featured_hub6c75ba295d8db39884ceccd7b474ee1_96140_550x0_resize_q90_lanczos_3.png" alt="" class="img-responsive">
+    </a>
+    
+    <div class="card-text">
+      <h4><a href="/project/quercus_range_shift/" >Range-shift simulation</a></h4>
+      
+      <div class="article-style">
+        <p>Agent-based model coded with Netlogo to simulate range shift of <em>Quercus pyrenaica</em> populations in Sierra Nevada (Spain) using a realistic dispersal model with different levels of complexity.</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+        
+
+      
+
+        
+        
+        
+
+        
+          
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<div class="project-card project-item isotope-item js-id-R-packages js-id-Time-Series-Analysis">
+  <div class="card">
+    
+    
+    <a href="/project/distantia/"  class="card-image hover-overlay">
+      <img src="/project/distantia/featured_hu3ed8a4c264caf68931e722ef8ce52a6d_151152_550x0_resize_q90_lanczos_3.png" alt="" class="img-responsive">
+    </a>
+    
+    <div class="card-text">
+      <h4><a href="/project/distantia/" >R package &ldquo;distantia&rdquo;</a></h4>
+      
+      <div class="article-style">
+        <p>R package to compare multivariate time-series.</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+        
+
+      
+
+        
+        
+        
+
+        
+          
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<div class="project-card project-item isotope-item js-id-R-packages js-id-Ecological-Memory js-id-Time-Series-Analysis js-id-Machine-Learning js-id-Random-Forest">
+  <div class="card">
+    
+    
+    <a href="/project/memoria/"  class="card-image hover-overlay">
+      <img src="/project/memoria/featured_huf416cc36c143d9e547230dc9cd9d8bb3_216378_550x0_resize_q90_lanczos_3.png" alt="" class="img-responsive">
+    </a>
+    
+    <div class="card-text">
+      <h4><a href="/project/memoria/" >R package &ldquo;memoria&rdquo;</a></h4>
+      
+      <div class="article-style">
+        <p>R package to assess ecological memory in multivariate time-series.</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+        
+
+      
+
+        
+        
+        
+
+        
+          
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<div class="project-card project-item isotope-item js-id-R-packages js-id-Spatial-Regression js-id-Time-Series-Analysis js-id-Machine-Learning js-id-Random-Forest">
+  <div class="card">
+    
+    
+    <a href="/project/spatialrf/"  class="card-image hover-overlay">
+      <img src="/project/spatialrf/featured_hud506a1a4fde3901a16482e7fe5d1b44d_316626_550x0_resize_q90_lanczos_3.png" alt="" class="img-responsive">
+    </a>
+    
+    <div class="card-text">
+      <h4><a href="/project/spatialrf/" >R package &ldquo;spatialRF&rdquo;</a></h4>
+      
+      <div class="article-style">
+        <p>R package for spatial regression with Random Forest</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+        
+
+      
+
+        
+        
+        
+
+        
+          
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<div class="project-card project-item isotope-item js-id-R-packages js-id-Time-Series-Analysis js-id-Palaeoecology js-id-Mechanistic-simulation">
+  <div class="card">
+    
+    
+    <a href="/project/virtualpollen/"  class="card-image hover-overlay">
+      <img src="/project/virtualpollen/featured_hu29e5127d88819291f64769b5278437c2_739655_550x0_resize_q90_lanczos_3.png" alt="" class="img-responsive">
+    </a>
+    
+    <div class="card-text">
+      <h4><a href="/project/virtualpollen/" >R package &ldquo;vitualPollen&rdquo;</a></h4>
+      
+      <div class="article-style">
+        <p>R package to simulate pollen production of mono-specific tree populations over millennia.</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+        
+
+      
+    </div>
+
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="featured" class="home-section wg-featured   "  >
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="row">
+  <div class="col-12 col-lg-4 section-heading">
+    <h1>Featured Publications</h1>
+    
+  </div>
+  <div class="col-12 col-lg-8">
+
+    
+
+    
+      
+        
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span >Fernando T. Maestre</span>, <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Miguel Berdugo</span>, <span >Laura Concostrina-Zubiri</span>, <span >Manuel Delgado-Baquerizo</span>, <span >David J. Eldridge</span>, <span >Emilio Guirado</span>, <span >Nicolas Gross</span>, <span >Sonia Kéfi</span>, <span >Yoann Le Bagousse-Pinguet</span>, <span >Raúl Ochoa-Hueso</span>, <span >Santiago Soliveres</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    April 2021
+  </span>
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="pub-publication">
+    
+      <em>New Phytologist (Tansley Review)</em>
+    
+  </span>
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+  
+  <a href="/publication/2021_maestre_new_phytologist/">
+      <img src="/publication/2021_maestre_new_phytologist/featured_hue7011013bccecee02faf375bdb52252e_2045314_918x517_fill_q90_lanczos_smart1_3.png" class="article-banner" alt="Biogeography of global drylands">
+  </a>
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/publication/2021_maestre_new_phytologist/">Biogeography of global drylands</a>
+  </h3>
+
+  
+  <a href="/publication/2021_maestre_new_phytologist/" class="summary-link">
+    <div class="article-style">
+      <p>Here we synthesize the biogeography of key organisms (vascular and non‐vascular vegetation and soil microorganisms), attributes (functional traits, spatial patterns, plant‐plant and plant‐soil interactions) and processes (productivity and land cover) across global drylands. We finish our review discussing major research gaps, which include: i) studying regular vegetation spatial patterns, ii) establishing large‐scale plant and biocrust field surveys assessing individual‐level trait measurements, iii) knowing whether plant‐plant and plant‐soil interactions impacts on biodiversity are predictable and iv) assessing how elevated CO2 modulates future aridity conditions and plant productivity.</p>
+    </div>
+  </a>
+  
+
+  
+  <div class="btn-links">
+    
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://nph.onlinelibrary.wiley.com/doi/epdf/10.1111/nph.17395" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2021_maestre_new_phytologist/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1111/nph.17395" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+  </div>
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    January 2020
+  </span>
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="pub-publication">
+    
+      <em>Ecography</em>
+    
+  </span>
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+  
+  <a href="/publication/2020_benito_ecography_distantia/">
+      <img src="/publication/2020_benito_ecography_distantia/featured_hu61d6ca1eef20118c6788d1b82254e82c_122989_918x517_fill_q90_lanczos_smart1.jpg" class="article-banner" alt="distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series">
+  </a>
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/publication/2020_benito_ecography_distantia/">distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series</a>
+  </h3>
+
+  
+  <a href="/publication/2020_benito_ecography_distantia/" class="summary-link">
+    <div class="article-style">
+      <p>We introduce distantia (v1.0.1), an R package providing general toolset to quantify dissimilarity between ecological time‐series, independently of their regularity and number of samples. The functions in distantia provide the means to compute dissimilarity scores by time and by shape and assess their significance, evaluate the partial contribution of each variable to dissimilarity, and align or combine sequences by similarity.</p>
+    </div>
+  </a>
+  
+
+  
+  <div class="btn-links">
+    
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.04895" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2020_benito_ecography_distantia/cite.bib">
+  Cite
+</button>
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://github.com/BlasBenito/distantiaPaper" target="_blank" rel="noopener">
+  Code
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1111/ecog.04895" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+  </div>
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Graciela Gil-Romera</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    January 2020
+  </span>
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="pub-publication">
+    
+      <em>Ecography</em>
+    
+  </span>
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+  
+  <a href="/publication/2020_benito_ecography_memoria/">
+      <img src="/publication/2020_benito_ecography_memoria/featured_hu96b9a2bd4788733e348caf190ea086e8_366580_918x517_fill_q90_lanczos_top_3.png" class="article-banner" alt="Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features">
+  </a>
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/publication/2020_benito_ecography_memoria/">Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features</a>
+  </h3>
+
+  
+  <a href="/publication/2020_benito_ecography_memoria/" class="summary-link">
+    <div class="article-style">
+      <p>Paper published in the section &ldquo;Editor&rsquo;s Choice&rdquo; of the <em>Ecography</em> journal. It received 
+<a href="https://www.dropbox.com/s/oacsy1xqx4omv1b/2019_BMB_Ecography_b_top_downloaded.png?dl=1" target="_blank" rel="noopener">an award</a> for the number of downloads during the 12 months after its publication.</p>
+    </div>
+  </a>
+  
+
+  
+  <div class="btn-links">
+    
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.04772" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2020_benito_ecography_memoria/cite.bib">
+  Cite
+</button>
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://github.com/BlasBenito/EcologicalMemory" target="_blank" rel="noopener">
+  Code
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1111/ecog.04772" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+  </div>
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Jens-Christian Svenning</span>, <span >Trine Kellberg Nielsen</span>, <span >Felix Riede</span>, <span >Graciela Gil-Romera</span>, <span >Thomas Mailund</span>, <span >Brody Sandel</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    May 2017
+  </span>
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="pub-publication">
+    
+      <em>Journal of Biogeography</em>
+    
+  </span>
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+  
+  <a href="/publication/2017_benito_journal_of_biogeography/">
+      <img src="/publication/2017_benito_journal_of_biogeography/featured_hu5fe01e434b60690cc2b01e87dd226fd4_1895590_918x517_fill_q90_lanczos_smart1_3.png" class="article-banner" alt="The ecological niche and distribution of Neanderthals during the Last Interglacial">
+  </a>
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/publication/2017_benito_journal_of_biogeography/">The ecological niche and distribution of Neanderthals during the Last Interglacial</a>
+  </h3>
+
+  
+  <a href="/publication/2017_benito_journal_of_biogeography/" class="summary-link">
+    <div class="article-style">
+      <p>This paper 
+<a href="https://www.dropbox.com/s/6k308eczv7i6kbj/2017_BMB_Journal_of_Biogeography_editors_choice.pdf?dl=1" target="_blank" rel="noopener">was highlighted in the <em>Editor&rsquo;s Picks</em> section of the Science Journal</a>, and was among the 
+<a href="https://www.dropbox.com/s/sowq1h4bdngmipy/2017_BMB_Journal_of_Biogeography.png?dl=1" target="_blank" rel="noopener">top downloaded articles</a> from the <em>Journal of Biogeography</em> during the 12 months after its publication.</p>
+    </div>
+  </a>
+  
+
+  
+  <div class="btn-links">
+    
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2017_benito_journal_of_biogeography/cite.bib">
+  Cite
+</button>
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://zenodo.org/record/4311198#.X89WmMIo-1c" target="_blank" rel="noopener">
+  Dataset
+</a>
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1016/j.quaint.2015.10.039" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+  </div>
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span >José Miguel Barea-Azcón</span>, <span >Blas M. Benito (shared first coauthorship)</span>, <span >Francisco J. Olivares</span>, <span >Helena Ruiz</span>, <span >Javier Martín</span>, <span >Antonio L. García</span>, <span >Rogelio López</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    February 2014
+  </span>
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="pub-publication">
+    
+      <em>Biodiversity Conservation</em>
+    
+  </span>
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+  
+  <a href="/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/">
+      <img src="/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/featured_hua7726678a2bf82db0011684c1c9fafa6_298226_918x517_fill_q90_lanczos_top_3.png" class="article-banner" alt="Distribution and conservation of the relict interaction between the butterfly Agriades zullichi and its larval foodplant (Androsace vitaliana nevadensis)">
+  </a>
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/">Distribution and conservation of the relict interaction between the butterfly Agriades zullichi and its larval foodplant (Androsace vitaliana nevadensis)</a>
+  </h3>
+
+  
+  <a href="/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/" class="summary-link">
+    <div class="article-style">
+      <p>Herein we investigate the distribution and conservation problems of a relict interaction in the Sierra Nevada mountains (southern Europe) between the butterfly <em>Agriades zullichi</em> —a rare and threatened butterfly— and its larval foodplant <em>Androsace vitaliana</em> subsp. <em>nevadensis</em>. We designed an intensive field survey to obtain a comprehensive presence dataset. This was used to calibrate species distribution models with absences taken at local and regional extents, analyze the potential distribution, evaluate the influence of environmental factors in different geographical contexts, and evaluate conservation threats for both organisms.</p>
+    </div>
+  </a>
+  
+
+  
+  <div class="btn-links">
+    
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://www.dropbox.com/s/rbp8q4k6qd8zntz/2014_BMB_Biodiversity_and_Conservation.pdf?dl=1" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1007/s10531-014-0643-4" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+  </div>
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Juan Lorite</span>, <span >Ramón Pérez-Pérez</span>, <span >Lorena Gómez-Aparicio</span>, <span >Julio Peñas</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    January 2014
+  </span>
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="pub-publication">
+    
+      <em>Diversity and Distributions</em>
+    
+  </span>
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+  
+  <a href="/publication/2014_benito_diversity_and_distributions/">
+      <img src="/publication/2014_benito_diversity_and_distributions/featured_hu9c81f55450ead6132c03db28c3f090c2_395225_918x517_fill_q90_lanczos_smart1_3.png" class="article-banner" alt="Forecasting plant range collapse in a mediterranean hotspot: when dispersal uncertainties matter">
+  </a>
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/publication/2014_benito_diversity_and_distributions/">Forecasting plant range collapse in a mediterranean hotspot: when dispersal uncertainties matter</a>
+  </h3>
+
+  
+  <a href="/publication/2014_benito_diversity_and_distributions/" class="summary-link">
+    <div class="article-style">
+      <p>The Mediterranean Basin is threatened by climate change, and there is an urgent need for studies to determine the risk of plant range shift and potential extinction. In this study, we simulate potential range shifts of 176 plant species to perform a detailed prognosis of critical range decline and extinction in a transformed mediterranean landscape. Particularly, we seek to answer two pivotal questions: (1) what are the general plant‐extinction patterns we should expect in mediterranean landscapes during the 21st century? and (2) does dispersal ability prevent extinction under climate change?.</p>
+    </div>
+  </a>
+  
+
+  
+  <div class="btn-links">
+    
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://onlinelibrary.wiley.com/doi/pdf/10.1111/ddi.12148" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2014_benito_diversity_and_distributions/cite.bib">
+  Cite
+</button>
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://www.dropbox.com/s/m6yctsb64kbc40p/Benito_et_al_2013_Appendix.xls?dl=1" target="_blank" rel="noopener">
+  Dataset
+</a>
+
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://www.dropbox.com/s/7sqlqkz1ga8kttq/2013_BMB_poster_ECOGENES.pdf?dl=1" target="_blank" rel="noopener">
+  Slides
+</a>
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1111/ddi.12148" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+  </div>
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Luis Cayuela</span>, <span >Fabio S. Albuquerque</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    March 2013
+  </span>
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="pub-publication">
+    
+      <em>Methods in Ecology and Evolution</em>
+    
+  </span>
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+  
+  <a href="/publication/2013_benito_methods_in_ecology_and_evolution/">
+      <img src="/publication/2013_benito_methods_in_ecology_and_evolution/featured_hubce139f28f7b735fb74223b3dcd3a99a_190845_918x517_fill_q90_lanczos_center.jpg" class="article-banner" alt="The impact of modelling choices in the predictive performance of richness maps derived from species‐distribution models: guidelines to build better diversity models">
+  </a>
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/publication/2013_benito_methods_in_ecology_and_evolution/">The impact of modelling choices in the predictive performance of richness maps derived from species‐distribution models: guidelines to build better diversity models</a>
+  </h3>
+
+  
+  <a href="/publication/2013_benito_methods_in_ecology_and_evolution/" class="summary-link">
+    <div class="article-style">
+      <p>We generated 380 S‐SDMs of 1224 tree species in Mesoamerica by combining 19 distribution modelling methods with 20 different thresholds using presence‐only data from the Global Biodiversity Information Facility. We compared the predicted richness and composition with inventory data obtained from the BIOTREE‐NET forest plot database. We designed two indicators of predictive performance that were based on the diversity factors used to measure species turnover: a (shared species between the observed and predicted compositions), b and c (the exclusive species of the predicted and observed compositions respectively) and compared them with the Sorensen and Beta‐Simpson turnover measures. Some modelling methods – especially machine learning and ensemble model forecasting methods performed significantly better than others in minimizing the error in predicted richness and composition. Our results also indicate that restrictive thresholds (with high omission errors) lead to more accurate S‐SDMs in terms of species richness and composition. Here, we demonstrate that particular combinations of modelling methods and thresholds provide results with higher predictive performance.</p>
+    </div>
+  </a>
+  
+
+  
+  <div class="btn-links">
+    
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/2041-210x.12022" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2013_benito_methods_in_ecology_and_evolution/cite.bib">
+  Cite
+</button>
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://besjournals.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2F2041-210x.12022&amp;file=mee312022-sup-0001-AppendixS1-S2.zip" target="_blank" rel="noopener">
+  Dataset
+</a>
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1111/2041-210x.12022" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+  </div>
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Juan Lorite</span>, <span >Julio Peñas</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    February 2011
+  </span>
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="pub-publication">
+    
+      <em>Climatic Change</em>
+    
+  </span>
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+  
+  <a href="/publication/2011_benito_climate_change/">
+      <img src="/publication/2011_benito_climate_change/featured_hue4b6a2408f256672ba912c77df1b5c0e_162605_918x517_fill_q90_lanczos_center.jpg" class="article-banner" alt="Simulating potential effects of climatic warming on altitudinal patterns of key species in Mediterranean-alpine ecosystems">
+  </a>
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/publication/2011_benito_climate_change/">Simulating potential effects of climatic warming on altitudinal patterns of key species in Mediterranean-alpine ecosystems</a>
+  </h3>
+
+  
+  <a href="/publication/2011_benito_climate_change/" class="summary-link">
+    <div class="article-style">
+      <p>According to the simulations, the suitable habitat for the key species inhabiting the summit area, where most of the endemic and/or rare species are located, may disappear before the middle of the century. The other key species considered show moderate to drastic suitable habitat loss depending on the considered scenario. Climate warming should provoke a strong substitution dynamics between species, increasing spatial competition between both of them. In this study, we introduce the application of differential suitability concept into the analysis of potential impact of climate change, forest management and environmental monitoring, and discuss the limitations and uncertainties of these simulations.</p>
+    </div>
+  </a>
+  
+
+  
+  <div class="btn-links">
+    
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://www.dropbox.com/s/7cai34zh603vidr/2011_BMB_Climate_Change.pdf?dl=1" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2011_benito_climate_change/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1007/s10584-010-0015-3" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+  </div>
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Montserrat Martínez-Ortega</span>, <span >Luz M. Muñoz</span>, <span >Juan Lorite</span>, <span >Julio Peñas</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    February 2009
+  </span>
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="pub-publication">
+    
+      <em>Biodiversity and Conservation</em>
+    
+  </span>
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+  
+  <a href="/publication/2009_benito_biodiversity_and_conservation/">
+      <img src="/publication/2009_benito_biodiversity_and_conservation/featured_hu54fffd765a90c0e028a616692cb1df6e_599323_918x517_fill_q90_lanczos_center.jpg" class="article-banner" alt="Assessing extinction-risk of endangered plants using species distribution models: a case study of habitat depletion caused by the spread of greenhouses">
+  </a>
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/publication/2009_benito_biodiversity_and_conservation/">Assessing extinction-risk of endangered plants using species distribution models: a case study of habitat depletion caused by the spread of greenhouses</a>
+  </h3>
+
+  
+  <a href="/publication/2009_benito_biodiversity_and_conservation/" class="summary-link">
+    <div class="article-style">
+      <p>In this paper, we propose the application of SDMs to assess the extinction-risk of plant species in relation to the spread of greenhouses in a Mediterranean landscape, where habitat depletion is one of the main causes of biodiversity loss.</p>
+    </div>
+  </a>
+  
+
+  
+  <div class="btn-links">
+    
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://www.dropbox.com/s/v3vz6yhkifki2ix/2009_BMB_Biodiversity_and_Conservation.pdf?dl=1" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2009_benito_biodiversity_and_conservation/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1007/s10531-009-9604-8" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+  </div>
+  
+
+</div>
+
+      
+    
+
+  
+
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="publications" class="home-section wg-pages   "  >
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+<div class="row ">
+  
+    
+      <div class="col-12 col-lg-4 section-heading">
+        <h1>Recent Publications</h1>
+        
+      </div>
+    
+  
+  <div class="col-12 col-lg-8">
+
+    <div class="alert alert-note">
+  <div>
+    Quickly discover relevant content by 
+<a href="https://blasbenito.com/publication/" target="_blank" rel="noopener">filtering publications</a>.
+  </div>
+</div>
+
+
+    
+      
+        
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/publication/2021_moreno_scientific_data/" > Fourteen years of continuous soil moisture records from plant and biocrust-dominated microsites.</a>
+    </h3>
+
+    
+    <a href="/publication/2021_moreno_scientific_data/" class="summary-link">
+      <div class="article-style">
+        Drylands cover ~41% of the terrestrial surface. In these water-limited ecosystems, soil moisture contributes to multiple hydrological processes and is a crucial determinant of the activity and performance of above- and belowground organisms and of the ecosystem processes that rely on them. Thus, an accurate characterisation of the temporal dynamics of soil moisture is critical to improve our understanding of how dryland ecosystems function and are responding to ongoing climate change. Furthermore, it may help improve climatic forecasts and drought monitoring. Here we present the MOISCRUST dataset, a long-term (2006–2020) soil moisture dataset at a sub-daily resolution from five different microsites (vascular plants and biocrusts) in a Mediterranean semiarid dryland located in Central Spain. MOISCRUST is a unique dataset for improving our understanding on how both vascular plants and biocrusts determine soil water dynamics in drylands, and thus to better assess their hydrological impacts and responses to ongoing climate change.
+      </div>
+    </a>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+      <div>
+        
+
+  
+  <span >Joaquín Moreno</span>, <span >Sergio Asensio</span>, <span >Miguel Berdugo</span>, <span >Beatriz Gozalo</span>, <span >Victoria Ochoa</span>, <span >David S. Pescador</span>, <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Fernando T. Maestre</span>
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://www.nature.com/articles/s41597-021-01111-6.pdf" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1038/s41597-021-01111-6" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/publication/2021_maestre_new_phytologist/" >Biogeography of global drylands</a>
+    </h3>
+
+    
+    <a href="/publication/2021_maestre_new_phytologist/" class="summary-link">
+      <div class="article-style">
+        Here we synthesize the biogeography of key organisms (vascular and non‐vascular vegetation and soil microorganisms), attributes (functional traits, spatial patterns, plant‐plant and plant‐soil interactions) and processes (productivity and land cover) across global drylands. We finish our review discussing major research gaps, which include: i) studying regular vegetation spatial patterns, ii) establishing large‐scale plant and biocrust field surveys assessing individual‐level trait measurements, iii) knowing whether plant‐plant and plant‐soil interactions impacts on biodiversity are predictable and iv) assessing how elevated CO2 modulates future aridity conditions and plant productivity.
+      </div>
+    </a>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+      <div>
+        
+
+  
+  <span >Fernando T. Maestre</span>, <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Miguel Berdugo</span>, <span >Laura Concostrina-Zubiri</span>, <span >Manuel Delgado-Baquerizo</span>, <span >David J. Eldridge</span>, <span >Emilio Guirado</span>, <span >Nicolas Gross</span>, <span >Sonia Kéfi</span>, <span >Yoann Le Bagousse-Pinguet</span>, <span >Raúl Ochoa-Hueso</span>, <span >Santiago Soliveres</span>
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://nph.onlinelibrary.wiley.com/doi/epdf/10.1111/nph.17395" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2021_maestre_new_phytologist/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1111/nph.17395" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+    
+    <a href="/publication/2021_maestre_new_phytologist/" >
+      <img src="/publication/2021_maestre_new_phytologist/featured_hue7011013bccecee02faf375bdb52252e_2045314_150x0_resize_lanczos_3.png" alt="Biogeography of global drylands">
+    </a>
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/publication/2020_perez-luque_forests/" >Ecological Diversity within Rear-Edge: A Case Study from Mediterranean Quercus pyrenaica Willd.</a>
+    </h3>
+
+    
+    <a href="/publication/2020_perez-luque_forests/" class="summary-link">
+      <div class="article-style">
+        Understanding the ecology of populations located in the rear edge of their distribution is key to assessing the response of the species to changing environmental conditions. Here, we focus on rear-edge populations of Quercus pyrenaica in Sierra Nevada (southern Iberian Peninsula) to analyze their ecological and floristic diversity. We perform multivariate analyses using high-resolution environmental information and forest inventories to determine how environmental variables differ among oak populations, and to identify population groups based on environmental and floristic composition.
+      </div>
+    </a>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+      <div>
+        
+
+  
+  <span >Antonio J. Pérez-Luque</span>, <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Francisco J. Bonet</span>, <span >Regino Zamora</span>
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://www.mdpi.com/1999-4907/12/1/10/pdf" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2020_perez-luque_forests/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.3390/f12010010" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/publication/2020_ryo_ecography/" >Explainable artificial intelligence enhances the ecological interpretability of black‐box species distribution models</a>
+    </h3>
+
+    
+    <a href="/publication/2020_ryo_ecography/" class="summary-link">
+      <div class="article-style">
+        Here we draw attention to an emerging subdiscipline of artificial intelligence, explainable AI (xAI), as a toolbox for better interpreting SDMs. xAI aims at deciphering the behavior of complex statistical or machine learning models (e.g. neural networks, random forests, boosted regression trees), and can produce more transparent and understandable SDM predictions.
+      </div>
+    </a>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+      <div>
+        
+
+  
+  <span >Masahiro Ryo</span>, <span >Boyan Angelov</span>, <span >Stefano Mammola</span>, <span >Jamie M. Kass</span>, <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Florian Hartig</span>
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.05360" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2020_ryo_ecography/cite.bib">
+  Cite
+</button>
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://zenodo.org/record/4048271#.X8OPwMIo-1c" target="_blank" rel="noopener">
+  Code
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1111/ecog.05360" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+    
+    <a href="/publication/2020_ryo_ecography/" >
+      <img src="/publication/2020_ryo_ecography/featured_hucaa7f7f55a48fb7c952fc88b167d08bc_458868_150x0_resize_q90_lanczos.jpg" alt="Explainable artificial intelligence enhances the ecological interpretability of black‐box species distribution models">
+    </a>
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/publication/2020_contina_ecological_modelling/" >Comment on “A global-scale ecological niche model to predict SARS-CoV-2 coronavirus infection rate”, author Coro</a>
+    </h3>
+
+    
+    <a href="/publication/2020_contina_ecological_modelling/" class="summary-link">
+      <div class="article-style">
+        In this letter we present comments on the article “A global-scale ecological niche model to predict SARS-CoV-2 coronavirus” by Coro published in 2020.
+      </div>
+    </a>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+      <div>
+        
+
+  
+  <span >Andrea Contina</span>, <span >Scott W. Yanco</span>, <span >Allison K. Pierce</span>, <span >Michelle DePrenger-Levin</span>, <span >Michael B. Wunder</span>, <span >Andreas M. Neophytou</span>, <span >C. Phoebe Lostroh</span>, <span >Richard J. Telford</span>, <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>, <span >Joseph Chipperfield</span>, <span >Robert B. O&#39;Hara</span>, <span >Colin J. Carlson</span>
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://www.dropbox.com/s/sk1smnohxo00sda/2020_BMB_Ecological_Modelling.pdf?dl=1" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/2020_contina_ecological_modelling/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/https://doi.org/10.1016/j.ecolmodel.2020.109288" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+
+    
+    
+    
+
+      
+      
+        
+      
+
+      
+
+      <div class="see-all">
+        <a href="/publication/">
+          See all publications
+          <i class="fas fa-angle-right"></i>
+        </a>
+      </div>
+    
+
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+
+  <section id="tags" class="home-section wg-tag-cloud   "  >
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<div class="row">
+  <div class="col-12 col-lg-4 section-heading">
+    <h1>Popular Topics</h1>
+    
+  </div>
+  <div class="col-12 col-lg-8">
+    
+
+    
+
+      
+      
+      
+      
+      
+      
+
+      <div class="tag-cloud">
+        
+          
+          
+          
+          <a href="/tag/abm/" style="font-size:0.7rem">ABM</a>
+        
+          
+          
+          
+          <a href="/tag/biodiversity-conservation/" style="font-size:1.662471496342517rem">Biodiversity Conservation</a>
+        
+          
+          
+          
+          <a href="/tag/biogeography/" style="font-size:1.798627452018534rem">Biogeography</a>
+        
+          
+          
+          
+          <a href="/tag/climate-change/" style="font-size:1.3202576311355612rem">Climate Change</a>
+        
+          
+          
+          
+          <a href="/tag/drylands/" style="font-size:0.9289186367723855rem">Drylands</a>
+        
+          
+          
+          
+          <a href="/tag/ecoinformatics/" style="font-size:1.4072884576553584rem">Ecoinformatics</a>
+        
+          
+          
+          
+          <a href="/tag/ecological-memory/" style="font-size:1.0913389943631755rem">Ecological Memory</a>
+        
+          
+          
+          
+          <a href="/tag/endangered-plants/" style="font-size:0.9289186367723855rem">Endangered Plants</a>
+        
+          
+          
+          
+          <a href="/tag/ensemble-models/" style="font-size:0.9289186367723855rem">Ensemble models</a>
+        
+          
+          
+          
+          <a href="/tag/fire-dynamics/" style="font-size:0.9289186367723855rem">Fire dynamics</a>
+        
+          
+          
+          
+          <a href="/tag/irresponsible-covid19-modelling/" style="font-size:1.0913389943631755rem">Irresponsible Covid19 modelling</a>
+        
+          
+          
+          
+          <a href="/tag/machine-learning/" style="font-size:1.549176267907947rem">Machine Learning</a>
+        
+          
+          
+          
+          <a href="/tag/mechanistic-simulation/" style="font-size:1.0913389943631755rem">Mechanistic simulation</a>
+        
+          
+          
+          
+          <a href="/tag/palaeoecology/" style="font-size:1.6086610056368247rem">Palaeoecology</a>
+        
+          
+          
+          
+          <a href="/tag/phenology/" style="font-size:0.9289186367723855rem">Phenology</a>
+        
+          
+          
+          
+          <a href="/tag/plant-ecology/" style="font-size:1.7567873636357123rem">Plant Ecology</a>
+        
+          
+          
+          
+          <a href="/tag/r-packages/" style="font-size:1.3202576311355612rem">R packages</a>
+        
+          
+          
+          
+          <a href="/tag/random-forest/" style="font-size:1.549176267907947rem">Random Forest</a>
+        
+          
+          
+          
+          <a href="/tag/species-distribution-models/" style="font-size:1.971040686875502rem">Species Distribution Models</a>
+        
+          
+          
+          
+          <a href="/tag/time-series-analysis/" style="font-size:1.4072884576553584rem">Time Series Analysis</a>
+        
+      </div>
+    
+
+  </div>
+</div>
+
+    </div>
+  </section>
+
+
+
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/sql.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/bash.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.4182b289689108d47721d002a07cd804.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">__ Academic Website Builder</a>
+    <a rel="me" href="https://fosstodon.org/@blasbenito">__</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

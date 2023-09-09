@@ -40,18 +40,21 @@ social:
 - icon: envelope
   icon_pack: fas
   link: mailto:blasbenito@gmail.com
-- icon: mastodon
+- icon: linkedin
   icon_pack: fab
-  link: https://fosstodon.org/@blasbenito
-- icon: google-scholar
-  icon_pack: ai
-  link: https://scholar.google.com/citations?user=WBTp0McAAAAJ&hl=en
+  link: https://es.linkedin.com/in/blas-m-benito-6174a643
 - icon: github
   icon_pack: fab
   link: https://github.com/BlasBenito
-- icon: fa-orcidhttps://ghr.nlm.nih.gov/condition/leigh-syndrome
+- icon: google-scholar
+  icon_pack: ai
+  link: https://scholar.google.com/citations?user=WBTp0McAAAAJ&hl=en
+- icon: orcid
   icon_pack: fab
   link: https://orcid.org/0000-0001-5105-7232
+- icon: mastodon
+  icon_pack: fab
+  link: https://fosstodon.org/@blasbenito
 superuser: true
 title: Blas M. Benito
 user_groups:
@@ -61,9 +64,11 @@ user_groups:
 
 ## About Me
 
-I am a Spatial Data Scientist and Engineer by trade, and a PhD in Computational Ecology and MSc in Geographic Information Systems by education. 
+I'm a spatial data scientist and engineer in AgTech, holding a PhD in computational ecology and an MSc in geographic information systems. My expertise lies at the intersection of spatial and temporal modeling, soil and plant ecology, remote sensing, machine learning, and environmental dynamics and monitoring.
 
-I currently serve as the team lead of the Environmental Data Team at [Biome Makers Inc](www.biomemakers.com). In this role, I am responsible for designing and developing an Environmental Data Infrastructure to enhance our flagship product, BeCrop®,as well as conducting research and development in remote sensing and machine learning applications to smart farming tech.
+I'm deeply passionate about crafting automated data and modeling pipelines to tackle complex environmental challenges.
+
+Currently, I lead the Environmental Data Team at [Biome Makers Inc](www.biomemakers.com). In this role, I research and develop cutting-edge smart farming technologies, create essential R packages to enhance our Data Science Department's capabilities, and oversee the design and maintenance of an environmental data infrastructure to further empower our flagship product, BeCrop®.
 
 ## My Tech Stack
 
@@ -85,7 +90,9 @@ Before delving into AgTech, I honed my research and technical skills during a su
 
 In my leisure time, I cherish moments with my family, tinker on the piano with enthusiasm (regardless of the results!), embrace the serenity of the sea on my stand-up paddle board, and continue my passion for developing R packages.
 
+## Connect with Me
 
+I'm always eager to connect with fellow data enthusiasts, researchers, and professionals. Feel free to [connect with me on LinkedIn](https://www.linkedin.com/in/blas-m-benito-6174a643/) to explore potential collaborations and discussions within our shared field.
 
 
 

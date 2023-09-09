@@ -92,6 +92,9 @@ Before delving into AgTech, I honed my research and technical skills during a su
 
 My research  primarily focused on [unveiling the environmental drivers shaping the distribution of biological diversity in space and time](https://scholar.google.es/citations?user=WBTp0McAAAAJ&hl=en). During this journey, I developed scientific R packages for various purposes, such as [time-series comparison](https://CRAN.R-project.org/package=distantia) and [analysis of lagged effects](https://CRAN.R-project.org/package=memoria), [spatial modeling with Random Forest](https://CRAN.R-project.org/package=spatialRF), and [ecological simulation](https://CRAN.R-project.org/package=virtualPollen).
 
+Throughout this journey, I collaborated with 210 esteemed coauthors from 22 countries to publish 49 research papers in reputable peer-reviewed journals. To date, our collective work has garnered over 1600 citations. Notably, three of our papers have received recognition as 'most downloaded papers' in prestigious journals, and two have been honored as 'editor's picks'.
+
+
 ## Beyond Work
 
 In my leisure time, I cherish moments with my family, tinker on the piano with enthusiasm (regardless of the results!), embrace the serenity of the sea on my stand-up paddle board, and continue my passion for developing R packages.

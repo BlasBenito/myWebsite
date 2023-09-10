@@ -7,7 +7,7 @@ weight = 1  # Order that this section will appear.
 
 # Slide interval.
 # Use `false` to disable animation or enter a time in ms, e.g. `5000` (5s).
-interval = false
+interval = 10000
 
 # Slide height (optional).
 # E.g. `500px` for 500 pixels or `calc(100vh - 70px)` for full screen.
@@ -23,7 +23,7 @@ height = "250px"
   # Overlay a color or image (optional).
   #   Deactivate an option by commenting out the line, prefixing it with `#`.
   overlay_color = "#666"  # An HTML color value.
-  overlay_img = "headers/houbara2.jpg"  # Image path relative to your `static/media/` folder.
+  overlay_img = "headers/houbara.jpg"  # Image path relative to your `static/media/` folder.
   overlay_filter = 0  # Darken the image. Value in range 0-1.
 
   # Call to action button (optional).
@@ -40,7 +40,7 @@ height = "250px"
   align = ""
 
   overlay_color = "#555"  # An HTML color value.
-  overlay_img = "headers/evi.jpg"  # Image path relative to your `static/media/` folder.
+  overlay_img = "headers/desert_evi.jpg"  # Image path relative to your `static/media/` folder.
   overlay_filter = 0  # Darken the image. Value in range 0-1.
   
 [[item]]
@@ -48,8 +48,26 @@ height = "250px"
   content = ""
   align = ""
 
-  overlay_color = "#555"  # An HTML color value.
-  overlay_img = "headers/pixels.jpg"  # Image path relative to your `static/media/` folder.
+  overlay_color = "#333"  # An HTML color value.
+  overlay_img = "headers/soil.jpg"  # Image path relative to your `static/media/` folder.
+  overlay_filter = 0  # Darken the image. Value in range 0-1.
+  
+[[item]]
+  title = ""
+  content = ""
+  align = ""
+
+  overlay_color = "#333"  # An HTML color value.
+  overlay_img = "headers/temperature.jpg"  # Image path relative to your `static/media/` folder.
+  overlay_filter = 0  # Darken the image. Value in range 0-1.
+  
+[[item]]
+  title = ""
+  content = ""
+  align = ""
+
+  overlay_color = "#333"  # An HTML color value.
+  overlay_img = "headers/texture.jpg"  # Image path relative to your `static/media/` folder.
   overlay_filter = 0  # Darken the image. Value in range 0-1.
 
 [[item]]
@@ -58,7 +76,7 @@ height = "250px"
   align = ""
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = "headers/tromso.jpg"  # Image path relative to your `static/media/` folder.
+  overlay_img = "headers/crops.jpg"  # Image path relative to your `static/media/` folder.
   overlay_filter = 0  # Darken the image. Value in range 0-1.
   
 [[item]]
@@ -68,14 +86,5 @@ height = "250px"
 
   overlay_color = "#333"  # An HTML color value.
   overlay_img = "headers/neanderthal.jpg"  # Image path relative to your `static/media/` folder.
-  overlay_filter = 0  # Darken the image. Value in range 0-1.
-  
-[[item]]
-  title = ""
-  content = ""
-  align = ""
-
-  overlay_color = "#333"  # An HTML color value.
-  overlay_img = "headers/sdm.jpg"  # Image path relative to your `static/media/` folder.
   overlay_filter = 0  # Darken the image. Value in range 0-1.
 +++

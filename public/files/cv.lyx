@@ -37,7 +37,7 @@
 \firstname{Blas M.}
 \familyname{Benito}
 \title{Curriculum Vitae}               % optional, remove the line if not wanted
-\address{University of Alicante \\ Edificio Nuevos Institutos \\ }{03690 San Vicente del Raspeig, Alicante (Spain)}    % optional, remove the line if not wanted
+\address{Carretera de Almería, Castell de Ferro (Spain)}    % optional, remove the line if not wanted
 \email{blasbenito@gmail.com}
 \mobile{+34 676158729}                    % optional, remove the line if not wanted
 % optional, remove the line if not wanted
@@ -151,7 +151,7 @@ Languages:
 \series default
  Spanish (native), English (proficient).
 \begin_inset Argument 1
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -167,7 +167,8 @@ status open
 \series bold
 Education:
 \series default
- PhD in Ecology; MS in Geographical Information Systems; BSc in Biology.
+ PhD in Computational Ecology; MS in Geographical Information Systems; BSc
+ in Biology.
 \begin_inset Argument 1
 status open
 
@@ -185,7 +186,7 @@ status open
 \series bold
 Professional career:
 \series default
- 12 years, 4 of PhD, 10 as postdoctoral researcher in Spain (University
+ 15 years, 4 of PhD, 11 as postdoctoral researcher in Spain (University
  of Granada), Denmark (Aarhus University), Norway (University of Bergen),
  and Spain (University of Alicante).
  Has participated in 21 research projects.
@@ -225,8 +226,8 @@ status open
 \series bold
 Research output:
 \series default
- 36 international peer-reviewed papers (8 as first author/coauthor), 861
- citations, H-index 16.
+ 46 international peer-reviewed papers (8 as first author/coauthor), 1640
+ citations, H-index (Google Scholar) 20.
 \begin_inset Argument 1
 status open
 
@@ -1423,7 +1424,60 @@ Work positions
 status open
 
 \begin_layout Plain Layout
-2020 - today
+2022 - today
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Data Scientist and Team Lead
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+Biome Makers Inc
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Description: Senior Data Scientist and Lead of the Environmental Data Team.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 5
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Entry
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+2020 - 2022
 \end_layout
 
 \end_inset
@@ -1853,7 +1907,7 @@ Research projects
 status open
 
 \begin_layout Plain Layout
-2020 - today
+2020 - 2022
 \end_layout
 
 \end_inset
@@ -3080,6 +3134,415 @@ status open
 
 \size large
 \begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Entry
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+2023
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Species Distribution Models predict abundance and its temporal variation
+ in a steppe bird population
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+Monnier-Corbel, A.,Robert, A., Hingrat, Y.,
+\series bold
+ Benito, B.M.
+\series default
+, Monnet, A-C.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 5
+status open
+
+\begin_layout Plain Layout
+
+\noun on
+global ecology and conservation 
+\noun default
+(
+\begin_inset CommandInset href
+LatexCommand href
+name "view at publisher"
+target "https://www.sciencedirect.com/science/article/pii/S235198942300077X"
+literal "false"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Entry
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+2022
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Environmental and human factors drive the subtropical marine forests of
+ Gongolaria abies-marina to extinction
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+Garcia, L.M., Rancel-Rodríguez, N.M., Sangil, C., Rejes, J.,
+\series bold
+ Benito, B.M.
+\series default
+, Orellana, S., Sansón, M.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 5
+status open
+
+\begin_layout Plain Layout
+
+\noun on
+marine environmental research 
+\noun default
+(
+\begin_inset CommandInset href
+LatexCommand href
+name "view at publisher"
+target "https://www.sciencedirect.com/science/article/pii/S0141113622002045"
+literal "false"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Entry
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+2022
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Human practices behind the aquatic and terrestrial ecological decoupling
+ to climate change in the tropical Andes
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+Benito, X.,
+\series bold
+ Benito, B.M.
+\series default
+, Vélez, M.I., Salgado, J., Schneider, T., Liviu, G., Nascimento, M.N.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 5
+status open
+
+\begin_layout Plain Layout
+
+\noun on
+science of the total environment 
+\noun default
+(
+\begin_inset CommandInset href
+LatexCommand href
+name "view at publisher"
+target "https://www.sciencedirect.com/science/article/abs/pii/S0048969722012074"
+literal "false"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Entry
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+2022
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Density-dependence of reproductive success in a Houbara bustard population
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+Monnier-Corbel, A., Monnet, A-C., Bacon, L.,
+\series bold
+ Benito, B.M.
+\series default
+, Robert, A., Hingrat, Y.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 5
+status open
+
+\begin_layout Plain Layout
+
+\noun on
+global ecology and conservation 
+\noun default
+(
+\begin_inset CommandInset href
+LatexCommand href
+name "view at publisher"
+target "https://www.sciencedirect.com/science/article/pii/S2351989422000737"
+literal "false"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Entry
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+2022
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Fourteen years of continuous soil moisture records from plant and biocrust-domin
+ated microsites
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+Moreno, J., Asension, S., Berdugo, M., Gozalo, B., Ochoa, V., Pescador, D.S.,
+\series bold
+ Benito, B.M.
+\series default
+, Maestre, F.T.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 5
+status open
+
+\begin_layout Plain Layout
+
+\noun on
+scientific data 
+\noun default
+(
+\begin_inset CommandInset href
+LatexCommand href
+name "view at publisher"
+target "https://www.nature.com/articles/s41597-021-01111-6"
+literal "false"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
 \end_inset
 
 
@@ -7064,6 +7527,96 @@ Book chapters
 
 \size large
 \begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Entry
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+2022
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+\emph on
+Altitudinal patterns and changes in the composition of high mountain plant
+ communities
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+Lorite, J., Lamprecht, A., Peñas, J., Rondinel-Mendoza, K., Fernandez-Calzado,
+ R.,
+\series bold
+ Benito, B.M., 
+\series default
+Cañadas, E.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+in:
+\noun on
+ The Landscape of the Sierra Nevada: A Unique Laboratory of Global Processes
+ in Spain
+\noun default
+, pages 171-191
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 5
+status open
+
+\begin_layout Plain Layout
+
+\noun on
+Springer International Publishing
+\noun default
+ (
+\begin_inset CommandInset href
+LatexCommand href
+name "view at publisher"
+target "https://link.springer.com/chapter/10.1007/978-3-030-94219-9_11"
+literal "false"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}{
+\end_layout
+
 \end_inset
 
 

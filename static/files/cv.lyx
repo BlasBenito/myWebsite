@@ -35,8 +35,8 @@
 
 % personal data
 \firstname{Blas M.}
-\familyname{Benito}
-\title{Curriculum Vitae}               % optional, remove the line if not wanted
+\familyname{Benito, PhD}
+\title{Academic CV}               % optional, remove the line if not wanted
 \address{Carretera de Almería, Castell de Ferro (Spain)}    % optional, remove the line if not wanted
 \email{blasbenito@gmail.com}
 \mobile{+34 676158729}                    % optional, remove the line if not wanted
@@ -147,28 +147,11 @@ Summary
 \begin_layout Item
 
 \series bold
-Languages:
-\series default
- Spanish (native), English (proficient).
-\begin_inset Argument 1
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Item
-
-\series bold
 Education:
 \series default
- PhD in Computational Ecology; MS in Geographical Information Systems; BSc
- in Biology.
+ PhD in Computational Ecology; MS in Geographical Information Systems; MS
+ in Environmental Auditing; Postgraduate Certificate in Education; BSc in
+ Biology.
 \begin_inset Argument 1
 status open
 
@@ -207,8 +190,8 @@ status open
 \series bold
 Research topics:
 \series default
- quantitative ecology, mechanistical modeling, vegetations cience, biogeography,
- spatial ecology, palaeoecology, Neanderthal biogeography.
+ computational ecology, spatial modeling and simulation, applications of
+ machine learning to spatial ecology, biogeography and palaeoecology.
 \begin_inset Argument 1
 status open
 
@@ -224,12 +207,91 @@ status open
 \begin_layout Item
 
 \series bold
-Research output:
-\series default
- 46 international peer-reviewed papers (8 as first author/coauthor), 1640
- citations, H-index (Google Scholar) 20.
+\begin_inset CommandInset href
+LatexCommand href
+name "Google Scholar profile"
+target "https://scholar.google.com/citations?user=WBTp0McAAAAJ&hl=en"
+literal "false"
+
+\end_inset
+
+
 \begin_inset Argument 1
 status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Item
+
+\series bold
+Published papers: 46
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Item
+
+\series bold
+Citations 
+\series default
+(Google Scholar)
+\series bold
+: 1639
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Item
+
+\series bold
+H-index 
+\series default
+(Google Scholar)
+\series bold
+: 20
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Item
+
+\series bold
+Languages:
+\series default
+ Spanish (native), English (proficient).
+\begin_inset Argument 1
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -3025,102 +3087,6 @@ Publications in international peer-reviewed journals
 
 \end_layout
 
-\begin_layout Item
-
-\series bold
-\begin_inset CommandInset href
-LatexCommand href
-name "Google Scholar profile"
-target "https://scholar.google.com/citations?user=WBTp0McAAAAJ&hl=en"
-literal "false"
-
-\end_inset
-
-
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Item
-
-\series bold
-Number of papers: 46
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Item
-
-\series bold
-As first author/coauthor: 8
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Item
-
-\series bold
-Citations 
-\series default
-(Google Scholar)
-\series bold
-: 1639
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Item
-
-\series bold
-H-index 
-\series default
-(Google Scholar)
-\series bold
-: 20
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 
 \size large
@@ -3646,7 +3612,7 @@ status open
 
 \begin_layout Plain Layout
 Ecological diversity within the rear-edge: a case study from Mediterranean
- Quercus pyrenaica Willd.
+ Quercus pyrenaica Willd
 \end_layout
 
 \end_inset

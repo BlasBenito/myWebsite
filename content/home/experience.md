@@ -104,8 +104,7 @@ date_format = "Jan 2006"
   - Published 6 papers in peer-reviewed international journals.
   - [One paper](https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04772) received the Most Downloaded Paper Award and was highlighted as an Editor's Pick by the Journal
   - Developed 3 R packages with a total of 53000 downloads for time-series comparison and analysis. 
-  - Enhanced my skills in time-series analysis and developer of R packages.
-  ."""
+  - Enhanced my skills in time-series analysis and developer of R packages."""
   
 [[experience]]
   title = "Staff researcher"

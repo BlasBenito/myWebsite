@@ -10,37 +10,46 @@
 
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
+
 [[main]]
-  name = "Academic CV"
-  url = "files/academic_cv.pdf"
-  weight = 60
+  name = "Resume"
+  url = "files/resume_bmb_dark.pdf"
+  weight = 20
+
+[[main]]
+  name = "Software"
+  url = "#projects"
+  weight = 30
+  
+[[main]]
+  name = "Posts"
+  url = "#posts"
+  weight = 40
   
 [[main]]
   name = "Publications"
   url = "#featured"
   weight = 50
-  
+
 [[main]]
-  name = "Software"
-  url = "#projects"
-  weight = 40
+  name = "Academic CV"
+  url = "files/academic_cv.pdf"
+  weight = 60
   
 
   
-[[main]]
-  name = "Resume"
-  url = "files/resume_bmb_dark.pdf"
-  weight = 30
+
+  
+
+  
+
   
 # [[main]]
 #   name = "Courses"
 #   url = "courses/"
 #   weight = 50
 
-[[main]]
-  name = "Posts"
-  url = "#posts"
-  weight = 20
+
 
 # [[main]]
 #   name = "Contact"

@@ -56,6 +56,12 @@
     <loc>https://blasbenito.com/tag/quantile-regression/</loc>
     <lastmod>2023-06-24T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://blasbenito.com/tag/random-forest/</loc>
+    <lastmod>2023-06-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/spatialrf/</loc>
+    <lastmod>2023-06-24T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blasbenito.com/tag/species-distribution-models/</loc>
     <lastmod>2023-06-24T00:00:00+00:00</lastmod>
   </url><url>
@@ -159,6 +165,9 @@
     <lastmod>2022-01-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/joaquin-moreno/</loc>
+    <lastmod>2022-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/linear-models/</loc>
     <lastmod>2022-01-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/miguel-berdugo/</loc>
@@ -294,9 +303,6 @@
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/r-packages/</loc>
-    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/random-forest/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/spatial-regression/</loc>

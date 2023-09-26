@@ -1,0 +1,27 @@
+---
+abstract: "Anthropogenic climate change and landscape alteration are two of the most important threats to the terrestrial and aquatic ecosystems of the tropical Americas, thus jeopardizing water and soil resources for millions of people in the Andean nations. Understanding how aquatic ecosystems will respond to anthropogenic stressors and accelerated warming requires shifting from short-term and static to long-term, dynamic characterizations of human-terrestrial-aquatic relationships. Here we use sediment records from Lake Llaviucu, a tropical mountain Andean lake long accessed by Indigenous and post-European societies, and hypothesize that under natural historical conditions (i.e., low human pressure) vegetation and aquatic ecosystems' responses to change are coupled through indirect climate influences—that is, past climate-driven vegetation changes dictated limnological trajectories. We used a multi-proxy paleoecological approach including drivers of terrestrial vegetation change (pollen), soil erosion (Titanium), human activity (agropastoralism indicators), and aquatic responses (diatoms) to estimate assemblage-wide rates of change and model their synchronous and asynchronous (lagged) relationships using Generalized Additive Models. Assemblage-wide rate of change results showed that between ca. 3000 and 400 calibrated years before present (cal years BP) terrestrial vegetation, agropastoralism and diatoms fluctuated along their mean regimes of rate of change without consistent periods of synchronous rapid change. In contrast, positive lagged relationships (i.e., asynchrony) between climate-driven terrestrial pollen changes and diatom responses (i.e., asynchrony) were in operation until ca. 750 cal years BP. Thereafter, positive lagged relationships between agropastoralism and diatom rates of changes dictated the lake trajectory, reflecting the primary control of human practices over the aquatic ecosystem prior European occupation. We interpret that shifts in Indigenous practices (e.g., valley terracing) curtailed nutrient inputs into the lake decoupling the links between climate-driven vegetation changes and the aquatic community. Our results demonstrate how rates of change of anthropogenic and climatic influences can guide dynamic ecological baselines for managing water ecosystem services in the Andes."
+
+authors:
+- Xavier Benito
+- admin
+- Maria I. Vélez
+- Jorge Salgado
+- Tobias Schneider
+- Liviu Giosan
+- Majoi N. Nascimento
+date: "2022-06-20T00:00:00Z"
+doi: "https://doi.org/10.1016/j.scitotenv.2022.154115"
+featured: false
+publication: '*Science of The Total Environment*'
+publication_types:
+- "2"
+publishDate: "2022-06-20T00:00:00Z"
+summary: "Anthropogenic climate change and landscape alteration are two of the most important threats to the terrestrial and aquatic ecosystems of the tropical Americas, thus jeopardizing water and soil resources for millions of people in the Andean nations. Understanding how aquatic ecosystems will respond to anthropogenic stressors and accelerated warming requires shifting from short-term and static to long-term, dynamic characterizations of human-terrestrial-aquatic relationships. Here we use sediment records from Lake Llaviucu, a tropical mountain Andean lake long accessed by Indigenous and post-European societies, and hypothesize that under natural historical conditions (i.e., low human pressure) vegetation and aquatic ecosystems' responses to change are coupled through indirect climate influences—that is, past climate-driven vegetation changes dictated limnological trajectories. We used a multi-proxy paleoecological approach including drivers of terrestrial vegetation change (pollen), soil erosion (Titanium), human activity (agropastoralism indicators), and aquatic responses (diatoms) to estimate assemblage-wide rates of change and model their synchronous and asynchronous (lagged) relationships using Generalized Additive Models. Assemblage-wide rate of change results showed that between ca. 3000 and 400 calibrated years before present (cal years BP) terrestrial vegetation, agropastoralism and diatoms fluctuated along their mean regimes of rate of change without consistent periods of synchronous rapid change. In contrast, positive lagged relationships (i.e., asynchrony) between climate-driven terrestrial pollen changes and diatom responses (i.e., asynchrony) were in operation until ca. 750 cal years BP. Thereafter, positive lagged relationships between agropastoralism and diatom rates of changes dictated the lake trajectory, reflecting the primary control of human practices over the aquatic ecosystem prior European occupation. We interpret that shifts in Indigenous practices (e.g., valley terracing) curtailed nutrient inputs into the lake decoupling the links between climate-driven vegetation changes and the aquatic community. Our results demonstrate how rates of change of anthropogenic and climatic influences can guide dynamic ecological baselines for managing water ecosystem services in the Andes."
+tags:
+- Time-series analysis
+- Palaeoecology
+- Generalized Additive Models
+title: "Human practices behind the aquatic and terrestrial ecological decoupling to climate change in the tropical Andes."
+url_pdf: https://www.sciencedirect.com/science/article/am/pii/S0048969722012074
+---
+

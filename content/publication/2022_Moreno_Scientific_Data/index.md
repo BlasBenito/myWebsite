@@ -24,6 +24,7 @@ tags:
 - Soil Sensors
 - Time Series
 - Plant Ecology
+- Linear Models
 title: " Fourteen years of continuous soil moisture records from plant and biocrust-dominated microsites."
 url_pdf: https://www.nature.com/articles/s41597-021-01111-6.pdf
 ---

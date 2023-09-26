@@ -5,12 +5,20 @@
     <link>https://blasbenito.com/tag/time-series-analysis/</link>
       <atom:link href="https://blasbenito.com/tag/time-series-analysis/index.xml" rel="self" type="application/rss+xml" />
     <description>Time Series Analysis</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 19 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Time Series Analysis</title>
       <link>https://blasbenito.com/tag/time-series-analysis/</link>
     </image>
+    
+    <item>
+      <title>Human practices behind the aquatic and terrestrial ecological decoupling to climate change in the tropical Andes.</title>
+      <link>https://blasbenito.com/publication/2022_benito_stoten/</link>
+      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/publication/2022_benito_stoten/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>R package &#34;distantia&#34;</title>

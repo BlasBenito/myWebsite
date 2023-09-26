@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jorge Salgado | Blas M. Benito, PhD</title>
+    <link>https://blasbenito.com/author/jorge-salgado/</link>
+      <atom:link href="https://blasbenito.com/author/jorge-salgado/index.xml" rel="self" type="application/rss+xml" />
+    <description>Jorge Salgado</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
+      <title>Jorge Salgado</title>
+      <link>https://blasbenito.com/author/jorge-salgado/</link>
+    </image>
+    
+    <item>
+      <title>Human practices behind the aquatic and terrestrial ecological decoupling to climate change in the tropical Andes.</title>
+      <link>https://blasbenito.com/publication/2022_benito_stoten/</link>
+      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/publication/2022_benito_stoten/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

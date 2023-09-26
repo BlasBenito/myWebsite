@@ -5,12 +5,36 @@
     <link>https://blasbenito.com/tag/species-distribution-models/</link>
       <atom:link href="https://blasbenito.com/tag/species-distribution-models/index.xml" rel="self" type="application/rss+xml" />
     <description>Species Distribution Models</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Tue, 17 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 24 Jun 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Species Distribution Models</title>
       <link>https://blasbenito.com/tag/species-distribution-models/</link>
     </image>
+    
+    <item>
+      <title>Species Distribution Models predict abundance and its temporal variation in a steppe bird population.</title>
+      <link>https://blasbenito.com/publication/2023_monnier_global_ecology_and_conservation/</link>
+      <pubDate>Sat, 24 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/publication/2023_monnier_global_ecology_and_conservation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Environmental and human factors drive the subtropical marine forests of Gongolaria abies-marina to extinction.</title>
+      <link>https://blasbenito.com/publication/2022_martin_marine_environmental_research/</link>
+      <pubDate>Sat, 01 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/publication/2022_martin_marine_environmental_research/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Density-dependence of reproductive success in a Houbara bustard population.</title>
+      <link>https://blasbenito.com/publication/2022_monnier_global_ecology_and_conservation/</link>
+      <pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/publication/2022_monnier_global_ecology_and_conservation/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Explainable artificial intelligence enhances the ecological interpretability of black‐box species distribution models</title>

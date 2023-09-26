@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Population Density | Blas M. Benito, PhD</title>
+    <link>https://blasbenito.com/tag/population-density/</link>
+      <atom:link href="https://blasbenito.com/tag/population-density/index.xml" rel="self" type="application/rss+xml" />
+    <description>Population Density</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 24 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
+      <title>Population Density</title>
+      <link>https://blasbenito.com/tag/population-density/</link>
+    </image>
+    
+    <item>
+      <title>Density-dependence of reproductive success in a Houbara bustard population.</title>
+      <link>https://blasbenito.com/publication/2022_monnier_global_ecology_and_conservation/</link>
+      <pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/publication/2022_monnier_global_ecology_and_conservation/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

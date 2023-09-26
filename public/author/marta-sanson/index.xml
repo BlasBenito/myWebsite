@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Marta Sansón | Blas M. Benito, PhD</title>
+    <link>https://blasbenito.com/author/marta-sanson/</link>
+      <atom:link href="https://blasbenito.com/author/marta-sanson/index.xml" rel="self" type="application/rss+xml" />
+    <description>Marta Sansón</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 01 Oct 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://blasbenito.com/media/avatar.jpg</url>
+      <title>Marta Sansón</title>
+      <link>https://blasbenito.com/author/marta-sanson/</link>
+    </image>
+    
+    <item>
+      <title>Environmental and human factors drive the subtropical marine forests of Gongolaria abies-marina to extinction.</title>
+      <link>https://blasbenito.com/publication/2022_martin_marine_environmental_research/</link>
+      <pubDate>Sat, 01 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/publication/2022_martin_marine_environmental_research/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -8,7 +8,7 @@ authors:
 
 date: "2011-02-02T00:00:00Z"
 doi: "https://doi.org/10.1007/s10584-010-0015-3"
-featured: true
+featured: false
 image:
   caption: 'Image credit: **Blas M. Benito**'
   focal_point: "center"

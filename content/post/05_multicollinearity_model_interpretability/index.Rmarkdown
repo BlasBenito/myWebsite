@@ -2,7 +2,7 @@
 title: "Multicollinearity Hinders Model Interpretability"
 author: ''
 date: '2023-10-29'
-slug: post-title
+slug: multicollinearity-model-interpretability
 output:
   blogdown::html_page:
     toc: true

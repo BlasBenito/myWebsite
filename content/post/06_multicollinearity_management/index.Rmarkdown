@@ -1,0 +1,262 @@
+---
+title: Identifying and Managing Multicollinearity
+author: ''
+date: '2023-11-05'
+slug: post-title
+links:
+- icon: github
+  icon_pack: fab
+  name: GitHub
+  url: https://github.com/BlasBenito/collinear
+categories: []
+tags: [R packages, Multicollinearity, Variable Selection]
+subtitle: ''
+summary: 'Identification of multicollinearity and variable selection for explanatory modeling with the R package `collinear`.'
+authors: [admin]
+lastmod: '2023-11-05T08:14:23+02:00'
+featured: no
+draft: true
+image:
+  caption: Graph by Blas M. Benito
+  focal_point: Smart
+  margin: auto
+projects: []
+---
+
+# Summary
+
+TODO
+
+# Setup
+
+This tutorial requires the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more. The optional ones are only used in the *Appendix* at the end of the post.
+
+```{r, eval = FALSE}
+#required
+install.packages("remotes")
+remotes::install_github(
+  repo = "blasbenito/collinear", 
+  ref = "development"
+  )
+install.packages("ranger")
+install.packages("dplyr")
+
+#optional
+install.packages("nlme")
+install.packages("glmnet")
+install.packages("xgboost")
+```
+
+
+
+```{r, message = FALSE, warning = FALSE}
+#load the collinear package and its example data
+library(collinear)
+data(vi)
+
+#other required libraries
+library(ranger)
+library(dplyr)
+```
+
+
+# Multicollinearity Explained
+
+This cute word comes from the amalgamation of these three Latin terms:
+  + *multus*: adjective meaning *many* or *multiple*.
+  + *con*: preposition often converted to *co-* (as in *co-worker*) meaning *together* or *mutually*.
+  + *linealis* (later converted to *linearis*): from *linea* (line), adjective meaning "resembling a line" or "belonging to a line", among others. 
+  
+After looking at these serious words, we can come up with a (VERY) liberal translation: "several things together in the same line". From here, we just have to replace the word "things" with "predictors" (or "features", or "independent variables", whatever rocks your boat) to build an intuition of the whole meaning of the word in the context of statistical and machine learning modeling.
+
+If I lost you there, we can move forward with this idea instead: **multicollinearity happens when there are redundant predictors in a modeling dataset**. A predictor can be redundant because it shows a high pairwise correlation with other predictors, or because it is a linear combination of other predictors. For example, in a data frame with the columns `a`, `b`, and `c`, if the correlation between `a` and `b` is high, we can say that `a` and `b` are mutually redundant and there is multicollinearity. But also, if `c` is the result of a linear operation between `a` and `b`, like `c <- a + b`, or `c <- a * 1 + b * 0.5`, then we can also say that there is multicollinearity between `c`, `a`, and `b`.
+
+Multicollinearity is a fact of life that lurks in most data sets. For example, in climate data, variables like temperature, humidity and air pressure are closely intertwined, leading to multicollinearity. That's the case as well in medical research, where parameters like blood pressure, heart rate, and body mass index frequently display common patterns. Economic analysis is another good example, as variables such as Gross Domestic Product (GDP), unemployment rate, and consumer spending often exhibit multicollinearity.
+
+
+# Model Interpretation Challenges
+
+Multicollinearity isn't inherently problematic, but it can be an inconvenience in some cases. Particularly, multicollinearity becomes a real buzz kill when the goal is to interpret an explanatory model to better understand predictor importance. 
+
+In the presence of highly correlated predictors, most (if not all) modelling methods, from linear models to gradient boosting, attribute a large part of the importance to only one of the predictors and not the others. When that happens, neglecting multicollinearity will certainly lead to an underestimation of the importance of certain predictors.
+
+Let me go ahead and develop a toy data set to showcase this issue. In the `vi` data frame shipped with the [`collinear`](https://blasbenito.github.io/collinear/) package, the variables "soil_clay" and "humidity_range" are not correlated at all (Pearson correlation = `r round(cor(vi$soil_clay, vi$humidity_range), 2)`). 
+
+In the code block below, the `dplyr::transmute()` command selects and renames them as `a` and `b`. After that, the two variables are scaled and centered, and `dplyr::mutate()` generates a few new columns:
+
+  + `y`: response variable resulting from a linear model where `a` has a slope of 0.75, `b` has a slope of 0.25, plus a bit of white noise generated with `runif()`.
+  + `c`: a new predictor highly correlated with `a`.
+  + `d`: a new predictor resulting from a linear combination of `a` and `b`.
+
+```{r}
+set.seed(1)
+df <- vi |>
+  dplyr::slice_sample(n = 2000) |>
+  dplyr::transmute(
+    a = soil_clay,
+    b = humidity_range
+  ) |>
+  scale() |>
+  as.data.frame() |> 
+  dplyr::mutate(
+    y = a * 0.75 + b * 0.25 + runif(n = dplyr::n(), min = -0.5, max = 0.5),
+    c = a + runif(n = dplyr::n(), min = -0.5, max = 0.5),
+    d = (a + b)/2 + runif(n = dplyr::n(), min = -0.5, max = 0.5)
+  )
+```
+
+The Pearson correlation between all pairs of these predictors is shown below.
+
+```{r}
+collinear::cor_df(
+  df = df,
+  predictors = c("a", "b", "c", "d")
+)
+```
+
+At this point, we have are two groups of predictors useful to understand how multicollinearity muddles model interpretation:
+
+  + Predictors with **no** multicollinearity: `a` and `b`.
+  + Predictors with multicollinearity: `a`, `b`, `c`, and `d`.
+
+
+
+# Identifying Multicollinearity
+
+The identification of multicollinearity is facilitated by two complementary methods: *pairwise correlations* and *variance inflation factors*. The former identifies predictors that are directly correlated with other predictors, while the latter identifies predictors that are linear combinations of other predictors. 
+
+Let's learn a bit about these methods.
+
+## Pairwise correlation
+
+This method involves finding the correlation between all pairs of predictors, either using the Pearson method when the variables are continuous and their relationships are linear, or the Spearman method when relationships are non-linear or the data is ordinal. The function `collinear::cor_df` does exactly that.
+
+```{r}
+df_correlation <- collinear::cor_df(
+  df = df,
+  predictors = c("a", "b", "c", "d"),
+  cor_method = "pearson" #default
+)
+
+#more concise, if df only has response and predictors
+# df_correlation <- collinear::cor_df(
+#   df = df,
+#   response = "y"
+# )
+
+df_correlation
+```
+Lots of numbers there! If you are asking yourself something like "what number do I have to look for?", you ran out of luck, because the only consensus about relevant correlation values is that there is no consensus at all. But here, we can at least agree that the correlation between `a` and `c` is high enough to grant an eyebrow raise and decide that there is something wrong with our data.
+
+## Variance Inflation Factors
+
+The Variance Inflation Factor (VIF) of a variable `a` is computed a `1/(1-R2)`, where `R2` is the R-squared of a multiple linear regression model using the variable `a` as a response, and all other variables in consideration as predictors.
+
+Let's see how that works for the predictor `a` in our toy example:
+
+```{r}
+#summary of multiple regression model
+lm_a <- lm(
+  formula = a ~ b + c + d,
+  data = df
+) |> 
+  summary()
+
+#r-squared
+rsquared_a <- lm_a$r.squared
+
+#alternative way to compute R-squared
+#cor(
+# x = stats::predict(lm_a), 
+# y = df$a
+# )^2
+
+#vif
+1/(1-rsquared_a)
+```
+That works well as an example, but there is no need to fit one regression model per predictor to compute all VIF scores in our toy data frame. The function `collinear::vif_df()` can do it pretty well.
+
+```{r}
+df_vif <- collinear::vif_df(
+  df = df,
+  predictors = c("a", "b", "c", "d")
+)
+
+#more concise, if there are only responses and predictors in df
+# sf_vif <- collinear::vif_df(
+#   df = df,
+#   response = "y"
+# )
+
+df_vif
+```
+
+Alright, so these are the VIFs in our data frame, now what? Well, regarding VIF values, there is no consensus either, but at least there is a repetition of values in the literature. Depending on the source, VIF values higher than 10, 5, or 2.5 are considered suspicious, and all our predictors are above these thresholds. 
+
+Now that we have quantitative criteria to identify multicollinearity in our data, we must do something to manage it if our goal is to interpret our model correctly. In the next section I explain old and new ways achieve just that.
+
+# Managing Multicollinearity
+
+At this point, we know that there is plenty of multicolinearity in our data, and that it can compromise the interpretation of our model. Now we need to somehow manage it to improve model interpretability.
+
+## The old fashioned way
+
+From here, we could use this data frame to identify pairs of highly correlated variables, and remove the one we dislike the most from each pair until the maximum correlation is below some magic number. Something like this:
+
+```{r}
+df_correlation |> 
+  dplyr::filter(
+    y != "a" | y != "a" #removing `a`
+  )
+```
+And so on. I mean, multicollinearity looks much better now, but we made a bold wrong choice by letting our best predictor go, and we still have correlation values that could be too high.
+
+But there is something important to remember here, the VIF of one predictor depends on what other predictors are in the data. If I remove a predictor with a high VIF, the VIF of other predictors will likely change. 
+
+Since `a` has the highest VIF, let's make the logical mistake of removing it to reduce multicollinearity.
+
+```{r}
+collinear::vif_df(
+  df = df,
+  predictors = c("b", "c", "d")
+)
+```
+So, yes, we made a bold choice, removed our most important predictor of `y` without even knowing, an in exchange, multicollinearity looks much better now. To end the job, we can remove `d` now.
+
+```{r}
+collinear::vif_df(
+  df = df,
+  predictors = c("b", "c")
+)
+```
+
+
+
+A few of them are pretty high, and `a`, our most important predictor, has the higher VIF.
+
+## Now
+
+```{r}
+preference <- collinear::preference_order(
+  df = df,
+  response = "y",
+  predictors = c("a", "b", "c", "d")
+)
+preference
+```
+
+```{r}
+variable_selection <- collinear::collinear(
+  df = df,
+  response = "y",
+  predictors = c("a", "b", "c", "d"),
+  preference_order = preference,
+  max_cor = 0.5,
+  max_vif = 2.5
+)
+variable_selection
+```
+
+
+Well, that's enough for today! I hope you found this post helpful.
+

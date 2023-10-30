@@ -1,5 +1,5 @@
 ---
-title: R package spatialRF
+title: "R package `spatialRF`"
 author: ''
 date: '2023-09-26'
 slug: post-title
@@ -44,12 +44,8 @@ projects: []
 -->
 
 <!-- badges: start -->
-
-[![Devel-version](https://img.shields.io/badge/devel%20version-1.1.3-blue.svg)](https://github.com/blasbenito/spatialRF) [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-[![License](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) [![DOI](https://zenodo.org/badge/330962704.svg)](https://zenodo.org/badge/latestdoi/330962704)[![CRAN status](https://www.r-pkg.org/badges/version/spatialRF)](https://cran.r-project.org/package=spatialRF)[![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/grand-total/spatialRF)](https://CRAN.R-project.org/package=spatialRF)
-
-
-
+[![CRAN status](https://www.r-pkg.org/badges/version/spatialRF)](https://cran.r-project.org/package=spatialRF)
+[![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/grand-total/spatialRF)](https://CRAN.R-project.org/package=spatialRF)
 <!-- badges: end -->
 
 
@@ -1466,44 +1462,44 @@ kableExtra::kbl(
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> climate_hypervolume </td>
-   <td style="text-align:right;"> 1006.071 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> climate_bio1_average..pca..human_population_density </td>
-   <td style="text-align:right;"> 1005.115 </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> climate_bio1_average..pca..neighbors_count </td>
-   <td style="text-align:right;"> 997.026 </td>
+   <td style="text-align:right;"> 1094.792 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> climate_hypervolume </td>
+   <td style="text-align:right;"> 1067.111 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> spatial_predictor_0_2 </td>
-   <td style="text-align:right;"> 929.937 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> climate_bio1_average </td>
-   <td style="text-align:right;"> 912.678 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> bias_area_km2 </td>
-   <td style="text-align:right;"> 849.819 </td>
+   <td style="text-align:right;"> 1035.365 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> human_population </td>
-   <td style="text-align:right;"> 843.579 </td>
+   <td style="text-align:right;"> 997.965 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> climate_bio1_average </td>
+   <td style="text-align:right;"> 973.243 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> bias_area_km2..pca..neighbors_percent_shared_edge </td>
-   <td style="text-align:right;"> 833.444 </td>
+   <td style="text-align:right;"> 902.209 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> climate_bio1_average..pca..human_population_density </td>
+   <td style="text-align:right;"> 882.910 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> spatial_predictor_0_1 </td>
-   <td style="text-align:right;"> 745.062 </td>
+   <td style="text-align:right;"> 815.656 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> bias_area_km2 </td>
+   <td style="text-align:right;"> 750.278 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> bias_species_per_record </td>
-   <td style="text-align:right;"> 708.844 </td>
+   <td style="text-align:right;"> 712.031 </td>
   </tr>
 </tbody>
 </table>
@@ -1669,12 +1665,12 @@ spatialRF::print_performance(model.spatial.repeat)
 ```
 ## 
 ## Model performance (median +/- mad) 
-##   - R squared (oob):              0.579 +/- 0.0074
-##   - R squared (cor(obs, pred)^2): 0.958 +/- 0.0017
-##   - Pseudo R squared:             0.979 +/- 9e-04
-##   - RMSE (oob):                   2185.475 +/- 19.2473
-##   - RMSE:                         919.137 +/- 10.2359
-##   - Normalized RMSE:              0.265 +/- 0.003
+##   - R squared (oob):              0.593 +/- 0.0098
+##   - R squared (cor(obs, pred)^2): 0.957 +/- 0.0016
+##   - Pseudo R squared:             0.978 +/- 8e-04
+##   - RMSE (oob):                   2151.154 +/- 25.7818
+##   - RMSE:                         914.973 +/- 15.5809
+##   - Normalized RMSE:              0.264 +/- 0.0045
 ```
 
 # Taking advantage of the ` %>%` pipe
@@ -1815,7 +1811,7 @@ kableExtra::kbl(
   <tr>
    <td style="text-align:left;"> Spatial </td>
    <td style="text-align:left;"> r.squared </td>
-   <td style="text-align:right;"> 0.285 </td>
+   <td style="text-align:right;"> 0.305 </td>
   </tr>
 </tbody>
 </table>
@@ -1941,63 +1937,63 @@ kableExtra::kbl(
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 0.0259217 </td>
+   <td style="text-align:right;"> -0.0259217 </td>
    <td style="text-align:right;"> 0.0052203 </td>
-   <td style="text-align:right;"> 0.0416969 </td>
+   <td style="text-align:right;"> -0.0416969 </td>
    <td style="text-align:right;"> -0.0363324 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 0.0996679 </td>
+   <td style="text-align:right;"> -0.0996679 </td>
    <td style="text-align:right;"> 0.0539713 </td>
-   <td style="text-align:right;"> 0.1324480 </td>
+   <td style="text-align:right;"> -0.1324480 </td>
    <td style="text-align:right;"> 0.3826928 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 0.0010477 </td>
+   <td style="text-align:right;"> -0.0010477 </td>
    <td style="text-align:right;"> -0.0143046 </td>
-   <td style="text-align:right;"> -0.0443602 </td>
+   <td style="text-align:right;"> 0.0443602 </td>
    <td style="text-align:right;"> -0.0031386 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 0.0165695 </td>
+   <td style="text-align:right;"> -0.0165695 </td>
    <td style="text-align:right;"> 0.0047991 </td>
-   <td style="text-align:right;"> 0.0307457 </td>
+   <td style="text-align:right;"> -0.0307457 </td>
    <td style="text-align:right;"> 0.0005170 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 0.0225761 </td>
+   <td style="text-align:right;"> -0.0225761 </td>
    <td style="text-align:right;"> 0.0019595 </td>
-   <td style="text-align:right;"> 0.0230368 </td>
+   <td style="text-align:right;"> -0.0230368 </td>
    <td style="text-align:right;"> -0.0524239 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 0.0155252 </td>
+   <td style="text-align:right;"> -0.0155252 </td>
    <td style="text-align:right;"> 0.0023742 </td>
-   <td style="text-align:right;"> 0.0197953 </td>
+   <td style="text-align:right;"> -0.0197953 </td>
    <td style="text-align:right;"> -0.0338956 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 0.0229197 </td>
+   <td style="text-align:right;"> -0.0229197 </td>
    <td style="text-align:right;"> 0.0039860 </td>
-   <td style="text-align:right;"> 0.0312561 </td>
+   <td style="text-align:right;"> -0.0312561 </td>
    <td style="text-align:right;"> -0.0416697 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> -0.2436009 </td>
+   <td style="text-align:right;"> 0.2436009 </td>
    <td style="text-align:right;"> -0.1155295 </td>
-   <td style="text-align:right;"> 0.0791452 </td>
+   <td style="text-align:right;"> -0.0791452 </td>
    <td style="text-align:right;"> 0.0189996 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 0.0150725 </td>
+   <td style="text-align:right;"> -0.0150725 </td>
    <td style="text-align:right;"> -0.0158684 </td>
-   <td style="text-align:right;"> -0.1010284 </td>
+   <td style="text-align:right;"> 0.1010284 </td>
    <td style="text-align:right;"> 0.0095590 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> -0.1187381 </td>
+   <td style="text-align:right;"> 0.1187381 </td>
    <td style="text-align:right;"> -0.0471879 </td>
-   <td style="text-align:right;"> 0.0359881 </td>
+   <td style="text-align:right;"> -0.0359881 </td>
    <td style="text-align:right;"> 0.0065211 </td>
   </tr>
 </tbody>

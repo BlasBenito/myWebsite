@@ -21,7 +21,7 @@ projects: []
 # Resources
 
   + [Rmarkdown notebook used in this tutorial](https://github.com/BlasBenito/notebooks/blob/main/variance_inflation_factors.Rmd)
-  + [[Multicollinearity Hinders Model Interpretability](/post/multicollinearity-model-interpretability/)
+  + [Multicollinearity Hinders Model Interpretability](/post/multicollinearity-model-interpretability/)
   + [R package `collinear`](https://blasbenito.github.io/collinear/)
 
 # Summary

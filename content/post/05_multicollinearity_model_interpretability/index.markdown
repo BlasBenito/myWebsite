@@ -41,11 +41,7 @@ This tutorial requires the newly released R package [`collinear`](https://blasbe
 
 ```r
 #required
-install.packages("remotes")
-remotes::install_github(
-  repo = "blasbenito/collinear", 
-  ref = "development"
-  )
+install.packages("collinear")
 install.packages("ranger")
 install.packages("dplyr")
 

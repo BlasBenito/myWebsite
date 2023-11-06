@@ -1,5 +1,5 @@
 ---
-title: Identifying and Managing Multicollinearity
+title: Managing Multicollinearity
 author: ''
 date: '2023-11-05'
 slug: multicollinearity-management
@@ -11,7 +11,7 @@ links:
 categories: []
 tags: [R packages, Multicollinearity, Variable Selection]
 subtitle: ''
-summary: 'Identification of multicollinearity and variable selection for explanatory modeling with the R package `collinear`.'
+summary: 'Identification of multicollinearity and variable selection for explanatory modeling with R'
 authors: [admin]
 lastmod: '2023-11-05T08:14:23+02:00'
 featured: no
@@ -23,13 +23,17 @@ image:
 projects: []
 ---
 
+{{% alert note %}}
+This post, aimed at R users wishing to understand how to manage multicollinearity with R,  serves as a continuation of [Multicollinearity Hinders Model Interpretability](/post/multicollinearity-model-interpretability/).
+{{% /alert %}}
+
 # Summary
 
 TODO
 
-# Setup
+# R packages
 
-This tutorial requires the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more. The optional ones are only used in the *Appendix* at the end of the post.
+This tutorial requires the development version (>= 1.0.2) of the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more.
 
 ```{r, eval = FALSE}
 #required
@@ -40,55 +44,22 @@ remotes::install_github(
   )
 install.packages("ranger")
 install.packages("dplyr")
-
-#optional
-install.packages("nlme")
-install.packages("glmnet")
-install.packages("xgboost")
 ```
 
 
+# Example data
+
+To develop the examples in this post, I will use a toy dataset derived from the `vi`data frame shipped with the [`collinear`](https://blasbenito.github.io/collinear/) package. In `vi`, the variables "soil_clay" and "humidity_range" are not correlated at all (Pearson correlation = -0.06). Below I rename them to `a` and `b`, use a linear combination of them plus a bit of white noise to generate the response variable `y`, and generate the collinear variables `c` (highly correlated with `a`), and `d` (moderately correlated with `a` and `b`).
 
 ```{r, message = FALSE, warning = FALSE}
-#load the collinear package and its example data
+#load collinear and the example data
 library(collinear)
 data(vi)
 
-#other required libraries
-library(ranger)
+#load dplyr for data manipulation
 library(dplyr)
-```
 
-
-# Multicollinearity Explained
-
-This cute word comes from the amalgamation of these three Latin terms:
-  + *multus*: adjective meaning *many* or *multiple*.
-  + *con*: preposition often converted to *co-* (as in *co-worker*) meaning *together* or *mutually*.
-  + *linealis* (later converted to *linearis*): from *linea* (line), adjective meaning "resembling a line" or "belonging to a line", among others. 
-  
-After looking at these serious words, we can come up with a (VERY) liberal translation: "several things together in the same line". From here, we just have to replace the word "things" with "predictors" (or "features", or "independent variables", whatever rocks your boat) to build an intuition of the whole meaning of the word in the context of statistical and machine learning modeling.
-
-If I lost you there, we can move forward with this idea instead: **multicollinearity happens when there are redundant predictors in a modeling dataset**. A predictor can be redundant because it shows a high pairwise correlation with other predictors, or because it is a linear combination of other predictors. For example, in a data frame with the columns `a`, `b`, and `c`, if the correlation between `a` and `b` is high, we can say that `a` and `b` are mutually redundant and there is multicollinearity. But also, if `c` is the result of a linear operation between `a` and `b`, like `c <- a + b`, or `c <- a * 1 + b * 0.5`, then we can also say that there is multicollinearity between `c`, `a`, and `b`.
-
-Multicollinearity is a fact of life that lurks in most data sets. For example, in climate data, variables like temperature, humidity and air pressure are closely intertwined, leading to multicollinearity. That's the case as well in medical research, where parameters like blood pressure, heart rate, and body mass index frequently display common patterns. Economic analysis is another good example, as variables such as Gross Domestic Product (GDP), unemployment rate, and consumer spending often exhibit multicollinearity.
-
-
-# Model Interpretation Challenges
-
-Multicollinearity isn't inherently problematic, but it can be an inconvenience in some cases. Particularly, multicollinearity becomes a real buzz kill when the goal is to interpret an explanatory model to better understand predictor importance. 
-
-In the presence of highly correlated predictors, most (if not all) modelling methods, from linear models to gradient boosting, attribute a large part of the importance to only one of the predictors and not the others. When that happens, neglecting multicollinearity will certainly lead to an underestimation of the importance of certain predictors.
-
-Let me go ahead and develop a toy data set to showcase this issue. In the `vi` data frame shipped with the [`collinear`](https://blasbenito.github.io/collinear/) package, the variables "soil_clay" and "humidity_range" are not correlated at all (Pearson correlation = `r round(cor(vi$soil_clay, vi$humidity_range), 2)`). 
-
-In the code block below, the `dplyr::transmute()` command selects and renames them as `a` and `b`. After that, the two variables are scaled and centered, and `dplyr::mutate()` generates a few new columns:
-
-  + `y`: response variable resulting from a linear model where `a` has a slope of 0.75, `b` has a slope of 0.25, plus a bit of white noise generated with `runif()`.
-  + `c`: a new predictor highly correlated with `a`.
-  + `d`: a new predictor resulting from a linear combination of `a` and `b`.
-
-```{r}
+#generate the toy data set
 set.seed(1)
 df <- vi |>
   dplyr::slice_sample(n = 2000) |>
@@ -105,95 +76,81 @@ df <- vi |>
   )
 ```
 
-The Pearson correlation between all pairs of these predictors is shown below.
-
-```{r}
-collinear::cor_df(
-  df = df,
-  predictors = c("a", "b", "c", "d")
-)
-```
-
-At this point, we have are two groups of predictors useful to understand how multicollinearity muddles model interpretation:
-
-  + Predictors with **no** multicollinearity: `a` and `b`.
-  + Predictors with multicollinearity: `a`, `b`, `c`, and `d`.
-
-
+Now that we have a toy dataset in which the relationship between all predictors and the response is well understood, let's start with identifying multicollinearity.
 
 # Identifying Multicollinearity
 
-The identification of multicollinearity is facilitated by two complementary methods: *pairwise correlations* and *variance inflation factors*. The former identifies predictors that are directly correlated with other predictors, while the latter identifies predictors that are linear combinations of other predictors. 
-
-Let's learn a bit about these methods.
+The identification of multicollinearity is facilitated by two complementary methods: *pairwise correlation* and *variance inflation factors*. The former identifies highly correlated pairs of predictors, while the latter identifies predictors that are linear combinations of other predictors. 
 
 ## Pairwise correlation
 
-This method involves finding the correlation between all pairs of predictors, either using the Pearson method when the variables are continuous and their relationships are linear, or the Spearman method when relationships are non-linear or the data is ordinal. The function `collinear::cor_df` does exactly that.
+This method involves finding the correlation between all pairs of predictors via `stats::cor()`, either using the Pearson method when the variables are continuous and their relationships are linear, or the Spearman method when relationships are non-linear or the data is ordinal. The function `collinear::cor_df()` returns a data frame of correlations ordered from higher to lower, no matter the sign.
 
 ```{r}
-df_correlation <- collinear::cor_df(
+correlation_df <- collinear::cor_df(
   df = df,
   predictors = c("a", "b", "c", "d"),
   cor_method = "pearson" #default
 )
 
 #more concise, if df only has response and predictors
-# df_correlation <- collinear::cor_df(
+# correlation_df <- collinear::cor_df(
 #   df = df,
 #   response = "y"
 # )
 
-df_correlation
+correlation_df
 ```
-Lots of numbers there! If you are asking yourself something like "what number do I have to look for?", you ran out of luck, because the only consensus about relevant correlation values is that there is no consensus at all. But here, we can at least agree that the correlation between `a` and `c` is high enough to grant an eyebrow raise and decide that there is something wrong with our data.
+
+This data frame helps identifying pairs of highly correlated predictors right away. In general, anything above 0.5 or below -0.5 is worth inspecting, but the truth is that the only only consensus about relevant correlation values during a multicollinearity analysis is that there is no consensus at all. No matter what threshold we are looking for, in this case we can at least agree that the correlation between `a` and `c` is high enough to grant an eyebrow raise and decide that there is something wrong with our data. We'll see later what we can do with these pairs of predictors with intermediate correlations.
+
+Pairwise correlations can be reshaped into a correlation matrix and plotted as a dendrogram to further our understanding of the relationships between predictors. 
+
+First, the function `collinear::cor_matrix()` transforms the pairwise correlations data frame into a matrix, and it also can create the matrix directly from the data (see the commented code below).
+
+```{r}
+correlation_matrix <- collinear::cor_matrix(
+  df = correlation_df
+)
+
+#it can also build the correlation matrix directly
+# correlation_matrix <- collinear::cor_matrix(
+#   df = df,
+#   predictors = c("a", "b", "c", "d")
+# )
+
+correlation_matrix
+```
+
+Now, we convert the absolute values of the correlation matrix to a "dist" object, and subtract the result to 1 to convert pairwise correlations into pairwise distances.
+
+```{r}
+correlation_dist <- 1 - correlation_matrix |>
+  abs() |>
+  as.dist()
+
+correlation_dist
+```
+
+Finally, we use `stats::hclust()` to compute a hierarchical clustering of the distance matrix, convert the result to a dendrogram, and plot it.
+
+```{r}
+correlation_dist |> 
+  hclust(method = "complete") |> 
+  as.dendrogram() |> 
+  plot(horiz = TRUE)
+```
+
+The x axis in the dendrogram above represents the "linkage distance" between predictors, and maps approximately to `1 - correlation`. This one, for example, makes it clear that `a` and `c` have a correlation close to 1, as the node that separates them happens at a linkage distance very close to 0 . 
+This kind of plot offers an intuitive view of the relationship between predictors, not only to perform a multicollinearity analysis, but also to obtain domain knowledge about the problem at hand and facilitate model design.
+
+Now, the first step of multicollinearity identification is done. However, multicollinearity can present itself in ways that are slightly more complex to detect than pairwise correlations, and that's where Variance Inflation Factors come into play.
 
 ## Variance Inflation Factors
 
-The Variance Inflation Factor (VIF) of a variable `a` is computed a `1/(1-R2)`, where `R2` is the R-squared of a multiple linear regression model using the variable `a` as a response, and all other variables in consideration as predictors.
+A second form of multicollinearity happens when a predictor is a linear combination of other predictors. A good example in our toy dataset is `d`, that was generated from a linear combination of the predictors `a` and `b`. 
 
-Let's see how that works for the predictor `a` in our toy example:
 
-```{r}
-#summary of multiple regression model
-lm_a <- lm(
-  formula = a ~ b + c + d,
-  data = df
-) |> 
-  summary()
-
-#r-squared
-rsquared_a <- lm_a$r.squared
-
-#alternative way to compute R-squared
-#cor(
-# x = stats::predict(lm_a), 
-# y = df$a
-# )^2
-
-#vif
-1/(1-rsquared_a)
-```
-That works well as an example, but there is no need to fit one regression model per predictor to compute all VIF scores in our toy data frame. The function `collinear::vif_df()` can do it pretty well.
-
-```{r}
-df_vif <- collinear::vif_df(
-  df = df,
-  predictors = c("a", "b", "c", "d")
-)
-
-#more concise, if there are only responses and predictors in df
-# sf_vif <- collinear::vif_df(
-#   df = df,
-#   response = "y"
-# )
-
-df_vif
-```
-
-Alright, so these are the VIFs in our data frame, now what? Well, regarding VIF values, there is no consensus either, but at least there is a repetition of values in the literature. Depending on the source, VIF values higher than 10, 5, or 2.5 are considered suspicious, and all our predictors are above these thresholds. 
-
-Now that we have quantitative criteria to identify multicollinearity in our data, we must do something to manage it if our goal is to interpret our model correctly. In the next section I explain old and new ways achieve just that.
 
 # Managing Multicollinearity
 
@@ -204,7 +161,7 @@ At this point, we know that there is plenty of multicolinearity in our data, and
 From here, we could use this data frame to identify pairs of highly correlated variables, and remove the one we dislike the most from each pair until the maximum correlation is below some magic number. Something like this:
 
 ```{r}
-df_correlation |> 
+correlation_df |> 
   dplyr::filter(
     y != "a" | y != "a" #removing `a`
   )

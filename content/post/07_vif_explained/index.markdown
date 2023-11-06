@@ -20,6 +20,15 @@ projects: []
 
 # Summary
 
+In this detailed post, I dive deep into Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models. I use R code extensively to illustrate various concepts, making it a practical guide for those well-versed in R.
+
+The post covers the following main points:
+
+  + **VIF meaning and interpretation**: Through practical examples, I demonstrate how to compute VIF values and their significance in model design. Particularly, I try to shed light on their influence on coefficient estimates and their confidence intervals. 
+  + **The Impact of High VIF**: I use a small simulation to show how having a model design with a high VIF hinders the identification of predictors with moderate effects, particularly in situations with limited data.
+  + **Effective VIF Management**: I introduce how to use the `collinear` package and its `vif_select()` function. to aid in the selection of predictors with low VIF, thereby enhancing model stability and interpretability.
+
+Ultimately, this post serves as a comprehensive resource for understanding, interpreting, and managing VIF in the context of linear modeling. It caters to those with a strong command of R and a keen interest in statistical modeling.
 
 # R packages
 
@@ -96,7 +105,7 @@ collinear::cor_df(
 
 Keep these pairwise correlations in mind for what comes next!
 
-# The meaning of VIF
+# The Meaning of Variance Inflation Factors
 
 There are two general cases of multicollinearity in model designs:
 
@@ -359,7 +368,7 @@ Again, the square root of the VIF of `b` in `y ~ a + b + c + d` is a great indic
 
 And that, folks, is the meaning of VIF.
 
-# When the VIF hurts
+# When the VIF Hurts
 
 In the previous sections we acquired an intuition of how Variance Inflation Factors measure the effect of multicollinearity in the precision of the coefficient estimates in a linear model. But there is more to that!
 
@@ -519,7 +528,7 @@ The gray vertical line represents the real value of the slope of `b`, and each d
 
 **Finding the true effect of a predictor with a moderate effect becomes harder under multicollinearity.**
 
-# Managing VIF in a model design
+# Managing VIF in a Model Design
 
 The second most common form of modeling self-sabotage is *having high VIF predictors in a model design*, just right after *throwing deep learning at tabular problems to see what sticks*. I don't have solutions for the deep learning issue, but I have some pointers for the VIFs one: **letting things go!**. And with *things* I mean *predictors*, not the pictures of your old love. There is no rule *the more predictors the better* rule written anywhere relevant, and letting your model shed some fat is the best way to go here.
 

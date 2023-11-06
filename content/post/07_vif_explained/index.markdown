@@ -18,6 +18,12 @@ image:
 projects: []
 ---
 
+# Resources
+
+  + [Rmarkdown notebook used in this tutorial](https://github.com/BlasBenito/notebooks/blob/main/variance_inflation_factors.Rmd)
+  + [[Multicollinearity Hinders Model Interpretability](/post/multicollinearity-model-interpretability/)
+  + [R package `collinear`](https://blasbenito.github.io/collinear/)
+
 # Summary
 
 In this detailed post, I dive deep into Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models. I use R code extensively to illustrate various concepts, making it a practical guide for those well-versed in R.

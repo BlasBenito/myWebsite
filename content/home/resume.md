@@ -10,17 +10,17 @@ subtitle = ""
 
 
 [[item]]
-  title = "Resume"
+  title = "Industry"
   pdf_url = "files/blas_benito_resume.pdf"
   pdf_snapshot = "media/blas_benito_resume_snapshot.png"
   
 [[item]]
-  title = "Resume (dark)"
+  title = "Industry (dark)"
   pdf_url = "files/blas_benito_resume_bw.pdf"
   pdf_snapshot = "media/blas_benito_resume_bw_snapshot.png"
 
 [[item]]
-  title = "Academic CV"
+  title = "Academia"
   pdf_url = "files/blas_benito_academic_cv.pdf"
   pdf_snapshot = "media/blas_benito_academic_cv_snapshot.png"
 

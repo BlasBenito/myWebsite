@@ -34,7 +34,6 @@ figure {
             <div class="card experience course">
               <div class="card-body">
                 <h4 class="card-title exp-title text-muted my-0">{{.title | markdownify | emojify}}</h4>
-                {{ with .url -}}</a>{{- end -}}
                 {{ with .pdf_url }}
                   <a class="card-link" href="{{.}}" target="_blank" rel="noopener">
                     {{ i18n "open pdf" | default "Open PDF" }}
@@ -42,7 +41,7 @@ figure {
                 {{ end }}
                 {{ with .pdf_snapshot }}
                   <figure>
-                    <img src="{{.}}" width="150" alt="Snapshot Image" class="snapshot-image">
+                      <img src="{{.}}" width="150" alt="Snapshot Image" class="snapshot-image">
                   </figure>
                 {{ end }}
               </div>

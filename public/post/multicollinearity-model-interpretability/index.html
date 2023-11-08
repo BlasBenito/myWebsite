@@ -1,0 +1,1589 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Blas M. Benito">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="In this post, I delve into the intricacies of model interpretation under the influence of multicollinearity, and use R and a toy data set to demonstrate how this phenomenon impacts both linear and machine learning models.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://blasbenito.com/post/multicollinearity-model-interpretability/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu1c59cf3385effff74945fd18b5aeda91_399117_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu1c59cf3385effff74945fd18b5aeda91_399117_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://blasbenito.com/post/multicollinearity-model-interpretability/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Blas M. Benito, PhD">
+  <meta property="og:url" content="https://blasbenito.com/post/multicollinearity-model-interpretability/">
+  <meta property="og:title" content="Multicollinearity Hinders Model Interpretability | Blas M. Benito, PhD">
+  <meta property="og:description" content="In this post, I delve into the intricacies of model interpretation under the influence of multicollinearity, and use R and a toy data set to demonstrate how this phenomenon impacts both linear and machine learning models."><meta property="og:image" content="https://blasbenito.com/post/multicollinearity-model-interpretability/featured.png">
+  <meta property="twitter:image" content="https://blasbenito.com/post/multicollinearity-model-interpretability/featured.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2023-10-29T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2023-10-29T08:14:23&#43;02:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blasbenito.com/post/multicollinearity-model-interpretability/"
+  },
+  "headline": "Multicollinearity Hinders Model Interpretability",
+  
+  "image": [
+    "https://blasbenito.com/post/multicollinearity-model-interpretability/featured.png"
+  ],
+  
+  "datePublished": "2023-10-29T00:00:00Z",
+  "dateModified": "2023-10-29T08:14:23+02:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Blas M. Benito"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blas M. Benito, PhD",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blasbenito.com/images/icon_hu1c59cf3385effff74945fd18b5aeda91_399117_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "In this post, I delve into the intricacies of model interpretation under the influence of multicollinearity, and use R and a toy data set to demonstrate how this phenomenon impacts both linear and machine learning models."
+}
+</script>
+
+  
+
+  
+
+
+  
+  
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" integrity="sha256-5VhCqFam2Cn+yjw61zbBNrbHVJ6SRydPeKopYlngbiQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" integrity="sha256-zQ0LblD/Af8vOppw18+2anxsuaz3pWYyVWi+bTvTH8Q=" crossorigin="anonymous">
+  
+  <script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#2962ff",
+          "text": "rgb(255, 255, 255)"
+        },
+        "button": {
+          "background": "rgb(255, 255, 255)",
+          "text": "#2962ff"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "https://www.cookiesandyou.com"
+      }
+    })});
+  </script>
+
+
+
+  
+
+
+
+
+
+  <title>Multicollinearity Hinders Model Interpretability | Blas M. Benito, PhD</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Blas M. Benito, PhD</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Blas M. Benito, PhD</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#resume"><span>Resume</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Software</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>Multicollinearity Hinders Model Interpretability</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span ><a href="/author/blas-m.-benito/">Blas M. Benito</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Oct 29, 2023
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    15 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 914px;">
+  <div style="position: relative">
+    <img src="/post/multicollinearity-model-interpretability/featured_hu0227cf3e968e1d0b11c791e699f3be81_72456_720x0_resize_lanczos_3.png" alt="" class="featured-image">
+    <span class="article-header-caption">Adapted from XKCD: 
+<a href="https://xkcd.com/2347/" target="_blank" rel="noopener">https://xkcd.com/2347/</a></span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <div class="alert alert-note">
+  <div>
+    This post is written for beginner to intermediate R users wishing to learn what multicollinearity is and how it can turn model interpretation into a challenge.
+  </div>
+</div>
+<h1 id="summary">Summary</h1>
+<p>In this post, I delve into the intricacies of model interpretation under the influence of multicollinearity, and use R and a toy data set to demonstrate how this phenomenon impacts both linear and machine learning models:</p>
+<ul>
+<li>The section <em>Multicollinearity Explained</em> explains the origin of the word and the nature of the problem.</li>
+<li>The section <em>Model Interpretation Challenges</em> describes how to create the toy data set, and applies it to <em>Linear Models</em> and <em>Random Forest</em> to explain how multicollinearity can make model interpretation a challenge.</li>
+<li>The <em>Appendix</em> shows extra examples of linear and machine learning models affected by multicollinearity.</li>
+</ul>
+<p>I hope you&rsquo;ll enjoy it!</p>
+<h1 id="r-packages">R packages</h1>
+<p>This tutorial requires the newly released R package 
+<a href="https://blasbenito.github.io/collinear/" target="_blank" rel="noopener"><code>collinear</code></a>, and a few more listed below. The optional ones are used only in the <em>Appendix</em> at the end of the post.</p>
+<pre><code class="language-r">#required
+install.packages(&quot;collinear&quot;)
+install.packages(&quot;ranger&quot;)
+install.packages(&quot;dplyr&quot;)
+
+#optional
+install.packages(&quot;nlme&quot;)
+install.packages(&quot;glmnet&quot;)
+install.packages(&quot;xgboost&quot;)
+</code></pre>
+<h1 id="multicollinearity-explained">Multicollinearity Explained</h1>
+<p>This cute word comes from the amalgamation of these three Latin terms:</p>
+<ul>
+<li><em>multus</em>: adjective meaning <em>many</em> or <em>multiple</em>.</li>
+<li><em>con</em>: preposition often converted to <em>co-</em> (as in <em>co-worker</em>) meaning <em>together</em> or <em>mutually</em>.</li>
+<li><em>linealis</em> (later converted to <em>linearis</em>): from <em>linea</em> (line), adjective meaning &ldquo;resembling a line&rdquo; or &ldquo;belonging to a line&rdquo;, among others.</li>
+</ul>
+<p>After looking at these serious words, we can come up with a (VERY) liberal translation: &ldquo;several things together in the same line&rdquo;. From here, we just have to replace the word &ldquo;things&rdquo; with &ldquo;predictors&rdquo; (or &ldquo;features&rdquo;, or &ldquo;independent variables&rdquo;, whatever rocks your boat) to build an intuition of the whole meaning of the word in the context of statistical and machine learning modeling.</p>
+<p>If I lost you there, we can move forward with this idea instead: <strong>multicollinearity happens when there are redundant predictors in a modeling dataset</strong>. A predictor can be redundant because it shows a high pairwise correlation with other predictors, or because it is a linear combination of other predictors. For example, in a data frame with the columns <code>a</code>, <code>b</code>, and <code>c</code>, if the correlation between <code>a</code> and <code>b</code> is high, we can say that <code>a</code> and <code>b</code> are mutually redundant and there is multicollinearity. But also, if <code>c</code> is the result of a linear operation between <code>a</code> and <code>b</code>, like <code>c &lt;- a + b</code>, or <code>c &lt;- a * 1 + b * 0.5</code>, then we can also say that there is multicollinearity between <code>c</code>, <code>a</code>, and <code>b</code>.</p>
+<p>Multicollinearity is a fact of life that lurks in most data sets. For example, in climate data, variables like temperature, humidity and air pressure are closely intertwined, leading to multicollinearity. That&rsquo;s the case as well in medical research, where parameters like blood pressure, heart rate, and body mass index frequently display common patterns. Economic analysis is another good example, as variables such as Gross Domestic Product (GDP), unemployment rate, and consumer spending often exhibit multicollinearity.</p>
+<h1 id="model-interpretation-challenges">Model Interpretation Challenges</h1>
+<p>Multicollinearity isn&rsquo;t inherently problematic, but it can be a real buzz kill when the goal is interpreting predictor importance in explanatory models. In the presence of highly correlated predictors, most modelling methods, from the veteran linear models to the fancy gradient boosting, attribute a large part of the importance to only one of the predictors and not the others. In such cases, neglecting multicollinearity will certainly lead to underestimate the relevance of certain predictors.</p>
+<p>Let me go ahead and develop a toy data set to showcase this issue. But let&rsquo;s load the required libraries first.</p>
+<pre><code class="language-r">#load the collinear package and its example data
+library(collinear)
+data(vi)
+
+#other required libraries
+library(ranger)
+library(dplyr)
+</code></pre>
+<p>In the <code>vi</code> data frame shipped with the 
+<a href="https://blasbenito.github.io/collinear/" target="_blank" rel="noopener"><code>collinear</code></a> package, the variables &ldquo;soil_clay&rdquo; and &ldquo;humidity_range&rdquo; are not correlated at all (Pearson correlation = -0.06).</p>
+<p>In the code block below, the <code>dplyr::transmute()</code> command selects and renames them as <code>a</code> and <code>b</code>. After that, the two variables are scaled and centered, and <code>dplyr::mutate()</code> generates a few new columns:</p>
+<ul>
+<li><code>y</code>: response variable resulting from a linear model where <code>a</code> has a slope of 0.75, <code>b</code> has a slope of 0.25, plus a bit of white noise generated with <code>runif()</code>.</li>
+<li><code>c</code>: a new predictor highly correlated with <code>a</code>.</li>
+<li><code>d</code>: a new predictor resulting from a linear combination of <code>a</code> and <code>b</code>.</li>
+</ul>
+<pre><code class="language-r">set.seed(1)
+df &lt;- vi |&gt;
+  dplyr::slice_sample(n = 2000) |&gt;
+  dplyr::transmute(
+    a = soil_clay,
+    b = humidity_range
+  ) |&gt;
+  scale() |&gt;
+  as.data.frame() |&gt; 
+  dplyr::mutate(
+    y = a * 0.75 + b * 0.25 + runif(n = dplyr::n(), min = -0.5, max = 0.5),
+    c = a + runif(n = dplyr::n(), min = -0.5, max = 0.5),
+    d = (a + b)/2 + runif(n = dplyr::n(), min = -0.5, max = 0.5)
+  )
+</code></pre>
+<p>The Pearson correlation between all pairs of these predictors is shown below.</p>
+<pre><code class="language-r">collinear::cor_df(
+  df = df,
+  predictors = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)
+)
+</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   x     y     correlation
+##   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1 c     a           0.962
+## 2 d     b           0.639
+## 3 d     a           0.636
+## 4 d     c           0.615
+## 5 b     a          -0.047
+## 6 c     b          -0.042
+</code></pre>
+<p>At this point, we have are two groups of predictors useful to understand how multicollinearity muddles model interpretation:</p>
+<ul>
+<li>Predictors with <strong>no</strong> multicollinearity: <code>a</code> and <code>b</code>.</li>
+<li>Predictors with multicollinearity: <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code>.</li>
+</ul>
+<p>In the next two sections and the <em>Appendix</em>, I show how and why model interpretation becomes challenging when multicollinearity is high. Let&rsquo;s start with linear models.</p>
+<h3 id="linear-models">Linear Models</h3>
+<p>The code below fits <em>multiple linear regression models</em> for both groups of predictors.</p>
+<pre><code class="language-r">#non-collinear predictors
+lm_ab &lt;- lm(
+  formula = y ~ a + b,
+  data = df
+  )
+
+#collinear predictors
+lm_abcd &lt;- lm(
+  formula = y ~ a + b + c + d,
+  data = df
+  )
+</code></pre>
+<p>I would like you to pay attention to the estimates of the predictors <code>a</code> and <code>b</code> for both models. The estimates are the slopes in the linear model, a direct indication of the effect of a predictor over the response.</p>
+<pre><code class="language-r">coefficients(lm_ab)[2:3] |&gt; 
+  round(4)
+</code></pre>
+<pre><code>##      a      b 
+## 0.7477 0.2616
+</code></pre>
+<pre><code class="language-r">coefficients(lm_abcd)[2:5] |&gt; 
+  round(4)
+</code></pre>
+<pre><code>##      a      b      c      d 
+## 0.7184 0.2596 0.0273 0.0039
+</code></pre>
+<p>On one hand, the model with no multicollinearity (<code>lm_ab</code>) achieved a pretty good solution for the coefficients of <code>a</code> and <code>b</code>. Remember that we created <code>y</code> as <code>a * 0.75 + b * 0.25</code> plus some noise, and that&rsquo;s exactly what the model is telling us here, so the interpretation is pretty straightforward.</p>
+<p>On the other hand, the model with multicollinearity (<code>lm_abcd</code>) did well with <code>b</code>, but there are a few things in there that make the interpretation harder.</p>
+<ul>
+<li>The coefficient of <code>a</code> (0.7165) is slightly smaller than the true one (0.75), which could lead us to downplay its relationship with <code>y</code> by a tiny bit. This is kinda OK though, as long as one is not using the model&rsquo;s results to build nukes in the basement.</li>
+<li>The coefficient of <code>c</code> is so small that it could led us to believe that this predictor not important at all to explain <code>y</code>. But we know that <code>a</code> and <code>c</code> are almost identical copies, so model interpretation here is being definitely muddled by multicollinearity.</li>
+<li>The coefficient of <code>d</code> is tiny. Since <code>d</code> results from the sum of <code>a</code> and <code>b</code>, we could expect this predictor to be important in explaining <code>y</code>, but it got the shorter end of the stick in this case.</li>
+</ul>
+<p>It is not that the model it&rsquo;s wrong though. This behavior of the linear model results from the <em>QR decomposition</em> (also <em>QR factorization</em>) applied by functions like <code>lm()</code>, <code>glm()</code>, <code>glmnet::glmnet()</code>, and <code>nlme::gls()</code> to improve numerical stability and computational efficiency, and to&hellip; address multicollinearity in the model predictors.</p>
+<p>The QR decomposition transforms the original predictors into a set of orthogonal predictors with no multicollinearity. This is the <em>Q matrix</em>, created in a fashion that resembles the way in which a Principal Components Analysis generates uncorrelated components from a set of correlated variables.</p>
+<p>The code below applies QR decomposition to our multicollinear predictors, extracts the Q matrix, and shows the correlation between the new versions of <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code>.</p>
+<pre><code class="language-r">#predictors names
+predictors &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)
+
+#QR decomposition of predictors
+df.qr &lt;- qr(df[, predictors])
+
+#extract Q matrix
+df.q &lt;- qr.Q(df.qr)
+colnames(df.q) &lt;- predictors
+
+#correlation between transformed predictors
+collinear::cor_df(df = df.q)
+</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   x     y     correlation
+##   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1 d     c               0
+## 2 c     b               0
+## 3 d     b               0
+## 4 d     a               0
+## 5 c     a               0
+## 6 b     a               0
+</code></pre>
+<p>The new set of predictors we are left with after the QR decomposition have exactly zero correlation! And now they are not our original predictors anymore, and have a different interpretation:</p>
+<ul>
+<li><code>a</code> is now &ldquo;the part of <code>a</code> not in <code>b</code>, <code>c</code>, and <code>d</code>&rdquo;.</li>
+<li><code>b</code> is now &ldquo;the part of <code>b</code> not in <code>a</code>, <code>c</code>, and <code>d</code>&rdquo;.</li>
+<li>&hellip;and so on&hellip;</li>
+</ul>
+<p>The result of the QR decomposition can be plugged into the <code>solve()</code> function along with the response vector to estimate the coefficients of the linear model.</p>
+<pre><code class="language-r">solve(a = df.qr, b = df$y) |&gt; 
+  round(4)
+</code></pre>
+<pre><code>##      a      b      c      d 
+## 0.7189 0.2595 0.0268 0.0040
+</code></pre>
+<p>These are almost exactly the ones we got for our model with multicollinearity. In the end, the coefficients resulting from a linear model are not those of the original predictors, but the ones of their uncorrelated versions generated by the QR decomposition.</p>
+<p>But this is not the only issue of model interpretability under multicollinearity. Let&rsquo;s take a look at the standard errors of the estimates. These are a measure of the coefficient estimation uncertainty, and are used to compute the p-values of the estimates. As such, they are directly linked with the &ldquo;statistical significance&rdquo; (whatever that means) of the predictors within the model.</p>
+<p>The code below shows the standard errors of the model without and with multicollinearity.</p>
+<pre><code class="language-r">summary(lm_ab)$coefficients[, &quot;Std. Error&quot;][2:3] |&gt; 
+  round(4)
+</code></pre>
+<pre><code>##      a      b 
+## 0.0066 0.0066
+</code></pre>
+<pre><code class="language-r">summary(lm_abcd)$coefficients[, &quot;Std. Error&quot;][2:5] |&gt; 
+  round(4)
+</code></pre>
+<pre><code>##      a      b      c      d 
+## 0.0267 0.0134 0.0232 0.0230
+</code></pre>
+<p>These standard errors of the model with multicollinearity are an order of magnitude higher than the ones of the model without multicollinearity.</p>
+<p>Since our toy dataset is relatively large (2000 cases) and the relationship between the response and a few of the predictors pretty robust, there are no real issues arising, as these differences in estimation precision are not enough to change the p-values of the estimates. However, in a small data set with high multicollinearity and a weaker relationship between the response and the predictors, standard errors of the estimate become wide, which increases p-values and reduces &ldquo;significance&rdquo;. Such a situation might lead us to believe that a predictor does not explain the response, when in fact it does. And this, again, is a model interpretability issue caused by multicollinearity.</p>
+<p>At the end of this post there is an appendix with code examples of other types of linear models that use QR decomposition and become challenging to interpret in the presence of multicollinearity. Play with them as you please!</p>
+<p>Now, let&rsquo;s take a look at how multicollinearity can also mess up the interpretation of a commonly used machine learning algorithm.</p>
+<h3 id="random-forest">Random Forest</h3>
+<p>It is not uncommon to hear something like &ldquo;random forest is insensitive to multicollinearity&rdquo;. Actually, I cannot confirm nor deny that I have said that before. Anyway, it is kind of true if one is focused on prediction problmes. However, when the aim is interpreting predictor importance scores, then one has to be mindful about multicollinearity as well.</p>
+<p>Let&rsquo;s see an example. The code below fits two random forest models with our two sets of predictors.</p>
+<pre><code class="language-r">#non-collinear predictors
+rf_ab &lt;- ranger::ranger(
+  formula = y ~ a + b,
+  data = df,
+  importance = &quot;permutation&quot;,
+  seed = 1 #for reproducibility
+)
+
+#collinear predictors
+rf_abcd &lt;- ranger::ranger(
+  formula = y ~ a + b + c + d,
+  data = df,
+  importance = &quot;permutation&quot;,
+  seed = 1
+)
+</code></pre>
+<p>Let&rsquo;s take a look at the prediction error the two models on the out-of-bag data. While building each regression tree, Random Forest leaves a random subset of the data out. Then, each case gets a prediction from all trees that had it in the out-of-bag data, and the prediction error is averaged across all cases to get the numbers below.</p>
+<pre><code class="language-r">rf_ab$prediction.error
+</code></pre>
+<pre><code>## [1] 0.1026779
+</code></pre>
+<pre><code class="language-r">rf_abcd$prediction.error
+</code></pre>
+<pre><code>## [1] 0.1035678
+</code></pre>
+<p>According to these numbers, these two models are basically equivalent in their ability to predict our response <code>y</code>.</p>
+<p>But now, you noticed that I set the argument <code>importance</code> to &ldquo;permutation&rdquo;. Permutation importance quantifies how the out-of-bag error increases when a predictor is permuted across all trees where the predictor is used. It is pretty robust importance metric that bears no resemblance whatsoever with the coefficients of a linear model. Think of it as a very different way to answer the question &ldquo;what variables are important in this model?&rdquo;.</p>
+<p>The permutation importance scores of the two random forest models are show below.</p>
+<pre><code class="language-r">rf_ab$variable.importance |&gt; round(4)
+</code></pre>
+<pre><code>##      a      b 
+## 1.0702 0.1322
+</code></pre>
+<pre><code class="language-r">rf_abcd$variable.importance |&gt; round(4)
+</code></pre>
+<pre><code>##      a      b      c      d 
+## 0.5019 0.0561 0.1662 0.0815
+</code></pre>
+<p>There is one interesting detail here. The predictor <code>a</code> has a permutation error three times higher than <code>c</code> in the second model, even though we could expect them to be similar due to their very high correlation. There are two reasons for this mismatch:</p>
+<ul>
+<li>Random Forest is much more sensitive to the white noise in <code>c</code> than linear models, especially in the deep parts of the regression trees, due to local (within-split data) decoupling with the response <code>y</code>. In consequence, it does not get selected as often as <code>a</code> in these deeper areas of the trees, and has less overall importance.</li>
+<li>The predictor <code>c</code> competes with <code>d</code>, that has around 50% of the information in <code>c</code> (and <code>a</code>). If we remove <code>d</code> from the model, then the permutation importance of <code>c</code> doubles up. Then, with <code>d</code> in the model, we underestimate the real importance of <code>c</code> due to multicollinearity alone.</li>
+</ul>
+<pre><code class="language-r">rf_abc &lt;- ranger::ranger(
+  formula = y ~ a + b + c,
+  data = df,
+  importance = &quot;permutation&quot;,
+  seed = 1
+)
+rf_abc$variable.importance |&gt; round(4)
+</code></pre>
+<pre><code>##      a      b      c 
+## 0.5037 0.1234 0.3133
+</code></pre>
+<p>With all that in mind, we can conclude that interpreting importance scores in Random Forest models is challenging when multicollinearity is high. But Random Forest is not the only machine learning affected by this issue. In the Appendix below I have left an example with Extreme Gradient Boosting so you can play with it.</p>
+<p>And that&rsquo;s all for now, folks, I hope you found this post useful!</p>
+<h1 id="appendix">Appendix</h1>
+<p>This section shows several extra examples of linear and machine learning models you can play with.</p>
+<h2 id="other-linear-models-using-qr-decomposition">Other linear models using QR decomposition</h2>
+<p>As I commented above, many linear modeling functions use QR decomposition, and you will have to be careful interpreting model coefficients in the presence of strong multicollinearity in the predictors.</p>
+<p>Here I show several examples with <code>glm()</code> (Generalized Linear Models), <code>nlme::gls()</code> (Generalized Least Squares), and <code>glmnet::cv.glmnet()</code> (Elastic Net Regularization). In all them, no matter how fancy, the interpretation of coefficients becomes tricky when multicollinearity is high.</p>
+<p><strong>Generalized Linear Models with glm()</strong></p>
+<pre><code class="language-r">#Generalized Linear Models
+#non-collinear predictors
+glm_ab &lt;- glm(
+  formula = y ~ a + b,
+  data = df
+  )
+
+round(coefficients(glm_ab), 4)[2:3]
+</code></pre>
+<pre><code>##      a      b 
+## 0.7477 0.2616
+</code></pre>
+<pre><code class="language-r">#collinear predictors
+glm_abcd &lt;- glm(
+  formula = y ~ a + b + c + d,
+  data = df
+  )
+
+round(coefficients(glm_abcd), 4)[2:5]
+</code></pre>
+<pre><code>##      a      b      c      d 
+## 0.7184 0.2596 0.0273 0.0039
+</code></pre>
+<p><strong>Generalized Least Squares with nlme::gls()</strong></p>
+<pre><code class="language-r">library(nlme)
+</code></pre>
+<pre><code>## 
+## Attaching package: 'nlme'
+</code></pre>
+<pre><code>## The following object is masked from 'package:dplyr':
+## 
+##     collapse
+</code></pre>
+<pre><code class="language-r">#Generalized Least Squares
+#non-collinear predictors
+gls_ab &lt;- nlme::gls(
+  model = y ~ a + b,
+  data = df
+  )
+
+round(coefficients(gls_ab), 4)[2:3]
+</code></pre>
+<pre><code>##      a      b 
+## 0.7477 0.2616
+</code></pre>
+<pre><code class="language-r">#collinear predictors
+gls_abcd &lt;- nlme::gls(
+  model = y ~ a + b + c + d,
+  data = df
+  )
+
+round(coefficients(gls_abcd), 4)[2:5]
+</code></pre>
+<pre><code>##      a      b      c      d 
+## 0.7184 0.2596 0.0273 0.0039
+</code></pre>
+<p><strong>Elastic Net Regularization and Lasso penalty with glmnet::glmnet()</strong></p>
+<pre><code class="language-r">library(glmnet)
+</code></pre>
+<pre><code>## Loading required package: Matrix
+</code></pre>
+<pre><code>## Loaded glmnet 4.1-8
+</code></pre>
+<pre><code class="language-r">#Elastic net regularization with Lasso penalty
+#non-collinear predictors
+glmnet_ab &lt;- glmnet::cv.glmnet(
+  x = as.matrix(df[, c(&quot;a&quot;, &quot;b&quot;)]),
+  y = df$y,
+  alpha = 1 #lasso penalty
+)
+
+round(coef(glmnet_ab$glmnet.fit, s = glmnet_ab$lambda.min), 4)[2:3]
+</code></pre>
+<pre><code>## [1] 0.7438 0.2578
+</code></pre>
+<pre><code class="language-r">#collinear predictors
+glmnet_abcd &lt;- glmnet::cv.glmnet(
+  x = as.matrix(df[, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)]),
+  y = df$y,
+  alpha = 1 
+)
+
+#notice that the lasso regularization nuked the coefficients of predictors b and c
+round(coef(glmnet_abcd$glmnet.fit, s = glmnet_abcd$lambda.min), 4)[2:5]
+</code></pre>
+<pre><code>## [1] 0.7101 0.2507 0.0267 0.0149
+</code></pre>
+<h2 id="extreme-gradient-boosting-under-multicollinearity">Extreme Gradient Boosting under multicollinearity</h2>
+<p>Gradient Boosting models trained with multicollinear predictors behave in a way similar to linear models with QR decomposition. When two variables are highly correlated, one of them is going to have an importance much higher than the other.</p>
+<pre><code class="language-r">library(xgboost)
+</code></pre>
+<pre><code>## 
+## Attaching package: 'xgboost'
+</code></pre>
+<pre><code>## The following object is masked from 'package:dplyr':
+## 
+##     slice
+</code></pre>
+<pre><code class="language-r">#without multicollinearity
+gb_ab &lt;- xgboost::xgboost(
+  data = as.matrix(df[, c(&quot;a&quot;, &quot;b&quot;)]),
+  label = df$y,
+  objective = &quot;reg:squarederror&quot;,
+  nrounds = 100,
+  verbose = FALSE
+  )
+
+#with multicollinearity
+gb_abcd &lt;- xgboost::xgboost(
+  data = as.matrix(df[, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)]),
+  label = df$y,
+  objective = &quot;reg:squarederror&quot;,
+  nrounds = 100,
+  verbose = FALSE
+)
+</code></pre>
+<pre><code class="language-r">xgb.importance(model = gb_ab)[, c(1:2)]
+</code></pre>
+<pre><code>##    Feature      Gain
+## 1:       a 0.8463005
+## 2:       b 0.1536995
+</code></pre>
+<pre><code class="language-r">xgb.importance(model = gb_abcd)[, c(1:2)] |&gt; 
+  dplyr::arrange(Feature)
+</code></pre>
+<pre><code>##    Feature       Gain
+## 1:       a 0.78129661
+## 2:       b 0.07386393
+## 3:       c 0.03595619
+## 4:       d 0.10888327
+</code></pre>
+<p>But there is a twist too. When two variables are perfectly correlated, one of them is removed right away from the model!</p>
+<pre><code class="language-r">#replace c with perfect copy of a
+df$c &lt;- df$a
+
+#with multicollinearity
+gb_abcd &lt;- xgboost::xgboost(
+  data = as.matrix(df[, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)]),
+  label = df$y,
+  objective = &quot;reg:squarederror&quot;,
+  nrounds = 100,
+  verbose = FALSE
+)
+
+xgb.importance(model = gb_abcd)[, c(1:2)] |&gt; 
+  dplyr::arrange(Feature)
+</code></pre>
+<pre><code>##    Feature       Gain
+## 1:       a 0.79469959
+## 2:       b 0.07857141
+## 3:       d 0.12672900
+</code></pre>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/r-packages/">R packages</a>
+  
+  <a class="badge badge-light" href="/tag/multicollinearity/">Multicollinearity</a>
+  
+  <a class="badge badge-light" href="/tag/explanatory-modeling/">Explanatory Modeling</a>
+  
+  <a class="badge badge-light" href="/tag/variable-selection/">Variable Selection</a>
+  
+  <a class="badge badge-light" href="/tag/stats/">Stats</a>
+  
+  <a class="badge badge-light" href="/tag/data-science/">Data Science</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://blasbenito.com/post/multicollinearity-model-interpretability/&amp;text=Multicollinearity%20Hinders%20Model%20Interpretability" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://blasbenito.com/post/multicollinearity-model-interpretability/&amp;t=Multicollinearity%20Hinders%20Model%20Interpretability" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Multicollinearity%20Hinders%20Model%20Interpretability&amp;body=https://blasbenito.com/post/multicollinearity-model-interpretability/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://blasbenito.com/post/multicollinearity-model-interpretability/&amp;title=Multicollinearity%20Hinders%20Model%20Interpretability" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Multicollinearity%20Hinders%20Model%20Interpretability%20https://blasbenito.com/post/multicollinearity-model-interpretability/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://blasbenito.com/post/multicollinearity-model-interpretability/&amp;title=Multicollinearity%20Hinders%20Model%20Interpretability" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/blas-m.-benito/avatar_hu540359786128d310fe40f64bfadab7c8_179471_270x270_fill_q90_lanczos_center.jpg" alt="Blas M. Benito">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="https://blasbenito.com/">Blas M. Benito</a></h5>
+        <h6 class="card-subtitle">Data Scientist and Team Lead</h6>
+        
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:blasbenito@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://es.linkedin.com/in/blas-m-benito-6174a643" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/BlasBenito" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=WBTp0McAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://orcid.org/0000-0001-5105-7232" target="_blank" rel="noopener">
+        <i class="fab fa-orcid"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://fosstodon.org/@blasbenito" target="_blank" rel="noopener">
+        <i class="fab fa-mastodon"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/project/post-title/">R package `collinear`</a></li>
+      
+      <li><a href="/post/variance-inflation-factor/">Everything You Don&#39;t Need to Know About Variance Inflation Factors</a></li>
+      
+      <li><a href="/project/post-title/">R package `spatialRF`</a></li>
+      
+      <li><a href="/publication/2020_benito_ecography_distantia/">distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series</a></li>
+      
+      <li><a href="/publication/2020_benito_ecography_memoria/">Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/sql.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/bash.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.4182b289689108d47721d002a07cd804.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">__ Academic Website Builder</a>
+    <a rel="me" href="https://fosstodon.org/@blasbenito">__</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

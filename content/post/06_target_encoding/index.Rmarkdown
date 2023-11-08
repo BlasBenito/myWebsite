@@ -1,0 +1,179 @@
+---
+title: Mapping Categorical Predictors to Numeric With Target Encoding
+author: ''
+date: '2023-11-05'
+slug: multicollinearity-management
+links:
+- icon: github
+  icon_pack: fab
+  name: GitHub
+  url: https://github.com/BlasBenito/collinear
+categories: []
+tags: [R packages, Multicollinearity, Variable Selection]
+subtitle: ''
+summary: 'Target encoding is commonly used to map categorical variables to numeric with the objective of facilitating exploratory data analysis and machine learning modeling. This post covers the basics of this method, and explains how and when to use it.'
+authors: [admin]
+lastmod: '2023-11-05T08:14:23+02:00'
+featured: no
+draft: true
+image:
+  caption: Graph by Blas M. Benito
+  focal_point: Smart
+  margin: auto
+projects: []
+---
+
+
+# Summary
+
+TODO
+
+# Resources
+
+# R packages
+
+This tutorial requires the development version (>= 1.0.3) of the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more.
+
+```{r, eval = FALSE}
+#required
+install.packages("remotes")
+remotes::install_github(
+  repo = "blasbenito/collinear", 
+  ref = "development"
+  )
+install.packages("fastDummies")
+install.packages("caret")
+install.packages("ranger")
+install.packages("dplyr")
+install.packages("ggplot2")
+```
+
+# Categorical Predictors are Kinda Annoying
+
+I mean, the title of this section says it already, and I bet you have experienced it during an Exploratory Data Analysis (EDA) or a feature selection for model training and the likes. You likely had a nice bunch of numerical variables to use as predictors, no issues there. But then, you discovered among your columns thingies like "sampling_location", "region_name", "favorite_color", or any other type of predictor made of strings, lots of strings. And some of these made sense, and some of them didn't, because who knows where they came from. And you had to branch your code to deal with numeric and categorical variables separately. Or maybe chose to ignore them, as I have done plenty of times.
+
+Yeah, nobody likes them much at all, But sometimes, these stringy monsters are all you have to move on with your work. And you are not the only one. That's why many efforts have been made to convert them to numeric and kill the problem at once, so now we all have two problems instead.
+
+Let me go ahead and illustrate the issue. There is a nice data frame in the `collinear` R package named `vi`, with one response variable named `vi_mean`, and several numeric and categorical predictors named in the vector `vi_predictors`.
+
+```{r}
+library(collinear)
+
+data(
+  vi,
+  vi_predictors
+)
+
+dplyr::glimpse(vi)
+```
+
+The categorical variables in this dataset are identified below:
+
+```{r}
+vi_categorical <- collinear::identify_non_numeric_predictors(
+  df = vi,
+  predictors = vi_predictors
+)
+vi_categorical
+```
+
+And their number of categories:
+
+```{r}
+data.frame(
+  name = vi_categorical,
+  categories = lapply(
+  X = vi_categorical,
+  FUN = function(x) length(unique(vi[[x]]))
+) |> 
+  unlist()
+) |> 
+  dplyr::arrange(
+    dplyr::desc(categories)
+  )
+```
+
+A few, like `country_name` and `biogeo_ecoregion` are here to ruin your day, aren't they? But ok, let's start with one with a moderate number of categories, like `koppen_zone`. This variable has `r length(unique(vi$koppen_zone))` categories representing climate zones.
+
+```{r}
+sort(unique(vi$koppen_zone))
+```
+
+Let's use it as predictor of `vi_mean` in a linear model and take a look at the summary.
+
+```{r}
+lm(
+  formula = vi_mean ~ koppen_zone, 
+  data = vi
+  ) |> 
+  summary()
+```
+
+Look at this monster. What the hell happened here? Linear models cannot deal with categorical predictors, so they create numeric **dummy variables** instead. The function `stats::model.matrix()` does exactly that:
+
+```{r}
+dummy_variables <- stats::model.matrix( ~ koppen_zone, data = vi)
+ncol(dummy_variables)
+dummy_variables[1:10, 1:10]
+```
+
+This function first creates an Intercept column with all ones. Then, for each original category except the first one ("Af"), a new column with value 1 in the cases where the given category was present and 0 otherwise is created. The category with no column ("Af") is represented in these cases in the intercept where all other dummy columns are zero. This is, essentially, **one-hot encoding** with a little twist. You will find most people use the terms *dummy variables* and *one-hot encoding* interchangeably, and that's ok. But in the end, the little twist of omitting the first category is what differentiates them. Most functions performing one-hot encoding, no matter their name, are creating as many columns as categories. That is for example the case of `fastDummies::dummy_cols()`, from the R package [`fastDummies`](https://jacobkap.github.io/fastDummies/):
+
+```{r, message = FALSE}
+df <- fastDummies::dummy_cols(
+  .data = vi[, "koppen_zone", drop = FALSE],
+  select_columns = "koppen_zone",
+  remove_selected_columns = TRUE
+)
+dplyr::glimpse(df)
+```
+
+As good as dummy variables are to patch linear models when predictors are categorical, it creates a couple of glaring issues that are hard to address when the number of categories (cardinality) is high. The first is **increased dimensionality**. For example, if create dummy variables for all categorical predictors in `vi`, then we'd go from the original `r length(vi_predictors)` predictors to a total of 967. That's a real **dimensionality explosion**! This alone can degrade the computational performance of a model due to increased data size. But other issues can arise as well, like, what happens if a new category shows up in your prediction data? Also, one-hot encoding induces multicollinearity, and makes very hard obtaining accurate estimates for the coefficientes of the encoded categories. Look at the Variance Inflation Factors of the encoded Koppen zones, they have absurd values!
+
+```{r}
+collinear::vif_df(
+  df = df
+)
+```
+
+
+
+
+
+
+
+
+```{r, message = FALSE}
+df <- fastDummies::dummy_cols(
+  .data = vi,
+  select_columns = vi_categorical,
+  remove_selected_columns = TRUE
+)
+ncol(df)
+```
+
+
+
+
+
+
+https://www.reddit.com/r/statistics/comments/7oe8xi/why_is_it_possible_to_have_n1_dummy_variables/
+
+
+Cannot be easily used in EDAs
+their importance is hard to quantify
+high cardinlity makes things difficult
+methods created to deal with them (like one-hot encoding) aren't ideal for tree based models
+
+# Target encoding
+
+What is target encoding?
+How it works?
+A couple of examples
+
+# Target encoding vs one-hot encoding
+
+Two random forest models, one done with one-hot encoding, and another with target encoding
+
+# Final remarks
+

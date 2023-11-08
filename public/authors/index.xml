@@ -5,61 +5,12 @@
     <link>https://blasbenito.com/authors/</link>
       <atom:link href="https://blasbenito.com/authors/index.xml" rel="self" type="application/rss+xml" />
     <description>Authors</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 24 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 05 Nov 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Authors</title>
       <link>https://blasbenito.com/authors/</link>
     </image>
-    
-    <item>
-      <title>Blas M. Benito</title>
-      <link>https://blasbenito.com/author/blas-m.-benito/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://blasbenito.com/author/blas-m.-benito/</guid>
-      <description>&lt;h2 id=&#34;about-me&#34;&gt;About Me&lt;/h2&gt;
-&lt;p&gt;I am a Spatial Data Scientist and Engineer by trade, and a PhD in Computational Ecology and MSc in Geographic Information Systems by education.&lt;/p&gt;
-&lt;p&gt;I currently serve as the team lead of the Environmental Data Team at 
-&lt;a href=&#34;www.biomemakers.com&#34;&gt;Biome Makers Inc&lt;/a&gt;. In this role, I am responsible for designing and developing an Environmental Data Infrastructure to enhance our flagship product, BeCrop®, and conduct research and development in remote sensing and machine learning applications to smart farming tech.&lt;/p&gt;
-&lt;h2 id=&#34;my-tech-stack&#34;&gt;My Tech Stack&lt;/h2&gt;
-&lt;p&gt;My tech stack is built entirely on open-source tools: I rely on 
-&lt;a href=&#34;https://cran.r-project.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;R&lt;/a&gt; and 
-&lt;a href=&#34;https://git-scm.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;git&lt;/a&gt;+
-&lt;a href=&#34;https://github.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt; for collaborative software development and version control. For pipeline design, I harness the power of 
-&lt;a href=&#34;https://docs.ropensci.org/targets/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;targets&lt;/a&gt;, and to encapsulate code I employ 
-&lt;a href=&#34;https://rstudio.github.io/renv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;renv&lt;/a&gt; and 
-&lt;a href=&#34;https://www.docker.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;docker&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;For GIS tasks, I turn to industry-standard tools like 
-&lt;a href=&#34;https://grass.osgeo.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GRASS GIS&lt;/a&gt;, 
-&lt;a href=&#34;https://www.qgis.org/en/site/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quantum GIS&lt;/a&gt;, and 
-&lt;a href=&#34;https://postgis.net/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PostGIS&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;My data management and processing are handled by 
-&lt;a href=&#34;https://www.postgresql.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PostgreSQL&lt;/a&gt;, 
-&lt;a href=&#34;https://duckdb.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DuckDB&lt;/a&gt;, 
-&lt;a href=&#34;https://arrow.apache.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Apache Arrow&lt;/a&gt;, and 
-&lt;a href=&#34;https://spark.apache.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Apache Spark&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Computationally-intensive pipelines find their home in my tiny home-cluster managed by 
-&lt;a href=&#34;https://slurm.schedmd.com/documentation.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;slurm&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;For developing and deploying REST APIs, I turn to 
-&lt;a href=&#34;https://www.rplumber.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;plumber&lt;/a&gt;, while interactive apps are crafted with 
-&lt;a href=&#34;https://shiny.posit.co/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Shiny&lt;/a&gt;. My interactive reports come to life using either 
-&lt;a href=&#34;https://rmarkdown.rstudio.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Rmarkdown&lt;/a&gt; or 
-&lt;a href=&#34;https://quarto.org/docs/computations/r.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quarto&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;my-academic-journey&#34;&gt;My Academic Journey&lt;/h2&gt;
-&lt;p&gt;Before delving into AgTech, I honed my research and technical skills during a successful academic career in Computational Ecology. I worked in world-class labs in Spain (
-&lt;a href=&#34;http://www.iista.es/en/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;IISTA&lt;/a&gt; and 
-&lt;a href=&#34;https://maestrelab.com/en/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Maestre Lab&lt;/a&gt;), Denmark (
-&lt;a href=&#34;https://pure.au.dk/portal/en/svenning@biology.au.dk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jens-Christian Svenning Lab&lt;/a&gt;), and Norway (
-&lt;a href=&#34;https://www.uib.no/en/rg/EECRG&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;EECRG&lt;/a&gt;). My research  primarily focused on 
-&lt;a href=&#34;https://scholar.google.es/citations?user=WBTp0McAAAAJ&amp;amp;hl=en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;unveiling the environmental drivers shaping the distribution of biological diversity in space and time&lt;/a&gt;. During this journey, I developed scientific R packages for various purposes, such as 
-&lt;a href=&#34;https://CRAN.R-project.org/package=distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;time-series comparison&lt;/a&gt; and 
-&lt;a href=&#34;https://CRAN.R-project.org/package=memoria&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;analysis of lagged effects&lt;/a&gt;, 
-&lt;a href=&#34;https://CRAN.R-project.org/package=spatialRF&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;spatial modeling with Random Forest&lt;/a&gt;, and 
-&lt;a href=&#34;https://CRAN.R-project.org/package=virtualPollen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ecological simulation&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;beyond-work&#34;&gt;Beyond Work&lt;/h2&gt;
-&lt;p&gt;In my leisure time, I cherish moments with my family, tinker on the piano with enthusiasm (regardless of the results!), embrace the serenity of the sea on my stand-up paddle board, and continue my passion for developing R packages.&lt;/p&gt;
-</description>
-    </item>
     
   </channel>
 </rss>

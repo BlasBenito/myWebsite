@@ -13,7 +13,7 @@
     </image>
     
     <item>
-      <title>R package spatialRF</title>
+      <title>R package `spatialRF`</title>
       <link>https://blasbenito.com/project/post-title/</link>
       <pubDate>Tue, 26 Sep 2023 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/project/post-title/</guid>
@@ -38,12 +38,8 @@
 --&gt;
 &lt;!-- badges: start --&gt;
 &lt;p&gt;
-&lt;a href=&#34;https://github.com/blasbenito/spatialRF&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/devel%20version-1.1.3-blue.svg&#34; alt=&#34;Devel-version&#34;&gt;&lt;/a&gt; 
-&lt;a href=&#34;https://lifecycle.r-lib.org/articles/stages.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/lifecycle-stable-green.svg&#34; alt=&#34;lifecycle&#34;&gt;&lt;/a&gt;
-
-&lt;a href=&#34;https://www.gnu.org/licenses/gpl-3.0.en.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/license-GPL--3-blue.svg&#34; alt=&#34;License&#34;&gt;&lt;/a&gt; 
-&lt;a href=&#34;https://zenodo.org/badge/latestdoi/330962704&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/330962704.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;
 &lt;a href=&#34;https://cran.r-project.org/package=spatialRF&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://www.r-pkg.org/badges/version/spatialRF&#34; alt=&#34;CRAN status&#34;&gt;&lt;/a&gt;
+
 &lt;a href=&#34;https://CRAN.R-project.org/package=spatialRF&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;http://cranlogs.r-pkg.org/badges/grand-total/spatialRF&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;!-- badges: end --&gt;
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
@@ -1228,44 +1224,44 @@ p1 | p2
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style=&#34;text-align:left;&#34;&gt; climate_hypervolume &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 1006.071 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 1005.115 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
    &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..neighbors_count &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 997.026 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1094.792 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_hypervolume &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1067.111 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style=&#34;text-align:left;&#34;&gt; spatial_predictor_0_2 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 929.937 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 912.678 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 849.819 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1035.365 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style=&#34;text-align:left;&#34;&gt; human_population &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 843.579 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 997.965 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 973.243 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2..pca..neighbors_percent_shared_edge &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 833.444 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 902.209 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 882.910 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style=&#34;text-align:left;&#34;&gt; spatial_predictor_0_1 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 745.062 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 815.656 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 750.278 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style=&#34;text-align:left;&#34;&gt; bias_species_per_record &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 708.844 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 712.031 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1392,12 +1388,12 @@ model tuning is done via spatial cross-validation, to ensure that the selected c
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Model performance (median +/- mad) 
-##   - R squared (oob):              0.579 +/- 0.0074
-##   - R squared (cor(obs, pred)^2): 0.958 +/- 0.0017
-##   - Pseudo R squared:             0.979 +/- 9e-04
-##   - RMSE (oob):                   2185.475 +/- 19.2473
-##   - RMSE:                         919.137 +/- 10.2359
-##   - Normalized RMSE:              0.265 +/- 0.003
+##   - R squared (oob):              0.593 +/- 0.0098
+##   - R squared (cor(obs, pred)^2): 0.957 +/- 0.0016
+##   - Pseudo R squared:             0.978 +/- 8e-04
+##   - RMSE (oob):                   2151.154 +/- 25.7818
+##   - RMSE:                         914.973 +/- 15.5809
+##   - Normalized RMSE:              0.264 +/- 0.0045
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;taking-advantage-of-the---pipe&#34;&gt;Taking advantage of the &lt;code&gt; %&amp;gt;%&lt;/code&gt; pipe&lt;/h1&gt;
 &lt;p&gt;The modeling functions of &lt;code&gt;spatialRF&lt;/code&gt; are designed to facilitate using the pipe to combine them. The code below fits a spatial model, tunes its hyperparameters, evaluates it using spatial cross-validation, and repeats the execution several times, just by passing the model from one function to another. Replace &lt;code&gt;eval = FALSE&lt;/code&gt; with &lt;code&gt;eval = TRUE&lt;/code&gt; if you want to execute the code chunk.&lt;/p&gt;
@@ -1514,7 +1510,7 @@ kableExtra::kbl(
   &lt;tr&gt;
    &lt;td style=&#34;text-align:left;&#34;&gt; Spatial &lt;/td&gt;
    &lt;td style=&#34;text-align:left;&#34;&gt; r.squared &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.285 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.305 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1604,63 +1600,63 @@ mems &amp;lt;- spatialRF::mem_multithreshold(
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0259217 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0259217 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; 0.0052203 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0416969 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0416969 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; -0.0363324 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0996679 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0996679 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; 0.0539713 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.1324480 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.1324480 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; 0.3826928 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0010477 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0010477 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; -0.0143046 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0443602 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0443602 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; -0.0031386 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0165695 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0165695 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; 0.0047991 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0307457 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0307457 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; 0.0005170 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0225761 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0225761 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; 0.0019595 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0230368 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0230368 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; -0.0524239 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0155252 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0155252 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; 0.0023742 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0197953 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0197953 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; -0.0338956 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0229197 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0229197 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; 0.0039860 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0312561 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0312561 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; -0.0416697 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; -0.2436009 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.2436009 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; -0.1155295 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0791452 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0791452 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; 0.0189996 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0150725 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0150725 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; -0.0158684 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; -0.1010284 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.1010284 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; 0.0095590 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; -0.1187381 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.1187381 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; -0.0471879 &lt;/td&gt;
-   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0359881 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0359881 &lt;/td&gt;
    &lt;td style=&#34;text-align:right;&#34;&gt; 0.0065211 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;

@@ -25,7 +25,7 @@ tags:
 - Time Series Analysis
 - Machine Learning
 - Random Forest
-title: R package `memoria`
+title: "R package memoria"
 url_code: ""
 url_pdf: ""
 url_slides: ""

@@ -24,7 +24,7 @@ tags:
 - Time Series Analysis
 - Palaeoecology
 - Mechanistic simulation
-title: R package `virtualPollen`
+title: "R package virtualPollen"
 url_code: ""
 url_pdf: ""
 url_slides: ""

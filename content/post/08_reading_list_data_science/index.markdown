@@ -18,6 +18,8 @@ image:
 projects: []
 ---
 
+This is a live post listing links to Data Science related posts and videos I consider to be interesting, high-quality, or even essential to better understand particular topics within such a wide field. 
+
 # Data Preprocessing
 
 ## Target Encoding
@@ -27,6 +29,10 @@ projects: []
 [**Target encoding done the right way**](https://maxhalford.github.io/blog/target-encoding/): post by [Max Halford](https://maxhalford.github.io/bio/), Head of Data at [Carbonfact](https://www.carbonfact.com/), explaining in detail how to combine additive smoothing and target encoding.
 
 # Modeling
+
+## Modeling Methods
+
+[**Generalized Additive Models**](https://m-clark.github.io/generalized-additive-models/): A good online book on Generalized Additive Models by [Michael Clark](https://m-clark.github.io/about.html), Senior Machine Learning Scientist at [Strong Analytics](https://www.strong.io/).
 
 ## Model Explainability
 

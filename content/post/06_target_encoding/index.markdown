@@ -15,7 +15,7 @@ summary: 'Target encoding is commonly used to map categorical variables to numer
 authors: [admin]
 lastmod: '2023-11-15T08:14:23+02:00'
 featured: no
-draft: true
+draft: false
 image:
   caption: "Target encoding of a toy data frame performed with collinear::target_encoding_lab()"
   focal_point: Smart

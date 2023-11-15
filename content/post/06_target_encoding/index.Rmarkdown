@@ -45,6 +45,7 @@ The post intends to serve as a useful resource for data scientists exploring alt
 
 # Resources
 
+  + [Interactive notebook of this post](https://github.com/BlasBenito/notebooks/blob/main/target_encoding.Rmd).
   + [A preprocessing scheme for high-cardinality categorical attributes in classification and prediction problems](https://doi.org/10.1145/507533.507538)
   + [Extending Target Encoding](https://towardsdatascience.com/extending-target-encoding-443aa9414cae)
   + [Target encoding done the right way](https://maxhalford.github.io/blog/target-encoding/).

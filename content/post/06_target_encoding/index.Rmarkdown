@@ -2,7 +2,7 @@
 title: Mapping Categorical Predictors to Numeric With Target Encoding
 author: ''
 date: '2023-11-15'
-slug: multicollinearity-management
+slug: target-encoding
 links:
 - icon: github
   icon_pack: fab

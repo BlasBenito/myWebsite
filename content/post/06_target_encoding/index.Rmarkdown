@@ -1,7 +1,7 @@
 ---
 title: Mapping Categorical Predictors to Numeric With Target Encoding
 author: ''
-date: '2023-11-05'
+date: '2023-11-15'
 slug: multicollinearity-management
 links:
 - icon: github
@@ -13,11 +13,11 @@ tags: [R packages, Multicollinearity, Variable Selection]
 subtitle: ''
 summary: 'Target encoding is commonly used to map categorical variables to numeric with the objective of facilitating exploratory data analysis and machine learning modeling. This post covers the basics of this method, and explains how and when to use it.'
 authors: [admin]
-lastmod: '2023-11-05T08:14:23+02:00'
+lastmod: '2023-11-15T08:14:23+02:00'
 featured: no
 draft: true
 image:
-  caption: Graph by Blas M. Benito
+  caption: "Target encoding of a toy data frame performed with collinear::target_encoding_lab()"
   focal_point: Smart
   margin: auto
 projects: []
@@ -26,7 +26,22 @@ projects: []
 
 # Summary
 
-TODO
+Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. The post delves into the complexities of dealing with these types of predictors using methods such as one-hot encoding (please don't) or target encoding, and provides insights into its mechanisms and quirks
+
+## Key Highlights:
+
+  + **Categorical Predictors are Kinda Annoying:** This section discusses the common issues encountered with categorical predictors during data analysis.
+
+  + **One-Hot Encoding Pitfalls:** While discussing one-hot encoding, the post focuses on its limitations, including dimensionality explosion, increased multicollinearity, and sparsity in tree-based models.
+
+  + **Intro to Target Encoding:** Introducing target encoding as an alternative, the post explains its concept, illustrating the basic form with mean encoding and subsequent enhancements with additive smoothing, leave-one-out encoding, and more.
+
+  + **Handling Sparsity and Repetition:** It emphasizes the potential pitfalls of target encoding, such as repeated values within categories and their impact on model performance, prompting the exploration of strategies like white noise addition and random encoding to mitigate these issues.
+
+  + **Target Encoding Lab:** The post concludes with a detailed demonstration using the `collinear::target_encoding_lab()` function, offering a hands-on exploration of various target encoding methods, parameter combinations, and their visual representations.
+
+The post intends to serve as a useful resource for data scientists exploring alternative encoding techniques for categorical predictors.
+
 
 # Resources
 
@@ -45,7 +60,8 @@ This tutorial requires the development version (>= 1.0.3) of the newly released 
 install.packages("remotes")
 remotes::install_github(
   repo = "blasbenito/collinear", 
-  ref = "development"
+  ref = "development",
+  force = TRUE
   )
 install.packages("fastDummies")
 install.packages("rpart")
@@ -112,6 +128,7 @@ A few, like `country_name` and `biogeo_ecoregion`, show a cardinality high enoug
 ```{r}
 sort(unique(vi$koppen_zone))
 ```
+
 # One-hot Encoding is here...
 
 Let's use it as predictor of `vi_mean` in a linear model and take a look at the summary.
@@ -195,7 +212,7 @@ Notice the stark differences in tree structure between both options. On the left
 
 In the end, the magic of one-hot encoding is in its inherent ability to create two or three problems for each one it promised to solve. We all know someone like that. Not so hot, if you ask me.
 
-# Target Encoding
+# Target Encoding, Mean Encoding, and Dummy Variables (All The Same)
 
 On a bright summer day of 2001, [Daniele Micci-Barreca](https://www.aitimejournal.com/interview-with-daniele-micci-barreca-product-analytics-lead-data-science-google/30110/) finally got sick of the one-hot encoding wonders and decided to publish [his ideas on a suitable alternative](https://doi.org/10.1145/507533.507538) others later named *mean encoding* or *target encoding*. He told the story himself 20 years later, in a nice blog post titled [Extending Target Encoding](https://towardsdatascience.com/extending-target-encoding-443aa9414cae).
 
@@ -248,7 +265,7 @@ yx |>
   )
 ```
 
-So far so good! But still, the simplest implementations of target encoding generate repeated values for all cases wichin a category. This can still mess-up tree-based models a bit, because splits may happen again and again in the same values of the predictor. However, there are several strategies to limit this issue as well.
+So far so good! But still, the simplest implementations of target encoding generate repeated values for all cases within a category. This can still mess-up tree-based models a bit, because splits may happen again and again in the same values of the predictor. However, there are several strategies to limit this issue as well.
 
 ## Leave-one-out Target Encoding
 
@@ -283,6 +300,7 @@ yx |>
     x_encoded = mean(y) + runif(n = dplyr::n(), max = max_noise)
   )
 ```
+
 This method can deal with one-case categories without issues, and does not generate repeated values, but in exchange, we have to be mindful of the amount of noise we add, and we have to set a random seed to ensure reproducibility.
 
 ## Random Encoding
@@ -306,9 +324,10 @@ yx |>
     )
   )
 ```
+
 ## Rank Encoding plus White Noise
 
-This is a little different from all the other methods, because it does not map the categories to values from the target, but to the rank/order of the target means per category. It basically converts the categorical variable into an ordinal one, and then adds white noise on top to avoid value repetition.
+This is a little different from all the other methods, because it does not map the categories to values from the target, but to the rank/order of the target means per category. It basically converts the categorical variable into an ordinal one arranged along with the target, and then adds white noise on top to avoid value repetition.
 
 ```{r}
 #maximum noise as function of the number of categories
@@ -321,13 +340,65 @@ yx |>
     x_encoded = dplyr::cur_group_id() + runif(n = dplyr::n(), max = max_noise)
   )
 ```
-Demonstration of the target encoding lab here?
+## The Target Encoding Lab
 
-# Target encoding vs one-hot encoding
+The function `collinear::target_encoding_lab()` implements all these encoding methods, and allows defining different combinations of parameters. It was designed to help understand how they work, and maybe help make choices about what's the right encoding for a given categorical predictor.
 
-Two random forest models, one done with one-hot encoding, and another with target encoding
+In the example below, the methods rank, mean, and leave-one-out are computed with white noise of 0 and 0.1 (that's the width of the uniform distribution the noise is extracted from), the mean is also with and without smoothing, and the rnorm is computed using two different multipliers of the standard deviation of the normal distribution computed for each group in the predictor, just to help control the data spread.
 
-The ideas behind target encoding can also be used to understand the importance of model predictors: https://towardsdatascience.com/a-simple-model-independent-score-explanation-method-c17002d66da7
+The function also uses a random seed to generate the same noise across the encoded versions of the predictor to make them as comparable as possible. Every time you change the seed, results using white noise and the rnorm method should change as well.
 
-# Final remarks
+```{r, warning = FALSE}
+yx_encoded <- target_encoding_lab(
+  df = yx,
+  response = "y",
+  predictors = "x",
+  white_noise = c(0, 0.1),
+  smoothing = c(0, 2),
+  rnorm_sd_multiplier = c(0.25, 0.5),
+  verbose = TRUE,
+  seed = 1, #for reproducibility
+  replace = FALSE #to replace or not the predictors with their encodings
+)
 
+dplyr::glimpse(yx_encoded)
+```
+```{r, fig.width=12, fig.height=6}
+yx_encoded |> 
+  tidyr::pivot_longer(
+    cols = dplyr::contains("__encoded"),
+    values_to = "x_encoded"
+  ) |> 
+  ggplot() + 
+  facet_wrap("name") +
+  aes(
+    x = x_encoded,
+    y = y,
+    color = x
+  ) +
+  geom_point(size = 3) + 
+  theme_bw()
+```
+The function also allows to replace a given predictor with their selected encoding.
+
+```{r}
+yx_encoded <- collinear::target_encoding_lab(
+  df = yx,
+  response = "y",
+  predictors = "x",
+  encoding_methods = "mean", #selected encoding method
+  smoothing = 2,
+  verbose = TRUE,
+  replace = TRUE
+)
+
+dplyr::glimpse(yx_encoded)
+```
+
+And that's all about target encoding so far! 
+
+I have a post in my TODO list with a little real experiment comparing target encoding with one-hot encoding in tree-based models. If you are interested, stay tuned!
+
+Cheers,
+
+Blas

@@ -1,7 +1,7 @@
 ---
 title: Mapping Categorical Predictors to Numeric With Target Encoding
 author: ''
-date: '2023-11-05'
+date: '2023-11-15'
 slug: multicollinearity-management
 links:
 - icon: github
@@ -13,11 +13,11 @@ tags: [R packages, Multicollinearity, Variable Selection]
 subtitle: ''
 summary: 'Target encoding is commonly used to map categorical variables to numeric with the objective of facilitating exploratory data analysis and machine learning modeling. This post covers the basics of this method, and explains how and when to use it.'
 authors: [admin]
-lastmod: '2023-11-05T08:14:23+02:00'
+lastmod: '2023-11-15T08:14:23+02:00'
 featured: no
 draft: true
 image:
-  caption: Graph by Blas M. Benito
+  caption: "Target encoding of a toy data frame performed with collinear::target_encoding_lab()"
   focal_point: Smart
   margin: auto
 projects: []
@@ -26,9 +26,30 @@ projects: []
 
 # Summary
 
-TODO
+Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. The post delves into the complexities of dealing with these types of predictors using methods such as one-hot encoding (please don't) or target encoding, and provides insights into its mechanisms and quirks
+
+## Key Highlights:
+
+  + **Categorical Predictors are Kinda Annoying:** This section discusses the common issues encountered with categorical predictors during data analysis.
+
+  + **One-Hot Encoding Pitfalls:** While discussing one-hot encoding, the post focuses on its limitations, including dimensionality explosion, increased multicollinearity, and sparsity in tree-based models.
+
+  + **Intro to Target Encoding:** Introducing target encoding as an alternative, the post explains its concept, illustrating the basic form with mean encoding and subsequent enhancements with additive smoothing, leave-one-out encoding, and more.
+
+  + **Handling Sparsity and Repetition:** It emphasizes the potential pitfalls of target encoding, such as repeated values within categories and their impact on model performance, prompting the exploration of strategies like white noise addition and random encoding to mitigate these issues.
+
+  + **Target Encoding Lab:** The post concludes with a detailed demonstration using the `collinear::target_encoding_lab()` function, offering a hands-on exploration of various target encoding methods, parameter combinations, and their visual representations.
+
+The post intends to serve as a useful resource for data scientists exploring alternative encoding techniques for categorical predictors.
+
 
 # Resources
+
+  + [A preprocessing scheme for high-cardinality categorical attributes in classification and prediction problems](https://doi.org/10.1145/507533.507538)
+  + [Extending Target Encoding](https://towardsdatascience.com/extending-target-encoding-443aa9414cae)
+  + [Target encoding done the right way](https://maxhalford.github.io/blog/target-encoding/).
+
+  
 
 # R packages
 
@@ -40,14 +61,61 @@ This tutorial requires the development version (>= 1.0.3) of the newly released 
 install.packages("remotes")
 remotes::install_github(
   repo = "blasbenito/collinear", 
-  ref = "development"
+  ref = "development",
+  force = TRUE
   )
 install.packages("fastDummies")
-install.packages("caret")
-install.packages("ranger")
+install.packages("rpart")
+install.packages("rpart.plot")
 install.packages("dplyr")
 install.packages("ggplot2")
 ```
+
+
+```r
+library(rpart)
+library(rpart.plot)
+library(collinear)
+library(fastDummies)
+```
+
+```
+## Thank you for using fastDummies!
+```
+
+```
+## To acknowledge our work, please cite the package:
+```
+
+```
+## Kaplan, J. & Schlegel, B. (2023). fastDummies: Fast Creation of Dummy (Binary) Columns and Rows from Categorical Variables. Version 1.7.1. URL: https://github.com/jacobkap/fastDummies, https://jacobkap.github.io/fastDummies/.
+```
+
+```r
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+library(ggplot2)
+```
+
 
 # Categorical Predictors are Kinda Annoying
 
@@ -59,8 +127,6 @@ Let me go ahead and illustrate the issue. There is a nice data frame in the `col
 
 
 ```r
-library(collinear)
-
 data(
   vi,
   vi_predictors
@@ -71,13 +137,14 @@ dplyr::glimpse(vi)
 
 ```
 ## Rows: 30,000
-## Columns: 67
+## Columns: 68
 ## $ longitude                  <dbl> -114.254306, 114.845693, -122.145972, 108.3…
 ## $ latitude                   <dbl> 45.0540272, 26.2706940, 56.3790272, 29.9456…
 ## $ vi_mean                    <dbl> 0.38, 0.53, 0.45, 0.69, 0.42, 0.68, 0.70, 0…
 ## $ vi_max                     <dbl> 0.57, 0.67, 0.65, 0.85, 0.64, 0.78, 0.77, 0…
 ## $ vi_min                     <dbl> 0.12, 0.41, 0.25, 0.50, 0.25, 0.48, 0.60, 0…
 ## $ vi_range                   <dbl> 0.45, 0.26, 0.40, 0.34, 0.39, 0.31, 0.17, 0…
+## $ vi_binary                  <dbl> 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0…
 ## $ koppen_zone                <chr> "BSk", "Cfa", "Dfc", "Cfb", "Aw", "Cfa", "A…
 ## $ koppen_group               <chr> "Arid", "Temperate", "Cold", "Temperate", "…
 ## $ koppen_description         <chr> "steppe, cold", "no dry season, hot summer"…
@@ -141,7 +208,7 @@ dplyr::glimpse(vi)
 ## $ subregion                  <chr> "Northern America", "Eastern Asia", "Northe…
 ```
 
-The categorical variables in this dataset are identified below:
+The categorical variables in this data frame are identified below:
 
 
 ```r
@@ -159,7 +226,7 @@ vi_categorical
 ## [10] "continent"          "region"             "subregion"
 ```
 
-And their number of categories:
+And finally, their number of categories:
 
 
 ```r
@@ -192,7 +259,7 @@ data.frame(
 ## 12       koppen_group          5
 ```
 
-A few, like `country_name` and `biogeo_ecoregion` are here to ruin your day, aren't they? But ok, let's start with one with a moderate number of categories, like `koppen_zone`. This variable has 25 categories representing climate zones.
+A few, like `country_name` and `biogeo_ecoregion`, show a cardinality high enough to ruin our day, don't they? But ok, let's start with one with a moderate number of categories, like `koppen_zone`. This variable has 25 categories representing climate zones.
 
 
 ```r
@@ -204,6 +271,8 @@ sort(unique(vi$koppen_zone))
 ## [13] "Cwa" "Cwb" "Dfa" "Dfb" "Dfc" "Dfd" "Dsa" "Dsb" "Dsc" "Dwa" "Dwb" "Dwc"
 ## [25] "ET"
 ```
+
+# One-hot Encoding is here...
 
 Let's use it as predictor of `vi_mean` in a linear model and take a look at the summary.
 
@@ -260,11 +329,14 @@ lm(
 ## F-statistic:  5157 on 24 and 29975 DF,  p-value: < 2.2e-16
 ```
 
-Look at this monster. What the hell happened here? Linear models cannot deal with categorical predictors, so they create numeric **dummy variables** instead. The function `stats::model.matrix()` does exactly that:
+Look at this monster! What the hell happened here? Linear models cannot deal with categorical predictors, so they create numeric **dummy variables** instead. The function `stats::model.matrix()` does exactly that:
 
 
 ```r
-dummy_variables <- stats::model.matrix( ~ koppen_zone, data = vi)
+dummy_variables <- stats::model.matrix( 
+  ~ koppen_zone,
+  data = vi
+  )
 ncol(dummy_variables)
 ```
 
@@ -343,7 +415,13 @@ dplyr::glimpse(df)
 ## $ koppen_zone_ET  <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
 ```
 
-As good as dummy variables are to patch linear models when predictors are categorical, it creates a couple of glaring issues that are hard to address when the number of categories (cardinality) is high. The first is **increased dimensionality**. For example, if create dummy variables for all categorical predictors in `vi`, then we'd go from the original 61 predictors to a total of 967. That's a real **dimensionality explosion**! This alone can degrade the computational performance of a model due to increased data size. But other issues can arise as well, like, what happens if a new category shows up in your prediction data? Also, one-hot encoding induces multicollinearity, and makes very hard obtaining accurate estimates for the coefficientes of the encoded categories. Look at the Variance Inflation Factors of the encoded Koppen zones, they have absurd values!
+# ...to mess-up your models
+
+As good as one-hot encoding is to fit linear models when predictors are categorical, it creates a couple of glaring issues that are hard to address when the number of encoded categories is high. 
+
+The first issue can easily be named the **dimensionality explosion**. If we created dummy variables for all categorical predictors in `vi`, then we'd go from the original 61 predictors to a total of 967 new columns to handle. This alone can degrade the computational performance of a model due to increased data size. 
+
+The second issue is **increased multicollinearity**. One-hot encoded features are highly collinear, which makes obtaining accurate estimates for the coefficients of the encoded categories very hard. Look at the Variance Inflation Factors of the encoded Koppen zones, they have incredibly high values!
 
 
 ```r
@@ -381,49 +459,402 @@ collinear::vif_df(
 ## 25 koppen_zone_BWh 2.403991e+15
 ```
 
-
-
-
-
-
-
+On top of those issues, one-hot encoding also causes **sparsity** in tree-based models. Let me show you an example. Below I train a recursive partition tree using `vi_mean` as response, and the one-hot encoded version of `koppen_zone` we have in `df`. 
 
 
 ```r
-df <- fastDummies::dummy_cols(
-  .data = vi,
-  select_columns = vi_categorical,
-  remove_selected_columns = TRUE
+#add response variable to df
+df$vi_mean <- vi$vi_mean
+
+#fit model using all one-hot encoded variables
+koppen_zone_one_hot <- rpart::rpart(
+  formula = vi_mean ~ .,
+  data = df
 )
-ncol(df)
+```
+
+Now I do the same using the categorical version of `koppen_zone` in `vi`.
+
+
+```r
+koppen_zone_categorical <- rpart::rpart(
+  formula = vi_mean ~ koppen_zone,
+  data = vi
+)
+```
+
+Finally, I am plotting the skeletons of these trees side by side (we don't care about numbers here).
+
+
+```r
+#plot tree skeleton
+par(mfrow = c(1, 2))
+plot(koppen_zone_one_hot, main = "One-hot encoding")
+plot(koppen_zone_categorical, main = "Categorical")
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="576" />
+
+Notice the stark differences in tree structure between both options. On the left, the tree trained on the one-hot encoded data only shows growth on one side! This is the *sparsity* I was talking about before. On the right side, however, the tree based on the categorical variable shows a balanced and healthy structure. One-hot encoded data can easily mess up a single univariate regression tree, so imagine what it can do to your fancy random forest model with hundreds of these trees.
+
+In the end, the magic of one-hot encoding is in its inherent ability to create two or three problems for each one it promised to solve. We all know someone like that. Not so hot, if you ask me.
+
+# Target Encoding, Mean Encoding, and Dummy Variables (All The Same)
+
+On a bright summer day of 2001, [Daniele Micci-Barreca](https://www.aitimejournal.com/interview-with-daniele-micci-barreca-product-analytics-lead-data-science-google/30110/) finally got sick of the one-hot encoding wonders and decided to publish [his ideas on a suitable alternative](https://doi.org/10.1145/507533.507538) others later named *mean encoding* or *target encoding*. He told the story himself 20 years later, in a nice blog post titled [Extending Target Encoding](https://towardsdatascience.com/extending-target-encoding-443aa9414cae).
+
+But what is target encoding? Let's start with a continuous response variable `y` (a.k.a *the target*) and a categorical predictor `x`. 
+
+
+
+## Mean Encoding
+
+In *it's simplest form*, target encoding replaces each category in `x` with the mean of `y` across the category cases. This results in a new numeric version of `x` named `x_encoded` in the example below.
+
+
+```r
+yx |> 
+  dplyr::group_by(x) |> 
+  dplyr::mutate(
+    x_encoded = mean(y)
+  )
 ```
 
 ```
-## [1] 973
+## # A tibble: 7 × 3
+## # Groups:   x [3]
+##       y x     x_encoded
+##   <int> <chr>     <dbl>
+## 1     1 a             2
+## 2     2 a             2
+## 3     3 a             2
+## 4     4 b             5
+## 5     5 b             5
+## 6     6 b             5
+## 7     7 c             7
 ```
 
+Simple is good, right? But sometimes it's not. In our toy case, the category "c" has only one case that maps directly to an actual value of `y`.Imagine the worst case scenario of `x` having one different category per row, then `x_encoded` would be identical to `y`!
+
+## Mean Encoding With Additive Smoothing
+
+The issue can be solved by pushing the mean of `y` for each category in `x` towards the global mean of `y` by the weighted sample size of the category, as suggested by the expression
+
+`$$x\_encoded_i = \frac{n_i \times \overline{y}_i + m \times \overline{y}}{n_i + m}$$`
+
+where:
+
+  + `\(n_i\)` is the size of the category `\(i\)`.
+  + `\(\overline{y}_i\)` is the mean of the target over the category `\(i\)`.
+  + `\(m\)` is the smoothing parameter.
+  + `\(\overline{y}\)` is the global mean of the target.
 
 
+```r
+y_mean <- mean(yx$y)
+
+m <- 3
+
+yx |> 
+  dplyr::group_by(x) |> 
+  dplyr::mutate(
+    x_encoded = 
+      (dplyr::n() * mean(y) + m * y_mean) / (dplyr::n() + m)
+  )
+```
+
+```
+## # A tibble: 7 × 3
+## # Groups:   x [3]
+##       y x     x_encoded
+##   <int> <chr>     <dbl>
+## 1     1 a          3   
+## 2     2 a          3   
+## 3     3 a          3   
+## 4     4 b          4.5 
+## 5     5 b          4.5 
+## 6     6 b          4.5 
+## 7     7 c          4.75
+```
+
+So far so good! But still, the simplest implementations of target encoding generate repeated values for all cases within a category. This can still mess-up tree-based models a bit, because splits may happen again and again in the same values of the predictor. However, there are several strategies to limit this issue as well.
+
+## Leave-one-out Target Encoding
+
+In this version of target encoding, the encoded value of one case within a category is the mean of all other cases within the same category. This results in a robust encoding that avoids direct reference to the target value of the sample being encoded, and does not generate repeated values.
+
+The code below implements the idea in a way so simple that it cannot even deal with one-case categories.
 
 
+```r
+yx |>
+  dplyr::group_by(x) |>
+  dplyr::mutate(
+    x_encoded = (sum(y) - y) / (dplyr::n() - 1)
+  )
+```
 
-https://www.reddit.com/r/statistics/comments/7oe8xi/why_is_it_possible_to_have_n1_dummy_variables/
+```
+## # A tibble: 7 × 3
+## # Groups:   x [3]
+##       y x     x_encoded
+##   <int> <chr>     <dbl>
+## 1     1 a           2.5
+## 2     2 a           2  
+## 3     3 a           1.5
+## 4     4 b           5.5
+## 5     5 b           5  
+## 6     6 b           4.5
+## 7     7 c         NaN
+```
+
+## Mean Encoding with White Noise
+
+Another way to avoid repeated values while keeping the encoding as simple as possible consists of just adding a white noise to the encoded values. The code below adds noise generated by `stats::runif()` to the mean-encoded values, but other options such as `stats::rnorm()` (noise from a normal distribution) can be useful here. Since white noise is random, we need to set the seed of the pseudo-random number generator (with `set.seed()`) to obtain constant results every time we run the code below.
+
+When using this method we have to be careful with the amount of noise we add. It should be a harmless fraction of target, small enough to not throw a model off the signal provided by the encoded variable. In our toy case `y` is between 1 and 7, so something like "one percent of the maximum" could work well here.
 
 
-Cannot be easily used in EDAs
-their importance is hard to quantify
-high cardinlity makes things difficult
-methods created to deal with them (like one-hot encoding) aren't ideal for tree based models
+```r
+#maximum noise to add
+max_noise <- max(yx$y)/100
 
-# Target encoding
+#set seed for reproducibility
+set.seed(1)
 
-What is target encoding?
-How it works?
-A couple of examples
+yx |> 
+  dplyr::group_by(x) |> 
+  dplyr::mutate(
+    x_encoded = mean(y) + runif(n = dplyr::n(), max = max_noise)
+  )
+```
 
-# Target encoding vs one-hot encoding
+```
+## # A tibble: 7 × 3
+## # Groups:   x [3]
+##       y x     x_encoded
+##   <int> <chr>     <dbl>
+## 1     1 a          2.02
+## 2     2 a          2.03
+## 3     3 a          2.04
+## 4     4 b          5.06
+## 5     5 b          5.01
+## 6     6 b          5.06
+## 7     7 c          7.07
+```
 
-Two random forest models, one done with one-hot encoding, and another with target encoding
+This method can deal with one-case categories without issues, and does not generate repeated values, but in exchange, we have to be mindful of the amount of noise we add, and we have to set a random seed to ensure reproducibility.
 
-# Final remarks
+## Random Encoding
 
+A more exotic non-deterministic method of encoding consists of computing the mean and the standard deviation of the target over the category, and then using these values to parameterize a normal distribution to extract randomized values from. This kind of encoding also requires to set the random seed to ensure reproducibility.
+
+
+```r
+set.seed(1)
+
+yx |>
+  dplyr::group_by(x) |>
+  dplyr::mutate(
+    x_encoded = stats::rnorm(
+      n = dplyr::n(),
+      mean = mean(y),
+      sd = ifelse(
+        dplyr::n() == 1,
+        stats::sd(yx$y), #use global sd for one-case groups
+        stats::sd(y)     #use local sd for n-cases groups
+      )
+    )
+  )
+```
+
+```
+## # A tibble: 7 × 3
+## # Groups:   x [3]
+##       y x     x_encoded
+##   <int> <chr>     <dbl>
+## 1     1 a          1.37
+## 2     2 a          2.18
+## 3     3 a          1.16
+## 4     4 b          6.60
+## 5     5 b          5.33
+## 6     6 b          4.18
+## 7     7 c          8.05
+```
+
+## Rank Encoding plus White Noise
+
+This is a little different from all the other methods, because it does not map the categories to values from the target, but to the rank/order of the target means per category. It basically converts the categorical variable into an ordinal one arranged along with the target, and then adds white noise on top to avoid value repetition.
+
+
+```r
+#maximum noise as function of the number of categories
+max_noise <- length(unique(yx$x))/100
+
+yx |> 
+  dplyr::arrange(y) |> 
+  dplyr::group_by(x) |> 
+  dplyr::mutate(
+    x_encoded = dplyr::cur_group_id() + runif(n = dplyr::n(), max = max_noise)
+  )
+```
+
+```
+## # A tibble: 7 × 3
+## # Groups:   x [3]
+##       y x     x_encoded
+##   <int> <chr>     <dbl>
+## 1     1 a          1.02
+## 2     2 a          1.01
+## 3     3 a          1.02
+## 4     4 b          2.03
+## 5     5 b          2.01
+## 6     6 b          2.02
+## 7     7 c          3.03
+```
+## The Target Encoding Lab
+
+The function `collinear::target_encoding_lab()` implements all these encoding methods, and allows defining different combinations of parameters. It was designed to help understand how they work, and maybe help make choices about what's the right encoding for a given categorical predictor.
+
+In the example below, the methods rank, mean, and leave-one-out are computed with white noise of 0 and 0.1 (that's the width of the uniform distribution the noise is extracted from), the mean is also with and without smoothing, and the rnorm is computed using two different multipliers of the standard deviation of the normal distribution computed for each group in the predictor, just to help control the data spread.
+
+The function also uses a random seed to generate the same noise across the encoded versions of the predictor to make them as comparable as possible. Every time you change the seed, results using white noise and the rnorm method should change as well.
+
+
+```r
+yx_encoded <- target_encoding_lab(
+  df = yx,
+  response = "y",
+  predictors = "x",
+  white_noise = c(0, 0.1),
+  smoothing = c(0, 2),
+  rnorm_sd_multiplier = c(0.25, 0.5),
+  verbose = TRUE,
+  seed = 1, #for reproducibility
+  replace = FALSE #to replace or not the predictors with their encodings
+)
+```
+
+```
+## 
+## Encoding the predictor: x
+```
+
+```
+## New encoded predictor: 'x__encoded_rank'
+```
+
+```
+## New encoded predictor: 'x__encoded_mean'
+```
+
+```
+## New encoded predictor: 'x__encoded_mean__smoothing_2'
+```
+
+```
+## New encoded predictor: 'x__encoded_loo'
+```
+
+```
+## New encoded predictor: 'x__encoded_rank__noise_0.1'
+```
+
+```
+## New encoded predictor: 'x__encoded_mean__noise_0.1'
+```
+
+```
+## New encoded predictor: 'x__encoded_mean__smoothing_2__noise_0.1'
+```
+
+```
+## New encoded predictor: 'x__encoded_loo__noise_0.1'
+```
+
+```
+## New encoded predictor: 'x__encoded_rnorm__sd_multiplier_0.25'
+```
+
+```
+## New encoded predictor: 'x__encoded_rnorm__sd_multiplier_0.5'
+```
+
+```r
+dplyr::glimpse(yx_encoded)
+```
+
+```
+## Rows: 7
+## Columns: 12
+## $ y                                       <int> 1, 2, 3, 4, 5, 6, 7
+## $ x                                       <chr> "a", "a", "a", "b", "b", "b", …
+## $ x__encoded_rank                         <int> 1, 1, 1, 2, 2, 2, 3
+## $ x__encoded_mean                         <dbl> 2, 2, 2, 5, 5, 5, 7
+## $ x__encoded_mean__smoothing_2            <dbl> 2.8, 2.8, 2.8, 4.6, 4.6, 4.6, …
+## $ x__encoded_loo                          <dbl> 2.5, 2.0, 1.5, 5.5, 5.0, 4.5, …
+## $ x__encoded_rank__noise_0.1              <dbl> 0.5030858, 0.6752789, 0.999474…
+## $ x__encoded_mean__noise_0.1              <dbl> 1.503086, 1.675279, 1.999475, …
+## $ x__encoded_mean__smoothing_2__noise_0.1 <dbl> 2.303086, 2.475279, 2.799475, …
+## $ x__encoded_loo__noise_0.1               <dbl> 2.003086, 1.675279, 1.499475, …
+## $ x__encoded_rnorm__sd_multiplier_0.25    <dbl> 1.843387, 2.045911, 1.791093, …
+## $ x__encoded_rnorm__sd_multiplier_0.5     <dbl> 1.686773, 2.091822, 1.582186, …
+```
+
+```r
+yx_encoded |> 
+  tidyr::pivot_longer(
+    cols = dplyr::contains("__encoded"),
+    values_to = "x_encoded"
+  ) |> 
+  ggplot() + 
+  facet_wrap("name") +
+  aes(
+    x = x_encoded,
+    y = y,
+    color = x
+  ) +
+  geom_point(size = 3) + 
+  theme_bw()
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="1152" />
+The function also allows to replace a given predictor with their selected encoding.
+
+
+```r
+yx_encoded <- collinear::target_encoding_lab(
+  df = yx,
+  response = "y",
+  predictors = "x",
+  encoding_methods = "mean", #selected encoding method
+  smoothing = 2,
+  verbose = TRUE,
+  replace = TRUE
+)
+```
+
+```
+## Warning in validate_df(df = df, min_rows = 30): the number of rows in 'df' is
+## lower than 30. A multicollinearity analysis may fail or yield meaningless
+## results.
+```
+
+```r
+dplyr::glimpse(yx_encoded)
+```
+
+```
+## Rows: 7
+## Columns: 2
+## $ y <int> 1, 2, 3, 4, 5, 6, 7
+## $ x <dbl> 2.8, 2.8, 2.8, 4.6, 4.6, 4.6, 5.0
+```
+
+And that's all about target encoding so far! 
+
+I have a post in my TODO list with a little real experiment comparing target encoding with one-hot encoding in tree-based models. If you are interested, stay tuned!
+
+Cheers,
+
+Blas

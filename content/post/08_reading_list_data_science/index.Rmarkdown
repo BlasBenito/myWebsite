@@ -28,7 +28,7 @@ This is a live post listing links to Data Science related posts and videos I con
 
 [**Target encoding done the right way**](https://maxhalford.github.io/blog/target-encoding/): post by [Max Halford](https://maxhalford.github.io/bio/), Head of Data at [Carbonfact](https://www.carbonfact.com/), explaining in detail how to combine additive smoothing and target encoding.
 
-# Modeling
+# Analysis and Modeling
 
 ## Modeling Methods
 
@@ -45,3 +45,7 @@ This is a live post listing links to Data Science related posts and videos I con
 ## Spatial Analysis
 
 [PostGEESE? Introducing The DuckDB Spatial Extension](https://duckdb.org/2023/04/28/spatial.html): In this post, the authors of [DuckDB](https://duckdb.org/) present the new PostGIS-like *spatial* extension for this popular in-process data base engine.
+
+# Coding
+
+[Why You Shouldn't Nest Your Code](https://youtu.be/CFRhGnuXG-4?si=7Xr3E9L7GFvoRJqA): In this wonderful video, [CodeAesthetic](https://www.youtube.com/@CodeAesthetic) explains in detail (and beautiful graphics!) a couple of methods to reduce the level of nesting in our code to improve readability and maintainability. This video has truly changed how I code in R!

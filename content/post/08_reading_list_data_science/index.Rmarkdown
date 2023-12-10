@@ -1,14 +1,14 @@
 ---
 title: "My Reading List: Data Science"
 author: ''
-date: '2023-11-12'
+date: '2023-12-10'
 slug: my-reading-list-data-science
 categories: []
 tags: [Data Science, Data Preprocessing, Machine Learning, Model Explainability, Model Interpretability]
 subtitle: ''
 summary: 'Live post with a curated list of high-quality data science posts and videos I found enlightening.'
 authors: [admin]
-lastmod: '2023-11-12T08:14:23+02:00'
+lastmod: '2023-12-10T08:14:23+02:00'
 featured: no
 draft: false
 image:
@@ -42,4 +42,6 @@ This is a live post listing links to Data Science related posts and videos I con
 
 [**Towards A Rigorous Science of Interpretable Machine Learning**](https://arxiv.org/abs/1702.08608): Pre-print by Finale Doshi-Velez and Been Kim offering a rigorous definition and evaluation of model interpretability.
 
+## Spatial Analysis
 
+[PostGEESE? Introducing The DuckDB Spatial Extension](https://duckdb.org/2023/04/28/spatial.html): In this post, the authors of [DuckDB](https://duckdb.org/) present the new PostGIS-like *spatial* extension for this popular in-process data base engine.

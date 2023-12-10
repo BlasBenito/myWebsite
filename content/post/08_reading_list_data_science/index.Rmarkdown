@@ -52,4 +52,4 @@ This is a live post listing links to Data Science related posts and videos I con
 
 # Miscellany
 
-[What is Retrieval-Augmented Generation (RAG)?](https://youtu.be/T-D1OfcDW1M?si=sAZO-5NGD8yF2WYe): In this video, Marina Danilevsky, Senior Data Scientist at IBM, offers a pretty good explanation on how the RAG method can improve the credibility of large language models.
+[What is Retrieval-Augmented Generation (RAG)?](https://youtu.be/T-D1OfcDW1M?si=sAZO-5NGD8yF2WYe): In this video, Marina Danilevsky, Senior Data Scientist at IBM, offers a pretty good explanation on how the [Retrieval-Augmented Generation](https://research.ibm.com/blog/retrieval-augmented-generation-RAG?utm_id=YT-101-What-is-RAG&_gl=1*p6ef17*_ga*MTQwMzQ5NjMwMi4xNjkxNDE2MDc0*_ga_FYECCCS21D*MTY5MjcyMjgyNy40My4xLjE2OTI3MjMyMTcuMC4wLjA.) method can improve the credibility of large language models.

@@ -49,3 +49,7 @@ This is a live post listing links to Data Science related posts and videos I con
 # Coding
 
 [Why You Shouldn't Nest Your Code](https://youtu.be/CFRhGnuXG-4?si=7Xr3E9L7GFvoRJqA): In this wonderful video, [CodeAesthetic](https://www.youtube.com/@CodeAesthetic) explains in detail (and beautiful graphics!) a couple of methods to reduce the level of nesting in our code to improve readability and maintainability. This video has truly changed how I code in R!
+
+# Miscellany
+
+[What is Retrieval-Augmented Generation (RAG)?](https://youtu.be/T-D1OfcDW1M?si=sAZO-5NGD8yF2WYe): In this video, Marina Danilevsky, Senior Data Scientist at IBM, offers a pretty good explanation on how the RAG method can improve the credibility of large language models.

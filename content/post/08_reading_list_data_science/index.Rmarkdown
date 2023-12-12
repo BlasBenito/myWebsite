@@ -55,3 +55,9 @@ This is a live post listing links to Data Science related posts and videos I con
 # Other Fancy Things
 
 [What is Retrieval-Augmented Generation (RAG)?](https://youtu.be/T-D1OfcDW1M?si=sAZO-5NGD8yF2WYe): In this video, Marina Danilevsky, Senior Data Scientist at IBM, offers a pretty good explanation on how the [Retrieval-Augmented Generation](https://research.ibm.com/blog/retrieval-augmented-generation-RAG?utm_id=YT-101-What-is-RAG&_gl=1*p6ef17*_ga*MTQwMzQ5NjMwMi4xNjkxNDE2MDc0*_ga_FYECCCS21D*MTY5MjcyMjgyNy40My4xLjE2OTI3MjMyMTcuMC4wLjA.) method can improve the credibility of large language models.
+
+[A novel framework for spatio-temporal prediction of environmental data using deep learning](https://www.nature.com/articles/s41598-020-79148-7): This paper by [Federico Amato](https://www.linkedin.com/in/federico-amato-66208637) and collaborators describes an intriguing regression method combining a feedforward neural network with empirical orthogonal functions for spatio-temporal interpolation. Regrettably, the paper offers no code or data at all, but it's still an interesting read.
+
+[Large Models for Time Series and
+Spatio-Temporal Data A Survey and Outlook](https://arxiv.org/pdf/2310.10196.pdf): This pre-print by Weng and collaborators reviews the current state of the art in spatio-temporal modelling with Large Language Models and Pre-Trained Foundation Models.
+

@@ -50,6 +50,8 @@ This is a live post listing links to Data Science related posts and videos I con
 
 [Why You Shouldn't Nest Your Code](https://youtu.be/CFRhGnuXG-4?si=7Xr3E9L7GFvoRJqA): In this wonderful video, [CodeAesthetic](https://www.youtube.com/@CodeAesthetic) explains in detail (and beautiful graphics!) a couple of methods to reduce the level of nesting in our code to improve readability and maintainability. This video has truly changed how I code in R!
 
-# Miscellany
+[Code Smell: Error Handling Eclipse ](https://www.njtierney.com/post/2023/12/06/long-errors-smell/): This post by [Nick Tierney](https://fosstodon.org/@njtierney@aus.social) explains how to address these situations when *error checking code totally eclipses the intent of the code*.
+
+# Other Fancy Things
 
 [What is Retrieval-Augmented Generation (RAG)?](https://youtu.be/T-D1OfcDW1M?si=sAZO-5NGD8yF2WYe): In this video, Marina Danilevsky, Senior Data Scientist at IBM, offers a pretty good explanation on how the [Retrieval-Augmented Generation](https://research.ibm.com/blog/retrieval-augmented-generation-RAG?utm_id=YT-101-What-is-RAG&_gl=1*p6ef17*_ga*MTQwMzQ5NjMwMi4xNjkxNDE2MDc0*_ga_FYECCCS21D*MTY5MjcyMjgyNy40My4xLjE2OTI3MjMyMTcuMC4wLjA.) method can improve the credibility of large language models.

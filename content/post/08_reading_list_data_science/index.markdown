@@ -1,14 +1,14 @@
 ---
 title: "My Reading List: Data Science"
 author: ''
-date: '2023-12-19'
+date: '2024-01-03'
 slug: my-reading-list-data-science
 categories: []
 tags: [Data Science, Data Preprocessing, Machine Learning, Model Explainability, Model Interpretability]
 subtitle: ''
 summary: 'Live post with a curated list of high-quality data science posts and videos I found enlightening.'
 authors: [admin]
-lastmod: '2023-12-19T08:14:23+02:00'
+lastmod: '2024-01-03T08:14:23+02:00'
 featured: no
 draft: false
 image:
@@ -50,9 +50,12 @@ This is a live post listing links to Data Science related posts and videos I con
 
 # Coding
 
+[Python Rgonomics](https://www.emilyriederer.com/post/py-rgo/): In this post, [Emily Riederer](https://www.emilyriederer.com/about) offers a list of Python libraries with an "R feeling".
+
 [Why You Shouldn't Nest Your Code](https://youtu.be/CFRhGnuXG-4?si=7Xr3E9L7GFvoRJqA): In this wonderful video, [CodeAesthetic](https://www.youtube.com/@CodeAesthetic) explains in detail (and beautiful graphics!) a couple of methods to reduce the level of nesting in our code to improve readability and maintainability. This video has truly changed how I code in R!
 
 [Code Smell: Error Handling Eclipse ](https://www.njtierney.com/post/2023/12/06/long-errors-smell/): This post by [Nick Tierney](https://fosstodon.org/@njtierney@aus.social) explains how to address these situations when *error checking code totally eclipses the intent of the code*.
+
 
 # Other Fancy Things
 

@@ -50,11 +50,19 @@ This is a live post listing links to Data Science related posts and videos I con
 
 # Coding
 
-[Python Rgonomics](https://www.emilyriederer.com/post/py-rgo/): In this post, [Emily Riederer](https://www.emilyriederer.com/about) offers a list of Python libraries with an "R feeling".
+## General Concepts
 
 [Why You Shouldn't Nest Your Code](https://youtu.be/CFRhGnuXG-4?si=7Xr3E9L7GFvoRJqA): In this wonderful video, [CodeAesthetic](https://www.youtube.com/@CodeAesthetic) explains in detail (and beautiful graphics!) a couple of methods to reduce the level of nesting in our code to improve readability and maintainability. This video has truly changed how I code in R!
 
+## R
+
 [Code Smell: Error Handling Eclipse ](https://www.njtierney.com/post/2023/12/06/long-errors-smell/): This post by [Nick Tierney](https://fosstodon.org/@njtierney@aus.social) explains how to address these situations when *error checking code totally eclipses the intent of the code*.
+
+[Building a team of internal R packages](https://www.emilyriederer.com/post/team-of-packages/): This post by [Emily Riederer](https://www.emilyriederer.com/about) delves into the particularities of building a team of R packages to do jobs helping a organization answer impactful questions.
+
+## Python
+
+[Python Rgonomics](https://www.emilyriederer.com/post/py-rgo/): In this post, [Emily Riederer](https://www.emilyriederer.com/about) offers a list of Python libraries with an "R feeling".
 
 
 # Other Fancy Things

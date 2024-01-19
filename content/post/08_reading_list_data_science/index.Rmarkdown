@@ -1,14 +1,14 @@
 ---
 title: "My Reading List: Data Science"
 author: ''
-date: '2024-01-17'
+date: '2024-01-19'
 slug: my-reading-list-data-science
 categories: []
 tags: [Data Science, Data Preprocessing, Machine Learning, Model Explainability, Model Interpretability]
 subtitle: ''
 summary: 'Live post with a curated list of high-quality data science posts and videos I found enlightening.'
 authors: [admin]
-lastmod: '2024-01-17T08:14:23+02:00'
+lastmod: '2024-01-19T08:14:23+02:00'
 featured: no
 draft: false
 image:
@@ -73,6 +73,8 @@ This is a live post listing links to Data Science related posts and videos I con
 [**How to use stacked PRs to unblock your entire team**](https://graphite.dev/blog/stacked-prs): This post in [Graphite](https://graphite.dev/)'s blog explains how to split large coding changes into small managed PRs (aka "stacked PRs") to avoid blocks when PR reviews are hard to come by.
 
 # Other Fancy Things
+
+[**What's new with ML in production**](https://vickiboykis.com/2024/01/15/whats-new-with-ml-in-production/): This post by [Vicki Boykis](https://vickiboykis.com/about/), machine learning engineer at Mozilla.ai, goes deep into the differences and similarities between classical Machine Learning approaches and Large Language Models. I learned a lot from this read!
 
 [**What is Retrieval-Augmented Generation (RAG)?**](https://youtu.be/T-D1OfcDW1M?si=sAZO-5NGD8yF2WYe): In this video, Marina Danilevsky, Senior Data Scientist at IBM, offers a pretty good explanation on how the [Retrieval-Augmented Generation](https://research.ibm.com/blog/retrieval-augmented-generation-RAG?utm_id=YT-101-What-is-RAG&_gl=1*p6ef17*_ga*MTQwMzQ5NjMwMi4xNjkxNDE2MDc0*_ga_FYECCCS21D*MTY5MjcyMjgyNy40My4xLjE2OTI3MjMyMTcuMC4wLjA.) method can improve the credibility of large language models.
 

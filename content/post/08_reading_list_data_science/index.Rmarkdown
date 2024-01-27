@@ -30,7 +30,13 @@ This is a live post listing links to Data Science related posts and videos I con
 
 ## Handling and Management
 
+### Apache Parquet
+
+[**A Deep Dive into Parquet: The Data Format Engineers Need to Know**](https://airbyte.com/data-engineering-resources/parquet-data-format): This by Aditi Prakash, published in the [Airbyte Blog](https://airbyte.com/blog) offers a complete guide about the [Apache Parquet](https://parquet.apache.org/) file format.
+
 [**Querying Parquet with Millisecond Latency**](https://www.influxdata.com/blog/querying-parquet-millisecond-latency/) this post from by Raphael Taylor-Davies and Andrew Lamb explains in deep the optimization methods used in [Apache Parquet](https://parquet.apache.org/) files. Warning, this is a very technical read!
+
+### DuckDB
 
 [**Multi-Database Support in DuckDB**](https://duckdb.org/2024/01/26/multi-database-support-in-duckdb) This post by Mark Raasveldt published in the DuckDB blog explains how to query together data from different databases at once.
 

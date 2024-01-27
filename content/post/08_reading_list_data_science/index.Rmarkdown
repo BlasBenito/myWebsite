@@ -28,6 +28,12 @@ This is a live post listing links to Data Science related posts and videos I con
 
 [**Target encoding done the right way**](https://maxhalford.github.io/blog/target-encoding/): post by [Max Halford](https://maxhalford.github.io/bio/), Head of Data at [Carbonfact](https://www.carbonfact.com/), explaining in detail how to combine additive smoothing and target encoding.
 
+# Data Management
+
+[**Querying Parquet with Millisecond Latency**](https://www.influxdata.com/blog/querying-parquet-millisecond-latency/) this post from by Raphael Taylor-Davies and Andrew Lamb explains in deep the optimization methods used in [Apache Parquet](https://parquet.apache.org/) files. Warning, this is a very technical read!
+
+[**Multi-Database Support in DuckDB**](https://duckdb.org/2024/01/26/multi-database-support-in-duckdb) This post by Mark Raasveldt published in the DuckDB blog explains how to query together data from different databases at once.
+
 # Analysis and Modeling
 
 ## Modeling Methods

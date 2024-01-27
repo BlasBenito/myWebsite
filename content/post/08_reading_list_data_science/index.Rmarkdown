@@ -1,14 +1,14 @@
 ---
 title: "My Reading List: Data Science"
 author: ''
-date: '2024-01-19'
+date: '2024-01-27'
 slug: my-reading-list-data-science
 categories: []
 tags: [Data Science, Data Preprocessing, Machine Learning, Model Explainability, Model Interpretability]
 subtitle: ''
 summary: 'Live post with a curated list of high-quality data science posts and videos I found enlightening.'
 authors: [admin]
-lastmod: '2024-01-19T08:14:23+02:00'
+lastmod: '2024-01-27T08:14:23+02:00'
 featured: no
 draft: false
 image:
@@ -20,15 +20,15 @@ projects: []
 
 This is a live post listing links to Data Science related posts and videos I consider to be interesting, high-quality, or even essential to better understand particular topics within such a wide field.
 
-# Data Preprocessing
+# Data 
 
-## Target Encoding
+## Preprocessing
 
 [**Extending Target Encoding**](https://towardsdatascience.com/extending-target-encoding-443aa9414cae): post by [Daniele Micci-Barreca](https://www.aitimejournal.com/interview-with-daniele-micci-barreca-product-analytics-lead-data-science-google/30110/) explaining how he came up with the idea of target encoding, and its possible extensions.
 
 [**Target encoding done the right way**](https://maxhalford.github.io/blog/target-encoding/): post by [Max Halford](https://maxhalford.github.io/bio/), Head of Data at [Carbonfact](https://www.carbonfact.com/), explaining in detail how to combine additive smoothing and target encoding.
 
-# Data Management
+## Handling and Management
 
 [**Querying Parquet with Millisecond Latency**](https://www.influxdata.com/blog/querying-parquet-millisecond-latency/) this post from by Raphael Taylor-Davies and Andrew Lamb explains in deep the optimization methods used in [Apache Parquet](https://parquet.apache.org/) files. Warning, this is a very technical read!
 

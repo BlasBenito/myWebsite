@@ -1,14 +1,14 @@
 ---
 title: "My Reading List: Data Science"
 author: ''
-date: '2024-01-27'
+date: '2024-02-08'
 slug: my-reading-list-data-science
 categories: []
 tags: [Data Science, Data Preprocessing, Machine Learning, Model Explainability, Model Interpretability]
 subtitle: ''
 summary: 'Live post with a curated list of high-quality data science posts and videos I found enlightening.'
 authors: [admin]
-lastmod: '2024-01-27T08:14:23+02:00'
+lastmod: '2024-02-08T08:14:23+02:00'
 featured: no
 draft: false
 image:
@@ -95,3 +95,8 @@ This is a live post listing links to Data Science related posts and videos I con
 [**Large Models for Time Series and
 Spatio-Temporal Data A Survey and Outlook**](https://arxiv.org/pdf/2310.10196.pdf): This pre-print by Weng and collaborators reviews the current state of the art in spatio-temporal modelling with Large Language Models and Pre-Trained Foundation Models.
 
+# Management and Leadership
+
+[**You are hurting your team without even noticing**](https://zaidesanton.substack.com/p/when-engineering-managers-become) This post by [Anton Zaides](https://substack.com/@zaidesanton) (Development Team Leader), and [Eugene Shulga](https://substack.com/@crushingtecheducation), (Software Engineer) offers insight on the harmful effects of a manager's ego in their team dynamics.
+
+[**Teamwork Habits for Leaders**](https://the.managers.guide/p/teamwork-habits-for-leaders): This post by [Csaba Okrona](https://substack.com/@ochronus) focuses on how shifting from talker to listener in team meetings offers a good insight to better address the team's needs.

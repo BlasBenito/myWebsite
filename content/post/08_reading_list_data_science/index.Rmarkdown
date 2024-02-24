@@ -1,14 +1,14 @@
 ---
 title: "My Reading List: Data Science"
 author: ''
-date: '2024-02-08'
+date: '2024-02-24'
 slug: my-reading-list-data-science
 categories: []
 tags: [Data Science, Data Preprocessing, Machine Learning, Model Explainability, Model Interpretability]
 subtitle: ''
 summary: 'Live post with a curated list of high-quality data science posts and videos I found enlightening.'
 authors: [admin]
-lastmod: '2024-02-08T08:14:23+02:00'
+lastmod: '2024-02-24T08:14:23+02:00'
 featured: no
 draft: false
 image:
@@ -64,9 +64,13 @@ This is a live post listing links to Data Science related posts and videos I con
 
 ## General Concepts
 
+[**A Philosophy Of Software Design**](https://archive.org/details/a-philosophy-of-software-design/mode/2up): This book by [John Ousterhout](https://web.stanford.edu/~ouster/cgi-bin/home.php) is full of high-level concepts and tips to help tackle software complexity. It's so good I had to buy a hard copy that now lives in my desk. [This post](https://blog.pragmaticengineer.com/a-philosophy-of-software-design-review/) by [Gergely Orosz](https://blog.pragmaticengineer.com/) offers a balanced review of the book.
+
 [**Why You Shouldn't Nest Your Code**](https://youtu.be/CFRhGnuXG-4?si=7Xr3E9L7GFvoRJqA): In this wonderful video, [CodeAesthetic](https://www.youtube.com/@CodeAesthetic) explains in detail (and beautiful graphics!) a couple of methods to reduce the level of nesting in our code to improve readability and maintainability. This video has truly changed how I code in R!
 
 ## R
+
+[**Beautiful Code, Because We’re Worth It!**](https://ropensci.org/blog/2024/02/22/beautiful-code/): This post by [Maëlle Salmon](https://mastodon.social/@maelle) (research software engineer), and [Yanina Bellini Saibene](https://fosstodon.org/@yabellini) (rOpenSci Community Manager) provides simple tips to help write more visually pleasant R code.
 
 [**Coloring in R’s Blind Spot**](https://journal.r-project.org/articles/RJ-2023-071/): This article published in [The R Journal](https://journal.r-project.org/index.html) by [Achim Zeileis](https://www.zeileis.org/) (he has a [great analytics blog](https://www.zeileis.org/blog/) too!) and [Paul Murrel](https://www.stat.auckland.ac.nz/~paul/) offers a great overview of the base R color functions, and offers specific advice on what color palettes work better in different scenarios.
 
@@ -77,6 +81,8 @@ This is a live post listing links to Data Science related posts and videos I con
 [**Building a team of internal R packages**](https://www.emilyriederer.com/post/team-of-packages/): This post by [Emily Riederer](https://www.emilyriederer.com/about) delves into the particularities of building a team of R packages to do jobs helping a organization answer impactful questions.
 
 ## Python
+
+[**Deep Learning With Python**](https://archive.org/details/francois-chollet-deep-learning-with-python-manning-2018): This book by [François Chollet](https://fchollet.com/), Software Engineer at Google and creator of the Keras library, seems to me like the best resource out there for those wanting to understand and build deep learning models from scratch. I have a hard copy on my desk, and I am finding it pretty easy to follow. Also, the code examples are clearly explained, and they ramp up in a very consistent manner. 
 
 [**Python Rgonomics**](https://www.emilyriederer.com/post/py-rgo/): In this post, [Emily Riederer](https://www.emilyriederer.com/about) offers a list of Python libraries with an "R feeling".
 

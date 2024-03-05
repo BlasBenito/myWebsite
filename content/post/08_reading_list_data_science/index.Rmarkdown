@@ -1,14 +1,14 @@
 ---
 title: "My Reading List: Data Science"
 author: ''
-date: '2024-02-24'
+date: '2024-03-05'
 slug: my-reading-list-data-science
 categories: []
 tags: [Data Science, Data Preprocessing, Machine Learning, Model Explainability, Model Interpretability]
 subtitle: ''
 summary: 'Live post with a curated list of high-quality data science posts and videos I found enlightening.'
 authors: [admin]
-lastmod: '2024-02-24T08:14:23+02:00'
+lastmod: '2024-03-05T08:14:23+02:00'
 featured: no
 draft: false
 image:
@@ -43,6 +43,8 @@ This is a live post listing links to Data Science related posts and videos I con
 # Analysis and Modeling
 
 ## Modeling Methods
+
+[**Mixed Models for Big Data**](https://m-clark.github.io/posts/2019-10-20-big-mixed-models/): This post by [Michael Clark](https://m-clark.github.io/about.html) (see entry below by the same author) reviews several mixed modelling approach for large data in R.
 
 [**Generalized Additive Models**](https://m-clark.github.io/generalized-additive-models/): A good online book on Generalized Additive Models by [Michael Clark](https://m-clark.github.io/about.html), Senior Machine Learning Scientist at [Strong Analytics](https://www.strong.io/).
 

@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>R package `spatialRF`</title>
+      <title>R package spatialRF</title>
       <link>https://blasbenito.com/project/post-title/</link>
       <pubDate>Tue, 26 Sep 2023 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/project/post-title/</guid>
@@ -1838,7 +1838,7 @@ kableExtra::kbl(
     </item>
     
     <item>
-      <title>R package `memoria`</title>
+      <title>R package memoria</title>
       <link>https://blasbenito.com/project/memoria/</link>
       <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/project/memoria/</guid>

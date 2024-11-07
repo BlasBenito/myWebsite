@@ -13,7 +13,7 @@
     </image>
     
     <item>
-      <title>R package `collinear`</title>
+      <title>R package collinear</title>
       <link>https://blasbenito.com/project/post-title/</link>
       <pubDate>Mon, 30 Oct 2023 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/project/post-title/</guid>
@@ -214,17 +214,17 @@ library(tictoc)
 selected_predictors
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;country_income&amp;quot;             &amp;quot;topo_diversity&amp;quot;            
-##  [3] &amp;quot;topo_slope&amp;quot;                 &amp;quot;humidity_range&amp;quot;            
-##  [5] &amp;quot;topo_elevation&amp;quot;             &amp;quot;country_gdp&amp;quot;               
-##  [7] &amp;quot;country_population&amp;quot;         &amp;quot;soil_soc&amp;quot;                  
-##  [9] &amp;quot;region&amp;quot;                     &amp;quot;soil_type&amp;quot;                 
-## [11] &amp;quot;soil_clay&amp;quot;                  &amp;quot;subregion&amp;quot;                 
-## [13] &amp;quot;biogeo_realm&amp;quot;               &amp;quot;soil_sand&amp;quot;                 
-## [15] &amp;quot;swi_min&amp;quot;                    &amp;quot;soil_nitrogen&amp;quot;             
-## [17] &amp;quot;swi_range&amp;quot;                  &amp;quot;cloud_cover_range&amp;quot;         
-## [19] &amp;quot;rainfall_min&amp;quot;               &amp;quot;growing_season_temperature&amp;quot;
-## [21] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;solar_rad_min&amp;quot;             
-## [23] &amp;quot;rainfall_range&amp;quot;
+##  [3] &amp;quot;topo_slope&amp;quot;                 &amp;quot;country_population&amp;quot;        
+##  [5] &amp;quot;country_gdp&amp;quot;                &amp;quot;humidity_range&amp;quot;            
+##  [7] &amp;quot;soil_soc&amp;quot;                   &amp;quot;region&amp;quot;                    
+##  [9] &amp;quot;soil_clay&amp;quot;                  &amp;quot;soil_type&amp;quot;                 
+## [11] &amp;quot;subregion&amp;quot;                  &amp;quot;biogeo_realm&amp;quot;              
+## [13] &amp;quot;soil_sand&amp;quot;                  &amp;quot;topo_elevation&amp;quot;            
+## [15] &amp;quot;soil_nitrogen&amp;quot;              &amp;quot;swi_range&amp;quot;                 
+## [17] &amp;quot;koppen_group&amp;quot;               &amp;quot;swi_min&amp;quot;                   
+## [19] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;rainfall_min&amp;quot;              
+## [21] &amp;quot;growing_season_temperature&amp;quot; &amp;quot;rainfall_range&amp;quot;            
+## [23] &amp;quot;solar_rad_min&amp;quot;              &amp;quot;cloud_cover_range&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The function has returned a list of predictors that should have a correlation lower than 0.75 with each other, and a VIF lower than 5. Let&amp;rsquo;s see if that&amp;rsquo;s true.&lt;/p&gt;
 &lt;p&gt;The function &lt;code&gt;cor_df()&lt;/code&gt; returns a data frame with pairwise correlations, arranged by the absolute value of the correlation.&lt;/p&gt;
@@ -239,11 +239,11 @@ head(selected_predictors_cor)
 ##   x             y                          correlation
 ##   &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;                            &amp;lt;dbl&amp;gt;
 ## 1 solar_rad_min growing_season_temperature       0.744
-## 2 soil_nitrogen soil_soc                         0.729
-## 3 soil_nitrogen swi_min                          0.673
-## 4 soil_sand     soil_clay                       -0.666
-## 5 solar_rad_max soil_type                       -0.652
-## 6 biogeo_realm  soil_type                        0.62
+## 2 koppen_group  soil_type                        0.732
+## 3 soil_nitrogen soil_soc                         0.729
+## 4 swi_min       soil_nitrogen                    0.673
+## 5 soil_sand     soil_clay                       -0.666
+## 6 koppen_group  swi_range                        0.659
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The data frame above shows that the maximum correlation between two of the selected predictors is below 0.75, so here &lt;code&gt;collinear()&lt;/code&gt; worked as expected.&lt;/p&gt;
 &lt;p&gt;The function &lt;code&gt;vif_df()&lt;/code&gt; returns a data frame with the VIF scores of all predictors.&lt;/p&gt;
@@ -255,29 +255,30 @@ head(selected_predictors_cor)
 selected_predictors_vif
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##                      variable   vif
-## 1              country_income 1.211
-## 2              topo_diversity 1.635
-## 3                  topo_slope 1.928
-## 4              humidity_range 1.959
-## 5              topo_elevation 2.073
-## 6                 country_gdp 2.157
-## 7          country_population 2.169
-## 8                rainfall_min 2.256
-## 9           cloud_cover_range 2.393
-## 10             rainfall_range 2.716
-## 11                   soil_soc 2.744
-## 12                     region 2.846
-## 13                  subregion 2.870
-## 14                  soil_type 2.874
-## 15                  soil_clay 2.966
-## 16               biogeo_realm 3.120
-## 17              solar_rad_max 3.126
-## 18                    swi_min 3.138
-## 19                  soil_sand 3.170
-## 20                  swi_range 3.263
-## 21              soil_nitrogen 3.372
-## 22 growing_season_temperature 4.271
-## 23              solar_rad_min 4.287
+## 1              country_income 1.215
+## 2              topo_diversity 1.662
+## 3                  topo_slope 1.929
+## 4              humidity_range 2.043
+## 5              topo_elevation 2.101
+## 6                 country_gdp 2.158
+## 7          country_population 2.171
+## 8                rainfall_min 2.269
+## 9           cloud_cover_range 2.418
+## 10                   soil_soc 2.744
+## 11                     region 2.849
+## 12             rainfall_range 2.876
+## 13                  subregion 2.900
+## 14                  soil_clay 2.966
+## 15                  soil_type 2.991
+## 16              solar_rad_max 3.145
+## 17               biogeo_realm 3.150
+## 18                  soil_sand 3.175
+## 19              soil_nitrogen 3.376
+## 20                    swi_min 3.450
+## 21                  swi_range 3.781
+## 22               koppen_group 4.151
+## 23 growing_season_temperature 4.314
+## 24              solar_rad_min 4.432
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output shows that the maximum VIF is 4.2, so here &lt;code&gt;collinear()&lt;/code&gt; did its work as expected.&lt;/p&gt;
 &lt;h4 id=&#34;arguments-max_cor-and-max_vif&#34;&gt;Arguments &lt;code&gt;max_cor&lt;/code&gt; and &lt;code&gt;max_vif&lt;/code&gt;&lt;/h4&gt;
@@ -304,10 +305,12 @@ selected_predictors_permissive &amp;lt;- collinear(
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_restrictive
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;country_income&amp;quot;             &amp;quot;soil_clay&amp;quot;                 
-##  [3] &amp;quot;country_population&amp;quot;         &amp;quot;region&amp;quot;                    
-##  [5] &amp;quot;soil_soc&amp;quot;                   &amp;quot;topo_slope&amp;quot;                
-##  [7] &amp;quot;growing_season_temperature&amp;quot; &amp;quot;humidity_range&amp;quot;            
-##  [9] &amp;quot;cloud_cover_range&amp;quot;          &amp;quot;topo_elevation&amp;quot;
+##  [3] &amp;quot;country_population&amp;quot;         &amp;quot;topo_slope&amp;quot;                
+##  [5] &amp;quot;humidity_range&amp;quot;             &amp;quot;topo_elevation&amp;quot;            
+##  [7] &amp;quot;soil_soc&amp;quot;                   &amp;quot;soil_silt&amp;quot;                 
+##  [9] &amp;quot;cloud_cover_range&amp;quot;          &amp;quot;region&amp;quot;                    
+## [11] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;growing_season_temperature&amp;quot;
+## [13] &amp;quot;biogeo_realm&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;These are the variables selected under a more permissive setup:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_permissive
@@ -317,13 +320,13 @@ selected_predictors_permissive &amp;lt;- collinear(
 ##  [5] &amp;quot;country_gdp&amp;quot;                &amp;quot;soil_soc&amp;quot;                  
 ##  [7] &amp;quot;region&amp;quot;                     &amp;quot;soil_type&amp;quot;                 
 ##  [9] &amp;quot;soil_nitrogen&amp;quot;              &amp;quot;subregion&amp;quot;                 
-## [11] &amp;quot;topo_elevation&amp;quot;             &amp;quot;biogeo_realm&amp;quot;              
+## [11] &amp;quot;biogeo_realm&amp;quot;               &amp;quot;topo_elevation&amp;quot;            
 ## [13] &amp;quot;koppen_group&amp;quot;               &amp;quot;biogeo_biome&amp;quot;              
 ## [15] &amp;quot;country_name&amp;quot;               &amp;quot;soil_ph&amp;quot;                   
-## [17] &amp;quot;growing_season_temperature&amp;quot; &amp;quot;aridity_index&amp;quot;             
-## [19] &amp;quot;soil_temperature_max&amp;quot;       &amp;quot;rainfall_min&amp;quot;              
-## [21] &amp;quot;rainfall_range&amp;quot;             &amp;quot;swi_mean&amp;quot;                  
-## [23] &amp;quot;temperature_max&amp;quot;            &amp;quot;solar_rad_mean&amp;quot;            
+## [17] &amp;quot;aridity_index&amp;quot;              &amp;quot;growing_season_temperature&amp;quot;
+## [19] &amp;quot;rainfall_min&amp;quot;               &amp;quot;rainfall_range&amp;quot;            
+## [21] &amp;quot;swi_mean&amp;quot;                   &amp;quot;soil_temperature_max&amp;quot;      
+## [23] &amp;quot;solar_rad_mean&amp;quot;             &amp;quot;temperature_seasonality&amp;quot;   
 ## [25] &amp;quot;soil_clay&amp;quot;                  &amp;quot;soil_silt&amp;quot;                 
 ## [27] &amp;quot;cloud_cover_min&amp;quot;            &amp;quot;swi_range&amp;quot;                 
 ## [29] &amp;quot;humidity_range&amp;quot;
@@ -346,30 +349,31 @@ selected_predictors_no_response &amp;lt;- collinear(
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;dplyr::glimpse(vi[, selected_predictors_response])
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Rows: 30,000
-## Columns: 23
+## Columns: 24
 ## $ country_income             &amp;lt;chr&amp;gt; &amp;quot;1. High income: OECD&amp;quot;, &amp;quot;3. Upper middle in…
 ## $ topo_diversity             &amp;lt;int&amp;gt; 29, 24, 21, 25, 19, 30, 26, 20, 26, 22, 25,…
 ## $ topo_slope                 &amp;lt;int&amp;gt; 6, 2, 0, 10, 0, 10, 6, 0, 2, 0, 0, 1, 0, 1,…
-## $ humidity_range             &amp;lt;dbl&amp;gt; 15.57, 6.03, 14.44, 4.69, 33.18, 5.76, 3.99…
-## $ topo_elevation             &amp;lt;int&amp;gt; 1821, 143, 765, 1474, 378, 485, 604, 1159, …
-## $ country_gdp                &amp;lt;dbl&amp;gt; 15094000, 7973000, 1300000, 7973000, 15860,…
 ## $ country_population         &amp;lt;dbl&amp;gt; 313973000, 1338612970, 33487208, 1338612970…
+## $ country_gdp                &amp;lt;dbl&amp;gt; 15094000, 7973000, 1300000, 7973000, 15860,…
+## $ humidity_range             &amp;lt;dbl&amp;gt; 15.57, 6.03, 14.44, 4.69, 33.18, 5.76, 3.99…
 ## $ soil_soc                   &amp;lt;dbl&amp;gt; 43.1, 14.6, 36.4, 34.9, 8.1, 20.8, 44.5, 4.…
 ## $ region                     &amp;lt;chr&amp;gt; &amp;quot;Americas&amp;quot;, &amp;quot;Asia&amp;quot;, &amp;quot;Americas&amp;quot;, &amp;quot;Asia&amp;quot;, &amp;quot;Af…
-## $ soil_type                  &amp;lt;chr&amp;gt; &amp;quot;Cambisols&amp;quot;, &amp;quot;Acrisols&amp;quot;, &amp;quot;Luvisols&amp;quot;, &amp;quot;Aliso…
 ## $ soil_clay                  &amp;lt;int&amp;gt; 20, 24, 28, 31, 27, 29, 40, 15, 26, 22, 23,…
+## $ soil_type                  &amp;lt;chr&amp;gt; &amp;quot;Cambisols&amp;quot;, &amp;quot;Acrisols&amp;quot;, &amp;quot;Luvisols&amp;quot;, &amp;quot;Aliso…
 ## $ subregion                  &amp;lt;chr&amp;gt; &amp;quot;Northern America&amp;quot;, &amp;quot;Eastern Asia&amp;quot;, &amp;quot;Northe…
 ## $ biogeo_realm               &amp;lt;chr&amp;gt; &amp;quot;Nearctic&amp;quot;, &amp;quot;Indomalayan&amp;quot;, &amp;quot;Nearctic&amp;quot;, &amp;quot;Pal…
 ## $ soil_sand                  &amp;lt;int&amp;gt; 41, 39, 27, 29, 48, 33, 30, 78, 23, 64, 54,…
-## $ swi_min                    &amp;lt;dbl&amp;gt; 24.5, 33.3, 42.2, 31.3, 8.3, 28.8, 25.3, 11…
+## $ topo_elevation             &amp;lt;int&amp;gt; 1821, 143, 765, 1474, 378, 485, 604, 1159, …
 ## $ soil_nitrogen              &amp;lt;dbl&amp;gt; 2.8, 1.3, 2.9, 3.6, 1.2, 1.9, 2.8, 0.6, 3.1…
 ## $ swi_range                  &amp;lt;dbl&amp;gt; 38.4, 41.2, 39.7, 49.8, 74.9, 45.0, 30.5, 2…
-## $ cloud_cover_range          &amp;lt;int&amp;gt; 23, 27, 15, 17, 38, 27, 32, 11, 15, 12, 21,…
+## $ koppen_group               &amp;lt;chr&amp;gt; &amp;quot;Arid&amp;quot;, &amp;quot;Temperate&amp;quot;, &amp;quot;Cold&amp;quot;, &amp;quot;Temperate&amp;quot;, &amp;quot;…
+## $ swi_min                    &amp;lt;dbl&amp;gt; 24.5, 33.3, 42.2, 31.3, 8.3, 28.8, 25.3, 11…
+## $ solar_rad_max              &amp;lt;dbl&amp;gt; 31.317, 24.498, 25.283, 17.237, 28.038, 22.…
 ## $ rainfall_min               &amp;lt;int&amp;gt; 25, 37, 24, 29, 0, 60, 122, 1, 10, 12, 0, 0…
 ## $ growing_season_temperature &amp;lt;dbl&amp;gt; 12.65, 19.35, 11.55, 12.45, 26.45, 17.75, 2…
-## $ solar_rad_max              &amp;lt;dbl&amp;gt; 31.317, 24.498, 25.283, 17.237, 28.038, 22.…
-## $ solar_rad_min              &amp;lt;dbl&amp;gt; 5.209, 13.311, 1.587, 9.642, 19.102, 12.196…
 ## $ rainfall_range             &amp;lt;int&amp;gt; 37, 172, 63, 264, 226, 215, 303, 61, 245, 2…
+## $ solar_rad_min              &amp;lt;dbl&amp;gt; 5.209, 13.311, 1.587, 9.642, 19.102, 12.196…
+## $ cloud_cover_range          &amp;lt;int&amp;gt; 23, 27, 15, 17, 38, 27, 32, 11, 15, 12, 21,…
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;However, when the argument &lt;code&gt;response&lt;/code&gt; is ignored, all categorical predictors are ignored.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;dplyr::glimpse(vi[, selected_predictors_no_response])
@@ -377,23 +381,23 @@ selected_predictors_no_response &amp;lt;- collinear(
 &lt;pre&gt;&lt;code&gt;## Rows: 30,000
 ## Columns: 18
 ## $ topo_diversity             &amp;lt;int&amp;gt; 29, 24, 21, 25, 19, 30, 26, 20, 26, 22, 25,…
-## $ humidity_range             &amp;lt;dbl&amp;gt; 15.57, 6.03, 14.44, 4.69, 33.18, 5.76, 3.99…
-## $ country_population         &amp;lt;dbl&amp;gt; 313973000, 1338612970, 33487208, 1338612970…
 ## $ country_gdp                &amp;lt;dbl&amp;gt; 15094000, 7973000, 1300000, 7973000, 15860,…
+## $ country_population         &amp;lt;dbl&amp;gt; 313973000, 1338612970, 33487208, 1338612970…
 ## $ topo_slope                 &amp;lt;int&amp;gt; 6, 2, 0, 10, 0, 10, 6, 0, 2, 0, 0, 1, 0, 1,…
-## $ topo_elevation             &amp;lt;int&amp;gt; 1821, 143, 765, 1474, 378, 485, 604, 1159, …
-## $ swi_range                  &amp;lt;dbl&amp;gt; 38.4, 41.2, 39.7, 49.8, 74.9, 45.0, 30.5, 2…
 ## $ soil_soc                   &amp;lt;dbl&amp;gt; 43.1, 14.6, 36.4, 34.9, 8.1, 20.8, 44.5, 4.…
 ## $ soil_clay                  &amp;lt;int&amp;gt; 20, 24, 28, 31, 27, 29, 40, 15, 26, 22, 23,…
 ## $ soil_sand                  &amp;lt;int&amp;gt; 41, 39, 27, 29, 48, 33, 30, 78, 23, 64, 54,…
-## $ swi_min                    &amp;lt;dbl&amp;gt; 24.5, 33.3, 42.2, 31.3, 8.3, 28.8, 25.3, 11…
 ## $ soil_nitrogen              &amp;lt;dbl&amp;gt; 2.8, 1.3, 2.9, 3.6, 1.2, 1.9, 2.8, 0.6, 3.1…
+## $ humidity_range             &amp;lt;dbl&amp;gt; 15.57, 6.03, 14.44, 4.69, 33.18, 5.76, 3.99…
+## $ topo_elevation             &amp;lt;int&amp;gt; 1821, 143, 765, 1474, 378, 485, 604, 1159, …
 ## $ cloud_cover_range          &amp;lt;int&amp;gt; 23, 27, 15, 17, 38, 27, 32, 11, 15, 12, 21,…
-## $ growing_season_temperature &amp;lt;dbl&amp;gt; 12.65, 19.35, 11.55, 12.45, 26.45, 17.75, 2…
-## $ rainfall_min               &amp;lt;int&amp;gt; 25, 37, 24, 29, 0, 60, 122, 1, 10, 12, 0, 0…
 ## $ solar_rad_max              &amp;lt;dbl&amp;gt; 31.317, 24.498, 25.283, 17.237, 28.038, 22.…
-## $ solar_rad_min              &amp;lt;dbl&amp;gt; 5.209, 13.311, 1.587, 9.642, 19.102, 12.196…
+## $ rainfall_min               &amp;lt;int&amp;gt; 25, 37, 24, 29, 0, 60, 122, 1, 10, 12, 0, 0…
+## $ growing_season_temperature &amp;lt;dbl&amp;gt; 12.65, 19.35, 11.55, 12.45, 26.45, 17.75, 2…
 ## $ rainfall_range             &amp;lt;int&amp;gt; 37, 172, 63, 264, 226, 215, 303, 61, 245, 2…
+## $ swi_range                  &amp;lt;dbl&amp;gt; 38.4, 41.2, 39.7, 49.8, 74.9, 45.0, 30.5, 2…
+## $ solar_rad_min              &amp;lt;dbl&amp;gt; 5.209, 13.311, 1.587, 9.642, 19.102, 12.196…
+## $ swi_min                    &amp;lt;dbl&amp;gt; 24.5, 33.3, 42.2, 31.3, 8.3, 28.8, 25.3, 11…
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If there are categorical variables in a data frame, but there is no suitable &lt;code&gt;response&lt;/code&gt; variable, then the function &lt;code&gt;cor_select()&lt;/code&gt; can handle the multicollinearity management via pairwise correlations, but at a MUCH higher computational cost, and with different results, as shown below.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;tictoc::tic()
@@ -404,7 +408,7 @@ selected_predictors_response &amp;lt;- cor_select(
 )
 tictoc::toc()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 0.48 sec elapsed
+&lt;pre&gt;&lt;code&gt;## 0.429 sec elapsed
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;tictoc::tic()
 selected_predictors_no_response &amp;lt;- cor_select(
@@ -413,7 +417,7 @@ selected_predictors_no_response &amp;lt;- cor_select(
 )
 tictoc::toc()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 41.254 sec elapsed
+&lt;pre&gt;&lt;code&gt;## 34.945 sec elapsed
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_response
 &lt;/code&gt;&lt;/pre&gt;
@@ -426,10 +430,12 @@ tictoc::toc()
 ## [13] &amp;quot;solar_rad_min&amp;quot;              &amp;quot;soil_soc&amp;quot;                  
 ## [15] &amp;quot;rainfall_min&amp;quot;               &amp;quot;swi_range&amp;quot;                 
 ## [17] &amp;quot;soil_nitrogen&amp;quot;              &amp;quot;rainfall_range&amp;quot;            
-## [19] &amp;quot;swi_min&amp;quot;                    &amp;quot;subregion&amp;quot;                 
-## [21] &amp;quot;biogeo_realm&amp;quot;               &amp;quot;cloud_cover_min&amp;quot;           
-## [23] &amp;quot;soil_type&amp;quot;                  &amp;quot;aridity_index&amp;quot;             
-## [25] &amp;quot;solar_rad_max&amp;quot;
+## [19] &amp;quot;temperature_max&amp;quot;            &amp;quot;swi_min&amp;quot;                   
+## [21] &amp;quot;subregion&amp;quot;                  &amp;quot;temperature_seasonality&amp;quot;   
+## [23] &amp;quot;biogeo_realm&amp;quot;               &amp;quot;cloud_cover_min&amp;quot;           
+## [25] &amp;quot;soil_type&amp;quot;                  &amp;quot;aridity_index&amp;quot;             
+## [27] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;koppen_group&amp;quot;              
+## [29] &amp;quot;cloud_cover_max&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_no_response
 &lt;/code&gt;&lt;/pre&gt;
@@ -444,7 +450,9 @@ tictoc::toc()
 ## [17] &amp;quot;solar_rad_min&amp;quot;              &amp;quot;aridity_index&amp;quot;             
 ## [19] &amp;quot;cloud_cover_min&amp;quot;            &amp;quot;temperature_max&amp;quot;           
 ## [21] &amp;quot;region&amp;quot;                     &amp;quot;swi_min&amp;quot;                   
-## [23] &amp;quot;solar_rad_max&amp;quot;
+## [23] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;evapotranspiration_range&amp;quot;  
+## [25] &amp;quot;swi_mean&amp;quot;                   &amp;quot;humidity_max&amp;quot;              
+## [27] &amp;quot;soil_type&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The variable selection results differ because the numeric representations of the categorical variables are rather different between the two options. When no &lt;code&gt;response&lt;/code&gt; is provided, the function &lt;code&gt;cor_select()&lt;/code&gt; compares categorical predictors against numeric ones by encoding each categorical after each numeric, and compares pairs of categoricals using Cramer&amp;rsquo;s V, implemented in the function &lt;code&gt;cramer_v()&lt;/code&gt;. Additionally, Cramer&amp;rsquo;s V values are not directly comparable with Pearson or Spearman correlation scores, and having them together in the same analysis might induce bias during the variable selection. Not using the &lt;code&gt;response&lt;/code&gt; argument should always be the last option.&lt;/p&gt;
 &lt;h4 id=&#34;preference-order&#34;&gt;Preference order&lt;/h4&gt;
@@ -464,14 +472,15 @@ tictoc::toc()
 
 selected_predictors
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;soil_temperature_mean&amp;quot; &amp;quot;soil_temperature_max&amp;quot;  &amp;quot;soil_type&amp;quot;            
-##  [4] &amp;quot;country_population&amp;quot;    &amp;quot;topo_elevation&amp;quot;        &amp;quot;country_income&amp;quot;       
-##  [7] &amp;quot;country_gdp&amp;quot;           &amp;quot;topo_slope&amp;quot;            &amp;quot;humidity_range&amp;quot;       
-## [10] &amp;quot;soil_clay&amp;quot;             &amp;quot;topo_diversity&amp;quot;        &amp;quot;soil_sand&amp;quot;            
-## [13] &amp;quot;cloud_cover_range&amp;quot;     &amp;quot;region&amp;quot;                &amp;quot;soil_soc&amp;quot;             
-## [16] &amp;quot;rainfall_min&amp;quot;          &amp;quot;swi_range&amp;quot;             &amp;quot;soil_nitrogen&amp;quot;        
-## [19] &amp;quot;rainfall_range&amp;quot;        &amp;quot;subregion&amp;quot;             &amp;quot;biogeo_realm&amp;quot;         
-## [22] &amp;quot;aridity_index&amp;quot;         &amp;quot;solar_rad_max&amp;quot;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;soil_temperature_mean&amp;quot;  &amp;quot;soil_temperature_max&amp;quot;   &amp;quot;soil_type&amp;quot;             
+##  [4] &amp;quot;country_population&amp;quot;     &amp;quot;topo_elevation&amp;quot;         &amp;quot;country_income&amp;quot;        
+##  [7] &amp;quot;country_gdp&amp;quot;            &amp;quot;topo_slope&amp;quot;             &amp;quot;humidity_range&amp;quot;        
+## [10] &amp;quot;soil_clay&amp;quot;              &amp;quot;topo_diversity&amp;quot;         &amp;quot;soil_sand&amp;quot;             
+## [13] &amp;quot;cloud_cover_range&amp;quot;      &amp;quot;region&amp;quot;                 &amp;quot;soil_soc&amp;quot;              
+## [16] &amp;quot;rainfall_min&amp;quot;           &amp;quot;solar_rad_range&amp;quot;        &amp;quot;swi_range&amp;quot;             
+## [19] &amp;quot;soil_nitrogen&amp;quot;          &amp;quot;rainfall_range&amp;quot;         &amp;quot;subregion&amp;quot;             
+## [22] &amp;quot;biogeo_realm&amp;quot;           &amp;quot;aridity_index&amp;quot;          &amp;quot;solar_rad_max&amp;quot;         
+## [25] &amp;quot;koppen_group&amp;quot;           &amp;quot;soil_temperature_range&amp;quot; &amp;quot;cloud_cover_max&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Notice that in the output, two of the variables in &lt;code&gt;preference_order&lt;/code&gt; are selected (&amp;ldquo;soil_temperature_mean&amp;rdquo; and &amp;ldquo;soil_type&amp;rdquo;), but one was removed (&amp;ldquo;soil_temperature_max&amp;rdquo;). This happens because at some point in the selection, the VIF of &amp;ldquo;soil_temperature_mean&amp;rdquo; and &amp;ldquo;soil_temperature_max&amp;rdquo; was higher than &lt;code&gt;max_vif&lt;/code&gt;, and the one with lower preference was removed.&lt;/p&gt;
 &lt;h5 id=&#34;quantitative-preference-order&#34;&gt;Quantitative preference order&lt;/h5&gt;
@@ -558,12 +567,17 @@ preference_rsquared
 )
 selected_predictors
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;biogeo_ecoregion&amp;quot;       &amp;quot;soil_temperature_range&amp;quot; &amp;quot;rainfall_min&amp;quot;          
-##  [4] &amp;quot;solar_rad_mean&amp;quot;         &amp;quot;soil_nitrogen&amp;quot;          &amp;quot;continent&amp;quot;             
-##  [7] &amp;quot;soil_soc&amp;quot;               &amp;quot;cloud_cover_range&amp;quot;      &amp;quot;topo_diversity&amp;quot;        
-## [10] &amp;quot;soil_clay&amp;quot;              &amp;quot;humidity_range&amp;quot;         &amp;quot;country_income&amp;quot;        
-## [13] &amp;quot;soil_sand&amp;quot;              &amp;quot;topo_elevation&amp;quot;         &amp;quot;topo_slope&amp;quot;            
-## [16] &amp;quot;country_gdp&amp;quot;            &amp;quot;country_population&amp;quot;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;biogeo_ecoregion&amp;quot;           &amp;quot;biogeo_realm&amp;quot;              
+##  [3] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;rainfall_max&amp;quot;              
+##  [5] &amp;quot;subregion&amp;quot;                  &amp;quot;swi_range&amp;quot;                 
+##  [7] &amp;quot;rainfall_min&amp;quot;               &amp;quot;soil_nitrogen&amp;quot;             
+##  [9] &amp;quot;continent&amp;quot;                  &amp;quot;soil_soc&amp;quot;                  
+## [11] &amp;quot;cloud_cover_range&amp;quot;          &amp;quot;topo_diversity&amp;quot;            
+## [13] &amp;quot;soil_clay&amp;quot;                  &amp;quot;humidity_range&amp;quot;            
+## [15] &amp;quot;country_income&amp;quot;             &amp;quot;soil_sand&amp;quot;                 
+## [17] &amp;quot;topo_elevation&amp;quot;             &amp;quot;growing_season_temperature&amp;quot;
+## [19] &amp;quot;topo_slope&amp;quot;                 &amp;quot;country_gdp&amp;quot;               
+## [21] &amp;quot;country_population&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This variable selection satisfies three conditions at once: maximum correlation between each predictor and the response, maximum pairwise correlation, and maximum VIF.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;f&lt;/code&gt; argument used by default is the function &lt;code&gt;f_rsquared()&lt;/code&gt;, that returns the R-squared between the response and any predictor.&lt;/p&gt;
@@ -600,12 +614,19 @@ selected_predictors_vif &amp;lt;- vif_select(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_cor
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;biogeo_ecoregion&amp;quot;       &amp;quot;soil_temperature_range&amp;quot; &amp;quot;rainfall_min&amp;quot;          
-##  [4] &amp;quot;solar_rad_mean&amp;quot;         &amp;quot;soil_nitrogen&amp;quot;          &amp;quot;continent&amp;quot;             
-##  [7] &amp;quot;soil_soc&amp;quot;               &amp;quot;cloud_cover_range&amp;quot;      &amp;quot;topo_diversity&amp;quot;        
-## [10] &amp;quot;soil_clay&amp;quot;              &amp;quot;humidity_range&amp;quot;         &amp;quot;country_income&amp;quot;        
-## [13] &amp;quot;soil_sand&amp;quot;              &amp;quot;topo_elevation&amp;quot;         &amp;quot;topo_slope&amp;quot;            
-## [16] &amp;quot;country_gdp&amp;quot;            &amp;quot;country_population&amp;quot;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;biogeo_ecoregion&amp;quot;           &amp;quot;soil_temperature_max&amp;quot;      
+##  [3] &amp;quot;soil_temperature_range&amp;quot;     &amp;quot;biogeo_realm&amp;quot;              
+##  [5] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;rainfall_max&amp;quot;              
+##  [7] &amp;quot;aridity_index&amp;quot;              &amp;quot;subregion&amp;quot;                 
+##  [9] &amp;quot;swi_range&amp;quot;                  &amp;quot;rainfall_min&amp;quot;              
+## [11] &amp;quot;solar_rad_mean&amp;quot;             &amp;quot;soil_nitrogen&amp;quot;             
+## [13] &amp;quot;continent&amp;quot;                  &amp;quot;soil_soc&amp;quot;                  
+## [15] &amp;quot;solar_rad_range&amp;quot;            &amp;quot;cloud_cover_range&amp;quot;         
+## [17] &amp;quot;topo_diversity&amp;quot;             &amp;quot;soil_clay&amp;quot;                 
+## [19] &amp;quot;humidity_range&amp;quot;             &amp;quot;country_income&amp;quot;            
+## [21] &amp;quot;soil_sand&amp;quot;                  &amp;quot;topo_elevation&amp;quot;            
+## [23] &amp;quot;growing_season_temperature&amp;quot; &amp;quot;topo_slope&amp;quot;                
+## [25] &amp;quot;country_gdp&amp;quot;                &amp;quot;country_population&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_vif
 &lt;/code&gt;&lt;/pre&gt;
@@ -737,7 +758,7 @@ head(df[, c(&amp;quot;vi_mean&amp;quot;, &amp;quot;koppen_zone&amp;quot;)], n = 
     </item>
     
     <item>
-      <title>R package `spatialRF`</title>
+      <title>R package spatialRF</title>
       <link>https://blasbenito.com/project/post-title/</link>
       <pubDate>Tue, 26 Sep 2023 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/project/post-title/</guid>
@@ -2745,7 +2766,7 @@ kableExtra::kbl(
     </item>
     
     <item>
-      <title>R package `distantia`</title>
+      <title>R package distantia</title>
       <link>https://blasbenito.com/project/distantia/</link>
       <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/project/distantia/</guid>
@@ -2770,7 +2791,7 @@ kableExtra::kbl(
     </item>
     
     <item>
-      <title>R package `memoria`</title>
+      <title>R package memoria</title>
       <link>https://blasbenito.com/project/memoria/</link>
       <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/project/memoria/</guid>
@@ -2827,7 +2848,7 @@ dominance).&lt;/p&gt;
     </item>
     
     <item>
-      <title>R package `virtualPollen`</title>
+      <title>R package virtualPollen</title>
       <link>https://blasbenito.com/project/virtualpollen/</link>
       <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/project/virtualpollen/</guid>

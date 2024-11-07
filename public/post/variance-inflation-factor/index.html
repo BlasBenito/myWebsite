@@ -454,7 +454,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#resume"><span>Resume & CV</span></a>
+          <a class="nav-link " href="/#resume"><span>Resume</span></a>
         </li>
 
         
@@ -782,7 +782,7 @@
 <a href="https://blasbenito.github.io/collinear/" target="_blank" rel="noopener">R package <code>collinear</code></a></li>
 </ul>
 <h1 id="summary">Summary</h1>
-<p>In this detailed post, I dive deep into Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models. I use R code extensively to illustrate various concepts, making it a practical guide for those well-versed in R.</p>
+<p>In this post, I dive deep into Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models.</p>
 <p>The post covers the following main points:</p>
 <ul>
 <li><strong>VIF meaning and interpretation</strong>: Through practical examples, I demonstrate how to compute VIF values and their significance in model design. Particularly, I try to shed light on their influence on coefficient estimates and their confidence intervals.</li>
@@ -836,15 +836,13 @@ toy |&gt;
   predictors = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)
 )
 </code></pre>
-<pre><code>## # A tibble: 6 × 3
-##   x     y     correlation
-##   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
-## 1 c     a           0.962
-## 2 d     b           0.639
-## 3 d     a           0.636
-## 4 d     c           0.615
-## 5 b     a          -0.047
-## 6 c     b          -0.042
+<pre><code>##   x y correlation
+## 1 c a  0.96154984
+## 2 d b  0.63903887
+## 3 d a  0.63575882
+## 4 d c  0.61480312
+## 5 b a -0.04740881
+## 6 c b -0.04218308
 </code></pre>
 <p>Keep these pairwise correlations in mind for what comes next!</p>
 <h1 id="the-meaning-of-variance-inflation-factors">The Meaning of Variance Inflation Factors</h1>
@@ -871,7 +869,7 @@ abcd_R2
 <p>Since the R-squared of <code>a</code> against all other predictors is pretty high, it definitely seems that <code>a</code> is a linear combination of the other predictors, and we can conclude that there is multicollinearity in the model design.</p>
 <p>However, as informative as this R-squared is, it tells us nothing about the consequences of having multicollinearity in our model design. And this is where <strong>Variance Inflation Factors</strong>, or <strong>VIF</strong> for short, come into play.</p>
 <h2 id="what-are-variance-inflation-factors">What are Variance Inflation Factors?</h2>
-<p>The Variance Inflation Factor (VIF) of a predictor is computed as <code>\(1/(1 - R^2)\)</code>, where <code>\(R^²\)</code> is the R-squared of the multiple linear regression of the predictor against all other predictors.</p>
+<p>The Variance Inflation Factor (VIF) of a predictor is computed as <code>$1/(1 - R^2)$</code>, where <code>\(R^²\)</code> is the R-squared of the multiple linear regression of the predictor against all other predictors.</p>
 <p>In the case of <code>a</code>, we just have to apply the VIF expression to the R-squared of the regression model against all other predictors.</p>
 <pre><code class="language-r">abcd_vif &lt;- 1/(1-abcd_R2)
 abcd_vif
@@ -895,9 +893,9 @@ ab_vif
   df = toy[, c(&quot;a&quot;, &quot;b&quot;)]
 )
 </code></pre>
-<pre><code>##   variable   vif
-## 1        a 1.002
-## 2        b 1.002
+<pre><code>##   predictor    vif
+## 1         a 1.0023
+## 2         b 1.0023
 </code></pre>
 <p>In plot below, the worst and best VIF scores of <code>a</code> are shown in the context of the relationship between R-squared and VIF, and three VIF thresholds commonly mentioned in the literature. These thresholds are represented as vertical dashed lines at VIF 2.5, 5, and 10, and are used as criteria to control multicollinearity in model designs. I will revisit this topic later in the post.</p>
 <img src="https://blasbenito.com/post/variance-inflation-factor/index_files/figure-html/unnamed-chunk-8-1.png" width="480" />
@@ -907,10 +905,10 @@ ab_vif
 <h2 id="but-really-what-are-variance-inflation-factors">But really, what are Variance Inflation Factors?</h2>
 <p>Variance Inflation Factors are inherently linked to these fundamental linear modeling concepts:</p>
 <ul>
-<li><strong>Coefficient Estimate</strong> ($\hat{\beta}$): The estimated slope of the relationship between a predictor and the response in a linear model.</li>
-<li><strong>Standard Error</strong> ($\text{SE}$): Represents the uncertainty around the estimation of the coefficient due to data variability.</li>
-<li><strong>Significance level</strong> ($1.96$): The acceptable level of error when determining the significance of the <em>coefficient estimate</em>. Here it is simplified to 1.96, the 97.5th percentile of a normal distribution, to approximate a significance level of 0.05.</li>
-<li><strong>Confidence Interval</strong> ($CI$): The range of values containing the true value of the <em>coefficient estimate</em> withing a certain <em>significance level</em>.</li>
+<li><strong>Coefficient Estimate</strong> (<code>\(\hat{\beta}\)</code>): The estimated slope of the relationship between a predictor and the response in a linear model.</li>
+<li><strong>Standard Error</strong> (<code>\(\text{SE}\)</code>): Represents the uncertainty around the estimation of the coefficient due to data variability.</li>
+<li><strong>Significance level</strong> (<code>\(1.96\)</code>): The acceptable level of error when determining the significance of the <em>coefficient estimate</em>. Here it is simplified to 1.96, the 97.5th percentile of a normal distribution, to approximate a significance level of 0.05.</li>
+<li><strong>Confidence Interval</strong> (<code>\(CI\)</code>): The range of values containing the true value of the <em>coefficient estimate</em> withing a certain <em>significance level</em>.</li>
 </ul>
 <p>These terms are related by the expression to compute the confidence interval of the coefficient estimate:</p>
 <p><code>$$\text{CI} = \beta \pm 1.96 \cdot \text{SE}$$</code>
@@ -985,18 +983,18 @@ new_width
 ba_vif &lt;- collinear::vif_df(
   df = toy[, c(&quot;a&quot;, &quot;b&quot;)]
 ) |&gt; 
-  dplyr::filter(variable == &quot;b&quot;)
+  dplyr::filter(predictor == &quot;b&quot;)
 
 #vif of b vs a c d
 bacd_vif &lt;- collinear::vif_df(
   df = toy[, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)]
 ) |&gt; 
-  dplyr::filter(variable == &quot;b&quot;)
+  dplyr::filter(predictor == &quot;b&quot;)
 
 #expeced inflation of the confidence interval
 sqrt(bacd_vif$vif)
 </code></pre>
-<pre><code>## [1] 2.01544
+<pre><code>## [1] 2.015515
 </code></pre>
 <p>Now, since <code>b</code> is already in the models <code>y ~ a + b</code> and <code>y ~ a + b + c + d</code>, we just need to extract its coefficients, compute their confidence intervals, and divide one by the other to obtain the</p>
 <pre><code class="language-r">#compute confidence interval of b in y ~ a + b
@@ -1146,11 +1144,14 @@ for(i in 1:repetitions){
   df = toy,
   predictors = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;),
   preference_order = &quot;a&quot;,
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 </code></pre>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot;
+## attr(,&quot;validated&quot;)
+## [1] TRUE
 </code></pre>
 <p>Now you have it, your new model design with a VIF below 2.5 is now <code>y ~ a + b</code>!</p>
 <p>But what if you get new information and it turns out that <code>d</code> is also a variable of interest? Then you should just modify <code>preference_order</code> to include this new information.</p>
@@ -1158,22 +1159,28 @@ selected_predictors
   df = toy,
   predictors = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;),
   preference_order = c(&quot;a&quot;, &quot;d&quot;),
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 </code></pre>
 <pre><code>## [1] &quot;a&quot; &quot;d&quot;
+## attr(,&quot;validated&quot;)
+## [1] TRUE
 </code></pre>
 <p>Notice that if your favorite variables are highly correlated, some of them are going to be removed anyway. For example, if <code>a</code> and <code>c</code> are your faves, since they are highly correlated, <code>c</code> is removed.</p>
 <pre><code class="language-r">selected_predictors &lt;- collinear::vif_select(
   df = toy,
   predictors = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;),
   preference_order = c(&quot;a&quot;, &quot;c&quot;),
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 </code></pre>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot;
+## attr(,&quot;validated&quot;)
+## [1] TRUE
 </code></pre>
 <p>In either case, you can now build your model while being sure that the coefficients of these predictors are going to be stable and precise.</p>
 <p>Now, what if <code>y</code> is totally new for you, and you have no idea about what to use? In this case, the function 
@@ -1184,27 +1191,31 @@ selected_predictors
   df = toy,
   response = &quot;y&quot;,
   predictors = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;),
-  f = f_rsquared
+  f = collinear::f_r2_pearson,
+  quiet = TRUE
 )
 
 preference
 </code></pre>
-<pre><code>##   predictor preference
-## 1         a 0.77600503
-## 2         c 0.72364944
-## 3         d 0.59345954
-## 4         b 0.07343563
+<pre><code>##   response predictor                       f preference
+## 1        y         a collinear::f_r2_pearson 0.77600503
+## 2        y         c collinear::f_r2_pearson 0.72364944
+## 3        y         d collinear::f_r2_pearson 0.59345954
+## 4        y         b collinear::f_r2_pearson 0.07343563
 </code></pre>
 <p>Now you can use this data frame as input for the argument <code>preference_order</code>:</p>
 <pre><code class="language-r">selected_predictors &lt;- collinear::vif_select(
   df = toy,
   predictors = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;),
   preference_order = preference,
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 </code></pre>
 <pre><code>## [1] &quot;a&quot; &quot;d&quot;
+## attr(,&quot;validated&quot;)
+## [1] TRUE
 </code></pre>
 <p>Now at least you can be sure that the predictors in your model design have low VIF, and were selected taking their correlation with the response as criteria.</p>
 <p>Well, I think that&rsquo;s enough for today. I hope you found this post helpful. Have a great time!</p>
@@ -1478,9 +1489,11 @@ selected_predictors
     <h3>Related</h3>
     <ul>
       
+      <li><a href="/post/target-encoding/">Mapping Categorical Predictors to Numeric With Target Encoding</a></li>
+      
       <li><a href="/post/multicollinearity-model-interpretability/">Multicollinearity Hinders Model Interpretability</a></li>
       
-      <li><a href="/project/post-title/">R package `collinear`</a></li>
+      <li><a href="/project/post-title/">R package collinear</a></li>
       
     </ul>
   </div>

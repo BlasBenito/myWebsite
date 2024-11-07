@@ -26,7 +26,7 @@ projects: []
 
 # Summary
 
-In this detailed post, I dive deep into Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models. I use R code extensively to illustrate various concepts, making it a practical guide for those well-versed in R.
+In this post, I dive deep into Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models.
 
 The post covers the following main points:
 
@@ -41,7 +41,7 @@ Ultimately, this post serves as a comprehensive resource for understanding, inte
 This tutorial requires the development version (>= 1.0.3) of the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more.
 
 
-```r
+``` r
 #required
 install.packages("remotes")
 remotes::install_github(
@@ -59,7 +59,7 @@ install.packages("ggplot2")
 This post uses the `toy` data set shipped with the version >= 1.0.3 of the R package [`collinear`](https://blasbenito.github.io/collinear/). It is a data frame of centered and scaled variables representing a model design of the form `y ~ a + b + c + d`, where the predictors show varying degrees of relatedness. Let's load and check it.
 
 
-```r
+``` r
 library(dplyr)
 library(ggplot2)
 library(collinear)
@@ -90,7 +90,7 @@ The columns in `toy` are related as follows:
 The pairwise correlations between all predictors in `toy` are shown below.
 
 
-```r
+``` r
 collinear::cor_df(
   df = toy,
   predictors = c("a", "b", "c", "d")
@@ -98,15 +98,13 @@ collinear::cor_df(
 ```
 
 ```
-## # A tibble: 6 × 3
-##   x     y     correlation
-##   <chr> <chr>       <dbl>
-## 1 c     a           0.962
-## 2 d     b           0.639
-## 3 d     a           0.636
-## 4 d     c           0.615
-## 5 b     a          -0.047
-## 6 c     b          -0.042
+##   x y correlation
+## 1 c a  0.96154984
+## 2 d b  0.63903887
+## 3 d a  0.63575882
+## 4 d c  0.61480312
+## 5 b a -0.04740881
+## 6 c b -0.04218308
 ```
 
 Keep these pairwise correlations in mind for what comes next!
@@ -125,7 +123,7 @@ We can say a predictor is a linear combination of other predictors when it can b
 Let's say we focus on `a` and fit the multiple regression model `a ~ b + c + d`. The higher the R-squared of this model, the more confident we are to say that `a` is a linear combination of `b + c + d`.
 
 
-```r
+``` r
 #model of a against all other predictors
 abcd_model <- lm(
   formula = a ~ b + c + d,
@@ -152,7 +150,7 @@ The Variance Inflation Factor (VIF) of a predictor is computed as `\(1/(1 - R^2)
 In the case of `a`, we just have to apply the VIF expression to the R-squared of the regression model against all other predictors.
 
 
-```r
+``` r
 abcd_vif <- 1/(1-abcd_R2)
 abcd_vif
 ```
@@ -164,7 +162,7 @@ abcd_vif
 This VIF score is relative to the other predictors in the model design. If we change the model design, so does the VIF of all predictors! For example, if we remove `c` and `d` from the model design, we are left with this VIF for `a`:
 
 
-```r
+``` r
 ab_model <- lm(
   formula = a ~ b,
   data = toy
@@ -183,16 +181,16 @@ An almost perfect VIF score!
 We can simplify the VIF computation using `collinear::vif_df()`, which returns the VIF of `a` and `b` at once.
 
 
-```r
+``` r
 collinear::vif_df(
   df = toy[, c("a", "b")]
 )
 ```
 
 ```
-##   variable   vif
-## 1        a 1.002
-## 2        b 1.002
+##   predictor    vif
+## 1         a 1.0023
+## 2         b 1.0023
 ```
 
 In plot below, the worst and best VIF scores of `a` are shown in the context of the relationship between R-squared and VIF, and three VIF thresholds commonly mentioned in the literature. These thresholds are represented as vertical dashed lines at VIF 2.5, 5, and 10, and are used as criteria to control multicollinearity in model designs. I will revisit this topic later in the post.
@@ -209,10 +207,10 @@ But still, we have no indication of what these VIF values actually mean! I will 
 
 Variance Inflation Factors are inherently linked to these fundamental linear modeling concepts:
 
-  + **Coefficient Estimate** ($\hat{\beta}$): The estimated slope of the relationship between a predictor and the response in a linear model.
-  + **Standard Error** ($\text{SE}$): Represents the uncertainty around the estimation of the coefficient due to data variability.
-  + **Significance level** ($1.96$): The acceptable level of error when determining the significance of the *coefficient estimate*. Here it is simplified to 1.96, the 97.5th percentile of a normal distribution, to approximate a significance level of 0.05.
-  + **Confidence Interval** ($CI$): The range of values containing the true value of the *coefficient estimate* withing a certain *significance level*. 
+  + **Coefficient Estimate** (`\(\hat{\beta}\)`): The estimated slope of the relationship between a predictor and the response in a linear model.
+  + **Standard Error** (`\(\text{SE}\)`): Represents the uncertainty around the estimation of the coefficient due to data variability.
+  + **Significance level** (`\(1.96\)`): The acceptable level of error when determining the significance of the *coefficient estimate*. Here it is simplified to 1.96, the 97.5th percentile of a normal distribution, to approximate a significance level of 0.05.
+  + **Confidence Interval** (`\(CI\)`): The range of values containing the true value of the *coefficient estimate* withing a certain *significance level*. 
   
 These terms are related by the expression to compute the confidence interval of the coefficient estimate:
 
@@ -220,7 +218,7 @@ These terms are related by the expression to compute the confidence interval of 
 Let me convert this equation into a small function to compute confidence intervals of coefficient estimates named `ci()`.
 
 
-```r
+``` r
 ci <- function(b, se){
   x <- se * 1.96
   as.numeric(c(b-x, b+x))
@@ -231,7 +229,7 @@ ci <- function(b, se){
 Now we are going to look at the coefficient estimate and standard error of `a` in the model `y ~ a + b`. We know that `a` in this model has a vif of 1.0022527.
 
 
-```r
+``` r
 yab_model <- lm(
   formula = y ~ a + b,
   data = toy
@@ -251,7 +249,7 @@ a_coef
 Now we plug them into our little function to compute the confidence interval.
 
 
-```r
+``` r
 a_ci <- ci(
   b = a_coef[1], 
   se = a_coef[2]
@@ -266,7 +264,7 @@ a_ci
 And, finally, we compute the width of the confidence interval for `a` as the difference between the extremes of the confidence interval.
 
 
-```r
+``` r
 old_width <- diff(a_ci)
 old_width
 ```
@@ -284,7 +282,7 @@ So, if the VIF of a predictor is, let's say, 16, then this means that, in a line
 In case you don't want to take my word for it, here goes a demonstration. Now we fit the model `y ~ a + b + c + d`, where `a` has a vif of 16.1606674. If we follow the definition above, we could now expect an inflation of the confidence interval for `a` of about 4.0200333. Let's find out if that's the case!
 
 
-```r
+``` r
 #model y against all predictors and get summary
 yabcd_model <- lm(
   formula = y ~ a + b + c + d,
@@ -310,7 +308,7 @@ new_width
 Now, to find out the inflation factor of this new confidence interval, we divide it by the width of the old one.
 
 
-```r
+``` r
 new_width/old_width
 ```
 
@@ -325,31 +323,31 @@ Now we can confirm our experiment about the meaning of VIF by repeating the exer
 First we compute the VIF of `b` against `a` alone, and against `a`, `c`, and `d`, and the expected level of inflation of the confidence interval as the square root of the second VIF.
 
 
-```r
+``` r
 #vif of b vs a
 ba_vif <- collinear::vif_df(
   df = toy[, c("a", "b")]
 ) |> 
-  dplyr::filter(variable == "b")
+  dplyr::filter(predictor == "b")
 
 #vif of b vs a c d
 bacd_vif <- collinear::vif_df(
   df = toy[, c("a", "b", "c", "d")]
 ) |> 
-  dplyr::filter(variable == "b")
+  dplyr::filter(predictor == "b")
 
 #expeced inflation of the confidence interval
 sqrt(bacd_vif$vif)
 ```
 
 ```
-## [1] 2.01544
+## [1] 2.015515
 ```
 
 Now, since `b` is already in the models `y ~ a + b` and `y ~ a + b + c + d`, we just need to extract its coefficients, compute their confidence intervals, and divide one by the other to obtain the 
 
 
-```r
+``` r
 #compute confidence interval of b in y ~ a + b
 b_ci_old <- ci(
   b = yab_model$coefficients["b", "Estimate"], 
@@ -381,7 +379,7 @@ In the previous sections we acquired an intuition of how Variance Inflation Fact
 A coefficient estimate divided by its standard error results in the **T statistic**. This number is named "t value" in the table of coefficients shown below, and represents the distance (in number of standard errors) between the estimate and zero.
 
 
-```r
+``` r
 yabcd_model$coefficients[-1, ] |> 
   round(4)
 ```
@@ -397,7 +395,7 @@ yabcd_model$coefficients[-1, ] |>
 The **p-value**, named "Pr(>|t|)" above, is the probability of getting the T statistic when there is *no effect of the predictor over the response*. The part in italics is named the *null hypothesis* (H0), and happens when the confidence interval of the estimate intersects with zero, as in `c` and `d`. 
 
 
-```r
+``` r
 ci(
   b = yabcd_model$coefficients["c", "Estimate"],
   se = yabcd_model$coefficients["c", "Std. Error"]
@@ -408,7 +406,7 @@ ci(
 ## [1] -0.01819994  0.07276692
 ```
 
-```r
+``` r
 ci(
   b = yabcd_model$coefficients["d", "Estimate"],
   se = yabcd_model$coefficients["d", "Std. Error"]
@@ -422,7 +420,7 @@ ci(
 The p-value of any predictor in the coefficients table above is computed as:
 
 
-```r
+``` r
 #predictor
 predictor <- "d"
 
@@ -469,7 +467,7 @@ But let's try a little experiment. We are going to create many small versions of
 
 
 
-```r
+``` r
 #number of repetitions
 repetitions <- 1000
 
@@ -543,18 +541,21 @@ The [`collinear`](https://blasbenito.github.io/collinear/) package has something
 Let's follow the domain knowledge route first. Imagine you know a lot about `y`, you have read that `a` is very important to explain it, and you need to discuss this predictor in your results. But you are on the fence about the other predictors, so you don't really care about what others are in the design. You can express such an idea using the argument `preference_order`, as shown below.
 
 
-```r
+``` r
 selected_predictors <- collinear::vif_select(
   df = toy,
   predictors = c("a", "b", "c", "d"),
   preference_order = "a",
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 ```
 
 ```
 ## [1] "a" "b"
+## attr(,"validated")
+## [1] TRUE
 ```
 
 Now you have it, your new model design with a VIF below 2.5 is now `y ~ a + b`!  
@@ -563,35 +564,41 @@ But what if you get new information and it turns out that `d` is also a variable
 
 
 
-```r
+``` r
 selected_predictors <- collinear::vif_select(
   df = toy,
   predictors = c("a", "b", "c", "d"),
   preference_order = c("a", "d"),
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 ```
 
 ```
 ## [1] "a" "d"
+## attr(,"validated")
+## [1] TRUE
 ```
 
 Notice that if your favorite variables are highly correlated, some of them are going to be removed anyway. For example, if `a` and `c` are your faves, since they are highly correlated, `c` is removed.
 
 
-```r
+``` r
 selected_predictors <- collinear::vif_select(
   df = toy,
   predictors = c("a", "b", "c", "d"),
   preference_order = c("a", "c"),
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 ```
 
 ```
 ## [1] "a" "b"
+## attr(,"validated")
+## [1] TRUE
 ```
 
 In either case, you can now build your model while being sure that the coefficients of these predictors are going to be stable and precise.
@@ -601,40 +608,44 @@ Now, what if `y` is totally new for you, and you have no idea about what to use?
 By default, `collinear::preference_order()` calls [`collinear::f_rsquared()`](https://blasbenito.github.io/collinear/reference/f_rsquared.html) to compute the R-squared between each predictor and the response variable (that's why the argument `response` is required here), to return a data frame with the variables ranked from "better" to "worse".
 
 
-```r
+``` r
 preference <- collinear::preference_order(
   df = toy,
   response = "y",
   predictors = c("a", "b", "c", "d"),
-  f = f_rsquared
+  f = collinear::f_r2_pearson,
+  quiet = TRUE
 )
 
 preference
 ```
 
 ```
-##   predictor preference
-## 1         a 0.77600503
-## 2         c 0.72364944
-## 3         d 0.59345954
-## 4         b 0.07343563
+##   response predictor                       f preference
+## 1        y         a collinear::f_r2_pearson 0.77600503
+## 2        y         c collinear::f_r2_pearson 0.72364944
+## 3        y         d collinear::f_r2_pearson 0.59345954
+## 4        y         b collinear::f_r2_pearson 0.07343563
 ```
 
 Now you can use this data frame as input for the argument `preference_order`:
 
 
-```r
+``` r
 selected_predictors <- collinear::vif_select(
   df = toy,
   predictors = c("a", "b", "c", "d"),
   preference_order = preference,
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 ```
 
 ```
 ## [1] "a" "d"
+## attr(,"validated")
+## [1] TRUE
 ```
 
 Now at least you can be sure that the predictors in your model design have low VIF, and were selected taking their correlation with the response as criteria.

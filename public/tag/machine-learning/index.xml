@@ -5,7 +5,7 @@
     <link>https://blasbenito.com/tag/machine-learning/</link>
       <atom:link href="https://blasbenito.com/tag/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     <description>Machine Learning</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Mon, 30 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Tue, 05 Mar 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Machine Learning</title>
@@ -13,7 +13,121 @@
     </image>
     
     <item>
-      <title>R package `collinear`</title>
+      <title>My Reading List: Data Science</title>
+      <link>https://blasbenito.com/post/my-reading-list-data-science/</link>
+      <pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/post/my-reading-list-data-science/</guid>
+      <description>&lt;p&gt;This is a live post listing links to Data Science related posts and videos I consider to be interesting, high-quality, or even essential to better understand particular topics within such a wide field.&lt;/p&gt;
+&lt;h1 id=&#34;data&#34;&gt;Data&lt;/h1&gt;
+&lt;h2 id=&#34;preprocessing&#34;&gt;Preprocessing&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://towardsdatascience.com/extending-target-encoding-443aa9414cae&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Extending Target Encoding&lt;/strong&gt;&lt;/a&gt;: post by 
+&lt;a href=&#34;https://www.aitimejournal.com/interview-with-daniele-micci-barreca-product-analytics-lead-data-science-google/30110/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Daniele Micci-Barreca&lt;/a&gt; explaining how he came up with the idea of target encoding, and its possible extensions.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://maxhalford.github.io/blog/target-encoding/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Target encoding done the right way&lt;/strong&gt;&lt;/a&gt;: post by 
+&lt;a href=&#34;https://maxhalford.github.io/bio/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Max Halford&lt;/a&gt;, Head of Data at 
+&lt;a href=&#34;https://www.carbonfact.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Carbonfact&lt;/a&gt;, explaining in detail how to combine additive smoothing and target encoding.&lt;/p&gt;
+&lt;h2 id=&#34;handling-and-management&#34;&gt;Handling and Management&lt;/h2&gt;
+&lt;h3 id=&#34;apache-parquet&#34;&gt;Apache Parquet&lt;/h3&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://airbyte.com/data-engineering-resources/parquet-data-format&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;A Deep Dive into Parquet: The Data Format Engineers Need to Know&lt;/strong&gt;&lt;/a&gt;: This by Aditi Prakash, published in the 
+&lt;a href=&#34;https://airbyte.com/blog&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Airbyte Blog&lt;/a&gt; offers a complete guide about the 
+&lt;a href=&#34;https://parquet.apache.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Apache Parquet&lt;/a&gt; file format.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://www.influxdata.com/blog/querying-parquet-millisecond-latency/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Querying Parquet with Millisecond Latency&lt;/strong&gt;&lt;/a&gt; this post from by Raphael Taylor-Davies and Andrew Lamb explains in deep the optimization methods used in 
+&lt;a href=&#34;https://parquet.apache.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Apache Parquet&lt;/a&gt; files. Warning, this is a very technical read!&lt;/p&gt;
+&lt;h3 id=&#34;duckdb&#34;&gt;DuckDB&lt;/h3&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://duckdb.org/2024/01/26/multi-database-support-in-duckdb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Multi-Database Support in DuckDB&lt;/strong&gt;&lt;/a&gt; This post by Mark Raasveldt published in the DuckDB blog explains how to query together data from different databases at once.&lt;/p&gt;
+&lt;h1 id=&#34;analysis-and-modeling&#34;&gt;Analysis and Modeling&lt;/h1&gt;
+&lt;h2 id=&#34;modeling-methods&#34;&gt;Modeling Methods&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://m-clark.github.io/posts/2019-10-20-big-mixed-models/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Mixed Models for Big Data&lt;/strong&gt;&lt;/a&gt;: This post by 
+&lt;a href=&#34;https://m-clark.github.io/about.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Michael Clark&lt;/a&gt; (see entry below by the same author) reviews several mixed modelling approach for large data in R.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://m-clark.github.io/generalized-additive-models/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Generalized Additive Models&lt;/strong&gt;&lt;/a&gt;: A good online book on Generalized Additive Models by 
+&lt;a href=&#34;https://m-clark.github.io/about.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Michael Clark&lt;/a&gt;, Senior Machine Learning Scientist at 
+&lt;a href=&#34;https://www.strong.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Strong Analytics&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;model-explainability&#34;&gt;Model Explainability&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://towardsdatascience.com/a-simple-model-independent-score-explanation-method-c17002d66da7&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Model-Independent Score Explanation&lt;/strong&gt;&lt;/a&gt;: Post by 
+&lt;a href=&#34;https://www.aitimejournal.com/interview-with-daniele-micci-barreca-product-analytics-lead-data-science-google/30110/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Daniele Micci-Barreca&lt;/a&gt; on model explainability. It also explains a very clever method to better understand any model just from it&amp;rsquo;s predictions.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://storage.googleapis.com/cloud-ai-whitepapers/AI%20Explainability%20Whitepaper.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;AI Explanations whitepaper&lt;/strong&gt;&lt;/a&gt;: White paper of Google&amp;rsquo;s &amp;ldquo;AI Explanations&amp;rdquo; product with a pretty good overall view of the state of the art of model explainability.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://arxiv.org/abs/1702.08608&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Towards A Rigorous Science of Interpretable Machine Learning&lt;/strong&gt;&lt;/a&gt;: Pre-print by Finale Doshi-Velez and Been Kim offering a rigorous definition and evaluation of model interpretability.&lt;/p&gt;
+&lt;h2 id=&#34;spatial-analysis&#34;&gt;Spatial Analysis&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://duckdb.org/2023/04/28/spatial.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;PostGEESE? Introducing The DuckDB Spatial Extension&lt;/strong&gt;&lt;/a&gt;: In this post, the authors of 
+&lt;a href=&#34;https://duckdb.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DuckDB&lt;/a&gt; present the new PostGIS-like &lt;em&gt;spatial&lt;/em&gt; extension for this popular in-process data base engine.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://py.geocompx.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Geocomputation with Python&lt;/strong&gt;&lt;/a&gt;: A very nice book on geographic data analysis with Python.&lt;/p&gt;
+&lt;h1 id=&#34;coding&#34;&gt;Coding&lt;/h1&gt;
+&lt;h2 id=&#34;general-concepts&#34;&gt;General Concepts&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://archive.org/details/a-philosophy-of-software-design/mode/2up&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;A Philosophy Of Software Design&lt;/strong&gt;&lt;/a&gt;: This book by 
+&lt;a href=&#34;https://web.stanford.edu/~ouster/cgi-bin/home.php&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;John Ousterhout&lt;/a&gt; is full of high-level concepts and tips to help tackle software complexity. It&amp;rsquo;s so good I had to buy a hard copy that now lives in my desk. 
+&lt;a href=&#34;https://blog.pragmaticengineer.com/a-philosophy-of-software-design-review/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;This post&lt;/a&gt; by 
+&lt;a href=&#34;https://blog.pragmaticengineer.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Gergely Orosz&lt;/a&gt; offers a balanced review of the book.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://youtu.be/CFRhGnuXG-4?si=7Xr3E9L7GFvoRJqA&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Why You Shouldn&amp;rsquo;t Nest Your Code&lt;/strong&gt;&lt;/a&gt;: In this wonderful video, 
+&lt;a href=&#34;https://www.youtube.com/@CodeAesthetic&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CodeAesthetic&lt;/a&gt; explains in detail (and beautiful graphics!) a couple of methods to reduce the level of nesting in our code to improve readability and maintainability. This video has truly changed how I code in R!&lt;/p&gt;
+&lt;h2 id=&#34;r&#34;&gt;R&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://ropensci.org/blog/2024/02/22/beautiful-code/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Beautiful Code, Because We’re Worth It!&lt;/strong&gt;&lt;/a&gt;: This post by 
+&lt;a href=&#34;https://mastodon.social/@maelle&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Maëlle Salmon&lt;/a&gt; (research software engineer), and 
+&lt;a href=&#34;https://fosstodon.org/@yabellini&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Yanina Bellini Saibene&lt;/a&gt; (rOpenSci Community Manager) provides simple tips to help write more visually pleasant R code.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://journal.r-project.org/articles/RJ-2023-071/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Coloring in R’s Blind Spot&lt;/strong&gt;&lt;/a&gt;: This article published in 
+&lt;a href=&#34;https://journal.r-project.org/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;The R Journal&lt;/a&gt; by 
+&lt;a href=&#34;https://www.zeileis.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Achim Zeileis&lt;/a&gt; (he has a 
+&lt;a href=&#34;https://www.zeileis.org/blog/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;great analytics blog&lt;/a&gt; too!) and 
+&lt;a href=&#34;https://www.stat.auckland.ac.nz/~paul/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Paul Murrel&lt;/a&gt; offers a great overview of the base R color functions, and offers specific advice on what color palettes work better in different scenarios.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://peerj.com/preprints/26605v1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Taking R to its limits: 70+ tips&lt;/strong&gt;&lt;/a&gt;: This pre-print (not peer-reviewed AFAIK) by Tsagris and Papadakis offers a long list of tips to speed-up computation with the R language. I think a few of these tips lack enough context or are poorly explained, but it&amp;rsquo;s still a good resource to help optimize our R code.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://www.njtierney.com/post/2023/12/06/long-errors-smell/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Code Smell: Error Handling Eclipse&lt;/strong&gt; &lt;/a&gt;: This post by 
+&lt;a href=&#34;https://fosstodon.org/@njtierney@aus.social&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nick Tierney&lt;/a&gt; explains how to address these situations when &lt;em&gt;error checking code totally eclipses the intent of the code&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://www.emilyriederer.com/post/team-of-packages/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Building a team of internal R packages&lt;/strong&gt;&lt;/a&gt;: This post by 
+&lt;a href=&#34;https://www.emilyriederer.com/about&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Emily Riederer&lt;/a&gt; delves into the particularities of building a team of R packages to do jobs helping a organization answer impactful questions.&lt;/p&gt;
+&lt;h2 id=&#34;python&#34;&gt;Python&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://archive.org/details/francois-chollet-deep-learning-with-python-manning-2018&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Deep Learning With Python&lt;/strong&gt;&lt;/a&gt;: This book by 
+&lt;a href=&#34;https://fchollet.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;François Chollet&lt;/a&gt;, Software Engineer at Google and creator of the Keras library, seems to me like the best resource out there for those wanting to understand and build deep learning models from scratch. I have a hard copy on my desk, and I am finding it pretty easy to follow. Also, the code examples are clearly explained, and they ramp up in a very consistent manner.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://www.emilyriederer.com/post/py-rgo/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Python Rgonomics&lt;/strong&gt;&lt;/a&gt;: In this post, 
+&lt;a href=&#34;https://www.emilyriederer.com/about&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Emily Riederer&lt;/a&gt; offers a list of Python libraries with an &amp;ldquo;R feeling&amp;rdquo;.&lt;/p&gt;
+&lt;h2 id=&#34;coding-workflow&#34;&gt;Coding Workflow&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://graphite.dev/blog/stacked-prs&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;How to use stacked PRs to unblock your entire team&lt;/strong&gt;&lt;/a&gt;: This post in 
+&lt;a href=&#34;https://graphite.dev/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Graphite&lt;/a&gt;&amp;rsquo;s blog explains how to split large coding changes into small managed PRs (aka &amp;ldquo;stacked PRs&amp;rdquo;) to avoid blocks when PR reviews are hard to come by.&lt;/p&gt;
+&lt;h1 id=&#34;other-fancy-things&#34;&gt;Other Fancy Things&lt;/h1&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://vickiboykis.com/2024/01/15/whats-new-with-ml-in-production/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;What&amp;rsquo;s new with ML in production&lt;/strong&gt;&lt;/a&gt;: This post by 
+&lt;a href=&#34;https://vickiboykis.com/about/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Vicki Boykis&lt;/a&gt;, machine learning engineer at Mozilla.ai, goes deep into the differences and similarities between classical Machine Learning approaches and Large Language Models. I learned a lot from this read!&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://youtu.be/T-D1OfcDW1M?si=sAZO-5NGD8yF2WYe&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;What is Retrieval-Augmented Generation (RAG)?&lt;/strong&gt;&lt;/a&gt;: In this video, Marina Danilevsky, Senior Data Scientist at IBM, offers a pretty good explanation on how the 
+&lt;a href=&#34;https://research.ibm.com/blog/retrieval-augmented-generation-RAG?utm_id=YT-101-What-is-RAG&amp;amp;_gl=1*p6ef17*_ga*MTQwMzQ5NjMwMi4xNjkxNDE2MDc0*_ga_FYECCCS21D*MTY5MjcyMjgyNy40My4xLjE2OTI3MjMyMTcuMC4wLjA.&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Retrieval-Augmented Generation&lt;/a&gt; method can improve the credibility of large language models.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://www.nature.com/articles/s41598-020-79148-7&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;A novel framework for spatio-temporal prediction of environmental data using deep learning&lt;/strong&gt;&lt;/a&gt;: This paper by 
+&lt;a href=&#34;https://www.linkedin.com/in/federico-amato-66208637&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Federico Amato&lt;/a&gt; and collaborators describes an intriguing regression method combining a feedforward neural network with empirical orthogonal functions for spatio-temporal interpolation. Regrettably, the paper offers no code or data at all, but it&amp;rsquo;s still an interesting read.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://arxiv.org/pdf/2310.10196.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Large Models for Time Series and
+Spatio-Temporal Data A Survey and Outlook&lt;/strong&gt;&lt;/a&gt;: This pre-print by Weng and collaborators reviews the current state of the art in spatio-temporal modelling with Large Language Models and Pre-Trained Foundation Models.&lt;/p&gt;
+&lt;h1 id=&#34;management-and-leadership&#34;&gt;Management and Leadership&lt;/h1&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://zaidesanton.substack.com/p/when-engineering-managers-become&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;You are hurting your team without even noticing&lt;/strong&gt;&lt;/a&gt; This post by 
+&lt;a href=&#34;https://substack.com/@zaidesanton&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Anton Zaides&lt;/a&gt; (Development Team Leader), and 
+&lt;a href=&#34;https://substack.com/@crushingtecheducation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Eugene Shulga&lt;/a&gt;, (Software Engineer) offers insight on the harmful effects of a manager&amp;rsquo;s ego in their team dynamics.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://the.managers.guide/p/teamwork-habits-for-leaders&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Teamwork Habits for Leaders&lt;/strong&gt;&lt;/a&gt;: This post by 
+&lt;a href=&#34;https://substack.com/@ochronus&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Csaba Okrona&lt;/a&gt; focuses on how shifting from talker to listener in team meetings offers a good insight to better address the team&amp;rsquo;s needs.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R package collinear</title>
       <link>https://blasbenito.com/project/post-title/</link>
       <pubDate>Mon, 30 Oct 2023 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/project/post-title/</guid>
@@ -214,17 +328,17 @@ library(tictoc)
 selected_predictors
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;country_income&amp;quot;             &amp;quot;topo_diversity&amp;quot;            
-##  [3] &amp;quot;topo_slope&amp;quot;                 &amp;quot;humidity_range&amp;quot;            
-##  [5] &amp;quot;topo_elevation&amp;quot;             &amp;quot;country_gdp&amp;quot;               
-##  [7] &amp;quot;country_population&amp;quot;         &amp;quot;soil_soc&amp;quot;                  
-##  [9] &amp;quot;region&amp;quot;                     &amp;quot;soil_type&amp;quot;                 
-## [11] &amp;quot;soil_clay&amp;quot;                  &amp;quot;subregion&amp;quot;                 
-## [13] &amp;quot;biogeo_realm&amp;quot;               &amp;quot;soil_sand&amp;quot;                 
-## [15] &amp;quot;swi_min&amp;quot;                    &amp;quot;soil_nitrogen&amp;quot;             
-## [17] &amp;quot;swi_range&amp;quot;                  &amp;quot;cloud_cover_range&amp;quot;         
-## [19] &amp;quot;rainfall_min&amp;quot;               &amp;quot;growing_season_temperature&amp;quot;
-## [21] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;solar_rad_min&amp;quot;             
-## [23] &amp;quot;rainfall_range&amp;quot;
+##  [3] &amp;quot;topo_slope&amp;quot;                 &amp;quot;country_population&amp;quot;        
+##  [5] &amp;quot;country_gdp&amp;quot;                &amp;quot;humidity_range&amp;quot;            
+##  [7] &amp;quot;soil_soc&amp;quot;                   &amp;quot;region&amp;quot;                    
+##  [9] &amp;quot;soil_clay&amp;quot;                  &amp;quot;soil_type&amp;quot;                 
+## [11] &amp;quot;subregion&amp;quot;                  &amp;quot;biogeo_realm&amp;quot;              
+## [13] &amp;quot;soil_sand&amp;quot;                  &amp;quot;topo_elevation&amp;quot;            
+## [15] &amp;quot;soil_nitrogen&amp;quot;              &amp;quot;swi_range&amp;quot;                 
+## [17] &amp;quot;koppen_group&amp;quot;               &amp;quot;swi_min&amp;quot;                   
+## [19] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;rainfall_min&amp;quot;              
+## [21] &amp;quot;growing_season_temperature&amp;quot; &amp;quot;rainfall_range&amp;quot;            
+## [23] &amp;quot;solar_rad_min&amp;quot;              &amp;quot;cloud_cover_range&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The function has returned a list of predictors that should have a correlation lower than 0.75 with each other, and a VIF lower than 5. Let&amp;rsquo;s see if that&amp;rsquo;s true.&lt;/p&gt;
 &lt;p&gt;The function &lt;code&gt;cor_df()&lt;/code&gt; returns a data frame with pairwise correlations, arranged by the absolute value of the correlation.&lt;/p&gt;
@@ -239,11 +353,11 @@ head(selected_predictors_cor)
 ##   x             y                          correlation
 ##   &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;                            &amp;lt;dbl&amp;gt;
 ## 1 solar_rad_min growing_season_temperature       0.744
-## 2 soil_nitrogen soil_soc                         0.729
-## 3 soil_nitrogen swi_min                          0.673
-## 4 soil_sand     soil_clay                       -0.666
-## 5 solar_rad_max soil_type                       -0.652
-## 6 biogeo_realm  soil_type                        0.62
+## 2 koppen_group  soil_type                        0.732
+## 3 soil_nitrogen soil_soc                         0.729
+## 4 swi_min       soil_nitrogen                    0.673
+## 5 soil_sand     soil_clay                       -0.666
+## 6 koppen_group  swi_range                        0.659
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The data frame above shows that the maximum correlation between two of the selected predictors is below 0.75, so here &lt;code&gt;collinear()&lt;/code&gt; worked as expected.&lt;/p&gt;
 &lt;p&gt;The function &lt;code&gt;vif_df()&lt;/code&gt; returns a data frame with the VIF scores of all predictors.&lt;/p&gt;
@@ -255,29 +369,30 @@ head(selected_predictors_cor)
 selected_predictors_vif
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##                      variable   vif
-## 1              country_income 1.211
-## 2              topo_diversity 1.635
-## 3                  topo_slope 1.928
-## 4              humidity_range 1.959
-## 5              topo_elevation 2.073
-## 6                 country_gdp 2.157
-## 7          country_population 2.169
-## 8                rainfall_min 2.256
-## 9           cloud_cover_range 2.393
-## 10             rainfall_range 2.716
-## 11                   soil_soc 2.744
-## 12                     region 2.846
-## 13                  subregion 2.870
-## 14                  soil_type 2.874
-## 15                  soil_clay 2.966
-## 16               biogeo_realm 3.120
-## 17              solar_rad_max 3.126
-## 18                    swi_min 3.138
-## 19                  soil_sand 3.170
-## 20                  swi_range 3.263
-## 21              soil_nitrogen 3.372
-## 22 growing_season_temperature 4.271
-## 23              solar_rad_min 4.287
+## 1              country_income 1.215
+## 2              topo_diversity 1.662
+## 3                  topo_slope 1.929
+## 4              humidity_range 2.043
+## 5              topo_elevation 2.101
+## 6                 country_gdp 2.158
+## 7          country_population 2.171
+## 8                rainfall_min 2.269
+## 9           cloud_cover_range 2.418
+## 10                   soil_soc 2.744
+## 11                     region 2.849
+## 12             rainfall_range 2.876
+## 13                  subregion 2.900
+## 14                  soil_clay 2.966
+## 15                  soil_type 2.991
+## 16              solar_rad_max 3.145
+## 17               biogeo_realm 3.150
+## 18                  soil_sand 3.175
+## 19              soil_nitrogen 3.376
+## 20                    swi_min 3.450
+## 21                  swi_range 3.781
+## 22               koppen_group 4.151
+## 23 growing_season_temperature 4.314
+## 24              solar_rad_min 4.432
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output shows that the maximum VIF is 4.2, so here &lt;code&gt;collinear()&lt;/code&gt; did its work as expected.&lt;/p&gt;
 &lt;h4 id=&#34;arguments-max_cor-and-max_vif&#34;&gt;Arguments &lt;code&gt;max_cor&lt;/code&gt; and &lt;code&gt;max_vif&lt;/code&gt;&lt;/h4&gt;
@@ -304,10 +419,12 @@ selected_predictors_permissive &amp;lt;- collinear(
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_restrictive
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;country_income&amp;quot;             &amp;quot;soil_clay&amp;quot;                 
-##  [3] &amp;quot;country_population&amp;quot;         &amp;quot;region&amp;quot;                    
-##  [5] &amp;quot;soil_soc&amp;quot;                   &amp;quot;topo_slope&amp;quot;                
-##  [7] &amp;quot;growing_season_temperature&amp;quot; &amp;quot;humidity_range&amp;quot;            
-##  [9] &amp;quot;cloud_cover_range&amp;quot;          &amp;quot;topo_elevation&amp;quot;
+##  [3] &amp;quot;country_population&amp;quot;         &amp;quot;topo_slope&amp;quot;                
+##  [5] &amp;quot;humidity_range&amp;quot;             &amp;quot;topo_elevation&amp;quot;            
+##  [7] &amp;quot;soil_soc&amp;quot;                   &amp;quot;soil_silt&amp;quot;                 
+##  [9] &amp;quot;cloud_cover_range&amp;quot;          &amp;quot;region&amp;quot;                    
+## [11] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;growing_season_temperature&amp;quot;
+## [13] &amp;quot;biogeo_realm&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;These are the variables selected under a more permissive setup:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_permissive
@@ -317,13 +434,13 @@ selected_predictors_permissive &amp;lt;- collinear(
 ##  [5] &amp;quot;country_gdp&amp;quot;                &amp;quot;soil_soc&amp;quot;                  
 ##  [7] &amp;quot;region&amp;quot;                     &amp;quot;soil_type&amp;quot;                 
 ##  [9] &amp;quot;soil_nitrogen&amp;quot;              &amp;quot;subregion&amp;quot;                 
-## [11] &amp;quot;topo_elevation&amp;quot;             &amp;quot;biogeo_realm&amp;quot;              
+## [11] &amp;quot;biogeo_realm&amp;quot;               &amp;quot;topo_elevation&amp;quot;            
 ## [13] &amp;quot;koppen_group&amp;quot;               &amp;quot;biogeo_biome&amp;quot;              
 ## [15] &amp;quot;country_name&amp;quot;               &amp;quot;soil_ph&amp;quot;                   
-## [17] &amp;quot;growing_season_temperature&amp;quot; &amp;quot;aridity_index&amp;quot;             
-## [19] &amp;quot;soil_temperature_max&amp;quot;       &amp;quot;rainfall_min&amp;quot;              
-## [21] &amp;quot;rainfall_range&amp;quot;             &amp;quot;swi_mean&amp;quot;                  
-## [23] &amp;quot;temperature_max&amp;quot;            &amp;quot;solar_rad_mean&amp;quot;            
+## [17] &amp;quot;aridity_index&amp;quot;              &amp;quot;growing_season_temperature&amp;quot;
+## [19] &amp;quot;rainfall_min&amp;quot;               &amp;quot;rainfall_range&amp;quot;            
+## [21] &amp;quot;swi_mean&amp;quot;                   &amp;quot;soil_temperature_max&amp;quot;      
+## [23] &amp;quot;solar_rad_mean&amp;quot;             &amp;quot;temperature_seasonality&amp;quot;   
 ## [25] &amp;quot;soil_clay&amp;quot;                  &amp;quot;soil_silt&amp;quot;                 
 ## [27] &amp;quot;cloud_cover_min&amp;quot;            &amp;quot;swi_range&amp;quot;                 
 ## [29] &amp;quot;humidity_range&amp;quot;
@@ -346,30 +463,31 @@ selected_predictors_no_response &amp;lt;- collinear(
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;dplyr::glimpse(vi[, selected_predictors_response])
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Rows: 30,000
-## Columns: 23
+## Columns: 24
 ## $ country_income             &amp;lt;chr&amp;gt; &amp;quot;1. High income: OECD&amp;quot;, &amp;quot;3. Upper middle in…
 ## $ topo_diversity             &amp;lt;int&amp;gt; 29, 24, 21, 25, 19, 30, 26, 20, 26, 22, 25,…
 ## $ topo_slope                 &amp;lt;int&amp;gt; 6, 2, 0, 10, 0, 10, 6, 0, 2, 0, 0, 1, 0, 1,…
-## $ humidity_range             &amp;lt;dbl&amp;gt; 15.57, 6.03, 14.44, 4.69, 33.18, 5.76, 3.99…
-## $ topo_elevation             &amp;lt;int&amp;gt; 1821, 143, 765, 1474, 378, 485, 604, 1159, …
-## $ country_gdp                &amp;lt;dbl&amp;gt; 15094000, 7973000, 1300000, 7973000, 15860,…
 ## $ country_population         &amp;lt;dbl&amp;gt; 313973000, 1338612970, 33487208, 1338612970…
+## $ country_gdp                &amp;lt;dbl&amp;gt; 15094000, 7973000, 1300000, 7973000, 15860,…
+## $ humidity_range             &amp;lt;dbl&amp;gt; 15.57, 6.03, 14.44, 4.69, 33.18, 5.76, 3.99…
 ## $ soil_soc                   &amp;lt;dbl&amp;gt; 43.1, 14.6, 36.4, 34.9, 8.1, 20.8, 44.5, 4.…
 ## $ region                     &amp;lt;chr&amp;gt; &amp;quot;Americas&amp;quot;, &amp;quot;Asia&amp;quot;, &amp;quot;Americas&amp;quot;, &amp;quot;Asia&amp;quot;, &amp;quot;Af…
-## $ soil_type                  &amp;lt;chr&amp;gt; &amp;quot;Cambisols&amp;quot;, &amp;quot;Acrisols&amp;quot;, &amp;quot;Luvisols&amp;quot;, &amp;quot;Aliso…
 ## $ soil_clay                  &amp;lt;int&amp;gt; 20, 24, 28, 31, 27, 29, 40, 15, 26, 22, 23,…
+## $ soil_type                  &amp;lt;chr&amp;gt; &amp;quot;Cambisols&amp;quot;, &amp;quot;Acrisols&amp;quot;, &amp;quot;Luvisols&amp;quot;, &amp;quot;Aliso…
 ## $ subregion                  &amp;lt;chr&amp;gt; &amp;quot;Northern America&amp;quot;, &amp;quot;Eastern Asia&amp;quot;, &amp;quot;Northe…
 ## $ biogeo_realm               &amp;lt;chr&amp;gt; &amp;quot;Nearctic&amp;quot;, &amp;quot;Indomalayan&amp;quot;, &amp;quot;Nearctic&amp;quot;, &amp;quot;Pal…
 ## $ soil_sand                  &amp;lt;int&amp;gt; 41, 39, 27, 29, 48, 33, 30, 78, 23, 64, 54,…
-## $ swi_min                    &amp;lt;dbl&amp;gt; 24.5, 33.3, 42.2, 31.3, 8.3, 28.8, 25.3, 11…
+## $ topo_elevation             &amp;lt;int&amp;gt; 1821, 143, 765, 1474, 378, 485, 604, 1159, …
 ## $ soil_nitrogen              &amp;lt;dbl&amp;gt; 2.8, 1.3, 2.9, 3.6, 1.2, 1.9, 2.8, 0.6, 3.1…
 ## $ swi_range                  &amp;lt;dbl&amp;gt; 38.4, 41.2, 39.7, 49.8, 74.9, 45.0, 30.5, 2…
-## $ cloud_cover_range          &amp;lt;int&amp;gt; 23, 27, 15, 17, 38, 27, 32, 11, 15, 12, 21,…
+## $ koppen_group               &amp;lt;chr&amp;gt; &amp;quot;Arid&amp;quot;, &amp;quot;Temperate&amp;quot;, &amp;quot;Cold&amp;quot;, &amp;quot;Temperate&amp;quot;, &amp;quot;…
+## $ swi_min                    &amp;lt;dbl&amp;gt; 24.5, 33.3, 42.2, 31.3, 8.3, 28.8, 25.3, 11…
+## $ solar_rad_max              &amp;lt;dbl&amp;gt; 31.317, 24.498, 25.283, 17.237, 28.038, 22.…
 ## $ rainfall_min               &amp;lt;int&amp;gt; 25, 37, 24, 29, 0, 60, 122, 1, 10, 12, 0, 0…
 ## $ growing_season_temperature &amp;lt;dbl&amp;gt; 12.65, 19.35, 11.55, 12.45, 26.45, 17.75, 2…
-## $ solar_rad_max              &amp;lt;dbl&amp;gt; 31.317, 24.498, 25.283, 17.237, 28.038, 22.…
-## $ solar_rad_min              &amp;lt;dbl&amp;gt; 5.209, 13.311, 1.587, 9.642, 19.102, 12.196…
 ## $ rainfall_range             &amp;lt;int&amp;gt; 37, 172, 63, 264, 226, 215, 303, 61, 245, 2…
+## $ solar_rad_min              &amp;lt;dbl&amp;gt; 5.209, 13.311, 1.587, 9.642, 19.102, 12.196…
+## $ cloud_cover_range          &amp;lt;int&amp;gt; 23, 27, 15, 17, 38, 27, 32, 11, 15, 12, 21,…
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;However, when the argument &lt;code&gt;response&lt;/code&gt; is ignored, all categorical predictors are ignored.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;dplyr::glimpse(vi[, selected_predictors_no_response])
@@ -377,23 +495,23 @@ selected_predictors_no_response &amp;lt;- collinear(
 &lt;pre&gt;&lt;code&gt;## Rows: 30,000
 ## Columns: 18
 ## $ topo_diversity             &amp;lt;int&amp;gt; 29, 24, 21, 25, 19, 30, 26, 20, 26, 22, 25,…
-## $ humidity_range             &amp;lt;dbl&amp;gt; 15.57, 6.03, 14.44, 4.69, 33.18, 5.76, 3.99…
-## $ country_population         &amp;lt;dbl&amp;gt; 313973000, 1338612970, 33487208, 1338612970…
 ## $ country_gdp                &amp;lt;dbl&amp;gt; 15094000, 7973000, 1300000, 7973000, 15860,…
+## $ country_population         &amp;lt;dbl&amp;gt; 313973000, 1338612970, 33487208, 1338612970…
 ## $ topo_slope                 &amp;lt;int&amp;gt; 6, 2, 0, 10, 0, 10, 6, 0, 2, 0, 0, 1, 0, 1,…
-## $ topo_elevation             &amp;lt;int&amp;gt; 1821, 143, 765, 1474, 378, 485, 604, 1159, …
-## $ swi_range                  &amp;lt;dbl&amp;gt; 38.4, 41.2, 39.7, 49.8, 74.9, 45.0, 30.5, 2…
 ## $ soil_soc                   &amp;lt;dbl&amp;gt; 43.1, 14.6, 36.4, 34.9, 8.1, 20.8, 44.5, 4.…
 ## $ soil_clay                  &amp;lt;int&amp;gt; 20, 24, 28, 31, 27, 29, 40, 15, 26, 22, 23,…
 ## $ soil_sand                  &amp;lt;int&amp;gt; 41, 39, 27, 29, 48, 33, 30, 78, 23, 64, 54,…
-## $ swi_min                    &amp;lt;dbl&amp;gt; 24.5, 33.3, 42.2, 31.3, 8.3, 28.8, 25.3, 11…
 ## $ soil_nitrogen              &amp;lt;dbl&amp;gt; 2.8, 1.3, 2.9, 3.6, 1.2, 1.9, 2.8, 0.6, 3.1…
+## $ humidity_range             &amp;lt;dbl&amp;gt; 15.57, 6.03, 14.44, 4.69, 33.18, 5.76, 3.99…
+## $ topo_elevation             &amp;lt;int&amp;gt; 1821, 143, 765, 1474, 378, 485, 604, 1159, …
 ## $ cloud_cover_range          &amp;lt;int&amp;gt; 23, 27, 15, 17, 38, 27, 32, 11, 15, 12, 21,…
-## $ growing_season_temperature &amp;lt;dbl&amp;gt; 12.65, 19.35, 11.55, 12.45, 26.45, 17.75, 2…
-## $ rainfall_min               &amp;lt;int&amp;gt; 25, 37, 24, 29, 0, 60, 122, 1, 10, 12, 0, 0…
 ## $ solar_rad_max              &amp;lt;dbl&amp;gt; 31.317, 24.498, 25.283, 17.237, 28.038, 22.…
-## $ solar_rad_min              &amp;lt;dbl&amp;gt; 5.209, 13.311, 1.587, 9.642, 19.102, 12.196…
+## $ rainfall_min               &amp;lt;int&amp;gt; 25, 37, 24, 29, 0, 60, 122, 1, 10, 12, 0, 0…
+## $ growing_season_temperature &amp;lt;dbl&amp;gt; 12.65, 19.35, 11.55, 12.45, 26.45, 17.75, 2…
 ## $ rainfall_range             &amp;lt;int&amp;gt; 37, 172, 63, 264, 226, 215, 303, 61, 245, 2…
+## $ swi_range                  &amp;lt;dbl&amp;gt; 38.4, 41.2, 39.7, 49.8, 74.9, 45.0, 30.5, 2…
+## $ solar_rad_min              &amp;lt;dbl&amp;gt; 5.209, 13.311, 1.587, 9.642, 19.102, 12.196…
+## $ swi_min                    &amp;lt;dbl&amp;gt; 24.5, 33.3, 42.2, 31.3, 8.3, 28.8, 25.3, 11…
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If there are categorical variables in a data frame, but there is no suitable &lt;code&gt;response&lt;/code&gt; variable, then the function &lt;code&gt;cor_select()&lt;/code&gt; can handle the multicollinearity management via pairwise correlations, but at a MUCH higher computational cost, and with different results, as shown below.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;tictoc::tic()
@@ -404,7 +522,7 @@ selected_predictors_response &amp;lt;- cor_select(
 )
 tictoc::toc()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 0.48 sec elapsed
+&lt;pre&gt;&lt;code&gt;## 0.429 sec elapsed
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;tictoc::tic()
 selected_predictors_no_response &amp;lt;- cor_select(
@@ -413,7 +531,7 @@ selected_predictors_no_response &amp;lt;- cor_select(
 )
 tictoc::toc()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 41.254 sec elapsed
+&lt;pre&gt;&lt;code&gt;## 34.945 sec elapsed
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_response
 &lt;/code&gt;&lt;/pre&gt;
@@ -426,10 +544,12 @@ tictoc::toc()
 ## [13] &amp;quot;solar_rad_min&amp;quot;              &amp;quot;soil_soc&amp;quot;                  
 ## [15] &amp;quot;rainfall_min&amp;quot;               &amp;quot;swi_range&amp;quot;                 
 ## [17] &amp;quot;soil_nitrogen&amp;quot;              &amp;quot;rainfall_range&amp;quot;            
-## [19] &amp;quot;swi_min&amp;quot;                    &amp;quot;subregion&amp;quot;                 
-## [21] &amp;quot;biogeo_realm&amp;quot;               &amp;quot;cloud_cover_min&amp;quot;           
-## [23] &amp;quot;soil_type&amp;quot;                  &amp;quot;aridity_index&amp;quot;             
-## [25] &amp;quot;solar_rad_max&amp;quot;
+## [19] &amp;quot;temperature_max&amp;quot;            &amp;quot;swi_min&amp;quot;                   
+## [21] &amp;quot;subregion&amp;quot;                  &amp;quot;temperature_seasonality&amp;quot;   
+## [23] &amp;quot;biogeo_realm&amp;quot;               &amp;quot;cloud_cover_min&amp;quot;           
+## [25] &amp;quot;soil_type&amp;quot;                  &amp;quot;aridity_index&amp;quot;             
+## [27] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;koppen_group&amp;quot;              
+## [29] &amp;quot;cloud_cover_max&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_no_response
 &lt;/code&gt;&lt;/pre&gt;
@@ -444,7 +564,9 @@ tictoc::toc()
 ## [17] &amp;quot;solar_rad_min&amp;quot;              &amp;quot;aridity_index&amp;quot;             
 ## [19] &amp;quot;cloud_cover_min&amp;quot;            &amp;quot;temperature_max&amp;quot;           
 ## [21] &amp;quot;region&amp;quot;                     &amp;quot;swi_min&amp;quot;                   
-## [23] &amp;quot;solar_rad_max&amp;quot;
+## [23] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;evapotranspiration_range&amp;quot;  
+## [25] &amp;quot;swi_mean&amp;quot;                   &amp;quot;humidity_max&amp;quot;              
+## [27] &amp;quot;soil_type&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The variable selection results differ because the numeric representations of the categorical variables are rather different between the two options. When no &lt;code&gt;response&lt;/code&gt; is provided, the function &lt;code&gt;cor_select()&lt;/code&gt; compares categorical predictors against numeric ones by encoding each categorical after each numeric, and compares pairs of categoricals using Cramer&amp;rsquo;s V, implemented in the function &lt;code&gt;cramer_v()&lt;/code&gt;. Additionally, Cramer&amp;rsquo;s V values are not directly comparable with Pearson or Spearman correlation scores, and having them together in the same analysis might induce bias during the variable selection. Not using the &lt;code&gt;response&lt;/code&gt; argument should always be the last option.&lt;/p&gt;
 &lt;h4 id=&#34;preference-order&#34;&gt;Preference order&lt;/h4&gt;
@@ -464,14 +586,15 @@ tictoc::toc()
 
 selected_predictors
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;soil_temperature_mean&amp;quot; &amp;quot;soil_temperature_max&amp;quot;  &amp;quot;soil_type&amp;quot;            
-##  [4] &amp;quot;country_population&amp;quot;    &amp;quot;topo_elevation&amp;quot;        &amp;quot;country_income&amp;quot;       
-##  [7] &amp;quot;country_gdp&amp;quot;           &amp;quot;topo_slope&amp;quot;            &amp;quot;humidity_range&amp;quot;       
-## [10] &amp;quot;soil_clay&amp;quot;             &amp;quot;topo_diversity&amp;quot;        &amp;quot;soil_sand&amp;quot;            
-## [13] &amp;quot;cloud_cover_range&amp;quot;     &amp;quot;region&amp;quot;                &amp;quot;soil_soc&amp;quot;             
-## [16] &amp;quot;rainfall_min&amp;quot;          &amp;quot;swi_range&amp;quot;             &amp;quot;soil_nitrogen&amp;quot;        
-## [19] &amp;quot;rainfall_range&amp;quot;        &amp;quot;subregion&amp;quot;             &amp;quot;biogeo_realm&amp;quot;         
-## [22] &amp;quot;aridity_index&amp;quot;         &amp;quot;solar_rad_max&amp;quot;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;soil_temperature_mean&amp;quot;  &amp;quot;soil_temperature_max&amp;quot;   &amp;quot;soil_type&amp;quot;             
+##  [4] &amp;quot;country_population&amp;quot;     &amp;quot;topo_elevation&amp;quot;         &amp;quot;country_income&amp;quot;        
+##  [7] &amp;quot;country_gdp&amp;quot;            &amp;quot;topo_slope&amp;quot;             &amp;quot;humidity_range&amp;quot;        
+## [10] &amp;quot;soil_clay&amp;quot;              &amp;quot;topo_diversity&amp;quot;         &amp;quot;soil_sand&amp;quot;             
+## [13] &amp;quot;cloud_cover_range&amp;quot;      &amp;quot;region&amp;quot;                 &amp;quot;soil_soc&amp;quot;              
+## [16] &amp;quot;rainfall_min&amp;quot;           &amp;quot;solar_rad_range&amp;quot;        &amp;quot;swi_range&amp;quot;             
+## [19] &amp;quot;soil_nitrogen&amp;quot;          &amp;quot;rainfall_range&amp;quot;         &amp;quot;subregion&amp;quot;             
+## [22] &amp;quot;biogeo_realm&amp;quot;           &amp;quot;aridity_index&amp;quot;          &amp;quot;solar_rad_max&amp;quot;         
+## [25] &amp;quot;koppen_group&amp;quot;           &amp;quot;soil_temperature_range&amp;quot; &amp;quot;cloud_cover_max&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Notice that in the output, two of the variables in &lt;code&gt;preference_order&lt;/code&gt; are selected (&amp;ldquo;soil_temperature_mean&amp;rdquo; and &amp;ldquo;soil_type&amp;rdquo;), but one was removed (&amp;ldquo;soil_temperature_max&amp;rdquo;). This happens because at some point in the selection, the VIF of &amp;ldquo;soil_temperature_mean&amp;rdquo; and &amp;ldquo;soil_temperature_max&amp;rdquo; was higher than &lt;code&gt;max_vif&lt;/code&gt;, and the one with lower preference was removed.&lt;/p&gt;
 &lt;h5 id=&#34;quantitative-preference-order&#34;&gt;Quantitative preference order&lt;/h5&gt;
@@ -558,12 +681,17 @@ preference_rsquared
 )
 selected_predictors
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;biogeo_ecoregion&amp;quot;       &amp;quot;soil_temperature_range&amp;quot; &amp;quot;rainfall_min&amp;quot;          
-##  [4] &amp;quot;solar_rad_mean&amp;quot;         &amp;quot;soil_nitrogen&amp;quot;          &amp;quot;continent&amp;quot;             
-##  [7] &amp;quot;soil_soc&amp;quot;               &amp;quot;cloud_cover_range&amp;quot;      &amp;quot;topo_diversity&amp;quot;        
-## [10] &amp;quot;soil_clay&amp;quot;              &amp;quot;humidity_range&amp;quot;         &amp;quot;country_income&amp;quot;        
-## [13] &amp;quot;soil_sand&amp;quot;              &amp;quot;topo_elevation&amp;quot;         &amp;quot;topo_slope&amp;quot;            
-## [16] &amp;quot;country_gdp&amp;quot;            &amp;quot;country_population&amp;quot;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;biogeo_ecoregion&amp;quot;           &amp;quot;biogeo_realm&amp;quot;              
+##  [3] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;rainfall_max&amp;quot;              
+##  [5] &amp;quot;subregion&amp;quot;                  &amp;quot;swi_range&amp;quot;                 
+##  [7] &amp;quot;rainfall_min&amp;quot;               &amp;quot;soil_nitrogen&amp;quot;             
+##  [9] &amp;quot;continent&amp;quot;                  &amp;quot;soil_soc&amp;quot;                  
+## [11] &amp;quot;cloud_cover_range&amp;quot;          &amp;quot;topo_diversity&amp;quot;            
+## [13] &amp;quot;soil_clay&amp;quot;                  &amp;quot;humidity_range&amp;quot;            
+## [15] &amp;quot;country_income&amp;quot;             &amp;quot;soil_sand&amp;quot;                 
+## [17] &amp;quot;topo_elevation&amp;quot;             &amp;quot;growing_season_temperature&amp;quot;
+## [19] &amp;quot;topo_slope&amp;quot;                 &amp;quot;country_gdp&amp;quot;               
+## [21] &amp;quot;country_population&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This variable selection satisfies three conditions at once: maximum correlation between each predictor and the response, maximum pairwise correlation, and maximum VIF.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;f&lt;/code&gt; argument used by default is the function &lt;code&gt;f_rsquared()&lt;/code&gt;, that returns the R-squared between the response and any predictor.&lt;/p&gt;
@@ -600,12 +728,19 @@ selected_predictors_vif &amp;lt;- vif_select(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_cor
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;biogeo_ecoregion&amp;quot;       &amp;quot;soil_temperature_range&amp;quot; &amp;quot;rainfall_min&amp;quot;          
-##  [4] &amp;quot;solar_rad_mean&amp;quot;         &amp;quot;soil_nitrogen&amp;quot;          &amp;quot;continent&amp;quot;             
-##  [7] &amp;quot;soil_soc&amp;quot;               &amp;quot;cloud_cover_range&amp;quot;      &amp;quot;topo_diversity&amp;quot;        
-## [10] &amp;quot;soil_clay&amp;quot;              &amp;quot;humidity_range&amp;quot;         &amp;quot;country_income&amp;quot;        
-## [13] &amp;quot;soil_sand&amp;quot;              &amp;quot;topo_elevation&amp;quot;         &amp;quot;topo_slope&amp;quot;            
-## [16] &amp;quot;country_gdp&amp;quot;            &amp;quot;country_population&amp;quot;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;biogeo_ecoregion&amp;quot;           &amp;quot;soil_temperature_max&amp;quot;      
+##  [3] &amp;quot;soil_temperature_range&amp;quot;     &amp;quot;biogeo_realm&amp;quot;              
+##  [5] &amp;quot;solar_rad_max&amp;quot;              &amp;quot;rainfall_max&amp;quot;              
+##  [7] &amp;quot;aridity_index&amp;quot;              &amp;quot;subregion&amp;quot;                 
+##  [9] &amp;quot;swi_range&amp;quot;                  &amp;quot;rainfall_min&amp;quot;              
+## [11] &amp;quot;solar_rad_mean&amp;quot;             &amp;quot;soil_nitrogen&amp;quot;             
+## [13] &amp;quot;continent&amp;quot;                  &amp;quot;soil_soc&amp;quot;                  
+## [15] &amp;quot;solar_rad_range&amp;quot;            &amp;quot;cloud_cover_range&amp;quot;         
+## [17] &amp;quot;topo_diversity&amp;quot;             &amp;quot;soil_clay&amp;quot;                 
+## [19] &amp;quot;humidity_range&amp;quot;             &amp;quot;country_income&amp;quot;            
+## [21] &amp;quot;soil_sand&amp;quot;                  &amp;quot;topo_elevation&amp;quot;            
+## [23] &amp;quot;growing_season_temperature&amp;quot; &amp;quot;topo_slope&amp;quot;                
+## [25] &amp;quot;country_gdp&amp;quot;                &amp;quot;country_population&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors_vif
 &lt;/code&gt;&lt;/pre&gt;
@@ -737,7 +872,7 @@ head(df[, c(&amp;quot;vi_mean&amp;quot;, &amp;quot;koppen_zone&amp;quot;)], n = 
     </item>
     
     <item>
-      <title>R package `spatialRF`</title>
+      <title>R package spatialRF</title>
       <link>https://blasbenito.com/project/post-title/</link>
       <pubDate>Tue, 26 Sep 2023 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/project/post-title/</guid>
@@ -2538,7 +2673,7 @@ kableExtra::kbl(
     </item>
     
     <item>
-      <title>R package `memoria`</title>
+      <title>R package memoria</title>
       <link>https://blasbenito.com/project/memoria/</link>
       <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/project/memoria/</guid>

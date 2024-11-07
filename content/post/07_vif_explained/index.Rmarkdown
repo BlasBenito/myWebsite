@@ -26,7 +26,7 @@ projects: []
 
 # Summary
 
-In this detailed post, I dive deep into Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models. I use R code extensively to illustrate various concepts, making it a practical guide for those well-versed in R.
+In this post, I dive deep into Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models.
 
 The post covers the following main points:
 
@@ -150,7 +150,7 @@ collinear::vif_df(
 
 In plot below, the worst and best VIF scores of `a` are shown in the context of the relationship between R-squared and VIF, and three VIF thresholds commonly mentioned in the literature. These thresholds are represented as vertical dashed lines at VIF 2.5, 5, and 10, and are used as criteria to control multicollinearity in model designs. I will revisit this topic later in the post.
 
-```{r, fig.width=5, fig.height=4, echo = FALSE}
+```{r, fig.width=5, fig.height=4, echo = FALSE, warning=FALSE}
 data.frame(R2 = seq(from = 0, to = 0.99, by = 0.05)) |> 
   dplyr::mutate(VIF = 1/(1 - R2)) |> 
   ggplot() + 
@@ -286,13 +286,13 @@ First we compute the VIF of `b` against `a` alone, and against `a`, `c`, and `d`
 ba_vif <- collinear::vif_df(
   df = toy[, c("a", "b")]
 ) |> 
-  dplyr::filter(variable == "b")
+  dplyr::filter(predictor == "b")
 
 #vif of b vs a c d
 bacd_vif <- collinear::vif_df(
   df = toy[, c("a", "b", "c", "d")]
 ) |> 
-  dplyr::filter(variable == "b")
+  dplyr::filter(predictor == "b")
 
 #expeced inflation of the confidence interval
 sqrt(bacd_vif$vif)
@@ -532,7 +532,8 @@ selected_predictors <- collinear::vif_select(
   df = toy,
   predictors = c("a", "b", "c", "d"),
   preference_order = "a",
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 ```
@@ -547,7 +548,8 @@ selected_predictors <- collinear::vif_select(
   df = toy,
   predictors = c("a", "b", "c", "d"),
   preference_order = c("a", "d"),
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 ```
@@ -559,7 +561,8 @@ selected_predictors <- collinear::vif_select(
   df = toy,
   predictors = c("a", "b", "c", "d"),
   preference_order = c("a", "c"),
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 ```
@@ -575,7 +578,8 @@ preference <- collinear::preference_order(
   df = toy,
   response = "y",
   predictors = c("a", "b", "c", "d"),
-  f = f_rsquared
+  f = collinear::f_r2_pearson,
+  quiet = TRUE
 )
 
 preference
@@ -588,7 +592,8 @@ selected_predictors <- collinear::vif_select(
   df = toy,
   predictors = c("a", "b", "c", "d"),
   preference_order = preference,
-  max_vif = 2.5
+  max_vif = 2.5,
+  quiet = TRUE
 )
 selected_predictors
 ```

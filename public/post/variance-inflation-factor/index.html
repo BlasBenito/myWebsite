@@ -869,7 +869,7 @@ abcd_R2
 <p>Since the R-squared of <code>a</code> against all other predictors is pretty high, it definitely seems that <code>a</code> is a linear combination of the other predictors, and we can conclude that there is multicollinearity in the model design.</p>
 <p>However, as informative as this R-squared is, it tells us nothing about the consequences of having multicollinearity in our model design. And this is where <strong>Variance Inflation Factors</strong>, or <strong>VIF</strong> for short, come into play.</p>
 <h2 id="what-are-variance-inflation-factors">What are Variance Inflation Factors?</h2>
-<p>The Variance Inflation Factor (VIF) of a predictor is computed as <code>$1/(1 - R^2)$</code>, where <code>\(R^²\)</code> is the R-squared of the multiple linear regression of the predictor against all other predictors.</p>
+<p>The Variance Inflation Factor (VIF) of a predictor is computed as <code>\(1/(1 - R^2)\)</code>, where <code>\(R^²\)</code> is the R-squared of the multiple linear regression of the predictor against all other predictors.</p>
 <p>In the case of <code>a</code>, we just have to apply the VIF expression to the R-squared of the regression model against all other predictors.</p>
 <pre><code class="language-r">abcd_vif &lt;- 1/(1-abcd_R2)
 abcd_vif

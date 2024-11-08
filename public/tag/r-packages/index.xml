@@ -65,36 +65,10 @@ install.packages(&amp;quot;rpart.plot&amp;quot;)
 install.packages(&amp;quot;dplyr&amp;quot;)
 install.packages(&amp;quot;ggplot2&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(rpart)
-library(rpart.plot)
-library(collinear)
-library(fastDummies)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Thank you for using fastDummies!
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## To acknowledge our work, please cite the package:
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Kaplan, J. &amp;amp; Schlegel, B. (2023). fastDummies: Fast Creation of Dummy (Binary) Columns and Rows from Categorical Variables. Version 1.7.1. URL: https://github.com/jacobkap/fastDummies, https://jacobkap.github.io/fastDummies/.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(dplyr)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &#39;dplyr&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(ggplot2)
-&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;categorical-predictors-are-kinda-annoying&#34;&gt;Categorical Predictors are Kinda Annoying&lt;/h1&gt;
 &lt;p&gt;I mean, the title of this section says it already, and I bet you have experienced it during an Exploratory Data Analysis (EDA) or a feature selection for model training and the likes. You likely had a nice bunch of numerical variables to use as predictors, no issues there. But then, you discovered among your columns thingies like &amp;ldquo;sampling_location&amp;rdquo;, &amp;ldquo;region_name&amp;rdquo;, &amp;ldquo;favorite_color&amp;rdquo;, or any other type of predictor made of strings, lots of strings. And some of these made sense, and some of them didn&amp;rsquo;t, because who knows where they came from. And you had to branch your code to deal with numeric and categorical variables separately. Or maybe chose to ignore them, as I have done plenty of times.&lt;/p&gt;
 &lt;p&gt;Yeah, nobody likes them much at all, But sometimes, these stringy monsters are all you have to move on with your work. And you are not the only one. That&amp;rsquo;s why many efforts have been made to convert them to numeric and kill the problem at once, so now we all have two problems instead.&lt;/p&gt;
-&lt;p&gt;Let me go ahead and illustrate the issue. There is a nice data frame in the &lt;code&gt;collinear&lt;/code&gt; R package named &lt;code&gt;vi&lt;/code&gt;, with one response variable named &lt;code&gt;vi_mean&lt;/code&gt;, and several numeric and categorical predictors named in the vector &lt;code&gt;vi_predictors&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let me go ahead and illustrate the issue. There is a nice data frame in the &lt;code&gt;collinear&lt;/code&gt; R package named &lt;code&gt;vi&lt;/code&gt;, with one response variable named &lt;code&gt;vi_numeric&lt;/code&gt;, and several numeric and categorical predictors named in the vector &lt;code&gt;vi_predictors&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;data(
   vi,
   vi_predictors
@@ -106,15 +80,15 @@ dplyr::glimpse(vi)
 ## Columns: 68
 ## $ longitude                  &amp;lt;dbl&amp;gt; -114.254306, 114.845693, -122.145972, 108.3…
 ## $ latitude                   &amp;lt;dbl&amp;gt; 45.0540272, 26.2706940, 56.3790272, 29.9456…
-## $ vi_mean                    &amp;lt;dbl&amp;gt; 0.38, 0.53, 0.45, 0.69, 0.42, 0.68, 0.70, 0…
-## $ vi_max                     &amp;lt;dbl&amp;gt; 0.57, 0.67, 0.65, 0.85, 0.64, 0.78, 0.77, 0…
-## $ vi_min                     &amp;lt;dbl&amp;gt; 0.12, 0.41, 0.25, 0.50, 0.25, 0.48, 0.60, 0…
-## $ vi_range                   &amp;lt;dbl&amp;gt; 0.45, 0.26, 0.40, 0.34, 0.39, 0.31, 0.17, 0…
-## $ vi_binary                  &amp;lt;dbl&amp;gt; 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0…
+## $ vi_numeric                 &amp;lt;dbl&amp;gt; 0.38, 0.53, 0.45, 0.69, 0.42, 0.68, 0.70, 0…
+## $ vi_counts                  &amp;lt;int&amp;gt; 380, 530, 450, 690, 420, 680, 700, 260, 550…
+## $ vi_binomial                &amp;lt;dbl&amp;gt; 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0…
+## $ vi_categorical             &amp;lt;chr&amp;gt; &amp;quot;medium&amp;quot;, &amp;quot;high&amp;quot;, &amp;quot;medium&amp;quot;, &amp;quot;very_high&amp;quot;, &amp;quot;m…
+## $ vi_factor                  &amp;lt;fct&amp;gt; medium, high, medium, very_high, medium, ve…
 ## $ koppen_zone                &amp;lt;chr&amp;gt; &amp;quot;BSk&amp;quot;, &amp;quot;Cfa&amp;quot;, &amp;quot;Dfc&amp;quot;, &amp;quot;Cfb&amp;quot;, &amp;quot;Aw&amp;quot;, &amp;quot;Cfa&amp;quot;, &amp;quot;A…
 ## $ koppen_group               &amp;lt;chr&amp;gt; &amp;quot;Arid&amp;quot;, &amp;quot;Temperate&amp;quot;, &amp;quot;Cold&amp;quot;, &amp;quot;Temperate&amp;quot;, &amp;quot;…
 ## $ koppen_description         &amp;lt;chr&amp;gt; &amp;quot;steppe, cold&amp;quot;, &amp;quot;no dry season, hot summer&amp;quot;…
-## $ soil_type                  &amp;lt;chr&amp;gt; &amp;quot;Cambisols&amp;quot;, &amp;quot;Acrisols&amp;quot;, &amp;quot;Luvisols&amp;quot;, &amp;quot;Aliso…
+## $ soil_type                  &amp;lt;fct&amp;gt; Cambisols, Acrisols, Luvisols, Alisols, Gle…
 ## $ topo_slope                 &amp;lt;int&amp;gt; 6, 2, 0, 10, 0, 10, 6, 0, 2, 0, 0, 1, 0, 1,…
 ## $ topo_diversity             &amp;lt;int&amp;gt; 29, 24, 21, 25, 19, 30, 26, 20, 26, 22, 25,…
 ## $ topo_elevation             &amp;lt;int&amp;gt; 1821, 143, 765, 1474, 378, 485, 604, 1159, …
@@ -174,7 +148,7 @@ dplyr::glimpse(vi)
 ## $ subregion                  &amp;lt;chr&amp;gt; &amp;quot;Northern America&amp;quot;, &amp;quot;Eastern Asia&amp;quot;, &amp;quot;Northe…
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The categorical variables in this data frame are identified below:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;vi_categorical &amp;lt;- collinear::identify_non_numeric_predictors(
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;vi_categorical &amp;lt;- collinear::identify_predictors_categorical(
   df = vi,
   predictors = vi_predictors
 )
@@ -220,16 +194,16 @@ vi_categorical
 ## [25] &amp;quot;ET&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;one-hot-encoding-is-here&#34;&gt;One-hot Encoding is here&amp;hellip;&lt;/h1&gt;
-&lt;p&gt;Let&amp;rsquo;s use it as predictor of &lt;code&gt;vi_mean&lt;/code&gt; in a linear model and take a look at the summary.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s use it as predictor of &lt;code&gt;vi_numeric&lt;/code&gt; in a linear model and take a look at the summary.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;lm(
-  formula = vi_mean ~ koppen_zone, 
+  formula = vi_numeric ~ koppen_zone, 
   data = vi
   ) |&amp;gt; 
   summary()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Call:
-## lm(formula = vi_mean ~ koppen_zone, data = vi)
+## lm(formula = vi_numeric ~ koppen_zone, data = vi)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -348,46 +322,46 @@ dplyr::glimpse(df)
   df = df
 )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##           variable          vif
-## 1  koppen_zone_Dfd 1.031226e+12
-## 2  koppen_zone_Cfc 1.493932e+13
-## 3   koppen_zone_ET 3.395786e+13
-## 4  koppen_zone_Dsa 3.549784e+13
-## 5  koppen_zone_Dsc 3.652432e+13
-## 6  koppen_zone_Dsb 7.338609e+13
-## 7  koppen_zone_Csb 1.323997e+14
-## 8  koppen_zone_Dwb 1.405032e+14
-## 9  koppen_zone_Dwc 1.592088e+14
-## 10 koppen_zone_Dwa 1.894423e+14
-## 11 koppen_zone_Csa 1.984881e+14
-## 12 koppen_zone_Cwb 2.624933e+14
-## 13 koppen_zone_Dfa 2.838687e+14
-## 14 koppen_zone_Cfb 3.834325e+14
-## 15 koppen_zone_Dfc 3.863684e+14
+&lt;pre&gt;&lt;code&gt;##          predictor          vif
+## 6  koppen_zone_BWh 2.403991e+15
+## 3   koppen_zone_Aw 2.177627e+15
+## 4  koppen_zone_BSh 1.158438e+15
+## 5  koppen_zone_BSk 1.100300e+15
+## 1   koppen_zone_Af 9.879589e+14
+## 7  koppen_zone_BWk 9.866240e+14
+## 8  koppen_zone_Cfa 7.966760e+14
+## 2   koppen_zone_Am 7.440723e+14
+## 13 koppen_zone_Cwa 6.309241e+14
 ## 16 koppen_zone_Dfb 6.139201e+14
-## 17 koppen_zone_Cwa 6.309241e+14
-## 18  koppen_zone_Am 7.440723e+14
-## 19 koppen_zone_Cfa 7.966760e+14
-## 20 koppen_zone_BWk 9.866240e+14
-## 21  koppen_zone_Af 9.879589e+14
-## 22 koppen_zone_BSk 1.100300e+15
-## 23 koppen_zone_BSh 1.158438e+15
-## 24  koppen_zone_Aw 2.177627e+15
-## 25 koppen_zone_BWh 2.403991e+15
+## 17 koppen_zone_Dfc 3.863684e+14
+## 9  koppen_zone_Cfb 3.834325e+14
+## 15 koppen_zone_Dfa 2.838687e+14
+## 14 koppen_zone_Cwb 2.624933e+14
+## 11 koppen_zone_Csa 1.984881e+14
+## 22 koppen_zone_Dwa 1.894423e+14
+## 24 koppen_zone_Dwc 1.592088e+14
+## 23 koppen_zone_Dwb 1.405032e+14
+## 12 koppen_zone_Csb 1.323997e+14
+## 20 koppen_zone_Dsb 7.338609e+13
+## 21 koppen_zone_Dsc 3.652432e+13
+## 19 koppen_zone_Dsa 3.549784e+13
+## 25  koppen_zone_ET 3.395786e+13
+## 10 koppen_zone_Cfc 1.493932e+13
+## 18 koppen_zone_Dfd 1.031226e+12
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;On top of those issues, one-hot encoding also causes &lt;strong&gt;sparsity&lt;/strong&gt; in tree-based models. Let me show you an example. Below I train a recursive partition tree using &lt;code&gt;vi_mean&lt;/code&gt; as response, and the one-hot encoded version of &lt;code&gt;koppen_zone&lt;/code&gt; we have in &lt;code&gt;df&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;On top of those issues, one-hot encoding also causes &lt;strong&gt;sparsity&lt;/strong&gt; in tree-based models. Let me show you an example. Below I train a recursive partition tree using &lt;code&gt;vi_numeric&lt;/code&gt; as response, and the one-hot encoded version of &lt;code&gt;koppen_zone&lt;/code&gt; we have in &lt;code&gt;df&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#add response variable to df
-df$vi_mean &amp;lt;- vi$vi_mean
+df$vi_numeric &amp;lt;- vi$vi_numeric
 
 #fit model using all one-hot encoded variables
 koppen_zone_one_hot &amp;lt;- rpart::rpart(
-  formula = vi_mean ~ .,
+  formula = vi_numeric ~ .,
   data = df
 )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now I do the same using the categorical version of &lt;code&gt;koppen_zone&lt;/code&gt; in &lt;code&gt;vi&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;koppen_zone_categorical &amp;lt;- rpart::rpart(
-  formula = vi_mean ~ koppen_zone,
+  formula = vi_numeric ~ koppen_zone,
   data = vi
 )
 &lt;/code&gt;&lt;/pre&gt;
@@ -510,36 +484,6 @@ yx |&amp;gt;
 ## 7     7 c          7.07
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This method can deal with one-case categories without issues, and does not generate repeated values, but in exchange, we have to be mindful of the amount of noise we add, and we have to set a random seed to ensure reproducibility.&lt;/p&gt;
-&lt;h2 id=&#34;random-encoding&#34;&gt;Random Encoding&lt;/h2&gt;
-&lt;p&gt;A more exotic non-deterministic method of encoding consists of computing the mean and the standard deviation of the target over the category, and then using these values to parameterize a normal distribution to extract randomized values from. This kind of encoding also requires to set the random seed to ensure reproducibility.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(1)
-
-yx |&amp;gt;
-  dplyr::group_by(x) |&amp;gt;
-  dplyr::mutate(
-    x_encoded = stats::rnorm(
-      n = dplyr::n(),
-      mean = mean(y),
-      sd = ifelse(
-        dplyr::n() == 1,
-        stats::sd(yx$y), #use global sd for one-case groups
-        stats::sd(y)     #use local sd for n-cases groups
-      )
-    )
-  )
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 7 × 3
-## # Groups:   x [3]
-##       y x     x_encoded
-##   &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;
-## 1     1 a          1.37
-## 2     2 a          2.18
-## 3     3 a          1.16
-## 4     4 b          6.60
-## 5     5 b          5.33
-## 6     6 b          4.18
-## 7     7 c          8.05
-&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;rank-encoding-plus-white-noise&#34;&gt;Rank Encoding plus White Noise&lt;/h2&gt;
 &lt;p&gt;This is a little different from all the other methods, because it does not map the categories to values from the target, but to the rank/order of the target means per category. It basically converts the categorical variable into an ordinal one arranged along with the target, and then adds white noise on top to avoid value repetition.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#maximum noise as function of the number of categories
@@ -557,12 +501,12 @@ yx |&amp;gt;
 ##       y x     x_encoded
 ##   &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;
 ## 1     1 a          1.02
-## 2     2 a          1.01
-## 3     3 a          1.02
-## 4     4 b          2.03
+## 2     2 a          1.02
+## 3     3 a          1.00
+## 4     4 b          2.01
 ## 5     5 b          2.01
 ## 6     6 b          2.02
-## 7     7 c          3.03
+## 7     7 c          3.01
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;the-target-encoding-lab&#34;&gt;The Target Encoding Lab&lt;/h2&gt;
 &lt;p&gt;The function &lt;code&gt;collinear::target_encoding_lab()&lt;/code&gt; implements all these encoding methods, and allows defining different combinations of parameters. It was designed to help understand how they work, and maybe help make choices about what&amp;rsquo;s the right encoding for a given categorical predictor.&lt;/p&gt;
@@ -574,51 +518,33 @@ yx |&amp;gt;
   predictors = &amp;quot;x&amp;quot;,
   white_noise = c(0, 0.1),
   smoothing = c(0, 2),
-  rnorm_sd_multiplier = c(0.25, 0.5),
-  verbose = TRUE,
+  quiet = FALSE,
   seed = 1, #for reproducibility
-  replace = FALSE #to replace or not the predictors with their encodings
+  overwrite = FALSE #to overwrite or not the predictors with their encodings
 )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
-## Encoding the predictor: x
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## New encoded predictor: &#39;x__encoded_rank&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## New encoded predictor: &#39;x__encoded_mean&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## New encoded predictor: &#39;x__encoded_mean__smoothing_2&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## New encoded predictor: &#39;x__encoded_loo&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## New encoded predictor: &#39;x__encoded_rank__noise_0.1&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## New encoded predictor: &#39;x__encoded_mean__noise_0.1&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## New encoded predictor: &#39;x__encoded_mean__smoothing_2__noise_0.1&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## New encoded predictor: &#39;x__encoded_loo__noise_0.1&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## New encoded predictor: &#39;x__encoded_rnorm__sd_multiplier_0.25&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## New encoded predictor: &#39;x__encoded_rnorm__sd_multiplier_0.5&#39;
+## collinear::target_encoding_lab(): using response &#39;y&#39; to encode categorical predictors:
+##  - x
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;dplyr::glimpse(yx_encoded)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Rows: 7
-## Columns: 12
-## $ y                                       &amp;lt;int&amp;gt; 1, 2, 3, 4, 5, 6, 7
-## $ x                                       &amp;lt;chr&amp;gt; &amp;quot;a&amp;quot;, &amp;quot;a&amp;quot;, &amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;b&amp;quot;, …
-## $ x__encoded_rank                         &amp;lt;int&amp;gt; 1, 1, 1, 2, 2, 2, 3
-## $ x__encoded_mean                         &amp;lt;dbl&amp;gt; 2, 2, 2, 5, 5, 5, 7
-## $ x__encoded_mean__smoothing_2            &amp;lt;dbl&amp;gt; 2.8, 2.8, 2.8, 4.6, 4.6, 4.6, …
-## $ x__encoded_loo                          &amp;lt;dbl&amp;gt; 2.5, 2.0, 1.5, 5.5, 5.0, 4.5, …
-## $ x__encoded_rank__noise_0.1              &amp;lt;dbl&amp;gt; 0.5030858, 0.6752789, 0.999474…
-## $ x__encoded_mean__noise_0.1              &amp;lt;dbl&amp;gt; 1.503086, 1.675279, 1.999475, …
-## $ x__encoded_mean__smoothing_2__noise_0.1 &amp;lt;dbl&amp;gt; 2.303086, 2.475279, 2.799475, …
-## $ x__encoded_loo__noise_0.1               &amp;lt;dbl&amp;gt; 2.003086, 1.675279, 1.499475, …
-## $ x__encoded_rnorm__sd_multiplier_0.25    &amp;lt;dbl&amp;gt; 1.843387, 2.045911, 1.791093, …
-## $ x__encoded_rnorm__sd_multiplier_0.5     &amp;lt;dbl&amp;gt; 1.686773, 2.091822, 1.582186, …
+## Columns: 14
+## $ y                                               &amp;lt;int&amp;gt; 1, 2, 3, 4, 5, 6, 7
+## $ x                                               &amp;lt;chr&amp;gt; &amp;quot;a&amp;quot;, &amp;quot;a&amp;quot;, &amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;b…
+## $ x__encoded_loo                                  &amp;lt;dbl&amp;gt; 2.5, 2.0, 1.5, 5.5, 5.…
+## $ x__encoded_loo__noise_0.1__seed_1               &amp;lt;dbl&amp;gt; 2.554579, 1.564069, 2.…
+## $ x__encoded_loo                                  &amp;lt;dbl&amp;gt; 2.5, 2.0, 1.5, 5.5, 5.…
+## $ x__encoded_loo__noise_0.1__seed_1               &amp;lt;dbl&amp;gt; 2.554579, 1.564069, 2.…
+## $ x__encoded_mean                                 &amp;lt;dbl&amp;gt; 2, 2, 2, 5, 5, 5, 7
+## $ x__encoded_mean__noise_0.1__seed_1              &amp;lt;dbl&amp;gt; 2.054579, 1.564069, 2.…
+## $ x__encoded_mean__smoothing_2                    &amp;lt;dbl&amp;gt; 2.8, 2.8, 2.8, 4.6, 4.…
+## $ x__encoded_mean__smoothing_2__noise_0.1__seed_1 &amp;lt;dbl&amp;gt; 2.854579, 2.364069, 3.…
+## $ x__encoded_rank                                 &amp;lt;int&amp;gt; 1, 1, 1, 2, 2, 2, 3
+## $ x__encoded_rank__noise_0.1__seed_1              &amp;lt;dbl&amp;gt; 1.0545786, 0.5640694, …
+## $ x__encoded_rank                                 &amp;lt;int&amp;gt; 1, 1, 1, 2, 2, 2, 3
+## $ x__encoded_rank__noise_0.1__seed_1              &amp;lt;dbl&amp;gt; 1.0545786, 0.5640694, …
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;yx_encoded |&amp;gt; 
   tidyr::pivot_longer(
@@ -635,21 +561,21 @@ yx |&amp;gt;
   geom_point(size = 3) + 
   theme_bw()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;img src=&#34;https://blasbenito.com/post/target-encoding/index_files/figure-html/unnamed-chunk-22-1.png&#34; width=&#34;1152&#34; /&gt;
+&lt;img src=&#34;https://blasbenito.com/post/target-encoding/index_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;1152&#34; /&gt;
 The function also allows to replace a given predictor with their selected encoding.
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;yx_encoded &amp;lt;- collinear::target_encoding_lab(
   df = yx,
   response = &amp;quot;y&amp;quot;,
   predictors = &amp;quot;x&amp;quot;,
-  encoding_methods = &amp;quot;mean&amp;quot;, #selected encoding method
+  methods = &amp;quot;mean&amp;quot;, #selected encoding method
   smoothing = 2,
-  verbose = TRUE,
-  replace = TRUE
+  quiet = FALSE,
+  overwrite = TRUE
 )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning in validate_df(df = df, min_rows = 30): the number of rows in &#39;df&#39; is
-## lower than 30. A multicollinearity analysis may fail or yield meaningless
-## results.
+&lt;pre&gt;&lt;code&gt;## 
+## collinear::target_encoding_lab(): using response &#39;y&#39; to encode categorical predictors:
+##  - x
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;dplyr::glimpse(yx_encoded)
 &lt;/code&gt;&lt;/pre&gt;

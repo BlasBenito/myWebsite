@@ -71,7 +71,7 @@ install.packages("dplyr")
 install.packages("ggplot2")
 ```
 
-```{r}
+```{r, include = FALSE}
 library(rpart)
 library(rpart.plot)
 library(collinear)
@@ -87,7 +87,7 @@ I mean, the title of this section says it already, and I bet you have experience
 
 Yeah, nobody likes them much at all, But sometimes, these stringy monsters are all you have to move on with your work. And you are not the only one. That's why many efforts have been made to convert them to numeric and kill the problem at once, so now we all have two problems instead.
 
-Let me go ahead and illustrate the issue. There is a nice data frame in the `collinear` R package named `vi`, with one response variable named `vi_mean`, and several numeric and categorical predictors named in the vector `vi_predictors`.
+Let me go ahead and illustrate the issue. There is a nice data frame in the `collinear` R package named `vi`, with one response variable named `vi_numeric`, and several numeric and categorical predictors named in the vector `vi_predictors`.
 
 ```{r}
 data(
@@ -101,7 +101,7 @@ dplyr::glimpse(vi)
 The categorical variables in this data frame are identified below:
 
 ```{r}
-vi_categorical <- collinear::identify_non_numeric_predictors(
+vi_categorical <- collinear::identify_predictors_categorical(
   df = vi,
   predictors = vi_predictors
 )
@@ -132,11 +132,11 @@ sort(unique(vi$koppen_zone))
 
 # One-hot Encoding is here...
 
-Let's use it as predictor of `vi_mean` in a linear model and take a look at the summary.
+Let's use it as predictor of `vi_numeric` in a linear model and take a look at the summary.
 
 ```{r}
 lm(
-  formula = vi_mean ~ koppen_zone, 
+  formula = vi_numeric ~ koppen_zone, 
   data = vi
   ) |> 
   summary()
@@ -178,15 +178,15 @@ collinear::vif_df(
 )
 ```
 
-On top of those issues, one-hot encoding also causes **sparsity** in tree-based models. Let me show you an example. Below I train a recursive partition tree using `vi_mean` as response, and the one-hot encoded version of `koppen_zone` we have in `df`. 
+On top of those issues, one-hot encoding also causes **sparsity** in tree-based models. Let me show you an example. Below I train a recursive partition tree using `vi_numeric` as response, and the one-hot encoded version of `koppen_zone` we have in `df`. 
 
 ```{r}
 #add response variable to df
-df$vi_mean <- vi$vi_mean
+df$vi_numeric <- vi$vi_numeric
 
 #fit model using all one-hot encoded variables
 koppen_zone_one_hot <- rpart::rpart(
-  formula = vi_mean ~ .,
+  formula = vi_numeric ~ .,
   data = df
 )
 ```
@@ -195,7 +195,7 @@ Now I do the same using the categorical version of `koppen_zone` in `vi`.
 
 ```{r}
 koppen_zone_categorical <- rpart::rpart(
-  formula = vi_mean ~ koppen_zone,
+  formula = vi_numeric ~ koppen_zone,
   data = vi
 )
 ```
@@ -304,28 +304,6 @@ yx |>
 
 This method can deal with one-case categories without issues, and does not generate repeated values, but in exchange, we have to be mindful of the amount of noise we add, and we have to set a random seed to ensure reproducibility.
 
-## Random Encoding
-
-A more exotic non-deterministic method of encoding consists of computing the mean and the standard deviation of the target over the category, and then using these values to parameterize a normal distribution to extract randomized values from. This kind of encoding also requires to set the random seed to ensure reproducibility.
-
-```{r}
-set.seed(1)
-
-yx |>
-  dplyr::group_by(x) |>
-  dplyr::mutate(
-    x_encoded = stats::rnorm(
-      n = dplyr::n(),
-      mean = mean(y),
-      sd = ifelse(
-        dplyr::n() == 1,
-        stats::sd(yx$y), #use global sd for one-case groups
-        stats::sd(y)     #use local sd for n-cases groups
-      )
-    )
-  )
-```
-
 ## Rank Encoding plus White Noise
 
 This is a little different from all the other methods, because it does not map the categories to values from the target, but to the rank/order of the target means per category. It basically converts the categorical variable into an ordinal one arranged along with the target, and then adds white noise on top to avoid value repetition.
@@ -356,10 +334,9 @@ yx_encoded <- target_encoding_lab(
   predictors = "x",
   white_noise = c(0, 0.1),
   smoothing = c(0, 2),
-  rnorm_sd_multiplier = c(0.25, 0.5),
-  verbose = TRUE,
+  quiet = FALSE,
   seed = 1, #for reproducibility
-  replace = FALSE #to replace or not the predictors with their encodings
+  overwrite = FALSE #to overwrite or not the predictors with their encodings
 )
 
 dplyr::glimpse(yx_encoded)
@@ -387,10 +364,10 @@ yx_encoded <- collinear::target_encoding_lab(
   df = yx,
   response = "y",
   predictors = "x",
-  encoding_methods = "mean", #selected encoding method
+  methods = "mean", #selected encoding method
   smoothing = 2,
-  verbose = TRUE,
-  replace = TRUE
+  quiet = FALSE,
+  overwrite = TRUE
 )
 
 dplyr::glimpse(yx_encoded)

@@ -57,7 +57,7 @@ The post intends to serve as a useful resource for data scientists exploring alt
 This tutorial requires the development version (>= 1.0.3) of the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more.
 
 
-```r
+``` r
 #required
 install.packages("remotes")
 remotes::install_github(
@@ -73,49 +73,6 @@ install.packages("ggplot2")
 ```
 
 
-```r
-library(rpart)
-library(rpart.plot)
-library(collinear)
-library(fastDummies)
-```
-
-```
-## Thank you for using fastDummies!
-```
-
-```
-## To acknowledge our work, please cite the package:
-```
-
-```
-## Kaplan, J. & Schlegel, B. (2023). fastDummies: Fast Creation of Dummy (Binary) Columns and Rows from Categorical Variables. Version 1.7.1. URL: https://github.com/jacobkap/fastDummies, https://jacobkap.github.io/fastDummies/.
-```
-
-```r
-library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
-library(ggplot2)
-```
 
 
 # Categorical Predictors are Kinda Annoying
@@ -124,10 +81,10 @@ I mean, the title of this section says it already, and I bet you have experience
 
 Yeah, nobody likes them much at all, But sometimes, these stringy monsters are all you have to move on with your work. And you are not the only one. That's why many efforts have been made to convert them to numeric and kill the problem at once, so now we all have two problems instead.
 
-Let me go ahead and illustrate the issue. There is a nice data frame in the `collinear` R package named `vi`, with one response variable named `vi_mean`, and several numeric and categorical predictors named in the vector `vi_predictors`.
+Let me go ahead and illustrate the issue. There is a nice data frame in the `collinear` R package named `vi`, with one response variable named `vi_numeric`, and several numeric and categorical predictors named in the vector `vi_predictors`.
 
 
-```r
+``` r
 data(
   vi,
   vi_predictors
@@ -141,15 +98,15 @@ dplyr::glimpse(vi)
 ## Columns: 68
 ## $ longitude                  <dbl> -114.254306, 114.845693, -122.145972, 108.3…
 ## $ latitude                   <dbl> 45.0540272, 26.2706940, 56.3790272, 29.9456…
-## $ vi_mean                    <dbl> 0.38, 0.53, 0.45, 0.69, 0.42, 0.68, 0.70, 0…
-## $ vi_max                     <dbl> 0.57, 0.67, 0.65, 0.85, 0.64, 0.78, 0.77, 0…
-## $ vi_min                     <dbl> 0.12, 0.41, 0.25, 0.50, 0.25, 0.48, 0.60, 0…
-## $ vi_range                   <dbl> 0.45, 0.26, 0.40, 0.34, 0.39, 0.31, 0.17, 0…
-## $ vi_binary                  <dbl> 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0…
+## $ vi_numeric                 <dbl> 0.38, 0.53, 0.45, 0.69, 0.42, 0.68, 0.70, 0…
+## $ vi_counts                  <int> 380, 530, 450, 690, 420, 680, 700, 260, 550…
+## $ vi_binomial                <dbl> 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0…
+## $ vi_categorical             <chr> "medium", "high", "medium", "very_high", "m…
+## $ vi_factor                  <fct> medium, high, medium, very_high, medium, ve…
 ## $ koppen_zone                <chr> "BSk", "Cfa", "Dfc", "Cfb", "Aw", "Cfa", "A…
 ## $ koppen_group               <chr> "Arid", "Temperate", "Cold", "Temperate", "…
 ## $ koppen_description         <chr> "steppe, cold", "no dry season, hot summer"…
-## $ soil_type                  <chr> "Cambisols", "Acrisols", "Luvisols", "Aliso…
+## $ soil_type                  <fct> Cambisols, Acrisols, Luvisols, Alisols, Gle…
 ## $ topo_slope                 <int> 6, 2, 0, 10, 0, 10, 6, 0, 2, 0, 0, 1, 0, 1,…
 ## $ topo_diversity             <int> 29, 24, 21, 25, 19, 30, 26, 20, 26, 22, 25,…
 ## $ topo_elevation             <int> 1821, 143, 765, 1474, 378, 485, 604, 1159, …
@@ -212,8 +169,8 @@ dplyr::glimpse(vi)
 The categorical variables in this data frame are identified below:
 
 
-```r
-vi_categorical <- collinear::identify_non_numeric_predictors(
+``` r
+vi_categorical <- collinear::identify_predictors_categorical(
   df = vi,
   predictors = vi_predictors
 )
@@ -230,7 +187,7 @@ vi_categorical
 And finally, their number of categories:
 
 
-```r
+``` r
 data.frame(
   name = vi_categorical,
   categories = lapply(
@@ -263,7 +220,7 @@ data.frame(
 A few, like `country_name` and `biogeo_ecoregion`, show a cardinality high enough to ruin our day, don't they? But ok, let's start with one with a moderate number of categories, like `koppen_zone`. This variable has 25 categories representing climate zones.
 
 
-```r
+``` r
 sort(unique(vi$koppen_zone))
 ```
 
@@ -275,12 +232,12 @@ sort(unique(vi$koppen_zone))
 
 # One-hot Encoding is here...
 
-Let's use it as predictor of `vi_mean` in a linear model and take a look at the summary.
+Let's use it as predictor of `vi_numeric` in a linear model and take a look at the summary.
 
 
-```r
+``` r
 lm(
-  formula = vi_mean ~ koppen_zone, 
+  formula = vi_numeric ~ koppen_zone, 
   data = vi
   ) |> 
   summary()
@@ -289,7 +246,7 @@ lm(
 ```
 ## 
 ## Call:
-## lm(formula = vi_mean ~ koppen_zone, data = vi)
+## lm(formula = vi_numeric ~ koppen_zone, data = vi)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -333,7 +290,7 @@ lm(
 Look at this monster! What the hell happened here? Linear models cannot deal with categorical predictors, so they create numeric **dummy variables** instead. The function `stats::model.matrix()` does exactly that:
 
 
-```r
+``` r
 dummy_variables <- stats::model.matrix( 
   ~ koppen_zone,
   data = vi
@@ -345,7 +302,7 @@ ncol(dummy_variables)
 ## [1] 25
 ```
 
-```r
+``` r
 dummy_variables[1:10, 1:10]
 ```
 
@@ -377,7 +334,7 @@ dummy_variables[1:10, 1:10]
 This function first creates an Intercept column with all ones. Then, for each original category except the first one ("Af"), a new column with value 1 in the cases where the given category was present and 0 otherwise is created. The category with no column ("Af") is represented in these cases in the intercept where all other dummy columns are zero. This is, essentially, **one-hot encoding** with a little twist. You will find most people use the terms *dummy variables* and *one-hot encoding* interchangeably, and that's ok. But in the end, the little twist of omitting the first category is what differentiates them. Most functions performing one-hot encoding, no matter their name, are creating as many columns as categories. That is for example the case of `fastDummies::dummy_cols()`, from the R package [`fastDummies`](https://jacobkap.github.io/fastDummies/):
 
 
-```r
+``` r
 df <- fastDummies::dummy_cols(
   .data = vi[, "koppen_zone", drop = FALSE],
   select_columns = "koppen_zone",
@@ -425,51 +382,51 @@ The first issue can easily be named the **dimensionality explosion**. If we crea
 The second issue is **increased multicollinearity**. One-hot encoded features are highly collinear, which makes obtaining accurate estimates for the coefficients of the encoded categories very hard. Look at the Variance Inflation Factors of the encoded Koppen zones, they have incredibly high values!
 
 
-```r
+``` r
 collinear::vif_df(
   df = df
 )
 ```
 
 ```
-##           variable          vif
-## 1  koppen_zone_Dfd 1.031226e+12
-## 2  koppen_zone_Cfc 1.493932e+13
-## 3   koppen_zone_ET 3.395786e+13
-## 4  koppen_zone_Dsa 3.549784e+13
-## 5  koppen_zone_Dsc 3.652432e+13
-## 6  koppen_zone_Dsb 7.338609e+13
-## 7  koppen_zone_Csb 1.323997e+14
-## 8  koppen_zone_Dwb 1.405032e+14
-## 9  koppen_zone_Dwc 1.592088e+14
-## 10 koppen_zone_Dwa 1.894423e+14
-## 11 koppen_zone_Csa 1.984881e+14
-## 12 koppen_zone_Cwb 2.624933e+14
-## 13 koppen_zone_Dfa 2.838687e+14
-## 14 koppen_zone_Cfb 3.834325e+14
-## 15 koppen_zone_Dfc 3.863684e+14
+##          predictor          vif
+## 6  koppen_zone_BWh 2.403991e+15
+## 3   koppen_zone_Aw 2.177627e+15
+## 4  koppen_zone_BSh 1.158438e+15
+## 5  koppen_zone_BSk 1.100300e+15
+## 1   koppen_zone_Af 9.879589e+14
+## 7  koppen_zone_BWk 9.866240e+14
+## 8  koppen_zone_Cfa 7.966760e+14
+## 2   koppen_zone_Am 7.440723e+14
+## 13 koppen_zone_Cwa 6.309241e+14
 ## 16 koppen_zone_Dfb 6.139201e+14
-## 17 koppen_zone_Cwa 6.309241e+14
-## 18  koppen_zone_Am 7.440723e+14
-## 19 koppen_zone_Cfa 7.966760e+14
-## 20 koppen_zone_BWk 9.866240e+14
-## 21  koppen_zone_Af 9.879589e+14
-## 22 koppen_zone_BSk 1.100300e+15
-## 23 koppen_zone_BSh 1.158438e+15
-## 24  koppen_zone_Aw 2.177627e+15
-## 25 koppen_zone_BWh 2.403991e+15
+## 17 koppen_zone_Dfc 3.863684e+14
+## 9  koppen_zone_Cfb 3.834325e+14
+## 15 koppen_zone_Dfa 2.838687e+14
+## 14 koppen_zone_Cwb 2.624933e+14
+## 11 koppen_zone_Csa 1.984881e+14
+## 22 koppen_zone_Dwa 1.894423e+14
+## 24 koppen_zone_Dwc 1.592088e+14
+## 23 koppen_zone_Dwb 1.405032e+14
+## 12 koppen_zone_Csb 1.323997e+14
+## 20 koppen_zone_Dsb 7.338609e+13
+## 21 koppen_zone_Dsc 3.652432e+13
+## 19 koppen_zone_Dsa 3.549784e+13
+## 25  koppen_zone_ET 3.395786e+13
+## 10 koppen_zone_Cfc 1.493932e+13
+## 18 koppen_zone_Dfd 1.031226e+12
 ```
 
-On top of those issues, one-hot encoding also causes **sparsity** in tree-based models. Let me show you an example. Below I train a recursive partition tree using `vi_mean` as response, and the one-hot encoded version of `koppen_zone` we have in `df`. 
+On top of those issues, one-hot encoding also causes **sparsity** in tree-based models. Let me show you an example. Below I train a recursive partition tree using `vi_numeric` as response, and the one-hot encoded version of `koppen_zone` we have in `df`. 
 
 
-```r
+``` r
 #add response variable to df
-df$vi_mean <- vi$vi_mean
+df$vi_numeric <- vi$vi_numeric
 
 #fit model using all one-hot encoded variables
 koppen_zone_one_hot <- rpart::rpart(
-  formula = vi_mean ~ .,
+  formula = vi_numeric ~ .,
   data = df
 )
 ```
@@ -477,9 +434,9 @@ koppen_zone_one_hot <- rpart::rpart(
 Now I do the same using the categorical version of `koppen_zone` in `vi`.
 
 
-```r
+``` r
 koppen_zone_categorical <- rpart::rpart(
-  formula = vi_mean ~ koppen_zone,
+  formula = vi_numeric ~ koppen_zone,
   data = vi
 )
 ```
@@ -487,7 +444,7 @@ koppen_zone_categorical <- rpart::rpart(
 Finally, I am plotting the skeletons of these trees side by side (we don't care about numbers here).
 
 
-```r
+``` r
 #plot tree skeleton
 par(mfrow = c(1, 2))
 plot(koppen_zone_one_hot, main = "One-hot encoding")
@@ -513,7 +470,7 @@ But what is target encoding? Let's start with a continuous response variable `y`
 In *it's simplest form*, target encoding replaces each category in `x` with the mean of `y` across the category cases. This results in a new numeric version of `x` named `x_encoded` in the example below.
 
 
-```r
+``` r
 yx |> 
   dplyr::group_by(x) |> 
   dplyr::mutate(
@@ -551,7 +508,7 @@ where:
   + `\(\overline{y}\)` is the global mean of the target.
 
 
-```r
+``` r
 y_mean <- mean(yx$y)
 
 m <- 3
@@ -587,7 +544,7 @@ In this version of target encoding, the encoded value of one case within a categ
 The code below implements the idea in a way so simple that it cannot even deal with one-case categories.
 
 
-```r
+``` r
 yx |>
   dplyr::group_by(x) |>
   dplyr::mutate(
@@ -616,7 +573,7 @@ Another way to avoid repeated values while keeping the encoding as simple as pos
 When using this method we have to be careful with the amount of noise we add. It should be a harmless fraction of target, small enough to not throw a model off the signal provided by the encoded variable. In our toy case `y` is between 1 and 7, so something like "one percent of the maximum" could work well here.
 
 
-```r
+``` r
 #maximum noise to add
 max_noise <- max(yx$y)/100
 
@@ -646,49 +603,12 @@ yx |>
 
 This method can deal with one-case categories without issues, and does not generate repeated values, but in exchange, we have to be mindful of the amount of noise we add, and we have to set a random seed to ensure reproducibility.
 
-## Random Encoding
-
-A more exotic non-deterministic method of encoding consists of computing the mean and the standard deviation of the target over the category, and then using these values to parameterize a normal distribution to extract randomized values from. This kind of encoding also requires to set the random seed to ensure reproducibility.
-
-
-```r
-set.seed(1)
-
-yx |>
-  dplyr::group_by(x) |>
-  dplyr::mutate(
-    x_encoded = stats::rnorm(
-      n = dplyr::n(),
-      mean = mean(y),
-      sd = ifelse(
-        dplyr::n() == 1,
-        stats::sd(yx$y), #use global sd for one-case groups
-        stats::sd(y)     #use local sd for n-cases groups
-      )
-    )
-  )
-```
-
-```
-## # A tibble: 7 × 3
-## # Groups:   x [3]
-##       y x     x_encoded
-##   <int> <chr>     <dbl>
-## 1     1 a          1.37
-## 2     2 a          2.18
-## 3     3 a          1.16
-## 4     4 b          6.60
-## 5     5 b          5.33
-## 6     6 b          4.18
-## 7     7 c          8.05
-```
-
 ## Rank Encoding plus White Noise
 
 This is a little different from all the other methods, because it does not map the categories to values from the target, but to the rank/order of the target means per category. It basically converts the categorical variable into an ordinal one arranged along with the target, and then adds white noise on top to avoid value repetition.
 
 
-```r
+``` r
 #maximum noise as function of the number of categories
 max_noise <- length(unique(yx$x))/100
 
@@ -706,12 +626,12 @@ yx |>
 ##       y x     x_encoded
 ##   <int> <chr>     <dbl>
 ## 1     1 a          1.02
-## 2     2 a          1.01
-## 3     3 a          1.02
-## 4     4 b          2.03
+## 2     2 a          1.02
+## 3     3 a          1.00
+## 4     4 b          2.01
 ## 5     5 b          2.01
 ## 6     6 b          2.02
-## 7     7 c          3.03
+## 7     7 c          3.01
 ```
 ## The Target Encoding Lab
 
@@ -722,87 +642,49 @@ In the example below, the methods rank, mean, and leave-one-out are computed wit
 The function also uses a random seed to generate the same noise across the encoded versions of the predictor to make them as comparable as possible. Every time you change the seed, results using white noise and the rnorm method should change as well.
 
 
-```r
+``` r
 yx_encoded <- target_encoding_lab(
   df = yx,
   response = "y",
   predictors = "x",
   white_noise = c(0, 0.1),
   smoothing = c(0, 2),
-  rnorm_sd_multiplier = c(0.25, 0.5),
-  verbose = TRUE,
+  quiet = FALSE,
   seed = 1, #for reproducibility
-  replace = FALSE #to replace or not the predictors with their encodings
+  overwrite = FALSE #to overwrite or not the predictors with their encodings
 )
 ```
 
 ```
 ## 
-## Encoding the predictor: x
+## collinear::target_encoding_lab(): using response 'y' to encode categorical predictors:
+##  - x
 ```
 
-```
-## New encoded predictor: 'x__encoded_rank'
-```
-
-```
-## New encoded predictor: 'x__encoded_mean'
-```
-
-```
-## New encoded predictor: 'x__encoded_mean__smoothing_2'
-```
-
-```
-## New encoded predictor: 'x__encoded_loo'
-```
-
-```
-## New encoded predictor: 'x__encoded_rank__noise_0.1'
-```
-
-```
-## New encoded predictor: 'x__encoded_mean__noise_0.1'
-```
-
-```
-## New encoded predictor: 'x__encoded_mean__smoothing_2__noise_0.1'
-```
-
-```
-## New encoded predictor: 'x__encoded_loo__noise_0.1'
-```
-
-```
-## New encoded predictor: 'x__encoded_rnorm__sd_multiplier_0.25'
-```
-
-```
-## New encoded predictor: 'x__encoded_rnorm__sd_multiplier_0.5'
-```
-
-```r
+``` r
 dplyr::glimpse(yx_encoded)
 ```
 
 ```
 ## Rows: 7
-## Columns: 12
-## $ y                                       <int> 1, 2, 3, 4, 5, 6, 7
-## $ x                                       <chr> "a", "a", "a", "b", "b", "b", …
-## $ x__encoded_rank                         <int> 1, 1, 1, 2, 2, 2, 3
-## $ x__encoded_mean                         <dbl> 2, 2, 2, 5, 5, 5, 7
-## $ x__encoded_mean__smoothing_2            <dbl> 2.8, 2.8, 2.8, 4.6, 4.6, 4.6, …
-## $ x__encoded_loo                          <dbl> 2.5, 2.0, 1.5, 5.5, 5.0, 4.5, …
-## $ x__encoded_rank__noise_0.1              <dbl> 0.5030858, 0.6752789, 0.999474…
-## $ x__encoded_mean__noise_0.1              <dbl> 1.503086, 1.675279, 1.999475, …
-## $ x__encoded_mean__smoothing_2__noise_0.1 <dbl> 2.303086, 2.475279, 2.799475, …
-## $ x__encoded_loo__noise_0.1               <dbl> 2.003086, 1.675279, 1.499475, …
-## $ x__encoded_rnorm__sd_multiplier_0.25    <dbl> 1.843387, 2.045911, 1.791093, …
-## $ x__encoded_rnorm__sd_multiplier_0.5     <dbl> 1.686773, 2.091822, 1.582186, …
+## Columns: 14
+## $ y                                               <int> 1, 2, 3, 4, 5, 6, 7
+## $ x                                               <chr> "a", "a", "a", "b", "b…
+## $ x__encoded_loo                                  <dbl> 2.5, 2.0, 1.5, 5.5, 5.…
+## $ x__encoded_loo__noise_0.1__seed_1               <dbl> 2.554579, 1.564069, 2.…
+## $ x__encoded_loo                                  <dbl> 2.5, 2.0, 1.5, 5.5, 5.…
+## $ x__encoded_loo__noise_0.1__seed_1               <dbl> 2.554579, 1.564069, 2.…
+## $ x__encoded_mean                                 <dbl> 2, 2, 2, 5, 5, 5, 7
+## $ x__encoded_mean__noise_0.1__seed_1              <dbl> 2.054579, 1.564069, 2.…
+## $ x__encoded_mean__smoothing_2                    <dbl> 2.8, 2.8, 2.8, 4.6, 4.…
+## $ x__encoded_mean__smoothing_2__noise_0.1__seed_1 <dbl> 2.854579, 2.364069, 3.…
+## $ x__encoded_rank                                 <int> 1, 1, 1, 2, 2, 2, 3
+## $ x__encoded_rank__noise_0.1__seed_1              <dbl> 1.0545786, 0.5640694, …
+## $ x__encoded_rank                                 <int> 1, 1, 1, 2, 2, 2, 3
+## $ x__encoded_rank__noise_0.1__seed_1              <dbl> 1.0545786, 0.5640694, …
 ```
 
-```r
+``` r
 yx_encoded |> 
   tidyr::pivot_longer(
     cols = dplyr::contains("__encoded"),
@@ -819,29 +701,29 @@ yx_encoded |>
   theme_bw()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="1152" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="1152" />
 The function also allows to replace a given predictor with their selected encoding.
 
 
-```r
+``` r
 yx_encoded <- collinear::target_encoding_lab(
   df = yx,
   response = "y",
   predictors = "x",
-  encoding_methods = "mean", #selected encoding method
+  methods = "mean", #selected encoding method
   smoothing = 2,
-  verbose = TRUE,
-  replace = TRUE
+  quiet = FALSE,
+  overwrite = TRUE
 )
 ```
 
 ```
-## Warning in validate_df(df = df, min_rows = 30): the number of rows in 'df' is
-## lower than 30. A multicollinearity analysis may fail or yield meaningless
-## results.
+## 
+## collinear::target_encoding_lab(): using response 'y' to encode categorical predictors:
+##  - x
 ```
 
-```r
+``` r
 dplyr::glimpse(yx_encoded)
 ```
 

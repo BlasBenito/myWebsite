@@ -75,13 +75,13 @@ install.packages("ggplot2")
 
 
 
-# Categorical Predictors are Kinda Annoying
+# Categorical Predictors Can Be Annoying
 
-I mean, the title of this section says it already, and I bet you have experienced it during an Exploratory Data Analysis (EDA) or a feature selection for model training and the likes. You likely had a nice bunch of numerical variables to use as predictors, no issues there. But then, you discovered among your columns thingies like "sampling_location", "region_name", "favorite_color", or any other type of predictor made of strings, lots of strings. And some of these made sense, and some of them didn't, because who knows where they came from. And you had to branch your code to deal with numeric and categorical variables separately. Or maybe chose to ignore them, as I have done plenty of times.
+I bet you have experienced it during an Exploratory Data Analysis (EDA) or a feature selection for model training and the likes. You likely had a nice bunch of numerical predictors, and then some things like "sampling_location", "region_name", "favorite_color", or any other type of character or factor columns. And you had to branch your code to deal with numeric and categorical variables separately. Or maybe chose to ignore them, as I have done plenty of times.
 
-Yeah, nobody likes them much at all, But sometimes, these stringy monsters are all you have to move on with your work. And you are not the only one. That's why many efforts have been made to convert them to numeric and kill the problem at once, so now we all have two problems instead.
+That's why many efforts have been made to convert them to numeric and kill the problem at once. And now we all have two problems to solve instead.
 
-Let me go ahead and illustrate the issue. There is a nice data frame in the `collinear` R package named `vi`, with one response variable named `vi_numeric`, and several numeric and categorical predictors named in the vector `vi_predictors`.
+Let me go ahead and illustrate the issue. There is a data frame in the `collinear` R package named `vi`, with one response variable named `vi_numeric`, and several numeric and categorical predictors in the vector `vi_predictors`.
 
 
 ``` r
@@ -217,7 +217,7 @@ data.frame(
 ## 12       koppen_group          5
 ```
 
-A few, like `country_name` and `biogeo_ecoregion`, show a cardinality high enough to ruin our day, don't they? But ok, let's start with one with a moderate number of categories, like `koppen_zone`. This variable has 25 categories representing climate zones.
+Some of them, like `country_name` and `biogeo_ecoregion`, have a cardinality high enough to ruin our day, don't they? But ok, let's start with one with a moderate number of categories, like `koppen_zone`. This variable has 25 categories representing climate zones.
 
 
 ``` r
@@ -287,7 +287,7 @@ lm(
 ## F-statistic:  5157 on 24 and 29975 DF,  p-value: < 2.2e-16
 ```
 
-Look at this monster! What the hell happened here? Linear models cannot deal with categorical predictors, so they create numeric **dummy variables** instead. The function `stats::model.matrix()` does exactly that:
+Look at that. What the hell happened there? Well, linear models cannot deal with categorical predictors, so they create numeric **dummy variables** instead. The function `stats::model.matrix()` does exactly that:
 
 
 ``` r
@@ -384,7 +384,8 @@ The second issue is **increased multicollinearity**. One-hot encoded features ar
 
 ``` r
 collinear::vif_df(
-  df = df
+  df = df,
+  quiet = TRUE
 )
 ```
 

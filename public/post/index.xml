@@ -179,10 +179,10 @@ install.packages(&amp;quot;rpart.plot&amp;quot;)
 install.packages(&amp;quot;dplyr&amp;quot;)
 install.packages(&amp;quot;ggplot2&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&#34;categorical-predictors-are-kinda-annoying&#34;&gt;Categorical Predictors are Kinda Annoying&lt;/h1&gt;
-&lt;p&gt;I mean, the title of this section says it already, and I bet you have experienced it during an Exploratory Data Analysis (EDA) or a feature selection for model training and the likes. You likely had a nice bunch of numerical variables to use as predictors, no issues there. But then, you discovered among your columns thingies like &amp;ldquo;sampling_location&amp;rdquo;, &amp;ldquo;region_name&amp;rdquo;, &amp;ldquo;favorite_color&amp;rdquo;, or any other type of predictor made of strings, lots of strings. And some of these made sense, and some of them didn&amp;rsquo;t, because who knows where they came from. And you had to branch your code to deal with numeric and categorical variables separately. Or maybe chose to ignore them, as I have done plenty of times.&lt;/p&gt;
-&lt;p&gt;Yeah, nobody likes them much at all, But sometimes, these stringy monsters are all you have to move on with your work. And you are not the only one. That&amp;rsquo;s why many efforts have been made to convert them to numeric and kill the problem at once, so now we all have two problems instead.&lt;/p&gt;
-&lt;p&gt;Let me go ahead and illustrate the issue. There is a nice data frame in the &lt;code&gt;collinear&lt;/code&gt; R package named &lt;code&gt;vi&lt;/code&gt;, with one response variable named &lt;code&gt;vi_numeric&lt;/code&gt;, and several numeric and categorical predictors named in the vector &lt;code&gt;vi_predictors&lt;/code&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;categorical-predictors-can-be-annoying&#34;&gt;Categorical Predictors Can Be Annoying&lt;/h1&gt;
+&lt;p&gt;I bet you have experienced it during an Exploratory Data Analysis (EDA) or a feature selection for model training and the likes. You likely had a nice bunch of numerical predictors, and then some things like &amp;ldquo;sampling_location&amp;rdquo;, &amp;ldquo;region_name&amp;rdquo;, &amp;ldquo;favorite_color&amp;rdquo;, or any other type of character or factor columns. And you had to branch your code to deal with numeric and categorical variables separately. Or maybe chose to ignore them, as I have done plenty of times.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s why many efforts have been made to convert them to numeric and kill the problem at once. And now we all have two problems to solve instead.&lt;/p&gt;
+&lt;p&gt;Let me go ahead and illustrate the issue. There is a data frame in the &lt;code&gt;collinear&lt;/code&gt; R package named &lt;code&gt;vi&lt;/code&gt;, with one response variable named &lt;code&gt;vi_numeric&lt;/code&gt;, and several numeric and categorical predictors in the vector &lt;code&gt;vi_predictors&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;data(
   vi,
   vi_predictors
@@ -300,7 +300,7 @@ vi_categorical
 ## 11             region          6
 ## 12       koppen_group          5
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;A few, like &lt;code&gt;country_name&lt;/code&gt; and &lt;code&gt;biogeo_ecoregion&lt;/code&gt;, show a cardinality high enough to ruin our day, don&amp;rsquo;t they? But ok, let&amp;rsquo;s start with one with a moderate number of categories, like &lt;code&gt;koppen_zone&lt;/code&gt;. This variable has 25 categories representing climate zones.&lt;/p&gt;
+&lt;p&gt;Some of them, like &lt;code&gt;country_name&lt;/code&gt; and &lt;code&gt;biogeo_ecoregion&lt;/code&gt;, have a cardinality high enough to ruin our day, don&amp;rsquo;t they? But ok, let&amp;rsquo;s start with one with a moderate number of categories, like &lt;code&gt;koppen_zone&lt;/code&gt;. This variable has 25 categories representing climate zones.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;sort(unique(vi$koppen_zone))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Af&amp;quot;  &amp;quot;Am&amp;quot;  &amp;quot;Aw&amp;quot;  &amp;quot;BSh&amp;quot; &amp;quot;BSk&amp;quot; &amp;quot;BWh&amp;quot; &amp;quot;BWk&amp;quot; &amp;quot;Cfa&amp;quot; &amp;quot;Cfb&amp;quot; &amp;quot;Cfc&amp;quot; &amp;quot;Csa&amp;quot; &amp;quot;Csb&amp;quot;
@@ -357,7 +357,7 @@ vi_categorical
 ## Multiple R-squared:  0.805,	Adjusted R-squared:  0.8049 
 ## F-statistic:  5157 on 24 and 29975 DF,  p-value: &amp;lt; 2.2e-16
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Look at this monster! What the hell happened here? Linear models cannot deal with categorical predictors, so they create numeric &lt;strong&gt;dummy variables&lt;/strong&gt; instead. The function &lt;code&gt;stats::model.matrix()&lt;/code&gt; does exactly that:&lt;/p&gt;
+&lt;p&gt;Look at that. What the hell happened there? Well, linear models cannot deal with categorical predictors, so they create numeric &lt;strong&gt;dummy variables&lt;/strong&gt; instead. The function &lt;code&gt;stats::model.matrix()&lt;/code&gt; does exactly that:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;dummy_variables &amp;lt;- stats::model.matrix( 
   ~ koppen_zone,
   data = vi
@@ -433,7 +433,8 @@ dplyr::glimpse(df)
 &lt;p&gt;The first issue can easily be named the &lt;strong&gt;dimensionality explosion&lt;/strong&gt;. If we created dummy variables for all categorical predictors in &lt;code&gt;vi&lt;/code&gt;, then we&amp;rsquo;d go from the original 61 predictors to a total of 967 new columns to handle. This alone can degrade the computational performance of a model due to increased data size.&lt;/p&gt;
 &lt;p&gt;The second issue is &lt;strong&gt;increased multicollinearity&lt;/strong&gt;. One-hot encoded features are highly collinear, which makes obtaining accurate estimates for the coefficients of the encoded categories very hard. Look at the Variance Inflation Factors of the encoded Koppen zones, they have incredibly high values!&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;collinear::vif_df(
-  df = df
+  df = df,
+  quiet = TRUE
 )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##          predictor          vif

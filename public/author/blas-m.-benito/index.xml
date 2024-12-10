@@ -5,7 +5,7 @@
     <link>https://blasbenito.com/author/blas-m.-benito/</link>
       <atom:link href="https://blasbenito.com/author/blas-m.-benito/index.xml" rel="self" type="application/rss+xml" />
     <description>Blas M. Benito</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Tue, 05 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Tue, 10 Dec 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Blas M. Benito</title>
@@ -15,7 +15,7 @@
     <item>
       <title>My Reading List: Data Science</title>
       <link>https://blasbenito.com/post/my-reading-list-data-science/</link>
-      <pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 10 Dec 2024 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/post/my-reading-list-data-science/</guid>
       <description>&lt;p&gt;This is a live post listing links to Data Science related posts and videos I consider to be interesting, high-quality, or even essential to better understand particular topics within such a wide field.&lt;/p&gt;
 &lt;h1 id=&#34;data&#34;&gt;Data&lt;/h1&gt;
@@ -41,6 +41,9 @@
 &lt;a href=&#34;https://duckdb.org/2024/01/26/multi-database-support-in-duckdb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Multi-Database Support in DuckDB&lt;/strong&gt;&lt;/a&gt; This post by Mark Raasveldt published in the DuckDB blog explains how to query together data from different databases at once.&lt;/p&gt;
 &lt;h1 id=&#34;analysis-and-modeling&#34;&gt;Analysis and Modeling&lt;/h1&gt;
 &lt;h2 id=&#34;modeling-methods&#34;&gt;Modeling Methods&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://loreley.one/2024-09-pca/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Unraveling Principal Component Analysis&lt;/strong&gt;&lt;/a&gt;: This book, reviewed 
+&lt;a href=&#34;https://loreley.one/2024-09-pca/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;, is a &lt;em&gt;tour of linear algebra&lt;/em&gt; focused on intuitive explanations rather than mathematical demonstrations.&lt;/p&gt;
 &lt;p&gt;
 &lt;a href=&#34;https://m-clark.github.io/posts/2019-10-20-big-mixed-models/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Mixed Models for Big Data&lt;/strong&gt;&lt;/a&gt;: This post by 
 &lt;a href=&#34;https://m-clark.github.io/about.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Michael Clark&lt;/a&gt; (see entry below by the same author) reviews several mixed modelling approach for large data in R.&lt;/p&gt;
@@ -117,7 +120,10 @@
 Spatio-Temporal Data A Survey and Outlook&lt;/strong&gt;&lt;/a&gt;: This pre-print by Weng and collaborators reviews the current state of the art in spatio-temporal modelling with Large Language Models and Pre-Trained Foundation Models.&lt;/p&gt;
 &lt;h1 id=&#34;management-and-leadership&#34;&gt;Management and Leadership&lt;/h1&gt;
 &lt;p&gt;
-&lt;a href=&#34;https://zaidesanton.substack.com/p/when-engineering-managers-become&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;You are hurting your team without even noticing&lt;/strong&gt;&lt;/a&gt; This post by 
+&lt;a href=&#34;https://zaidesanton.substack.com/p/using-fake-deadlines-without-driving?publication_id=1804629&amp;amp;post_id=152010688&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Using fake deadlines without driving your engineers crazy&lt;/strong&gt;&lt;/a&gt;: In this post, 
+&lt;a href=&#34;https://substack.com/@jstanier&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;James Stanier&lt;/a&gt; explains how fake deadlines can help push projects forward in healthy work environments.&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://zaidesanton.substack.com/p/when-engineering-managers-become&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;You are hurting your team without even noticing&lt;/strong&gt;&lt;/a&gt;: This post by 
 &lt;a href=&#34;https://substack.com/@zaidesanton&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Anton Zaides&lt;/a&gt; (Development Team Leader), and 
 &lt;a href=&#34;https://substack.com/@crushingtecheducation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Eugene Shulga&lt;/a&gt;, (Software Engineer) offers insight on the harmful effects of a manager&amp;rsquo;s ego in their team dynamics.&lt;/p&gt;
 &lt;p&gt;

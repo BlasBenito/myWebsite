@@ -1,14 +1,14 @@
 ---
 title: "My Reading List: Data Science"
 author: ''
-date: '2024-03-05'
+date: '2024-12-10'
 slug: my-reading-list-data-science
 categories: []
 tags: [Data Science, Data Preprocessing, Machine Learning, Model Explainability, Model Interpretability]
 subtitle: ''
 summary: 'Live post with a curated list of high-quality data science posts and videos I found enlightening.'
 authors: [admin]
-lastmod: '2024-03-05T08:14:23+02:00'
+lastmod: '2024-12-10T08:14:23+02:00'
 featured: no
 draft: false
 image:
@@ -43,6 +43,8 @@ This is a live post listing links to Data Science related posts and videos I con
 # Analysis and Modeling
 
 ## Modeling Methods
+
+[**Unraveling Principal Component Analysis**](https://loreley.one/2024-09-pca/): This book, reviewed [here](https://loreley.one/2024-09-pca/), is a *tour of linear algebra* focused on intuitive explanations rather than mathematical demonstrations.
 
 [**Mixed Models for Big Data**](https://m-clark.github.io/posts/2019-10-20-big-mixed-models/): This post by [Michael Clark](https://m-clark.github.io/about.html) (see entry below by the same author) reviews several mixed modelling approach for large data in R.
 
@@ -105,6 +107,9 @@ Spatio-Temporal Data A Survey and Outlook**](https://arxiv.org/pdf/2310.10196.pd
 
 # Management and Leadership
 
-[**You are hurting your team without even noticing**](https://zaidesanton.substack.com/p/when-engineering-managers-become) This post by [Anton Zaides](https://substack.com/@zaidesanton) (Development Team Leader), and [Eugene Shulga](https://substack.com/@crushingtecheducation), (Software Engineer) offers insight on the harmful effects of a manager's ego in their team dynamics.
+[**Using fake deadlines without driving your engineers crazy**](https://zaidesanton.substack.com/p/using-fake-deadlines-without-driving?publication_id=1804629&post_id=152010688): In this post, [James Stanier](https://substack.com/@jstanier) explains how fake deadlines can help push projects forward in healthy work environments.
+
+
+[**You are hurting your team without even noticing**](https://zaidesanton.substack.com/p/when-engineering-managers-become): This post by [Anton Zaides](https://substack.com/@zaidesanton) (Development Team Leader), and [Eugene Shulga](https://substack.com/@crushingtecheducation), (Software Engineer) offers insight on the harmful effects of a manager's ego in their team dynamics.
 
 [**Teamwork Habits for Leaders**](https://the.managers.guide/p/teamwork-habits-for-leaders): This post by [Csaba Okrona](https://substack.com/@ochronus) focuses on how shifting from talker to listener in team meetings offers a good insight to better address the team's needs.

@@ -5,12 +5,20 @@
     <link>https://blasbenito.com/post/</link>
       <atom:link href="https://blasbenito.com/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Tue, 10 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Sun, 05 Jan 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Posts</title>
       <link>https://blasbenito.com/post/</link>
     </image>
+    
+    <item>
+      <title>09_dynamic_time_warping</title>
+      <link>https://blasbenito.com/post/09-dynamic-time-warping/</link>
+      <pubDate>Sun, 05 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/post/09-dynamic-time-warping/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>My Reading List: Data Science</title>

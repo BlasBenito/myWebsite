@@ -30,12 +30,62 @@ projects: []
 ```{r, eval = FALSE, echo = FALSE}
 #required
 install.packages("remotes")
+install.packages("dplyr")
+install.packages("dtw")
 remotes::install_github(
   repo = "blasbenito/distantia", 
   ref = "main"
   )
-install.packages("dplyr")
+library(distantia, quietly = TRUE)
+suppressPackageStartupMessages(library(dtw, quietly = TRUE))
+suppressPackageStartupMessages(library(dplyr, quietly = TRUE)) 
 ```
+
+# What is *Dynamic Time Warping*?
+
+Dynamic Time Warping (DTW) is a method to measure the similarity between two time series of different length, timing, or shape. To do so, DTW stretches or compresses parts of the time series until it finds the alignment that minimizes their overall differences. 
+
+Think of it as a way to match the rhythm of two songs even if one plays faster than the other. This flexibility makes DTW incredibly useful for analyzing sequences that are similar in shape but not perfectly synchronized. This is the case of temperature in cities located in different hemispheres, such as London and Rio De Janeiro, as shown in the plot below.
+
+```{r, echo = FALSE}
+tsl <- tsl_initialize(
+  x = distantia::cities_temperature,
+  name = "name",
+  time = "time"
+) |> 
+  tsl_subset(
+    names = c(
+      "London",
+      "Rio De Janeiro"
+    ),
+    time = c(
+      "2005-01-01",
+      "2010-01-01"
+    )
+  )
+
+tsl_plot(
+  tsl, 
+  guide = FALSE, 
+  ylim = "relative"
+  )
+```
+
+```{r, fig.width=5, fig.height=3}
+tsl_scaled <- tsl_transform(
+  tsl = tsl,
+  f = f_scale_local
+)
+
+xy_dtw <- dtw::dtw(
+  x = tsl_scaled$London$temperature,
+  y = tsl_scaled$`Rio De Janeiro`$temperature,
+  keep = TRUE
+  )
+
+plot(xy_dtw, type = "twoway", main = "DTW - London vs Rio", xlab = "Observation", ylab = "")
+```
+
 
 # A Useless Bit of History
 
@@ -47,7 +97,21 @@ From there, DTW found applications in diverse fields such as seismology, bioinfo
 
 Nowadays, Dynamic Time Warping is widely used across fields relying on time-dependent data, such as [medical sciences](https://doi.org/10.1016/j.bspc.2024.106677), [sports analytics](https://doi.org/10.1371/journal.pone.0272848), [astronomy](https://iopscience.iop.org/article/10.3847/1538-4357/ac4af6), [econometrics](https://doi.org/10.1016/j.eneco.2020.105036), [robotics](https://www.mdpi.com/2079-9292/8/11/1306), [epidemiology](https://doi.org/10.1111/exsy.13237), and many others.
 
-## How It Works
+# How It Works
+
+TODO: Step by step computation of dynamic time warping with real data examples. Distance matrix. Cost matrix. Least cost path. Distance computation.
+
+# Pitfalls
+
+TODO: Explain pathological alignments and approaches to detect and limit them.
+
+# Computational considerations
+
+TODO: Maximum data sizes that can be addressed with naive DTW, and a few steps to reduce the computational load (data resampling)
+
+# Closing Thoughts
+
+TODO: small paragraph with take-home details.
 
 Blas
 

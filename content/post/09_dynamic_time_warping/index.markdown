@@ -29,6 +29,10 @@ projects: []
 
 
 
+# What is Dynamic Time Warping
+
+
+
 # A Useless Bit of History
 
 Dynamic Time Warping (DTW) might sound like a high-tech buzzword, but its roots go way back—older than me. This powerful method was first developed in the pioneering days of speech recognition. The earliest reference I uncovered is from Shearme and Leach’s 1968 paper, [*Some experiments with a simple word recognition system*](https://doi.org/10.1109/TAU.1968.1161985), published by the Joint Speech Research Unit in the UK.
@@ -39,7 +43,9 @@ From there, DTW found applications in diverse fields such as seismology, bioinfo
 
 Nowadays, Dynamic Time Warping is widely used across fields relying on time-dependent data, such as [medical sciences](https://doi.org/10.1016/j.bspc.2024.106677), [sports analytics](https://doi.org/10.1371/journal.pone.0272848), [astronomy](https://iopscience.iop.org/article/10.3847/1538-4357/ac4af6), [econometrics](https://doi.org/10.1016/j.eneco.2020.105036), [robotics](https://www.mdpi.com/2079-9292/8/11/1306), [epidemiology](https://doi.org/10.1111/exsy.13237), and many others.
 
-## How It Works
+# How It Works
+
+# Application Example
 
 Blas
 

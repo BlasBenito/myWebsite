@@ -29,8 +29,30 @@ projects: []
 
 
 
-# What is Dynamic Time Warping
 
+
+
+
+
+
+# Comparing Time Series
+
+Time series comparison is a critical task in many fields, such as environmental monitoring, finance, and healthcare. The goal is often to quantify similarities or differences between pairs of time series to gain insights in how the data is structured and identify meaningful patterns.
+
+For example, the data below shows time series representing the same phenomena in three different places and time ranges: `a` and `b` have 30 synchronized observations, while `c` has 20 observations from a different year. 
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="750" />
+There are several options to compare `a` and `b` directly, such as computing their correlation (0.955), or adding the euclidean distances between their respective samples (2.021). This comparison method is named *lock-step* (also known as *inelastic comparison*), and works best when time series are well-aligned in both time and frequency, and represent phenomena with relatively similar shapes. However, this method struggles with time series that exhibit a time delay, or varying lengths or sampling rates, as it does not account for temporal misalignments or distortions.
+
+Then, how can we compare `c` with `a` and `b`? That's exactly what *Dynamic Time Warping* is for!
+
+# But what is *Dynamic Time Warping*?
+
+Dynamic Time Warping (DTW) is a method to compare time series of different lengths, timing, or shapes. To do so, DTW stretches or compresses parts of the time series until it finds the alignment that minimizes their overall differences. 
+
+Think of it as a way to match the rhythm of two songs even if one plays faster than the other. This flexibility makes DTW incredibly useful for analyzing time series that are similar in shape but not fully synchronized. 
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="750" />
 
 
 # A Useless Bit of History
@@ -45,7 +67,19 @@ Nowadays, Dynamic Time Warping is widely used across fields relying on time-depe
 
 # How It Works
 
-# Application Example
+TODO: Step by step computation of dynamic time warping with real data examples. Distance matrix. Cost matrix. Least cost path. Distance computation.
+
+# Pitfalls
+
+TODO: Explain pathological alignments and approaches to detect and limit them.
+
+# Computational considerations
+
+TODO: Maximum data sizes that can be addressed with naive DTW, and a few steps to reduce the computational load (data resampling)
+
+# Closing Thoughts
+
+TODO: small paragraph with take-home details.
 
 Blas
 

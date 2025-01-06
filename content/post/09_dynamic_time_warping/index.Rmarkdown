@@ -27,6 +27,21 @@ projects: []
 # Summary
 
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  eval = TRUE,
+  collapse = TRUE,
+  comment = "#>",
+  dpi = 150,
+  fig.show = 'hold',
+  fig.width = 5
+)
+
+options(scipen = 9999)
+options(conflicts.policy = list(warn = FALSE))
+```
+
+
 ```{r, eval = FALSE, echo = FALSE}
 #required
 install.packages("remotes")
@@ -36,54 +51,101 @@ remotes::install_github(
   repo = "blasbenito/distantia", 
   ref = "main"
   )
+```
+
+```{r, echo = FALSE}
 library(distantia, quietly = TRUE)
 suppressPackageStartupMessages(library(dtw, quietly = TRUE))
 suppressPackageStartupMessages(library(dplyr, quietly = TRUE)) 
 ```
 
-# What is *Dynamic Time Warping*?
 
-Dynamic Time Warping (DTW) is a method to measure the similarity between two time series of different length, timing, or shape. To do so, DTW stretches or compresses parts of the time series until it finds the alignment that minimizes their overall differences. 
+# Comparing Time Series
 
-Think of it as a way to match the rhythm of two songs even if one plays faster than the other. This flexibility makes DTW incredibly useful for analyzing sequences that are similar in shape but not perfectly synchronized. This is the case of temperature in cities located in different hemispheres, such as London and Rio De Janeiro, as shown in the plot below.
+Time series comparison is a critical task in many fields, such as environmental monitoring, finance, and healthcare. The goal is often to quantify similarities or differences between pairs of time series to gain insights in how the data is structured and identify meaningful patterns.
 
-```{r, echo = FALSE}
-tsl <- tsl_initialize(
-  x = distantia::cities_temperature,
-  name = "name",
-  time = "time"
+For example, the data below shows time series representing the same phenomena in three different places and time ranges: `a` and `b` have 30 synchronized observations, while `c` has 20 observations from a different year. 
+
+```{r, echo = FALSE, fig.height=3.5}
+#create two regular synchronous time series and one irregular
+a <- zoo_simulate(
+  name = "a", 
+  cols = 1,
+  rows = 30,
+  seasons = 2, 
+  time_range = c("2023-01-01", "2025-01-01"),
+  seed = 3
+  )
+
+colnames(a) <- "x"
+
+b <- zoo_permute(
+  x = a,
+  block_size = 3,
+  seed = 2
+)[[1]]
+
+b <- zoo_smooth_window(
+  x = b
+)
+
+b <- zoo_name_set(x = b, name = "b")
+
+c <- zoo_simulate(
+  name = "c", 
+  cols = 1,
+  rows = 20,
+  seasons = 2, 
+  irregular = TRUE,
+  time_range = c("2022-01-01", "2023-01-01"),
+  seed = 3
+  )
+
+colnames(c) <- "x"
+
+tsl <- tsl_init(
+  x = list(
+    a = a,
+    b = b,
+    c = c
+  )
 ) |> 
-  tsl_subset(
-    names = c(
-      "London",
-      "Rio De Janeiro"
-    ),
-    time = c(
-      "2005-01-01",
-      "2010-01-01"
-    )
+  tsl_transform(
+    f = f_rescale_local
   )
 
 tsl_plot(
   tsl, 
-  guide = FALSE, 
-  ylim = "relative"
+  ylim = "absolute", 
+  xlim = c("2022-01-01", "2025-01-01"),
+  guide = FALSE
   )
 ```
+There are several options to compare `a` and `b` directly, such as computing their correlation (`r round(cor(x = tsl$a, y = tsl$b)[1, 1], 3)`), or adding the euclidean distances between their respective samples (`r round(sum(sqrt((tsl$a[, 1] - tsl$b[, 1])^2)), 3)`). This comparison method is named *lock-step* (also known as *inelastic comparison*), and works best when time series are well-aligned in both time and frequency, and represent phenomena with relatively similar shapes. However, this method struggles with time series that exhibit a time delay, or varying lengths or sampling rates, as it does not account for temporal misalignments or distortions.
 
-```{r, fig.width=5, fig.height=3}
-tsl_scaled <- tsl_transform(
-  tsl = tsl,
-  f = f_scale_local
-)
+Then, how can we compare `c` with `a` and `b`? That's exactly what *Dynamic Time Warping* is for!
+
+# But what is *Dynamic Time Warping*?
+
+Dynamic Time Warping (DTW) is a method to compare time series of different lengths, timing, or shapes. To do so, DTW stretches or compresses parts of the time series until it finds the alignment that minimizes their overall differences. 
+
+Think of it as a way to match the rhythm of two songs even if one plays faster than the other. This flexibility makes DTW incredibly useful for analyzing time series that are similar in shape but not fully synchronized. 
+
+```{r, fig.height=3.5, echo = FALSE}
+a <- as.vector(tsl$a$x)
+c <- as.vector(tsl$c$x)
 
 xy_dtw <- dtw::dtw(
-  x = tsl_scaled$London$temperature,
-  y = tsl_scaled$`Rio De Janeiro`$temperature,
+  x = a,
+  y = c,
   keep = TRUE
   )
 
-plot(xy_dtw, type = "twoway", main = "DTW - London vs Rio", xlab = "Observation", ylab = "")
+dtw::dtwPlotTwoWay(d = xy_dtw, offset = 2, xlab = "", ylab = "", main = "", lwd = 1.5, lty = 1, col = c("red4", "black"))
+
+par(mar = c(0, 0, 0, 0), xpd = TRUE)
+
+legend("bottom",inset = c(0, -0.5), c("a","c"), lwd = 1.5, ncol = 2, bty = "n", col = c("red4", "black"))
 ```
 
 

@@ -138,31 +138,6 @@ However, when many time series of different lengths are involved in the analysis
   - Auto-sum of distances between consecutive samples in both time series: this normalization factor results from adding the distances between the adjacent samples in both time series, such as `D(a[1], a[2]) + D(a[2], a[3]) + ... D(c[1], c[2]) + D(c[2], c[3]) + ...`. For `a` this would be 11.044, for `c`, 10.125, and hence, the normalized distance between them would be `2.663/(11.044 + 10.125) = 0.126`.
 
 
-
-Step **2** returns the distances between consecutive samples within each time series, as computed by `psi_auto_sum()`. 
-
-
-``` r
-step_2 <- distantia::psi_auto_sum(
-  x = x,
-  y = y,
-  distance = "euclidean"
-)
-
-step_2
-```
-
-Finally, the step **3** computes the normalized dissimilarity score.
-
-
-``` r
-distantia::psi_equation(
-  a = step_1,
-  b = step_2,
-  diagonal = TRUE
-)
-```
-
 # Pitfalls
 
 TODO: Explain pathological alignments and approaches to detect and limit them.

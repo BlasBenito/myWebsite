@@ -55,9 +55,8 @@ where $min()$ is a function that takes the minimum value among the diversity com
 To bring these ideas into R, first we have to load a few R packages, and generate some fake data to help us develop the functions. 
 
 ```{r}
-library(magrittr)
-library(foreach)
-library(doParallel)
+library(foreach, quietly = TRUE)
+library(doParallel, quietly = TRUE)
 ```
 
 The code chunk below generates 15 fake taxa names, from `taxon_1` to `taxon_15`.
@@ -147,7 +146,7 @@ Where:
 
   + `function_name` is the name of your function. Ideally, a verb, or otherwise, something indicating somehow what the function will do with the input data and arguments.
   + `function()` is a function to define functions, there isn't much more to it...
-  + `x` is the first argument of the function, and ideally, represents the input data. If that is the case, you can later use [pipes](https://r4ds.had.co.nz/pipes.html) (`%>%`) to chain functions together.
+  + `x` is the first argument of the function, and ideally, represents the input data. If that is the case, you can later use [pipes](https://r4ds.had.co.nz/pipes.html) (`|>`) to chain functions together.
   + `y` (it could have any other name) is another function argument, an can be either another input dataset, or an argument defining how the function has to behave.
   + `...` refers to other arguments the function may require.
   + `body` is the code that operates with the data and function arguments. This can be one line of code, or a thousand, it all comes down to the function's objective. In any case, the `body` must return an object (or an error if something went wrong) that will be the function's `output`. 
@@ -220,22 +219,21 @@ When I said that returning the input object with an added slot gave these functi
 x <- abc(
   x = site3, 
   y = site4
-  ) %>% 
-  sorensen_beta() %>% 
+  ) |> 
+  sorensen_beta() |> 
   simpson_beta()
 x
 ```
-Chaining the functions through the `%>%` pipe of the `magrittr` package now allows us to combine their results in a single output no matter whether we use `sorensen_beta()` or `sorensen_beta()` first, or whether we omit one of them. The only thing the pipe is doing here is moving the output of the first function into the next. There are a couple of very nice tutorials about the `magrittr` package and the `%>%` [here](https://uc-r.github.io/pipe) and [here](https://towardsdatascience.com/an-introduction-to-the-pipe-in-r-823090760d64).
+
+Chaining the functions through the pipe `|>` pipe allows us combining their results in a single output no matter whether we use `sorensen_beta()` or `sorensen_beta()` first, or whether we omit one of them. The only thing the pipe is doing here is moving the output of the first function into the next.
 
 We can put that idea right away into a function to compute both betadiversity indices at once from the taxa list of a pair of sites.
 
 ```{r}
 betadiversity <- function(x, y){
   
-  require(magrittr)
-  
-  abc(x, y) %>%
-    sorensen_beta() %>%
+  abc(x, y) |>
+    sorensen_beta() |>
     simpson_beta()
   
 }

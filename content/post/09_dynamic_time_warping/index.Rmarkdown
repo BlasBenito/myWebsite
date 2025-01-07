@@ -26,6 +26,7 @@ projects: []
 
 # Summary
 
+This post explains what *dynamic time warping* is and how it works from a conceptual perspective alone, without code examples or math expressions.
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -123,7 +124,7 @@ tsl_plot(
 ```
 
 
-There are several options to compare `a` and `b` directly, such as computing their correlation (`r round(cor(x = tsl$a, y = tsl$b)[1, 1], 3)`), or adding the euclidean distances between their respective samples (`r round(sum(sqrt((tsl$a[, 1] - tsl$b[, 1])^2)), 3)`). 
+There are several options to compare `a` and `b` directly, such as assessing their correlation (`r round(cor(x = tsl$a, y = tsl$b)[1, 1], 3)`), or computing the sum of euclidean distances between their respective samples (`r round(sum(sqrt((tsl$a[, 1] - tsl$b[, 1])^2)), 3)`). 
 
 This comparison approach is named *lock-step* (also known as *inelastic comparison*), and works best when the time series represent phenomena with relatively similar shapes and are aligned in time and frequency, as it is the case of `a` and `b`.
 
@@ -145,9 +146,9 @@ Ok, let's stop wandering in time, and go back to the meat in this post.
 
 # What is *Dynamic Time Warping*?
 
-Dynamic Time Warping is a method to compare univariate or multivariate time series of different length, timing, or shape. To do so, DTW stretches or compresses (hence *warping*) parts of the time series until it finds the alignment that minimizes their overall differences. Think of it as a way to match the rhythm of two songs even if one plays faster than the other.
+Dynamic Time Warping is a method to compare univariate or multivariate time series of different length, timing, and/or shape. To do so, DTW stretches or compresses parts of the time series (hence *warping*) until it finds the alignment that minimizes their overall differences. Think of it as a way to match the rhythm of two songs even if one plays faster than the other.
 
-The figure below represents the dynamic time warping of the time series `c` and `a`. Notice how each sample in one time series matches one or several samples from the other. These matches are optimized to minimize the sum of distances between the samples they connect (3.285 in this case). Any other combination of matches would result in a higher sum of distances.
+The figure below represents a dynamic time warping solution for the time series `c` and `a`. Notice how each sample in one time series matches one or several samples from the other. These matches are optimized to minimize the sum of distances between the samples they connect (3.285 in this case). Any other combination of matches would result in a higher sum of distances.
 
 ```{r, fig.height=3.5, echo = FALSE}
 a <- as.vector(tsl$a$x)
@@ -166,7 +167,7 @@ par(mar = c(0, 0, 0, 0), xpd = TRUE)
 legend("bottom",inset = c(0, -0.5), c("a","c"), lwd = 1.5, ncol = 2, bty = "n", col = c("red4", "black"))
 ```
 
-In dynamic time warping, the *time warping* happens when a sample in one time series is matched with two or more samples of the other, independently of their observation times. The figure below identifies one of these instances with blue bubbles. The sample 10 of `c` (upper blue bubble), with date `r names(tsl$c$x[10])`, is matched with the samples 14 to 16 of `a` (lower bubble), with dates `r names(tsl$a$x[14])` to `r names(tsl$a$x[16])`. This matching structure represents a time compression in `a` for the range of involved dates.
+In dynamic time warping, the actual *warping* happens when a sample in one time series is matched with two or more samples from the other, independently of their observation times. The figure below identifies one of these instances with blue bubbles. The sample 10 of `c` (upper blue bubble), with date `r names(tsl$c$x[10])`, is matched with the samples 14 to 16 of `a` (lower bubble), with dates `r names(tsl$a$x[14])` to `r names(tsl$a$x[16])`. This matching structure represents a time compression in `a` for the range of involved dates.
 
 ```{r, fig.height=3.5, echo = FALSE}
 dtw::dtwPlotTwoWay(
@@ -192,13 +193,15 @@ legend(
   lwd = 1.5, 
   ncol = 2, 
   bty = "n", 
-  col = c
+  col = c("red4", "black")
   )
 ```
 This ability to warp time makes DTW incredibly useful for analyzing time series that are similar in shape but don't have the same length or are not fully synchronized. 
 
+The next section explains how DTW is computed on a step-by-step fashion.
 
-# DTW Step by Step
+
+# DTW: Step by Step
 
 Time series comparison via Dynamic Time Warping requires several steps:
 
@@ -210,9 +213,9 @@ Time series comparison via Dynamic Time Warping requires several steps:
   
 ## Detrending and Z-score Normalization
 
-The first step to perform DTW does not pertain DTW itself, but the time series data. DTW is highly sensitive to significant differences in data trends and ranges (see section *Pitfalls*), which turns detrending and z-score normalization into pre-requirements to perform DTW correctly.
+The first step to perform DTW does not pertain DTW itself, but the time series data. DTW is highly sensitive to significant differences in data trends and ranges (see section *Pitfalls*), which turns [detrending](https://sherbold.github.io/intro-to-data-science/09_Time-Series-Analysis.html#Trend-and-Seasonal-Effects) and [z-score normalization](https://developers.google.com/machine-learning/crash-course/numerical-data/normalization#z-score_scaling) into important steps before performing DTW correctly.
 
-The time series `a` and `c` don't need detrending, and they already have matching ranges between 0 and 1, so they would not require z-score normalization. However, and only for the sake of the example, the figure below shows them normalized.
+The time series `a` and `c` do not need detrending, and they already have matching ranges between 0 and 1, so they would not require z-score normalization. Still, for the example's sake, the figure below shows them normalized.
 
 ```{r, echo = FALSE, fig.height=2.5}
 tsl <- tsl |> 
@@ -233,7 +236,7 @@ tsl_plot(
 
 ## Distance Matrix
 
-The second step in DTW is computing the distance matrix between all pairs of samples in both time series, which is shown in the figure below.
+The first DTW step requires computing the distance matrix between all pairs of samples in both time series.
 
 ```{r, fig.width=4, fig.height=3.5, echo = FALSE}
 m.dist <- distantia::psi_distance_matrix(
@@ -247,7 +250,8 @@ distantia::utils_matrix_plot(
   diagonal_width = 0
   )
 ```
-The selection of a proper distance metric is key here, because all other DTW steps depend on an accurate representation of the distances between time series samples. In general, Euclidean distance may work well in most cases, but there are data types that may require different metrics.
+
+The selection of a proper distance metric is the key detail in this step, because all other DTW steps depend on an accurate representation of the distances between time series samples. In general, Euclidean distance may work well in most cases, but there are data types that may require different metrics.
 
 ## Cost Matrix
 

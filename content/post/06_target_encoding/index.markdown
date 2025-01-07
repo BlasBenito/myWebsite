@@ -26,7 +26,7 @@ projects: []
 
 # Summary
 
-Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. The post delves into the complexities of dealing with these types of predictors using methods such as one-hot encoding (please don't) or target encoding, and provides insights into its mechanisms and quirks
+Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. The explains how to deal with these types of predictors using methods such as one-hot encoding (please don't) or target encoding, and provides insights into their mechanisms and quirks.
 
 ## Key Highlights:
 
@@ -499,7 +499,7 @@ Simple is good, right? But sometimes it's not. In our toy case, the category "c"
 
 The issue can be solved by pushing the mean of `y` for each category in `x` towards the global mean of `y` by the weighted sample size of the category, as suggested by the expression
 
-`$$x\_encoded_i = \frac{n_i \times \overline{y}_i + m \times \overline{y}}{n_i + m}$$`
+`$x_{encoded_i} = \frac{n_i \times \overline{y}_i + m \times \overline{y}}{n_i + m}$`
 
 where:
 

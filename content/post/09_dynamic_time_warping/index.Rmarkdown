@@ -6,7 +6,7 @@ slug: dynamic-time-warping
 categories: []
 tags: [Time Series Analysis, Dynamic Time Warping]
 subtitle: ''
-summary: 'Brief introduction to dynamic time warping and its role in the field of time series analysis.'
+summary: 'Brief introduction to Dynamic Time Warping with a conceptual step-by-step break down.'
 authors: [admin]
 lastmod: '2025-01-05T05:14:20+01:00'
 featured: no
@@ -20,13 +20,15 @@ projects: []
 
 # Resources
 
+  + [Dynamic Time Warping (Müller 2007)](https://www.audiolabs-erlangen.de/media/pages/fau/professor/mueller/publications/225d056498-1492348761/2007_Mueller_DTW-Chapter04-IR_Springer.pdf)
+  + [Everything you know about Dynamic Time Warping is Wrong](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=598dcc162548d1deabc9ef8eaa2de7609b7c7682#page=53)
   + [distantia: an open-source toolset to quantify dissimilarity between multivariate ecological time-series](https://nsojournals.onlinelibrary.wiley.com/doi/full/10.1111/ecog.04895)
   + [Dynamic Time Warping vs Lock-Step](https://blasbenito.github.io/distantia/articles/dynamic_time_warping_and_lock_step.html)
-  + [Everything you know about Dynamic Time Warping is Wrong](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=598dcc162548d1deabc9ef8eaa2de7609b7c7682#page=53)
 
 # Summary
 
-This post explains what *dynamic time warping* is and how it works from a conceptual perspective alone, without code examples or math expressions.
+This post provides a gentle introduction to *Dynamic Time Warping*, a method to compare time series of different lengths that has applications.
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -128,7 +130,7 @@ There are several options to compare `a` and `b` directly, such as assessing the
 
 This comparison approach is named *lock-step* (also known as *inelastic comparison*), and works best when the time series represent phenomena with relatively similar shapes and are aligned in time and frequency, as it is the case of `a` and `b`.
 
-Comparing `c` with `a` or `b` is a completely different task though, exactly the one *Dynamic Time Warping* was designed for.
+Comparing `c` with `a` and/or `b` is a completely different task though, exactly the one [Dynamic Time Warping](https://en.wikipedia.org/wiki/Dynamic_time_warping) was designed for.
 
 Now it'd make sense to explain right away what dynamic time warping is and how it works, but there's a bit of history to know about it first.
 
@@ -200,7 +202,7 @@ This ability to warp time makes DTW incredibly useful for analyzing time series 
 
 The next section explains how DTW is computed on a step-by-step fashion.
 
-## DTW: Step by Step
+# DTW: Step by Step
 
 Time series comparison via Dynamic Time Warping (DTW) involves several key steps:
 
@@ -210,7 +212,7 @@ Time series comparison via Dynamic Time Warping (DTW) involves several key steps
 - **Finding the least-cost path** within the cost matrix.
 - **Computation of a similarity metric** based on the least-cost path.
 
-### Detrending and Z-score Normalization
+## Detrending and Z-score Normalization
 
 DTW is highly sensitive to differences in trends and ranges between time series (see the *Pitfalls* section). To address this, [detrending](https://sherbold.github.io/intro-to-data-science/09_Time-Series-Analysis.html#Trend-and-Seasonal-Effects) and [z-score normalization](https://developers.google.com/machine-learning/crash-course/numerical-data/normalization#z-score_scaling) are important preprocessing steps.
 
@@ -233,7 +235,7 @@ tsl_plot(
 )
 ```
 
-### Distance Matrix
+## Distance Matrix
 
 The next step involves computing the distance matrix, which contains pairwise distances between all samples in the two time series. 
 
@@ -252,7 +254,7 @@ distantia::utils_matrix_plot(
 
 Choosing an appropriate distance metric is crucial. While Euclidean distance works well in many cases, other metrics may be more suitable depending on the data.
 
-### Cost Matrix
+## Cost Matrix
 
 The cost matrix is derived from the distance matrix by accumulating distances dynamically from the starting corner (lower-left) to the ending corner (upper-right). Different rules for cell neighborhood determine how costs propagate:
 
@@ -274,9 +276,11 @@ distantia::utils_matrix_plot(
 )
 ```
 
-### Least-cost Path
+## Least-cost Path
 
-This is where the actual time warping happens! The least-cost path minimizes the total cost from the start to the end of the cost matrix, aligning the time series optimally. 
+This is where the actual time warping happens! 
+
+The least-cost path minimizes the total cost from the start to the end of the cost matrix, aligning the time series optimally. The algorithm building the least-cost path starts on the upper right corner of the cost matrix, and recursively selects the antecedent neighbor with the lowest cost to build the least-cost path step by step.
 
 The figure below shows the least-cost path (black line). Deviations from the diagonal represent adjustments made to align the time series.
 
@@ -294,7 +298,7 @@ distantia::utils_matrix_plot(
 )
 ```
 
-### Similarity Metric
+## Similarity Metric
 
 Finally, DTW produces a similarity metric based on the least-cost path. The simplest approach is to sum the distances of all points along the path.
 
@@ -316,7 +320,7 @@ These normalized metrics allow comparisons across datasets with varying characte
 
 DTW is a powerful tool for time series comparison, but it comes with several challenges that users should be aware of when starting to work with it. Below is a summary of the most common pitfalls and how to mitigate them.
 
-DTW is highly sensitive to differences in the scales or trends of the time series. A series with larger values or a strong trend might dominate the alignment process, skewing the results. This can result in misleading results called *pathological alignments*, especially when one of the time series has noise, spikes, or outliers.
+DTW is highly sensitive to differences in scale and trends in non-stationary time series. A time series with larger values or a strong trend might dominate the alignment, resulting in misleading results, the so-called *pathological alignments*, especially when one of the time series has noise, spikes, or outliers.
 
 The figure below shows an example of pahological alignment between temperature time series of two major cities. It results from
 
@@ -364,11 +368,23 @@ distantia_dtw_plot(tsl = tsl, text_cex = 0.9, bandwidth = 0.1)
 
 Understanding these pitfalls and implementing the suggested mitigations can greatly improve the reliability of DTW-based analyses.
 
-# Computational considerations
+# Open Source Implementations
 
-The computational complexity of DTW is $(O(n \times m))$, where $n$ and $m$ are the lengths of the time series. This makes it computationally expensive for long time series.
+This section lists several implementations of DTW in R and Python.
 
-> **Mitigation**: Consider down-sampling the time series to reduce their lengths. Parallel processing can also help when working with multiple time series.
+## R 
+
+  - [dtw](https://dynamictimewarping.github.io/), by Toni Giorgino: most complete DTW suite in R, with a companion paper [here](https://www.jstatsoft.org/article/view/v031i07). It also has a Python implementation linked below.
+  - [dtwclust](https://cran.r-project.org/package=dtwclust), by Alexis Sarda-Espinosa: focused on applying DTW for time series clustering. It has a very comprehensive technical vignette [here](https://cran.r-project.org/web/packages/dtwclust/vignettes/dtwclust.pdf).
+  - [IncDTW](https://cran.r-project.org/package=IncDTW), by Maximilian Leodolter: efficient implementation with a [companion paper](https://www.jstatsoft.org/article/view/v099i09), focused on fast DTW computations for real-time applications.
+  - [distantia](https://blasbenito.github.io/distantia/), by myself: streamlined package to facilitate time series comparison and inference (permutation tests and variable importance scores) with DTW and lock-step methods.
+
+## Python
+
+  - [dtw-python](https://pypi.org/project/dtw-python/): Python implementation of [dtw](https://dynamictimewarping.github.io/).
+  - [dtaidistance](https://github.com/wannesm/dtaidistance): fast C implementation of DTW, with a great documentation page [here](https://dtaidistance.readthedocs.io/en/latest/).
+  - [tslearn](https://tslearn.readthedocs.io/en/stable/), by Romain Tavenard: focused on time series clustering via DTW for machine learning modeling.
+  - [fastdtw](https://github.com/slaypni/fastdtw?tab=readme-ov-file), by Stan Salvador and Philip Chan: python implementation of FastDTW, a fast approximation to DTW described in [this paper](https://cs.fit.edu/~pkc/papers/tdm04.pdf).
 
 # Closing Thoughts
 

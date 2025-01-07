@@ -316,29 +316,57 @@ These normalized metrics allow comparisons across datasets with varying characte
 
 DTW is a powerful tool for time series comparison, but it comes with several challenges that users should be aware of when starting to work with it. Below is a summary of the most common pitfalls and how to mitigate them.
 
-## Pathological Alignments
+DTW is highly sensitive to differences in the scales or trends of the time series. A series with larger values or a strong trend might dominate the alignment process, skewing the results. This can result in misleading results called *pathological alignments*, especially when one of the time series has noise, spikes, or outliers.
 
-DTW can sometimes produce unintuitive alignments, especially when one of the time series has noise, spikes, or outliers. These pathological alignments can lead to misleading results.
+The figure below shows an example of pahological alignment between temperature time series of two major cities. It results from
 
-> **Mitigation**: Preprocess the data by smoothing or detrending it. You can also constrain the warping paths, for example, using Sakoe-Chiba bands, or apply regularized versions of DTW.
+```{r, echo = FALSE, fig.height=4.5}
+tsl <- tsl_initialize(
+  x = cities_temperature,
+  name_column = "name",
+  time_column = "time"
+) |> 
+  tsl_subset(
+    names = c("London", "Kinshasa"),
+    time = c("2000-01-01", "2010-01-01")
+  )
 
-## Sensitivity to Scale and Trend
+distantia_dtw_plot(tsl = tsl, text_cex = 0.9)
+```
 
-DTW is highly sensitive to differences in the scales or trends of the time series. A series with larger values or a strong trend might dominate the alignment process, skewing the results.
+These long straight lines in the least-cost path are clear features of a pathological alignment. They result from the algorithm *getting stuck* in a particular sample of one of the time series, which is matched with many samples from the other one.
 
-> **Mitigation**: Always detrend and normalize the time series before applying DTW. A common approach is z-score normalization, which ensures the series have zero mean and unit variance.
+There are two complementary approaches to mitigate this issue:
 
-## Length Mismatch Issues
+The first one involves z-score normalization, detrending, and maybe smoothing. These pre-processing steps alone can transform a pathological alignnment into a very healthy one, as the figure below shows.
 
-DTW can handle time series of different lengths, but significant length differences can result in one series being overly stretched or compressed, leading to suboptimal alignments.
+```{r, echo = FALSE, fig.height=4.5}
+tsl_scaled <- tsl |> 
+  tsl_transform(
+    f = f_detrend_poly,
+    degree = 10
+  ) |> 
+  tsl_smooth() |> 
+  tsl_transform(
+    f = f_scale_local
+  )
 
-> **Mitigation**: Resample the time series to make their lengths comparable or apply constraints on the acceptable warping levels to prevent excessive stretching.
+distantia_dtw_plot(tsl = tsl_scaled, text_cex = 0.9)
+```
+The second approach, which can be combined with the previous one, involves applying *constrained DTW*, which limits the area of the cost matrix the least-cost path can use. For example, *Sakoe-Chiba bands*, shown in the figure below, and *Itakura parallelograms* define an area at both sides of the cost matrix diagonal outside of which the least-cost path cannot cross.
 
-Understanding these pitfalls and implementing the suggested mitigations can greatly improve the reliability of your DTW-based analyses.
+However, as seen below, these methods have a limited ability to fix extremely pathological alignments, which mostly happen when the proper data preprocessing steps are ignored or skipped.
+
+```{r, echo = FALSE, fig.height=4.5}
+distantia_dtw_plot(tsl = tsl, text_cex = 0.9, bandwidth = 0.1)
+```
+
+
+Understanding these pitfalls and implementing the suggested mitigations can greatly improve the reliability of DTW-based analyses.
 
 # Computational considerations
 
-The computational complexity of DTW is $(O(n \times m))$, where $n$ and $m$ are the lengths of the time series. This makes it computationally expensive for long time series or large datasets.
+The computational complexity of DTW is $(O(n \times m))$, where $n$ and $m$ are the lengths of the time series. This makes it computationally expensive for long time series.
 
 > **Mitigation**: Consider down-sampling the time series to reduce their lengths. Parallel processing can also help when working with multiple time series.
 

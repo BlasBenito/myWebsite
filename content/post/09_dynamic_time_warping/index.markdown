@@ -139,19 +139,41 @@ However, when comparing time series of varying lengths, normalization is often u
 
 These normalized metrics allow comparisons across datasets with varying characteristics.
 
+# Pitfalls of Dynamic Time Warping
 
+DTW is a powerful tool for time series comparison, but it comes with several challenges that users should be aware of when starting to work with it. Below is a summary of the most common pitfalls and how to mitigate them.
 
+## Pathological Alignments
 
+DTW can sometimes produce unintuitive alignments, especially when one of the time series has noise, spikes, or outliers. These pathological alignments can lead to misleading results.
 
+The figure below shows an example of pahological alignment between temperature time series of two major cities. It results from
 
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="750" />
 
-# Pitfalls
+These long straight lines in the least cost path are clear features of a pathological alignment. They result from the algorithm *getting stuck* in a particular sample of one of the time series, which is matched with many samples from the other one.
 
-TODO: Explain pathological alignments and approaches to detect and limit them.
+> **Mitigation**: Preprocess the data by smoothing or detrending it. You can also constrain the warping paths, for example, using Sakoe-Chiba bands, or apply regularized versions of DTW.
+
+## Sensitivity to Scale and Trend
+
+DTW is highly sensitive to differences in the scales or trends of the time series. A series with larger values or a strong trend might dominate the alignment process, skewing the results.
+
+> **Mitigation**: Always detrend and normalize the time series before applying DTW. A common approach is z-score normalization, which ensures the series have zero mean and unit variance.
+
+## Length Mismatch Issues
+
+DTW can handle time series of different lengths, but significant length differences can result in one series being overly stretched or compressed, leading to suboptimal alignments.
+
+> **Mitigation**: Resample the time series to make their lengths comparable or apply constraints on the acceptable warping levels to prevent excessive stretching.
+
+Understanding these pitfalls and implementing the suggested mitigations can greatly improve the reliability of your DTW-based analyses.
 
 # Computational considerations
 
-TODO: Maximum data sizes that can be addressed with naive DTW, and a few steps to reduce the computational load (data resampling)
+The computational complexity of DTW is `\((O(n \times m))\)`, where `\(n\)` and `\(m\)` are the lengths of the time series. This makes it computationally expensive for long time series or large datasets.
+
+> **Mitigation**: Consider down-sampling the time series to reduce their lengths. Parallel processing can also help when working with multiple time series.
 
 # Closing Thoughts
 

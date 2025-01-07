@@ -26,6 +26,7 @@ projects: []
 
 # Summary
 
+This post explains what *dynamic time warping* is and how it works from a conceptual perspective alone, without code examples or math expressions.
 
 
 
@@ -44,7 +45,7 @@ For example, the data below shows time series representing the same phenomena in
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="750" />
 
 
-There are several options to compare `a` and `b` directly, such as computing their correlation (0.955), or adding the euclidean distances between their respective samples (2.021). 
+There are several options to compare `a` and `b` directly, such as assessing their correlation (0.955), or computing the sum of euclidean distances between their respective samples (2.021). 
 
 This comparison approach is named *lock-step* (also known as *inelastic comparison*), and works best when the time series represent phenomena with relatively similar shapes and are aligned in time and frequency, as it is the case of `a` and `b`.
 
@@ -66,76 +67,82 @@ Ok, let's stop wandering in time, and go back to the meat in this post.
 
 # What is *Dynamic Time Warping*?
 
-Dynamic Time Warping is a method to compare univariate or multivariate time series of different length, timing, or shape. To do so, DTW stretches or compresses (hence *warping*) parts of the time series until it finds the alignment that minimizes their overall differences. Think of it as a way to match the rhythm of two songs even if one plays faster than the other.
+Dynamic Time Warping is a method to compare univariate or multivariate time series of different length, timing, and/or shape. To do so, DTW stretches or compresses parts of the time series (hence *warping*) until it finds the alignment that minimizes their overall differences. Think of it as a way to match the rhythm of two songs even if one plays faster than the other.
 
-The figure below represents the dynamic time warping of the time series `c` and `a`. Notice how each sample in one time series matches one or several samples from the other. These matches are optimized to minimize the sum of distances between the samples they connect (3.285 in this case). Any other combination of matches would result in a higher sum of distances.
+The figure below represents a dynamic time warping solution for the time series `c` and `a`. Notice how each sample in one time series matches one or several samples from the other. These matches are optimized to minimize the sum of distances between the samples they connect (3.285 in this case). Any other combination of matches would result in a higher sum of distances.
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="750" />
 
-In dynamic time warping, the *time warping* happens when a sample in one time series is matched with two or more samples of the other, independently of their observation times. The figure below identifies one of these instances with blue bubbles. The sample 10 of `c` (upper blue bubble), with date 2022-07-16, is matched with the samples 14 to 16 of `a` (lower bubble), with dates 2023-12-13 to 2024-03-09. This matching structure represents a time compression in `a` for the range of involved dates.
+In dynamic time warping, the actual *warping* happens when a sample in one time series is matched with two or more samples from the other, independently of their observation times. The figure below identifies one of these instances with blue bubbles. The sample 10 of `c` (upper blue bubble), with date 2022-07-16, is matched with the samples 14 to 16 of `a` (lower bubble), with dates 2023-12-13 to 2024-03-09. This matching structure represents a time compression in `a` for the range of involved dates.
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="750" />
 This ability to warp time makes DTW incredibly useful for analyzing time series that are similar in shape but don't have the same length or are not fully synchronized. 
 
+The next section explains how DTW is computed on a step-by-step fashion.
 
-# DTW Step by Step
+## DTW: Step by Step
 
-Time series comparison via Dynamic Time Warping requires several steps:
+Time series comparison via Dynamic Time Warping (DTW) involves several key steps:
 
-  - Detrending and z-score normalization of the time series.
-  - Computation of the distance matrix between all pairs of samples.
-  - Computation of a cost matrix from the distance matrix.
-  - Finding the least-cost path within the cost matrix.
-  - Computation of a similarity metric based on the least-cost path.
-  
-## Detrending and Z-score Normalization
+- **Detrending and z-score normalization** of the time series.
+- **Computation of the distance matrix** between all pairs of samples.
+- **Computation of a cost matrix** from the distance matrix.
+- **Finding the least-cost path** within the cost matrix.
+- **Computation of a similarity metric** based on the least-cost path.
 
-The first step to perform DTW does not pertain DTW itself, but the time series data. DTW is highly sensitive to significant differences in data trends and ranges (see section *Pitfalls*), which turns detrending and z-score normalization into pre-requirements to perform DTW correctly.
+### Detrending and Z-score Normalization
 
-The time series `a` and `c` don't need detrending, and they already have matching ranges between 0 and 1, so they would not require z-score normalization. However, and only for the sake of the example, the figure below shows them normalized.
+DTW is highly sensitive to differences in trends and ranges between time series (see the *Pitfalls* section). To address this, [detrending](https://sherbold.github.io/intro-to-data-science/09_Time-Series-Analysis.html#Trend-and-Seasonal-Effects) and [z-score normalization](https://developers.google.com/machine-learning/crash-course/numerical-data/normalization#z-score_scaling) are important preprocessing steps.
+
+In this example, the time series `a` and `c` already have matching ranges, so normalization is not strictly necessary. For demonstration purposes, however, the figure below shows them normalized using z-score scaling:
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="750" />
 
-## Distance Matrix
+### Distance Matrix
 
-The second step in DTW is computing the distance matrix between all pairs of samples in both time series, which is shown in the figure below.
+The next step involves computing the distance matrix, which contains pairwise distances between all samples in the two time series. 
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="600" />
-The selection of a proper distance metric is key here, because all other DTW steps depend on an accurate representation of the distances between time series samples. In general, Euclidean distance may work well in most cases, but there are data types that may require different metrics.
 
-## Cost Matrix
+Choosing an appropriate distance metric is crucial. While Euclidean distance works well in many cases, other metrics may be more suitable depending on the data.
 
-This step involves transforming the distance matrix into a cost matrix using a dynamic algorithm that accumulates distances from the starting corner of the distance matrix (lower left) towards the ending corner using different cell neighborhood rules:
+### Cost Matrix
 
-  - **Orthogonal only**: Distance accumulation only happens in the *x* and *y* axes, completely ignoring diagonals.
-  - **Orthogonal and diagonal**: Distance accumulation is also computed in diagonals, which are usually weighted by a factor of `1.414214` so they don't outcompete orthogonal movements.
-  
-The figure below shows the orthogonal and diagonal cost matrix of the time series `a` and `c`.
+The cost matrix is derived from the distance matrix by accumulating distances dynamically from the starting corner (lower-left) to the ending corner (upper-right). Different rules for cell neighborhood determine how costs propagate:
+
+  - **Orthogonal only**: Accumulation occurs in the *x* and *y* directions only, ignoring diagonals.
+  - **Orthogonal and diagonal**: Diagonal movements are also considered, typically weighted by a factor of `√2` (1.414) to balance with orthogonal movements.
+
+The figure below illustrates the cost matrix with both orthogonal and diagonal paths:
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="600" />
 
-## Least-cost Path
+### Least-cost Path
 
-This is the step that actually does the time warping! It involves finding the path between the corners of the cost matrix that minimizes the overall movement cost, just like a river finds its way between the mountains.
+This is where the actual time warping happens! The least-cost path minimizes the total cost from the start to the end of the cost matrix, aligning the time series optimally. 
 
-Like the computation of the cost matrix, the cost path can consider orthogonal movements only, or orthogonal and diagonal ones. In any case, the method used to compute the cost matrix must match the method used to build the least-cost path.
-
-The figure below shows the least-cost path between `a` and `c` in black. Any deviation of the least-cost path from the white diagonal indicates an adjustment made to optimize the alignment between both time series.
+The figure below shows the least-cost path (black line). Deviations from the diagonal represent adjustments made to align the time series.
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="600" />
 
-## Similarity Metric
+### Similarity Metric
 
-All the steps above are just the means to obtain an statistic representing the similarity between both time series.
+Finally, DTW produces a similarity metric based on the least-cost path. The simplest approach is to sum the distances of all points along the path.
 
 
 
-In its simplest form, this number can be the sum of distances between pairs of samples connected by the least cost path, which is 8.167 in this case. 
+For this example, the total cost is 8.167. 
+However, when comparing time series of varying lengths, normalization is often useful. Common options include:
 
-However, when many time series of different lengths are involved in the analysis, it is convenient to normalize this number by some quantity. There are several options for this normalization factor:
+  - **Sum of lengths**: Normalize by the combined lengths of the time series, e.g., `Normalized Cost = Total Cost / (Length(a) + Length(c))`. For `a` and `c`, this would be 0.163.
+  - **Auto-sum of distances**: Normalize by the sum of distances between adjacent samples in each series, as in `Normalized Cost = Total Cost / (Auto-sum(a) + Auto-sum(c))`. For `a` and `c`, this results in 0.386.
 
-  - Sum of lengths of the time series: this would be `2.663/(30 + 20)` for `a` () and `c`, resulting in 0.163.
-  - Auto-sum of distances between consecutive samples in both time series: this normalization factor results from adding the distances between the adjacent samples in both time series, such as `D(a[1], a[2]) + D(a[2], a[3]) + ... D(c[1], c[2]) + D(c[2], c[3]) + ...`. For `a` this would be 11.044, for `c`, 10.125, and hence, the normalized distance between them would be `2.663/(11.044 + 10.125) = 0.126`.
+These normalized metrics allow comparisons across datasets with varying characteristics.
+
+
+
+
+
 
 
 # Pitfalls

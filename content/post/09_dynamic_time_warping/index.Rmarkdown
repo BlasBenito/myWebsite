@@ -200,22 +200,21 @@ This ability to warp time makes DTW incredibly useful for analyzing time series 
 
 The next section explains how DTW is computed on a step-by-step fashion.
 
+## DTW: Step by Step
 
-# DTW: Step by Step
+Time series comparison via Dynamic Time Warping (DTW) involves several key steps:
 
-Time series comparison via Dynamic Time Warping requires several steps:
+- **Detrending and z-score normalization** of the time series.
+- **Computation of the distance matrix** between all pairs of samples.
+- **Computation of a cost matrix** from the distance matrix.
+- **Finding the least-cost path** within the cost matrix.
+- **Computation of a similarity metric** based on the least-cost path.
 
-  - Detrending and z-score normalization of the time series.
-  - Computation of the distance matrix between all pairs of samples.
-  - Computation of a cost matrix from the distance matrix.
-  - Finding the least-cost path within the cost matrix.
-  - Computation of a similarity metric based on the least-cost path.
-  
-## Detrending and Z-score Normalization
+### Detrending and Z-score Normalization
 
-The first step to perform DTW does not pertain DTW itself, but the time series data. DTW is highly sensitive to significant differences in data trends and ranges (see section *Pitfalls*), which turns [detrending](https://sherbold.github.io/intro-to-data-science/09_Time-Series-Analysis.html#Trend-and-Seasonal-Effects) and [z-score normalization](https://developers.google.com/machine-learning/crash-course/numerical-data/normalization#z-score_scaling) into important steps before performing DTW correctly.
+DTW is highly sensitive to differences in trends and ranges between time series (see the *Pitfalls* section). To address this, [detrending](https://sherbold.github.io/intro-to-data-science/09_Time-Series-Analysis.html#Trend-and-Seasonal-Effects) and [z-score normalization](https://developers.google.com/machine-learning/crash-course/numerical-data/normalization#z-score_scaling) are important preprocessing steps.
 
-The time series `a` and `c` do not need detrending, and they already have matching ranges between 0 and 1, so they would not require z-score normalization. Still, for the example's sake, the figure below shows them normalized.
+In this example, the time series `a` and `c` already have matching ranges, so normalization is not strictly necessary. For demonstration purposes, however, the figure below shows them normalized using z-score scaling:
 
 ```{r, echo = FALSE, fig.height=2.5}
 tsl <- tsl |> 
@@ -231,12 +230,12 @@ tsl_plot(
   ylim = "absolute", 
   xlim = c("2022-01-01", "2025-01-01"),
   guide = FALSE
-  )
+)
 ```
 
-## Distance Matrix
+### Distance Matrix
 
-The first DTW step requires computing the distance matrix between all pairs of samples in both time series.
+The next step involves computing the distance matrix, which contains pairwise distances between all samples in the two time series. 
 
 ```{r, fig.width=4, fig.height=3.5, echo = FALSE}
 m.dist <- distantia::psi_distance_matrix(
@@ -248,19 +247,19 @@ m.dist <- distantia::psi_distance_matrix(
 distantia::utils_matrix_plot(
   m = m.dist,
   diagonal_width = 0
-  )
+)
 ```
 
-The selection of a proper distance metric is the key detail in this step, because all other DTW steps depend on an accurate representation of the distances between time series samples. In general, Euclidean distance may work well in most cases, but there are data types that may require different metrics.
+Choosing an appropriate distance metric is crucial. While Euclidean distance works well in many cases, other metrics may be more suitable depending on the data.
 
-## Cost Matrix
+### Cost Matrix
 
-This step involves transforming the distance matrix into a cost matrix using a dynamic algorithm that accumulates distances from the starting corner of the distance matrix (lower left) towards the ending corner using different cell neighborhood rules:
+The cost matrix is derived from the distance matrix by accumulating distances dynamically from the starting corner (lower-left) to the ending corner (upper-right). Different rules for cell neighborhood determine how costs propagate:
 
-  - **Orthogonal only**: Distance accumulation only happens in the *x* and *y* axes, completely ignoring diagonals.
-  - **Orthogonal and diagonal**: Distance accumulation is also computed in diagonals, which are usually weighted by a factor of `1.414214` so they don't outcompete orthogonal movements.
-  
-The figure below shows the orthogonal and diagonal cost matrix of the time series `a` and `c`.
+  - **Orthogonal only**: Accumulation occurs in the *x* and *y* directions only, ignoring diagonals.
+  - **Orthogonal and diagonal**: Diagonal movements are also considered, typically weighted by a factor of `√2` (1.414) to balance with orthogonal movements.
+
+The figure below illustrates the cost matrix with both orthogonal and diagonal paths:
 
 ```{r, fig.width=4, fig.height=3.5, echo = FALSE}
 m.cost <- distantia::psi_cost_matrix(
@@ -272,16 +271,14 @@ distantia::utils_matrix_plot(
   m = m.cost,
   diagonal_width = 0,
   text_cex = 0.9
-  )
+)
 ```
 
-## Least-cost Path
+### Least-cost Path
 
-This is the step that actually does the time warping! It involves finding the path between the corners of the cost matrix that minimizes the overall movement cost, just like a river finds its way between the mountains.
+This is where the actual time warping happens! The least-cost path minimizes the total cost from the start to the end of the cost matrix, aligning the time series optimally. 
 
-Like the computation of the cost matrix, the cost path can consider orthogonal movements only, or orthogonal and diagonal ones. In any case, the method used to compute the cost matrix must match the method used to build the least-cost path.
-
-The figure below shows the least-cost path between `a` and `c` in black. Any deviation of the least-cost path from the white diagonal indicates an adjustment made to optimize the alignment between both time series.
+The figure below shows the least-cost path (black line). Deviations from the diagonal represent adjustments made to align the time series.
 
 ```{r, fig.width=4, fig.height=3.5, echo = FALSE}
 m.cost.path <- distantia::psi_cost_path(
@@ -297,9 +294,9 @@ distantia::utils_matrix_plot(
 )
 ```
 
-## Similarity Metric
+### Similarity Metric
 
-All the steps above are just the means to obtain an statistic representing the similarity between both time series.
+Finally, DTW produces a similarity metric based on the least-cost path. The simplest approach is to sum the distances of all points along the path.
 
 ```{r, echo = FALSE}
 cost.sum <- distantia::psi_cost_path_sum(
@@ -307,21 +304,43 @@ cost.sum <- distantia::psi_cost_path_sum(
 )
 ```
 
-In its simplest form, this number can be the sum of distances between pairs of samples connected by the least cost path, which is `r round(cost.sum, 3)` in this case. 
+For this example, the total cost is `r round(cost.sum, 3)`. 
+However, when comparing time series of varying lengths, normalization is often useful. Common options include:
 
-However, when many time series of different lengths are involved in the analysis, it is convenient to normalize this number by some quantity. There are several options for this normalization factor:
+  - **Sum of lengths**: Normalize by the combined lengths of the time series, e.g., `Normalized Cost = Total Cost / (Length(a) + Length(c))`. For `a` and `c`, this would be `r round(cost.sum / (30 + 20), 3)`.
+  - **Auto-sum of distances**: Normalize by the sum of distances between adjacent samples in each series, as in `Normalized Cost = Total Cost / (Auto-sum(a) + Auto-sum(c))`. For `a` and `c`, this results in `r round(cost.sum / (11.044 + 10.125), 3)`.
 
-  - Sum of lengths of the time series: this would be `2.663/(30 + 20)` for `a` () and `c`, resulting in `r round(cost.sum/(30 + 20), 3)`.
-  - Auto-sum of distances between consecutive samples in both time series: this normalization factor results from adding the distances between the adjacent samples in both time series, such as `D(a[1], a[2]) + D(a[2], a[3]) + ... D(c[1], c[2]) + D(c[2], c[3]) + ...`. For `a` this would be `r round(sum(sqrt(diff(tsl$a$x)^2)), 3)`, for `c`, `r round(sum(sqrt(diff(tsl$c$x)^2)), 3)`, and hence, the normalized distance between them would be `2.663/(11.044 + 10.125) = 0.126`.
+These normalized metrics allow comparisons across datasets with varying characteristics.
 
+# Pitfalls of Dynamic Time Warping
 
-# Pitfalls
+DTW is a powerful tool for time series comparison, but it comes with several challenges that users should be aware of when starting to work with it. Below is a summary of the most common pitfalls and how to mitigate them.
 
-TODO: Explain pathological alignments and approaches to detect and limit them.
+## Pathological Alignments
+
+DTW can sometimes produce unintuitive alignments, especially when one of the time series has noise, spikes, or outliers. These pathological alignments can lead to misleading results.
+
+> **Mitigation**: Preprocess the data by smoothing or detrending it. You can also constrain the warping paths, for example, using Sakoe-Chiba bands, or apply regularized versions of DTW.
+
+## Sensitivity to Scale and Trend
+
+DTW is highly sensitive to differences in the scales or trends of the time series. A series with larger values or a strong trend might dominate the alignment process, skewing the results.
+
+> **Mitigation**: Always detrend and normalize the time series before applying DTW. A common approach is z-score normalization, which ensures the series have zero mean and unit variance.
+
+## Length Mismatch Issues
+
+DTW can handle time series of different lengths, but significant length differences can result in one series being overly stretched or compressed, leading to suboptimal alignments.
+
+> **Mitigation**: Resample the time series to make their lengths comparable or apply constraints on the acceptable warping levels to prevent excessive stretching.
+
+Understanding these pitfalls and implementing the suggested mitigations can greatly improve the reliability of your DTW-based analyses.
 
 # Computational considerations
 
-TODO: Maximum data sizes that can be addressed with naive DTW, and a few steps to reduce the computational load (data resampling)
+The computational complexity of DTW is $(O(n \times m))$, where $n$ and $m$ are the lengths of the time series. This makes it computationally expensive for long time series or large datasets.
+
+> **Mitigation**: Consider down-sampling the time series to reduce their lengths. Parallel processing can also help when working with multiple time series.
 
 # Closing Thoughts
 

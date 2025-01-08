@@ -368,9 +368,20 @@ distantia_dtw_plot(tsl = tsl, text_cex = 0.9, bandwidth = 0.1)
 
 Understanding these pitfalls and implementing the suggested mitigations can greatly improve the reliability of DTW-based analyses.
 
+# Real World Applications
+
+Dynamic Time Warping has so many valuable applications that the [United States Patent and Trademark Office](https://www.uspto.gov/) has the [class704/241](https://www.freepatentsonline.com/CCL-704-241.html) devoted to patents built around it. 704 indicates the topic "Data Processing: Speech Signal Processing, Linguistics, Language Translation, and Audio Compression/Decompression", while 241 indicates the sub-topic "Dynamic Time Warping".
+
+[Spacenet](https://worldwide.espacenet.com/patent/), the patent search tool of the [European Patent Office](https://www.epo.org/en), shows about [12k results for "Dynamic Time Warping"](https://worldwide.espacenet.com/patent/search/family/007654522/publication/US2002049591A1?q=%22dynamic%20time%20warping%22).
+
+## Verification of Speaker Authentication
+
+[Patent](https://patents.justia.com/patent/20070239449)
+
+
 # Open Source Implementations
 
-This section lists several implementations of DTW in R and Python.
+This section lists several open source implementations of DTW in R and Python, in case you want to play with DTW.
 
 ## R 
 
@@ -385,6 +396,10 @@ This section lists several implementations of DTW in R and Python.
   - [dtaidistance](https://github.com/wannesm/dtaidistance): fast C implementation of DTW, with a great documentation page [here](https://dtaidistance.readthedocs.io/en/latest/).
   - [tslearn](https://tslearn.readthedocs.io/en/stable/), by Romain Tavenard: focused on time series clustering via DTW for machine learning modeling.
   - [fastdtw](https://github.com/slaypni/fastdtw?tab=readme-ov-file), by Stan Salvador and Philip Chan: python implementation of FastDTW, a fast approximation to DTW described in [this paper](https://cs.fit.edu/~pkc/papers/tdm04.pdf).
+  
+## Other Languages
+
+The [Wikipedia page on Dynamic Time Warping](https://en.wikipedia.org/wiki/Dynamic_time_warping) lists implementations in other languages in the section *Open Source Software*.
 
 # Closing Thoughts
 

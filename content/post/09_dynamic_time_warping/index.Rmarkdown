@@ -370,13 +370,35 @@ Understanding these pitfalls and implementing the suggested mitigations can grea
 
 # Real World Applications
 
-Dynamic Time Warping has so many valuable applications that the [United States Patent and Trademark Office](https://www.uspto.gov/) has the [class704/241](https://www.freepatentsonline.com/CCL-704-241.html) devoted to patents built around it. 704 indicates the topic "Data Processing: Speech Signal Processing, Linguistics, Language Translation, and Audio Compression/Decompression", while 241 indicates the sub-topic "Dynamic Time Warping".
+The [United States Patent and Trademark Office](https://www.uspto.gov/) has the [class 704/241](https://patents.justia.com/patents-by-us-classification/704/241) with the literal title "Dynamic Time Warping Patents". A similar category titled "Speech recognition using dynamic programming techniques, e.g. dynamic time warping [DTW]" [(G10L 15/12)](https://www.uspto.gov/web/patents/classification/cpc/pdf/cpc-scheme-G10L.pdf) exists in the [Cooperative Patent Classification](https://www.cooperativepatentclassification.org/home). 	
 
-[Spacenet](https://worldwide.espacenet.com/patent/), the patent search tool of the [European Patent Office](https://www.epo.org/en), shows about [12k results for "Dynamic Time Warping"](https://worldwide.espacenet.com/patent/search/family/007654522/publication/US2002049591A1?q=%22dynamic%20time%20warping%22).
+The patent search tool of the [European Patent Office](https://www.epo.org/en), [Spacenet](https://worldwide.espacenet.com/patent/), shows about [12k results for "Dynamic Time Warping"](https://worldwide.espacenet.com/patent/search/family/007654522/publication/US2002049591A1?q=%22dynamic%20time%20warping%22).
 
-## Verification of Speaker Authentication
+So there is no doubt about how valuable DTW is beyond academic papers. Let's take a closer look at a few of these applications.
 
-[Patent](https://patents.justia.com/patent/20070239449)
+1. Wearables
+
+    Fitbit: Fitbit devices, like the Fitbit Charge or Fitbit Sense, use DTW in their activity recognition algorithms. DTW aligns accelerometer and gyroscope time series data with predefined templates for activities like walking, running, or cycling, ensuring accurate classification even if the user's movements vary.
+    Apple Watch: While Apple’s systems rely on advanced AI models, DTW is often a key component in earlier motion pattern matching for fitness tracking and health monitoring.
+
+2. Healthcare Devices
+
+    Holter Monitors: Wearable heart monitoring devices like the Zio Patch or similar ECG monitors use DTW to align and compare heart rate time series with normal or pathological patterns, aiding in the detection of arrhythmias like atrial fibrillation.
+    Continuous Glucose Monitors (CGMs): Devices like the Dexcom G6 may incorporate DTW to analyze glucose time series trends, ensuring accurate comparisons despite individual variations in data timing.
+
+3. Speech Recognition and Audio Devices
+
+    Google Nest and Amazon Echo: These smart speakers incorporate DTW in their keyword detection phase ("OK Google" or "Alexa") by matching incoming audio patterns with stored templates, even if spoken with different speeds or intonations.
+    Sony ICD Voice Recorders: Professional audio recorders and transcribers may use DTW for aligning audio with text during transcription.
+
+4. Music and Entertainment
+
+    Shazam: Shazam’s music recognition algorithm historically used DTW to match audio fingerprints of songs played in real-time against a vast database, even when tempo or pitch varied slightly.
+    Ableton Push (Music Production Tool): DTW is used in time-stretching and quantization features to align beats and melodies for seamless music production.
+
+5. Industrial Devices
+
+    GE Predix (Industrial IoT): Sensors in industrial equipment managed by platforms like GE Predix or Siemens MindSphere use DTW for predictive maintenance by aligning real-time sensor data with known patterns of normal or faulty operations.
 
 
 # Open Source Implementations

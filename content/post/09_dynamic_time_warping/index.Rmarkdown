@@ -140,7 +140,7 @@ Dynamic Time Warping (DTW) might sound like a modern high-tech buzzword, but its
 
 These foundational ideas were later expanded upon by Sakoe and Chiba in their seminal 1971 paper, [*A Dynamic Programming Approach to Continuous Speech Recognition*](https://api.semanticscholar.org/CorpusID:107516844), often regarded as the definitive starting point for modern DTW applications. 
 
-From there, DTW found applications in diverse fields such as seismology, bioinformatics, and financial analysis. But one particular trans-disciplinary application of DTW brings me to write this post. In 1973, Gordon and Birks published the paper [*Numerical Methods in Quaternary Palaeoecology: II Comparison of Pollen Diagrams*](https://doi.org/10.1111/j.1469-8137.1974.tb04621.x), where DTW—renamed "sequence slotting"—was applied to combine pollen time series. This work inspired the development of the Fortran program [*SLOTSEQ*](https://doi.org/10.1016/0098-3004(80)90003-5) in 1980, which I somehow *inherited* 38 years later, resulting in version 1.0 of the R package [`distantia`](https://doi.org/10.1111/ecog.04895). Fast-forward to today, and my recent work on [version 2.0 of the same package](https://github.com/BlasBenito/distantia) is what brings us here.
+From there, DTW found applications in diverse fields such as seismology, bioinformatics, and financial analysis. But one particular trans-disciplinary application of DTW brings me to write this post. In 1973, Gordon and Birks published the paper [*Numerical Methods in Quaternary Palaeoecology: II Comparison of Pollen Diagrams*](https://doi.org/10.1111/j.1469-8137.1974.tb04621.x), where DTW—renamed "sequence slotting"—was applied to combine pollen time series. This work inspired the development of the Fortran program [*SLOTSEQ*](https://doi.org/10.1016/0098-3004(80)90003-5) in 1980, which I somehow *inherited* 38 years later, resulting in version 1.0 of the R package [`distantia`](https://doi.org/10.1111/ecog.04895). Fast-forward to today, what brings you this article is my recent work on the [version 2.0 of the same package](https://github.com/BlasBenito/distantia).
 
 Nowadays, Dynamic Time Warping is widely used across fields relying on time-dependent data, such as [medical sciences](https://doi.org/10.1016/j.bspc.2024.106677), [sports analytics](https://doi.org/10.1371/journal.pone.0272848), [astronomy](https://iopscience.iop.org/article/10.3847/1538-4357/ac4af6), [econometrics](https://doi.org/10.1016/j.eneco.2020.105036), [robotics](https://www.mdpi.com/2079-9292/8/11/1306), [epidemiology](https://doi.org/10.1111/exsy.13237), and many others.
 
@@ -198,6 +198,7 @@ legend(
   col = c("red4", "black")
   )
 ```
+
 This ability to warp time makes DTW incredibly useful for analyzing time series that are similar in shape but don't have the same length or are not fully synchronized. 
 
 The next section explains how DTW is computed on a step-by-step fashion.
@@ -370,16 +371,24 @@ Understanding these pitfalls and implementing the suggested mitigations can grea
 
 # Real World Applications
 
+Dynamic Time Warping is kind of a popular topic within the academic community, with more than 86k research articles listed in [Google Scholar](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22dynamic+time+warping%22&btnG=). However, the popularity of a topic in academia is rarely correlated with popularity of the same topic in the real world. Taking a look at DTW-based patents might give us a better insight on how DTW impacts our daily lives.
+
 The [United States Patent and Trademark Office](https://www.uspto.gov/) has the [class 704/241](https://patents.justia.com/patents-by-us-classification/704/241) with the literal title "Dynamic Time Warping Patents". A similar category titled "Speech recognition using dynamic programming techniques, e.g. dynamic time warping [DTW]" [(G10L 15/12)](https://www.uspto.gov/web/patents/classification/cpc/pdf/cpc-scheme-G10L.pdf) exists in the [Cooperative Patent Classification](https://www.cooperativepatentclassification.org/home). 	
 
-The patent search tool of the [European Patent Office](https://www.epo.org/en), [Spacenet](https://worldwide.espacenet.com/patent/), shows about [12k results for "Dynamic Time Warping"](https://worldwide.espacenet.com/patent/search/family/007654522/publication/US2002049591A1?q=%22dynamic%20time%20warping%22).
+The patent search tool of the [European Patent Office](https://www.epo.org/en), [Spacenet](https://worldwide.espacenet.com/patent/), shows about [12k results for "Dynamic Time Warping"](https://worldwide.espacenet.com/patent/search/family/007654522/publication/US2002049591A1?q=%22dynamic%20time%20warping%22), while [Google Patents](https://patents.google.com/?q=(%22dynamic+time+warping%22)&oq=%22dynamic+time+warping%22) shows 35k.
 
-So there is no doubt about how valuable DTW is beyond academic papers. Let's take a closer look at a few of these applications.
+So there is no doubt about how valuable DTW is beyond academic papers. However, due
 
-1. Wearables
+Fitness devices use DTW to align accelerometer and gyroscope time series data with a library of templates for different activities (walking cycling, etc) to help ensure an accurate classification of the user's activities. 
 
-    Fitbit: Fitbit devices, like the Fitbit Charge or Fitbit Sense, use DTW in their activity recognition algorithms. DTW aligns accelerometer and gyroscope time series data with predefined templates for activities like walking, running, or cycling, ensuring accurate classification even if the user's movements vary.
-    Apple Watch: While Apple’s systems rely on advanced AI models, DTW is often a key component in earlier motion pattern matching for fitness tracking and health monitoring.
+The [Wave](https://genkiinstruments.com/products/wave) ring, a MIDI controller to create music [patented by Genki](https://patents.google.com/patent/US20220085841A1/en), uses DTW paired with a nearest-neighbor classifier to analyze the user movements and respond with the proper sound effects.
+
+The [Sift](https://wiki.has-motion.com/doku.php?id=sift:sift_overview) software, by [HAS Motion](https://www.has-motion.ca/), [uses DTW](https://wiki.has-motion.com/doku.php?id=sift:dynamic_time_warping:dynamic_time_warping) to find anomalies in large biomechanics datasets by analysing the similarity between movement traces.
+
+The [LAMTSS](https://www.global.toshiba/ww/technology/corporate/rdc/rd/topics/20/2006-01.html) technology developed by Toshiba applies DTW to motion analysis in infrastructure and manufacturing equipment for prediction and detection of operational failures.
+
+
+
 
 2. Healthcare Devices
 

@@ -201,9 +201,9 @@ legend(
 
 This ability to warp time makes DTW incredibly useful for analyzing time series that are similar in shape but don't have the same length or are not fully synchronized. 
 
-The next section explains how DTW is computed on a step-by-step fashion.
+The next section delves into the computational steps of DTW.
 
-# DTW: Step by Step
+# DTW Step by Step
 
 Time series comparison via Dynamic Time Warping (DTW) involves several key steps:
 
@@ -371,66 +371,22 @@ Understanding these pitfalls and implementing the suggested mitigations can grea
 
 # Real World Applications
 
-Dynamic Time Warping is kind of a popular topic within the academic community, with more than 86k research articles listed in [Google Scholar](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22dynamic+time+warping%22&btnG=). However, the popularity of a topic in academia is rarely correlated with popularity of the same topic in the real world. Taking a look at DTW-based patents might give us a better insight on how DTW impacts our daily lives.
+Dynamic Time Warping is kind of a popular topic within the academic community, with more than 86k research articles listed in [Google Scholar](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22dynamic+time+warping%22&btnG=). However, the popularity of a topic in academia is rarely correlated with popularity of the same topic in the real world. Taking a look at DTW-based patents might give us a better insight on how DTW is being used.
 
 The [United States Patent and Trademark Office](https://www.uspto.gov/) has the [class 704/241](https://patents.justia.com/patents-by-us-classification/704/241) with the literal title "Dynamic Time Warping Patents". A similar category titled "Speech recognition using dynamic programming techniques, e.g. dynamic time warping [DTW]" [(G10L 15/12)](https://www.uspto.gov/web/patents/classification/cpc/pdf/cpc-scheme-G10L.pdf) exists in the [Cooperative Patent Classification](https://www.cooperativepatentclassification.org/home). 	
 
 The patent search tool of the [European Patent Office](https://www.epo.org/en), [Spacenet](https://worldwide.espacenet.com/patent/), shows about [12k results for "Dynamic Time Warping"](https://worldwide.espacenet.com/patent/search/family/007654522/publication/US2002049591A1?q=%22dynamic%20time%20warping%22), while [Google Patents](https://patents.google.com/?q=(%22dynamic+time+warping%22)&oq=%22dynamic+time+warping%22) shows 35k.
 
-So there is no doubt about how valuable DTW is beyond academic papers. However, due
+However, finding direct references of DTW usage in company manuals, wikis, or blogs is way harder than finding patents! Still, a few interesting examples are listed below.
 
-Fitness devices use DTW to align accelerometer and gyroscope time series data with a library of templates for different activities (walking cycling, etc) to help ensure an accurate classification of the user's activities. 
+Fitness devices use DTW to align accelerometer and gyroscope time series data with a library of templates for different activities (walking cycling, etc) to help ensure an accurate classification of the user's activities. A creative application of this concept in a different field comes with the [Wave](https://genkiinstruments.com/products/wave) ring, a MIDI controller to create music [patented by Genki](https://patents.google.com/patent/US20220085841A1/en), uses DTW paired with a nearest-neighbor classifier to analyze the user movements and respond with the proper sound effects.
 
-The [Wave](https://genkiinstruments.com/products/wave) ring, a MIDI controller to create music [patented by Genki](https://patents.google.com/patent/US20220085841A1/en), uses DTW paired with a nearest-neighbor classifier to analyze the user movements and respond with the proper sound effects.
-
-The [Sift](https://wiki.has-motion.com/doku.php?id=sift:sift_overview) software, by [HAS Motion](https://www.has-motion.ca/), [uses DTW](https://wiki.has-motion.com/doku.php?id=sift:dynamic_time_warping:dynamic_time_warping) to find anomalies in large biomechanics datasets by analysing the similarity between movement traces.
+DTW also has important applications in biomechanics. For example, the software [Sift](https://wiki.has-motion.com/doku.php?id=sift:sift_overview), by [HAS Motion](https://www.has-motion.ca/), [uses DTW](https://wiki.has-motion.com/doku.php?id=sift:dynamic_time_warping:dynamic_time_warping) to find anomalies in large biomechanics datasets by analysing the similarity between movement traces. In a similar fashion, the [OrthoLoad](https://orthoload.com/) [uses DTW](https://orthoload.com/software/) to process load measurements acting on joint implants.
 
 The [LAMTSS](https://www.global.toshiba/ww/technology/corporate/rdc/rd/topics/20/2006-01.html) technology developed by Toshiba applies DTW to motion analysis in infrastructure and manufacturing equipment for prediction and detection of operational failures.
 
+Netflix uses Dynamic Time Warping to [align soundtracks and close captions](https://netflixtechblog.com/detecting-scene-changes-in-audiovisual-content-77a61d3eaad6).
 
-
-
-2. Healthcare Devices
-
-    Holter Monitors: Wearable heart monitoring devices like the Zio Patch or similar ECG monitors use DTW to align and compare heart rate time series with normal or pathological patterns, aiding in the detection of arrhythmias like atrial fibrillation.
-    Continuous Glucose Monitors (CGMs): Devices like the Dexcom G6 may incorporate DTW to analyze glucose time series trends, ensuring accurate comparisons despite individual variations in data timing.
-
-3. Speech Recognition and Audio Devices
-
-    Google Nest and Amazon Echo: These smart speakers incorporate DTW in their keyword detection phase ("OK Google" or "Alexa") by matching incoming audio patterns with stored templates, even if spoken with different speeds or intonations.
-    Sony ICD Voice Recorders: Professional audio recorders and transcribers may use DTW for aligning audio with text during transcription.
-
-4. Music and Entertainment
-
-    Shazam: Shazam’s music recognition algorithm historically used DTW to match audio fingerprints of songs played in real-time against a vast database, even when tempo or pitch varied slightly.
-    Ableton Push (Music Production Tool): DTW is used in time-stretching and quantization features to align beats and melodies for seamless music production.
-
-5. Industrial Devices
-
-    GE Predix (Industrial IoT): Sensors in industrial equipment managed by platforms like GE Predix or Siemens MindSphere use DTW for predictive maintenance by aligning real-time sensor data with known patterns of normal or faulty operations.
-
-
-# Open Source Implementations
-
-This section lists several open source implementations of DTW in R and Python, in case you want to play with DTW.
-
-## R 
-
-  - [dtw](https://dynamictimewarping.github.io/), by Toni Giorgino: most complete DTW suite in R, with a companion paper [here](https://www.jstatsoft.org/article/view/v031i07). It also has a Python implementation linked below.
-  - [dtwclust](https://cran.r-project.org/package=dtwclust), by Alexis Sarda-Espinosa: focused on applying DTW for time series clustering. It has a very comprehensive technical vignette [here](https://cran.r-project.org/web/packages/dtwclust/vignettes/dtwclust.pdf).
-  - [IncDTW](https://cran.r-project.org/package=IncDTW), by Maximilian Leodolter: efficient implementation with a [companion paper](https://www.jstatsoft.org/article/view/v099i09), focused on fast DTW computations for real-time applications.
-  - [distantia](https://blasbenito.github.io/distantia/), by myself: streamlined package to facilitate time series comparison and inference (permutation tests and variable importance scores) with DTW and lock-step methods.
-
-## Python
-
-  - [dtw-python](https://pypi.org/project/dtw-python/): Python implementation of [dtw](https://dynamictimewarping.github.io/).
-  - [dtaidistance](https://github.com/wannesm/dtaidistance): fast C implementation of DTW, with a great documentation page [here](https://dtaidistance.readthedocs.io/en/latest/).
-  - [tslearn](https://tslearn.readthedocs.io/en/stable/), by Romain Tavenard: focused on time series clustering via DTW for machine learning modeling.
-  - [fastdtw](https://github.com/slaypni/fastdtw?tab=readme-ov-file), by Stan Salvador and Philip Chan: python implementation of FastDTW, a fast approximation to DTW described in [this paper](https://cs.fit.edu/~pkc/papers/tdm04.pdf).
-  
-## Other Languages
-
-The [Wikipedia page on Dynamic Time Warping](https://en.wikipedia.org/wiki/Dynamic_time_warping) lists implementations in other languages in the section *Open Source Software*.
 
 # Closing Thoughts
 

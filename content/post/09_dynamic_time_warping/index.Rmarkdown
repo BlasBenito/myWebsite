@@ -9,8 +9,8 @@ subtitle: ''
 summary: 'Brief introduction to Dynamic Time Warping with a conceptual step-by-step break down.'
 authors: [admin]
 lastmod: '2025-01-05T05:14:20+01:00'
-featured: no
-draft: true
+featured: yes
+draft: false
 image:
   caption: Graph by Blas M. Benito
   focal_point: Smart
@@ -18,16 +18,9 @@ image:
 projects: []
 ---
 
-# Resources
-
-  + [Dynamic Time Warping (Müller 2007)](https://www.audiolabs-erlangen.de/media/pages/fau/professor/mueller/publications/225d056498-1492348761/2007_Mueller_DTW-Chapter04-IR_Springer.pdf)
-  + [Everything you know about Dynamic Time Warping is Wrong](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=598dcc162548d1deabc9ef8eaa2de7609b7c7682#page=53)
-  + [distantia: an open-source toolset to quantify dissimilarity between multivariate ecological time-series](https://nsojournals.onlinelibrary.wiley.com/doi/full/10.1111/ecog.04895)
-  + [Dynamic Time Warping vs Lock-Step](https://blasbenito.github.io/distantia/articles/dynamic_time_warping_and_lock_step.html)
-
 # Summary
 
-This post provides a gentle introduction to *Dynamic Time Warping*, a method to compare time series of different lengths that has applications.
+This post provides a gentle conceptual introduction to *Dynamic Time Warping* (DTW), a method to compare time series of different lengths that has found its way into our daily lives. It starts with a very general introduction to the comparison of time series, follows with a bit of history about its development and a step-by-step breakdown, to finalize with a summary of its real-world applications.
 
 
 ```{r, include = FALSE}
@@ -65,9 +58,9 @@ suppressPackageStartupMessages(library(dplyr, quietly = TRUE))
 
 # Comparing Time Series
 
-Time series comparison is a critical task in many fields, such as environmental monitoring, finance, and healthcare. The goal is often to quantify similarities or differences between pairs of time series to gain insights in how the data is structured and identify meaningful patterns.
+Time series comparison is a critical task in many fields, such as environmental monitoring, finance, and healthcare. The goal is often to quantify similarities or differences between pairs of time series to gain insights into how the data is structured and identify meaningful patterns.
 
-For example, the data below shows time series representing the same phenomena in three different places and time ranges: `a` and `b` have 30 synchronized observations, while `c` has 20 observations from a different year. 
+For example, the data below shows time series representing the same phenomenon in three different places and time ranges: `a` and `b` have 30 synchronized observations, while `c` has 20 observations from a different year. 
 
 ```{r, echo = FALSE, fig.height=3.5}
 #create two regular synchronous time series and one irregular
@@ -126,23 +119,21 @@ tsl_plot(
 ```
 
 
-There are several options to compare `a` and `b` directly, such as assessing their correlation (`r round(cor(x = tsl$a, y = tsl$b)[1, 1], 3)`), or computing the sum of euclidean distances between their respective samples (`r round(sum(sqrt((tsl$a[, 1] - tsl$b[, 1])^2)), 3)`). 
+There are several options to compare `a` and `b` directly, such as assessing their correlation (`r round(cor(x = tsl$a, y = tsl$b)[1, 1], 3)`), or computing the sum of Euclidean distances between their respective samples (`r round(sum(sqrt((tsl$a[, 1] - tsl$b[, 1])^2)), 3)`). 
 
-This comparison approach is named *lock-step* (also known as *inelastic comparison*), and works best when the time series represent phenomena with relatively similar shapes and are aligned in time and frequency, as it is the case of `a` and `b`.
+This comparison approach is named *lock-step* (also known as *inelastic comparison*), and works best when the time series represent phenomena with relatively similar shapes and are aligned in time and frequency, as it is the case with `a` and `b`.
 
-Comparing `c` with `a` and/or `b` is a completely different task though, exactly the one [Dynamic Time Warping](https://en.wikipedia.org/wiki/Dynamic_time_warping) was designed for.
+Comparing `c` with `a` and/or `b` is a completely different task though, exactly the one [Dynamic Time Warping](https://en.wikipedia.org/wiki/Dynamic_time_warping) was designed to address.
 
-Now it'd make sense to explain right away what dynamic time warping is and how it works, but there's a bit of history to know about it first.
+Now it would make sense to explain right away what dynamic time warping is and how it works, but there's a bit of history to explore first.
 
-# A Useless Bit of History
+# A Bit of History
 
 Dynamic Time Warping (DTW) might sound like a modern high-tech buzzword, but its roots go way back—older than me (gen X guy here!). This powerful method was first developed in the pioneering days of speech recognition. The earliest reference I uncovered is from Shearme and Leach’s 1968 paper, [*Some experiments with a simple word recognition system*](https://doi.org/10.1109/TAU.1968.1161985), published by the Joint Speech Research Unit in the UK.
 
 These foundational ideas were later expanded upon by Sakoe and Chiba in their seminal 1971 paper, [*A Dynamic Programming Approach to Continuous Speech Recognition*](https://api.semanticscholar.org/CorpusID:107516844), often regarded as the definitive starting point for modern DTW applications. 
 
-From there, DTW found applications in diverse fields such as seismology, bioinformatics, and financial analysis. But one particular trans-disciplinary application of DTW brings me to write this post. In 1973, Gordon and Birks published the paper [*Numerical Methods in Quaternary Palaeoecology: II Comparison of Pollen Diagrams*](https://doi.org/10.1111/j.1469-8137.1974.tb04621.x), where DTW—renamed "sequence slotting"—was applied to combine pollen time series. This work inspired the development of the Fortran program [*SLOTSEQ*](https://doi.org/10.1016/0098-3004(80)90003-5) in 1980, which I somehow *inherited* 38 years later, resulting in version 1.0 of the R package [`distantia`](https://doi.org/10.1111/ecog.04895). Fast-forward to today, what brings you this article is my recent work on the [version 2.0 of the same package](https://github.com/BlasBenito/distantia).
-
-Nowadays, Dynamic Time Warping is widely used across fields relying on time-dependent data, such as [medical sciences](https://doi.org/10.1016/j.bspc.2024.106677), [sports analytics](https://doi.org/10.1371/journal.pone.0272848), [astronomy](https://iopscience.iop.org/article/10.3847/1538-4357/ac4af6), [econometrics](https://doi.org/10.1016/j.eneco.2020.105036), [robotics](https://www.mdpi.com/2079-9292/8/11/1306), [epidemiology](https://doi.org/10.1111/exsy.13237), and many others.
+From there, DTW has found applications in diverse fields relying on time-dependent data, such as [medical sciences](https://doi.org/10.1016/j.bspc.2024.106677), [sports analytics](https://doi.org/10.1371/journal.pone.0272848), [astronomy](https://iopscience.iop.org/article/10.3847/1538-4357/ac4af6), [econometrics](https://doi.org/10.1016/j.eneco.2020.105036), [robotics](https://www.mdpi.com/2079-9292/8/11/1306), [epidemiology](https://doi.org/10.1111/exsy.13237), and many others.
 
 Ok, let's stop wandering in time, and go back to the meat in this post.
 
@@ -215,7 +206,7 @@ Time series comparison via Dynamic Time Warping (DTW) involves several key steps
 
 ## Detrending and Z-score Normalization
 
-DTW is highly sensitive to differences in trends and ranges between time series (see the *Pitfalls* section). To address this, [detrending](https://sherbold.github.io/intro-to-data-science/09_Time-Series-Analysis.html#Trend-and-Seasonal-Effects) and [z-score normalization](https://developers.google.com/machine-learning/crash-course/numerical-data/normalization#z-score_scaling) are important preprocessing steps.
+DTW is highly sensitive to differences in trends and ranges between time series (see the *Pitfalls* section). To address this, [detrending](https://sherbold.github.io/intro-to-data-science/09_Time-Series-Analysis.html#Trend-and-Seasonal-Effects) and [z-score normalization](https://developers.google.com/machine-learning/crash-course/numerical-data/normalization#z-score_scaling) are important preprocessing steps. The former removes any upwards or downwards trend in the time series, while the later scales the time series values to a mean of zero and a standard deviation of one.
 
 In this example, the time series `a` and `c` already have matching ranges, so normalization is not strictly necessary. For demonstration purposes, however, the figure below shows them normalized using z-score scaling:
 
@@ -238,7 +229,7 @@ tsl_plot(
 
 ## Distance Matrix
 
-The next step involves computing the distance matrix, which contains pairwise distances between all samples in the two time series. 
+This step involves computing the distance matrix, which contains pairwise distances between all combinations of samples in the two time series. 
 
 ```{r, fig.width=4, fig.height=3.5, echo = FALSE}
 m.dist <- distantia::psi_distance_matrix(
@@ -257,12 +248,14 @@ Choosing an appropriate distance metric is crucial. While Euclidean distance wor
 
 ## Cost Matrix
 
-The cost matrix is derived from the distance matrix by accumulating distances dynamically from the starting corner (lower-left) to the ending corner (upper-right). Different rules for cell neighborhood determine how costs propagate:
+The cost matrix is derived from the distance matrix by accumulating distances recursively, neighbor to neighbor, from the starting corner (lower-left) to the ending one (upper-right). 
+
+Different rules for cell neighborhood determine how these costs propagate:
 
   - **Orthogonal only**: Accumulation occurs in the *x* and *y* directions only, ignoring diagonals.
   - **Orthogonal and diagonal**: Diagonal movements are also considered, typically weighted by a factor of `√2` (1.414) to balance with orthogonal movements.
 
-The figure below illustrates the cost matrix with both orthogonal and diagonal paths:
+The figure below illustrates the cost matrix with both orthogonal and diagonal paths.
 
 ```{r, fig.width=4, fig.height=3.5, echo = FALSE}
 m.cost <- distantia::psi_cost_matrix(
@@ -276,12 +269,19 @@ distantia::utils_matrix_plot(
   text_cex = 0.9
 )
 ```
+The result of the cost matrix is similar to the topographic map of a valley, in which the value of each cell represents the slope we have to overcome to walk through it.
+
+Now that we have a valley, let's go find the river!
 
 ## Least-cost Path
 
-This is where the actual time warping happens! 
+This is the step where the actual time warping happens! 
 
-The least-cost path minimizes the total cost from the start to the end of the cost matrix, aligning the time series optimally. The algorithm building the least-cost path starts on the upper right corner of the cost matrix, and recursively selects the antecedent neighbor with the lowest cost to build the least-cost path step by step.
+The least-cost path minimizes the total cost from the start to the end of the cost matrix, aligning the time series optimally. 
+
+In other words, the least-cost path is the river finding it's way within the valley.
+
+The algorithm building the least-cost path starts on the upper right corner of the cost matrix, and recursively selects the antecedent neighbor with the lowest cost to build the least-cost path step by step.
 
 The figure below shows the least-cost path (black line). Deviations from the diagonal represent adjustments made to align the time series.
 
@@ -317,80 +317,36 @@ However, when comparing time series of varying lengths, normalization is often u
 
 These normalized metrics allow comparisons across datasets with varying characteristics.
 
-# Pitfalls of Dynamic Time Warping
-
-DTW is a powerful tool for time series comparison, but it comes with several challenges that users should be aware of when starting to work with it. Below is a summary of the most common pitfalls and how to mitigate them.
-
-DTW is highly sensitive to differences in scale and trends in non-stationary time series. A time series with larger values or a strong trend might dominate the alignment, resulting in misleading results, the so-called *pathological alignments*, especially when one of the time series has noise, spikes, or outliers.
-
-The figure below shows an example of pahological alignment between temperature time series of two major cities. It results from
-
-```{r, echo = FALSE, fig.height=4.5}
-tsl <- tsl_initialize(
-  x = cities_temperature,
-  name_column = "name",
-  time_column = "time"
-) |> 
-  tsl_subset(
-    names = c("London", "Kinshasa"),
-    time = c("2000-01-01", "2010-01-01")
-  )
-
-distantia_dtw_plot(tsl = tsl, text_cex = 0.9)
-```
-
-These long straight lines in the least-cost path are clear features of a pathological alignment. They result from the algorithm *getting stuck* in a particular sample of one of the time series, which is matched with many samples from the other one.
-
-There are two complementary approaches to mitigate this issue:
-
-The first one involves z-score normalization, detrending, and maybe smoothing. These pre-processing steps alone can transform a pathological alignnment into a very healthy one, as the figure below shows.
-
-```{r, echo = FALSE, fig.height=4.5}
-tsl_scaled <- tsl |> 
-  tsl_transform(
-    f = f_detrend_poly,
-    degree = 10
-  ) |> 
-  tsl_smooth() |> 
-  tsl_transform(
-    f = f_scale_local
-  )
-
-distantia_dtw_plot(tsl = tsl_scaled, text_cex = 0.9)
-```
-The second approach, which can be combined with the previous one, involves applying *constrained DTW*, which limits the area of the cost matrix the least-cost path can use. For example, *Sakoe-Chiba bands*, shown in the figure below, and *Itakura parallelograms* define an area at both sides of the cost matrix diagonal outside of which the least-cost path cannot cross.
-
-However, as seen below, these methods have a limited ability to fix extremely pathological alignments, which mostly happen when the proper data preprocessing steps are ignored or skipped.
-
-```{r, echo = FALSE, fig.height=4.5}
-distantia_dtw_plot(tsl = tsl, text_cex = 0.9, bandwidth = 0.1)
-```
-
-
-Understanding these pitfalls and implementing the suggested mitigations can greatly improve the reliability of DTW-based analyses.
-
 # Real World Applications
 
-Dynamic Time Warping is kind of a popular topic within the academic community, with more than 86k research articles listed in [Google Scholar](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22dynamic+time+warping%22&btnG=). However, the popularity of a topic in academia is rarely correlated with popularity of the same topic in the real world. Taking a look at DTW-based patents might give us a better insight on how DTW is being used.
+Dynamic Time Warping is a well-studied topic in academic community, with more than 86k research articles listed in [Google Scholar](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22dynamic+time+warping%22&btnG=). However, the real-world impact of an academic concept often differs from its academic popularity. Examining DTW-related patents provides a clearer view of its practical applications.
 
-The [United States Patent and Trademark Office](https://www.uspto.gov/) has the [class 704/241](https://patents.justia.com/patents-by-us-classification/704/241) with the literal title "Dynamic Time Warping Patents". A similar category titled "Speech recognition using dynamic programming techniques, e.g. dynamic time warping [DTW]" [(G10L 15/12)](https://www.uspto.gov/web/patents/classification/cpc/pdf/cpc-scheme-G10L.pdf) exists in the [Cooperative Patent Classification](https://www.cooperativepatentclassification.org/home). 	
+The [United States Patent and Trademark Office](https://www.uspto.gov/) includes the class [704/241](https://patents.justia.com/patents-by-us-classification/704/241) specifically for "Dynamic Time Warping Patents". Similarly, the [Cooperative Patent Classification](https://www.cooperativepatentclassification.org/home) includes the classification [(G10L 15/12)](https://www.uspto.gov/web/patents/classification/cpc/pdf/cpc-scheme-G10L.pdf) with the title "Speech recognition using dynamic programming techniques, e.g. dynamic time warping (DTW)". 	
 
-The patent search tool of the [European Patent Office](https://www.epo.org/en), [Spacenet](https://worldwide.espacenet.com/patent/), shows about [12k results for "Dynamic Time Warping"](https://worldwide.espacenet.com/patent/search/family/007654522/publication/US2002049591A1?q=%22dynamic%20time%20warping%22), while [Google Patents](https://patents.google.com/?q=(%22dynamic+time+warping%22)&oq=%22dynamic+time+warping%22) shows 35k.
+Using the [European Patent Office](https://www.epo.org/en) search tool [Spacenet](https://worldwide.espacenet.com/patent/) for "Dynamic Time Warping" returns approximately [12.000 results](https://worldwide.espacenet.com/patent/search/family/007654522/publication/US2002049591A1?q=%22dynamic%20time%20warping%22). [Google Patents](https://patents.google.com/?q=(%22dynamic+time+warping%22)&oq=%22dynamic+time+warping%22) reports over 35.000 results.
 
-However, finding direct references of DTW usage in company manuals, wikis, or blogs is way harder than finding patents! Still, a few interesting examples are listed below.
+While patents illustrate the technical implementation of DTW, uncovering its application in company blogs, wikis, or manuals is more challenging. Nonetheless, a few compelling examples demonstrate DTW's real-world utility.
 
-Fitness devices use DTW to align accelerometer and gyroscope time series data with a library of templates for different activities (walking cycling, etc) to help ensure an accurate classification of the user's activities. A creative application of this concept in a different field comes with the [Wave](https://genkiinstruments.com/products/wave) ring, a MIDI controller to create music [patented by Genki](https://patents.google.com/patent/US20220085841A1/en), uses DTW paired with a nearest-neighbor classifier to analyze the user movements and respond with the proper sound effects.
+**Media and Entertainment***
 
-DTW also has important applications in biomechanics. For example, the software [Sift](https://wiki.has-motion.com/doku.php?id=sift:sift_overview), by [HAS Motion](https://www.has-motion.ca/), [uses DTW](https://wiki.has-motion.com/doku.php?id=sift:dynamic_time_warping:dynamic_time_warping) to find anomalies in large biomechanics datasets by analysing the similarity between movement traces. In a similar fashion, the [OrthoLoad](https://orthoload.com/) [uses DTW](https://orthoload.com/software/) to process load measurements acting on joint implants.
+Closed caption alignment is perhaps the most pervasive yet invisible application of DTW. Companies like [Netflix](https://netflixtechblog.com/detecting-scene-changes-in-audiovisual-content-77a61d3eaad6) and [Microsoft](https://patents.google.com/patent/US20150271442A1/en) use DTW to synchronize subtitles with soundtracks in movies, TV shows, and video games, ensuring an accurate match regardless of pacing or timing inconsistencies.
 
-The [LAMTSS](https://www.global.toshiba/ww/technology/corporate/rdc/rd/topics/20/2006-01.html) technology developed by Toshiba applies DTW to motion analysis in infrastructure and manufacturing equipment for prediction and detection of operational failures.
+**Wearables and Fitness Devices**
 
-Netflix uses Dynamic Time Warping to [align soundtracks and close captions](https://netflixtechblog.com/detecting-scene-changes-in-audiovisual-content-77a61d3eaad6).
+Many wearables employ DTW to classify user activities by aligning accelerometer and gyroscope data with predefined templates. For example, [Goertek's](https://patents.google.com/patent/US11517789B2) *Comma 2* smart ring [presented in January 2025](https://sleepreviewmag.com/sleep-diagnostics/consumer-sleep-tracking/wearable-sleep-trackers/goertek-reveals-smart-ring-reference-designs-voice-gesture-controls/) uses DTW to recognize user movements. Another creative example is the [Wave](https://genkiinstruments.com/products/wave) MIDI controller ring, [patented by Genki](https://patents.google.com/patent/US20220085841A1/en). This device applies DTW with a nearest-neighbor classifier to analyze hand movements and trigger musical effects.
+
+**Biomechanics**
+
+In biomechanics, DTW helps analyze movement patterns and detect anomalies. For instance, the software [Sift](https://wiki.has-motion.com/doku.php?id=sift:sift_overview) by [HAS Motion](https://www.has-motion.ca/) [uses DTW](https://wiki.has-motion.com/doku.php?id=sift:dynamic_time_warping:dynamic_time_warping) to compare large datasets of movement traces and identify deviations. Similarly, the [OrthoLoad](https://orthoload.com/) processes load measurements on joint implants [using DTW](https://orthoload.com/software/) to analyze patterns and identify irregularities.
+
+**Industrial Applications**
+
+DTW is also used in manufacturing to monitor machinery health.  Toshiba's [LAMTSS](https://www.global.toshiba/ww/technology/corporate/rdc/rd/topics/20/2006-01.html) technology applies DTW to noise and motion data from manufacturing equipment, helping detect and predict operational failures before they occur.
+
+These examples highlight the versatility and practical relevance of DTW, spanning industries from entertainment to biomechanics and industrial maintenance. Its ability to adapt to diverse time series challenges underscores its value in real-world problem-solving.
 
 
 # Closing Thoughts
 
-TODO: small paragraph with take-home details.
-
-Blas
+Dynamic Time Warping exemplifies how a sophisticated algorithm, initially developed for niche applications, has evolved into a versatile tool with real-world significance. From aligning movie subtitles to monitoring machinery health, DTW bridges the gap between academic theory and practical innovation. Its ability to adapt to various industries highlights the importance of robust time series analysis techniques, and further cements its place in both research and applied fields.
 

@@ -1,0 +1,30 @@
+---
+title: "IMinimalistic Dynamic Time Warping Library Implementation in R"
+author: ''
+date: '2025-01-05'
+slug: dynamic-time-warping-from-scratch
+categories: []
+tags: [Rstats]
+subtitle: ''
+summary: 'Tutorial on how to implement dynamic time warping in R'
+authors: [admin]
+lastmod: '2025-01-12T05:14:20+01:00'
+featured: yes
+draft: true
+image:
+  caption: Graph by Blas M. Benito
+  focal_point: Smart
+  margin: auto
+projects: []
+---
+
+# Summary
+
+Dynamic Time Warping is a powerful method to compare univariate or multivariate time series by shape I explained in [previous post](https://www.blasbenito.com/post/dynamic-time-warping/). This post uses basic R code to show how to implement a minimalistic yet fully functional dynamic time warping library (not a package). However, the focus will be in code simplicity and readability, to better show how the algorithm works. Computational efficiency will be addressed in a forthcoming post.
+
+# Library Design
+
+Our library will *live* in a file named `mini_dtw.R`. We will be adding new R functions to this file as we progress with the implementation. Remember typing `source("mini_dtw.R") everytime you add new code to this file to make the functions available in your R environment!
+
+
+

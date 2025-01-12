@@ -5,12 +5,68 @@
     <link>https://blasbenito.com/tag/time-series/</link>
       <atom:link href="https://blasbenito.com/tag/time-series/index.xml" rel="self" type="application/rss+xml" />
     <description>Time Series</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Thu, 20 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Sun, 12 Jan 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Time Series</title>
       <link>https://blasbenito.com/tag/time-series/</link>
     </image>
+    
+    <item>
+      <title>R package distantia</title>
+      <link>https://blasbenito.com/project/distantia/</link>
+      <pubDate>Sun, 12 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/project/distantia/</guid>
+      <description>&lt;!-- badges: start --&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://zenodo.org/badge/latestdoi/187805264&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/187805264.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://www.r-pkg.org/badges/version-ago/distantia&#34; alt=&#34;CRAN\_Release\_Badge&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://cranlogs.r-pkg.org/badges/distantia&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;!-- badges: end --&gt;
+&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
+&lt;p&gt;The R package 
+&lt;a href=&#34;https://blasbenito.github.io/distantia/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;&lt;code&gt;distantia&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;, 
+&lt;a href=&#34;https://CRAN.R-project.org/package=distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;available on CRAN&lt;/a&gt;, offers an efficient, feature-rich toolkit for managing, comparing, and analyzing time series data. It is designed to handle a wide range of scenarios, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Multivariate and univariate time series.&lt;/li&gt;
+&lt;li&gt;Regular and irregular sampling.&lt;/li&gt;
+&lt;li&gt;Time series of different lengths.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;
+&lt;h3 id=&#34;comprehensive-analytical-tools&#34;&gt;Comprehensive Analytical Tools&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;10 distance metrics: see &lt;code&gt;distantia::distances&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The normalized dissimilarity metric &lt;code&gt;psi&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Free and Restricted Dynamic Time Warping (DTW) for shape-based comparison.&lt;/li&gt;
+&lt;li&gt;A Lock-Step method for sample-to-sample comparison&lt;/li&gt;
+&lt;li&gt;Restricted permutation tests for robust inferential support.&lt;/li&gt;
+&lt;li&gt;Analysis of contribution to dissimilarity of individual variables in multivariate time series.&lt;/li&gt;
+&lt;li&gt;Hierarchical and K-means clustering of time series based on dissimilarity matrices.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;computational-efficiency&#34;&gt;Computational Efficiency&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;strong&gt;C++ back-end&lt;/strong&gt; powered by 
+&lt;a href=&#34;https://www.rcpp.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Rcpp&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parallel processing&lt;/strong&gt; managed through the 
+&lt;a href=&#34;https://future.futureverse.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;future&lt;/a&gt; package.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Efficient data handling&lt;/strong&gt; via 
+&lt;a href=&#34;https://CRAN.R-project.org/package=zoo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;zoo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;time-series-management-tools&#34;&gt;Time Series Management Tools&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduces &lt;strong&gt;time series lists&lt;/strong&gt; (TSL), a versatile format for handling collections of time series stored as lists of &lt;code&gt;zoo&lt;/code&gt; objects.&lt;/li&gt;
+&lt;li&gt;Includes a suite of &lt;code&gt;tsl_...()&lt;/code&gt; functions for generating, resampling, transforming, analyzing, and visualizing univariate and multivariate time series.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;citation&#34;&gt;Citation&lt;/h3&gt;
+&lt;p&gt;If you find this package useful, please cite it as:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Blas M. Benito, H. John B. Birks (2020). distantia: an open-source toolset to quantify dissimilarity between multivariate ecological time-series. Ecography, 43(5), 660-667. doi: 
+&lt;a href=&#34;https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.04895&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;10.1111/ecog.04895&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Blas M. Benito (2024). distantia: A Toolset for Time Series Dissimilarity Analysis. R package version 2.0.0. url:  
+&lt;a href=&#34;https://blasbenito.github.io/distantia/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://blasbenito.github.io/distantia/&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title> Fourteen years of continuous soil moisture records from plant and biocrust-dominated microsites.</title>

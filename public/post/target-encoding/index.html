@@ -841,7 +841,7 @@
 
     <div class="article-style">
       <h1 id="summary">Summary</h1>
-<p>Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. The post delves into the complexities of dealing with these types of predictors using methods such as one-hot encoding (please don&rsquo;t) or target encoding, and provides insights into its mechanisms and quirks</p>
+<p>Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. The explains how to deal with these types of predictors using methods such as one-hot encoding (please don&rsquo;t) or target encoding, and provides insights into their mechanisms and quirks.</p>
 <h2 id="key-highlights">Key Highlights:</h2>
 <ul>
 <li>
@@ -1227,7 +1227,7 @@ plot(koppen_zone_categorical, main = &quot;Categorical&quot;)
 <p>Simple is good, right? But sometimes it&rsquo;s not. In our toy case, the category &ldquo;c&rdquo; has only one case that maps directly to an actual value of <code>y</code>.Imagine the worst case scenario of <code>x</code> having one different category per row, then <code>x_encoded</code> would be identical to <code>y</code>!</p>
 <h2 id="mean-encoding-with-additive-smoothing">Mean Encoding With Additive Smoothing</h2>
 <p>The issue can be solved by pushing the mean of <code>y</code> for each category in <code>x</code> towards the global mean of <code>y</code> by the weighted sample size of the category, as suggested by the expression</p>
-<p><code>$$x\_encoded_i = \frac{n_i \times \overline{y}_i + m \times \overline{y}}{n_i + m}$$</code></p>
+<p><code>$x_{encoded_i} = \frac{n_i \times \overline{y}_i + m \times \overline{y}}{n_i + m}$</code></p>
 <p>where:</p>
 <ul>
 <li><code>\(n_i\)</code> is the size of the category <code>\(i\)</code>.</li>
@@ -1415,7 +1415,13 @@ The function also allows to replace a given predictor with their selected encodi
 
     </div>
 
-    
+    <script src="//yihui.org/js/math-code.js"></script>
+
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
 
 
 
@@ -1685,7 +1691,7 @@ The function also allows to replace a given predictor with their selected encodi
       
       <li><a href="/post/variance-inflation-factor/">Everything You Don&#39;t Need to Know About Variance Inflation Factors</a></li>
       
-      <li><a href="/project/post-title/">R package collinear</a></li>
+      <li><a href="/project/collinear/">R package collinear</a></li>
       
       <li><a href="/project/post-title/">R package spatialRF</a></li>
       

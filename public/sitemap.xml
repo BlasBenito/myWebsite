@@ -20,25 +20,64 @@
     <loc>https://blasbenito.com/talk/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/post/09-dynamic-time-warping/</loc>
+    <loc>https://blasbenito.com/tag/analytics/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/data-science/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/dynamic-time-warping/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/lock-step/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/machine-learning/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/multicollinearity/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/project/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/project/collinear/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/project/distantia/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/r-packages/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/statistics/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tags/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/target-encoding/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/time-series/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/post/dynamic-time-warping/</loc>
+    <lastmod>2025-01-05T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/authors/</loc>
+    <lastmod>2025-01-05T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/author/blas-m.-benito/</loc>
     <lastmod>2025-01-05T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/post/</loc>
     <lastmod>2025-01-05T05:14:20+01:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/authors/</loc>
-    <lastmod>2024-12-10T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/author/blas-m.-benito/</loc>
-    <lastmod>2024-12-10T08:14:23+02:00</lastmod>
+    <loc>https://blasbenito.com/tag/time-series-analysis/</loc>
+    <lastmod>2025-01-05T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/data-preprocessing/</loc>
-    <lastmod>2024-12-10T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/data-science/</loc>
-    <lastmod>2024-12-10T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/machine-learning/</loc>
     <lastmod>2024-12-10T08:14:23+02:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/model-explainability/</loc>
@@ -50,16 +89,7 @@
     <loc>https://blasbenito.com/post/my-reading-list-data-science/</loc>
     <lastmod>2024-12-10T08:14:23+02:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tags/</loc>
-    <lastmod>2024-12-10T08:14:23+02:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/post/target-encoding/</loc>
-    <lastmod>2023-11-15T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/multicollinearity/</loc>
-    <lastmod>2023-11-15T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/r-packages/</loc>
     <lastmod>2023-11-15T08:14:23+02:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/variable-selection/</loc>
@@ -70,21 +100,6 @@
   </url><url>
     <loc>https://blasbenito.com/tag/variance-inflation-factors/</loc>
     <lastmod>2023-11-05T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/analytics/</loc>
-    <lastmod>2023-10-30T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/project/</loc>
-    <lastmod>2023-10-30T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/project/post-title/</loc>
-    <lastmod>2023-10-30T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/statistics/</loc>
-    <lastmod>2023-10-30T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/target-encoding/</loc>
-    <lastmod>2023-10-30T08:14:23+02:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/explanatory-modeling/</loc>
     <lastmod>2023-10-29T08:14:23+02:00</lastmod>
@@ -224,9 +239,6 @@
     <loc>https://blasbenito.com/tag/palaeoecology/</loc>
     <lastmod>2022-06-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/time-series-analysis/</loc>
-    <lastmod>2022-06-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/author/tobias-schneider/</loc>
     <lastmod>2022-06-20T00:00:00+00:00</lastmod>
   </url><url>
@@ -270,9 +282,6 @@
     <lastmod>2022-01-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/soil-sensors/</loc>
-    <lastmod>2022-01-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/time-series/</loc>
     <lastmod>2022-01-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/victoria-ochoa/</loc>
@@ -357,9 +366,6 @@
     <lastmod>2020-12-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/ecological-memory/</loc>
-    <lastmod>2020-12-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/project/distantia/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/project/memoria/</loc>

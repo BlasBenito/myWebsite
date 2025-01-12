@@ -18,7 +18,7 @@
       <pubDate>Wed, 15 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/post/target-encoding/</guid>
       <description>&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
-&lt;p&gt;Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. The post delves into the complexities of dealing with these types of predictors using methods such as one-hot encoding (please don&amp;rsquo;t) or target encoding, and provides insights into its mechanisms and quirks&lt;/p&gt;
+&lt;p&gt;Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. The explains how to deal with these types of predictors using methods such as one-hot encoding (please don&amp;rsquo;t) or target encoding, and provides insights into their mechanisms and quirks.&lt;/p&gt;
 &lt;h2 id=&#34;key-highlights&#34;&gt;Key Highlights:&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -404,7 +404,7 @@ plot(koppen_zone_categorical, main = &amp;quot;Categorical&amp;quot;)
 &lt;p&gt;Simple is good, right? But sometimes it&amp;rsquo;s not. In our toy case, the category &amp;ldquo;c&amp;rdquo; has only one case that maps directly to an actual value of &lt;code&gt;y&lt;/code&gt;.Imagine the worst case scenario of &lt;code&gt;x&lt;/code&gt; having one different category per row, then &lt;code&gt;x_encoded&lt;/code&gt; would be identical to &lt;code&gt;y&lt;/code&gt;!&lt;/p&gt;
 &lt;h2 id=&#34;mean-encoding-with-additive-smoothing&#34;&gt;Mean Encoding With Additive Smoothing&lt;/h2&gt;
 &lt;p&gt;The issue can be solved by pushing the mean of &lt;code&gt;y&lt;/code&gt; for each category in &lt;code&gt;x&lt;/code&gt; towards the global mean of &lt;code&gt;y&lt;/code&gt; by the weighted sample size of the category, as suggested by the expression&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$$x\_encoded_i = \frac{n_i \times \overline{y}_i + m \times \overline{y}}{n_i + m}$$&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$x_{encoded_i} = \frac{n_i \times \overline{y}_i + m \times \overline{y}}{n_i + m}$&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;where:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;\(n_i\)&lt;/code&gt; is the size of the category &lt;code&gt;\(i\)&lt;/code&gt;.&lt;/li&gt;

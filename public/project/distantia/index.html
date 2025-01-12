@@ -30,7 +30,7 @@
   
     
   
-  <meta name="description" content="R package to compare multivariate time-series.">
+  <meta name="description" content="R package to compare multivariate time-series with dynamic time warping and lock-step methods.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://blasbenito.com/project/distantia/">
@@ -251,13 +251,13 @@
   <meta property="og:site_name" content="Blas M. Benito, PhD">
   <meta property="og:url" content="https://blasbenito.com/project/distantia/">
   <meta property="og:title" content="R package distantia | Blas M. Benito, PhD">
-  <meta property="og:description" content="R package to compare multivariate time-series."><meta property="og:image" content="https://blasbenito.com/project/distantia/featured.png">
+  <meta property="og:description" content="R package to compare multivariate time-series with dynamic time warping and lock-step methods."><meta property="og:image" content="https://blasbenito.com/project/distantia/featured.png">
   <meta property="twitter:image" content="https://blasbenito.com/project/distantia/featured.png"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-12-19T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2025-01-12T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-12-19T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2025-01-12T00:00:00&#43;00:00">
   
 
   
@@ -287,8 +287,8 @@
     "https://blasbenito.com/project/distantia/featured.png"
   ],
   
-  "datePublished": "2020-12-19T00:00:00Z",
-  "dateModified": "2020-12-19T00:00:00Z",
+  "datePublished": "2025-01-12T00:00:00Z",
+  "dateModified": "2025-01-12T00:00:00Z",
   
   "author": {
     "@type": "Person",
@@ -303,7 +303,7 @@
       "url": "https://blasbenito.com/images/icon_hu1c59cf3385effff74945fd18b5aeda91_399117_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "R package to compare multivariate time-series."
+  "description": "R package to compare multivariate time-series with dynamic time warping and lock-step methods."
 }
 </script>
 
@@ -725,7 +725,7 @@
     
       
     
-    Dec 19, 2020
+    Jan 12, 2025
   </span>
   
 
@@ -797,7 +797,7 @@
   
     
   
-  <a class="btn btn-outline-primary my-1 mr-1" href="https://github.com/BlasBenito/distantia" target="_blank" rel="noopener">
+  <a class="btn btn-outline-primary my-1 mr-1" href="https://blasbenito.github.io/distantia/" target="_blank" rel="noopener">
     <i class="fab fa-github mr-1"></i>
     GitHub
   </a>
@@ -841,9 +841,9 @@
 </div>
 
 
-<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 820px;">
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 790px;">
   <div style="position: relative">
-    <img src="/project/distantia/featured_hu3ed8a4c264caf68931e722ef8ce52a6d_151152_720x0_resize_lanczos_3.png" alt="" class="featured-image">
+    <img src="/project/distantia/featured_hu9dd3bb4255fd251237200c2521063c56_68836_720x0_resize_lanczos_3.png" alt="" class="featured-image">
     <span class="article-header-caption">Graph by Blas M. Benito</span>
   </div>
 </div>
@@ -861,19 +861,56 @@
 
 <a href="https://CRAN.R-project.org/package=distantia" target="_blank" rel="noopener"><img src="https://cranlogs.r-pkg.org/badges/distantia" alt="CRAN\_Download\_Badge"></a></p>
 <!-- badges: end -->
-<p>The package <em>distantia</em> allows to measure the dissimilarity between multivariate time-series. The package assumes that the target sequences are ordered along a given dimension, being depth and time the most common ones, but others such as latitude or elevation are also possible. Furthermore, the target time-series can be regular or irregular, and have their samples aligned (same age/time/depth) or unaligned (different age/time/depth). The only requirement is that the sequences must have at least two (but ideally more) columns with the same name and units representing different variables relevant to the dynamics of a system of interest.</p>
-<p>The 
-<a href="https://github.com/BlasBenito/distantia" target="_blank" rel="noopener">GitHub page</a> of the project contains a thorough explanation of the statistics behind the method. The 
-<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04895" target="_blank" rel="noopener">paper published in the Ecography journal</a> describes the method, the package, and a couple of practical examples. The code and data used to develop the examples can be found in 
-<a href="https://github.com/BlasBenito/distantiaPaper" target="_blank" rel="noopener">GitHub</a> and 
-<a href="https://zenodo.org/record/3520959#.X94GNtYo-1c" target="_blank" rel="noopener">Zenodo</a>.</p>
-<p>Please, if you find this package useful, please cite it as:</p>
-<p><em>Benito, B.M. and Birks, H.J.B. (2020), distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series. Ecography, 43: 660-667. 
-<a href="https://doi.org/10.1111/ecog.04895" target="_blank" rel="noopener">https://doi.org/10.1111/ecog.04895</a></em></p>
+<h2 id="description">Description</h2>
+<p>The R package 
+<a href="https://blasbenito.github.io/distantia/" target="_blank" rel="noopener"><strong><code>distantia</code></strong></a>, 
+<a href="https://CRAN.R-project.org/package=distantia" target="_blank" rel="noopener">available on CRAN</a>, offers an efficient, feature-rich toolkit for managing, comparing, and analyzing time series data. It is designed to handle a wide range of scenarios, including:</p>
+<ul>
+<li>Multivariate and univariate time series.</li>
+<li>Regular and irregular sampling.</li>
+<li>Time series of different lengths.</li>
+</ul>
+<h2 id="key-features">Key Features</h2>
+<h3 id="comprehensive-analytical-tools">Comprehensive Analytical Tools</h3>
+<ul>
+<li>10 distance metrics: see <code>distantia::distances</code>.</li>
+<li>The normalized dissimilarity metric <code>psi</code>.</li>
+<li>Free and Restricted Dynamic Time Warping (DTW) for shape-based comparison.</li>
+<li>A Lock-Step method for sample-to-sample comparison</li>
+<li>Restricted permutation tests for robust inferential support.</li>
+<li>Analysis of contribution to dissimilarity of individual variables in multivariate time series.</li>
+<li>Hierarchical and K-means clustering of time series based on dissimilarity matrices.</li>
+</ul>
+<h3 id="computational-efficiency">Computational Efficiency</h3>
+<ul>
+<li>A <strong>C++ back-end</strong> powered by 
+<a href="https://www.rcpp.org/" target="_blank" rel="noopener">Rcpp</a>.</li>
+<li><strong>Parallel processing</strong> managed through the 
+<a href="https://future.futureverse.org/" target="_blank" rel="noopener">future</a> package.</li>
+<li><strong>Efficient data handling</strong> via 
+<a href="https://CRAN.R-project.org/package=zoo" target="_blank" rel="noopener">zoo</a>.</li>
+</ul>
+<h3 id="time-series-management-tools">Time Series Management Tools</h3>
+<ul>
+<li>Introduces <strong>time series lists</strong> (TSL), a versatile format for handling collections of time series stored as lists of <code>zoo</code> objects.</li>
+<li>Includes a suite of <code>tsl_...()</code> functions for generating, resampling, transforming, analyzing, and visualizing univariate and multivariate time series.</li>
+</ul>
+<h3 id="citation">Citation</h3>
+<p>If you find this package useful, please cite it as:</p>
+<p><em>Blas M. Benito, H. John B. Birks (2020). distantia: an open-source toolset to quantify dissimilarity between multivariate ecological time-series. Ecography, 43(5), 660-667. doi: 
+<a href="https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.04895" target="_blank" rel="noopener">10.1111/ecog.04895</a>.</em></p>
+<p><em>Blas M. Benito (2024). distantia: A Toolset for Time Series Dissimilarity Analysis. R package version 2.0.0. url:  
+<a href="https://blasbenito.github.io/distantia/" target="_blank" rel="noopener">https://blasbenito.github.io/distantia/</a>.</em></p>
 
     </div>
 
-    
+    <script src="//yihui.org/js/math-code.js"></script>
+
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
 
 
 
@@ -884,7 +921,13 @@
   
   <a class="badge badge-light" href="/tag/r-packages/">R packages</a>
   
-  <a class="badge badge-light" href="/tag/time-series-analysis/">Time Series Analysis</a>
+  <a class="badge badge-light" href="/tag/time-series/">Time Series</a>
+  
+  <a class="badge badge-light" href="/tag/dynamic-time-warping/">Dynamic Time Warping</a>
+  
+  <a class="badge badge-light" href="/tag/lock-step/">Lock-step</a>
+  
+  <a class="badge badge-light" href="/tag/data-science/">Data Science</a>
   
 </div>
 
@@ -1135,15 +1178,15 @@
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/project/memoria/">R package memoria</a></li>
+      <li><a href="/project/collinear/">R package collinear</a></li>
       
-      <li><a href="/project/virtualpollen/">R package virtualPollen</a></li>
+      <li><a href="/post/multicollinearity-model-interpretability/">Multicollinearity Hinders Model Interpretability</a></li>
       
-      <li><a href="/publication/2020_benito_ecography_distantia/">distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series</a></li>
+      <li><a href="/post/dynamic-time-warping/">A Gentle Intro to Dynamic Time Warping</a></li>
+      
+      <li><a href="/post/my-reading-list-data-science/">My Reading List: Data Science</a></li>
       
       <li><a href="/post/target-encoding/">Mapping Categorical Predictors to Numeric With Target Encoding</a></li>
-      
-      <li><a href="/project/post-title/">R package collinear</a></li>
       
     </ul>
   </div>

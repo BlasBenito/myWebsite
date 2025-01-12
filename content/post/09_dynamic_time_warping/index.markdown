@@ -112,9 +112,10 @@ Different rules for cell neighborhood determine how these costs propagate:
 The figure below illustrates the cost matrix with both orthogonal and diagonal paths.
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="600" />
+
 The result of the cost matrix is similar to the topographic map of a valley, in which the value of each cell represents the slope we have to overcome to walk through it.
 
-Now that we have a valley, let's go find the river!
+Now that we have a valley, let's go create a river!
 
 ## Least-cost Path
 
@@ -122,9 +123,7 @@ This is the step where the actual time warping happens!
 
 The least-cost path minimizes the total cost from the start to the end of the cost matrix, aligning the time series optimally. 
 
-In other words, the least-cost path is the river finding it's way within the valley.
-
-The algorithm building the least-cost path starts on the upper right corner of the cost matrix, and recursively selects the antecedent neighbor with the lowest cost to build the least-cost path step by step.
+The algorithm building the least-cost path starts on the upper right corner of the cost matrix, and recursively selects the next neighbor with the lowest cumulative cost to build the least-cost path step by step. This process is similar to letting a river find its shortest path way down a valley.
 
 The figure below shows the least-cost path (black line). Deviations from the diagonal represent adjustments made to align the time series.
 

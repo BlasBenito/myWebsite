@@ -5,7 +5,7 @@
     <link>https://blasbenito.com/tag/time-series-analysis/</link>
       <atom:link href="https://blasbenito.com/tag/time-series-analysis/index.xml" rel="self" type="application/rss+xml" />
     <description>Time Series Analysis</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Sun, 05 Jan 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Time Series Analysis</title>
@@ -13,36 +13,134 @@
     </image>
     
     <item>
+      <title>A Gentle Intro to Dynamic Time Warping</title>
+      <link>https://blasbenito.com/post/dynamic-time-warping/</link>
+      <pubDate>Sun, 05 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/post/dynamic-time-warping/</guid>
+      <description>&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;p&gt;This post provides a gentle conceptual introduction to &lt;em&gt;Dynamic Time Warping&lt;/em&gt; (DTW), a method to compare time series of different lengths that has found its way into our daily lives. It starts with a very general introduction to the comparison of time series, follows with a bit of history about its development and a step-by-step breakdown, to finalize with a summary of its real-world applications.&lt;/p&gt;
+&lt;h1 id=&#34;comparing-time-series&#34;&gt;Comparing Time Series&lt;/h1&gt;
+&lt;p&gt;Time series comparison is a critical task in many fields, such as environmental monitoring, finance, and healthcare. The goal is often to quantify similarities or differences between pairs of time series to gain insights into how the data is structured and identify meaningful patterns.&lt;/p&gt;
+&lt;p&gt;For example, the data below shows time series representing the same phenomenon in three different places and time ranges: &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; have 30 synchronized observations, while &lt;code&gt;c&lt;/code&gt; has 20 observations from a different year.&lt;/p&gt;
+&lt;img src=&#34;https://blasbenito.com/post/dynamic-time-warping/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;750&#34; /&gt;
+&lt;p&gt;There are several options to compare &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; directly, such as assessing their correlation (0.955), or computing the sum of Euclidean distances between their respective samples (2.021).&lt;/p&gt;
+&lt;p&gt;This comparison approach is named &lt;em&gt;lock-step&lt;/em&gt; (also known as &lt;em&gt;inelastic comparison&lt;/em&gt;), and works best when the time series represent phenomena with relatively similar shapes and are aligned in time and frequency, as it is the case with &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Comparing &lt;code&gt;c&lt;/code&gt; with &lt;code&gt;a&lt;/code&gt; and/or &lt;code&gt;b&lt;/code&gt; is a completely different task though, exactly the one 
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Dynamic_time_warping&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Dynamic Time Warping&lt;/a&gt; was designed to address.&lt;/p&gt;
+&lt;p&gt;Now it would make sense to explain right away what dynamic time warping is and how it works, but there&amp;rsquo;s a bit of history to explore first.&lt;/p&gt;
+&lt;h1 id=&#34;a-bit-of-history&#34;&gt;A Bit of History&lt;/h1&gt;
+&lt;p&gt;Dynamic Time Warping (DTW) might sound like a modern high-tech buzzword, but its roots go way back—older than me (gen X guy here!). This powerful method was first developed in the pioneering days of speech recognition. The earliest reference I uncovered is from Shearme and Leach’s 1968 paper, 
+&lt;a href=&#34;https://doi.org/10.1109/TAU.1968.1161985&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Some experiments with a simple word recognition system&lt;/em&gt;&lt;/a&gt;, published by the Joint Speech Research Unit in the UK.&lt;/p&gt;
+&lt;p&gt;These foundational ideas were later expanded upon by Sakoe and Chiba in their seminal 1971 paper, 
+&lt;a href=&#34;https://api.semanticscholar.org/CorpusID:107516844&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;A Dynamic Programming Approach to Continuous Speech Recognition&lt;/em&gt;&lt;/a&gt;, often regarded as the definitive starting point for modern DTW applications.&lt;/p&gt;
+&lt;p&gt;From there, DTW has found applications in diverse fields relying on time-dependent data, such as 
+&lt;a href=&#34;https://doi.org/10.1016/j.bspc.2024.106677&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;medical sciences&lt;/a&gt;, 
+&lt;a href=&#34;https://doi.org/10.1371/journal.pone.0272848&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;sports analytics&lt;/a&gt;, 
+&lt;a href=&#34;https://iopscience.iop.org/article/10.3847/1538-4357/ac4af6&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;astronomy&lt;/a&gt;, 
+&lt;a href=&#34;https://doi.org/10.1016/j.eneco.2020.105036&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;econometrics&lt;/a&gt;, 
+&lt;a href=&#34;https://www.mdpi.com/2079-9292/8/11/1306&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;robotics&lt;/a&gt;, 
+&lt;a href=&#34;https://doi.org/10.1111/exsy.13237&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;epidemiology&lt;/a&gt;, and many others.&lt;/p&gt;
+&lt;p&gt;Ok, let&amp;rsquo;s stop wandering in time, and go back to the meat in this post.&lt;/p&gt;
+&lt;h1 id=&#34;what-is-dynamic-time-warping&#34;&gt;What is &lt;em&gt;Dynamic Time Warping&lt;/em&gt;?&lt;/h1&gt;
+&lt;p&gt;Dynamic Time Warping is a method to compare univariate or multivariate time series of different length, timing, and/or shape. To do so, DTW stretches or compresses parts of the time series (hence &lt;em&gt;warping&lt;/em&gt;) until it finds the alignment that minimizes their overall differences. Think of it as a way to match the rhythm of two songs even if one plays faster than the other.&lt;/p&gt;
+&lt;p&gt;The figure below represents a dynamic time warping solution for the time series &lt;code&gt;c&lt;/code&gt; and &lt;code&gt;a&lt;/code&gt;. Notice how each sample in one time series matches one or several samples from the other. These matches are optimized to minimize the sum of distances between the samples they connect (3.285 in this case). Any other combination of matches would result in a higher sum of distances.&lt;/p&gt;
+&lt;img src=&#34;https://blasbenito.com/post/dynamic-time-warping/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;750&#34; /&gt;
+&lt;p&gt;In dynamic time warping, the actual &lt;em&gt;warping&lt;/em&gt; happens when a sample in one time series is matched with two or more samples from the other, independently of their observation times. The figure below identifies one of these instances with blue bubbles. The sample 10 of &lt;code&gt;c&lt;/code&gt; (upper blue bubble), with date 2022-07-16, is matched with the samples 14 to 16 of &lt;code&gt;a&lt;/code&gt; (lower bubble), with dates 2023-12-13 to 2024-03-09. This matching structure represents a time compression in &lt;code&gt;a&lt;/code&gt; for the range of involved dates.&lt;/p&gt;
+&lt;img src=&#34;https://blasbenito.com/post/dynamic-time-warping/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;750&#34; /&gt;
+&lt;p&gt;This ability to warp time makes DTW incredibly useful for analyzing time series that are similar in shape but don&amp;rsquo;t have the same length or are not fully synchronized.&lt;/p&gt;
+&lt;p&gt;The next section delves into the computational steps of DTW.&lt;/p&gt;
+&lt;h1 id=&#34;dtw-step-by-step&#34;&gt;DTW Step by Step&lt;/h1&gt;
+&lt;p&gt;Time series comparison via Dynamic Time Warping (DTW) involves several key steps:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Detrending and z-score normalization&lt;/strong&gt; of the time series.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Computation of the distance matrix&lt;/strong&gt; between all pairs of samples.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Computation of a cost matrix&lt;/strong&gt; from the distance matrix.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Finding the least-cost path&lt;/strong&gt; within the cost matrix.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Computation of a similarity metric&lt;/strong&gt; based on the least-cost path.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;detrending-and-z-score-normalization&#34;&gt;Detrending and Z-score Normalization&lt;/h2&gt;
+&lt;p&gt;DTW is highly sensitive to differences in trends and ranges between time series (see the &lt;em&gt;Pitfalls&lt;/em&gt; section). To address this, 
+&lt;a href=&#34;https://sherbold.github.io/intro-to-data-science/09_Time-Series-Analysis.html#Trend-and-Seasonal-Effects&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;detrending&lt;/a&gt; and 
+&lt;a href=&#34;https://developers.google.com/machine-learning/crash-course/numerical-data/normalization#z-score_scaling&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;z-score normalization&lt;/a&gt; are important preprocessing steps. The former removes any upwards or downwards trend in the time series, while the later scales the time series values to a mean of zero and a standard deviation of one.&lt;/p&gt;
+&lt;p&gt;In this example, the time series &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt; already have matching ranges, so normalization is not strictly necessary. For demonstration purposes, however, the figure below shows them normalized using z-score scaling:&lt;/p&gt;
+&lt;img src=&#34;https://blasbenito.com/post/dynamic-time-warping/index_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;750&#34; /&gt;
+&lt;h2 id=&#34;distance-matrix&#34;&gt;Distance Matrix&lt;/h2&gt;
+&lt;p&gt;This step involves computing the distance matrix, which contains pairwise distances between all combinations of samples in the two time series.&lt;/p&gt;
+&lt;img src=&#34;https://blasbenito.com/post/dynamic-time-warping/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;600&#34; /&gt;
+&lt;p&gt;Choosing an appropriate distance metric is crucial. While Euclidean distance works well in many cases, other metrics may be more suitable depending on the data.&lt;/p&gt;
+&lt;h2 id=&#34;cost-matrix&#34;&gt;Cost Matrix&lt;/h2&gt;
+&lt;p&gt;The cost matrix is derived from the distance matrix by accumulating distances recursively, neighbor to neighbor, from the starting corner (lower-left) to the ending one (upper-right).&lt;/p&gt;
+&lt;p&gt;Different rules for cell neighborhood determine how these costs propagate:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Orthogonal only&lt;/strong&gt;: Accumulation occurs in the &lt;em&gt;x&lt;/em&gt; and &lt;em&gt;y&lt;/em&gt; directions only, ignoring diagonals.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Orthogonal and diagonal&lt;/strong&gt;: Diagonal movements are also considered, typically weighted by a factor of &lt;code&gt;√2&lt;/code&gt; (1.414) to balance with orthogonal movements.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The figure below illustrates the cost matrix with both orthogonal and diagonal paths.&lt;/p&gt;
+&lt;img src=&#34;https://blasbenito.com/post/dynamic-time-warping/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;600&#34; /&gt;
+The result of the cost matrix is similar to the topographic map of a valley, in which the value of each cell represents the slope we have to overcome to walk through it.
+&lt;p&gt;Now that we have a valley, let&amp;rsquo;s go find the river!&lt;/p&gt;
+&lt;h2 id=&#34;least-cost-path&#34;&gt;Least-cost Path&lt;/h2&gt;
+&lt;p&gt;This is the step where the actual time warping happens!&lt;/p&gt;
+&lt;p&gt;The least-cost path minimizes the total cost from the start to the end of the cost matrix, aligning the time series optimally.&lt;/p&gt;
+&lt;p&gt;In other words, the least-cost path is the river finding it&amp;rsquo;s way within the valley.&lt;/p&gt;
+&lt;p&gt;The algorithm building the least-cost path starts on the upper right corner of the cost matrix, and recursively selects the antecedent neighbor with the lowest cost to build the least-cost path step by step.&lt;/p&gt;
+&lt;p&gt;The figure below shows the least-cost path (black line). Deviations from the diagonal represent adjustments made to align the time series.&lt;/p&gt;
+&lt;img src=&#34;https://blasbenito.com/post/dynamic-time-warping/index_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;600&#34; /&gt;
+&lt;h2 id=&#34;similarity-metric&#34;&gt;Similarity Metric&lt;/h2&gt;
+&lt;p&gt;Finally, DTW produces a similarity metric based on the least-cost path. The simplest approach is to sum the distances of all points along the path.&lt;/p&gt;
+&lt;p&gt;For this example, the total cost is 8.167.
+However, when comparing time series of varying lengths, normalization is often useful. Common options include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Sum of lengths&lt;/strong&gt;: Normalize by the combined lengths of the time series, e.g., &lt;code&gt;Normalized Cost = Total Cost / (Length(a) + Length(c))&lt;/code&gt;. For &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt;, this would be 0.163.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Auto-sum of distances&lt;/strong&gt;: Normalize by the sum of distances between adjacent samples in each series, as in &lt;code&gt;Normalized Cost = Total Cost / (Auto-sum(a) + Auto-sum(c))&lt;/code&gt;. For &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt;, this results in 0.386.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These normalized metrics allow comparisons across datasets with varying characteristics.&lt;/p&gt;
+&lt;h1 id=&#34;real-world-applications&#34;&gt;Real World Applications&lt;/h1&gt;
+&lt;p&gt;Dynamic Time Warping is a well-studied topic in academic community, with more than 86k research articles listed in 
+&lt;a href=&#34;https://scholar.google.com/scholar?hl=en&amp;amp;as_sdt=0%2C5&amp;amp;q=%22dynamic&amp;#43;time&amp;#43;warping%22&amp;amp;btnG=&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google Scholar&lt;/a&gt;. However, the real-world impact of an academic concept often differs from its academic popularity. Examining DTW-related patents provides a clearer view of its practical applications.&lt;/p&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://www.uspto.gov/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;United States Patent and Trademark Office&lt;/a&gt; includes the class 
+&lt;a href=&#34;https://patents.justia.com/patents-by-us-classification/704/241&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;704/241&lt;/a&gt; specifically for &amp;ldquo;Dynamic Time Warping Patents&amp;rdquo;. Similarly, the 
+&lt;a href=&#34;https://www.cooperativepatentclassification.org/home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Cooperative Patent Classification&lt;/a&gt; includes the classification 
+&lt;a href=&#34;https://www.uspto.gov/web/patents/classification/cpc/pdf/cpc-scheme-G10L.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;(G10L 15/12)&lt;/a&gt; with the title &amp;ldquo;Speech recognition using dynamic programming techniques, e.g. dynamic time warping (DTW)&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Using the 
+&lt;a href=&#34;https://www.epo.org/en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;European Patent Office&lt;/a&gt; search tool 
+&lt;a href=&#34;https://worldwide.espacenet.com/patent/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Spacenet&lt;/a&gt; for &amp;ldquo;Dynamic Time Warping&amp;rdquo; returns approximately 
+&lt;a href=&#34;https://worldwide.espacenet.com/patent/search/family/007654522/publication/US2002049591A1?q=%22dynamic%20time%20warping%22&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;12.000 results&lt;/a&gt;. 
+&lt;a href=&#34;https://patents.google.com/?q=%28%22dynamic&amp;#43;time&amp;#43;warping%22%29&amp;amp;oq=%22dynamic&amp;#43;time&amp;#43;warping%22&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google Patents&lt;/a&gt; reports over 35.000 results.&lt;/p&gt;
+&lt;p&gt;While patents illustrate the technical implementation of DTW, uncovering its application in company blogs, wikis, or manuals is more challenging. Nonetheless, a few compelling examples demonstrate DTW&amp;rsquo;s real-world utility.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Media and Entertainment&lt;/strong&gt;*&lt;/p&gt;
+&lt;p&gt;Closed caption alignment is perhaps the most pervasive yet invisible application of DTW. Companies like 
+&lt;a href=&#34;https://netflixtechblog.com/detecting-scene-changes-in-audiovisual-content-77a61d3eaad6&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Netflix&lt;/a&gt; and 
+&lt;a href=&#34;https://patents.google.com/patent/US20150271442A1/en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft&lt;/a&gt; use DTW to synchronize subtitles with soundtracks in movies, TV shows, and video games, ensuring an accurate match regardless of pacing or timing inconsistencies.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Wearables and Fitness Devices&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Many wearables employ DTW to classify user activities by aligning accelerometer and gyroscope data with predefined templates. For example, 
+&lt;a href=&#34;https://patents.google.com/patent/US11517789B2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Goertek&amp;rsquo;s&lt;/a&gt; &lt;em&gt;Comma 2&lt;/em&gt; smart ring 
+&lt;a href=&#34;https://sleepreviewmag.com/sleep-diagnostics/consumer-sleep-tracking/wearable-sleep-trackers/goertek-reveals-smart-ring-reference-designs-voice-gesture-controls/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;presented in January 2025&lt;/a&gt; uses DTW to recognize user movements. Another creative example is the 
+&lt;a href=&#34;https://genkiinstruments.com/products/wave&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Wave&lt;/a&gt; MIDI controller ring, 
+&lt;a href=&#34;https://patents.google.com/patent/US20220085841A1/en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;patented by Genki&lt;/a&gt;. This device applies DTW with a nearest-neighbor classifier to analyze hand movements and trigger musical effects.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Biomechanics&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In biomechanics, DTW helps analyze movement patterns and detect anomalies. For instance, the software 
+&lt;a href=&#34;https://wiki.has-motion.com/doku.php?id=sift:sift_overview&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sift&lt;/a&gt; by 
+&lt;a href=&#34;https://www.has-motion.ca/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;HAS Motion&lt;/a&gt; 
+&lt;a href=&#34;https://wiki.has-motion.com/doku.php?id=sift:dynamic_time_warping:dynamic_time_warping&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;uses DTW&lt;/a&gt; to compare large datasets of movement traces and identify deviations. Similarly, the 
+&lt;a href=&#34;https://orthoload.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OrthoLoad&lt;/a&gt; processes load measurements on joint implants 
+&lt;a href=&#34;https://orthoload.com/software/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;using DTW&lt;/a&gt; to analyze patterns and identify irregularities.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Industrial Applications&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;DTW is also used in manufacturing to monitor machinery health.  Toshiba&amp;rsquo;s 
+&lt;a href=&#34;https://www.global.toshiba/ww/technology/corporate/rdc/rd/topics/20/2006-01.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LAMTSS&lt;/a&gt; technology applies DTW to noise and motion data from manufacturing equipment, helping detect and predict operational failures before they occur.&lt;/p&gt;
+&lt;p&gt;These examples highlight the versatility and practical relevance of DTW, spanning industries from entertainment to biomechanics and industrial maintenance. Its ability to adapt to diverse time series challenges underscores its value in real-world problem-solving.&lt;/p&gt;
+&lt;h1 id=&#34;closing-thoughts&#34;&gt;Closing Thoughts&lt;/h1&gt;
+&lt;p&gt;Dynamic Time Warping exemplifies how a sophisticated algorithm, initially developed for niche applications, has evolved into a versatile tool with real-world significance. From aligning movie subtitles to monitoring machinery health, DTW bridges the gap between academic theory and practical innovation. Its ability to adapt to various industries highlights the importance of robust time series analysis techniques, and further cements its place in both research and applied fields.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Human practices behind the aquatic and terrestrial ecological decoupling to climate change in the tropical Andes.</title>
       <link>https://blasbenito.com/publication/2022_benito_stoten/</link>
       <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/publication/2022_benito_stoten/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>R package distantia</title>
-      <link>https://blasbenito.com/project/distantia/</link>
-      <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://blasbenito.com/project/distantia/</guid>
-      <description>&lt;!-- badges: start --&gt;
-&lt;p&gt;
-&lt;a href=&#34;https://zenodo.org/badge/latestdoi/187805264&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/187805264.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;
-
-&lt;a href=&#34;https://CRAN.R-project.org/package=distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://www.r-pkg.org/badges/version-ago/distantia&#34; alt=&#34;CRAN\_Release\_Badge&#34;&gt;&lt;/a&gt;
-
-&lt;a href=&#34;https://CRAN.R-project.org/package=distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://cranlogs.r-pkg.org/badges/distantia&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;!-- badges: end --&gt;
-&lt;p&gt;The package &lt;em&gt;distantia&lt;/em&gt; allows to measure the dissimilarity between multivariate time-series. The package assumes that the target sequences are ordered along a given dimension, being depth and time the most common ones, but others such as latitude or elevation are also possible. Furthermore, the target time-series can be regular or irregular, and have their samples aligned (same age/time/depth) or unaligned (different age/time/depth). The only requirement is that the sequences must have at least two (but ideally more) columns with the same name and units representing different variables relevant to the dynamics of a system of interest.&lt;/p&gt;
-&lt;p&gt;The 
-&lt;a href=&#34;https://github.com/BlasBenito/distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub page&lt;/a&gt; of the project contains a thorough explanation of the statistics behind the method. The 
-&lt;a href=&#34;https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04895&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paper published in the Ecography journal&lt;/a&gt; describes the method, the package, and a couple of practical examples. The code and data used to develop the examples can be found in 
-&lt;a href=&#34;https://github.com/BlasBenito/distantiaPaper&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt; and 
-&lt;a href=&#34;https://zenodo.org/record/3520959#.X94GNtYo-1c&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Zenodo&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Please, if you find this package useful, please cite it as:&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Benito, B.M. and Birks, H.J.B. (2020), distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series. Ecography, 43: 660-667. 
-&lt;a href=&#34;https://doi.org/10.1111/ecog.04895&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/ecog.04895&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-</description>
     </item>
     
     <item>

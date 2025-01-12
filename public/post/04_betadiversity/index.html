@@ -778,9 +778,6 @@
 
     <div class="article-style">
       
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
-<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
 
 <p><div class="alert alert-note">
@@ -818,11 +815,8 @@
 <p><span class="math display">\[\beta_{sim} = \frac{min(b, c)}{min(b, c) + a}\]</span>
 where <span class="math inline">\(min()\)</span> is a function that takes the minimum value among the diversity components within the parenthesis. <span class="math inline">\(\beta_{sim}\)</span> is a dissimilarity measure that focuses on compositional turnover among sites because it focuses the most on the values of <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span>. It has its lower bound in zero, and an open upper value.</p>
 <p>To bring these ideas into R, first we have to load a few R packages, and generate some fake data to help us develop the functions.</p>
-<pre class="r"><code>library(magrittr)
-library(foreach)
-library(doParallel)</code></pre>
-<pre><code>## Loading required package: iterators</code></pre>
-<pre><code>## Loading required package: parallel</code></pre>
+<pre class="r"><code>library(foreach, quietly = TRUE)
+library(doParallel, quietly = TRUE)</code></pre>
 <p>The code chunk below generates 15 fake taxa names, from <code>taxon_1</code> to <code>taxon_15</code>.</p>
 <pre class="r"><code>taxa &lt;- paste0(&quot;taxon_&quot;, 1:15)</code></pre>
 <p>With these fake taxa we are going to generate taxa lists for four hypothetical sites named <em>site1</em>, <em>site2</em>, <em>site3</em>, and <em>site4</em>. Two of the sites will have identical taxa lists, two will have non-overlapping taxa lists, and two of them will have some overlap.</p>
@@ -875,7 +869,7 @@ Bsim</code></pre>
 <ul>
 <li><code>function_name</code> is the name of your function. Ideally, a verb, or otherwise, something indicating somehow what the function will do with the input data and arguments.</li>
 <li><code>function()</code> is a function to define functions, there isn’t much more to it…</li>
-<li><code>x</code> is the first argument of the function, and ideally, represents the input data. If that is the case, you can later use <a href="https://r4ds.had.co.nz/pipes.html">pipes</a> (<code>%&gt;%</code>) to chain functions together.</li>
+<li><code>x</code> is the first argument of the function, and ideally, represents the input data. If that is the case, you can later use <a href="https://r4ds.had.co.nz/pipes.html">pipes</a> (<code>|&gt;</code>) to chain functions together.</li>
 <li><code>y</code> (it could have any other name) is another function argument, an can be either another input dataset, or an argument defining how the function has to behave.</li>
 <li><code>...</code> refers to other arguments the function may require.</li>
 <li><code>body</code> is the code that operates with the data and function arguments. This can be one line of code, or a thousand, it all comes down to the function’s objective. In any case, the <code>body</code> must return an object (or an error if something went wrong) that will be the function’s <code>output</code>.</li>
@@ -957,8 +951,8 @@ simpson_beta &lt;- function(x){
 <pre class="r"><code>x &lt;- abc(
   x = site3, 
   y = site4
-  ) %&gt;% 
-  sorensen_beta() %&gt;% 
+  ) |&gt; 
+  sorensen_beta() |&gt; 
   simpson_beta()
 x</code></pre>
 <pre><code>## $a
@@ -975,14 +969,12 @@ x</code></pre>
 ## 
 ## $bsim
 ## [1] 0.4</code></pre>
-<p>Chaining the functions through the <code>%&gt;%</code> pipe of the <code>magrittr</code> package now allows us to combine their results in a single output no matter whether we use <code>sorensen_beta()</code> or <code>sorensen_beta()</code> first, or whether we omit one of them. The only thing the pipe is doing here is moving the output of the first function into the next. There are a couple of very nice tutorials about the <code>magrittr</code> package and the <code>%&gt;%</code> <a href="https://uc-r.github.io/pipe">here</a> and <a href="https://towardsdatascience.com/an-introduction-to-the-pipe-in-r-823090760d64">here</a>.</p>
+<p>Chaining the functions through the pipe <code>|&gt;</code> pipe allows us combining their results in a single output no matter whether we use <code>sorensen_beta()</code> or <code>sorensen_beta()</code> first, or whether we omit one of them. The only thing the pipe is doing here is moving the output of the first function into the next.</p>
 <p>We can put that idea right away into a function to compute both betadiversity indices at once from the taxa list of a pair of sites.</p>
 <pre class="r"><code>betadiversity &lt;- function(x, y){
   
-  require(magrittr)
-  
-  abc(x, y) %&gt;%
-    sorensen_beta() %&gt;%
+  abc(x, y) |&gt;
+    sorensen_beta() |&gt;
     simpson_beta()
   
 }</code></pre>
@@ -1040,215 +1032,111 @@ x3 &lt;- betadiversity(x = site1, y = site4)
 )</code></pre>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-site
-</th>
-<th style="text-align:left;">
-taxon
-</th>
+<tr class="header">
+<th align="left">site</th>
+<th align="left">taxon</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-taxon_1
-</td>
+<tr class="odd">
+<td align="left">site1</td>
+<td align="left">taxon_1</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-taxon_2
-</td>
+<tr class="even">
+<td align="left">site1</td>
+<td align="left">taxon_2</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-taxon_3
-</td>
+<tr class="odd">
+<td align="left">site1</td>
+<td align="left">taxon_3</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-taxon_4
-</td>
+<tr class="even">
+<td align="left">site1</td>
+<td align="left">taxon_4</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-taxon_5
-</td>
+<tr class="odd">
+<td align="left">site1</td>
+<td align="left">taxon_5</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-taxon_6
-</td>
+<tr class="even">
+<td align="left">site1</td>
+<td align="left">taxon_6</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-taxon_7
-</td>
+<tr class="odd">
+<td align="left">site1</td>
+<td align="left">taxon_7</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-taxon_1
-</td>
+<tr class="even">
+<td align="left">site2</td>
+<td align="left">taxon_1</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-taxon_2
-</td>
+<tr class="odd">
+<td align="left">site2</td>
+<td align="left">taxon_2</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-taxon_3
-</td>
+<tr class="even">
+<td align="left">site2</td>
+<td align="left">taxon_3</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-taxon_4
-</td>
+<tr class="odd">
+<td align="left">site2</td>
+<td align="left">taxon_4</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-taxon_5
-</td>
+<tr class="even">
+<td align="left">site2</td>
+<td align="left">taxon_5</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-taxon_6
-</td>
+<tr class="odd">
+<td align="left">site2</td>
+<td align="left">taxon_6</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-taxon_7
-</td>
+<tr class="even">
+<td align="left">site2</td>
+<td align="left">taxon_7</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site3
-</td>
-<td style="text-align:left;">
-taxon_8
-</td>
+<tr class="odd">
+<td align="left">site3</td>
+<td align="left">taxon_8</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site3
-</td>
-<td style="text-align:left;">
-taxon_9
-</td>
+<tr class="even">
+<td align="left">site3</td>
+<td align="left">taxon_9</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site3
-</td>
-<td style="text-align:left;">
-taxon_10
-</td>
+<tr class="odd">
+<td align="left">site3</td>
+<td align="left">taxon_10</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site3
-</td>
-<td style="text-align:left;">
-taxon_11
-</td>
+<tr class="even">
+<td align="left">site3</td>
+<td align="left">taxon_11</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site3
-</td>
-<td style="text-align:left;">
-taxon_12
-</td>
+<tr class="odd">
+<td align="left">site3</td>
+<td align="left">taxon_12</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site4
-</td>
-<td style="text-align:left;">
-taxon_10
-</td>
+<tr class="even">
+<td align="left">site4</td>
+<td align="left">taxon_10</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site4
-</td>
-<td style="text-align:left;">
-taxon_11
-</td>
+<tr class="odd">
+<td align="left">site4</td>
+<td align="left">taxon_11</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site4
-</td>
-<td style="text-align:left;">
-taxon_12
-</td>
+<tr class="even">
+<td align="left">site4</td>
+<td align="left">taxon_12</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site4
-</td>
-<td style="text-align:left;">
-taxon_13
-</td>
+<tr class="odd">
+<td align="left">site4</td>
+<td align="left">taxon_13</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site4
-</td>
-<td style="text-align:left;">
-taxon_14
-</td>
+<tr class="even">
+<td align="left">site4</td>
+<td align="left">taxon_14</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site4
-</td>
-<td style="text-align:left;">
-taxon_15
-</td>
+<tr class="odd">
+<td align="left">site4</td>
+<td align="left">taxon_15</td>
 </tr>
 </tbody>
 </table>
@@ -1298,168 +1186,70 @@ site.combinations</code></pre>
 }</code></pre>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-a
-</th>
-<th style="text-align:left;">
-b
-</th>
-<th style="text-align:left;">
-c
-</th>
-<th style="text-align:left;">
-bsor
-</th>
-<th style="text-align:left;">
-bsim
-</th>
-<th style="text-align:left;">
-site.one
-</th>
-<th style="text-align:left;">
-site.two
-</th>
+<tr class="header">
+<th align="left">a</th>
+<th align="left">b</th>
+<th align="left">c</th>
+<th align="left">bsor</th>
+<th align="left">bsim</th>
+<th align="left">site.one</th>
+<th align="left">site.two</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-site2
-</td>
+<tr class="odd">
+<td align="left">7</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">site1</td>
+<td align="left">site2</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-site3
-</td>
+<tr class="even">
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">5</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">site1</td>
+<td align="left">site3</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-site4
-</td>
+<tr class="odd">
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">6</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">site1</td>
+<td align="left">site4</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-site3
-</td>
+<tr class="even">
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">5</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">site2</td>
+<td align="left">site3</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-site4
-</td>
+<tr class="odd">
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">6</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">site2</td>
+<td align="left">site4</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-0.545
-</td>
-<td style="text-align:left;">
-0.4
-</td>
-<td style="text-align:left;">
-site3
-</td>
-<td style="text-align:left;">
-site4
-</td>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">0.545</td>
+<td align="left">0.4</td>
+<td align="left">site3</td>
+<td align="left">site4</td>
 </tr>
 </tbody>
 </table>
@@ -1531,168 +1321,70 @@ site4
 )</code></pre>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-site.one
-</th>
-<th style="text-align:left;">
-site.two
-</th>
-<th style="text-align:left;">
-a
-</th>
-<th style="text-align:left;">
-b
-</th>
-<th style="text-align:left;">
-c
-</th>
-<th style="text-align:left;">
-bsor
-</th>
-<th style="text-align:left;">
-bsim
-</th>
+<tr class="header">
+<th align="left">site.one</th>
+<th align="left">site.two</th>
+<th align="left">a</th>
+<th align="left">b</th>
+<th align="left">c</th>
+<th align="left">bsor</th>
+<th align="left">bsim</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-0
-</td>
+<tr class="odd">
+<td align="left">site1</td>
+<td align="left">site2</td>
+<td align="left">7</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-site3
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-1
-</td>
+<tr class="even">
+<td align="left">site1</td>
+<td align="left">site3</td>
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">5</td>
+<td align="left">0</td>
+<td align="left">1</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site1
-</td>
-<td style="text-align:left;">
-site4
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-1
-</td>
+<tr class="odd">
+<td align="left">site1</td>
+<td align="left">site4</td>
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">6</td>
+<td align="left">0</td>
+<td align="left">1</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-site3
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-1
-</td>
+<tr class="even">
+<td align="left">site2</td>
+<td align="left">site3</td>
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">5</td>
+<td align="left">0</td>
+<td align="left">1</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site2
-</td>
-<td style="text-align:left;">
-site4
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-1
-</td>
+<tr class="odd">
+<td align="left">site2</td>
+<td align="left">site4</td>
+<td align="left">0</td>
+<td align="left">7</td>
+<td align="left">6</td>
+<td align="left">0</td>
+<td align="left">1</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-site3
-</td>
-<td style="text-align:left;">
-site4
-</td>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-0.545
-</td>
-<td style="text-align:left;">
-0.4
-</td>
+<tr class="even">
+<td align="left">site3</td>
+<td align="left">site4</td>
+<td align="left">3</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">0.545</td>
+<td align="left">0.4</td>
 </tr>
 </tbody>
 </table>
@@ -1706,7 +1398,13 @@ site4
 
     </div>
 
-    
+    <script src="//yihui.org/js/math-code.js"></script>
+
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
 
 
 

@@ -1,6 +1,7 @@
 ---
-date: "2020-12-19T00:00:00Z"
-external_link: ""
+title: "R package distantia"
+summary: R package to compare multivariate time-series with dynamic time warping and lock-step methods.
+date: "2025-01-12T00:00:00Z"
 image:
   caption: Graph by Blas M. Benito
   focal_point: Smart
@@ -9,7 +10,7 @@ links:
 - icon: github
   icon_pack: fab
   name: GitHub
-  url: https://github.com/BlasBenito/distantia
+  url: https://blasbenito.github.io/distantia/
 - icon: r-project
   icon_pack: fab
   name: CRAN
@@ -18,15 +19,12 @@ links:
   icon_pack: fas
   name: Ecography
   url: https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.04895
-summary: R package to compare multivariate time-series.
 tags: 
 - R packages
-- Time Series Analysis
-title: "R package distantia"
-url_code: ""
-url_pdf: ""
-url_slides: ""
-url_video: ""
+- Time Series
+- Dynamic Time Warping
+- Lock-step
+- Data Science
 ---
 
 <!-- badges: start -->
@@ -37,11 +35,42 @@ url_video: ""
 
 <!-- badges: end -->
 
-The package *distantia* allows to measure the dissimilarity between multivariate time-series. The package assumes that the target sequences are ordered along a given dimension, being depth and time the most common ones, but others such as latitude or elevation are also possible. Furthermore, the target time-series can be regular or irregular, and have their samples aligned (same age/time/depth) or unaligned (different age/time/depth). The only requirement is that the sequences must have at least two (but ideally more) columns with the same name and units representing different variables relevant to the dynamics of a system of interest.
+## Description
 
-The [GitHub page](https://github.com/BlasBenito/distantia) of the project contains a thorough explanation of the statistics behind the method. The [paper published in the Ecography journal](https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04895) describes the method, the package, and a couple of practical examples. The code and data used to develop the examples can be found in [GitHub](https://github.com/BlasBenito/distantiaPaper) and [Zenodo](https://zenodo.org/record/3520959#.X94GNtYo-1c). 
+The R package [**`distantia`**](https://blasbenito.github.io/distantia/), [available on CRAN](https://CRAN.R-project.org/package=distantia), offers an efficient, feature-rich toolkit for managing, comparing, and analyzing time series data. It is designed to handle a wide range of scenarios, including:
 
-Please, if you find this package useful, please cite it as:
+- Multivariate and univariate time series.
+- Regular and irregular sampling. 
+- Time series of different lengths.
 
-*Benito, B.M. and Birks, H.J.B. (2020), distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series. Ecography, 43: 660-667. https://doi.org/10.1111/ecog.04895*
+## Key Features
+
+### Comprehensive Analytical Tools
+
+  - 10 distance metrics: see `distantia::distances`.
+  - The normalized dissimilarity metric `psi`.
+  - Free and Restricted Dynamic Time Warping (DTW) for shape-based comparison.
+  - A Lock-Step method for sample-to-sample comparison
+  - Restricted permutation tests for robust inferential support.
+  - Analysis of contribution to dissimilarity of individual variables in multivariate time series.
+  - Hierarchical and K-means clustering of time series based on dissimilarity matrices.
+  
+### Computational Efficiency
+
+  - A **C++ back-end** powered by [Rcpp](https://www.rcpp.org/).
+  - **Parallel processing** managed through the [future](https://future.futureverse.org/) package.
+  - **Efficient data handling** via [zoo](https://CRAN.R-project.org/package=zoo).
+
+### Time Series Management Tools
+
+  - Introduces **time series lists** (TSL), a versatile format for handling collections of time series stored as lists of `zoo` objects.
+  - Includes a suite of `tsl_...()` functions for generating, resampling, transforming, analyzing, and visualizing univariate and multivariate time series.
+  
+### Citation
+
+If you find this package useful, please cite it as:
+
+*Blas M. Benito, H. John B. Birks (2020). distantia: an open-source toolset to quantify dissimilarity between multivariate ecological time-series. Ecography, 43(5), 660-667. doi: [10.1111/ecog.04895](https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.04895).*
+
+*Blas M. Benito (2024). distantia: A Toolset for Time Series Dissimilarity Analysis. R package version 2.0.0. url:  [https://blasbenito.github.io/distantia/](https://blasbenito.github.io/distantia/).*
 

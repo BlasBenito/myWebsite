@@ -33,9 +33,9 @@ Dynamic Time Warping is a powerful method to compare univariate or multivariate 
 
 Having good example data at hand is a must when developing new code. For this tutorial we use a subset of three multivariate time series of temperature, rainfall, and normalized vegetation index available in the R package [distantia](https://blasbenito.github.io/distantia/).
 
-```{r, fig.height=3.5, fig.width=5, echo = FALSE}
+```{r, fig.height=3.5, fig.width=5, echo = FALSE, message=FALSE}
 library(distantia, quietly = TRUE)
-library(zoo)
+library(zoo, quietly = TRUE)
 
 tsl <- tsl_initialize(
   x = fagus_dynamics,
@@ -51,6 +51,7 @@ tsl <- tsl_initialize(
 
 tsl_plot(tsl)
 ```
+
 To facilitate our development, each time series is stored in an object of the class [zoo](https://CRAN.R-project.org/package=zoo), which is probably the most flexible time series management library in the R ecosystem.
 
 ```{r}
@@ -60,25 +61,19 @@ zoo_germany <- tsl$Germany
 
 class(zoo_sweden)
 ```
+
 Each zoo object has a *core data* of the class "matrix" with one observation per row and one variable per column, and an *index*, which is a vector of dates, one per row in the data matrix.
 
 ```{r}
 zoo::coredata(zoo_sweden)
 ```
+
 ```{r}
 class(zoo::coredata(zoo_sweden))
 ```
 
 ```{r}
 zoo::index(zoo_sweden)
-```
-
-## Library Source
-
-Our library will *live* in a file named `mini_dtw.R`. We will be adding new R functions to this file as we progress with the implementation. Remember typing `source("mini_dtw.R")` everytime you add new code to this file to make the functions available in your R environment!
-
-```{r, eval = TRUE}
-file.create("mini_dtw.R")
 ```
 
 ## Required Functions
@@ -114,7 +109,7 @@ In this section we will be developing the library function by function. Remember
 
 Applying linear detrending to a time series involves computing a linear model of each variable against time, and subtracting the result of the model prediction to the original data. This operation can be done in just two steps for a zoo object. 
 
-First, the linear model with `stats::lm()` can be applied to all variables at once
+First, the function `stats::lm()` can be applied to all variables in our time series at once
 
 ```{r}
 model_sweden <- stats::lm(
@@ -123,16 +118,21 @@ model_sweden <- stats::lm(
 
 model_sweden
 ```
-Second, the residuals of the linear model represent the differences between the prediction and the observed data, which corresponds exactly with the detrended time series returned as a zoo object.
+
+Second, the residuals of the linear model represent the differences between the prediction and the observed data, which corresponds exactly with the detrended time series. As a plus, these residuals are returned as a zoo object.
 
 ```{r, fig.width=5, fig.height=3.5}
 zoo_sweden_detrended <- stats::residuals(model_sweden)
 zoo_sweden_detrended
 
-plot(zoo_sweden_detrended)
+plot(
+  x = zoo_sweden_detrended, 
+  col = "red4",
+  mar = c(0.5, 5, 0, 5)
+  )
 ```
 
-Then, the first function of our library could be something like the one shown below.
+Then, the first function of our library could be something like this:
 
 ```{r}
 #' Linear Detrending
@@ -145,30 +145,62 @@ ts_detrend <- function(x){
 }
 ```
 
-Notice it is written to facilitate line-by-line debugging, and I have added minimal roxygen documentation. Future me usually appreciates this kind of extra effort.
+Notice that it could be more concise, but it is written to facilitate line-by-line debugging instead. I have also added minimal roxygen documentation. Future me usually appreciates this kind of extra effort.
 
-We can now source the library to test the new function!
+We can now test the new function!
 
 ```{r, fig.height=3, fig.width=5}
-source("mini_dtw.R")
-
 zoo_spain_detrended <- ts_detrend(x = zoo_spain)
 
-plot(zoo_spain_detrended)
+plot(
+  x = zoo_spain_detrended, 
+  col = "red4",
+  mar = c(0.5, 5, 0, 5)
+  )
 ```
+
+The effect of our new function is not very noticeable because none of our time series have long-term trends, but let's try something different to check that our function actually detrends time series.
+
+The code below creates a mock-up time series with an ascending trend.
+
+```{r, fig.height=3, fig.width=5}
+x <- zoo::zoo(0:10)
+
+plot(
+  x = x, 
+  col = "red4",
+  mar = c(0.5, 1, 0, 1)
+  )
+```
+
+The detrending operation results in a horizontal line! Now we can be sure our detrending function works as expected.
+
+```{r}
+x_detrended <- ts_detrend(x = x)
+
+plot(
+  x = x_detrended, 
+  col = "red4",
+  ylim = range(x),
+  mar = c(0.5, 5, 0, 5)
+  )
+```
+
 
 ### Z-score Normalization
 
 The function `scale()`, from base R, already implements z-score normalization. When the library `zoo` is loaded, the method `zoo:::scale.zoo` (`:::` denotes unexported methods and functions) allows `scale()` to work seamlessly with zoo objects.
 
 ```{r}
-scale(
+zoo_spain_scaled <- scale(
   x = zoo_spain,
   center = TRUE,
   scale = TRUE
   )
+
+class(zoo_spain_scaled)
 ```
-Centering is performed by subtracting the column mean to each case, and results in a column mean equal to zero, while scaling is computed by dividing each case by the standard deviation of the column, resulting in an overall standard deviation equal to one.
+Centering is performed by subtracting the column mean to each case, and results in a column mean equal to zero. Scaling divides each case by the standard deviation of the column, resulting in an overall standard deviation across cases equal to one.
 
 This normalization step does not require a function in our library, but we can add it to our function `ts_detrend()` to encapsulate all pre-processing steps into a new function named `ts_preprocessing()`.
 
@@ -191,14 +223,20 @@ source("mini_dtw.R")
 
 zoo_spain_ready <- ts_preprocessing(x = zoo_spain)
 
-plot(zoo_spain_ready)
+plot(
+  x = zoo_spain_ready, 
+  col = "red4",
+  mar = c(0.5, 5, 0, 5)
+  )
 ```
 
 ### Distance Matrix
 
-The computation of a distance matrix first requires a function to compute the multivariate distance between two arbitrary rows of separate zoo objects.
+The computation of a distance matrix first requires a function to compute the multivariate distance between two arbitrary rows of separate zoo objects with the same number of columns.
 
-The expression to compute Euclidean distances between two vectors `x` and `y` representing the rows of zoo objects is `sqrt(sum((x-y)^2))`. Then, our function to compute distances between zoo rows could be:
+#### Distance Function
+
+The expression to compute Euclidean distances between two vectors `x` and `y` representing the rows of zoo objects is `sqrt(sum((x-y)^2))`. The function below implements this expression:
 
 ```{r}
 #' Euclidean Distance
@@ -210,11 +248,11 @@ d_euclidean <- function(x, y){
 }
 ```
 
-We can add it to `mini_dtw.R` and test it right away. Let's ignore for now that none of our zoo objects are normalized yet.
+Implementing such a simple expression in a function is not a must, but it may facilitate the addition of new distance metrics to the library in the future.
+
+We can test it right away, and let's ignore for now that none of our zoo objects are normalized yet.
 
 ```{r}
-source("mini_dtw.R")
-
 d_euclidean(
   x = zoo::coredata(zoo_germany)[1, ],
   y = zoo::coredata(zoo_spain)[2, ]
@@ -229,7 +267,8 @@ d_euclidean(
   y = zoo_spain[2, ]
 )
 ```
-We can also solve this quirk by using `as.numeric()`:
+
+We can also solve this quirk by using `as.numeric()` instead of `zoo::coredata()`:
 
 ```{r}
 d_euclidean(
@@ -237,9 +276,14 @@ d_euclidean(
   y = as.numeric(zoo_spain[2, ])
 )
 ```
-Then, moving these `as.numeric()` inside `d_euclidean()` makes sense!
+
+Then, moving these `as.numeric()` inside `d_euclidean()` will be helpful to simplify the usage of the function:
 
 ```{r}
+#' Euclidean Distance
+#' @param x (required, numeric) row of a zoo object.  
+#' @param y (required, numeric) row of a zoo object.
+#' @return numeric
 d_euclidean <- function(x, y){
   x <- as.numeric(x)
   y <- as.numeric(y)
@@ -252,30 +296,48 @@ d_euclidean(
 )
 ```
 
-To generate the distance matrix, the new function must be applied to all pairs of rows in two zoo objects. A simple yet inefficient way to do this involves creating an empty matrix, and traversing it cell by cell to compute the euclidean distances of the corresponding time series rows.
+#### Distance Matrix
+
+To generate the distance matrix, the new function must be applied to all pairs of rows in two zoo objects. A simple yet inefficient way to do this involves creating an empty matrix, and traversing it cell by cell to compute the euclidean distances between the corresponding pair of time series rows.
 
 ```{r}
-m <- matrix(
+m_dist <- matrix(
   data = NA, 
-  nrow = nrow(zoo_germany), 
-  ncol = nrow(zoo_spain)
+  nrow = nrow(zoo_spain), 
+  ncol = nrow(zoo_germany)
 )
 
 for(i in 1:nrow(zoo_spain)){
   for(j in 1:nrow(zoo_germany)){
     
-    m[j, i] <- d_euclidean(
+    m_dist[i, j] <- d_euclidean(
       x = zoo_spain[i, ],
       y = zoo_germany[j, ]
     )
     
   }
 }
-
-m[1:5, 1:5]
 ```
 
-Then, our new function, named `distance_matrix()`, should look as shown below.
+This code generates a matrix in which the samples of `zoo_spain` are represented in the matrix rows from top to bottom, while `zoo_germany` is represented in the columns, from left to right.
+
+```{r}
+m_dist[1:5, 1:5]
+```
+Now we can plot this distance matrix, but notice that the function `graphics::image()` rotates the distance matrix 90 degrees counter clock-wise before plotting, which can be pretty confusing at first:
+
+```{r, fig.width=2.5, fig.height=2.5}
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_dist,
+  xlab = "zoo_spain",
+  ylab = "zoo_germany"
+  )
+```
+
+Now first column in the plot represents the first row of our original matrix `m_dist`, so now `zoo_spain` is represented in the plot columns, and `zoo_germany` in the rows.
+
+Ok! Now, our new function, named `distance_matrix()`, would look as follows:
 
 ```{r}
 #' Distance Matrix Between Time Series
@@ -284,19 +346,16 @@ Then, our new function, named `distance_matrix()`, should look as shown below.
 #' @return matrix
 distance_matrix <- function(x, y){
   
-  x.rows <- nrow(x)
-  y.rows <- nrow(y)
-  
-  m <- matrix(
+  m_dist <- matrix(
     data = NA, 
-    nrow = y.rows, 
-    ncol = x.rows
+    nrow = nrow(y), 
+    ncol = nrow(x)
   )
   
-  for (i in 1:x.rows) {
-    for (j in 1:y.rows) {
+  for (i in 1:nrow(y)) {
+    for (j in 1:nrow(x)) {
       
-      m[j, i] <- d_euclidean(
+      m_dist[i, j] <- d_euclidean(
         x = x[i, ],
         y = y[j, ]
       )
@@ -304,13 +363,76 @@ distance_matrix <- function(x, y){
     }
   }
   
-  m
+  m_dist
   
 }
 ```
 
+We can add it to `mini_dtw.R` and test it now!
+
+```{r, fig.width=2.5, fig.height=2.5}
+m_dist <- distance_matrix(
+  x = zoo_germany,
+  y = zoo_sweden
+)
+
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_dist,
+  xlab = "zoo_sweden",
+  ylab = "zoo_germany"
+  )
+```
 
 ### Cost Matrix
+
+Now we are getting into the important parts of the DTW algorithm!
+
+```{r}
+m_cost <- matrix(
+  data = NA, 
+  nrow = nrow(m_dist), 
+  ncol = ncol(m_dist)
+  )
+```
+
+The first step is to accumulate the cost of the first row and column of the distance matrix.
+
+```{r}
+m_cost[1, ] <- cumsum(m_dist[1, ])
+m_cost[, 1] <- cumsum(m_dist[1, ])
+```
+
+
+```{r}
+cost_matrix <- function(m_dist) {
+  yn <- nrow(m_dist)
+  xn <- ncol(m_dist)
+  m_cost <- matrix(0, nrow = yn, ncol = xn)
+  
+  m_cost[1, 1] <- m_dist[1, 1]
+  
+  for (i in 2:yn) {
+    m_cost[i, 1] <- m_cost[i - 1, 1] + m_dist[i, 1]
+  }
+  
+  for (j in 2:xn) {
+    m_cost[1, j] <- m_cost[1, j - 1] + m_dist[1, j]
+  }
+  
+  for (i in 2:yn) {
+    for (j in 2:xn) {
+      m_cost[i, j] <- min(m_cost[i - 1, j], m_cost[i, j - 1]) + m_dist[i, j]
+    }
+  }
+  
+  # Adjusting the last cell to include the return cost to the starting point
+  m_cost[yn, xn] <- m_cost[yn, xn] + m_cost[1, 1]
+  
+  m_cost
+}
+```
+
 
 ### Least-Cost Path
 
@@ -318,4 +440,6 @@ distance_matrix <- function(x, y){
 
 
 
+## Library Source
 
+Our library will *live* in a file named `mini_dtw.R`. We will be adding new R functions to this file as we progress with the implementation. Remember typing `source("mini_dtw.R")` everytime you add new code to this file to make the functions available in your R environment!

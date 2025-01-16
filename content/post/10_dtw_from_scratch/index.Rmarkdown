@@ -198,8 +198,13 @@ zoo_spain_scaled <- scale(
   scale = TRUE
   )
 
+zoo_spain_scaled
+```
+
+```{r}
 class(zoo_spain_scaled)
 ```
+
 Centering is performed by subtracting the column mean to each case, and results in a column mean equal to zero. Scaling divides each case by the standard deviation of the column, resulting in an overall standard deviation across cases equal to one.
 
 This normalization step does not require a function in our library, but we can add it to our function `ts_detrend()` to encapsulate all pre-processing steps into a new function named `ts_preprocessing()`.
@@ -244,7 +249,8 @@ The expression to compute Euclidean distances between two vectors `x` and `y` re
 #' @param y (required, numeric) row of a zoo object.
 #' @return numeric
 d_euclidean <- function(x, y){
-  sqrt(sum((x-y)^2))
+  d <- sqrt(sum((x-y)^2))
+  d
 }
 ```
 
@@ -287,7 +293,8 @@ Then, moving these `as.numeric()` inside `d_euclidean()` will be helpful to simp
 d_euclidean <- function(x, y){
   x <- as.numeric(x)
   y <- as.numeric(y)
-  sqrt(sum((x-y)^2))
+  d <- sqrt(sum((x-y)^2))
+  d
 }
 
 d_euclidean(
@@ -307,12 +314,12 @@ m_dist <- matrix(
   ncol = nrow(zoo_germany)
 )
 
-for(i in 1:nrow(zoo_spain)){
-  for(j in 1:nrow(zoo_germany)){
+for(row.i in 1:nrow(zoo_spain)){
+  for(col.j in 1:nrow(zoo_germany)){
     
-    m_dist[i, j] <- d_euclidean(
-      x = zoo_spain[i, ],
-      y = zoo_germany[j, ]
+    m_dist[row.i, col.j] <- d_euclidean(
+      x = zoo_spain[row.i, ],
+      y = zoo_germany[col.j, ]
     )
     
   }
@@ -324,6 +331,7 @@ This code generates a matrix in which the samples of `zoo_spain` are represented
 ```{r}
 m_dist[1:5, 1:5]
 ```
+
 Now we can plot this distance matrix, but notice that the function `graphics::image()` rotates the distance matrix 90 degrees counter clock-wise before plotting, which can be pretty confusing at first:
 
 ```{r, fig.width=2.5, fig.height=2.5}
@@ -352,12 +360,12 @@ distance_matrix <- function(x, y){
     ncol = nrow(x)
   )
   
-  for (i in 1:nrow(y)) {
-    for (j in 1:nrow(x)) {
+  for(row.i in 1:nrow(y)){
+    for(col.j in 1:nrow(x)){
       
-      m_dist[i, j] <- d_euclidean(
-        x = x[i, ],
-        y = y[j, ]
+      m_dist[row.i, col.j] <- d_euclidean(
+        x = x[row.i, ],
+        y = y[col.j, ]
       )
       
     }
@@ -372,7 +380,7 @@ We can add it to `mini_dtw.R` and test it now!
 
 ```{r, fig.width=2.5, fig.height=2.5}
 m_dist <- distance_matrix(
-  x = zoo_germany,
+  x = zoo_spain,
   y = zoo_sweden
 )
 
@@ -380,7 +388,7 @@ par(mar = c(4, 4, 1, 1))
 graphics::image(
   x = m_dist,
   xlab = "zoo_sweden",
-  ylab = "zoo_germany"
+  ylab = "zoo_spain"
   )
 ```
 
@@ -388,7 +396,9 @@ graphics::image(
 
 Now we are getting into the important parts of the DTW algorithm!
 
-```{r}
+First, we use the dimensions of the distance matrix to create an empty cost matrix.
+
+```{r, fig.width=2.5, fig.height=2.5, warning = FALSE}
 m_cost <- matrix(
   data = NA, 
   nrow = nrow(m_dist), 
@@ -396,43 +406,137 @@ m_cost <- matrix(
   )
 ```
 
-The first step is to accumulate the cost of the first row and column of the distance matrix.
+Second, to initialize the cost matrix we accumulate the values of the distance matrix across its first row and column using `cumsum()`, as follows:
 
 ```{r}
 m_cost[1, ] <- cumsum(m_dist[1, ])
-m_cost[, 1] <- cumsum(m_dist[1, ])
+m_cost[, 1] <- cumsum(m_dist[, 1])
 ```
 
+This step is very important for the second part of the algorithm, as it provides the starting values.
+
+```{r, fig.width=2.5, fig.height=2.5}
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_cost,
+  xlab = "zoo_sweden",
+  ylab = "zoo_spain"
+  )
+```
+
+Now, before going into the third step, let's focus for a moment on the next cell of the cost matrix we need to fill. This cell, with coordinates `m_cost[2, 2]`, shown with value `NA` below.
 
 ```{r}
-cost_matrix <- function(m_dist) {
-  yn <- nrow(m_dist)
-  xn <- ncol(m_dist)
-  m_cost <- matrix(0, nrow = yn, ncol = xn)
+m_cost[1:2, 1:2]
+```
+The new value of this cell must be the sum of its current value in the distance matrix `m_dist`, which is `r m_dist[2, 2]` with the minimum accumulated distance of its neighbors, which are `m_cost[1, 2]` with value `r m_cost[1, 2]`, and `m_cost[2, 1]` with value `r m_cost[2, 1]`. In summary, we have two possible steps, sum the distance in the empty cell with the cost of the upper one, or with the cost of the left one, and we have to choose the one that minimizes the value of the result.
+
+For the target cell, this expression would be:
+
+```{r}
+m_cost[2, 2] <- min(m_cost[1, 2], m_cost[2, 1 - 1]) + m_dist[2, 2]
+```
+
+Now, our cost matrix looks as follows:
+
+```{r}
+m_cost[1:2, 1:2]
+```
+
+But there are many cells to fill yet!
+
+```{r, fig.width=2.5, fig.height=2.5}
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_cost,
+  xlab = "zoo_sweden",
+  ylab = "zoo_spain"
+  )
+```
+
+The expression we used to fill the cell `m_cost[2, 2]` can be generalized to fill the remaining empty cells using a nested loop that visits each new empty cell, identifies the neighbor with the smallest accumulated cost, and adds this accumulated cost to the distance value of the cell.
+
+```{r}
+#iterate over rows of the cost matrix
+for(row.i in 2:nrow(m_dist)){
   
-  m_cost[1, 1] <- m_dist[1, 1]
-  
-  for (i in 2:yn) {
-    m_cost[i, 1] <- m_cost[i - 1, 1] + m_dist[i, 1]
+  #iterate over columns of the cost matrix
+  for(col.j in 2:ncol(m_dist)){
+    
+    #get cost of neighbor with minimum accumulated cost
+    min_cost <- min(
+      m_cost[row.i - 1, col.j], 
+      m_cost[row.i, col.j - 1]
+      )
+    
+    #add it to the distance of the target cell
+    new_value <- min_cost + m_dist[row.i, col.j]
+    
+    #fill the empty cell with the new value
+    m_cost[row.i, col.j] <- new_value
+    
   }
-  
-  for (j in 2:xn) {
-    m_cost[1, j] <- m_cost[1, j - 1] + m_dist[1, j]
-  }
-  
-  for (i in 2:yn) {
-    for (j in 2:xn) {
-      m_cost[i, j] <- min(m_cost[i - 1, j], m_cost[i, j - 1]) + m_dist[i, j]
-    }
-  }
-  
-  # Adjusting the last cell to include the return cost to the starting point
-  m_cost[yn, xn] <- m_cost[yn, xn] + m_cost[1, 1]
-  
-  m_cost
 }
 ```
 
+Running the code above results in a nicely filled cost matrix!
+
+```{r, fig.width=2.5, fig.height=2.5}
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_cost,
+  xlab = "zoo_sweden",
+  ylab = "zoo_spain"
+  )
+```
+
+Now that we have all the pieces together, we can define our new function to compute the cost matrix.
+
+```{r}
+#' Cost Matrix from Distance Matrix
+#' @param m (required, matrix) distance matrix.
+#' @return matrix
+cost_matrix <- function(m){
+  
+  m_cost <- matrix(
+    data = NA, 
+    nrow = nrow(m), 
+    ncol = ncol(m)
+  )
+  
+  m_cost[1, ] <- cumsum(m[1, ])
+  m_cost[, 1] <- cumsum(m[, 1])
+  
+  for(row.i in 2:nrow(m)){
+    for(col.j in 2:ncol(m)){
+      
+      m_cost[row.i, col.j] <- min(
+        m_cost[row.i - 1, col.j], 
+        m_cost[row.i, col.j - 1]
+      ) + m[row.i, col.j]
+      
+    }
+  }
+  
+  m_cost
+  
+}
+```
+
+Let's run a small test using `m_dist` as input:
+
+```{r, fig.width=2.5, fig.height=2.5}
+m_cost <- cost_matrix(m = m_dist)
+
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_cost,
+  xlab = "zoo_sweden",
+  ylab = "zoo_spain"
+  )
+```
+
+Yay, so far so good! Let's move onto the last step of the DTW algorithm.
 
 ### Least-Cost Path
 

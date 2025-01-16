@@ -31,19 +31,8 @@ Dynamic Time Warping is a powerful method to compare univariate or multivariate 
 
 Having good example data at hand is a must when developing new code. For this tutorial we use a subset of three multivariate time series of temperature, rainfall, and normalized vegetation index available in the R package [distantia](https://blasbenito.github.io/distantia/).
 
-
-```
-## 
-## Attaching package: 'zoo'
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     as.Date, as.Date.numeric
-```
-
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="480" />
+
 To facilitate our development, each time series is stored in an object of the class [zoo](https://CRAN.R-project.org/package=zoo), which is probably the most flexible time series management library in the R ecosystem.
 
 
@@ -58,6 +47,7 @@ class(zoo_sweden)
 ```
 ## [1] "zoo"
 ```
+
 Each zoo object has a *core data* of the class "matrix" with one observation per row and one variable per column, and an *index*, which is a vector of dates, one per row in the data matrix.
 
 
@@ -84,6 +74,7 @@ zoo::coredata(zoo_sweden)
 ## [1] "Sweden"
 ```
 
+
 ``` r
 class(zoo::coredata(zoo_sweden))
 ```
@@ -101,19 +92,6 @@ zoo::index(zoo_sweden)
 ##  [1] "2010-01-01" "2010-02-01" "2010-03-01" "2010-04-01" "2010-05-01"
 ##  [6] "2010-06-01" "2010-07-01" "2010-08-01" "2010-09-01" "2010-10-01"
 ## [11] "2010-11-01" "2010-12-01" "2011-01-01"
-```
-
-## Library Source
-
-Our library will *live* in a file named `mini_dtw.R`. We will be adding new R functions to this file as we progress with the implementation. Remember typing `source("mini_dtw.R")` everytime you add new code to this file to make the functions available in your R environment!
-
-
-``` r
-file.create("mini_dtw.R")
-```
-
-```
-## [1] TRUE
 ```
 
 ## Required Functions
@@ -149,7 +127,7 @@ In this section we will be developing the library function by function. Remember
 
 Applying linear detrending to a time series involves computing a linear model of each variable against time, and subtracting the result of the model prediction to the original data. This operation can be done in just two steps for a zoo object. 
 
-First, the linear model with `stats::lm()` can be applied to all variables at once
+First, the function `stats::lm()` can be applied to all variables in our time series at once
 
 
 ``` r
@@ -170,7 +148,8 @@ model_sweden
 ## (Intercept)               8.965e-01  -1.710e+03  -5.706e+01
 ## stats::time(zoo_sweden)  -3.480e-05   1.202e-01   4.271e-03
 ```
-Second, the residuals of the linear model represent the differences between the prediction and the observed data, which corresponds exactly with the detrended time series returned as a zoo object.
+
+Second, the residuals of the linear model represent the differences between the prediction and the observed data, which corresponds exactly with the detrended time series. As a plus, these residuals are returned as a zoo object.
 
 
 ``` r
@@ -198,12 +177,16 @@ zoo_sweden_detrended
 ```
 
 ``` r
-plot(zoo_sweden_detrended)
+plot(
+  x = zoo_sweden_detrended, 
+  col = "red4",
+  mar = c(0.5, 5, 0, 5)
+  )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="480" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="480" />
 
-Then, the first function of our library could be something like the one shown below.
+Then, the first function of our library could be something like this:
 
 
 ``` r
@@ -217,20 +200,56 @@ ts_detrend <- function(x){
 }
 ```
 
-Notice it is written to facilitate line-by-line debugging, and I have added minimal roxygen documentation. Future me usually appreciates this kind of extra effort.
+Notice that it could be more concise, but it is written to facilitate line-by-line debugging instead. I have also added minimal roxygen documentation. Future me usually appreciates this kind of extra effort.
 
-We can now source the library to test the new function!
+We can now test the new function!
 
 
 ``` r
-source("mini_dtw.R")
-
 zoo_spain_detrended <- ts_detrend(x = zoo_spain)
 
-plot(zoo_spain_detrended)
+plot(
+  x = zoo_spain_detrended, 
+  col = "red4",
+  mar = c(0.5, 5, 0, 5)
+  )
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="480" />
+
+The effect of our new function is not very noticeable because none of our time series have long-term trends, but let's try something different to check that our function actually detrends time series.
+
+The code below creates a mock-up time series with an ascending trend.
+
+
+``` r
+x <- zoo::zoo(0:10)
+
+plot(
+  x = x, 
+  col = "red4",
+  mar = c(0.5, 1, 0, 1)
+  )
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="480" />
+
+The detrending operation results in a horizontal line! Now we can be sure our detrending function works as expected.
+
+
+``` r
+x_detrended <- ts_detrend(x = x)
+
+plot(
+  x = x_detrended, 
+  col = "red4",
+  ylim = range(x),
+  mar = c(0.5, 5, 0, 5)
+  )
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+
 
 ### Z-score Normalization
 
@@ -238,11 +257,13 @@ The function `scale()`, from base R, already implements z-score normalization. W
 
 
 ``` r
-scale(
+zoo_spain_scaled <- scale(
   x = zoo_spain,
   center = TRUE,
   scale = TRUE
   )
+
+zoo_spain_scaled
 ```
 
 ```
@@ -269,7 +290,17 @@ scale(
 ##        evi       rain       temp 
 ##  0.1126303 39.9472745  5.4664947
 ```
-Centering is performed by subtracting the column mean to each case, and results in a column mean equal to zero, while scaling is computed by dividing each case by the standard deviation of the column, resulting in an overall standard deviation equal to one.
+
+
+``` r
+class(zoo_spain_scaled)
+```
+
+```
+## [1] "zoo"
+```
+
+Centering is performed by subtracting the column mean to each case, and results in a column mean equal to zero. Scaling divides each case by the standard deviation of the column, resulting in an overall standard deviation across cases equal to one.
 
 This normalization step does not require a function in our library, but we can add it to our function `ts_detrend()` to encapsulate all pre-processing steps into a new function named `ts_preprocessing()`.
 
@@ -294,16 +325,22 @@ source("mini_dtw.R")
 
 zoo_spain_ready <- ts_preprocessing(x = zoo_spain)
 
-plot(zoo_spain_ready)
+plot(
+  x = zoo_spain_ready, 
+  col = "red4",
+  mar = c(0.5, 5, 0, 5)
+  )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="480" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="480" />
 
 ### Distance Matrix
 
-The computation of a distance matrix first requires a function to compute the multivariate distance between two arbitrary rows of separate zoo objects.
+The computation of a distance matrix first requires a function to compute the multivariate distance between two arbitrary rows of separate zoo objects with the same number of columns.
 
-The expression to compute Euclidean distances between two vectors `x` and `y` representing the rows of zoo objects is `sqrt(sum((x-y)^2))`. Then, our function to compute distances between zoo rows could be:
+#### Distance Function
+
+The expression to compute Euclidean distances between two vectors `x` and `y` representing the rows of zoo objects is `sqrt(sum((x-y)^2))`. The function below implements this expression:
 
 
 ``` r
@@ -312,16 +349,17 @@ The expression to compute Euclidean distances between two vectors `x` and `y` re
 #' @param y (required, numeric) row of a zoo object.
 #' @return numeric
 d_euclidean <- function(x, y){
-  sqrt(sum((x-y)^2))
+  d <- sqrt(sum((x-y)^2))
+  d
 }
 ```
 
-We can add it to `mini_dtw.R` and test it right away. Let's ignore for now that none of our zoo objects are normalized yet.
+Implementing such a simple expression in a function is not a must, but it may facilitate the addition of new distance metrics to the library in the future.
+
+We can test it right away, and let's ignore for now that none of our zoo objects are normalized yet.
 
 
 ``` r
-source("mini_dtw.R")
-
 d_euclidean(
   x = zoo::coredata(zoo_germany)[1, ],
   y = zoo::coredata(zoo_spain)[2, ]
@@ -345,7 +383,8 @@ d_euclidean(
 ```
 ## [1] 0
 ```
-We can also solve this quirk by using `as.numeric()`:
+
+We can also solve this quirk by using `as.numeric()` instead of `zoo::coredata()`:
 
 
 ``` r
@@ -358,14 +397,20 @@ d_euclidean(
 ```
 ## [1] 47.42971
 ```
-Then, moving these `as.numeric()` inside `d_euclidean()` makes sense!
+
+Then, moving these `as.numeric()` inside `d_euclidean()` will be helpful to simplify the usage of the function:
 
 
 ``` r
+#' Euclidean Distance
+#' @param x (required, numeric) row of a zoo object.  
+#' @param y (required, numeric) row of a zoo object.
+#' @return numeric
 d_euclidean <- function(x, y){
   x <- as.numeric(x)
   y <- as.numeric(y)
-  sqrt(sum((x-y)^2))
+  d <- sqrt(sum((x-y)^2))
+  d
 }
 
 d_euclidean(
@@ -378,40 +423,63 @@ d_euclidean(
 ## [1] 47.42971
 ```
 
-To generate the distance matrix, the new function must be applied to all pairs of rows in two zoo objects. A simple yet inefficient way to do this involves creating an empty matrix, and traversing it cell by cell to compute the euclidean distances of the corresponding time series rows.
+#### Distance Matrix
+
+To generate the distance matrix, the new function must be applied to all pairs of rows in two zoo objects. A simple yet inefficient way to do this involves creating an empty matrix, and traversing it cell by cell to compute the euclidean distances between the corresponding pair of time series rows.
 
 
 ``` r
-m <- matrix(
+m_dist <- matrix(
   data = NA, 
-  nrow = nrow(zoo_germany), 
-  ncol = nrow(zoo_spain)
+  nrow = nrow(zoo_spain), 
+  ncol = nrow(zoo_germany)
 )
 
-for(i in 1:nrow(zoo_spain)){
-  for(j in 1:nrow(zoo_germany)){
+for(row.i in 1:nrow(zoo_spain)){
+  for(col.j in 1:nrow(zoo_germany)){
     
-    m[j, i] <- d_euclidean(
-      x = zoo_spain[i, ],
-      y = zoo_germany[j, ]
+    m_dist[row.i, col.j] <- d_euclidean(
+      x = zoo_spain[row.i, ],
+      y = zoo_germany[col.j, ]
     )
     
   }
 }
+```
 
-m[1:5, 1:5]
+This code generates a matrix in which the samples of `zoo_spain` are represented in the matrix rows from top to bottom, while `zoo_germany` is represented in the columns, from left to right.
+
+
+``` r
+m_dist[1:5, 1:5]
 ```
 
 ```
-##           [,1]     [,2]     [,3]     [,4]     [,5]
-## [1,] 110.30989 47.42971 38.34784 30.76948 46.71014
-## [2,] 100.46823 37.38412 28.18370 20.76849 36.52524
-## [3,] 113.10167 49.80095 40.16593 31.16425 47.92920
-## [4,] 131.62363 68.36882 58.56706 48.91734 65.83052
-## [5,]  51.83673 13.24344 21.93453 31.20312 14.33537
+##           [,1]      [,2]      [,3]      [,4]     [,5]
+## [1,] 110.30989 100.46823 113.10167 131.62363 51.83673
+## [2,]  47.42971  37.38412  49.80095  68.36882 13.24344
+## [3,]  38.34784  28.18370  40.16593  58.56706 21.93453
+## [4,]  30.76948  20.76849  31.16425  48.91734 31.20312
+## [5,]  46.71014  36.52524  47.92920  65.83052 14.33537
 ```
 
-Then, our new function, named `distance_matrix()`, should look as shown below.
+Now we can plot this distance matrix, but notice that the function `graphics::image()` rotates the distance matrix 90 degrees counter clock-wise before plotting, which can be pretty confusing at first:
+
+
+``` r
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_dist,
+  xlab = "zoo_spain",
+  ylab = "zoo_germany"
+  )
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="240" />
+
+Now first column in the plot represents the first row of our original matrix `m_dist`, so now `zoo_spain` is represented in the plot columns, and `zoo_germany` in the rows.
+
+Ok! Now, our new function, named `distance_matrix()`, would look as follows:
 
 
 ``` r
@@ -421,33 +489,239 @@ Then, our new function, named `distance_matrix()`, should look as shown below.
 #' @return matrix
 distance_matrix <- function(x, y){
   
-  x.rows <- nrow(x)
-  y.rows <- nrow(y)
-  
-  m <- matrix(
+  m_dist <- matrix(
     data = NA, 
-    nrow = y.rows, 
-    ncol = x.rows
+    nrow = nrow(y), 
+    ncol = nrow(x)
   )
   
-  for (i in 1:x.rows) {
-    for (j in 1:y.rows) {
+  for(row.i in 1:nrow(y)){
+    for(col.j in 1:nrow(x)){
       
-      m[j, i] <- d_euclidean(
-        x = x[i, ],
-        y = y[j, ]
+      m_dist[row.i, col.j] <- d_euclidean(
+        x = x[row.i, ],
+        y = y[col.j, ]
       )
       
     }
   }
   
-  m
+  m_dist
+  
+}
+```
+
+We can add it to `mini_dtw.R` and test it now!
+
+
+``` r
+m_dist <- distance_matrix(
+  x = zoo_spain,
+  y = zoo_sweden
+)
+
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_dist,
+  xlab = "zoo_sweden",
+  ylab = "zoo_spain"
+  )
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" width="240" />
+
+### Cost Matrix
+
+Now we are getting into the important parts of the DTW algorithm!
+
+First, we use the dimensions of the distance matrix to create an empty cost matrix.
+
+
+``` r
+m_cost <- matrix(
+  data = NA, 
+  nrow = nrow(m_dist), 
+  ncol = ncol(m_dist)
+  )
+```
+
+Second, to initialize the cost matrix we accumulate the values of the distance matrix across its first row and column using `cumsum()`, as follows:
+
+
+``` r
+m_cost[1, ] <- cumsum(m_dist[1, ])
+m_cost[, 1] <- cumsum(m_dist[, 1])
+```
+
+This step is very important for the second part of the algorithm, as it provides the starting values.
+
+
+``` r
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_cost,
+  xlab = "zoo_sweden",
+  ylab = "zoo_spain"
+  )
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="240" />
+
+Now, before going into the third step, let's focus for a moment on the next cell of the cost matrix we need to fill. This cell, with coordinates `m_cost[2, 2]`, shown with value `NA` below.
+
+
+``` r
+m_cost[1:2, 1:2]
+```
+
+```
+##          [,1]     [,2]
+## [1,] 116.4881 209.3248
+## [2,] 170.3028       NA
+```
+The new value of this cell must be the sum of its current value in the distance matrix `m_dist`, which is 30.4973625 with the minimum accumulated distance of its neighbors, which are `m_cost[1, 2]` with value 209.3248002, and `m_cost[2, 1]` with value 170.3027918. In summary, we have two possible steps, sum the distance in the empty cell with the cost of the upper one, or with the cost of the left one, and we have to choose the one that minimizes the value of the result.
+
+For the target cell, this expression would be:
+
+
+``` r
+m_cost[2, 2] <- min(m_cost[1, 2], m_cost[2, 1 - 1]) + m_dist[2, 2]
+```
+
+Now, our cost matrix looks as follows:
+
+
+``` r
+m_cost[1:2, 1:2]
+```
+
+```
+##          [,1]     [,2]
+## [1,] 116.4881 209.3248
+## [2,] 170.3028 239.8222
+```
+
+But there are many cells to fill yet!
+
+
+``` r
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_cost,
+  xlab = "zoo_sweden",
+  ylab = "zoo_spain"
+  )
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="240" />
+
+The expression we used to fill the cell `m_cost[2, 2]` can be generalized to fill the remaining empty cells using a nested loop that visits each new empty cell, identifies the neighbor with the smallest accumulated cost, and adds this accumulated cost to the distance value of the cell.
+
+
+
+``` r
+#iterate over rows of the cost matrix
+for(row.i in 2:nrow(m_dist)){
+  
+  #iterate over columns of the cost matrix
+  for(col.j in 2:ncol(m_dist)){
+    
+    #get cost of neighbor with minimum accumulated cost
+    min_cost <- min(
+      m_cost[row.i - 1, col.j], 
+      m_cost[row.i, col.j - 1]
+      )
+    
+    #add it to the distance of the target cell
+    new_value <- min_cost + m_dist[row.i, col.j]
+    
+    #fill the empty cell with the new value
+    m_cost[row.i, col.j] <- new_value
+    
+  }
+}
+```
+
+Running the code above results in a nicely filled cost matrix!
+
+
+``` r
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_cost,
+  xlab = "zoo_sweden",
+  ylab = "zoo_spain"
+  )
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" width="240" />
+
+
+
+
+
+``` r
+cost_matrix <- function(m){
+  
+  m_cost <- matrix(
+    data = NA, 
+    nrow = nrow(m), 
+    ncol = ncol(m)
+  )
+  
+  m_cost[1, ] <- cumsum(m[1, ])
+  m_cost[, 1] <- cumsum(m[, 1])
+  
+  for(row.i in 2:nrow(m)){
+    for(col.j in 2:ncol(m)){
+      
+      m_cost[row.i, col.j] <- min(
+        m_cost[row.i - 1, col.j], 
+        m_cost[row.i, col.j - 1]
+      ) + m[row.i, col.j]
+      
+    }
+  }
+  
+  m_cost
   
 }
 ```
 
 
-### Cost Matrix
+
+
+
+
+``` r
+cost_matrix <- function(m_dist) {
+  yn <- nrow(m_dist)
+  xn <- ncol(m_dist)
+  m_cost <- matrix(0, nrow = yn, ncol = xn)
+  
+  m_cost[1, 1] <- m_dist[1, 1]
+  
+  for (i in 2:yn) {
+    m_cost[i, 1] <- m_cost[i - 1, 1] + m_dist[i, 1]
+  }
+  
+  for (j in 2:xn) {
+    m_cost[1, j] <- m_cost[1, j - 1] + m_dist[1, j]
+  }
+  
+  for (i in 2:yn) {
+    for (j in 2:xn) {
+      m_cost[i, j] <- min(m_cost[i - 1, j], m_cost[i, j - 1]) + m_dist[i, j]
+    }
+  }
+  
+  # Adjusting the last cell to include the return cost to the starting point
+  m_cost[yn, xn] <- m_cost[yn, xn] + m_cost[1, 1]
+  
+  m_cost
+}
+```
+
 
 ### Least-Cost Path
 
@@ -455,4 +729,6 @@ distance_matrix <- function(x, y){
 
 
 
+## Library Source
 
+Our library will *live* in a file named `mini_dtw.R`. We will be adding new R functions to this file as we progress with the implementation. Remember typing `source("mini_dtw.R")` everytime you add new code to this file to make the functions available in your R environment!

@@ -463,7 +463,7 @@ m_dist[1:5, 1:5]
 ## [5,]  46.71014  36.52524  47.92920  65.83052 14.33537
 ```
 
-Now we can plot this distance matrix, but notice that the function `graphics::image()` rotates the distance matrix 90 degrees counter clock-wise before plotting, which can be pretty confusing at first:
+Now we can plot this distance matrix, but notice that the function `graphics::image()` rotates the distance matrix 90 degrees counter clock-wise before plotting, which can be pretty confusing at first.
 
 
 ``` r
@@ -479,7 +479,7 @@ graphics::image(
 
 Now first column in the plot represents the first row of our original matrix `m_dist`, so now `zoo_spain` is represented in the plot columns, and `zoo_germany` in the rows.
 
-Ok! Now, our new function, named `distance_matrix()`, would look as follows:
+We can now wrap the code above (without the plot) in a new function named `distance_matrix()`.
 
 
 ``` r
@@ -511,7 +511,7 @@ distance_matrix <- function(x, y){
 }
 ```
 
-We can add it to `mini_dtw.R` and test it now!
+Let's run a little test before moving forward!
 
 
 ``` r
@@ -530,9 +530,12 @@ graphics::image(
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" width="240" />
 
+
 ### Cost Matrix
 
-Now we are getting into the important parts of the DTW algorithm!
+Now we are getting into the important parts of the DTW algorithm! 
+
+A cost matrix is like a mountain landscape with a topography defined by the accumulation of distances across all possible alignment paths between two time series.  
 
 First, we use the dimensions of the distance matrix to create an empty cost matrix.
 
@@ -618,7 +621,6 @@ graphics::image(
 The expression we used to fill the cell `m_cost[2, 2]` can be generalized to fill the remaining empty cells using a nested loop that visits each new empty cell, identifies the neighbor with the smallest accumulated cost, and adds this accumulated cost to the distance value of the cell.
 
 
-
 ``` r
 #iterate over rows of the cost matrix
 for(row.i in 2:nrow(m_dist)){
@@ -656,11 +658,13 @@ graphics::image(
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" width="240" />
 
-
-
+Now that we have all the pieces together, we can define our new function to compute the cost matrix.
 
 
 ``` r
+#' Cost Matrix from Distance Matrix
+#' @param m (required, matrix) distance matrix.
+#' @return matrix
 cost_matrix <- function(m){
   
   m_cost <- matrix(
@@ -688,40 +692,23 @@ cost_matrix <- function(m){
 }
 ```
 
-
-
-
+Let's run a small test using `m_dist` as input:
 
 
 ``` r
-cost_matrix <- function(m_dist) {
-  yn <- nrow(m_dist)
-  xn <- ncol(m_dist)
-  m_cost <- matrix(0, nrow = yn, ncol = xn)
-  
-  m_cost[1, 1] <- m_dist[1, 1]
-  
-  for (i in 2:yn) {
-    m_cost[i, 1] <- m_cost[i - 1, 1] + m_dist[i, 1]
-  }
-  
-  for (j in 2:xn) {
-    m_cost[1, j] <- m_cost[1, j - 1] + m_dist[1, j]
-  }
-  
-  for (i in 2:yn) {
-    for (j in 2:xn) {
-      m_cost[i, j] <- min(m_cost[i - 1, j], m_cost[i, j - 1]) + m_dist[i, j]
-    }
-  }
-  
-  # Adjusting the last cell to include the return cost to the starting point
-  m_cost[yn, xn] <- m_cost[yn, xn] + m_cost[1, 1]
-  
-  m_cost
-}
+m_cost <- cost_matrix(m = m_dist)
+
+par(mar = c(4, 4, 1, 1))
+graphics::image(
+  x = m_cost,
+  xlab = "zoo_sweden",
+  ylab = "zoo_spain"
+  )
 ```
 
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-37-1.png" width="240" />
+
+Yay, so far so good! Let's move onto the last step of the DTW algorithm.
 
 ### Least-Cost Path
 

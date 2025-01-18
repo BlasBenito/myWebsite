@@ -12,7 +12,7 @@ lastmod: '2025-01-13T05:14:20+01:00'
 featured: yes
 draft: true
 image:
-  caption: Graph by Blas M. Benito
+  caption: Dynamic time warping represented as a landscape.
   focal_point: Smart
   margin: auto
 projects: []
@@ -332,7 +332,7 @@ This code generates a matrix in which the samples of `zoo_spain` are represented
 m_dist[1:5, 1:5]
 ```
 
-Now we can plot this distance matrix, but notice that the function `graphics::image()` rotates the distance matrix 90 degrees counter clock-wise before plotting, which can be pretty confusing at first:
+Now we can plot this distance matrix, but notice that the function `graphics::image()` rotates the distance matrix 90 degrees counter clock-wise before plotting, which can be pretty confusing at first.
 
 ```{r, fig.width=2.5, fig.height=2.5}
 par(mar = c(4, 4, 1, 1))
@@ -345,7 +345,7 @@ graphics::image(
 
 Now first column in the plot represents the first row of our original matrix `m_dist`, so now `zoo_spain` is represented in the plot columns, and `zoo_germany` in the rows.
 
-Ok! Now, our new function, named `distance_matrix()`, would look as follows:
+We can now wrap the code above (without the plot) in a new function named `distance_matrix()`.
 
 ```{r}
 #' Distance Matrix Between Time Series
@@ -376,7 +376,7 @@ distance_matrix <- function(x, y){
 }
 ```
 
-We can add it to `mini_dtw.R` and test it now!
+Let's run a little test before moving forward!
 
 ```{r, fig.width=2.5, fig.height=2.5}
 m_dist <- distance_matrix(
@@ -392,9 +392,17 @@ graphics::image(
   )
 ```
 
+Darker values in the plot above indicate larger distances between time series samples.
+
 ### Cost Matrix
 
-Now we are getting into the important parts of the DTW algorithm!
+Now we are getting into the important parts of the DTW algorithm! 
+
+A cost matrix is like a valley's landscape with hills in regions where the time series are very different, and ravines where they are more similar.
+
+Such landscape is built by accumulating the values of the distance matrix cell by cell from [1, 1] at the bottom of the valley to [m, n] at the top.
+
+Let's see how that works:
 
 First, we use the dimensions of the distance matrix to create an empty cost matrix.
 
@@ -406,7 +414,7 @@ m_cost <- matrix(
   )
 ```
 
-Second, to initialize the cost matrix we accumulate the values of the distance matrix across its first row and column using `cumsum()`, as follows:
+Second, to initialize the cost matrix we accumulate the values of first row and column of the distance matrix using `cumsum()`:
 
 ```{r}
 m_cost[1, ] <- cumsum(m_dist[1, ])
@@ -424,22 +432,26 @@ graphics::image(
   )
 ```
 
+As before, darker values in the plot above indicate larger cumulative distances.
+
 Now, before going into the third step, let's focus for a moment on the next cell of the cost matrix we need to fill. This cell, with coordinates `m_cost[2, 2]`, shown with value `NA` below.
 
 ```{r}
 m_cost[1:2, 1:2]
 ```
-The new value of this cell must be the sum of its current value in the distance matrix `m_dist`, which is `r m_dist[2, 2]` with the minimum accumulated distance of its neighbors, which are `m_cost[1, 2]` with value `r m_cost[1, 2]`, and `m_cost[2, 1]` with value `r m_cost[2, 1]`. In summary, we have two possible steps, sum the distance in the empty cell with the cost of the upper one, or with the cost of the left one, and we have to choose the one that minimizes the value of the result.
 
-For the target cell, this expression would be:
+The new value of this cell must be the sum of its value in the distance matrix `m_dist`, which is `r m_dist[2, 2]`, with the minimum accumulated distance of its neighbors, which are `m_cost[1, 2]`, with value `r m_cost[1, 2]`, and `m_cost[2, 1]`, with value `r m_cost[2, 1]`. 
 
-```{r}
-m_cost[2, 2] <- min(m_cost[1, 2], m_cost[2, 1 - 1]) + m_dist[2, 2]
-```
+In summary, we have two alternative steps: sum the distance in the empty cell with the cost of the upper neighbor, or with the left one, and we have to choose the one that minimizes the value of the result.
 
-Now, our cost matrix looks as follows:
+This conundrum is easily solved with the expression below, which uses `min()` to get the value of the *smallest* neighbor, and then adds it to the target cell
 
 ```{r}
+m_cost[2, 2] <- min(
+  m_cost[1, 2], 
+  m_cost[2, 1]
+  ) + m_dist[2, 2]
+
 m_cost[1:2, 1:2]
 ```
 
@@ -454,7 +466,7 @@ graphics::image(
   )
 ```
 
-The expression we used to fill the cell `m_cost[2, 2]` can be generalized to fill the remaining empty cells using a nested loop that visits each new empty cell, identifies the neighbor with the smallest accumulated cost, and adds this accumulated cost to the distance value of the cell.
+The expression we used to fill the cell `m_cost[2, 2]` can be generalized to fill all empty cells. We just have to wrap it in a nested loop that for each new empty cell identifies the smallest neighbor and adds its cost to the distance of new cell.
 
 ```{r}
 #iterate over rows of the cost matrix
@@ -490,7 +502,7 @@ graphics::image(
   )
 ```
 
-Now that we have all the pieces together, we can define our new function to compute the cost matrix.
+Now that we have all the pieces together, we can define our new function to compute the cost matrix. Notice that the code within the nested loops is slightly more concise.
 
 ```{r}
 #' Cost Matrix from Distance Matrix
@@ -523,7 +535,7 @@ cost_matrix <- function(m){
 }
 ```
 
-Let's run a small test using `m_dist` as input:
+Let's test our new function using `m_dist` as input!
 
 ```{r, fig.width=2.5, fig.height=2.5}
 m_cost <- cost_matrix(m = m_dist)
@@ -536,9 +548,98 @@ graphics::image(
   )
 ```
 
-Yay, so far so good! Let's move onto the last step of the DTW algorithm.
+Yay, so far so good! 
+
+We can now move onto the last step of the DTW algorithm.
 
 ### Least-Cost Path
+
+If we describe the least-cost matrix as a valley with its hills and ravines, then the least-cost path is a river flowing its way to the bottom. Like a river, the least-cost path finds the easiest way to cross the cost matrix from the last cell [m, n] to [1, 1].
+
+Following the analogy, leas-cost paths are built in a direction opposed to the one used to build the cost matrix.
+
+```{r}
+dist_matrix <- m_dist
+cost_matrix <- m_cost
+```
+
+
+```{r}
+DataFrame cost_path_orthogonal_cpp(
+    NumericMatrix dist_matrix,
+    NumericMatrix cost_matrix
+){
+
+  int d_rows = dist_matrix.nrow();
+  int d_cols = dist_matrix.ncol();
+
+  // Initialize the path vectors
+  std::vector<int> path_x;
+  std::vector<int> path_y;
+  std::vector<double> path_dist;
+  std::vector<double> path_cost;
+
+  // Define initial coordinates
+  int x = d_cols - 1;
+  int y = d_rows - 1;
+
+
+  // Iterate to find the path
+  while (true) {
+
+    // Add current coordinates to the path
+    // Adding 1 to convert from 0-based index to 1-based index
+    path_x.push_back(x + 1);
+    path_y.push_back(y + 1);
+    path_dist.push_back(dist_matrix(y, x));
+    path_cost.push_back(cost_matrix(y, x));
+
+    // declare neighbors
+    std::vector<int> neighbor_x = {x, x - 1};
+    std::vector<int> neighbor_y = {y - 1, y};
+
+    // Find neighbor with minimum cost
+    int min_cost_neighbor = -1;
+    double min_cost = std::numeric_limits<double>::max();
+
+    for (int j = 0; j < 2; ++j) {
+      if (neighbor_y[j] != -1 && neighbor_x[j] != -1) {
+        if (cost_matrix(neighbor_y[j], neighbor_x[j]) < min_cost) {
+          min_cost = cost_matrix(neighbor_y[j], neighbor_x[j]);
+          min_cost_neighbor = j;
+        }
+      }
+    }
+
+    // Check for termination
+    if (min_cost_neighbor == -1) {
+      break;
+    }
+
+    // Update current coordinates
+    x = neighbor_x[min_cost_neighbor];
+    y = neighbor_y[min_cost_neighbor];
+
+  }
+
+  // Create output data frame
+  return DataFrame::create(
+    _["x"] = path_x,
+    _["y"] = path_y,
+    _["dist"] = path_dist,
+    _["cost"] = path_cost
+  );
+
+}
+```
+
+```{r}
+path <- cost_path(
+  dist_matrix = m_dist,
+  cost_matrix = m_cost
+)
+```
+
 
 ### Dissimilarity Metric
 

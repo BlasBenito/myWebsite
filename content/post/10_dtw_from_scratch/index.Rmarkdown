@@ -20,6 +20,9 @@ projects: []
 
 ```{r, echo = FALSE, eval = FALSE}
 install.packages("distantia")
+knitr::opts_chunk$set(
+  fig.width = 7, fig.height = 6
+)
 ```
 
 
@@ -33,7 +36,7 @@ This post walks you through the implementation of a minimalistic yet fully funct
 
 Having good example data at hand is a must when developing new code. For this tutorial we use a subset of three multivariate time series of temperature, rainfall, and normalized vegetation index available in the R package [distantia](https://blasbenito.github.io/distantia/).
 
-```{r, fig.height=3.5, fig.width=5, echo = FALSE, message=FALSE}
+```{r, echo = FALSE, message=FALSE}
 library(distantia, quietly = TRUE)
 library(zoo, quietly = TRUE)
 
@@ -43,13 +46,14 @@ tsl <- tsl_initialize(
   time_column = "time"
 ) |> 
   tsl_subset(
+    names = c("Spain", "Sweden"),
     time = c("2010-01-01", "2011-01-01")
   ) |> 
   tsl_colnames_set(
     names = c("evi", "rain", "temp")
   )
 
-tsl_plot(tsl)
+tsl_plot(tsl, text_cex = 1.5)
 ```
 
 To facilitate our development, each time series is stored in an object of the class [zoo](https://CRAN.R-project.org/package=zoo), which is probably the most flexible time series management library in the R ecosystem.
@@ -57,7 +61,6 @@ To facilitate our development, each time series is stored in an object of the cl
 ```{r}
 zoo_sweden <- tsl$Sweden
 zoo_spain <- tsl$Spain
-zoo_germany <- tsl$Germany
 
 class(zoo_sweden)
 ```
@@ -70,10 +73,6 @@ zoo::coredata(zoo_sweden)
 
 ```{r}
 class(zoo::coredata(zoo_sweden))
-```
-
-```{r}
-zoo::index(zoo_sweden)
 ```
 
 ## Required Functions
@@ -121,7 +120,7 @@ model_sweden
 
 Second, the residuals of the linear model represent the differences between the prediction and the observed data, which corresponds exactly with the detrended time series. As a plus, these residuals are returned as a zoo object.
 
-```{r, fig.width=5, fig.height=3.5}
+```{r}
 zoo_sweden_detrended <- stats::residuals(model_sweden)
 zoo_sweden_detrended
 
@@ -149,7 +148,7 @@ Notice that it could be more concise, but it is written to facilitate line-by-li
 
 We can now test the new function!
 
-```{r, fig.height=3, fig.width=5}
+```{r}
 zoo_spain_detrended <- ts_detrend(x = zoo_spain)
 
 plot(
@@ -163,7 +162,7 @@ The effect of our new function is not very noticeable because none of our time s
 
 The code below creates a mock-up time series with an ascending trend.
 
-```{r, fig.height=3, fig.width=5}
+```{r, fig.height=3}
 x <- zoo::zoo(0:10)
 
 plot(
@@ -175,7 +174,7 @@ plot(
 
 The detrending operation results in a horizontal line! Now we can be sure our detrending function works as expected.
 
-```{r}
+```{r, fig.height=3}
 x_detrended <- ts_detrend(x = x)
 
 plot(
@@ -215,17 +214,15 @@ This normalization step does not require a function in our library, but we can a
 #' @return zoo object
 ts_preprocessing <- function(x){
   m <- stats::lm(formula = x ~ stats::time(x))
-  y <- stats::residuals(object = m)
-  y.scaled <- scale(x = y)
-  y.scaled
+  y <- stats::residuals(object = m) |> 
+    scale()
+  y
 }
 ```
 
 Once we replace the old function with the new one, we can source the library and test it.
 
-```{r, fig.height=3, fig.width=5}
-source("mini_dtw.R")
-
+```{r}
 zoo_spain_ready <- ts_preprocessing(x = zoo_spain)
 
 plot(
@@ -249,8 +246,7 @@ The expression to compute Euclidean distances between two vectors `x` and `y` re
 #' @param y (required, numeric) row of a zoo object.
 #' @return numeric
 d_euclidean <- function(x, y){
-  d <- sqrt(sum((x-y)^2))
-  d
+  sqrt(sum((x - y)^2))
 }
 ```
 
@@ -260,7 +256,7 @@ We can test it right away, and let's ignore for now that none of our zoo objects
 
 ```{r}
 d_euclidean(
-  x = zoo::coredata(zoo_germany)[1, ],
+  x = zoo::coredata(zoo_sweden)[1, ],
   y = zoo::coredata(zoo_spain)[2, ]
 )
 ```
@@ -269,7 +265,7 @@ Notice that I am using `zoo::coredata()` to extract the individual rows of each 
 
 ```{r}
 d_euclidean(
-  x = zoo_germany[1, ],
+  x = zoo_sweden[1, ],
   y = zoo_spain[2, ]
 )
 ```
@@ -278,7 +274,7 @@ We can also solve this quirk by using `as.numeric()` instead of `zoo::coredata()
 
 ```{r}
 d_euclidean(
-  x = as.numeric(zoo_germany[1, ]),
+  x = as.numeric(zoo_sweden[1, ]),
   y = as.numeric(zoo_spain[2, ])
 )
 ```
@@ -291,42 +287,51 @@ Then, moving these `as.numeric()` inside `d_euclidean()` will be helpful to simp
 #' @param y (required, numeric) row of a zoo object.
 #' @return numeric
 d_euclidean <- function(x, y){
-  x <- as.numeric(x)
-  y <- as.numeric(y)
-  d <- sqrt(sum((x-y)^2))
-  d
+  sqrt(
+    sum((as.numeric(x) - as.numeric(y))^2)
+    )
 }
+```
+The test below shows how it works.
+
+```{r}
 
 d_euclidean(
-  x = zoo_germany[1, ],
+  x = zoo_sweden[1, ],
   y = zoo_spain[2, ]
 )
 ```
 
+
 #### Distance Matrix
 
-To generate the distance matrix, the new function must be applied to all pairs of rows in two zoo objects. A simple yet inefficient way to do this involves creating an empty matrix, and traversing it cell by cell to compute the euclidean distances between the corresponding pair of time series rows.
+To generate the distance matrix, the new function must be applied to all pairs of rows in two zoo objects. A simple yet inefficient way to do this involves creating an empty matrix, and traversing it cell by cell to compute the euclidean distances between the corresponding pair of rows in each time series.
 
 ```{r}
+#empty distance matrix
 m_dist <- matrix(
   data = NA, 
   nrow = nrow(zoo_spain), 
-  ncol = nrow(zoo_germany)
+  ncol = nrow(zoo_sweden)
 )
 
-for(row.i in 1:nrow(zoo_spain)){
-  for(col.j in 1:nrow(zoo_germany)){
+#iterate over rows
+for(row in 1:nrow(zoo_spain)){
+  
+  #iterate over columns
+  for(col in 1:nrow(zoo_sweden)){
     
-    m_dist[row.i, col.j] <- d_euclidean(
-      x = zoo_spain[row.i, ],
-      y = zoo_germany[col.j, ]
+    #distance between time series rows
+    m_dist[row, col] <- d_euclidean(
+      x = zoo_spain[row, ],
+      y = zoo_sweden[col, ]
     )
     
   }
 }
 ```
 
-This code generates a matrix in which the samples of `zoo_spain` are represented in the matrix rows from top to bottom, while `zoo_germany` is represented in the columns, from left to right.
+This code generates a matrix in which the samples of `zoo_spain` are represented in the matrix rows from top to bottom, while `zoo_sweden` is represented in the columns, from left to right.
 
 ```{r}
 m_dist[1:5, 1:5]
@@ -334,16 +339,18 @@ m_dist[1:5, 1:5]
 
 Now we can plot this distance matrix, but notice that the function `graphics::image()` rotates the distance matrix 90 degrees counter clock-wise before plotting, which can be pretty confusing at first.
 
-```{r, fig.width=2.5, fig.height=2.5}
+```{r}
 par(mar = c(4, 4, 1, 1))
 graphics::image(
-  x = m_dist,
+  x = seq_len(ncol(m_dist)),
+  y = seq_len(nrow(m_dist)),
+  z = m_dist,
   xlab = "zoo_spain",
-  ylab = "zoo_germany"
+  ylab = "zoo_sweden"
   )
 ```
 
-Now first column in the plot represents the first row of our original matrix `m_dist`, so now `zoo_spain` is represented in the plot columns, and `zoo_germany` in the rows.
+The first column in the plot represents the first row of our original matrix `m_dist`.
 
 We can now wrap the code above (without the plot) in a new function named `distance_matrix()`.
 
@@ -354,31 +361,31 @@ We can now wrap the code above (without the plot) in a new function named `dista
 #' @return matrix
 distance_matrix <- function(x, y){
   
-  m_dist <- matrix(
+  m <- matrix(
     data = NA, 
     nrow = nrow(y), 
     ncol = nrow(x)
   )
   
-  for(row.i in 1:nrow(y)){
-    for(col.j in 1:nrow(x)){
+  for(row in 1:nrow(y)){
+    for(col in 1:nrow(x)){
       
-      m_dist[row.i, col.j] <- d_euclidean(
-        x = x[row.i, ],
-        y = y[col.j, ]
+      m[row, col] <- d_euclidean(
+        x = x[row, ],
+        y = y[col, ]
       )
       
     }
   }
   
-  m_dist
+  m
   
 }
 ```
 
 Let's run a little test before moving forward!
 
-```{r, fig.width=2.5, fig.height=2.5}
+```{r}
 m_dist <- distance_matrix(
   x = zoo_spain,
   y = zoo_sweden
@@ -408,7 +415,7 @@ Let's see how that works:
 
 First, we use the dimensions of the distance matrix to create an empty cost matrix.
 
-```{r, fig.width=2.5, fig.height=2.5, warning = FALSE}
+```{r, warning = FALSE}
 m_cost <- matrix(
   data = NA, 
   nrow = nrow(m_dist), 
@@ -425,7 +432,7 @@ m_cost[, 1] <- cumsum(m_dist[, 1])
 
 This step is very important for the second part of the algorithm, as it provides the starting values.
 
-```{r, fig.width=2.5, fig.height=2.5}
+```{r}
 par(mar = c(4, 4, 1, 1))
 graphics::image(
   x = seq_len(ncol(m_cost)),
@@ -461,7 +468,7 @@ m_cost[1:2, 1:2]
 
 But there are many cells to fill yet!
 
-```{r, fig.width=2.5, fig.height=2.5}
+```{r}
 par(mar = c(4, 4, 1, 1))
 graphics::image(
   x = seq_len(ncol(m_cost)),
@@ -499,7 +506,7 @@ for(row.i in 2:nrow(m_dist)){
 
 Running the code above results in a nicely filled cost matrix!
 
-```{r, fig.width=2.5, fig.height=2.5}
+```{r}
 par(mar = c(4, 4, 1, 1))
 graphics::image(
   x = seq_len(ncol(m_cost)),
@@ -563,7 +570,7 @@ cost_matrix <- function(m){
 
 Let's test our new function using `m_dist` as input!
 
-```{r, fig.width=2.5, fig.height=2.5}
+```{r}
 m_cost <- cost_matrix(m = m_dist)
 
 par(mar = c(4, 4, 1, 1))
@@ -698,11 +705,13 @@ repeat{
   if(all(tail(path, n = 1) == 1)){break}
   
 }
+
+path
 ```
   
 We can now plot the resulting least-cost path on top of our cost matrix.
 
-```{r, fig.width=2.5, fig.height=2.5}
+```{r}
 par(mar = c(4, 4, 1, 1))
 graphics::image(
     x = seq_len(ncol(m_cost)),
@@ -718,14 +727,6 @@ graphics::lines(
   )
 ```
 
-
-
-```{r}
-path <- cost_path(
-  dist_matrix = m_dist,
-  cost_matrix = m_cost
-)
-```
 
 
 ### Dissimilarity Metric

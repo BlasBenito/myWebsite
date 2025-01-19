@@ -386,7 +386,9 @@ m_dist <- distance_matrix(
 
 par(mar = c(4, 4, 1, 1))
 graphics::image(
-  x = m_dist,
+  x = seq_len(ncol(m_dist)),
+  y = seq_len(nrow(m_dist)),
+  z = m_dist,
   xlab = "zoo_sweden",
   ylab = "zoo_spain"
   )
@@ -426,7 +428,9 @@ This step is very important for the second part of the algorithm, as it provides
 ```{r, fig.width=2.5, fig.height=2.5}
 par(mar = c(4, 4, 1, 1))
 graphics::image(
-  x = m_cost,
+  x = seq_len(ncol(m_cost)),
+  y = seq_len(nrow(m_cost)),
+  z = m_cost,
   xlab = "zoo_sweden",
   ylab = "zoo_spain"
   )
@@ -460,7 +464,9 @@ But there are many cells to fill yet!
 ```{r, fig.width=2.5, fig.height=2.5}
 par(mar = c(4, 4, 1, 1))
 graphics::image(
-  x = m_cost,
+  x = seq_len(ncol(m_cost)),
+  y = seq_len(nrow(m_cost)),
+  z = m_cost,
   xlab = "zoo_sweden",
   ylab = "zoo_spain"
   )
@@ -496,11 +502,14 @@ Running the code above results in a nicely filled cost matrix!
 ```{r, fig.width=2.5, fig.height=2.5}
 par(mar = c(4, 4, 1, 1))
 graphics::image(
-  x = m_cost,
+  x = seq_len(ncol(m_cost)),
+  y = seq_len(nrow(m_cost)),
+  z = m_cost,
   xlab = "zoo_sweden",
   ylab = "zoo_spain"
   )
 ```
+
 Still, there is one more step left! For a reason that will remain unclear until the next section, the terminal cell `m_cost[m, n]` of the cost matrix must have a higher value than any its immediate neighbors. If we look at the lower left corner of our cost matrix, this is not the case yet.
 
 ```{r}
@@ -559,7 +568,9 @@ m_cost <- cost_matrix(m = m_dist)
 
 par(mar = c(4, 4, 1, 1))
 graphics::image(
-  x = m_cost,
+  x = seq_len(ncol(m_cost)),
+  y = seq_len(nrow(m_cost)),
+  z = m_cost,
   xlab = "zoo_sweden",
   ylab = "zoo_spain"
   )
@@ -569,36 +580,70 @@ Yay, so far so good! We can now move onto the last step of the DTW algorithm.
 
 ### Least-Cost Path
 
-If we describe the least-cost matrix as a valley with its hills and ravines, then the least-cost path is a river flowing all its way to the bottom. Just like a river, a least-cost crosses the cost matrix from the last cell `[m, n]` to the first one `[1, 1]` following the line of maximum slope.
+If we describe the cost matrix as a valley with its hills and ravines, then the least-cost path is the river flowing all its way to the bottom. Just like a river, a least-cost path crosses the cost matrix from the last cell `[m, n]` to the first one `[1, 1]` following the line of maximum slope.
 
-To find the least-cost path within our cost matrix we first define a data frame with the coordinates and distance of the last cell.
+To find the least-cost path within our cost matrix we first define a data frame with the coordinates of the last cell `[m, n]`.
 
 ```{r}
 path <- data.frame(
   row = ncol(m_cost),
   col = nrow(m_cost)
 )
-path$distance <- m_dist[path$row, path$col]
 
 path
 ```
 
 This is the first step of the least cost path. Now, there are two alternative new steps to consider:
 
-  - *one row up*: `[row, col - 1]`.
-  - *one column left*: `[row - 1, col]`.
+  - *one column left*: `[row, col - 1]`.
+  - *one row up*: `[row - 1, col]`.
   
-But before moving forward, notice that if we apply these steps indefinitely in our algorithm, at some point a move left `row - 1` or up `col - 1` will go out of the bounds of the cost matrix and produce an error. That's why it's safer to define the next move as...
+But before moving forward, notice that if we apply these steps indefinitely in our cost matrix, at some point a move up `row - 1` or left `col - 1` will go out of bounds and produce an error. That's why it's safer to define the next move as...
 
-  - *one row up*: `[row, max(col - 1, 1)]`
-  - *one column left*: `[max(row - 1, 1), col]`.
+  - *one column left*: `[row, max(col - 1, 1)]`.
+  - *one row up*: `[max(row - 1, 1), col]`
 
-...which confines the moves within the first row and column of the cost matrix. 
 
-With that out of the way, now we have to select the move towards a cell with a lower cost. 
+...which confines them within the first row and column of the cost matrix. 
 
+With that out of the way, now we have to select the move towards a cell with a lower cost. There are many ways to accomplish this task! Let's look at the option below.
+
+First, we define the candidate moves using the first row of the least cost path as reference.
+
+```{r}
+steps <- list(
+  left = c(path$row, max(path$col - 1, 1)),
+  up = c(max(path$row - 1, 1), path$col)
+)
+
+steps
+```
+Notice that the function returns a list with the coordinates of the candidate moves. The move `left` is one column to the left (second number is 12 instead of 13), and the move `up` is one row above the original row of the first step.
+
+Second, we need to extract the values of the cost matrix for the coordinates of these two steps to have a selection criteria.
+
+```{r}
+costs <- list(
+  left = m_cost[steps$left[1], steps$left[2]],
+  up = m_cost[steps$up[1], steps$up[2]]
+)
+
+costs
+```
+
+Finally, we choose the candidate step with the lower cost using `which.min()`, a function that returns the index of the smallest value in a vector or list. Notice that we use `[1]` to resolve potential ties returned by `which.min()`.
+
+```{r}
+steps[[which.min(costs)[1]]]
+```
+
+Combining these pieces we can now build a function named `next_step()` that takes the cost matrix and the last row of a least cost path, and returns a new row with the coordinates of the next step.
   
 ```{r}
+#' Identify Next Step of Least-Cost Path
+#' @param m cost matrix.
+#' @param step one row data frame with columns "row" and "col"
+#' @return one row data frame
 next_step <- function(m, step){
   
   steps <- list(
@@ -614,129 +659,66 @@ next_step <- function(m, step){
   coords <- steps[[which.min(costs)[1]]]
   
   #rewrite input with new values
-  step[,] <- c(coords[1], coords[2], NA)
+  step[,] <- c(coords[1], coords[2])
   
   step
   
 }
-
-next_step(m = m_cost, step = tail(path, n = 1))
 ```
 
-  
-```{r}
-path <- data.frame(
-  row = ncol(m_cost),
-  col = nrow(m_cost)
-)
-path$distance <- m_dist[path$row, path$col]
+Notice that the function overwrites the input data frame `step` with the new values. Let's test it with the data we have at hand!
 
+```{r}
+next_step(
+  m = m_cost, 
+  step = path
+  )
+```
+
+Good! It returned the move to the left. Now, if you think about the function for a bit, you'll see that it takes the data frame defining the previous step of the least-cost path, and returns a new step. From there, it seems we can feed it its own result again and again until it runs of steps to find!
+
+We can do that in a concise way using a `repeat()` loop. We keep it running until both values in the last row of the path are 1.
+
+```{r}
 repeat{
   
+  #find next step
   new.step <- next_step(
     m = m_cost, 
     step = tail(path, n = 1)
     )
   
-  new.step$distance <- m_dist[new.step$row, new.step$col]
+  #join the new step with path
+  path <- rbind(
+    path, new.step,
+    make.row.names = FALSE
+    )
   
-  path <- rbind(path, new.step)
-  
-  if(all(new.step[, c("col", "row")] == 1)){
-    break
-  }
+  #stop when coordinates are 1, 1
+  if(all(tail(path, n = 1) == 1)){break}
   
 }
-
-rownames(path) <- NULL
-
-path
 ```
-```{r}
+  
+We can now plot the resulting least-cost path on top of our cost matrix.
+
+```{r, fig.width=2.5, fig.height=2.5}
+par(mar = c(4, 4, 1, 1))
 graphics::image(
     x = seq_len(ncol(m_cost)),
     y = seq_len(nrow(m_cost)),
-    z = t(m)
+    z = m_cost,
+    xlab = "zoo_sweden",
+    ylab = "zoo_spain"
     )
-lines(x = path$row, y = path$col)
+
+graphics::lines(
+  x = path$row, 
+  y = path$col
+  )
 ```
 
 
-
-```{r}
-dist_matrix <- m_dist
-cost_matrix <- m_cost
-```
-
-
-```{r}
-DataFrame cost_path_orthogonal_cpp(
-    NumericMatrix dist_matrix,
-    NumericMatrix cost_matrix
-){
-
-  int d_rows = dist_matrix.nrow();
-  int d_cols = dist_matrix.ncol();
-
-  // Initialize the path vectors
-  std::vector<int> path_x;
-  std::vector<int> path_y;
-  std::vector<double> path_dist;
-  std::vector<double> path_cost;
-
-  // Define initial coordinates
-  int x = d_cols - 1;
-  int y = d_rows - 1;
-
-
-  // Iterate to find the path
-  while (true) {
-
-    // Add current coordinates to the path
-    // Adding 1 to convert from 0-based index to 1-based index
-    path_x.push_back(x + 1);
-    path_y.push_back(y + 1);
-    path_dist.push_back(dist_matrix(y, x));
-    path_cost.push_back(cost_matrix(y, x));
-
-    // declare neighbors
-    std::vector<int> neighbor_x = {x, x - 1};
-    std::vector<int> neighbor_y = {y - 1, y};
-
-    // Find neighbor with minimum cost
-    int min_cost_neighbor = -1;
-    double min_cost = std::numeric_limits<double>::max();
-
-    for (int j = 0; j < 2; ++j) {
-      if (neighbor_y[j] != -1 && neighbor_x[j] != -1) {
-        if (cost_matrix(neighbor_y[j], neighbor_x[j]) < min_cost) {
-          min_cost = cost_matrix(neighbor_y[j], neighbor_x[j]);
-          min_cost_neighbor = j;
-        }
-      }
-    }
-
-    // Check for termination
-    if (min_cost_neighbor == -1) {
-      break;
-    }
-
-    // Update current coordinates
-    x = neighbor_x[min_cost_neighbor];
-    y = neighbor_y[min_cost_neighbor];
-
-  }
-
-  // Create output data frame
-  return DataFrame::create(
-    _["x"] = path_x,
-    _["y"] = path_y,
-    _["dist"] = path_dist,
-    _["cost"] = path_cost
-  );
-
-}
-```
 
 ```{r}
 path <- cost_path(

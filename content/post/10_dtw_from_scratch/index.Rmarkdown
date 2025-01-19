@@ -25,7 +25,7 @@ install.packages("distantia")
 
 # Summary
 
-Dynamic Time Warping is a powerful method to compare univariate or multivariate time series by shape I explained in [previous post](https://www.blasbenito.com/post/dynamic-time-warping/). The objective of this post is to explain how DTW work by implementing a minimalistic yet fully functional dynamic time warping library with R. The tutorial focuses on code simplicity, and as such, it does not require any particular any particular level of competence in R.
+This post walks you through the implementation of a minimalistic yet fully functional [Dynamic Time Warping](https://www.blasbenito.com/post/dynamic-time-warping/) (DTW) library in R, built entirely from scratch without dependencies or complex abstractions. While there are many [open-source DTW implementations](https://blasbenito.github.io/distantia/articles/dtw_applications.html) readily available, understanding the inner workings of the algorithm can be invaluable. Whether you’re simply curious or need a deeper grasp of DTW for your projects, this step-by-step guide offers a hands-on approach to demystify the method.
 
 # Design
 
@@ -501,6 +501,21 @@ graphics::image(
   ylab = "zoo_spain"
   )
 ```
+Still, there is one more step left! For a reason that will remain unclear until the next section, the terminal cell `m_cost[m, n]` of the cost matrix must have a higher value than any its immediate neighbors. If we look at the lower left corner of our cost matrix, this is not the case yet.
+
+```{r}
+m <- nrow(m_cost)
+n <- ncol(m_cost)
+m_cost[(m-1):m, (n-1):n]
+```
+
+To fix this issue, it is customary to sum the cost of the first cell of the cost matrix, `m_cost[1, 1]`, to the last one `m_cost[m, n]`.
+
+```{r}
+m_cost[m, n] <- m_cost[m, n] + m_cost[1, 1]
+
+m_cost[(m-1):m, (n-1):n]
+```
 
 Now that we have all the pieces together, we can define our new function to compute the cost matrix. Notice that the code within the nested loops is slightly more concise.
 
@@ -530,6 +545,8 @@ cost_matrix <- function(m){
     }
   }
   
+  m_cost[row.i, col.j] <- m_cost[row.i, col.j] + m_cost[1, 1]
+  
   m_cost
   
 }
@@ -548,15 +565,77 @@ graphics::image(
   )
 ```
 
-Yay, so far so good! 
-
-We can now move onto the last step of the DTW algorithm.
+Yay, so far so good! We can now move onto the last step of the DTW algorithm.
 
 ### Least-Cost Path
 
-If we describe the least-cost matrix as a valley with its hills and ravines, then the least-cost path is a river flowing its way to the bottom. Like a river, the least-cost path finds the easiest way to cross the cost matrix from the last cell [m, n] to [1, 1].
+If we describe the least-cost matrix as a valley with its hills and ravines, then the least-cost path is a river flowing all its way to the bottom. Just like a river, a least-cost crosses the cost matrix from the last cell `[m, n]` to the first one `[1, 1]` following the line of maximum slope.
 
-Following the analogy, leas-cost paths are built in a direction opposed to the one used to build the cost matrix.
+To find the least-cost path within our cost matrix we first define a data frame with the coordinates and distance of the last cell.
+
+```{r}
+path <- data.frame(
+  x = ncol(m_cost),
+  y = nrow(m_cost)
+)
+path$distance <- m_dist[path$x, path$y]
+
+path
+```
+
+This is the first step of the least cost path. Now, there are two alternative new steps to consider:
+
+  - *one row up*: `[x, y - 1]`.
+  - *one column left*: `[x - 1, y]`.
+  
+But before moving forward, notice that if we apply these steps indefinitely in our algorithm, at some point a move left `x - 1` or up `y - 1` will go out of the bounds of the cost matrix and produce an error. That's why it's safer to define the next move as...
+
+  - *one row up*: `[x, max(y - 1, 1)]`
+  - *one column left*: `[max(x - 1, 1), y]`.
+
+...which confines the moves within the first row and column of the cost matrix. 
+
+With that out of the way, now we have to select the move towards a cell with a lower cost. 
+
+  
+```{r}
+step <- tail(path, n = 1)
+m <- m_cost
+
+next_step <- function(m, step){
+  
+  x <- step$x
+  y <- step$y
+  
+  steps <- list(
+    left = c(max(x - 1, 1), y),
+    up = c(x, max(y - 1, 1))
+  )
+  
+  costs <- sapply(
+    X = steps,            #y = row, x = column
+    FUN = function(step) m[
+      step[2], #y value - row
+      step[1] #x value - column
+      ]
+    )
+  
+  steps[[which.min(costs)]]
+  
+}
+
+next_step(m = m_cost, step = tail(path, n = 1))
+```
+
+  
+```{r}
+repeat{
+  
+  
+}
+```
+
+
 
 ```{r}
 dist_matrix <- m_dist

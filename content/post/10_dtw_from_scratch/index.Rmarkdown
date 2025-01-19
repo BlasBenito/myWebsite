@@ -575,23 +575,23 @@ To find the least-cost path within our cost matrix we first define a data frame 
 
 ```{r}
 path <- data.frame(
-  x = ncol(m_cost),
-  y = nrow(m_cost)
+  row = ncol(m_cost),
+  col = nrow(m_cost)
 )
-path$distance <- m_dist[path$x, path$y]
+path$distance <- m_dist[path$row, path$col]
 
 path
 ```
 
 This is the first step of the least cost path. Now, there are two alternative new steps to consider:
 
-  - *one row up*: `[x, y - 1]`.
-  - *one column left*: `[x - 1, y]`.
+  - *one row up*: `[row, col - 1]`.
+  - *one column left*: `[row - 1, col]`.
   
-But before moving forward, notice that if we apply these steps indefinitely in our algorithm, at some point a move left `x - 1` or up `y - 1` will go out of the bounds of the cost matrix and produce an error. That's why it's safer to define the next move as...
+But before moving forward, notice that if we apply these steps indefinitely in our algorithm, at some point a move left `row - 1` or up `col - 1` will go out of the bounds of the cost matrix and produce an error. That's why it's safer to define the next move as...
 
-  - *one row up*: `[x, max(y - 1, 1)]`
-  - *one column left*: `[max(x - 1, 1), y]`.
+  - *one row up*: `[row, max(col - 1, 1)]`
+  - *one column left*: `[max(row - 1, 1), col]`.
 
 ...which confines the moves within the first row and column of the cost matrix. 
 
@@ -599,28 +599,24 @@ With that out of the way, now we have to select the move towards a cell with a l
 
   
 ```{r}
-step <- tail(path, n = 1)
-m <- m_cost
-
 next_step <- function(m, step){
   
-  x <- step$x
-  y <- step$y
-  
   steps <- list(
-    left = c(max(x - 1, 1), y),
-    up = c(x, max(y - 1, 1))
+    left = c(step$row, max(step$col - 1, 1)),
+    up = c(max(step$row - 1, 1), step$col)
   )
   
-  costs <- sapply(
-    X = steps,            #y = row, x = column
-    FUN = function(step) m[
-      step[2], #y value - row
-      step[1] #x value - column
-      ]
-    )
+  costs <- list(
+    left = m[steps$left[1], steps$left[2]],
+    up = m[steps$up[1], steps$up[2]]
+  )
   
-  steps[[which.min(costs)]]
+  coords <- steps[[which.min(costs)[1]]]
+  
+  #rewrite input with new values
+  step[,] <- c(coords[1], coords[2], NA)
+  
+  step
   
 }
 
@@ -629,10 +625,40 @@ next_step(m = m_cost, step = tail(path, n = 1))
 
   
 ```{r}
+path <- data.frame(
+  row = ncol(m_cost),
+  col = nrow(m_cost)
+)
+path$distance <- m_dist[path$row, path$col]
+
 repeat{
   
+  new.step <- next_step(
+    m = m_cost, 
+    step = tail(path, n = 1)
+    )
+  
+  new.step$distance <- m_dist[new.step$row, new.step$col]
+  
+  path <- rbind(path, new.step)
+  
+  if(all(new.step[, c("col", "row")] == 1)){
+    break
+  }
   
 }
+
+rownames(path) <- NULL
+
+path
+```
+```{r}
+graphics::image(
+    x = seq_len(ncol(m_cost)),
+    y = seq_len(nrow(m_cost)),
+    z = t(m)
+    )
+lines(x = path$row, y = path$col)
 ```
 
 

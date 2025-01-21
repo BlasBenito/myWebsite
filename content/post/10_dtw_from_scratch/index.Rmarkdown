@@ -237,20 +237,7 @@ ts_preprocessing <- function(x){
 }
 ```
 
-If you like pipes, a slightly more concise version of the same function is shown below. Both produce exaclty the same results, so it is just a matter of preference here.
-
-```{r, eval = FALSE}
-ts_preprocessing <- function(x){
-  y <- stats::lm(formula = x ~ stats::time(x)) |> 
-    stats::residuals() |> 
-    scale()
-  y
-}
-```
-
-You might find that using the intermediate object `y` is kinda silly, but being explicit about what the function should return might prevent a headache later on.
-
-Anyway, we are ready to test `ts_preprocessing()` and move forward with our implementation
+We can now test `ts_preprocessing()` and move forward with our implementation.
 
 ```{r}
 ts_preprocessing(x = zoo_spain)
@@ -281,7 +268,7 @@ Let's say we have two vectors, `x` with one row of `zoo_spain`, and `y` with one
 #' @param x (required, numeric) row of a zoo object.  
 #' @param y (required, numeric) row of a zoo object.
 #' @return numeric
-d_euclidean <- function(x, y){
+distance_euclidean <- function(x, y){
   sqrt(sum((x - y)^2))
 }
 ```
@@ -294,28 +281,28 @@ The code below tests the function by computing the euclidean distance between th
 zoo_sweden[1, ]
 zoo_spain[2, ]
 
-d_euclidean(
+distance_euclidean(
   x = zoo_sweden[1, ],
   y = zoo_spain[2, ]
 )
 ```
 
-What? That doesn't seem right! For whatever reason, `zoo_sweden[1, ]` and `zoo_spain[2, ]` are not being interpreted as numeric vectors by `d_euclidean()`. Let's try something different:
+What? That doesn't seem right! For whatever reason, `zoo_sweden[1, ]` and `zoo_spain[2, ]` are not being interpreted as numeric vectors by `distance_euclidean()`. Let's try something different:
 
 ```{r}
-d_euclidean(
+distance_euclidean(
   x = as.numeric(zoo_sweden[1, ]),
   y = as.numeric(zoo_spain[2, ])
 )
 ```
-Ok, that makes more sense! Then, we just have to move these `as.numeric()` inside `d_euclidean()` to simplify the usage of the function:
+Ok, that makes more sense! Then, we just have to move these `as.numeric()` inside `distance_euclidean()` to simplify the usage of the function:
 
 ```{r}
 #' Euclidean Distance
 #' @param x (required, numeric) row of a zoo object.  
 #' @param y (required, numeric) row of a zoo object.
 #' @return numeric
-d_euclidean <- function(x, y){
+distance_euclidean <- function(x, y){
   x <- as.numeric(x)
   y <- as.numeric(y)
   z <- sqrt(sum((x - y)^2))
@@ -326,7 +313,7 @@ d_euclidean <- function(x, y){
 The new function should have no issues returning the right distance between these rows now:
 
 ```{r}
-d_euclidean(
+distance_euclidean(
   x = zoo_sweden[1, ],
   y = zoo_spain[2, ]
 )
@@ -336,7 +323,7 @@ That was kinda bumpy, but we can move on and go compute the distance matrix now.
 
 #### Distance Matrix
 
-To generate the distance matrix, the function `d_euclidean()` must be applied to all pairs of rows in the two zoo objects. A simple yet inefficient way to do this involves creating an empty matrix, and traversing it cell by cell to compute the euclidean distances between the corresponding pair of rows.
+To generate the distance matrix, the function `distance_euclidean()` must be applied to all pairs of rows in the two zoo objects. A simple yet inefficient way to do this involves creating an empty matrix, and traversing it cell by cell to compute the euclidean distances between the corresponding pair of rows.
 
 ```{r}
 #empty distance matrix
@@ -353,7 +340,7 @@ for(row in 1:nrow(zoo_spain)){
   for(col in 1:nrow(zoo_sweden)){
     
     #distance between time series rows
-    m_dist[row, col] <- d_euclidean(
+    m_dist[row, col] <- distance_euclidean(
       x = zoo_spain[row, ],
       y = zoo_sweden[col, ]
     )
@@ -401,7 +388,7 @@ distance_matrix <- function(a, b){
   for(row in 1:nrow(b)){
     for(col in 1:nrow(a)){
       
-      m[row, col] <- d_euclidean(
+      m[row, col] <- distance_euclidean(
         x = a[row, ],
         y = b[col, ]
       )
@@ -561,33 +548,33 @@ Now that we have all the pieces figured out, we can define our new function to c
 
 ```{r}
 #' Cost Matrix from Distance Matrix
-#' @param m (required, matrix) distance matrix.
+#' @param distance_matrix (required, matrix) distance matrix.
 #' @return matrix
-cost_matrix <- function(m){
+cost_matrix <- function(distance_matrix){
   
-  m_cost <- matrix(
+  m <- matrix(
     data = NA, 
-    nrow = nrow(m), 
-    ncol = ncol(m)
+    nrow = nrow(distance_matrix), 
+    ncol = ncol(distance_matrix)
   )
   
-  m_cost[1, ] <- cumsum(m[1, ])
-  m_cost[, 1] <- cumsum(m[, 1])
+  m[1, ] <- cumsum(distance_matrix[1, ])
+  m[, 1] <- cumsum(distance_matrix[, 1])
   
-  for(row in 2:nrow(m)){
-    for(col in 2:ncol(m)){
+  for(row in 2:nrow(distance_matrix)){
+    for(col in 2:ncol(distance_matrix)){
       
-      m_cost[row, col] <- min(
-        m_cost[row - 1, col], 
-        m_cost[row, col - 1]
-      ) + m[row, col]
+      m[row, col] <- min(
+        m[row - 1, col], 
+        m[row, col - 1]
+      ) + distance_matrix[row, col]
       
     }
   }
   
-  m_cost[row.i, col.j] <- m_cost[row.i, col.j] + m_cost[1, 1]
+  m[row.i, col.j] <- m[row.i, col.j] + m[1, 1]
   
-  m_cost
+  m
   
 }
 ```
@@ -595,7 +582,7 @@ cost_matrix <- function(m){
 Let's test our new function using `m_dist` as input!
 
 ```{r}
-m_cost <- cost_matrix(m = m_dist)
+m_cost <- cost_matrix(distance_matrix = m_dist)
 ```
 
 ```{r}
@@ -670,31 +657,32 @@ Finally, we choose the candidate step with the lower cost using `which.min()`, a
 steps[[which.min(costs)[1]]]
 ```
 
-Combining these pieces we can now build a function named `next_step()` that takes the cost matrix and the last row of a least cost path, and returns a new row with the coordinates of the next step.
+Combining these pieces we can now build a function named `least_cost_step()` that takes the cost matrix and the last row of a least cost path, and returns a new row with the coordinates of the next step.
   
 ```{r}
 #' Identify Next Step of Least-Cost Path
-#' @param m (required, matrix) cost matrix.
-#' @param step one row data frame with columns "row" and "col"
-#' @return one row data frame
-next_step <- function(m, step){
+#' @param cost_matrix (required, matrix) cost matrix.
+#' @param last_step (required, data frame) one row data frame with columns "row" and "col" representing the last step of a least-cost path.
+#' @return one row data frame, new step in least-cost path
+least_cost_step <- function(cost_matrix, last_step){
   
   steps <- list(
-    left = c(step$row, max(step$col - 1, 1)),
-    up = c(max(step$row - 1, 1), step$col)
+    left = c(last_step$row, max(last_step$col - 1, 1)),
+    up = c(max(last_step$row - 1, 1), last_step$col)
   )
   
   costs <- list(
-    left = m[steps$left[1], steps$left[2]],
-    up = m[steps$up[1], steps$up[2]]
+    left = cost_matrix[steps$left[1], steps$left[2]],
+    up = cost_matrix[steps$up[1], steps$up[2]]
   )
   
   coords <- steps[[which.min(costs)[1]]]
   
   #rewrite input with new values
-  step[,] <- c(coords[1], coords[2])
+  new_step <- last_step
+  new_step[,] <- c(coords[1], coords[2])
   
-  step
+  new_step
   
 }
 ```
@@ -702,9 +690,9 @@ next_step <- function(m, step){
 Notice that the function overwrites the input data frame `step` with the new values. Let's check how it works:
 
 ```{r}
-next_step(
-  m = m_cost, 
-  step = path
+least_cost_step(
+  cost_matrix = m_cost, 
+  last_step = path
   )
 ```
 
@@ -716,9 +704,9 @@ We can do that in a concise way using a `repeat{}` loop. Notice that it will kee
 repeat{
   
   #find next step
-  new.step <- next_step(
-    m = m_cost, 
-    step = tail(path, n = 1)
+  new.step <- least_cost_step(
+    cost_matrix = m_cost, 
+    last_step = tail(path, n = 1)
     )
   
   #join the new step with path
@@ -753,30 +741,31 @@ graphics::lines(
   lwd = 2
   )
 ```
-At this point we have all the pieces required to write the function `least_cost_path()`. Notice that the `repeat{}` statement is slightly more concise than before, as `next_step()` is directly wrapped within `rbind()`
+
+At this point we have all the pieces required to write the function `least_cost_path()`. Notice that the `repeat{}` statement is slightly more concise than before, as `least_cost_step()` is directly wrapped within `rbind()`. But take a word of advice: using `rbind()` in a loop to add rows to a data frame is not a computationally efficient operation, but it was used here anyway because it makes the code more concise.
 
 ```{r}
 #' Least-Cost Path from Cost Matrix
-#' @param m (required, matrix) cost matrix.
+#' @param cost_matrix (required, matrix) cost matrix.
 #' @return data frame with least-cost path coordinates
-least_cost_path <- function(m){
+least_cost_path <- function(cost_matrix){
   
   #first step of the least cost path
   path <- data.frame(
-    row = ncol(m),
-    col = nrow(m)
+    row = ncol(cost_matrix),
+    col = nrow(cost_matrix)
   )
   
   #iterate until path is completed
   repeat{
     
-    #merge path with result of next_step()
+    #merge path with result of least_cost_step()
     path <- rbind(
       path, 
       #find next step
-      next_step(
-        m = m, 
-        step = tail(path, n = 1)
+      least_cost_step(
+        cost_matrix = cost_matrix, 
+        last_step = tail(path, n = 1)
       ),
       make.row.names = FALSE
     )
@@ -791,63 +780,177 @@ least_cost_path <- function(m){
 }
 ```
 
-We can give it a go to see that it works as expected.
+We can give it a go now to see that it works as expected.
 
 ```{r}
-least_cost_path(m = m_cost)
+least_cost_path(cost_matrix = m_cost)
 ```
 
-Just a little detail about the least-cost path: every time one row index is linked to several column indices, it means that the samples belonging to these column indices are seeing their time *compressed* (or *warped*) to the time of the row index. So yes, this is where the *warping* in *dynamic time warping* is really happening.
+Good, it works as expected! 
+
+But before continuing, there is just a little thing to notice about the least-cost path: every time the same row index is linked to different column indices, it means that the samples belonging to these column indices are seeing their time *compressed* (or *warped*) to the time of the row index. Also, when two values in the same row are different it means that the time of one of the samples they refer to is *shifted* (or, again, *warped*). So yes, it is in the least-cost path where the *warping* in *dynamic time warping* is really happening. 
 
 Now it's time to use the least-cost path to quantify the similarity between the time series.
 
-```{r, echo = FALSE, eval = FALSE}
-distantia::distantia_dtw_plot(
-  tsl = tsl,
-  diagonal = FALSE
-)
-```
-
-
 ### Dissimilarity Metric
 
-The objective of dynamic time warping is computing a metric of similarity between time series. This operation requires three steps:
+The objective of dynamic time warping is to compute a metric of similarity between time series. This operation requires three steps:
 
-  - Extract the values of the distance matrix corresponding with the least-cost path
-  - Sum the values extracted in the first step.
+  - Sum the distances of the least cost path.
   - Normalize the sum of distances by some number to help make results comparable across pairs of time series of different lengths.
 
 Since the data frame has the `rows` columns first and `cols` second, it just have to be converted to matrix to extract the distance values from `m_dist`.
 
 ```{r}
-path$distance <- m_dist[as.matrix(path)]
-
-path
+path_matrix <- as.matrix(path[, c("row", "col")])
+distances <- m_dist[path_matrix]
+distances
 ```
 
 The second step to sum the distances is easy enough:
 
 ```{r}
-d <- sum(path$distance)
-d
+distance <- sum(distances)
+distance
 ```
-
-And now, the normalizataion to make this number comparable across different time series. There are several options, but probably the simplest one, implemented in the R package [`dtw`](https://cran.r-project.org/package=dtw), divides the number above by the sum of the total number of cases in both time series.
+But there is a shortcut to compute this number! We just have to subtract the last and the first cells of the cost matrix:
 
 ```{r}
-n <- nrow(zoo_sweden) + nrow(zoo_spain)
-n
+distance <- m_cost[nrow(m_cost), ncol(m_cost)] - m_cost[1, 1]
+distance
 ```
 
-But we can also extract this number from the cost path to reduce the number of objects required by our new function:
+And now, we need to normalize this value to make it comparable across different time series. There are several options, but probably the simplest one is implemented in the R package [`dtw`](https://cran.r-project.org/package=dtw), which divides the number above by the length of the least-cost path, which is just the number of rows in the data frame.
 
 ```{r}
-sum(path[1, c("row", "col")])
+normalizer <- nrow(path)
+normalizer
 ```
-Now we just have to divide the sum of distances by this number to obtain the normalized similarity:
+
+Now we just have to divide the sum of distances by this number to obtain the normalized similarity.
 
 ```{r}
-d/n
+distance/normalizer
+```
+
+With all pieces available, we can integrate them into the function `similarity_score()`.
+
+```{r}
+#' Similarity Metric from Least Cost Path and Cost Matrix
+#' @param cost_path (required, data frame) least cost path with the columns "row" and "col".
+#' @param cost_matrix (required, matrix) cost matrix
+#' @return numeric, similarity metric
+similarity_score <- function(cost_path, cost_matrix){
+  
+  #sum distances
+  distance <- m_cost[nrow(cost_matrix), ncol(cost_matrix)] - m_cost[1, 1]
+  
+  #compute normalization factor from matrix dimensions
+  normalizer <- nrow(cost_path)
+  
+  #compute similarity
+  score <- distance/normalizer
+  
+  score
+  
+}
+```
+
+We can give it a test run now:
+
+```{r}
+similarity_score(
+  cost_path = path,
+  cost_matrix = m_cost
+)
+```
+With the `similarity_score()` function ready, it is time to go write our main function to facilitate the computation of the similarity metric for two arbitrary time series with a single R command
+
+## Main Function
+
+To recapitulate before moving forward, we have the following functions:
+
+  - `ts_preprocessing()` applies linear detrending and z-score normalization to a time series.
+  - `distance_matrix()` and `distance_euclidean()` work together to compute a distance matrix.
+  - `cost_matrix()` transforms the distance matrix into a cost matrix.
+  - `least_cost_path()` applies `least_cost_step()` recursively to build a least-cost path.
+  - `similarity_score()` quantifies time series similarity_score using the least-cost path and the distance matrix.
+  
+We can wrap together these functions into a new one with the unimaginative name `dynamic_time_warping()`.
+
+```{r}
+#' Similarity Between Time Series
+#' @param a (required, zoo object) time series.
+#' @param b (required, zoo object) time series with same columns as `x`
+#' @param plot (optional, logical) if `TRUE`, a dynamic time warping plot is produced.
+#' @return value, similarity metric
+dynamic_time_warping <- function(a, b, plot = TRUE){
+  
+  #linear detrending and z-score normalization
+  a_ <- ts_preprocessing(x = a)
+  b_ <- ts_preprocessing(x = b)
+  
+  #distance matrix
+  m_dist <- distance_matrix(
+    a = a_,
+    b = b_
+  )
+  
+  #cost matrix
+  m_cost <- cost_matrix(
+    distance_matrix = m_dist
+  )
+  
+  #least-cost path
+  cost_path <- least_cost_path(
+    cost_matrix = m_cost
+  )
+  
+  #similarity metric
+  score <- similarity_score(
+    cost_path = cost_path,
+    cost_matrix = m_cost
+  )
+  
+  #plot
+  if(plot == TRUE){
+    
+    graphics::image(
+      x = seq_len(ncol(m_cost)),
+      y = seq_len(nrow(m_cost)),
+      z = m_cost,
+      xlab = "a",
+      ylab = "b",
+      main = paste0("Similarity score = ", round(score, 3))
+    )
+    
+    graphics::lines(
+      x = cost_path$row, 
+      y = cost_path$col,
+      lwd = 2
+    )
+    
+  }
+  
+  score
+  
+}
+```
+
+```{r}
+dynamic_time_warping(
+  a = zoo_spain,
+  b = zoo_spain
+)
+```
+
+
+
+```{r}
+dynamic_time_warping(
+  a = zoo_spain,
+  b = zoo_sweden
+)
 ```
 
 

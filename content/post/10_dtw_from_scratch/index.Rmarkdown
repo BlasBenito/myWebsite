@@ -57,6 +57,8 @@ tsl <- tsl_initialize(
 
 zoo_sweden <- tsl$Sweden
 zoo_spain <- tsl$Spain
+
+rm(tsl)
 ```
 
 ```{r, echo = FALSE, fig.height=3.5}
@@ -203,6 +205,11 @@ plot(
   ylim = range(x),
   mar = c(0.5, 5, 0, 5)
   )
+```
+
+```{r, echo = FALSE}
+#cleanup
+rm(model_sweden, x, x_detrended)
 ```
 
 
@@ -414,6 +421,12 @@ m_dist[1:5, 1:5]
 
 We are good to go! The next function will transform this distance matrix into a *cost matrix*.
 
+```{r, echo = FALSE}
+#cleanup
+rm(col, row)
+```
+
+
 ### Cost Matrix
 
 Now we are getting into the important parts of the DTW algorithm! 
@@ -463,8 +476,7 @@ The new value of this cell results from the addition of:
   - The minimum accumulated distance of its neighbors, which are:
       - Upper neighbor with coordinates `[1, 2]`.
       - Left neighbor with coordinates `[2, 1]`. 
-      
-NOTE: DTW can also consider diagonal neighborhood, but in this tutorial we only focus on orthogonal moves to keep the code as simple as possible.
+      - Upper-left neighbor with coordinates `[1, 1]`.
 
 The general expression to find the value of the empty cell is shown below. It uses `min()` to get the value of the *smallest* neighbor, and then adds it to the vaue of the target cell in the distance matrix.
 
@@ -494,22 +506,22 @@ The expression we used to fill the cell `m_cost[2, 2]` can be generalized to fil
 
 ```{r}
 #iterate over rows of the cost matrix
-for(row.i in 2:nrow(m_dist)){
+for(row in 2:nrow(m_dist)){
   
   #iterate over columns of the cost matrix
-  for(col.j in 2:ncol(m_dist)){
+  for(col in 2:ncol(m_dist)){
     
     #get cost of neighbor with minimum accumulated cost
     min_cost <- min(
-      m_cost[row.i - 1, col.j], 
-      m_cost[row.i, col.j - 1]
+      m_cost[row - 1, col], 
+      m_cost[row, col - 1]
       )
     
     #add it to the distance of the target cell
-    new_value <- min_cost + m_dist[row.i, col.j]
+    new_value <- min_cost + m_dist[row, col]
     
     #fill the empty cell with the new value
-    m_cost[row.i, col.j] <- new_value
+    m_cost[row, col] <- new_value
     
   }
 }
@@ -572,7 +584,7 @@ cost_matrix <- function(distance_matrix){
     }
   }
   
-  m[row.i, col.j] <- m[row.i, col.j] + m[1, 1]
+  m[row, col] <- m[row, col] + m[1, 1]
   
   m
   
@@ -585,7 +597,7 @@ Let's test our new function using `m_dist` as input!
 m_cost <- cost_matrix(distance_matrix = m_dist)
 ```
 
-```{r}
+```{r, echo = FALSE}
 graphics::image(
   x = seq_len(ncol(m_cost)),
   y = seq_len(nrow(m_cost)),
@@ -597,6 +609,11 @@ graphics::image(
 ```
 
 So far so good! We can now dive into the generation of the least-cost path.
+
+```{r, echo = FALSE}
+#cleanup
+rm(col, row, m, min_cost, n, new_value, row)
+```
 
 ### Least-Cost Path
 
@@ -792,6 +809,13 @@ But before continuing, there is just a little thing to notice about the least-co
 
 Now it's time to use the least-cost path to quantify the similarity between the time series.
 
+```{r, echo = FALSE}
+#cleanup
+rm(new.step, steps, costs)
+
+```
+
+
 ### Dissimilarity Metric
 
 The objective of dynamic time warping is to compute a metric of similarity between time series. This operation requires three steps:
@@ -820,7 +844,9 @@ distance <- m_cost[nrow(m_cost), ncol(m_cost)] - m_cost[1, 1]
 distance
 ```
 
-And now, we need to normalize this value to make it comparable across different time series. There are several options, but probably the simplest one is implemented in the R package [`dtw`](https://cran.r-project.org/package=dtw), which divides the number above by the length of the least-cost path, which is just the number of rows in the data frame.
+This works because the method used to build the cost matrix accumulates the optimal cost towards the terminal cell.
+
+Now, we need to normalize this value to make it comparable across different time series. There are several options, but probably the simplest one is implemented in the R package [`dtw`](https://cran.r-project.org/package=dtw), which divides the number above by the length of the least-cost path, which is just the number of rows in the data frame.
 
 ```{r}
 normalizer <- nrow(path)
@@ -843,7 +869,7 @@ With all pieces available, we can integrate them into the function `similarity_s
 similarity_score <- function(cost_path, cost_matrix){
   
   #sum distances
-  distance <- m_cost[nrow(cost_matrix), ncol(cost_matrix)] - m_cost[1, 1]
+  distance <- cost_matrix[nrow(cost_matrix), ncol(cost_matrix)] - cost_matrix[1, 1]
   
   #compute normalization factor from matrix dimensions
   normalizer <- nrow(cost_path)
@@ -864,7 +890,14 @@ similarity_score(
   cost_matrix = m_cost
 )
 ```
-With the `similarity_score()` function ready, it is time to go write our main function to facilitate the computation of the similarity metric for two arbitrary time series with a single R command
+With the `similarity_score()` function ready, it is time to go write our main function to facilitate the computation of the similarity metric for two arbitrary time series with a single R command.
+
+```{r, echo = FALSE}
+#cleanup
+rm(distance, distances, normalizer, path, path_matrix, m_cost, m_dist)
+
+```
+
 
 ## Main Function
 
@@ -937,10 +970,13 @@ dynamic_time_warping <- function(a, b, plot = TRUE){
 }
 ```
 
+
+
 ```{r}
 dynamic_time_warping(
   a = zoo_spain,
-  b = zoo_spain
+  b = zoo_spain,
+  plot = FALSE
 )
 ```
 
@@ -949,7 +985,8 @@ dynamic_time_warping(
 ```{r}
 dynamic_time_warping(
   a = zoo_spain,
-  b = zoo_sweden
+  b = zoo_sweden,
+  plot = FALSE
 )
 ```
 

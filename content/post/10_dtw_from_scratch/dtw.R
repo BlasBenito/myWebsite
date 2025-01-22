@@ -69,8 +69,6 @@ cost_matrix <- function(distance_matrix){
     }
   }
   
-  m[row, col] <- m[row, col] + m[1, 1]
-  
   m
   
 }
@@ -95,10 +93,9 @@ least_cost_step <- function(cost_matrix, last_step){
   coords <- steps[[which.min(costs)[1]]]
   
   #rewrite input with new values
-  new_step <- last_step
-  new_step[,] <- c(coords[1], coords[2])
+  last_step[,] <- c(coords[1], coords[2])
   
-  new_step
+  last_step
   
 }
 
@@ -166,7 +163,7 @@ auto_sum <- function(x){
 dissimilarity_score <- function(a, b, cost_matrix){
   
   #distance of the least cost path
-  distance <- cost_matrix[nrow(cost_matrix), ncol(cost_matrix)] - cost_matrix[1, 1]
+  distance <- cost_matrix[nrow(cost_matrix), ncol(cost_matrix)]
   
   #compute normalization factor from autosum
   autosum_a <- auto_sum(x = a)

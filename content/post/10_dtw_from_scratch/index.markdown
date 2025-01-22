@@ -10,7 +10,7 @@ summary: 'Tutorial on how to implement dynamic time warping in R'
 authors: [admin]
 lastmod: '2025-01-13T05:14:20+01:00'
 featured: yes
-draft: true
+draft: false
 image:
   caption: Dynamic time warping represented as a landscape.
   focal_point: Smart
@@ -29,11 +29,11 @@ This post walks you through the implementation of a minimalistic yet fully funct
 
 ## Example Data
 
-Having good example data at hand is a must when developing new code. For this tutorial we use a subset of two multivariate time series of temperature, rainfall, and normalized vegetation index. To facilitate our development, the time series, named `zoo_spain` and `zoo_sweden`, are stored as objects of the class [zoo](https://CRAN.R-project.org/package=zoo), which is a very robust time series management library.
+Having good example data at hand is a must when developing new code. For this tutorial we use a subset of two multivariate time series of temperature, rainfall, and normalized vegetation index. To facilitate our development, the time series, named `zoo_germany` and `zoo_sweden`, are stored as objects of the class [zoo](https://CRAN.R-project.org/package=zoo), which is a very robust time series management library.
 
 
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-2.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-2.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-3.png" width="672" />
 
 Each zoo object has a *core data* of the class `matrix` with one observation per row and one variable per column, and an *index*, which is a vector of dates, one per row in the core data.
 
@@ -180,26 +180,26 @@ Ok, we can now test the new function:
 
 
 ``` r
-ts_preprocessing(x = zoo_spain)
+ts_preprocessing(x = zoo_germany)
 ```
 
 ```
-##                    evi       rain       temp
-## 2010-01-01 -0.16148483  60.641746 -5.7441690
-## 2010-02-01 -0.08417502  -2.702107 -5.0137415
-## 2010-03-01 -0.05784680 -12.441715 -3.1669038
-## 2010-04-01 -0.02363699 -22.085568  0.7635236
-## 2010-05-01  0.19257896  -5.228006  1.2994212
-## 2010-06-01  0.14768877  22.028142  5.0298487
-## 2010-07-01  0.12010472 -44.314296  8.6657462
-## 2010-08-01  0.09881453 -60.858149  7.4961737
-## 2010-09-01  0.03812435 -38.202002  5.3266012
-## 2010-10-01 -0.01665971  23.855560  1.5624987
-## 2010-11-01 -0.06494989  60.911708 -3.1070738
-## 2010-12-01 -0.12593395  46.169270 -6.7711763
-## 2011-01-01 -0.06262413 -27.774583 -6.3407488
+##                     evi         rain        temp
+## 2010-01-01 -0.331724453  -7.04901597 -10.3020714
+## 2010-02-01 -0.070040977  -0.04446522  -7.2358273
+## 2010-03-01 -0.061846224 -15.17906453  -2.9663165
+## 2010-04-01 -0.007562747 -36.27451378   2.0999275
+## 2010-05-01  0.232924488  41.21698695   3.0672605
+## 2010-06-01  0.242207964   0.72153771   9.2335046
+## 2010-07-01  0.174695199  15.81303844  12.3008376
+## 2010-08-01  0.168678675  48.41758920   9.0670817
+## 2010-09-01  0.053162152  -7.57786004   5.0333258
+## 2010-10-01  0.028149387 -35.98635931   0.3006588
+## 2010-11-01 -0.085767137  -0.68180856  -3.0330971
+## 2010-12-01 -0.168279902  29.50969218 -10.5657641
+## 2011-01-01 -0.174596425 -32.88575707  -6.9995200
 ## attr(,"name")
-## [1] Spain
+## [1] Germany
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" />
@@ -222,6 +222,8 @@ x_detrended <- ts_preprocessing(x = x)
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 
+
+
 ### Z-score Normalization
 
 Normalization consists of two operations: 
@@ -234,35 +236,35 @@ The R base function `scale()` implements z-score normalization, so there's not m
 
 ``` r
 scale(
-  x = zoo_spain,
+  x = zoo_germany,
   center = TRUE,
   scale = TRUE
   )
 ```
 
 ```
-##                    evi        rain        temp
-## 2010-01-01 -1.12089017  1.51160789 -1.23268418
-## 2010-02-01 -0.48784539 -0.07298081 -1.06804486
-## 2010-03-01 -0.30228247 -0.31580088 -0.70217969
-## 2010-04-01 -0.05190571 -0.55611765  0.04784391
-## 2010-05-01  1.81615351 -0.13306001  0.17589672
-## 2010-06-01  1.36423234  0.55034081  0.88933380
-## 2010-07-01  1.06768681 -1.10934689  1.58447762
-## 2010-08-01  0.82530080 -1.52239133  1.40154503
-## 2010-09-01  0.23309762 -0.95414231  1.03567986
-## 2010-10-01 -0.30494605  0.60040680  0.37712256
-## 2010-11-01 -0.78705449  1.52913099 -0.44607407
-## 2010-12-01 -1.38014553  1.16114593 -1.08633812
-## 2011-01-01 -0.87140127 -0.68879254 -0.97657857
+##                   evi        rain        temp
+## 2010-01-01 -2.1072111 -0.77369778 -1.37937171
+## 2010-02-01 -0.5757809 -0.44531242 -0.97212864
+## 2010-03-01 -0.4963522 -0.87526026 -0.40724308
+## 2010-04-01 -0.1500661 -1.49817681  0.26273747
+## 2010-05-01  1.2590783  1.21354145  0.39410620
+## 2010-06-01  1.3482213 -0.06614582  1.20859236
+## 2010-07-01  0.9973637  0.53307282  1.61583543
+## 2010-08-01  0.9990780  1.72812469  1.19545548
+## 2010-09-01  0.3750773 -0.07630207  0.66998055
+## 2010-10-01  0.2670772 -0.94973941  0.05254749
+## 2010-11-01 -0.3477806  0.33671869 -0.38096933
+## 2010-12-01 -0.7843525  1.44713515 -1.36623484
+## 2011-01-01 -0.7843525 -0.57395823 -0.89330739
 ## attr(,"name")
-## [1] Spain
+## [1] Germany
 ## attr(,"scaled:center")
 ##        evi       rain       temp 
-##  0.3405462 87.7153846 11.8384615 
+##  0.4376615 60.8538462  8.8000000 
 ## attr(,"scaled:scale")
 ##        evi       rain       temp 
-##  0.1126303 39.9472745  5.4664947
+##  0.1749998 29.5384669  7.6121613
 ```
 
 Normalization can be easily added to `ts_preprocessing()`:
@@ -280,50 +282,36 @@ ts_preprocessing <- function(x){
 }
 ```
 
-If you like pipes, a slightly more concise version of the same function is shown below. Both produce exaclty the same results, so it is just a matter of preference here.
+We can now test `ts_preprocessing()` and move forward with our implementation.
 
 
 ``` r
-ts_preprocessing <- function(x){
-  y <- stats::lm(formula = x ~ stats::time(x)) |> 
-    stats::residuals() |> 
-    scale()
-  y
-}
-```
-
-You might find that using the intermediate object `y` is kinda silly, but being explicit about what the function should return might prevent a headache later on.
-
-Anyway, we are ready to test `ts_preprocessing()` and move forward with our implementation
-
-
-``` r
-ts_preprocessing(x = zoo_spain)
+ts_preprocessing(x = zoo_germany)
 ```
 
 ```
-##                   evi        rain       temp
-## 2010-01-01 -1.4645859  1.51805802 -1.0582707
-## 2010-02-01 -0.7634249 -0.06764242 -0.9237012
-## 2010-03-01 -0.5246413 -0.31145617 -0.5834511
-## 2010-04-01 -0.2143756 -0.55287283  0.1406669
-## 2010-05-01  1.7465939 -0.13087381  0.2393974
-## 2010-06-01  1.3394626  0.55143526  0.9266687
-## 2010-07-01  1.0892892 -1.10932942  1.5965243
-## 2010-08-01  0.8961979 -1.52347529  1.3810494
-## 2010-09-01  0.3457686 -0.95631902  0.9813406
-## 2010-10-01 -0.1510951  0.59718143  0.2878652
-## 2010-11-01 -0.5890628  1.52481603 -0.5724284
-## 2010-12-01 -1.1421573  1.15576538 -1.2474803
-## 2011-01-01 -0.5679693 -0.69528717 -1.1681809
+##                    evi         rain        temp
+## 2010-01-01 -1.91389650 -0.254652344 -1.35356479
+## 2010-02-01 -0.40410400 -0.001606348 -0.95069824
+## 2010-03-01 -0.35682407 -0.548358009 -0.38973731
+## 2010-04-01 -0.04363355 -1.310450989  0.27590451
+## 2010-05-01  1.34386644  1.489002490  0.40300011
+## 2010-06-01  1.39742780  0.026066230  1.21316833
+## 2010-07-01  1.00791041  0.571260913  1.61617795
+## 2010-08-01  0.97319785  1.749131031  1.19130241
+## 2010-09-01  0.30672100 -0.273757334  0.66131677
+## 2010-10-01  0.16240893 -1.300041138  0.03950285
+## 2010-11-01 -0.49483667 -0.024630977 -0.39851146
+## 2010-12-01 -0.97089711  1.066065435 -1.38821075
+## 2011-01-01 -1.00734053 -1.188028960 -0.91965038
 ## attr(,"name")
-## [1] Spain
+## [1] Germany
 ## attr(,"scaled:center")
-##           evi          rain          temp 
-## -2.135044e-18  3.552714e-15  3.416071e-17 
+##          evi         rain         temp 
+## 2.135044e-18 8.113168e-16 5.465713e-16 
 ## attr(,"scaled:scale")
 ##        evi       rain       temp 
-##  0.1102597 39.9469224  5.4278824
+##  0.1733241 27.6809389  7.6110663
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="672" />
@@ -338,7 +326,7 @@ In DTW, a distance matrix represents all the distances between all pairs of samp
 
 #### Distance Function
 
-Let's say we have two vectors, `x` with one row of `zoo_spain`, and `y` with one row of `zoo_sweden`. Then, the expression to compute the Euclidean distances `x` and `y` is `sqrt(sum((x-y)^2))`. From there, implementing the distance function seems pretty trivial.
+Let's say we have two vectors, `x` with one row of `zoo_germany`, and `y` with one row of `zoo_sweden`. Then, the expression to compute the Euclidean distances `x` and `y` is `sqrt(sum((x-y)^2))`. From there, implementing the distance function seems pretty trivial.
 
 
 ``` r
@@ -346,14 +334,14 @@ Let's say we have two vectors, `x` with one row of `zoo_spain`, and `y` with one
 #' @param x (required, numeric) row of a zoo object.  
 #' @param y (required, numeric) row of a zoo object.
 #' @return numeric
-d_euclidean <- function(x, y){
+distance_euclidean <- function(x, y){
   sqrt(sum((x - y)^2))
 }
 ```
 
 Notice that the function does not indicate the return explicitly. Since the function's body is a one-liner, one cannot be really worried about the function returning something unexpected. Also, implementing such a simple expression in a function might seem like too much, but it may facilitate the addition of new distance metrics to the library in the future. For example, we could create something like `d_manhattan()` with the Manhattan distance, and later switch between one or another depending on the user's needs.
 
-The code below tests the function by computing the euclidean distance between the row 1 from `zoo_sweden` and the row 2 from `zoo_spain`.
+The code below tests the function by computing the euclidean distance between the row 1 from `zoo_sweden` and the row 2 from `zoo_germany`.
 
 
 ``` r
@@ -366,18 +354,18 @@ zoo_sweden[1, ]
 ```
 
 ``` r
-zoo_spain[2, ]
+zoo_germany[2, ]
 ```
 
 ```
 ##               evi rain temp
-## 2010-02-01 0.2856 84.8    6
+## 2010-02-01 0.3369 47.7  1.4
 ```
 
 ``` r
-d_euclidean(
+distance_euclidean(
   x = zoo_sweden[1, ],
-  y = zoo_spain[2, ]
+  y = zoo_germany[2, ]
 )
 ```
 
@@ -385,20 +373,20 @@ d_euclidean(
 ## [1] 0
 ```
 
-What? That doesn't seem right! For whatever reason, `zoo_sweden[1, ]` and `zoo_spain[2, ]` are not being interpreted as numeric vectors by `d_euclidean()`. Let's try something different:
+What? That doesn't seem right! For whatever reason, `zoo_sweden[1, ]` and `zoo_germany[2, ]` are not being interpreted as numeric vectors by `distance_euclidean()`. Let's try something different:
 
 
 ``` r
-d_euclidean(
+distance_euclidean(
   x = as.numeric(zoo_sweden[1, ]),
-  y = as.numeric(zoo_spain[2, ])
+  y = as.numeric(zoo_germany[2, ])
 )
 ```
 
 ```
-## [1] 53.81473
+## [1] 16.73841
 ```
-Ok, that makes more sense! Then, we just have to move these `as.numeric()` inside `d_euclidean()` to simplify the usage of the function:
+Ok, that makes more sense! Then, we just have to move these `as.numeric()` inside `distance_euclidean()` to simplify the usage of the function:
 
 
 ``` r
@@ -406,7 +394,7 @@ Ok, that makes more sense! Then, we just have to move these `as.numeric()` insid
 #' @param x (required, numeric) row of a zoo object.  
 #' @param y (required, numeric) row of a zoo object.
 #' @return numeric
-d_euclidean <- function(x, y){
+distance_euclidean <- function(x, y){
   x <- as.numeric(x)
   y <- as.numeric(y)
   z <- sqrt(sum((x - y)^2))
@@ -418,40 +406,40 @@ The new function should have no issues returning the right distance between thes
 
 
 ``` r
-d_euclidean(
+distance_euclidean(
   x = zoo_sweden[1, ],
-  y = zoo_spain[2, ]
+  y = zoo_germany[2, ]
 )
 ```
 
 ```
-## [1] 53.81473
+## [1] 16.73841
 ```
 
 That was kinda bumpy, but we can move on and go compute the distance matrix now.
 
 #### Distance Matrix
 
-To generate the distance matrix, the function `d_euclidean()` must be applied to all pairs of rows in the two zoo objects. A simple yet inefficient way to do this involves creating an empty matrix, and traversing it cell by cell to compute the euclidean distances between the corresponding pair of rows.
+To generate the distance matrix, the function `distance_euclidean()` must be applied to all pairs of rows in the two zoo objects. A simple yet inefficient way to do this involves creating an empty matrix, and traversing it cell by cell to compute the euclidean distances between the corresponding pair of rows.
 
 
 ``` r
 #empty distance matrix
 m_dist <- matrix(
   data = NA, 
-  nrow = nrow(zoo_spain), 
+  nrow = nrow(zoo_germany), 
   ncol = nrow(zoo_sweden)
 )
 
 #iterate over rows
-for(row in 1:nrow(zoo_spain)){
+for(row in 1:nrow(zoo_germany)){
   
   #iterate over columns
   for(col in 1:nrow(zoo_sweden)){
     
     #distance between time series rows
-    m_dist[row, col] <- d_euclidean(
-      x = zoo_spain[row, ],
+    m_dist[row, col] <- distance_euclidean(
+      x = zoo_germany[row, ],
       y = zoo_sweden[col, ]
     )
     
@@ -459,7 +447,7 @@ for(row in 1:nrow(zoo_spain)){
 }
 ```
 
-This code generates a matrix with `zoo_spain` in the rows, from top to bottom, and `zoo_sweden` in the columns, from left to right. The first five rows and columns are shown below.
+This code generates a matrix with `zoo_germany` in the rows, from top to bottom, and `zoo_sweden` in the columns, from left to right. The first five rows and columns are shown below.
 
 
 ``` r
@@ -467,12 +455,12 @@ m_dist[1:5, 1:5]
 ```
 
 ```
-##           [,1]     [,2]      [,3]      [,4]      [,5]
-## [1,] 116.48806 92.83674 109.34982 127.81414 88.842178
-## [2,]  53.81473 30.49736  46.19135  64.50775 25.732225
-## [3,]  44.84866 22.29133  36.82569  54.80913 15.844881
-## [4,]  37.34359 17.88969  28.61791  45.48685  6.430277
-## [5,]  53.25576 31.01171  44.96707  62.37084 23.158501
+##           [,1]      [,2]      [,3]      [,4]     [,5]
+## [1,]  6.579761 17.634758  3.595693 19.723690 24.44600
+## [2,] 16.738415  8.948271  8.909263 27.966469 14.58481
+## [3,] 10.538528 22.285328  5.445835 14.757548 24.79610
+## [4,] 21.639813 41.303861 23.955397  5.305437 42.80674
+## [5,] 66.699424 43.618676 58.758517 76.551578 37.33875
 ```
 
 This matrix can be plotted with the function `graphics::image()`, but please be aware that it rotates the distance matrix 90 degrees counter clock-wise, which can be pretty confusing at first. Remember this: **in the matrix plot, the x axis represents the matrix rows**.
@@ -480,10 +468,10 @@ This matrix can be plotted with the function `graphics::image()`, but please be 
 
 ``` r
 graphics::image(
-  x = seq_len(ncol(m_dist)),
-  y = seq_len(nrow(m_dist)),
+  x = seq_len(nrow(m_dist)),
+  y = seq_len(ncol(m_dist)),
   z = m_dist,
-  xlab = "zoo_spain",
+  xlab = "zoo_germany",
   ylab = "zoo_sweden",
   main = "Euclidean Distance"
   )
@@ -509,14 +497,12 @@ distance_matrix <- function(a, b){
     ncol = nrow(a)
   )
   
-  for(row in 1:nrow(b)){
-    for(col in 1:nrow(a)){
-      
-      m[row, col] <- d_euclidean(
-        x = a[row, ],
-        y = b[col, ]
+  for (row in 1:nrow(b)) {
+    for (col in 1:nrow(a)) {
+      m[row, col] <- distance_euclidean(
+        x = a[col, ],
+        y = b[row, ] 
       )
-      
     }
   }
   
@@ -530,7 +516,7 @@ Let's run a little test before moving forward!
 
 ``` r
 m_dist <- distance_matrix(
-  a = zoo_spain,
+  a = zoo_germany,
   b = zoo_sweden
 )
 
@@ -538,15 +524,18 @@ m_dist[1:5, 1:5]
 ```
 
 ```
-##           [,1]     [,2]      [,3]      [,4]      [,5]
-## [1,] 116.48806 92.83674 109.34982 127.81414 88.842178
-## [2,]  53.81473 30.49736  46.19135  64.50775 25.732225
-## [3,]  44.84866 22.29133  36.82569  54.80913 15.844881
-## [4,]  37.34359 17.88969  28.61791  45.48685  6.430277
-## [5,]  53.25576 31.01171  44.96707  62.37084 23.158501
+##           [,1]      [,2]      [,3]      [,4]     [,5]
+## [1,]  6.579761 16.738415 10.538528 21.639813 66.69942
+## [2,] 17.634758  8.948271 22.285328 41.303861 43.61868
+## [3,]  3.595693  8.909263  5.445835 23.955397 58.75852
+## [4,] 19.723690 27.966469 14.757548  5.305437 76.55158
+## [5,] 24.446000 14.584815 24.796103 42.806743 37.33875
 ```
 
 We are good to go! The next function will transform this distance matrix into a *cost matrix*.
+
+
+
 
 ### Cost Matrix
 
@@ -576,7 +565,7 @@ m_cost[, 1] <- cumsum(m_dist[, 1])
 ```
 
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 Now, before going into the third step, let's focus for a moment on the next cell of the cost matrix we need to fill, with coordinates `[2, 2]` and value `NA`.
 
@@ -586,19 +575,18 @@ m_cost[1:2, 1:2]
 ```
 
 ```
-##          [,1]     [,2]
-## [1,] 116.4881 209.3248
-## [2,] 170.3028       NA
+##           [,1]     [,2]
+## [1,]  6.579761 23.31818
+## [2,] 24.214519       NA
 ```
 
 The new value of this cell results from the addition of:
 
-  - Its value in the distance matrix `m_dist` (30.5).
+  - Its value in the distance matrix `m_dist` (8.95).
   - The minimum accumulated distance of its neighbors, which are:
       - Upper neighbor with coordinates `[1, 2]`.
       - Left neighbor with coordinates `[2, 1]`. 
-      
-NOTE: DTW can also consider diagonal neighborhood, but in this tutorial we only focus on orthogonal moves to keep the code as simple as possible.
+      - Upper-left neighbor with coordinates `[1, 1]`.
 
 The general expression to find the value of the empty cell is shown below. It uses `min()` to get the value of the *smallest* neighbor, and then adds it to the vaue of the target cell in the distance matrix.
 
@@ -613,36 +601,36 @@ m_cost[1:2, 1:2]
 ```
 
 ```
-##          [,1]     [,2]
-## [1,] 116.4881 209.3248
-## [2,] 170.3028 200.8002
+##           [,1]     [,2]
+## [1,]  6.579761 23.31818
+## [2,] 24.214519 32.26645
 ```
 
 But there are many cells to fill yet!
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-35-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 
 The expression we used to fill the cell `m_cost[2, 2]` can be generalized to fill all remaining empty cells. We just have to wrap it in a nested loop that for each new empty cell identifies the smallest neighbor in the x and y axies, and adds its cumulative cost to the distance of new cell.
 
 
 ``` r
 #iterate over rows of the cost matrix
-for(row.i in 2:nrow(m_dist)){
+for(row in 2:nrow(m_dist)){
   
   #iterate over columns of the cost matrix
-  for(col.j in 2:ncol(m_dist)){
+  for(col in 2:ncol(m_dist)){
     
     #get cost of neighbor with minimum accumulated cost
     min_cost <- min(
-      m_cost[row.i - 1, col.j], 
-      m_cost[row.i, col.j - 1]
+      m_cost[row - 1, col], 
+      m_cost[row, col - 1]
       )
     
     #add it to the distance of the target cell
-    new_value <- min_cost + m_dist[row.i, col.j]
+    new_value <- min_cost + m_dist[row, col]
     
     #fill the empty cell with the new value
-    m_cost[row.i, col.j] <- new_value
+    m_cost[row, col] <- new_value
     
   }
 }
@@ -650,7 +638,7 @@ for(row.i in 2:nrow(m_dist)){
 
 Running the code above results in a nicely filled cost matrix!
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 
 Still, there is one more step left! For a reason that will remain unclear until the next section, the terminal cell `[13, 13]` of the cost matrix must have a higher value than any pf its immediate neighbors. If we look at the lower left corner (upper left in the plot) of our cost matrix, this is not the case yet.
 
@@ -663,8 +651,8 @@ m_cost[(m-1):m, (n-1):n]
 
 ```
 ##          [,1]     [,2]
-## [1,] 763.3223 848.1872
-## [2,] 749.0092 761.9623
+## [1,] 447.1501 457.7403
+## [2,] 495.4810 464.0019
 ```
 
 To fix this issue, it is customary to sum the cost of the first cell of the cost matrix, `m_cost[1, 1]`, to the last one `m_cost[m, n]`.
@@ -678,8 +666,8 @@ m_cost[(m-1):m, (n-1):n]
 
 ```
 ##          [,1]     [,2]
-## [1,] 763.3223 848.1872
-## [2,] 749.0092 878.4503
+## [1,] 447.1501 457.7403
+## [2,] 495.4810 470.5816
 ```
 
 Now that we have all the pieces figured out, we can define our new function to compute the cost matrix. Notice that the code within the nested loops is slightly more concise than shown before.
@@ -687,33 +675,33 @@ Now that we have all the pieces figured out, we can define our new function to c
 
 ``` r
 #' Cost Matrix from Distance Matrix
-#' @param m (required, matrix) distance matrix.
+#' @param distance_matrix (required, matrix) distance matrix.
 #' @return matrix
-cost_matrix <- function(m){
+cost_matrix <- function(distance_matrix){
   
-  m_cost <- matrix(
+  m <- matrix(
     data = NA, 
-    nrow = nrow(m), 
-    ncol = ncol(m)
+    nrow = nrow(distance_matrix), 
+    ncol = ncol(distance_matrix)
   )
   
-  m_cost[1, ] <- cumsum(m[1, ])
-  m_cost[, 1] <- cumsum(m[, 1])
+  m[1, ] <- cumsum(distance_matrix[1, ])
+  m[, 1] <- cumsum(distance_matrix[, 1])
   
-  for(row in 2:nrow(m)){
-    for(col in 2:ncol(m)){
+  for(row in 2:nrow(distance_matrix)){
+    for(col in 2:ncol(distance_matrix)){
       
-      m_cost[row, col] <- min(
-        m_cost[row - 1, col], 
-        m_cost[row, col - 1]
-      ) + m[row, col]
+      m[row, col] <- min(
+        m[row - 1, col], 
+        m[row, col - 1]
+      ) + distance_matrix[row, col]
       
     }
   }
   
-  m_cost[row.i, col.j] <- m_cost[row.i, col.j] + m_cost[1, 1]
+  m[row, col] <- m[row, col] + m[1, 1]
   
-  m_cost
+  m
   
 }
 ```
@@ -722,24 +710,17 @@ Let's test our new function using `m_dist` as input!
 
 
 ``` r
-m_cost <- cost_matrix(m = m_dist)
+m_cost <- cost_matrix(distance_matrix = m_dist)
 ```
 
-
-``` r
-graphics::image(
-  x = seq_len(ncol(m_cost)),
-  y = seq_len(nrow(m_cost)),
-  z = m_cost,
-  xlab = "zoo_spain",
-  ylab = "zoo_sweden",
-  main = "Cost Matrix"
-  )
-```
-
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-43-1.png" width="672" />
 
 So far so good! We can now dive into the generation of the least-cost path.
+
+
+```
+## Warning in rm(col, row, m, min_cost, n, new_value, row): object 'row' not found
+```
 
 ### Least-Cost Path
 
@@ -812,10 +793,10 @@ costs
 
 ```
 ## $left
-## [1] 749.0092
+## [1] 495.481
 ## 
 ## $up
-## [1] 848.1872
+## [1] 457.7403
 ```
 
 Finally, we choose the candidate step with the lower cost using `which.min()`, a function that returns the index of the smallest value in a vector or list. Notice that we use `[1]` in `which.min(costs)[1]` to resolve potential ties that may be returned by `which.min()` if the two costs are the same (unlikely, but possible).
@@ -826,35 +807,36 @@ steps[[which.min(costs)[1]]]
 ```
 
 ```
-## [1] 13 12
+## [1] 12 13
 ```
 
-Combining these pieces we can now build a function named `next_step()` that takes the cost matrix and the last row of a least cost path, and returns a new row with the coordinates of the next step.
+Combining these pieces we can now build a function named `least_cost_step()` that takes the cost matrix and the last row of a least cost path, and returns a new row with the coordinates of the next step.
   
 
 ``` r
 #' Identify Next Step of Least-Cost Path
-#' @param m (required, matrix) cost matrix.
-#' @param step one row data frame with columns "row" and "col"
-#' @return one row data frame
-next_step <- function(m, step){
+#' @param cost_matrix (required, matrix) cost matrix.
+#' @param last_step (required, data frame) one row data frame with columns "row" and "col" representing the last step of a least-cost path.
+#' @return one row data frame, new step in least-cost path
+least_cost_step <- function(cost_matrix, last_step){
   
   steps <- list(
-    left = c(step$row, max(step$col - 1, 1)),
-    up = c(max(step$row - 1, 1), step$col)
+    left = c(last_step$row, max(last_step$col - 1, 1)),
+    up = c(max(last_step$row - 1, 1), last_step$col)
   )
   
   costs <- list(
-    left = m[steps$left[1], steps$left[2]],
-    up = m[steps$up[1], steps$up[2]]
+    left = cost_matrix[steps$left[1], steps$left[2]],
+    up = cost_matrix[steps$up[1], steps$up[2]]
   )
   
   coords <- steps[[which.min(costs)[1]]]
   
   #rewrite input with new values
-  step[,] <- c(coords[1], coords[2])
+  new_step <- last_step
+  new_step[,] <- c(coords[1], coords[2])
   
-  step
+  new_step
   
 }
 ```
@@ -863,15 +845,15 @@ Notice that the function overwrites the input data frame `step` with the new val
 
 
 ``` r
-next_step(
-  m = m_cost, 
-  step = path
+least_cost_step(
+  cost_matrix = m_cost, 
+  last_step = path
   )
 ```
 
 ```
 ##   row col
-## 1  13  12
+## 1  12  13
 ```
 
 Good, it returned the move to the left. Now, if you think about the function for a bit, you'll see that it takes a step in the least-cost path, and returns a new one. From there, it seems we can feed it its own result again and again until it runs out of steps to find.
@@ -883,9 +865,9 @@ We can do that in a concise way using a `repeat{}` loop. Notice that it will kee
 repeat{
   
   #find next step
-  new.step <- next_step(
-    m = m_cost, 
-    step = tail(path, n = 1)
+  new.step <- least_cost_step(
+    cost_matrix = m_cost, 
+    last_step = tail(path, n = 1)
     )
   
   #join the new step with path
@@ -905,28 +887,28 @@ path
 ```
 ##    row col
 ## 1   13  13
-## 2   13  12
-## 3   13  11
-## 4   12  11
-## 5   11  11
+## 2   12  13
+## 3   12  12
+## 4   11  12
+## 5   10  12
 ## 6   10  11
-## 7   10  10
+## 7    9  11
 ## 8    9  10
-## 9    8  10
-## 10   7  10
-## 11   6  10
-## 12   5  10
-## 13   5   9
-## 14   5   8
-## 15   5   7
+## 9    9   9
+## 10   9   8
+## 11   8   8
+## 12   7   8
+## 13   7   7
+## 14   6   7
+## 15   6   6
 ## 16   5   6
-## 17   4   6
-## 18   4   5
+## 17   5   5
+## 18   5   4
 ## 19   4   4
 ## 20   4   3
-## 21   4   2
+## 21   3   3
 ## 22   3   2
-## 23   2   2
+## 23   3   1
 ## 24   2   1
 ## 25   1   1
 ```
@@ -936,10 +918,10 @@ The resulting least-cost path can be plotted on top of the cost matrix. Please, 
 
 ``` r
 graphics::image(
-    x = seq_len(ncol(m_cost)),
-    y = seq_len(nrow(m_cost)),
+    x = seq_len(nrow(m_cost)),
+    y = seq_len(ncol(m_cost)),
     z = m_cost,
-    xlab = "zoo_spain",
+    xlab = "zoo_germany",
     ylab = "zoo_sweden",
     main = "Cost Matrix and Least-Cost Path"
     )
@@ -951,32 +933,33 @@ graphics::lines(
   )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-50-1.png" width="672" />
-At this point we have all the pieces required to write the function `least_cost_path()`. Notice that the `repeat{}` statement is slightly more concise than before, as `next_step()` is directly wrapped within `rbind()`
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-52-1.png" width="672" />
+
+At this point we have all the pieces required to write the function `least_cost_path()`. Notice that the `repeat{}` statement is slightly more concise than before, as `least_cost_step()` is directly wrapped within `rbind()`. But take a word of advice: using `rbind()` in a loop to add rows to a data frame is not a computationally efficient operation, but it was used here anyway because it makes the code more concise.
 
 
 ``` r
 #' Least-Cost Path from Cost Matrix
-#' @param m (required, matrix) cost matrix.
+#' @param cost_matrix (required, matrix) cost matrix.
 #' @return data frame with least-cost path coordinates
-least_cost_path <- function(m){
+least_cost_path <- function(cost_matrix){
   
   #first step of the least cost path
   path <- data.frame(
-    row = ncol(m),
-    col = nrow(m)
+    row = nrow(cost_matrix),
+    col = ncol(cost_matrix)
   )
   
   #iterate until path is completed
   repeat{
     
-    #merge path with result of next_step()
+    #merge path with result of least_cost_step()
     path <- rbind(
       path, 
       #find next step
-      next_step(
-        m = m, 
-        step = tail(path, n = 1)
+      least_cost_step(
+        cost_matrix = cost_matrix, 
+        last_step = tail(path, n = 1)
       ),
       make.row.names = FALSE
     )
@@ -991,66 +974,363 @@ least_cost_path <- function(m){
 }
 ```
 
-We can give it a go to see that it works as expected:
+We can give it a go now to see that it works as expected.
 
 
 ``` r
-least_cost_path(m = m_cost)
+least_cost_path(cost_matrix = m_cost)
 ```
 
 ```
 ##    row col
 ## 1   13  13
-## 2   13  12
-## 3   13  11
-## 4   12  11
-## 5   11  11
+## 2   12  13
+## 3   12  12
+## 4   11  12
+## 5   10  12
 ## 6   10  11
-## 7   10  10
+## 7    9  11
 ## 8    9  10
-## 9    8  10
-## 10   7  10
-## 11   6  10
-## 12   5  10
-## 13   5   9
-## 14   5   8
-## 15   5   7
+## 9    9   9
+## 10   9   8
+## 11   8   8
+## 12   7   8
+## 13   7   7
+## 14   6   7
+## 15   6   6
 ## 16   5   6
-## 17   4   6
-## 18   4   5
+## 17   5   5
+## 18   5   4
 ## 19   4   4
 ## 20   4   3
-## 21   4   2
+## 21   3   3
 ## 22   3   2
-## 23   2   2
+## 23   3   1
 ## 24   2   1
 ## 25   1   1
 ```
 
+Nice, it worked! 
+
+But before continuing, there is just a little detail to notice about the least-cost path: every time the same row index (such as `9`) is linked to different column indices (`8` to `11`), it means that the samples of the time series identified by these column indices are having their time *compressed* (or *warped*) to the time of the row index. Hence, according to the least-cost path, the samples `8` to `11` of `zoo_sweden` would be aligned in time with the sample `9` of `zoo_germany`. 
+
+Now it's time to use the least-cost path to quantify the similarity between the time series.
 
 
-
-
-
-``` r
-distantia::distantia_dtw_plot(
-  tsl = tsl,
-  diagonal = FALSE
-)
-```
-
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-53-1.png" width="672" />
 
 
 ### Dissimilarity Metric
 
-Once the least-cost path is defined, we need to extract the value of the **distance matrix** for each one of its coordinates.
+The objective of dynamic time warping is to compute a metric of *dissimilarity* (or *similarity*, it just depends on the side from where you are looking at the issue) between time series. This operation requires two steps:
+
+  - Obtain the accumulated distance of the least cost path.
+  - Normalize the sum of distances by some number to help make results comparable across pairs of time series of different lengths.
+
+First, the method designed to build the cost matrix accumulates the distance of the least-cost path in the terminal cell. Since we added the distance of the cell `[1, 1]` to this terminal cell, the total distance of the least cost path can be found by undoing this operation:
 
 
 ``` r
-path$distance <- m_dist[as.matrix(path)]
+distance <- m_cost[nrow(m_cost), ncol(m_cost)] - m_cost[1, 1]
+distance
+```
+
+```
+## [1] 464.0019
+```
+
+Second, we need to find a number to normalize this distance value to make it comparable across different time series. There are several options, such as dividing `distance` by the sum of lengths of the two time series, or by the length of the least-cost path (`nrow(path)`). 
+
+
+``` r
+distance/sum(dim(m_cost))
+```
+
+```
+## [1] 17.84623
+```
+
+``` r
+distance/nrow(path)
+```
+
+```
+## [1] 18.56008
+```
+Another elegant normalization option requires computing the sum of distances between consecutive samples on each time series. This operation, named *auto-sum*, requires applying `distance_euclidean()` between the samples 1 and 2 of the given time series, then between the samples 2 and the 3, and so on until all consecutive sample pairs are processed. 
+
+To apply this operation to a time series we iterate between pairs of consecutive samples and save the distance between each pair of samples in a vector (named `autodistance` in the code below). Once the loop is done, then the auto-sum of the time series is the sum tof the values in this vector. For example, for `zoo_germany` we would have:
+
+
+``` r
+autodistance <- vector(
+  mode = "numeric", 
+  length = nrow(zoo_germany) - 1
+  )
+
+for (row in 2:nrow(zoo_germany)) {
+  autodistance[row - 1] <- distance_euclidean(
+    x = zoo_germany[row, ],
+    y = zoo_germany[row - 1, ]
+  )
+}
+
+sum(autodistance)
+```
+
+```
+## [1] 425.7877
+```
+
+Since we'll need to apply this operation to many time series, it's better to formalize this logic as a function:
+
+
+``` r
+#' Time Series Autosum
+#' @param x (required, zoo object) time series
+#' @return numeric
+auto_sum <- function(x){
+  
+  autodistance <- vector(
+    mode = "numeric", 
+    length = nrow(x) - 1
+  )
+  
+  for (row in 2:nrow(x)) {
+    autodistance[row - 1] <- distance_euclidean(
+      x = x[row, ],
+      y = x[row - 1, ]
+    )
+  }
+  
+  sum(autodistance)
+  
+}
+```
+
+We can now apply it to our two time series:
+
+
+``` r
+zoo_germany_autosum <- auto_sum(
+  x = zoo_germany
+)
+
+zoo_sweden_autosum <- auto_sum(
+  x = zoo_sweden
+)
+```
+
+Once we have the auto-sum of both time series, we just have to add them together to obtain our normalization value.
+
+
+``` r
+normalizer <- zoo_germany_autosum + zoo_sweden_autosum
+normalizer
+```
+
+```
+## [1] 805.6995
+```
+
+Now that we obtained `distance` from the cost matrix, and the `normalizer` from the auto-sum of the time series, we can compute our dissimilarity score, which follows the expression below:
+
+
+``` r
+((2.0 * distance) / normalizer) - 1.0
+```
+
+```
+## [1] 0.1517989
+```
+Why this particular formula? Because it returns zero when comparing a time series with itself! In such case, `2 * distance` equals `normalizer` because DTW and auto-sum are equivalent, and dividing them returns one. We then subtract one to it, and get zero as result, which represents a perfect similarity score. 
+
+The same affect cannot be achieved when using other normalization values, such as the sum of lengths of the time series, or the length of the least cost path.
+
+We can integrate these pieces into the function `dissimilarity_score()`.
+
+
+``` r
+#' Similarity Metric from Least Cost Path and Cost Matrix
+#' @param a (required, zoo object) time series.
+#' @param b (required, zoo object) time series with same columns as `x`
+#' @param cost_path (required, data frame) least cost path with the columns "row" and "col".
+#' @return numeric, similarity metric
+dissimilarity_score <- function(a, b, cost_matrix){
+  
+  #distance of the least cost path
+  distance <- cost_matrix[nrow(cost_matrix), ncol(cost_matrix)] - cost_matrix[1, 1]
+  
+  #compute normalization factor from autosum
+  autosum_a <- auto_sum(x = a)
+    
+  autosum_b <- auto_sum(x = b)
+  
+  normalizer <- autosum_a + autosum_b
+  
+  #compute dissimilarity
+  psi <- ((2 * distance) / normalizer) - 1
+  
+  psi
+  
+}
+```
+
+We can give it a test run now:
+
+
+``` r
+dissimilarity_score(
+  a = zoo_germany,
+  b = zoo_sweden,
+  cost_matrix = m_cost
+)
+```
+
+```
+## [1] 0.1517989
+```
+
+With the `dissimilarity_score()` function ready, it is time to go write our main function to facilitate the computation of the similarity metric for two arbitrary time series with a single R command.
+
+
+
+
+## Main Function
+
+To recapitulate before moving forward, we have the following functions:
+
+  - `ts_preprocessing()` applies linear detrending and z-score normalization to a time series.
+  - `distance_matrix()` and `distance_euclidean()` work together to compute a distance matrix.
+  - `cost_matrix()` transforms the distance matrix into a cost matrix.
+  - `least_cost_path()` applies `least_cost_step()` recursively to build a least-cost path.
+  - `dissimilarity_score()`, which calls `auto_sum()`, quantifies time series dissimilarity.
+  
+We can wrap together all these functions into a new one with the unimaginative name `dynamic_time_warping()`.
+
+
+``` r
+#' Similarity Between Time Series
+#' @param a (required, zoo object) time series.
+#' @param b (required, zoo object) time series with same columns as `x`
+#' @param plot (optional, logical) if `TRUE`, a dynamic time warping plot is produced.
+#' @return psi score
+dynamic_time_warping <- function(a, b, plot = FALSE){
+  
+  #linear detrending and z-score normalization
+  a_ <- ts_preprocessing(x = a)
+  b_ <- ts_preprocessing(x = b)
+  
+  #distance matrix
+  m_dist <- distance_matrix(
+    a = a_,
+    b = b_
+  )
+  
+  #cost matrix
+  m_cost <- cost_matrix(
+    distance_matrix = m_dist
+  )
+  
+  #least-cost path
+  cost_path <- least_cost_path(
+    cost_matrix = m_cost
+  )
+  
+  #similarity metric
+  score <- dissimilarity_score(
+    a = a_,
+    b = b_,
+    cost_matrix = m_cost
+  )
+  
+  #plot
+  if(plot == TRUE){
+    
+    graphics::image(
+      x = seq_len(nrow(m_cost)),
+      y = seq_len(ncol(m_cost)),
+      z = m_cost,
+      xlab = "a",
+      ylab = "b",
+      main = paste0("Similarity score = ", round(score, 3))
+    )
+    
+    graphics::lines(
+      x = cost_path$row, 
+      y = cost_path$col,
+      lwd = 2
+    )
+    
+  }
+  
+  score
+  
+}
+```
+
+Before I said that one advantage of the presented dissimilarity formula is that it returns 0 when comparing a time series with itself. Let's challenge that idea comparing `zoo_germany` with itself:
+
+
+``` r
+dynamic_time_warping(
+  a = zoo_germany,
+  b = zoo_germany
+)
+```
+
+```
+## [1] 0
+```
+
+That's good, right? Perfect similarity happens at 0, which is a lovely number to start with. If we now compare `zoo_germany` and `zoo_sweden`, we should expect a larger number:
+
+
+``` r
+dynamic_time_warping(
+  a = zoo_germany,
+  b = zoo_sweden,
+  plot = TRUE
+)
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-68-1.png" width="672" />
+
+```
+## [1] 0.2366642
+```
+
+And now, when comapring `zoo_sweden` with `zoo_spain` we should expect an even higher dissimilarity score:
+
+
+``` r
+dynamic_time_warping(
+  a = zoo_sweden,
+  b = zoo_spain,
+  plot = TRUE
+)
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-69-1.png" width="672" />
+
+```
+## [1] 0.509285
 ```
 
 ## Library Source
 
-Our library will *live* in a file named `mini_dtw.R`. We will be adding new R functions to this file as we progress with the implementation. Remember typing `source("mini_dtw.R")` everytime you add new code to this file to make the functions available in your R environment!
+Once we have all our DTW functions written and tested, the easiest way to make them usable without any extra hassle is to write them to a source file. Having them all in a single file allows loading them at once via the `source()` command. 
+
+For example, if our library file is [`dtw.R`](https://www.dropbox.com/scl/fi/z2n9hnenxwuxwol5i0zcn/dtw.R?rlkey=bhsyew12r1glnqihtnocxwri6&dl=1), running `source("dtw.R")` will load all functions into your R environment and they will be readily available for your DTW analysis.
+
+## Closing Thoughts
+
+I hope you found this tutorial useful in one way or another. Writing a methodological library from scratch is hard work. There are many moving parts to consider, many concepts that need to be mapped and then translated into code, that making mistakes becomes exceedingly easy. Never worry about that, take your time, and persevere, because hard things take work. But above everything, enjoy the learning journey!
+
+## Coming Next
+
+In my TODO list there is a post planned about how to identify computational bottlenecks in the DTW library we just wrote, and optimize these parts that are worth optimized. But there's no timeline for such post yet.
+
+Best,
+
+Blas
+

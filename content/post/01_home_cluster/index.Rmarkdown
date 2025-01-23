@@ -1,12 +1,21 @@
 ---
-date: "2020-12-07"
-diagram: true
+title: "Setting up a Beowulf Home Cluster"
+author: ''
+date: '2020-12-07'
+slug: home-cluster
+categories: []
+tags: [distributed-computing, home-cluster]
+subtitle: ''
+summary: 'Notes on how to setup a beowulf home cluster.'
+authors: [admin]
+lastmod: '2025-01-13T05:14:20+01:00'
+featured: yes
+draft: false
 image:
   caption: 'Image credit: **Blas M. Benito**'
-  placement: 3
-math: true
-title: Setting up a home cluster
-draft: false
+  focal_point: Smart
+  margin: auto
+projects: []
 ---
 
 In this post I explain how to setup a small [Beowulf cluster](https://en.wikipedia.org/wiki/Beowulf_cluster) with a personal PC running Ubuntu 20.04 and a couple of [Intel NUCs](https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html) running Ubuntu Server 20.04, with the end-goal of parallelizing R tasks.

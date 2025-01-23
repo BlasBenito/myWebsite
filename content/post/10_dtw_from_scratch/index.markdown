@@ -4,7 +4,7 @@ author: ''
 date: '2025-01-13'
 slug: dynamic-time-warping-from-scratch
 categories: []
-tags: [Rstats]
+tags: [Rstats, Dynamic Time Warping, Data Science, Coding, R Tutorial, Time Series Analysis]
 subtitle: ''
 summary: 'Tutorial on how to implement dynamic time warping in R'
 authors: [admin]
@@ -281,8 +281,8 @@ ts_preprocessing(x = zoo_germany)
 ## attr(,"name")
 ## [1] zoo_germany
 ## attr(,"scaled:center")
-##          evi     rainfall  temperature 
-## 2.135044e-18 8.113168e-16 5.465713e-16 
+##           evi      rainfall   temperature 
+## -9.607699e-18  2.903660e-16  4.440892e-16 
 ## attr(,"scaled:scale")
 ##         evi    rainfall temperature 
 ##   0.1733241  27.6809389   7.6110663

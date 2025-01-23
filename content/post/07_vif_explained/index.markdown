@@ -4,7 +4,7 @@ author: ''
 date: '2023-11-05'
 slug: variance-inflation-factor
 categories: []
-tags: [Multicollinearity, Variable Selection, Variance Inflation Factors]
+tags: [Multicollinearity, Data Science, Linear Modelling, Machine Learning]
 subtitle: ''
 summary: 'Deep explanation of what Variance Inflation Factors (VIF) are, how they work, what they really mean, and how they are used to manage multicollinearity in linear models.'
 authors: [admin]
@@ -26,7 +26,7 @@ projects: []
 
 # Summary
 
-In this post, I dive deep into Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models.
+This post focuses on Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models.
 
 The post covers the following main points:
 

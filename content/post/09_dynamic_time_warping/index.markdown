@@ -4,7 +4,7 @@ author: ''
 date: '2025-01-05'
 slug: dynamic-time-warping
 categories: []
-tags: [Time Series Analysis, Dynamic Time Warping]
+tags: [Time Series Analysis, Dynamic Time Warping, Data Science]
 subtitle: ''
 summary: 'Brief introduction to Dynamic Time Warping with a conceptual step-by-step break down.'
 authors: [admin]
@@ -135,11 +135,11 @@ Finally, DTW produces a similarity metric based on the least-cost path. The simp
 
 
 
-For this example, the total cost is 8.167. 
+For this example, the total cost is 7.588. 
 However, when comparing time series of varying lengths, normalization is often useful. Common options include:
 
-  - **Sum of lengths**: Normalize by the combined lengths of the time series, e.g., `Normalized Cost = Total Cost / (Length(a) + Length(c))`. For `a` and `c`, this would be 0.163.
-  - **Auto-sum of distances**: Normalize by the sum of distances between adjacent samples in each series, as in `Normalized Cost = Total Cost / (Auto-sum(a) + Auto-sum(c))`. For `a` and `c`, this results in 0.386.
+  - **Sum of lengths**: Normalize by the combined lengths of the time series, e.g., `Normalized Cost = Total Cost / (Length(a) + Length(c))`. For `a` and `c`, this would be 0.152.
+  - **Auto-sum of distances**: Normalize by the sum of distances between adjacent samples in each series, as in `Normalized Cost = Total Cost / (Auto-sum(a) + Auto-sum(c))`. For `a` and `c`, this results in 0.358.
 
 These normalized metrics allow comparisons across datasets with varying characteristics.
 

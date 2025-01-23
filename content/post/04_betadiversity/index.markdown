@@ -1,12 +1,22 @@
 ---
+title: "Designing R Functions to Compute Betadiversity Indices"
+author: ''
 date: "2021-01-06"
-diagram: true
+slug: betadiversity
+categories: []
+tags: [Rstats]
+subtitle: ''
+summary: 'Brief tutorial on writing R functions to compute betadiversity scores'
+authors: [admin]
+lastmod: '2025-01-13T05:14:20+01:00'
+featured: yes
+draft: false
 image:
   caption: 'Image credit: **Blas M. Benito**'
-  placement: 3
+  focal_point: Smart
+  margin: auto
 math: true
-title: Designing R functions to compute betadiversity indices from species lists
-draft: false
+projects: []
 ---
 
 {{% alert note %}}
@@ -38,36 +48,39 @@ Let's see how can we use these diversity components to compute betadiversity ind
 
 ### Sørensen's Beta
 
-Let's start with the **Sørensen's Beta** ($\beta_{sor}$ hereafter), as presented in Koleff *et al.* (2003).
+Let's start with the **Sørensen's Beta** (`\(\beta_{sor}\)` hereafter), as presented in Koleff *et al.* (2003).
 
-$$\beta_{sor} = \frac{2a}{2a + b + c}$$
+`$$\beta_{sor} = \frac{2a}{2a + b + c}$$`
 
-$\beta_{sor}$ is a similarity index in the range [0, 1] (the closer to one, the more similar the taxa pools of both sites are) that puts a lot of weight in the $a$ component, and is therefore a measure of *continuity*, as it focuses the most in the common taxa among sites.
+`\(\beta_{sor}\)` is a similarity index in the range [0, 1] (the closer to one, the more similar the taxa pools of both sites are) that puts a lot of weight in the `\(a\)` component, and is therefore a measure of *continuity*, as it focuses the most in the common taxa among sites.
 
 
 ### Simpson's Beta
 
-Another popular betadiversity index is the **Simpson's Beta** ($\beta_{sim}$ hereafter).
+Another popular betadiversity index is the **Simpson's Beta** (`\(\beta_{sim}\)` hereafter).
 
-$$\beta_{sim} = \frac{min(b, c)}{min(b, c) + a}$$
-where $min()$ is a function that takes the minimum value among the diversity components within the parenthesis. $\beta_{sim}$ is a dissimilarity measure that focuses on compositional turnover among sites because it focuses the most on the values of $b$ and $c$. It has its lower bound in zero, and an open upper value.
+`$$\beta_{sim} = \frac{min(b, c)}{min(b, c) + a}$$`
+where `\(min()\)` is a function that takes the minimum value among the diversity components within the parenthesis. `\(\beta_{sim}\)` is a dissimilarity measure that focuses on compositional turnover among sites because it focuses the most on the values of `\(b\)` and `\(c\)`. It has its lower bound in zero, and an open upper value.
 
 To bring these ideas into R, first we have to load a few R packages, and generate some fake data to help us develop the functions. 
 
-```{r}
+
+``` r
 library(foreach, quietly = TRUE)
 library(doParallel, quietly = TRUE)
 ```
 
 The code chunk below generates 15 fake taxa names, from `taxon_1` to `taxon_15`.
 
-```{r}
+
+``` r
 taxa <- paste0("taxon_", 1:15)
 ```
 
 With these fake taxa we are going to generate taxa lists for four hypothetical sites named *site1*, *site2*, *site3*, and *site4*. Two of the sites will have identical taxa lists, two will have non-overlapping taxa lists, and two of them will have some overlap.
 
-```{r}
+
+``` r
 site1 <- site2 <- taxa[1:7]
 site3 <- taxa[8:12]
 site4 <- taxa[10:15]
@@ -75,16 +88,31 @@ site4 <- taxa[10:15]
 
 So now we have these taxa lists:
 
-```{r}
+
+``` r
 site1 #and site2
 ```
 
-```{r}
+```
+## [1] "taxon_1" "taxon_2" "taxon_3" "taxon_4" "taxon_5" "taxon_6" "taxon_7"
+```
+
+
+``` r
 site3
 ```
 
-```{r}
+```
+## [1] "taxon_8"  "taxon_9"  "taxon_10" "taxon_11" "taxon_12"
+```
+
+
+``` r
 site4
+```
+
+```
+## [1] "taxon_10" "taxon_11" "taxon_12" "taxon_13" "taxon_14" "taxon_15"
 ```
 
 &nbsp;  
@@ -95,35 +123,60 @@ For a given pair of sites, how can we compute the diversity components *a*, *b*,
 
 Looking at it from an R perspective, each site is a character vector, so *a* can be found by counting the number of common elements between two vectors. These common elements can be found with the function `intersect()`, and the number of elements can be computed by applying `length()` on the result of `intersect()`.
 
-```{r}
+
+``` r
 a <- length(intersect(site3, site4))
 a
 ```
 
+```
+## [1] 3
+```
+
 To compute *b* and *c* we can use the function `setdiff()`, that finds the exclusive elements of one character vector when comparing it with another. In this case, *b* is computed for the first vector introduced in the function, *site3* in this case...
 
-```{r}
+
+``` r
 b <- length(setdiff(site3, site4))
 b
 ```
 
+```
+## [1] 2
+```
+
 ... so to compute the *c* component we only need to switch the sites.
 
-```{r}
+
+``` r
 c <- length(setdiff(site4, site3))
 c
 ```
 
-Now that we know *a*, *b*, and *c*, we can compute $\beta_{sor}$ and $\beta_{sim}$.
+```
+## [1] 3
+```
 
-```{r}
+Now that we know *a*, *b*, and *c*, we can compute `\(\beta_{sor}\)` and `\(\beta_{sim}\)`.
+
+
+``` r
 Bsor <- 2 * a / (2 * a + b + c)
 Bsor
 ```
 
-```{r}
+```
+## [1] 0.5454545
+```
+
+
+``` r
 Bsim<- min(b, c) / (min(b, c) + a)
 Bsim
+```
+
+```
+## [1] 0.4
 ```
 
 
@@ -135,7 +188,8 @@ Of course, if we have a long list of sites, computing betadiversity indices like
 
 The basic structure of a function definition in R looks as follows:
 
-```{r, eval = FALSE}
+
+``` r
 function_name <- function(x, y, ...){
   output <- [body]
   output #also return(output)
@@ -154,7 +208,8 @@ Where:
 
 Let's start writing a function to compute *a*, *b*, and *c* from a pair of sites.
 
-```{r}
+
+``` r
 #x: taxa list of one site
 #y: taxa list of another site
 abc <- function(x, y){
@@ -174,7 +229,8 @@ abc <- function(x, y){
 
 Notice that to to return the three values I am wrapping them in a list. Let's run a little test.
 
-```{r}
+
+``` r
 x <- abc(
   x = site3,
   y = site4
@@ -182,9 +238,21 @@ x <- abc(
 x
 ```
 
+```
+## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+```
+
 So far so good! From here we build the functions `sorensen_beta()` and `simpson_beta()` making sure they can accept the output of `abc()`, and return it with an added slot.
 
-```{r}
+
+``` r
 sorensen_beta <- function(x){
   
   x$bsor <- round(2 * x$a / (2 * x$a + x$b + x$c), 3)
@@ -205,17 +273,48 @@ simpson_beta <- function(x){
 
 Notice that both functions are returning the input `x` with an added slot named after the given betadiversity index. Let's test them first, to later see why returning the input object gives these functions a lot of flexibility.
 
-```{r}
+
+``` r
 sorensen_beta(x)
 ```
 
-```{r}
+```
+## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsor
+## [1] 0.545
+```
+
+
+``` r
 simpson_beta(x)
+```
+
+```
+## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsim
+## [1] 0.4
 ```
 
 When I said that returning the input object with an added slot gave these functions a lot of flexibility I was talking about this:
 
-```{r}
+
+``` r
 x <- abc(
   x = site3, 
   y = site4
@@ -225,11 +324,29 @@ x <- abc(
 x
 ```
 
+```
+## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsor
+## [1] 0.545
+## 
+## $bsim
+## [1] 0.4
+```
+
 Chaining the functions through the pipe `|>` pipe allows us combining their results in a single output no matter whether we use `sorensen_beta()` or `sorensen_beta()` first, or whether we omit one of them. The only thing the pipe is doing here is moving the output of the first function into the next.
 
 We can put that idea right away into a function to compute both betadiversity indices at once from the taxa list of a pair of sites.
 
-```{r}
+
+``` r
 betadiversity <- function(x, y){
   
   abc(x, y) |>
@@ -241,12 +358,30 @@ betadiversity <- function(x, y){
 
 The function now works as follows.
 
-```{r}
+
+``` r
 x <- betadiversity(
   x = site3, 
   y = site4
   )
 x
+```
+
+```
+## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 3
+## 
+## $bsor
+## [1] 0.545
+## 
+## $bsim
+## [1] 0.4
 ```
 
 So far we have four functions...
@@ -258,7 +393,8 @@ So far we have four functions...
   
 ... and one limitation: so far we can only return betadiversity indices for two sites at a time. So at the moment, to compute betadiversity indices for all combinations of sites we have to do a pretty ridiculous thing:
 
-```{r, eval = FALSE}
+
+``` r
 x1 <- betadiversity(x = site1, y = site2)
 x2 <- betadiversity(x = site1, y = site3)
 x3 <- betadiversity(x = site1, y = site4)
@@ -274,7 +410,8 @@ If I see you doing this I'll come to haunt you in your nightmares! Since a real 
 
 First we have to organize our sites in a data frame with a *long format*.
 
-```{r}
+
+``` r
 sites <- data.frame(
   site = c(
     rep("site1", length(site1)),
@@ -292,9 +429,34 @@ sites <- data.frame(
 ```
 
 
-```{r, echo = FALSE}
-kableExtra::kable(sites)
-```
+
+|site  |taxon    |
+|:-----|:--------|
+|site1 |taxon_1  |
+|site1 |taxon_2  |
+|site1 |taxon_3  |
+|site1 |taxon_4  |
+|site1 |taxon_5  |
+|site1 |taxon_6  |
+|site1 |taxon_7  |
+|site2 |taxon_1  |
+|site2 |taxon_2  |
+|site2 |taxon_3  |
+|site2 |taxon_4  |
+|site2 |taxon_5  |
+|site2 |taxon_6  |
+|site2 |taxon_7  |
+|site3 |taxon_8  |
+|site3 |taxon_9  |
+|site3 |taxon_10 |
+|site3 |taxon_11 |
+|site3 |taxon_12 |
+|site4 |taxon_10 |
+|site4 |taxon_11 |
+|site4 |taxon_12 |
+|site4 |taxon_13 |
+|site4 |taxon_14 |
+|site4 |taxon_15 |
 
 Our new function will need to do several things:
 
@@ -304,7 +466,8 @@ Our new function will need to do several things:
   
 The combinations of site pairs are done with `utils::combn()` as follows:
 
-```{r}
+
+``` r
 site.combinations <- utils::combn(
   x = unique(sites$site),
   m = 2
@@ -312,11 +475,18 @@ site.combinations <- utils::combn(
 site.combinations
 ```
 
+```
+##      [,1]    [,2]    [,3]    [,4]    [,5]    [,6]   
+## [1,] "site1" "site1" "site1" "site2" "site2" "site3"
+## [2,] "site2" "site3" "site4" "site3" "site4" "site4"
+```
+
 The result is a matrix, and each pair of rows in a column contain a pair of sites. The idea now is to iterate over the matrix columns, obtain the set of taxa from each site from the `taxon` column of the `sites` data frame, and use these taxa lists to compute the betadiversity components and indices.
 
 To easily generate the output data frame, I use the `foreach::foreach()` function to iterate through pairs instead of a more traditional `for` loop. You can read more about `foreach()` in a [previous post](https://www.blasbenito.com/post/02_parallelizing_loops_with_r/).
 
-```{r}
+
+``` r
 betadiversity.df <- foreach::foreach(
   i = 1:ncol(site.combinations), #iterates through columns of site.combinations
   .combine = 'rbind' #to produce a data frame
@@ -346,14 +516,20 @@ betadiversity.df <- foreach::foreach(
 }
 ```
 
-```{r, echo = FALSE}
-rownames(betadiversity.df) <- NULL
-kableExtra::kable(betadiversity.df)
-```
+
+|a  |b  |c  |bsor  |bsim |site.one |site.two |
+|:--|:--|:--|:-----|:----|:--------|:--------|
+|7  |0  |0  |1     |0    |site1    |site2    |
+|0  |7  |5  |0     |1    |site1    |site3    |
+|0  |7  |6  |0     |1    |site1    |site4    |
+|0  |7  |5  |0     |1    |site2    |site3    |
+|0  |7  |6  |0     |1    |site2    |site4    |
+|3  |2  |3  |0.545 |0.4  |site3    |site4    |
 
 Now that we know it works, we can put everything together in a function. Notice that to make the function more general, I have added arguments requesting the names of the columns with the site and the taxa names.
 
-```{r}
+
+``` r
 betadiversity_multisite <- function(
   x, 
   site.column, #column with site names
@@ -417,7 +593,8 @@ betadiversity_multisite <- function(
 
 And the test!
 
-```{r}
+
+``` r
 sites.betadiversity <- betadiversity_multisite(
   x = sites, 
   site.column = "site",
@@ -425,21 +602,29 @@ sites.betadiversity <- betadiversity_multisite(
 )
 ```
 
-```{r, echo = FALSE}
-kableExtra::kable(sites.betadiversity)
-```
+
+|site.one |site.two |a  |b  |c  |bsor  |bsim |
+|:--------|:--------|:--|:--|:--|:-----|:----|
+|site1    |site2    |7  |0  |0  |1     |0    |
+|site1    |site3    |0  |7  |5  |0     |1    |
+|site1    |site4    |0  |7  |6  |0     |1    |
+|site2    |site3    |0  |7  |5  |0     |1    |
+|site2    |site4    |0  |7  |6  |0     |1    |
+|site3    |site4    |3  |2  |3  |0.545 |0.4  |
 
 That went well!
 
 Finally, to have these functions available in my R session I always put them all in a single file in the same folder where my Rstudio project lives, name it something like `functions_betadiversity.R`, and source it at the beginning of my script or .Rmd file by running a line like the one below.
 
-```{r, eval = FALSE}
+
+``` r
 source("functions_betadiversity.R")
 ```
 
 I have placed the file `functions_betadiversity.R` in [this GitHub Gist](https://gist.github.com/BlasBenito/4c3740b056a0c9bb3602f33dfd35990c) in case you want to give it a look. You can also source it right away to your R environment by executing the following line:
 
-```{r}
+
+``` r
 source("https://gist.githubusercontent.com/BlasBenito/4c3740b056a0c9bb3602f33dfd35990c/raw/bbb40d868787fc5d10e391a2121045eb5d75f165/functions_betadiversity.R")
 ```
 

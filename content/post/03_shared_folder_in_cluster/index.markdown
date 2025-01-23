@@ -1,12 +1,22 @@
 ---
+title: "Setup of a Shared Folder in a Home Cluster"
+author: ''
 date: "2021-01-03"
-diagram: true
+slug: shared-folder-home-cluster
+categories: []
+tags: [home-cluster]
+subtitle: ''
+summary: 'Notes on how to configure a shared folder for a beowulf home cluster'
+authors: [admin]
+lastmod: '2025-01-13T05:14:20+01:00'
+featured: yes
+draft: false
 image:
   caption: 'Image credit: **Blas M. Benito**'
-  placement: 3
+  focal_point: Smart
+  margin: auto
+projects: []
 math: true
-title: Setup of a shared folder in a home cluster
-draft: false
 ---
 
 In the previous posts I have covered how to [setup a home cluster](https://www.blasbenito.com/post/01_home_cluster/), and how to [run parallel processes with `foreach` in R](https://www.blasbenito.com/post/02_parallelizing_loops_with_r/). However, so far I haven't covered how to setup a folder shared among the cluster nodes to store the results of parallel computations. 
@@ -38,26 +48,30 @@ To setup the shared folder we'll need to do some things in the *host*, and some 
 
 First we need to install the `nfs-kernel-server`.
 
-```{bash, eval = FALSE}
+
+``` bash
 sudo apt update
 sudo apt install nfs-kernel-server
 ```
 
 Now we can create the shared folder. Remember to replace `user` with your user name, and `cluster_shared` with the actual folder name you want to use.
 
-```{bash, eval = FALSE}
+
+``` bash
 mkdir /home/user/cluster_shared
 ```
 
 To broadcast it we need to open the file `/etc/exports`...
 
-```{bash, eval = FALSE}
+
+``` bash
 sudo gedit /etc/exports
 ```
 
 ... and add the following line
 
-```{bash, eval = FALSE}
+
+``` bash
 /home/user/cluster_shared IP_CLIENT1(rw,no_subtree_check) IP_CLIENT2(rw,no_subtree_check) IP_CLIENT3(rw,no_subtree_check)
 ```
 
@@ -70,20 +84,23 @@ where:
   
 For example, the last line of my `/etc/exports` file looks like this:
 
-```{bash, eval = FALSE}
+
+``` bash
 /home/blas/cluster_shared 10.42.0.34(rw,async,no_subtree_check) 10.42.0.104(rw,async,no_subtree_check)
 ```
 
   
 Save the file, and to make the changes effective, execute:
 
-```{bash, eval = FALSE}
+
+``` bash
 sudo exportfs -ra
 ```
 
 To end preparing the host we have to update the firewall rules to allow nfs connections from the clients. Notice that one rule per client needs to be defined, using the clients IPs to identify them.
 
-```{bash, eval = FALSE}
+
+``` bash
 sudo ufw allow from IP_CLIENT1 to any port nfs
 sudo ufw allow from IP_CLIENT2 to any port nfs
 sudo ufw status
@@ -94,14 +111,16 @@ sudo ufw status
 
 First we have to install the Linux package `nfs-common` on each client.
 
-```{bash, eval = FALSE}
+
+``` bash
 sudo apt update
 sudp apt install nfs-common
 ```
 
 Now we can create a folder in the clients and use it to mount the NFS folder of the host.
 
-```{bash, eval = FALSE}
+
+``` bash
 mkdir -p /home/user/cluster_shared
 sudo mount IP_HOST:/home/user/cluster_shared /home/user/cluster_shared
 ```
@@ -110,13 +129,15 @@ The second line of code is mounting the folder `/home/user/cluster_shared` of th
 
 To make the mount permanent, we have to open `/etc/fstab` with super-user privilege in the clients...
 
-```{bash, eval = FALSE}
+
+``` bash
 sudo gedit /etc/fstab
 ```
 
 ... and add the line
 
-```{bash, eval = FALSE}
+
+``` bash
 IP_HOST:/home/user/cluster_shared /home/user/cluster_shared   nfs     defaults 0 0
 ```
 
@@ -124,7 +145,8 @@ Remember to replace `IP_HOST` and `user` with the right values!
 
 Now we can test that the shared folder works as intended by writing one file into it from each computer in the network using the code below in the command line.
 
-```{bash, eval = FALSE}
+
+``` bash
 cd cluster_shared
 touch filename.txt
 ```
@@ -133,7 +155,8 @@ touch filename.txt
 
 Once the files are created, we can check they are visible from each computer using the `ls` command.
 
-```{bash, eval = FALSE}
+
+``` bash
 ls
 ```
 
@@ -151,7 +174,8 @@ In this hypothetical example we have a large number of data frames stored in `/h
 
 First we have to load the libraries we'll be using.
 
-```{r, eval = FALSE}
+
+``` r
 #automatic install of packages if they are not installed already
 list.of.packages <- c(
   "foreach",
@@ -178,7 +202,8 @@ for(package.i in list.of.packages){
 
 The code chunk below generates the folder `/home/user/cluster_shared/input` and populates it with the dummy files.
 
-```{r, eval = FALSE}
+
+``` r
 #creating the input folder
 input.folder <- "/home/blas/cluster_shared/input"
 dir.create(input.folder)
@@ -228,13 +253,15 @@ So, from here, we are going to prepare the cluster, and execute a parallelized l
 
 We will also need the function I showed in the previous post to generate the cluster specification from a [GitHub Gist](https://gist.github.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca).
 
-```{r, eval = FALSE}
+
+``` r
 source("https://gist.githubusercontent.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca/raw/de57b23740ca90bc02fbd0d5cd3551106ff2fb6d/cluster_spec.R")
 ```
 
 Below I use the function to create a cluster specification and initiate the cluster with `parallel::makeCluster()`.
 
-```{r, eval = FALSE}
+
+``` r
 #generate cluster specification
 spec <- cluster_spec(
   ips = c('10.42.0.1', '10.42.0.34', '10.42.0.104'),
@@ -269,7 +296,8 @@ foreach::getDoParWorkers()
 
 For everything to work as intended, we first need to create the output folder.
 
-```{r, eval = FALSE}
+
+``` r
 output.folder <- "/home/blas/cluster_shared/output"
 dir.create(output.folder)
 ```
@@ -283,7 +311,8 @@ And now we are ready to execute the parallelized loop. Notice that I am using th
   + *5.* Save the model into the output folder with the extension `.RData`.
   + *6.* Return a data frame with one line with the name of the response variable, the r-squared, and the importance of each predictor.
 
-```{r, eval = FALSE}
+
+``` r
 #list of input files as iterator
 input.files <- list.files(
   path = input.folder,
@@ -339,7 +368,8 @@ Once this parallelized loop is executed, the folder `/home/blas/cluster_shared/o
 ![Listing outputs in the shared folder](output.png)
 Now that the work is done, we can stop the cluster.
 
-```{r, eval = FALSE}
+
+``` r
 parallel::stopCluster(cl = my.cluster)
 ```
 

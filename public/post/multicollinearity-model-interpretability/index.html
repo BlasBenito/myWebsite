@@ -748,7 +748,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    15 min read
+    14 min read
   </span>
   
 
@@ -868,15 +868,13 @@ df &lt;- vi |&gt;
   predictors = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)
 )
 </code></pre>
-<pre><code>## # A tibble: 6 × 3
-##   x     y     correlation
-##   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
-## 1 c     a           0.962
-## 2 d     b           0.639
-## 3 d     a           0.636
-## 4 d     c           0.615
-## 5 b     a          -0.047
-## 6 c     b          -0.042
+<pre><code>##   x y correlation
+## 1 c a  0.96154984
+## 2 d b  0.63903887
+## 3 d a  0.63575882
+## 4 d c  0.61480312
+## 5 b a -0.04740881
+## 6 c b -0.04218308
 </code></pre>
 <p>At this point, we have are two groups of predictors useful to understand how multicollinearity muddles model interpretation:</p>
 <ul>
@@ -934,15 +932,13 @@ colnames(df.q) &lt;- predictors
 #correlation between transformed predictors
 collinear::cor_df(df = df.q)
 </code></pre>
-<pre><code>## # A tibble: 6 × 3
-##   x     y     correlation
-##   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
-## 1 d     c               0
-## 2 c     b               0
-## 3 d     b               0
-## 4 d     a               0
-## 5 c     a               0
-## 6 b     a               0
+<pre><code>##   x y   correlation
+## 1 d c  4.823037e-04
+## 2 d a  1.585298e-16
+## 3 c b  1.708728e-17
+## 4 c a -3.036108e-18
+## 5 d b  2.385256e-18
+## 6 b a -1.431486e-18
 </code></pre>
 <p>The new set of predictors we are left with after the QR decomposition have exactly zero correlation! And now they are not our original predictors anymore, and have a different interpretation:</p>
 <ul>
@@ -1160,6 +1156,7 @@ gb_abcd &lt;- xgboost::xgboost(
 <pre><code class="language-r">xgb.importance(model = gb_ab)[, c(1:2)]
 </code></pre>
 <pre><code>##    Feature      Gain
+##     &lt;char&gt;     &lt;num&gt;
 ## 1:       a 0.8463005
 ## 2:       b 0.1536995
 </code></pre>
@@ -1167,6 +1164,7 @@ gb_abcd &lt;- xgboost::xgboost(
   dplyr::arrange(Feature)
 </code></pre>
 <pre><code>##    Feature       Gain
+##     &lt;char&gt;      &lt;num&gt;
 ## 1:       a 0.78129661
 ## 2:       b 0.07386393
 ## 3:       c 0.03595619
@@ -1189,6 +1187,7 @@ xgb.importance(model = gb_abcd)[, c(1:2)] |&gt;
   dplyr::arrange(Feature)
 </code></pre>
 <pre><code>##    Feature       Gain
+##     &lt;char&gt;      &lt;num&gt;
 ## 1:       a 0.79469959
 ## 2:       b 0.07857141
 ## 3:       d 0.12672900
@@ -1211,17 +1210,11 @@ src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM
 
 <div class="article-tags">
   
-  <a class="badge badge-light" href="/tag/r-packages/">R packages</a>
-  
   <a class="badge badge-light" href="/tag/multicollinearity/">Multicollinearity</a>
   
-  <a class="badge badge-light" href="/tag/explanatory-modeling/">Explanatory Modeling</a>
-  
-  <a class="badge badge-light" href="/tag/variable-selection/">Variable Selection</a>
-  
-  <a class="badge badge-light" href="/tag/stats/">Stats</a>
-  
   <a class="badge badge-light" href="/tag/data-science/">Data Science</a>
+  
+  <a class="badge badge-light" href="/tag/linear-modelling/">Linear Modelling</a>
   
 </div>
 
@@ -1474,13 +1467,13 @@ src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/post/target-encoding/">Mapping Categorical Predictors to Numeric With Target Encoding</a></li>
+      <li><a href="/post/variance-inflation-factor/">Everything You Don&#39;t Need to Know About Variance Inflation Factors</a></li>
       
       <li><a href="/project/collinear/">R package collinear</a></li>
       
-      <li><a href="/post/variance-inflation-factor/">Everything You Don&#39;t Need to Know About Variance Inflation Factors</a></li>
+      <li><a href="/post/dynamic-time-warping-from-scratch/">Coding a Minimalistic Dynamic Time Warping Library with R</a></li>
       
-      <li><a href="/project/distantia/">R package distantia</a></li>
+      <li><a href="/post/dynamic-time-warping/">A Gentle Intro to Dynamic Time Warping</a></li>
       
       <li><a href="/post/my-reading-list-data-science/">My Reading List: Data Science</a></li>
       

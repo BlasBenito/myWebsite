@@ -176,6 +176,462 @@ Spatio-Temporal Data A Survey and Outlook&lt;/strong&gt;&lt;/a&gt;: This pre-pri
     </item>
     
     <item>
+      <title>Everything You Don&#39;t Need to Know About Variance Inflation Factors</title>
+      <link>https://blasbenito.com/post/variance-inflation-factor/</link>
+      <pubDate>Sun, 05 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/post/variance-inflation-factor/</guid>
+      <description>&lt;h1 id=&#34;resources&#34;&gt;Resources&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/BlasBenito/notebooks/blob/main/variance_inflation_factors.Rmd&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Rmarkdown notebook used in this tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://blasbenito.com/post/multicollinearity-model-interpretability/&#34;&gt;Multicollinearity Hinders Model Interpretability&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://blasbenito.github.io/collinear/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;R package &lt;code&gt;collinear&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+&lt;p&gt;This post focuses on Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models.&lt;/p&gt;
+&lt;p&gt;The post covers the following main points:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;VIF meaning and interpretation&lt;/strong&gt;: Through practical examples, I demonstrate how to compute VIF values and their significance in model design. Particularly, I try to shed light on their influence on coefficient estimates and their confidence intervals.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Impact of High VIF&lt;/strong&gt;: I use a small simulation to show how having a model design with a high VIF hinders the identification of predictors with moderate effects, particularly in situations with limited data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Effective VIF Management&lt;/strong&gt;: I introduce how to use the &lt;code&gt;collinear&lt;/code&gt; package and its &lt;code&gt;vif_select()&lt;/code&gt; function. to aid in the selection of predictors with low VIF, thereby enhancing model stability and interpretability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ultimately, this post serves as a comprehensive resource for understanding, interpreting, and managing VIF in the context of linear modeling. It caters to those with a strong command of R and a keen interest in statistical modeling.&lt;/p&gt;
+&lt;h1 id=&#34;r-packages&#34;&gt;R packages&lt;/h1&gt;
+&lt;p&gt;This tutorial requires the development version (&amp;gt;= 1.0.3) of the newly released R package 
+&lt;a href=&#34;https://blasbenito.github.io/collinear/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;collinear&lt;/code&gt;&lt;/a&gt;, and a few more.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#required
+install.packages(&amp;quot;remotes&amp;quot;)
+remotes::install_github(
+  repo = &amp;quot;blasbenito/collinear&amp;quot;, 
+  ref = &amp;quot;development&amp;quot;
+  )
+install.packages(&amp;quot;ranger&amp;quot;)
+install.packages(&amp;quot;dplyr&amp;quot;)
+install.packages(&amp;quot;ggplot2&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;example-data&#34;&gt;Example data&lt;/h1&gt;
+&lt;p&gt;This post uses the &lt;code&gt;toy&lt;/code&gt; data set shipped with the version &amp;gt;= 1.0.3 of the R package 
+&lt;a href=&#34;https://blasbenito.github.io/collinear/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;collinear&lt;/code&gt;&lt;/a&gt;. It is a data frame of centered and scaled variables representing a model design of the form &lt;code&gt;y ~ a + b + c + d&lt;/code&gt;, where the predictors show varying degrees of relatedness. Let&amp;rsquo;s load and check it.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(dplyr)
+library(ggplot2)
+library(collinear)
+
+toy |&amp;gt; 
+  round(3) |&amp;gt; 
+  head()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        y      a      b      c      d
+## 1  0.655  0.342 -0.158  0.254  0.502
+## 2  0.610  0.219  1.814  0.450  1.373
+## 3  0.316  1.078 -0.643  0.580  0.673
+## 4  0.202  0.956 -0.815  1.168 -0.147
+## 5 -0.509 -0.149 -0.356 -0.456  0.187
+## 6  0.675  0.465  1.292 -0.020  0.983
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The columns in &lt;code&gt;toy&lt;/code&gt; are related as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;y&lt;/code&gt;: response generated from &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; using the expression &lt;code&gt;y = a * 0.75 + b * 0.25 + noise&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;a&lt;/code&gt;: predictor of &lt;code&gt;y&lt;/code&gt; uncorrelated with &lt;code&gt;b&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;b&lt;/code&gt;: predictor of &lt;code&gt;y&lt;/code&gt; uncorrelated with &lt;code&gt;a&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;c&lt;/code&gt;: predictor generated as &lt;code&gt;c = a + noise&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;d&lt;/code&gt;: predictor generated as &lt;code&gt;d = (a + b)/2 + noise&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The pairwise correlations between all predictors in &lt;code&gt;toy&lt;/code&gt; are shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;collinear::cor_df(
+  df = toy,
+  predictors = c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   x y correlation
+## 1 c a  0.96154984
+## 2 d b  0.63903887
+## 3 d a  0.63575882
+## 4 d c  0.61480312
+## 5 b a -0.04740881
+## 6 c b -0.04218308
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Keep these pairwise correlations in mind for what comes next!&lt;/p&gt;
+&lt;h1 id=&#34;the-meaning-of-variance-inflation-factors&#34;&gt;The Meaning of Variance Inflation Factors&lt;/h1&gt;
+&lt;p&gt;There are two general cases of multicollinearity in model designs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When there are pairs of predictors highly correlated.&lt;/li&gt;
+&lt;li&gt;When there are &lt;strong&gt;predictors that are linear combinations of other predictors&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The focus of this post is on the second one.&lt;/p&gt;
+&lt;p&gt;We can say a predictor is a linear combination of other predictors when it can be reasonably predicted from a multiple regression model against all other predictors.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s say we focus on &lt;code&gt;a&lt;/code&gt; and fit the multiple regression model &lt;code&gt;a ~ b + c + d&lt;/code&gt;. The higher the R-squared of this model, the more confident we are to say that &lt;code&gt;a&lt;/code&gt; is a linear combination of &lt;code&gt;b + c + d&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#model of a against all other predictors
+abcd_model &amp;lt;- lm(
+  formula = a ~ b + c + d,
+  data = toy
+)
+
+#r-squared of the a_model
+abcd_R2 &amp;lt;- summary(abcd_model)$r.squared
+abcd_R2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.9381214
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Since the R-squared of &lt;code&gt;a&lt;/code&gt; against all other predictors is pretty high, it definitely seems that &lt;code&gt;a&lt;/code&gt; is a linear combination of the other predictors, and we can conclude that there is multicollinearity in the model design.&lt;/p&gt;
+&lt;p&gt;However, as informative as this R-squared is, it tells us nothing about the consequences of having multicollinearity in our model design. And this is where &lt;strong&gt;Variance Inflation Factors&lt;/strong&gt;, or &lt;strong&gt;VIF&lt;/strong&gt; for short, come into play.&lt;/p&gt;
+&lt;h2 id=&#34;what-are-variance-inflation-factors&#34;&gt;What are Variance Inflation Factors?&lt;/h2&gt;
+&lt;p&gt;The Variance Inflation Factor (VIF) of a predictor is computed as &lt;code&gt;\(1/(1 - R^2)\)&lt;/code&gt;, where &lt;code&gt;\(R^²\)&lt;/code&gt; is the R-squared of the multiple linear regression of the predictor against all other predictors.&lt;/p&gt;
+&lt;p&gt;In the case of &lt;code&gt;a&lt;/code&gt;, we just have to apply the VIF expression to the R-squared of the regression model against all other predictors.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;abcd_vif &amp;lt;- 1/(1-abcd_R2)
+abcd_vif
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 16.16067
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This VIF score is relative to the other predictors in the model design. If we change the model design, so does the VIF of all predictors! For example, if we remove &lt;code&gt;c&lt;/code&gt; and &lt;code&gt;d&lt;/code&gt; from the model design, we are left with this VIF for &lt;code&gt;a&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ab_model &amp;lt;- lm(
+  formula = a ~ b,
+  data = toy
+)
+
+ab_vif &amp;lt;- 1/(1 - summary(ab_model)$r.squared)
+ab_vif
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.002253
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;An almost perfect VIF score!&lt;/p&gt;
+&lt;p&gt;We can simplify the VIF computation using &lt;code&gt;collinear::vif_df()&lt;/code&gt;, which returns the VIF of &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; at once.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;collinear::vif_df(
+  df = toy[, c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;)]
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   predictor    vif
+## 1         a 1.0023
+## 2         b 1.0023
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In plot below, the worst and best VIF scores of &lt;code&gt;a&lt;/code&gt; are shown in the context of the relationship between R-squared and VIF, and three VIF thresholds commonly mentioned in the literature. These thresholds are represented as vertical dashed lines at VIF 2.5, 5, and 10, and are used as criteria to control multicollinearity in model designs. I will revisit this topic later in the post.&lt;/p&gt;
+&lt;img src=&#34;https://blasbenito.com/post/variance-inflation-factor/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;When the R-squared of the linear regression model is 0, then the VIF expression becomes &lt;code&gt;\(1/(1 - 0) = 1\)&lt;/code&gt; and returns the minimum possible VIF. On the other end, when R-squared is 1, then we get &lt;code&gt;\(1/(1 - 1) = Inf\)&lt;/code&gt;, the maximum VIF.&lt;/p&gt;
+&lt;p&gt;So far, we have learned that to assess whether the predictor &lt;code&gt;a&lt;/code&gt; induces multicollinearity in the model design &lt;code&gt;y ~ a + b + c + d&lt;/code&gt; we can compute it&amp;rsquo;s Variance Inflation Factor from the R-squared of the model &lt;code&gt;a ~ b + c + d&lt;/code&gt;. We have also learned that if the model design changes, so does the VIF of &lt;code&gt;a&lt;/code&gt;. We also know that there are some magic numbers (the VIF thresholds) we can use as reference.&lt;/p&gt;
+&lt;p&gt;But still, we have no indication of what these VIF values actually mean! I will try to fix that in the next section.&lt;/p&gt;
+&lt;h2 id=&#34;but-really-what-are-variance-inflation-factors&#34;&gt;But really, what are Variance Inflation Factors?&lt;/h2&gt;
+&lt;p&gt;Variance Inflation Factors are inherently linked to these fundamental linear modeling concepts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Coefficient Estimate&lt;/strong&gt; (&lt;code&gt;\(\hat{\beta}\)&lt;/code&gt;): The estimated slope of the relationship between a predictor and the response in a linear model.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Standard Error&lt;/strong&gt; (&lt;code&gt;\(\text{SE}\)&lt;/code&gt;): Represents the uncertainty around the estimation of the coefficient due to data variability.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Significance level&lt;/strong&gt; (&lt;code&gt;\(1.96\)&lt;/code&gt;): The acceptable level of error when determining the significance of the &lt;em&gt;coefficient estimate&lt;/em&gt;. Here it is simplified to 1.96, the 97.5th percentile of a normal distribution, to approximate a significance level of 0.05.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Confidence Interval&lt;/strong&gt; (&lt;code&gt;\(CI\)&lt;/code&gt;): The range of values containing the true value of the &lt;em&gt;coefficient estimate&lt;/em&gt; withing a certain &lt;em&gt;significance level&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These terms are related by the expression to compute the confidence interval of the coefficient estimate:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$$\text{CI} = \beta \pm 1.96 \cdot \text{SE}$$&lt;/code&gt;
+Let me convert this equation into a small function to compute confidence intervals of coefficient estimates named &lt;code&gt;ci()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ci &amp;lt;- function(b, se){
+  x &amp;lt;- se * 1.96
+  as.numeric(c(b-x, b+x))
+}
+#note: stats::confint() which uses t-critical values to compute more precise confidence intervals. 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we are going to look at the coefficient estimate and standard error of &lt;code&gt;a&lt;/code&gt; in the model &lt;code&gt;y ~ a + b&lt;/code&gt;. We know that &lt;code&gt;a&lt;/code&gt; in this model has a vif of 1.0022527.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;yab_model &amp;lt;- lm(
+  formula = y ~ a + b,
+  data = toy
+) |&amp;gt; 
+  summary()
+
+#coefficient estimate and standard error of a
+a_coef &amp;lt;- yab_model$coefficients[2, 1:2]
+a_coef
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Estimate  Std. Error 
+## 0.747689326 0.006636511
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we plug them into our little function to compute the confidence interval.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;a_ci &amp;lt;- ci(
+  b = a_coef[1], 
+  se = a_coef[2]
+  )
+a_ci
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.7346818 0.7606969
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And, finally, we compute the width of the confidence interval for &lt;code&gt;a&lt;/code&gt; as the difference between the extremes of the confidence interval.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;old_width &amp;lt;- diff(a_ci)
+old_width
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.02601512
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Keep this number in mind, it&amp;rsquo;s important.&lt;/p&gt;
+&lt;p&gt;Now, let me tell you something weird: &lt;strong&gt;The confidence interval of a predictor is widened by a factor equal to the square root of its Variance Inflation Factor&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;So, if the VIF of a predictor is, let&amp;rsquo;s say, 16, then this means that, in a linear model, multicollinearity is inflating the width of its confidence interval by a factor of 4.&lt;/p&gt;
+&lt;p&gt;In case you don&amp;rsquo;t want to take my word for it, here goes a demonstration. Now we fit the model &lt;code&gt;y ~ a + b + c + d&lt;/code&gt;, where &lt;code&gt;a&lt;/code&gt; has a vif of 16.1606674. If we follow the definition above, we could now expect an inflation of the confidence interval for &lt;code&gt;a&lt;/code&gt; of about 4.0200333. Let&amp;rsquo;s find out if that&amp;rsquo;s the case!&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#model y against all predictors and get summary
+yabcd_model &amp;lt;- lm(
+  formula = y ~ a + b + c + d,
+  data = toy
+) |&amp;gt; 
+  summary()
+
+#compute confidence interval of a
+a_ci &amp;lt;- ci(
+  b = yabcd_model$coefficients[&amp;quot;a&amp;quot;, &amp;quot;Estimate&amp;quot;], 
+  se = yabcd_model$coefficients[&amp;quot;a&amp;quot;, &amp;quot;Std. Error&amp;quot;]
+  )
+
+#compute width of confidence interval of a
+new_width &amp;lt;- diff(a_ci)
+new_width
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.1044793
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, to find out the inflation factor of this new confidence interval, we divide it by the width of the old one.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_width/old_width
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 4.016101
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And the result is VERY CLOSE to the square root of the VIF of &lt;code&gt;a&lt;/code&gt; (4.0200333) in this model. &lt;strong&gt;Notice that this works because in the model &lt;code&gt;y ~ a + b&lt;/code&gt;, &lt;code&gt;a&lt;/code&gt; has a perfect VIF of 1.0022527. This demonstration needs a model with a quasi-perfect VIF as reference.&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Now we can confirm our experiment about the meaning of VIF by repeating the exercise with &lt;code&gt;b&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;First we compute the VIF of &lt;code&gt;b&lt;/code&gt; against &lt;code&gt;a&lt;/code&gt; alone, and against &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;c&lt;/code&gt;, and &lt;code&gt;d&lt;/code&gt;, and the expected level of inflation of the confidence interval as the square root of the second VIF.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#vif of b vs a
+ba_vif &amp;lt;- collinear::vif_df(
+  df = toy[, c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;)]
+) |&amp;gt; 
+  dplyr::filter(predictor == &amp;quot;b&amp;quot;)
+
+#vif of b vs a c d
+bacd_vif &amp;lt;- collinear::vif_df(
+  df = toy[, c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot;)]
+) |&amp;gt; 
+  dplyr::filter(predictor == &amp;quot;b&amp;quot;)
+
+#expeced inflation of the confidence interval
+sqrt(bacd_vif$vif)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.015515
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, since &lt;code&gt;b&lt;/code&gt; is already in the models &lt;code&gt;y ~ a + b&lt;/code&gt; and &lt;code&gt;y ~ a + b + c + d&lt;/code&gt;, we just need to extract its coefficients, compute their confidence intervals, and divide one by the other to obtain the&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#compute confidence interval of b in y ~ a + b
+b_ci_old &amp;lt;- ci(
+  b = yab_model$coefficients[&amp;quot;b&amp;quot;, &amp;quot;Estimate&amp;quot;], 
+  se = yab_model$coefficients[&amp;quot;b&amp;quot;, &amp;quot;Std. Error&amp;quot;]
+  )
+
+#compute confidence interval of b in y ~ a + b + c + d
+b_ci_new &amp;lt;- ci(
+  b = yabcd_model$coefficients[&amp;quot;b&amp;quot;, &amp;quot;Estimate&amp;quot;], 
+  se = yabcd_model$coefficients[&amp;quot;b&amp;quot;, &amp;quot;Std. Error&amp;quot;]
+  )
+
+#compute inflation
+diff(b_ci_new)/diff(b_ci_old)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.013543
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Again, the square root of the VIF of &lt;code&gt;b&lt;/code&gt; in &lt;code&gt;y ~ a + b + c + d&lt;/code&gt; is a great indicator of how much the confidence interval of &lt;code&gt;b&lt;/code&gt; is inflated by multicollinearity in the model.&lt;/p&gt;
+&lt;p&gt;And that, folks, is the meaning of VIF.&lt;/p&gt;
+&lt;h1 id=&#34;when-the-vif-hurts&#34;&gt;When the VIF Hurts&lt;/h1&gt;
+&lt;p&gt;In the previous sections we acquired an intuition of how Variance Inflation Factors measure the effect of multicollinearity in the precision of the coefficient estimates in a linear model. But there is more to that!&lt;/p&gt;
+&lt;p&gt;A coefficient estimate divided by its standard error results in the &lt;strong&gt;T statistic&lt;/strong&gt;. This number is named &amp;ldquo;t value&amp;rdquo; in the table of coefficients shown below, and represents the distance (in number of standard errors) between the estimate and zero.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;yabcd_model$coefficients[-1, ] |&amp;gt; 
+  round(4)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   Estimate Std. Error t value Pr(&amp;gt;|t|)
+## a   0.7184     0.0267 26.9552   0.0000
+## b   0.2596     0.0134 19.4253   0.0000
+## c   0.0273     0.0232  1.1757   0.2398
+## d   0.0039     0.0230  0.1693   0.8656
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;strong&gt;p-value&lt;/strong&gt;, named &amp;ldquo;Pr(&amp;gt;|t|)&amp;rdquo; above, is the probability of getting the T statistic when there is &lt;em&gt;no effect of the predictor over the response&lt;/em&gt;. The part in italics is named the &lt;em&gt;null hypothesis&lt;/em&gt; (H0), and happens when the confidence interval of the estimate intersects with zero, as in &lt;code&gt;c&lt;/code&gt; and &lt;code&gt;d&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ci(
+  b = yabcd_model$coefficients[&amp;quot;c&amp;quot;, &amp;quot;Estimate&amp;quot;],
+  se = yabcd_model$coefficients[&amp;quot;c&amp;quot;, &amp;quot;Std. Error&amp;quot;]
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.01819994  0.07276692
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ci(
+  b = yabcd_model$coefficients[&amp;quot;d&amp;quot;, &amp;quot;Estimate&amp;quot;],
+  se = yabcd_model$coefficients[&amp;quot;d&amp;quot;, &amp;quot;Std. Error&amp;quot;]
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.04111146  0.04888457
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The p-value of any predictor in the coefficients table above is computed as:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#predictor
+predictor &amp;lt;- &amp;quot;d&amp;quot;
+
+#number of cases
+n &amp;lt;- nrow(toy)
+
+#number of model terms
+p &amp;lt;- nrow(yabcd_model$coefficients)
+
+#one-tailed p-value
+#q = absolute t-value
+#df = degrees of freedom
+p_value_one_tailed &amp;lt;- stats::pt(
+  q = abs(yabcd_model$coefficients[predictor, &amp;quot;t value&amp;quot;]), 
+  df = n - p #degrees of freedom
+  )
+
+#two-tailed p-value
+2 * (1 - p_value_one_tailed)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.8655869
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This p-value is then compared to a &lt;strong&gt;significance level&lt;/strong&gt; (for example, 0.05 for a 95% confidence), which is just the lowest p-value acceptable as strong evidence to make a claim:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;p-value &amp;gt; significance&lt;/strong&gt;: Evidence to claim that the predictor has no effect on the response. If the claim is wrong (we&amp;rsquo;ll see whey we could be wrong), we fall into a &lt;em&gt;false negative&lt;/em&gt; (also &lt;em&gt;Type II Error&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;p-value &amp;lt;= significance&lt;/strong&gt;: Evidence to claim that the predictor has an effect on the response. If the claim is wrong, we fall into a &lt;em&gt;false positive&lt;/em&gt; (also &lt;em&gt;Type I Error&lt;/em&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now, how does all this matter when talking about the Variance Inflation Factor? Because a high VIF triggers a cascade of effects that increases p-values that can mess up your claims about the importance of the predictors!&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    ↑ VIF ► ↑ Std. Error ► ↓ T statistic  ► ↑ p-value  ► ↑  false negatives (Type II Error)
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;This cascade becomes a problem when the predictor has a small effect on the response, and the number of cases is small.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s see how this works with &lt;code&gt;b&lt;/code&gt;. This predictor has a solid effect on the response &lt;code&gt;y&lt;/code&gt; (nonetheless, &lt;code&gt;y&lt;/code&gt; was created as &lt;code&gt;a * 0.75 + b * 0.25 + noise&lt;/code&gt;). It has a coefficient around 0.25, and a p-value of 0, so there is little to no risk of falling into a false negative when claiming that it is important to explain &lt;code&gt;y&lt;/code&gt;, even when its confidence interval is inflated by a factor of two in the full model.&lt;/p&gt;
+&lt;p&gt;But let&amp;rsquo;s try a little experiment. We are going to create many small versions of &lt;code&gt;toy&lt;/code&gt;, using only 30 cases selected by chance over a number of iterations, we are going to fit models in which &lt;code&gt;b&lt;/code&gt; has a lower and a higher VIF, to monitor its p-values and estimates.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#number of repetitions
+repetitions &amp;lt;- 1000
+
+#number of cases to subset in toy
+sample_size &amp;lt;- 30
+
+#vectors to store results
+lowvif_p_value &amp;lt;- 
+  highvif_p_value &amp;lt;- 
+  lowvif_estimate &amp;lt;-
+  highvif_estimate &amp;lt;- 
+  vector(length = repetitions)
+
+#repetitions
+for(i in 1:repetitions){
+  
+  #seed to make randomization reproducible
+  set.seed(i)
+  
+  #toy subset
+  toy.i &amp;lt;- toy[sample(x = 1:nrow(toy), size = sample_size), ]
+  
+  #high vif model
+  highvif_model &amp;lt;- lm(
+    formula =  y ~ a + b + c + d,
+    data = toy.i
+  ) |&amp;gt; 
+    summary()
+  
+  #gather results of high vif model
+  highvif_p_value[i] &amp;lt;- highvif_model$coefficients[&amp;quot;b&amp;quot;, &amp;quot;Pr(&amp;gt;|t|)&amp;quot;]
+  highvif_estimate[i] &amp;lt;- highvif_model$coefficients[&amp;quot;b&amp;quot;, &amp;quot;Estimate&amp;quot;]
+  
+  #low_vif_model
+  lowvif_model &amp;lt;- lm(
+    formula =  y ~ a + b,
+    data = toy.i
+  ) |&amp;gt; 
+    summary()
+  
+  #gather results of lowvif
+  lowvif_p_value[i] &amp;lt;- lowvif_model$coefficients[&amp;quot;b&amp;quot;, &amp;quot;Pr(&amp;gt;|t|)&amp;quot;]
+  lowvif_estimate[i] &amp;lt;- lowvif_model$coefficients[&amp;quot;b&amp;quot;, &amp;quot;Estimate&amp;quot;]
+  
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The plot below shows all p-values of the predictor &lt;code&gt;b&lt;/code&gt; for the high and low VIF models across the experiment repetitions.&lt;/p&gt;
+&lt;img src=&#34;https://blasbenito.com/post/variance-inflation-factor/index_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;At a significance level of 0.05, the &lt;strong&gt;high VIF&lt;/strong&gt; model rejects &lt;code&gt;b&lt;/code&gt; as an important predictor of &lt;code&gt;y&lt;/code&gt; on 53.5% of the model repetitions, while the &lt;strong&gt;low VIf model&lt;/strong&gt; does the same on 2.2% of repetitions. This is a clear case of increase in Type II Error (false negatives) under multicollinearity.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Under multicollinearity, the probability of overlooking predictors with moderate effects increases dramatically!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The plot below shifts the focus towards the coefficient estimates for &lt;code&gt;b&lt;/code&gt; across repetitions.&lt;/p&gt;
+&lt;img src=&#34;https://blasbenito.com/post/variance-inflation-factor/index_files/figure-html/unnamed-chunk-22-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;The gray vertical line represents the real value of the slope of &lt;code&gt;b&lt;/code&gt;, and each dot represents a model repetition. The coefficients of the &lt;strong&gt;high VIF&lt;/strong&gt; model are all over the place when compared to the &lt;strong&gt;low VIF&lt;/strong&gt; one. Probably you have read somewhere that &amp;ldquo;multicollinearity induces model instability&amp;rdquo;, or something similar, and that is exactly what we are seeing here.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Finding the true effect of a predictor with a moderate effect becomes harder under multicollinearity.&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;managing-vif-in-a-model-design&#34;&gt;Managing VIF in a Model Design&lt;/h1&gt;
+&lt;p&gt;The second most common form of modeling self-sabotage is &lt;em&gt;having high VIF predictors in a model design&lt;/em&gt;, just right after &lt;em&gt;throwing deep learning at tabular problems to see what sticks&lt;/em&gt;. I don&amp;rsquo;t have solutions for the deep learning issue, but I have some pointers for the VIFs one: &lt;strong&gt;letting things go!&lt;/strong&gt;. And with &lt;em&gt;things&lt;/em&gt; I mean &lt;em&gt;predictors&lt;/em&gt;, not the pictures of your old love. There is no rule &lt;em&gt;the more predictors the better&lt;/em&gt; rule written anywhere relevant, and letting your model shed some fat is the best way to go here.&lt;/p&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://blasbenito.github.io/collinear/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;collinear&lt;/code&gt;&lt;/a&gt; package has something to help here. The function 
+&lt;a href=&#34;https://blasbenito.github.io/collinear/reference/vif_select.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;collinear::vif_select()&lt;/code&gt;&lt;/a&gt; is specifically designed to help reduce VIF in a model design. And it can do it in two ways: either using domain knowledge to guide the process, or applying quantitative criteria instead.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s follow the domain knowledge route first. Imagine you know a lot about &lt;code&gt;y&lt;/code&gt;, you have read that &lt;code&gt;a&lt;/code&gt; is very important to explain it, and you need to discuss this predictor in your results. But you are on the fence about the other predictors, so you don&amp;rsquo;t really care about what others are in the design. You can express such an idea using the argument &lt;code&gt;preference_order&lt;/code&gt;, as shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors &amp;lt;- collinear::vif_select(
+  df = toy,
+  predictors = c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot;),
+  preference_order = &amp;quot;a&amp;quot;,
+  max_vif = 2.5,
+  quiet = TRUE
+)
+selected_predictors
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;a&amp;quot; &amp;quot;b&amp;quot;
+## attr(,&amp;quot;validated&amp;quot;)
+## [1] TRUE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now you have it, your new model design with a VIF below 2.5 is now &lt;code&gt;y ~ a + b&lt;/code&gt;!&lt;/p&gt;
+&lt;p&gt;But what if you get new information and it turns out that &lt;code&gt;d&lt;/code&gt; is also a variable of interest? Then you should just modify &lt;code&gt;preference_order&lt;/code&gt; to include this new information.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors &amp;lt;- collinear::vif_select(
+  df = toy,
+  predictors = c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot;),
+  preference_order = c(&amp;quot;a&amp;quot;, &amp;quot;d&amp;quot;),
+  max_vif = 2.5,
+  quiet = TRUE
+)
+selected_predictors
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;a&amp;quot; &amp;quot;d&amp;quot;
+## attr(,&amp;quot;validated&amp;quot;)
+## [1] TRUE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice that if your favorite variables are highly correlated, some of them are going to be removed anyway. For example, if &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt; are your faves, since they are highly correlated, &lt;code&gt;c&lt;/code&gt; is removed.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors &amp;lt;- collinear::vif_select(
+  df = toy,
+  predictors = c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot;),
+  preference_order = c(&amp;quot;a&amp;quot;, &amp;quot;c&amp;quot;),
+  max_vif = 2.5,
+  quiet = TRUE
+)
+selected_predictors
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;a&amp;quot; &amp;quot;b&amp;quot;
+## attr(,&amp;quot;validated&amp;quot;)
+## [1] TRUE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In either case, you can now build your model while being sure that the coefficients of these predictors are going to be stable and precise.&lt;/p&gt;
+&lt;p&gt;Now, what if &lt;code&gt;y&lt;/code&gt; is totally new for you, and you have no idea about what to use? In this case, the function 
+&lt;a href=&#34;https://blasbenito.github.io/collinear/reference/preference_order.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;collinear::preference_order()&lt;/code&gt;&lt;/a&gt; helps you rank the predictors following a quantiative criteria, and after that, &lt;code&gt;collinear::vif_select()&lt;/code&gt; can use it to reduce your VIFs.&lt;/p&gt;
+&lt;p&gt;By default, &lt;code&gt;collinear::preference_order()&lt;/code&gt; calls 
+&lt;a href=&#34;https://blasbenito.github.io/collinear/reference/f_rsquared.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;collinear::f_rsquared()&lt;/code&gt;&lt;/a&gt; to compute the R-squared between each predictor and the response variable (that&amp;rsquo;s why the argument &lt;code&gt;response&lt;/code&gt; is required here), to return a data frame with the variables ranked from &amp;ldquo;better&amp;rdquo; to &amp;ldquo;worse&amp;rdquo;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;preference &amp;lt;- collinear::preference_order(
+  df = toy,
+  response = &amp;quot;y&amp;quot;,
+  predictors = c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot;),
+  f = collinear::f_r2_pearson,
+  quiet = TRUE
+)
+
+preference
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response predictor                       f preference
+## 1        y         a collinear::f_r2_pearson 0.77600503
+## 2        y         c collinear::f_r2_pearson 0.72364944
+## 3        y         d collinear::f_r2_pearson 0.59345954
+## 4        y         b collinear::f_r2_pearson 0.07343563
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now you can use this data frame as input for the argument &lt;code&gt;preference_order&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;selected_predictors &amp;lt;- collinear::vif_select(
+  df = toy,
+  predictors = c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot;),
+  preference_order = preference,
+  max_vif = 2.5,
+  quiet = TRUE
+)
+selected_predictors
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;a&amp;quot; &amp;quot;d&amp;quot;
+## attr(,&amp;quot;validated&amp;quot;)
+## [1] TRUE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now at least you can be sure that the predictors in your model design have low VIF, and were selected taking their correlation with the response as criteria.&lt;/p&gt;
+&lt;p&gt;Well, I think that&amp;rsquo;s enough for today. I hope you found this post helpful. Have a great time!&lt;/p&gt;
+&lt;p&gt;Blas&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>R package spatialRF</title>
       <link>https://blasbenito.com/project/post-title/</link>
       <pubDate>Tue, 26 Sep 2023 00:00:00 +0000</pubDate>

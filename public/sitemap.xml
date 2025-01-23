@@ -20,13 +20,40 @@
     <loc>https://blasbenito.com/talk/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/analytics/</loc>
-    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <loc>https://blasbenito.com/authors/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/author/blas-m.-benito/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/coding/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/post/dynamic-time-warping-from-scratch/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/data-science/</loc>
-    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/dynamic-time-warping/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/post/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/r-tutorial/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/rstats/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tags/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/time-series-analysis/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/analytics/</loc>
     <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/lock-step/</loc>
@@ -53,9 +80,6 @@
     <loc>https://blasbenito.com/tag/statistics/</loc>
     <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tags/</loc>
-    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/tag/target-encoding/</loc>
     <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
@@ -63,18 +87,6 @@
     <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/post/dynamic-time-warping/</loc>
-    <lastmod>2025-01-05T05:14:20+01:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/authors/</loc>
-    <lastmod>2025-01-05T05:14:20+01:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/author/blas-m.-benito/</loc>
-    <lastmod>2025-01-05T05:14:20+01:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/post/</loc>
-    <lastmod>2025-01-05T05:14:20+01:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/time-series-analysis/</loc>
     <lastmod>2025-01-05T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/data-preprocessing/</loc>
@@ -98,16 +110,10 @@
     <loc>https://blasbenito.com/post/variance-inflation-factor/</loc>
     <lastmod>2023-11-05T08:14:23+02:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/variance-inflation-factors/</loc>
+    <loc>https://blasbenito.com/tag/linear-modelling/</loc>
     <lastmod>2023-11-05T08:14:23+02:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/explanatory-modeling/</loc>
-    <lastmod>2023-10-29T08:14:23+02:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/post/multicollinearity-model-interpretability/</loc>
-    <lastmod>2023-10-29T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/stats/</loc>
     <lastmod>2023-10-29T08:14:23+02:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/publication-type/2/</loc>
@@ -311,17 +317,20 @@
     <loc>https://blasbenito.com/author/yoann-le-bagousse-pinguet/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/post/04_betadiversity/</loc>
-    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+    <loc>https://blasbenito.com/post/betadiversity/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/home-cluster/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/post_projects/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/post/03_shared_folder_in_cluster/</loc>
-    <lastmod>2021-01-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/post_projects/template/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/post/shared-folder-home-cluster/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/abm/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
@@ -374,8 +383,11 @@
     <loc>https://blasbenito.com/project/virtualpollen/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/post/01_home_cluster/</loc>
-    <lastmod>2020-12-07T00:00:00+00:00</lastmod>
+    <loc>https://blasbenito.com/tag/distributed-computing/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/post/home-cluster/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/boyan-angelov/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>

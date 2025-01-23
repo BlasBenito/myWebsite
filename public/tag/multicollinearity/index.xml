@@ -650,7 +650,7 @@ The function also allows to replace a given predictor with their selected encodi
 &lt;a href=&#34;https://blasbenito.github.io/collinear/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;R package &lt;code&gt;collinear&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
-&lt;p&gt;In this post, I dive deep into Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models.&lt;/p&gt;
+&lt;p&gt;This post focuses on Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models.&lt;/p&gt;
 &lt;p&gt;The post covers the following main points:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;VIF meaning and interpretation&lt;/strong&gt;: Through practical examples, I demonstrate how to compute VIF values and their significance in model design. Particularly, I try to shed light on their influence on coefficient estimates and their confidence intervals.&lt;/li&gt;
@@ -1172,15 +1172,13 @@ df &amp;lt;- vi |&amp;gt;
   predictors = c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot;)
 )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 3
-##   x     y     correlation
-##   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;
-## 1 c     a           0.962
-## 2 d     b           0.639
-## 3 d     a           0.636
-## 4 d     c           0.615
-## 5 b     a          -0.047
-## 6 c     b          -0.042
+&lt;pre&gt;&lt;code&gt;##   x y correlation
+## 1 c a  0.96154984
+## 2 d b  0.63903887
+## 3 d a  0.63575882
+## 4 d c  0.61480312
+## 5 b a -0.04740881
+## 6 c b -0.04218308
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;At this point, we have are two groups of predictors useful to understand how multicollinearity muddles model interpretation:&lt;/p&gt;
 &lt;ul&gt;
@@ -1238,15 +1236,13 @@ colnames(df.q) &amp;lt;- predictors
 #correlation between transformed predictors
 collinear::cor_df(df = df.q)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 3
-##   x     y     correlation
-##   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;
-## 1 d     c               0
-## 2 c     b               0
-## 3 d     b               0
-## 4 d     a               0
-## 5 c     a               0
-## 6 b     a               0
+&lt;pre&gt;&lt;code&gt;##   x y   correlation
+## 1 d c  4.823037e-04
+## 2 d a  1.585298e-16
+## 3 c b  1.708728e-17
+## 4 c a -3.036108e-18
+## 5 d b  2.385256e-18
+## 6 b a -1.431486e-18
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The new set of predictors we are left with after the QR decomposition have exactly zero correlation! And now they are not our original predictors anymore, and have a different interpretation:&lt;/p&gt;
 &lt;ul&gt;
@@ -1464,6 +1460,7 @@ gb_abcd &amp;lt;- xgboost::xgboost(
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;xgb.importance(model = gb_ab)[, c(1:2)]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    Feature      Gain
+##     &amp;lt;char&amp;gt;     &amp;lt;num&amp;gt;
 ## 1:       a 0.8463005
 ## 2:       b 0.1536995
 &lt;/code&gt;&lt;/pre&gt;
@@ -1471,6 +1468,7 @@ gb_abcd &amp;lt;- xgboost::xgboost(
   dplyr::arrange(Feature)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    Feature       Gain
+##     &amp;lt;char&amp;gt;      &amp;lt;num&amp;gt;
 ## 1:       a 0.78129661
 ## 2:       b 0.07386393
 ## 3:       c 0.03595619
@@ -1493,6 +1491,7 @@ xgb.importance(model = gb_abcd)[, c(1:2)] |&amp;gt;
   dplyr::arrange(Feature)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    Feature       Gain
+##     &amp;lt;char&amp;gt;      &amp;lt;num&amp;gt;
 ## 1:       a 0.79469959
 ## 2:       b 0.07857141
 ## 3:       d 0.12672900

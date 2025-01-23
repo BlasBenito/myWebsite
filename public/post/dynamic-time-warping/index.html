@@ -704,6 +704,8 @@
 
   
   
+    
+  
 
 
 <div class="article-container pt-3">
@@ -777,9 +779,9 @@
 </div>
 
 
-<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 576px; max-height: 576px;">
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 602px;">
   <div style="position: relative">
-    <img src="/post/dynamic-time-warping/featured.png" alt="" class="featured-image">
+    <img src="/post/dynamic-time-warping/featured_huaf5eee4b838bfaeefe528859be8ae44a_104973_720x0_resize_lanczos_3.png" alt="" class="featured-image">
     <span class="article-header-caption">Graph by Blas M. Benito</span>
   </div>
 </div>
@@ -849,22 +851,21 @@
 </ul>
 <p>The figure below illustrates the cost matrix with both orthogonal and diagonal paths.</p>
 <img src="https://blasbenito.com/post/dynamic-time-warping/index_files/figure-html/unnamed-chunk-9-1.png" width="600" />
-The result of the cost matrix is similar to the topographic map of a valley, in which the value of each cell represents the slope we have to overcome to walk through it.
-<p>Now that we have a valley, let&rsquo;s go find the river!</p>
+<p>The result of the cost matrix is similar to the topographic map of a valley, in which the value of each cell represents the slope we have to overcome to walk through it.</p>
+<p>Now that we have a valley, let&rsquo;s go create a river!</p>
 <h2 id="least-cost-path">Least-cost Path</h2>
 <p>This is the step where the actual time warping happens!</p>
 <p>The least-cost path minimizes the total cost from the start to the end of the cost matrix, aligning the time series optimally.</p>
-<p>In other words, the least-cost path is the river finding it&rsquo;s way within the valley.</p>
-<p>The algorithm building the least-cost path starts on the upper right corner of the cost matrix, and recursively selects the antecedent neighbor with the lowest cost to build the least-cost path step by step.</p>
+<p>The algorithm building the least-cost path starts on the upper right corner of the cost matrix, and recursively selects the next neighbor with the lowest cumulative cost to build the least-cost path step by step. This process is similar to letting a river find its shortest path way down a valley.</p>
 <p>The figure below shows the least-cost path (black line). Deviations from the diagonal represent adjustments made to align the time series.</p>
 <img src="https://blasbenito.com/post/dynamic-time-warping/index_files/figure-html/unnamed-chunk-10-1.png" width="600" />
 <h2 id="similarity-metric">Similarity Metric</h2>
 <p>Finally, DTW produces a similarity metric based on the least-cost path. The simplest approach is to sum the distances of all points along the path.</p>
-<p>For this example, the total cost is 8.167.
+<p>For this example, the total cost is 7.588.
 However, when comparing time series of varying lengths, normalization is often useful. Common options include:</p>
 <ul>
-<li><strong>Sum of lengths</strong>: Normalize by the combined lengths of the time series, e.g., <code>Normalized Cost = Total Cost / (Length(a) + Length(c))</code>. For <code>a</code> and <code>c</code>, this would be 0.163.</li>
-<li><strong>Auto-sum of distances</strong>: Normalize by the sum of distances between adjacent samples in each series, as in <code>Normalized Cost = Total Cost / (Auto-sum(a) + Auto-sum(c))</code>. For <code>a</code> and <code>c</code>, this results in 0.386.</li>
+<li><strong>Sum of lengths</strong>: Normalize by the combined lengths of the time series, e.g., <code>Normalized Cost = Total Cost / (Length(a) + Length(c))</code>. For <code>a</code> and <code>c</code>, this would be 0.152.</li>
+<li><strong>Auto-sum of distances</strong>: Normalize by the sum of distances between adjacent samples in each series, as in <code>Normalized Cost = Total Cost / (Auto-sum(a) + Auto-sum(c))</code>. For <code>a</code> and <code>c</code>, this results in 0.358.</li>
 </ul>
 <p>These normalized metrics allow comparisons across datasets with varying characteristics.</p>
 <h1 id="real-world-applications">Real World Applications</h1>
@@ -925,6 +926,8 @@ src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM
   <a class="badge badge-light" href="/tag/time-series-analysis/">Time Series Analysis</a>
   
   <a class="badge badge-light" href="/tag/dynamic-time-warping/">Dynamic Time Warping</a>
+  
+  <a class="badge badge-light" href="/tag/data-science/">Data Science</a>
   
 </div>
 
@@ -1177,15 +1180,15 @@ src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/publication/2020_cui_the_holocene/">Evaluating fossil charcoal representation in small peat bogs: Detailed Holocene fire records from southern Sweden</a></li>
-      
-      <li><a href="/publication/2020_benito_ecography_distantia/">distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series</a></li>
-      
-      <li><a href="/publication/2019_gil_romera_biology_letters/">Long-term fire resilience of the Ericaceous Belt, Bale Mountains, Ethiopia</a></li>
+      <li><a href="/post/dynamic-time-warping-from-scratch/">Coding a Minimalistic Dynamic Time Warping Library with R</a></li>
       
       <li><a href="/project/distantia/">R package distantia</a></li>
       
-      <li><a href="/project/memoria/">R package memoria</a></li>
+      <li><a href="/post/my-reading-list-data-science/">My Reading List: Data Science</a></li>
+      
+      <li><a href="/post/variance-inflation-factor/">Everything You Don&#39;t Need to Know About Variance Inflation Factors</a></li>
+      
+      <li><a href="/post/multicollinearity-model-interpretability/">Multicollinearity Hinders Model Interpretability</a></li>
       
     </ul>
   </div>

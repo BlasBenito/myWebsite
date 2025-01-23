@@ -14,12 +14,12 @@ doi: "https://doi.org/10.1177/0959683620941069"
 publication: "*The Holocene*"
 publication_types:
 - "2"
-publishDate: "2020-07-14T00:00:00Z"
 summary: "In this study, we assess how representative a single charcoal record from a peat profile in small bogs (1.5–2 ha in area) is for the reconstruction of Holocene fire history." 
 
 tags:
-- Palaeoecology
+- Research Papers
 - Time Series Analysis
+- Dynamic Time Warping
 
 title: 'Evaluating fossil charcoal representation in small peat bogs: Detailed Holocene fire records from southern Sweden'
 url_pdf: https://www.dropbox.com/s/fyhcou9trj060yq/2020_The_Holocene.pdf?dl=1

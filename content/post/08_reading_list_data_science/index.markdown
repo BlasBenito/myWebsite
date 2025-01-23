@@ -4,7 +4,7 @@ author: ''
 date: '2024-12-10'
 slug: my-reading-list-data-science
 categories: []
-tags: [Data Science, Data Preprocessing, Machine Learning, Model Explainability, Model Interpretability]
+tags: [Data Science]
 subtitle: ''
 summary: 'Live post with a curated list of high-quality data science posts and videos I found enlightening.'
 authors: [admin]

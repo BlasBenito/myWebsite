@@ -25,7 +25,6 @@ location: Source Themes HQ
 math: true
 projects:
 - internal-project
-publishDate: "2017-01-01T00:00:00Z"
 slides: example
 summary: An example talk using Academic's Markdown slides feature.
 tags: []

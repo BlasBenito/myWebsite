@@ -17,14 +17,16 @@ featured: false
 publication: '*Journal of Sea Research*'
 publication_types:
 - "2"
-publishDate: "2013-03-15T00:00:00Z"
 summary: "A time series of 14-year distribution data of Zostera marina in the Ems estuary (The Netherlands) was used to build different data subsets: (1) total presence area; (2) a conservative estimate of the total presence area, defined as the area which had been occupied during at least 4 years; (3) core area, defined as the area which had been occupied during at least 2/3 of the total period; and (4–6) three random selections of monitoring years. On average, colonized and disappeared areas of the species in the Ems estuary showed remarkably similar transition probabilities of 12.7% and 12.9%, respectively. SDMs based upon machine-learning methods (Boosted Regression Trees and Random Forest) outperformed regression-based methods. Current velocity and wave exposure were the most important variables predicting the species presence for widely distributed data. Depth and sea floor slope were relevant to predict conservative presence area and core area."
 tags:
-- Biodiversity Conservation
-- Species Distribution Models
-- Machine learning
+- Machine Learning
 - Random Forest
 - Gradient Boosting
+- Research Papers
+- Biodiversity Informatics
+- Species Distribution Models
+- Spatial Modelling
+- GIS
 title: "Comparing the performance of species distribution models of Zostera marina: Implications for conservation"
 url_pdf: https://www.dropbox.com/s/lypd6105c50nkwt/2013_BMB_Journal_Sea_Research.pdf?dl=1
 ---

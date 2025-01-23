@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>distributed-computing | Blas M. Benito, PhD</title>
+    <title>Distributed Computing | Blas M. Benito, PhD</title>
     <link>https://blasbenito.com/tag/distributed-computing/</link>
       <atom:link href="https://blasbenito.com/tag/distributed-computing/index.xml" rel="self" type="application/rss+xml" />
-    <description>distributed-computing</description>
+    <description>Distributed Computing</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Mon, 07 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://blasbenito.com/media/avatar.jpg</url>
-      <title>distributed-computing</title>
+      <title>Distributed Computing</title>
       <link>https://blasbenito.com/tag/distributed-computing/</link>
     </image>
     
     <item>
       <title>Setting up a Beowulf Home Cluster</title>
-      <link>https://blasbenito.com/post/home-cluster/</link>
+      <link>https://blasbenito.com/post/beowulf-cluster/</link>
       <pubDate>Mon, 07 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://blasbenito.com/post/home-cluster/</guid>
+      <guid>https://blasbenito.com/post/beowulf-cluster/</guid>
       <description>&lt;p&gt;In this post I explain how to setup a small 
 &lt;a href=&#34;https://en.wikipedia.org/wiki/Beowulf_cluster&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Beowulf cluster&lt;/a&gt; with a personal PC running Ubuntu 20.04 and a couple of 
 &lt;a href=&#34;https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Intel NUCs&lt;/a&gt; running Ubuntu Server 20.04, with the end-goal of parallelizing R tasks.&lt;/p&gt;

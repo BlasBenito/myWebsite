@@ -7,7 +7,7 @@ output:
   blogdown::html_page:
     toc: true
 categories: []
-tags: [Multicollinearity, Data Science, Linear Modelling]
+tags: [Stats, Multicollinearity, Data Science, Linear Modelling]
 subtitle: ''
 summary: 'In this post, I delve into the intricacies of model interpretation under the influence of multicollinearity, and use R and a toy data set to demonstrate how this phenomenon impacts both linear and machine learning models.'
 authors: [admin]
@@ -210,11 +210,11 @@ collinear::cor_df(df = df.q)
 ```
 ##   x y   correlation
 ## 1 d c  4.823037e-04
-## 2 d a  1.585298e-16
-## 3 c b  1.708728e-17
-## 4 c a -3.036108e-18
-## 5 d b  2.385256e-18
-## 6 b a -1.431486e-18
+## 2 c b -5.439825e-17
+## 3 d b  3.896078e-17
+## 4 d a  3.837016e-17
+## 5 c a -3.786884e-17
+## 6 b a -1.098207e-17
 ```
 The new set of predictors we are left with after the QR decomposition have exactly zero correlation! And now they are not our original predictors anymore, and have a different interpretation:
 

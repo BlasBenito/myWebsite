@@ -12,11 +12,10 @@ featured: false
 publication: '*Forests*'
 publication_types:
 - "2"
-publishDate: "2021-01-01T00:00:00Z"
 summary: "Understanding the ecology of populations located in the rear edge of their distribution is key to assessing the response of the species to changing environmental conditions. Here, we focus on rear-edge populations of Quercus pyrenaica in Sierra Nevada (southern Iberian Peninsula) to analyze their ecological and floristic diversity. We perform multivariate analyses using high-resolution environmental information and forest inventories to determine how environmental variables differ among oak populations, and to identify population groups based on environmental and floristic composition."
 tags:
+- Research Papers
 - Biogeography
-- Plant Ecology
 title: "Ecological Diversity within Rear-Edge: A Case Study from Mediterranean Quercus pyrenaica Willd."
 url_pdf: https://www.mdpi.com/1999-4907/12/1/10/pdf
 ---

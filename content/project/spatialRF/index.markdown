@@ -9,7 +9,7 @@ links:
   name: GitHub
   url: https://github.com/BlasBenito/spatialRF
 categories: []
-tags: [R packages, Spatial Regression, Machine Learning, Random Forest]
+tags: [Rstats, Statistics, Spatial Modelling, Machine Learning, Random Forest]
 subtitle: ''
 summary: 'R package for spatial regression with Random Forest'
 authors: [admin]
@@ -61,7 +61,7 @@ Two main methods to generate *spatial predictors* from the distance matrix of th
 The package is designed to minimize the code required to fit a spatial model from a training dataset, the names of the response and the predictors, and a distance matrix, as shown below.
 
 
-```r
+``` r
 spatial.model <- spatialRF::rf_spatial(
   data = your_dataframe,
   dependent.variable.name = "your_response_variable",
@@ -118,7 +118,7 @@ There is a paper in the making about this package. In the meantime, if you find 
 The version 1.1.3 can be installed from CRAN:
 
 
-```r
+``` r
 install.packages("spatialRF")
 ```
 
@@ -129,7 +129,7 @@ The package can also be installed from GitHub as follows. There are several bran
   + `v.1.0.9` to `v.1.1.2`: archived versions.
 
 
-```r
+``` r
 remotes::install_github(
   repo = "blasbenito/spatialRF", 
   ref = "main",
@@ -141,7 +141,7 @@ remotes::install_github(
 There are a few other libraries that will be useful during this tutorial.
 
 
-```r
+``` r
 library(spatialRF)
 library(kableExtra)
 library(rnaturalearth)
@@ -179,7 +179,7 @@ The package follows a convention throughout functions:
 It is convenient to define these arguments at the beginning of the workflow.
 
 
-```r
+``` r
 #loading training data and distance matrix from the package
 data(plant_richness_df)
 data(distance_matrix)
@@ -204,7 +204,7 @@ random.seed <- 1
 The response variable of `plant_richness_df` is "richness_species_vascular", that represents the total count of vascular plant species found on each ecoregion. The figure below shows the centroids of each ecoregion along with their associated value of the response variable.
 
 
-```r
+``` r
 world <- rnaturalearth::ne_countries(
   scale = "medium", 
   returnclass = "sf"
@@ -244,7 +244,7 @@ The predictors (columns 5 to 21) represent diverse factors that may influence pl
 **Note:** Every plotting function in the package now allows changing the colors of their main features via specific arguments such as `point.color`, `line.color`, or `fill.color`.
 
 
-```r
+``` r
 spatialRF::plot_training_df(
   data = plant_richness_df,
   dependent.variable.name = dependent.variable.name,
@@ -260,7 +260,7 @@ spatialRF::plot_training_df(
 The function [`plot_training_df_moran()`](https://blasbenito.github.io/spatialRF/reference/plot_training_df_moran.html) helps assessing the spatial autocorrelation of the response variable and the predictors across different distance thresholds. Low Moran's I and p-values equal or larger than 0.05 indicate that there is no spatial autocorrelation for the given variable and distance threshold.
 
 
-```r
+``` r
 spatialRF::plot_training_df_moran(
   data = plant_richness_df,
   dependent.variable.name = dependent.variable.name,
@@ -285,7 +285,7 @@ The functions [`auto_cor()`](https://blasbenito.github.io/spatialRF/reference/au
 Notice that I have set `cor.threshold` and `vif.threshold` to low values because the predictors in `plant_richness_df` already have little multicollinearity,. The default values (`cor.threshold = 0.75` and `vif.threshold = 5`) should work well when combined together for any other set of predictors.
 
 
-```r
+``` r
 preference.order <- c(
     "climate_bio1_average_X_bias_area_km2",
     "climate_aridity_index_average",
@@ -317,7 +317,7 @@ predictor.variable.names <- spatialRF::auto_cor(
 The output of `auto_cor()` or `auto_vif()` has the class "variable_selection", which can be used as input in every function having the argument `predictor.variable.names`.
 
 
-```r
+``` r
 names(predictor.variable.names)
 ```
 
@@ -328,7 +328,7 @@ names(predictor.variable.names)
 The slot `selected.variables` contains the names of the selected predictors.
 
 
-```r
+``` r
 predictor.variable.names$selected.variables
 ```
 
@@ -351,7 +351,7 @@ Random Forests already takes into account variable interactions of the form "var
 The function [`the_feature_engineer()`](https://blasbenito.github.io/spatialRF/reference/the_feature_engineer.html) tests all possible interactions of both types among the most important predictors, and suggesting the ones not correlated among themselves and with the other predictors inducing an increase in the model's R squared (or AUC when the response is binary) on independent data via spatial cross-validation (see `rf_evaluate()`).
 
 
-```r
+``` r
 interactions <- spatialRF::the_feature_engineer(
   data = plant_richness_df,
   dependent.variable.name = dependent.variable.name,
@@ -424,7 +424,7 @@ The function also returns a data frame with all the interactions considered.  Th
   + `selected`: `TRUE` if the interaction fulfills the selection criteria (importance higher than a threshold, positive gain in R squared or AUC, and Pearson correlation with other predictors lower than a threshold). The selected interactions have a correlation among themselves always lower than the value of the argument `cor.threshold`.
 
 
-```r
+``` r
 kableExtra::kbl(
   head(interactions$screening, 10),
   format = "html"
@@ -432,7 +432,7 @@ kableExtra::kbl(
   kableExtra::kable_paper("hover", full_width = F)
 ```
 
-<table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<table class=" lightable-paper lightable-hover" style='color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
  <thead>
   <tr>
    <th style="text-align:left;"> interaction.name </th>
@@ -541,7 +541,7 @@ kableExtra::kbl(
 The function returns a data frame with the response variables, the predictors, and the selected interactions that can be used right away as a training data frame. However, the function cannot say whether an interaction *makes sense*, and it is up to the user to choose wisely whether to select an interaction or not. In this particular case, and just for the sake of simplicity, we will be using the resulting data frame as training data.
 
 
-```r
+``` r
 #adding interaction column to the training data
 plant_richness_df <- interactions$data
 
@@ -559,7 +559,7 @@ These distance thresholds are the neighborhoods at which the model will check th
 Notice that here I plug the object `predictor.variable.names`, output of `auto_cor()` and `auto_vif()`, directly into the `predictor.variable.names` argument of the `rf()` function to fit a random forest model.
 
 
-```r
+``` r
 model.non.spatial <- spatialRF::rf(
   data = plant_richness_df,
   dependent.variable.name = dependent.variable.name,
@@ -579,7 +579,7 @@ The output is a list with several slots containing the information required to i
 The slot **residuals** (`model.non.spatial$residuals`) stores the values of the residuals and the results of the normality and spatial autocorrelation tests, and its content can be plotted with [`plot_residuals_diagnostics()`](https://blasbenito.github.io/spatialRF/reference/plot_residuals_diagnostics.html).
 
 
-```r
+``` r
 spatialRF::plot_residuals_diagnostics(
   model.non.spatial,
   verbose = FALSE
@@ -597,7 +597,7 @@ The upper panels show the results of the normality test (interpretation in the t
 The slot **importance** (`model.non.spatial$variable.importance`) contains the variable importance scores. These can be plotted with [`plot_importance()`](https://blasbenito.github.io/spatialRF/reference/plot_importance.html), printed with [`print_importance()`](https://blasbenito.github.io/spatialRF/reference/print_importance.html), and the dataframe retrieved with [`get_importance()`](https://blasbenito.github.io/spatialRF/reference/get_importance.html)
 
 
-```r
+``` r
 spatialRF::plot_importance(
   model.non.spatial,
   verbose = FALSE
@@ -613,7 +613,7 @@ If the argument `scaled.importance = TRUE` is used, the variable importance scor
 The package [`randomForestExplainer`](https://github.com/ModelOriented/randomForestExplainer) offers a couple of interesting options to deepen our understanding on variable importance scores. The first one is `measure_importance()`, which analyzes the forest to find out the average minimum tree depth at which each variable can be found (`mean_min_depth`), the number of nodes in which a variable was selected to make a split (`no_of_nodes`), the number of times the variable was selected as the first one to start a tree (`times_a_root`), and the probability of a variable to be in more nodes than what it would be expected by chance (`p_value`).
 
 
-```r
+``` r
 importance.df <- randomForestExplainer::measure_importance(
   model.non.spatial,
   measures = c("mean_min_depth", "no_of_nodes", "times_a_root", "p_value")
@@ -621,7 +621,7 @@ importance.df <- randomForestExplainer::measure_importance(
 ```
 
 
-```r
+``` r
 kableExtra::kbl(
   importance.df %>% 
     dplyr::arrange(mean_min_depth) %>% 
@@ -631,7 +631,7 @@ kableExtra::kbl(
   kableExtra::kable_paper("hover", full_width = F)
 ```
 
-<table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<table class=" lightable-paper lightable-hover" style='color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
  <thead>
   <tr>
    <th style="text-align:left;"> variable </th>
@@ -797,7 +797,7 @@ kableExtra::kbl(
 The new function `rf_importance()` offers a way to assess to what extent each predictor contributes to model transferability (predictive ability on independent spatial folds measured with `rf_evaluate()`, see below). It does so by comparing the performance of the full model with models fitted without each one of the predictors. The difference in performance between the full model and a model without a given predictor represents the contribution of such predictor to model transferability.
 
 
-```r
+``` r
 model.non.spatial <- spatialRF::rf_importance(
   model = model.non.spatial
   )
@@ -808,7 +808,7 @@ model.non.spatial <- spatialRF::rf_importance(
 The function results are added to the "importance" slot of the model. 
 
 
-```r
+``` r
 names(model.non.spatial$importance)
 ```
 
@@ -822,7 +822,7 @@ The data frame "per.variable" contains the columns "importance.cv" (median impor
 The importance computed by random forest on the out-of-bag data by permutating each predictor (as computed by `rf()`) and the contribution of each predictor to model transferability (as computed by `rf_importance()`) show a moderate correlation, indicating that both importance measures capture different aspects of the effect of the variables on the model results.
 
 
-```r
+``` r
 model.non.spatial$importance$per.variable %>% 
   ggplot2::ggplot() +
   ggplot2::aes(
@@ -844,14 +844,14 @@ model.non.spatial$importance$per.variable %>%
 Random forest also computes the average increase in error when a variable is permuted for each case. This is named "local importance", is stored in `model.non.spatial$importance$local` as a data frame, and can be retrieved with [`get_importance_local()`](https://blasbenito.github.io/spatialRF/reference/get_importance_local.html).
 
 
-```r
+``` r
 local.importance <- spatialRF::get_importance_local(model.non.spatial)
 ```
 
 The table below shows the first few records and columns. Larger values indicate larger average errors when estimating a case with the permuted version of the variable, so more important variables will show larger values.
 
 
-```r
+``` r
 kableExtra::kbl(
   round(local.importance[1:10, 1:5], 0),
   format = "html"
@@ -859,7 +859,7 @@ kableExtra::kbl(
   kableExtra::kable_paper("hover", full_width = F)
 ```
 
-<table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<table class=" lightable-paper lightable-hover" style='color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
  <thead>
   <tr>
    <th style="text-align:right;"> climate_aridity_index_average </th>
@@ -946,7 +946,7 @@ kableExtra::kbl(
 When case coordinates are joined with the local importance scores, it is possible to draw maps showing how variable importance changes over space.
 
 
-```r
+``` r
 #adding coordinates
 local.importance <- cbind(
   xy,
@@ -957,7 +957,7 @@ local.importance <- cbind(
 
 
 
-```r
+``` r
 #colors
 color.low <- viridis::viridis(
     3,
@@ -1041,7 +1041,7 @@ In these maps, values lower than 0 indicate that for a given record, the permute
 The variable importance scores are also used by the function [`plot_response_curves()`](https://blasbenito.github.io/spatialRF/reference/plot_response_curves.html) to plot partial dependence curves for the predictors (by default, only the ones with an importance score above the median). Building the partial dependency curve of a predictor requires setting the other predictors to their quantiles (0.1, 0.5, and 0.9 by default). This helps to understand how the response curve of a variable changes when all the other variables have low, centered, or high values. The function also allows to see the training data
 
 
-```r
+``` r
 spatialRF::plot_response_curves(
   model.non.spatial,
   quantiles = c(0.1, 0.5, 0.9),
@@ -1060,7 +1060,7 @@ spatialRF::plot_response_curves(
 Setting the argument `quantiles` to 0.5 and setting `show.data` to `FALSE` (default optioin) accentuates the shape of the response curves.
 
 
-```r
+``` r
 spatialRF::plot_response_curves(
   model.non.spatial,
   quantiles = 0.5,
@@ -1073,7 +1073,7 @@ spatialRF::plot_response_curves(
 The package [`pdp`](https://bgreenwell.github.io/pdp/index.html) provides a general way to plot partial dependence plots.
 
 
-```r
+``` r
 pdp::partial(
   model.non.spatial, 
   train = plant_richness_df, 
@@ -1088,12 +1088,12 @@ pdp::partial(
 If you need to do your own plots in a different way, the function [`get_response_curves()`](https://blasbenito.github.io/spatialRF/reference/get_response_curves.html) returns a data frame with the required data.
 
 
-```r
+``` r
 reponse.curves.df <- spatialRF::get_response_curves(model.non.spatial)
 ```
 
 
-```r
+``` r
 kableExtra::kbl(
   head(reponse.curves.df, n = 10),
   format = "html"
@@ -1101,7 +1101,7 @@ kableExtra::kbl(
   kableExtra::kable_paper("hover", full_width = F)
 ```
 
-<table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<table class=" lightable-paper lightable-hover" style='color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
  <thead>
   <tr>
    <th style="text-align:right;"> response </th>
@@ -1199,7 +1199,7 @@ kableExtra::kbl(
 Interactions between two variables can be plotted with [`plot_response_surface()`](https://blasbenito.github.io/spatialRF/reference/plot_response_surface.html)
 
 
-```r
+``` r
 spatialRF::plot_response_surface(
   model.non.spatial,
   a = "climate_bio1_average",
@@ -1212,7 +1212,7 @@ spatialRF::plot_response_surface(
 This can be done as well with the `pdp` package, that uses a slightly different algorithm to plot interaction surfaces.
 
 
-```r
+``` r
 pdp::partial(
   model.non.spatial, 
   train = plant_richness_df, 
@@ -1228,7 +1228,7 @@ pdp::partial(
 The **performance** slot (in `model.non.spatial$performance`) contains the values of several performance measures. It be printed via the function [`print_performance()`](https://blasbenito.github.io/spatialRF/reference/print_performance.html).
 
 
-```r
+``` r
 spatialRF::print_performance(model.non.spatial)
 ```
 
@@ -1252,7 +1252,7 @@ spatialRF::print_performance(model.non.spatial)
 The function [rf_evaluate()](https://blasbenito.github.io/spatialRF/reference/rf_evaluate.html) overcomes the limitations of the performance scores explained above by providing honest performance based on *spatial cross-validation*. The function separates the data into a number of spatially independent training and testing folds. Then, it fits a model on each training fold, predicts over each testing fold, and computes statistics of performance measures across folds. Let's see how it works.
 
 
-```r
+``` r
 model.non.spatial <- spatialRF::rf_evaluate(
   model = model.non.spatial,
   xy = xy,                  #data coordinates
@@ -1267,7 +1267,7 @@ model.non.spatial <- spatialRF::rf_evaluate(
 The function generates a new slot in the model named **evaluation** (`model.non.spatial$evaluation`) with several objects that summarize the spatial cross-validation results.
 
 
-```r
+``` r
 names(model.non.spatial$evaluation)
 ```
 
@@ -1280,7 +1280,7 @@ names(model.non.spatial$evaluation)
 The slot "spatial.folds", produced by [`make_spatial_folds()`](https://blasbenito.github.io/spatialRF/reference/make_spatial_folds.html), contains the indices of the training and testing cases for each cross-validation repetition. The maps below show two sets of training and testing folds.
 
 
-```r
+``` r
 pr <- plant_richness_df[, c("x", "y")]
 pr$group.2 <- pr$group.1 <- "Training"
 pr[model.non.spatial$evaluation$spatial.folds[[1]]$testing, "group.1"] <- "Testing"
@@ -1349,7 +1349,7 @@ p1 | p2
 The information available in this new slot can be accessed with the functions [`print_evaluation()`](https://blasbenito.github.io/spatialRF/reference/print_evaluation.html), [`plot_evaluation()`](https://blasbenito.github.io/spatialRF/reference/plot_evaluation.html), and [`get_evaluation()`](https://blasbenito.github.io/spatialRF/reference/get_evaluation.html).
 
 
-```r
+``` r
 spatialRF::plot_evaluation(model.non.spatial)
 ```
 
@@ -1358,7 +1358,7 @@ spatialRF::plot_evaluation(model.non.spatial)
 `Full` represents the R squared of the model trained on the full dataset. `Training` are the R-squared of the models fitted on the spatial folds (named `Training` in the maps above), and `Testing` are the R-squared of the same models on "unseen" data (data not used to train the model, named `Testing` in the maps above). The median, median absolute deviation (MAD), minimum, and maximum R-squared values on the testing folds can be printed with `print_evaluation()`.
 
 
-```r
+``` r
 spatialRF::print_evaluation(model.non.spatial)
 ```
 
@@ -1377,7 +1377,7 @@ spatialRF::print_evaluation(model.non.spatial)
 The model predictions are stored in the slot **predictions**, the arguments used to fit the model in **ranger.arguments**, and the model itself, used to predict new values (see code chunk below), is in the **forest** slot.
 
 
-```r
+``` r
 predicted <- stats::predict(
   object = model.non.spatial,
   data = plant_richness_df,
@@ -1391,7 +1391,7 @@ predicted <- stats::predict(
 The spatial autocorrelation of the residuals of a model like `model.non.spatial`, measured with [Moran's I](https://en.wikipedia.org/wiki/Moran%27s_I), can be plotted with [`plot_moran()`](https://blasbenito.github.io/spatialRF/reference/plot_moran.html).
 
 
-```r
+``` r
 spatialRF::plot_moran(
   model.non.spatial, 
   verbose = FALSE
@@ -1402,7 +1402,7 @@ spatialRF::plot_moran(
 According to the plot, the spatial autocorrelation of the residuals of `model.non.spatial` is highly positive for a neighborhood of 0 and 1000 km, while it becomes non-significant (p-value \> 0.05) at 2000, 4000, and 8000 km. To reduce the spatial autocorrelation of the residuals as much as possible, the non-spatial model can be transformed into a *spatial model* very easily with the function [`rf_spatial()`](https://blasbenito.github.io/spatialRF/reference/rf_spatial.html). This function is the true core of the package!
 
 
-```r
+``` r
 model.spatial <- spatialRF::rf_spatial(
   model = model.non.spatial,
   method = "mem.moran.sequential", #default method
@@ -1414,7 +1414,7 @@ model.spatial <- spatialRF::rf_spatial(
 The plot below shows the Moran's I of the residuals of the spatial model, and indicates that the residuals are not autocorrelated at any distance.
 
 
-```r
+``` r
 spatialRF::plot_moran(
   model.spatial, 
   verbose = FALSE
@@ -1426,7 +1426,7 @@ spatialRF::plot_moran(
 If we compare the variable importance plots of both models, we can see that the spatial model has an additional set of dots under the name "spatial_predictors", and that the maximum importance of a few of these *spatial predictors* matches the importance of the most relevant non-spatial predictors.
 
 
-```r
+``` r
 p1 <- spatialRF::plot_importance(
   model.non.spatial, 
   verbose = FALSE) + 
@@ -1445,7 +1445,7 @@ p1 | p2
 If we look at the ten most important variables in `model.spatial` we will see that a few of them are *spatial predictors*. Spatial predictors are named `spatial_predictor_X_Y`, where `X` is the neighborhood distance at which the predictor has been generated, and `Y` is the index of the predictor.
 
 
-```r
+``` r
 kableExtra::kbl(
   head(model.spatial$importance$per.variable, n = 10),
   format = "html"
@@ -1453,7 +1453,7 @@ kableExtra::kbl(
   kableExtra::kable_paper("hover", full_width = F)
 ```
 
-<table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<table class=" lightable-paper lightable-hover" style='color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
  <thead>
   <tr>
    <th style="text-align:left;"> variable </th>
@@ -1507,7 +1507,7 @@ kableExtra::kbl(
 But what are spatial predictors? Spatial predictors, as shown below, are smooth surfaces representing neighborhood among records at different spatial scales. They are computed from the distance matrix in different ways. The ones below are the eigenvectors of the double-centered distance matrix of weights (a.k.a, Moran's Eigenvector Maps). They represent the effect of spatial proximity among records, helping to represent biogeographic and spatial processes not considered by the non-spatial predictors.
 
 
-```r
+``` r
 spatial.predictors <- spatialRF::get_spatial_predictors(model.spatial)
 pr <- data.frame(spatial.predictors, plant_richness_df[, c("x", "y")])
 
@@ -1561,7 +1561,7 @@ p1 | p2
 The spatial predictors are included in the model one by one, in the order of their Moran's I (spatial predictors with Moran's I lower than 0 are removed). The selection procedure is performed by the function [`select_spatial_predictors_sequential()`](https://blasbenito.github.io/spatialRF/reference/select_spatial_predictors_sequential.html), which finds the smaller subset of spatial predictors maximizing the model's R squared, and minimizing the Moran's I of the residuals. This is shown in the optimization plot below (dots linked by lines represent the selected spatial predictors). 
 
 
-```r
+``` r
 p <- spatialRF::plot_optimization(model.spatial)
 ```
 
@@ -1578,7 +1578,7 @@ The model fitted above was based on the default random forest hyperparameters of
 These values can be modified in any model fitted with the package using the `ranger.arguments` argument. The example below shows how to fit a spatial model with a given set of hyperparameters.
 
 
-```r
+``` r
 model.spatial <- spatialRF::rf_spatial(
   model = model.non.spatial,
   method = "mem.moran.sequential", #default method
@@ -1598,7 +1598,7 @@ model tuning is done via spatial cross-validation, to ensure that the selected c
 **WARNING**: model tunning is very RAM-hungry, but you can control RAM usage by defining a lower value for the argument `n.cores`.
 
 
-```r
+``` r
 model.spatial <- rf_tuning(
   model = model.spatial,
   xy = xy,
@@ -1621,7 +1621,7 @@ The function returns a tuned model only if the tuning finds a solution better th
 Random Forest is an stochastic algorithm that yields slightly different results on each run unless a random seed is set. This particularity has implications for the interpretation of variable importance scores and response curves. The function [`rf_repeat()`](https://blasbenito.github.io/spatialRF/reference/rf_repeat.html) repeats a model execution and yields the distribution of importance scores of the predictors across executions. **NOTE**: this function works better when used at the end of a workflow
 
 
-```r
+``` r
 model.spatial.repeat <- spatialRF::rf_repeat(
   model = model.spatial, 
   repetitions = 30,
@@ -1633,7 +1633,7 @@ model.spatial.repeat <- spatialRF::rf_repeat(
 The importance scores of a model fitted with `rf_repeat()` are plotted as a violin plot, with the distribution of the importance scores of each predictor across repetitions.
 
 
-```r
+``` r
 spatialRF::plot_importance(
   model.spatial.repeat, 
   verbose = FALSE
@@ -1645,7 +1645,7 @@ spatialRF::plot_importance(
 The response curves of models fitted with `rf_repeat()` can be plotted with `plot_response_curves()` as well. The median prediction is shown with a thicker line.
 
 
-```r
+``` r
 spatialRF::plot_response_curves(
   model.spatial.repeat, 
   quantiles = 0.5,
@@ -1658,7 +1658,7 @@ spatialRF::plot_response_curves(
 The function `print_performance()` generates a summary of the performance scores across model repetitions. As every other function of the package involving repetitions, the provided stats are the median, and the median absolute deviation (mad).
 
 
-```r
+``` r
 spatialRF::print_performance(model.spatial.repeat)
 ```
 
@@ -1678,7 +1678,7 @@ spatialRF::print_performance(model.spatial.repeat)
 The modeling functions of `spatialRF` are designed to facilitate using the pipe to combine them. The code below fits a spatial model, tunes its hyperparameters, evaluates it using spatial cross-validation, and repeats the execution several times, just by passing the model from one function to another. Replace `eval = FALSE` with `eval = TRUE` if you want to execute the code chunk.
 
 
-```r
+``` r
 model.full <- rf_spatial(
   data = plant_richness_df,
   dependent.variable.name = dependent.variable.name,
@@ -1697,7 +1697,7 @@ The code structure shown above can also be used to take advantage of a custom cl
 When working with a single machine, a cluster can be defined and used as follows:
 
 
-```r
+``` r
 #creating and registering the cluster
 local.cluster <- parallel::makeCluster(
   parallel::detectCores() - 1,
@@ -1726,7 +1726,7 @@ parallel::stopCluster(cl = local.cluster)
 To facilitate working with Beowulf clusters ([just several computers connected via SSH](https://www.blasbenito.com/post/01_home_cluster/)), the package provides the function `beowulf_cluster()`, that generates the cluster definition from details such as the IPs of the machines, the number of cores to be used on each machine, the user name, and the connection port.
 
 
-```r
+``` r
 #creating and registering the cluster
 beowulf.cluster <- beowulf_cluster(
   cluster.ips = c(
@@ -1762,7 +1762,7 @@ doParallel::registerDoParallel(cl = beowulf.cluster)
 The function [`rf_compare()`](https://blasbenito.github.io/spatialRF/reference/rf_compare.html) takes named list with as many models as the user needs to compare, and applies `rf_evaluate()` to each one of them to compare their predictive performances across spatial folds.
 
 
-```r
+``` r
 comparison <- spatialRF::rf_compare(
   models = list(
     `Non-spatial` = model.non.spatial,
@@ -1780,7 +1780,7 @@ comparison <- spatialRF::rf_compare(
 
 
 
-```r
+``` r
 x <- comparison$comparison.df %>% 
     dplyr::group_by(model, metric) %>% 
     dplyr::summarise(value = round(median(value), 3)) %>% 
@@ -1794,7 +1794,7 @@ kableExtra::kbl(
   kableExtra::kable_paper("hover", full_width = F)
 ```
 
-<table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<table class=" lightable-paper lightable-hover" style='color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
  <thead>
   <tr>
    <th style="text-align:left;"> Model </th>
@@ -1821,7 +1821,7 @@ kableExtra::kbl(
 This package can also perform binomial regression on response variables with zeros and ones. Let's work on a quick example by turning the response variable of the previous models into a binomial one. 
 
 
-```r
+``` r
 plant_richness_df$response_binomial <- ifelse(
   plant_richness_df$richness_species_vascular > 5000,
   1,
@@ -1834,7 +1834,7 @@ The new response variable, `response_binomial`, will have ones where `richness_s
 There is something important to notice before moving forward though. The number of zeros in the new response variable is larger than the number of ones. 
 
 
-```r
+``` r
 table(plant_richness_df$response_binomial)
 ```
 
@@ -1847,7 +1847,7 @@ table(plant_richness_df$response_binomial)
 This means that there is **class imbalance**, and under this scenario, any random forest model is going to get better at predicting the most abundant class, while in our case the "target" is the less abundant one. But the function `rf()` is ready to deal with this issue. Let's fit a model to see what am I talking about.
 
 
-```r
+``` r
 model.non.spatial <- spatialRF::rf(
   data = plant_richness_df,
   dependent.variable.name = "response_binomial",
@@ -1863,7 +1863,7 @@ model.non.spatial <- spatialRF::rf(
 The function detects that the response variable is binary (using the function [`is_binary()`](https://blasbenito.github.io/spatialRF/reference/is_binary.html)), and computes *case weights* for the ones and the zeros. These case weights are stored in the `ranger.arguments` slot of the model, and are used to give preference to the cases with larger weights during the selection of the out-of-bag data (check the `case.weights` argument in `ranger::ranger()`). As a result, each individual tree in the forest is trained with a similar proportion of zeros and ones, which helps mitigate the class imbalance issue. This method is named *weighted Random Forest*, and is very well explained in this [white paper](https://statistics.berkeley.edu/sites/default/files/tech-reports/666.pdf) that includes the father of Random Forest, Leo Breiman, as coauthor.
 
 
-```r
+``` r
 unique(model.non.spatial$ranger.arguments$case.weights)
 ```
 
@@ -1874,7 +1874,7 @@ unique(model.non.spatial$ranger.arguments$case.weights)
 This model could be projected right away onto a raster stack with maps of the predictors, so, in fact, `spatialRF` can be used to fit Species Distribution Models, when it actually wasn't really designed with such a purpose in mind. And as an additional advantage, the model can be evaluated with `rf_evaluate()`, which is way better than cross-validation via random data-splitting ([this blog post](https://methodsblog.com/2018/11/29/blockcv-english/) explains explains why).
 
 
-```r
+``` r
 model.non.spatial <- spatialRF::rf_evaluate(
   model.non.spatial,
   xy = xy,
@@ -1904,7 +1904,7 @@ You might not love Random Forest, but `spatialRF` loves you, and as such, it giv
 The first step requires generating Moran's Eigenvector Maps (MEMs) from the distance matrix. Here there are two options, computing MEMs for a single neighborhood distance with [`mem()`](https://blasbenito.github.io/spatialRF/reference/mem.html), and computing MEMs for several neighborhood distances at once with [`mem_multithreshold()`](https://blasbenito.github.io/spatialRF/reference/mem_multithreshold.html). 
 
 
-```r
+``` r
 #single distance (0km by default)
 mems <- spatialRF::mem(distance.matrix = distance_matrix)
 
@@ -1918,7 +1918,7 @@ mems <- spatialRF::mem_multithreshold(
 In either case the result is a data frame with Moran's Eigenvector Maps ("just" the positive eigenvectors of the double-centered distance matrix).
 
 
-```r
+``` r
 kableExtra::kbl(
   head(mems[, 1:4], n = 10),
   format = "html"
@@ -1926,7 +1926,7 @@ kableExtra::kbl(
   kableExtra::kable_paper("hover", full_width = F)
 ```
 
-<table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<table class=" lightable-paper lightable-hover" style='color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
  <thead>
   <tr>
    <th style="text-align:right;"> spatial_predictor_0_1 </th>
@@ -2002,7 +2002,7 @@ kableExtra::kbl(
 But not all MEMs are made equal, and you will need to rank them by their Moran's I. The function [`rank_spatial_predictors()`](https://blasbenito.github.io/spatialRF/reference/rank_spatial_predictors.html) will help you do so.
 
 
-```r
+``` r
 mem.rank <- spatialRF::rank_spatial_predictors(
   distance.matrix = distance_matrix,
   spatial.predictors.df = mems,
@@ -2013,7 +2013,7 @@ mem.rank <- spatialRF::rank_spatial_predictors(
 The output of `rank_spatial_predictors()` is a list with three slots: "method", a character string with the name of the ranking method; "criteria", an ordered data frame with the criteria used to rank the spatial predictors; and "ranking", a character vector with the names of the spatial predictors in the order of their ranking (it is just the first column of the "criteria" data frame). We can use this "ranking" object to reorder or `mems` data frame.
 
 
-```r
+``` r
 mems <- mems[, mem.rank$ranking]
 
 #also:
@@ -2023,7 +2023,7 @@ mems <- mems[, mem.rank$ranking]
 From here, spatial predictors can be included in any model one by one, in the order of the ranking, until the spatial autocorrelation of the residuals becomes neutral, if possible. A little example with a linear model follows.
 
 
-```r
+``` r
 #model definition
 predictors <- c(
   "climate_aridity_index_average ",
@@ -2065,7 +2065,7 @@ moran.test$plot
 According to the Moran's I test, the model residuals show spatial autocorrelation. Let's introduce MEMs one by one until the problem is solved.
 
 
-```r
+``` r
 #add mems to the data and applies scale()
 model.data <- data.frame(
   plant_richness_df,
@@ -2121,7 +2121,7 @@ moran.test.i$plot
 Now we can compare the model without spatial predictors `m` and the model with spatial predictors `m.i`.
 
 
-```r
+``` r
 comparison.df <- data.frame(
   Model = c("Non-spatial", "Spatial"),
   Predictors = c(length(predictors), length(predictors.i)),
@@ -2138,7 +2138,7 @@ kableExtra::kbl(
   kableExtra::kable_paper("hover", full_width = F)
 ```
 
-<table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<table class=" lightable-paper lightable-hover" style='color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
  <thead>
   <tr>
    <th style="text-align:left;"> Model </th>

@@ -10,12 +10,14 @@ featured: false
 publication: '*Paegelow M., Olmedo M.T.C. (eds) Modelling Environmental Dynamics. Environmental Science and Engineering (Environmental Science). Springer, Berlin, Heidelberg*'
 publication_types:
 - "2"
-date: "2008-01-01T00:00:00Z"
 summary: "We we develop a methodology predicting the expansion of greenhouses by combining a species distribution model (MaxEnt) and a simulator of land use change (Geomod)."
 tags:
-- Biodiversity Conservation
+- Research Papers
+- Biodiversity Informatics
 - Species Distribution Models
-- Drylands
+- Simulation
+- Spatial Modelling
+- GIS
 title: 'Greenhouses, land use change, and predictive models: MaxEnt and Geomod working together'
 url_pdf: https://www.dropbox.com/s/jym53771y7pv8zv/2008_BMB_Environmental_Dynamics.pdf?dl=1
 ---

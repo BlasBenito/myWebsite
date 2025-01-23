@@ -11,10 +11,10 @@ featured: false
 publication: '*Expert Systems with Applications*'
 publication_types:
 - "2"
-publishDate: "2012-02-04T00:00:00Z"
 summary: "In this paper, we present the development of ModeleR, a repository of models accessible from the web, which enables the user to design, document, manage, and execute environmental models."
 tags:
-- Ecoinformatics
+- Research Papers
+- Biodiversity Informatics
 title: "ModeleR: An enviromental model repository as knowledge base for experts"
 url_pdf: https://www.dropbox.com/s/tc9uueq8oljenam/2012_BMB_Expert_systems_with_applications.pdf?dl=1
 ---

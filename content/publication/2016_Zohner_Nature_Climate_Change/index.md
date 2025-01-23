@@ -16,12 +16,11 @@ image:
 publication: '*PNAS*'
 publication_types:
 - "2"
-publishDate: "2016-10-17T00:00:00Z"
 summary: 'Our results do not support previous ideas about phenological strategies in temperate woody species (the ‘high temperature variability’ hypothesis; the ‘oceanic climate’ hypothesis; the ‘high latitude’ hypothesis). In regions with long winters, trees appear to rely on cues other than day length, such as winter chilling and spring warming. By contrast, in regions with short winters, some species—mostly from lineages with a warm-temperate or subtropical background, for example, Fagus additionally rely on photoperiodism. Therefore, photoperiod may be expected to constrain climate-driven shifts in spring leaf unfolding only at lower latitudes.'
 tags:
-- Phenology
+- Research Papers
 - Biogeography
-- Plant Ecology
+- GIS
 title: 'Day length unlikely to constrain climate-driven shifts in leaf-out times of northern woody plants'
 url_pdf: https://www.nature.com/articles/nclimate3138.pdf
 ---

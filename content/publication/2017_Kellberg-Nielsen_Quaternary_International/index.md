@@ -14,12 +14,12 @@ featured: false
 publication: '*Quaternary International*'
 publication_types:
 - "2"
-date: "2017-02-28T00:00:00Z"
 summary: "Our results are inconsistent with the claim that climatic constraint and/or a lack of suitable habitats can fully explain the absence of Neanderthals in Southern Scandinavia during the Eemian Interglacial and Early Weichselian Glaciation. We do, however, find evidence that a geographic barrier may have impeded northerly migrations during the Eemian."
 tags:
+- Research Papers
 - Biogeography
-- Biogeography of Neanderthals
-- Species distribution models
+- Species Distribution Models
+- GIS
 title: 'Investigating Neanderthal dispersal above 55°N in Europe during the Last Interglacial Complex'
 url_pdf: https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1
 ---

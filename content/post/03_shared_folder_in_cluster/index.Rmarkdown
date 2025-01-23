@@ -2,9 +2,9 @@
 title: "Setup of a Shared Folder in a Home Cluster"
 author: ''
 date: "2021-01-03"
-slug: shared-folder-home-cluster
+slug: shared-folder-Beowulf Cluster
 categories: []
-tags: [home-cluster]
+tags: [Beowulf Cluster]
 subtitle: ''
 summary: 'Notes on how to configure a shared folder for a beowulf home cluster'
 authors: [admin]

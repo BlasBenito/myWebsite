@@ -15,16 +15,14 @@ image:
 publication: '*Ecography*'
 publication_types:
 - "2"
-publishDate: "2020-01-01T00:00:00Z"
 summary: Paper published in the section "Editor's Choice" of the *Ecography* journal. It received [an award](https://www.dropbox.com/s/oacsy1xqx4omv1b/2019_BMB_Ecography_b_top_downloaded.png?dl=1) for the number of downloads during the 12 months after its publication.
 tags:
-- Quantitative methods
-- R packages
-- Palaeoecology
-- Ecological Memory
-- Plant Ecology
-- Machine Learning
+- Research Papers
+- Time Series Analysis
+- Dynamic Time Warping
+- Simulation
 - Random Forest
+- Statistics
 title: 'Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features'
 url_code: "https://github.com/BlasBenito/EcologicalMemory"
 url_pdf: https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.04772

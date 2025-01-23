@@ -18,13 +18,14 @@ image:
 publication: '*Biodiversity and Conservation*'
 publication_types:
 - "2"
-date: "2009-02-28T00:00:00Z"
 summary: "In this paper, we propose the application of SDMs to assess the extinction-risk of plant species in relation to the spread of greenhouses in a Mediterranean landscape, where habitat depletion is one of the main causes of biodiversity loss."
 tags:
-- Endangered Plants
-- Biodiversity Conservation
+- Research Papers
+- Biodiversity Informatics
 - Species Distribution Models
-- Drylands
+- Spatial Modelling
+- Biogeography
+- GIS
 title: 'Assessing extinction-risk of endangered plants using species distribution models: a case study of habitat depletion caused by the spread of greenhouses'
 url_pdf: https://www.dropbox.com/s/v3vz6yhkifki2ix/2009_BMB_Biodiversity_and_Conservation.pdf?dl=1
 ---

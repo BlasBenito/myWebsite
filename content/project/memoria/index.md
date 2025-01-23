@@ -20,8 +20,8 @@ links:
   url: https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04772
 summary: R package to assess ecological memory in multivariate time-series.
 tags: 
-- R packages
-- Ecological Memory
+- Rstats
+- Ecology
 - Time Series Analysis
 - Machine Learning
 - Random Forest

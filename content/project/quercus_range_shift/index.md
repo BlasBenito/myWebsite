@@ -12,12 +12,9 @@ links:
   url: https://github.com/BlasBenito/RangeShiftSimulation
 summary: Agent-based model coded with Netlogo to simulate range shift of *Quercus pyrenaica* populations in Sierra Nevada (Spain) using a realistic dispersal model with different levels of complexity.
 tags: 
-- ABM
+- Agent Based Models
 - Netlogo
-- Range-shift simulation
-- Mechanistic simulation
-- Dispersal
-- Agent-based models
+- Simulation
 title: "Range-shift simulation"
 url_pdf: ""
 url_slides: ""

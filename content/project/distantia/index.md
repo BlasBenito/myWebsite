@@ -20,10 +20,10 @@ links:
   name: Ecography
   url: https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.04895
 tags: 
-- R packages
-- Time Series
+- Rstats
+- Statistics
+- Time Series Analysis
 - Dynamic Time Warping
-- Lock-step
 - Data Science
 ---
 

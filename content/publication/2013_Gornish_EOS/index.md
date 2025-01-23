@@ -21,7 +21,6 @@ featured: false
 publication: '*EOS, Transactions American Geophysical Union*'
 publication_types:
 - "2"
-publishDate: "2013-04-16T00:00:00Z"
 summary: "Climate change research is an interdisciplinary field, and understanding its social, political, and environmental implications requires integration across fields of research where different tools may be used to address common concerns. One of the many advantages of interdisciplinary approaches is that they open communication between complementary fields, filling knowledge gaps and facilitating progression within both individual fields and the broader field of climate change research."
 tags:
 - Climate Change

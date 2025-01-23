@@ -16,12 +16,9 @@ links:
   url: "https://vimeo.com/274750111"
 summary: "This is a spatio-temporal simulation of the effect of fire regimes on the population dynamics of five forest species during the Lateglacial-Holocene transition (15-7 cal Kyr BP) at El Portalet, a subalpine bog located in the central Pyrenees region (1802m asl, Spain)"
 tags: 
-- ABM
+- Agent Based Models
 - Netlogo
-- Fire dynamics
-- Mechanistic simulation
-- Palaeoecology
-- Agent-based models
+- Simulation
 title: "Palaeo fire modeling"
 url_pdf: ""
 url_slides: ""

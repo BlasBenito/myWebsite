@@ -2,9 +2,9 @@
 title: "Setting up a Beowulf Home Cluster"
 author: ''
 date: '2020-12-07'
-slug: home-cluster
+slug: Beowulf Cluster
 categories: []
-tags: [distributed-computing, home-cluster]
+tags: [Distributed Computing, Beowulf Cluster]
 subtitle: ''
 summary: 'Notes on how to setup a beowulf home cluster.'
 authors: [admin]

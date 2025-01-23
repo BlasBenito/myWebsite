@@ -9,7 +9,7 @@ links:
   name: GitHub
   url: https://github.com/BlasBenito/spatialRF
 categories: []
-tags: [R packages, Spatial Regression, Machine Learning, Random Forest]
+tags: [Rstats, Statistics, Spatial Modelling, Machine Learning, Random Forest]
 subtitle: ''
 summary: 'R package for spatial regression with Random Forest'
 authors: [admin]

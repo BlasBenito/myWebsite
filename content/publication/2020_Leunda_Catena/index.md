@@ -13,14 +13,11 @@ featured: false
 publication: '*Catena*'
 publication_types:
 - "2"
-publishDate: "2020-05-01T00:00:00Z"
 summary: In this paper we aim to (1) reconstruct the Holocene fire history at high altitudes of the southern Central Pyrenees, (2) add evidence to the debate on fire origin, naturally or anthropogenically produced, (3) determine the importance of fire as a disturbance agent for sub-alpine and alpine vegetation, in comparison with the plant community internal dynamics.
 tags:
-- Palaeoecology
-- Fire dynamics
-- Ecological Memory
-- Generalized Least Squares
-- Plant Ecology
+- Research Papers
+- Time Series Analysis
+- Statistics
 title: Holocene fire and vegetation dynamics in the Central Pyrenees (Spain)
 url_code: https://github.com/BlasBenito/PyreFire
 url_pdf: https://www.dropbox.com/s/btya8msbt37anks/2020_BMB_Catena.pdf?dl=1

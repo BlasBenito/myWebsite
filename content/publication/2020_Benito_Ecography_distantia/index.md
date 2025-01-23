@@ -13,9 +13,9 @@ image:
 publication: '*Ecography*'
 publication_types:
 - "2"
-publishDate: "2020-01-23T00:00:00Z"
 summary: We introduce distantia (v1.0.1), an R package providing general toolset to quantify dissimilarity between ecological time‐series, independently of their regularity and number of samples. The functions in distantia provide the means to compute dissimilarity scores by time and by shape and assess their significance, evaluate the partial contribution of each variable to dissimilarity, and align or combine sequences by similarity.
 tags:
+- Research Papers
 - Time Series Analysis
 - R packages
 title: 'distantia: an open‐source toolset to quantify dissimilarity between multivariate ecological time‐series'

@@ -22,14 +22,12 @@ where FC- like vegetation patterns would be expected. *P ≤ 0.05; **P ≤ 0.01;
 publication: '*New Phytologist (Tansley Review)*'
 publication_types:
 - "2"
-publishDate: "2023-10-03T00:00:00Z"
 summary: "Fairy circles (FCs) are intriguing regular vegetation patterns that have only been described in Namibia and Australia so far. We conducted a global and systematic assessment of FC-like vegetation patterns and discovered hundreds of FC-like locations on three continents. We also characterized the range of environmental conditions that determine their presence, which is restricted to narrow and specific soil and climatic conditions. Areas showing FC-like vegetation patterns also had more stable productivity over time than surrounding areas having non-FC patterns. Our study provides insights into the ecology and biogeography of these fascinating vegetation patterns and the first atlas of their global distribution."
 tags:
+- Research Papers
 - Biogeography
 - Random Forest
-- spatialRF
-- Plant Ecology
-- Dryland ecology
+- Machine Learning
 title: "The global biogeography and environmental drivers of fairy circles"
 url_pdf: https://www.pnas.org/doi/pdf/10.1073/pnas.2304032120?download=true
 ---

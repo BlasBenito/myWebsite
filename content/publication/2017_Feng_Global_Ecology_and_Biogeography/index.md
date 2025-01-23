@@ -16,11 +16,12 @@ featured: false
 publication: '*Global Ecology and Biogeography*'
 publication_types:
 - "2"
-date: "2017-07-17T00:00:00Z"
 summary: "Our results show that phylogenetically diverse assemblages with large phylogenetic age differences among species are associated with relatively high long‐term climate stability, with intra‐regional links between long‐term climate variability and phylogenetic composition especially strong in the more unstable regions. These findings point to future climate change as a key risk to the preservation of the phylogenetically diverse assemblages in regions characterized by relatively high paleoclimate stability, with China as a key example."
 tags:
+- Research Papers
 - Biogeography
-- Plant Ecology
+- Spatial Modelling
+- GIS
 title: 'Phylogenetic age differences in tree assemblages across the Northern Hemisphere increase with long-term climate stability in unstable regions'
 url_pdf: https://www.dropbox.com/s/ptx20e8pjhbdybj/2017_BMB_Global_Ecology_and_Biogeography.pdf?dl=1
 ---

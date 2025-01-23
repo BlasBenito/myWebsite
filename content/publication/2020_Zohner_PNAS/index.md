@@ -60,13 +60,12 @@ image:
 publication: '*PNAS*'
 publication_types:
 - "2"
-publishDate: "2020-05-11T00:00:00Z"
 summary: 'Frost in late spring causes severe ecosystem damage in temperate and boreal regions. We here analyze late-spring frost occurrences between 1959 and 2017 and woody species’ resistance strategies to forecast forest vulnerability under climate change. Leaf-out phenology and leaf-freezing resistance data come from up to 1,500 species cultivated in common gardens. The greatest increase in leaf-damaging spring frost has occurred in Europe and East Asia, where species are more vulnerable to spring frost than in North America. The data imply that 35 and 26% of Europe’s and Asia’s forests are increasingly threatened by frost damage, while this is only true for 10% of North America. Phenological strategies that helped trees tolerate past frost frequencies will thus be increasingly mismatched to future conditions.'
 tags:
-- Phenology
+- Research Papers
 - Biogeography
-- Climate Change
-- Plant Ecology
+- GIS
+- Spatial Modelling
 title: Late-spring frost risk between 1959 and 2017 decreased in North America but increased in Europe and Asia
 url_pdf: https://www.pnas.org/content/pnas/117/22/12192.full.pdf
 ---

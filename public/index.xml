@@ -5,7 +5,7 @@
     <link>https://blasbenito.com/</link>
       <atom:link href="https://blasbenito.com/index.xml" rel="self" type="application/rss+xml" />
     <description>Blas M. Benito, PhD</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023 Blas M. Benito. All Rights Reserved.</copyright><lastBuildDate>Mon, 13 Jan 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://blasbenito.com/media/avatar.jpg</url>
       <title>Blas M. Benito, PhD</title>
@@ -51,28 +51,6 @@
 &lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
 &lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
 &lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Example Talk</title>
-      <link>https://blasbenito.com/talk/example/</link>
-      <pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate>
-      <guid>https://blasbenito.com/talk/example/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Slides can be added in a few ways:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Create&lt;/strong&gt; slides using Academic&amp;rsquo;s 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Slides&lt;/em&gt;&lt;/a&gt; feature and link using &lt;code&gt;slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; an existing slide deck to &lt;code&gt;static/&lt;/code&gt; and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using 
-&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Further talk details can easily be added to this page using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
 </description>
     </item>
     
@@ -266,8 +244,8 @@ ts_preprocessing &amp;lt;- function(x){
 ## attr(,&amp;quot;name&amp;quot;)
 ## [1] zoo_germany
 ## attr(,&amp;quot;scaled:center&amp;quot;)
-##           evi      rainfall   temperature 
-## -9.607699e-18  2.903660e-16  4.440892e-16 
+##          evi     rainfall  temperature 
+## 2.135044e-18 8.113168e-16 5.465713e-16 
 ## attr(,&amp;quot;scaled:scale&amp;quot;)
 ##         evi    rainfall temperature 
 ##   0.1733241  27.6809389   7.6110663
@@ -2529,11 +2507,11 @@ collinear::cor_df(df = df.q)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##   x y   correlation
 ## 1 d c  4.823037e-04
-## 2 d a  1.585298e-16
-## 3 c b  1.708728e-17
-## 4 c a -3.036108e-18
-## 5 d b  2.385256e-18
-## 6 b a -1.431486e-18
+## 2 c b -5.439825e-17
+## 3 d b  3.896078e-17
+## 4 d a  3.837016e-17
+## 5 c a -3.786884e-17
+## 6 b a -1.098207e-17
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The new set of predictors we are left with after the QR decomposition have exactly zero correlation! And now they are not our original predictors anymore, and have a different interpretation:&lt;/p&gt;
 &lt;ul&gt;
@@ -3134,7 +3112,7 @@ predictor.variable.names &amp;lt;- spatialRF::auto_cor(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; interaction.name &lt;/th&gt;
@@ -3302,7 +3280,7 @@ predictor.variable.names &amp;lt;- interactions$predictor.variable.names
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; variable &lt;/th&gt;
@@ -3502,7 +3480,7 @@ predictor.variable.names &amp;lt;- interactions$predictor.variable.names
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; climate_aridity_index_average &lt;/th&gt;
@@ -3712,7 +3690,7 @@ p1 + p2
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; response &lt;/th&gt;
@@ -4001,7 +3979,7 @@ p1 | p2
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; variable &lt;/th&gt;
@@ -4279,7 +4257,7 @@ kableExtra::kbl(
   ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; Model &lt;/th&gt;
@@ -4375,7 +4353,7 @@ mems &amp;lt;- spatialRF::mem_multithreshold(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; spatial_predictor_0_1 &lt;/th&gt;
@@ -4565,7 +4543,7 @@ kableExtra::kbl(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; Model &lt;/th&gt;
@@ -5313,13 +5291,9 @@ site.combinations
       <link>https://blasbenito.com/post_projects/template/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/post_projects/template/</guid>
-      <description>
-&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
-
-
-&lt;p&gt;In the previous posts I have covered how to &lt;a href=&#34;https://www.blasbenito.com/post/01_home_cluster/&#34;&gt;setup a home cluster&lt;/a&gt;, and how to &lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34;&gt;run parallel processes with &lt;code&gt;foreach&lt;/code&gt; in R&lt;/a&gt;. However, so far I haven’t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.&lt;/p&gt;
+      <description>&lt;p&gt;In the previous posts I have covered how to 
+&lt;a href=&#34;https://www.blasbenito.com/post/01_home_cluster/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;setup a home cluster&lt;/a&gt;, and how to 
+&lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;run parallel processes with &lt;code&gt;foreach&lt;/code&gt; in R&lt;/a&gt;. However, so far I haven&amp;rsquo;t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.&lt;/p&gt;
 &lt;p&gt;This post (developed on Ubuntu and Ubuntu Server 20.04) assumes that the home cluster runs on Linux, and covers the following topics.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Basics of the Network File System protocol (NFS).&lt;/li&gt;
@@ -5327,27 +5301,28 @@ site.combinations
 &lt;li&gt;Using an NFS folder in a parallelized loop.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;div id=&#34;the-network-file-system-protocol-nfs&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;The Network File System protocol (NFS)&lt;/h2&gt;
-&lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Network_File_System&#34;&gt;Network File System&lt;/a&gt; protocol offers the means for a &lt;em&gt;host&lt;/em&gt; computer to allow other computers in the network (&lt;em&gt;clients&lt;/em&gt;) to read and write the contents of a given folder. The clients access such folder like if it was a local one, while in fact it is a &lt;em&gt;reference&lt;/em&gt; to the one in the host computer.&lt;/p&gt;
+&lt;h2 id=&#34;the-network-file-system-protocol-nfs&#34;&gt;The Network File System protocol (NFS)&lt;/h2&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Network_File_System&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Network File System&lt;/a&gt; protocol offers the means for a &lt;em&gt;host&lt;/em&gt; computer to allow other computers in the network (&lt;em&gt;clients&lt;/em&gt;) to read and write the contents of a given folder. The clients access such folder like if it was a local one, while in fact it is a &lt;em&gt;reference&lt;/em&gt; to the one in the host computer.&lt;/p&gt;
 &lt;p&gt;The image at the beginning of the post illustrates the concept. There is a &lt;em&gt;host&lt;/em&gt; computer with a folder in the path &lt;code&gt;/home/user/cluster_shared&lt;/code&gt; (were &lt;code&gt;user&lt;/code&gt; is your user name) that is broadcasted to the network, and there are one or several &lt;em&gt;clients&lt;/em&gt; that are mounting &lt;em&gt;mounting&lt;/em&gt; (making accessible) the same folder in their local paths &lt;code&gt;/home/user/cluster_shared&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;If the host writes a file to the shared folder, it is available right away for the clients, and the other way around. At the end, the idea is to have a folder shared among all computers in the cluster, while having the same exact path on each one of them to write or read files from such shared folder.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;setup-of-an-nfs-folder-in-a-home-cluster&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Setup of an NFS folder in a home cluster&lt;/h2&gt;
-&lt;p&gt;To setup the shared folder we’ll need to do some things in the &lt;em&gt;host&lt;/em&gt;, and some things in the &lt;em&gt;clients&lt;/em&gt;. Let’s start with the host.&lt;/p&gt;
-&lt;div id=&#34;preparing-the-host-computer&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;Preparing the host computer&lt;/h4&gt;
+&lt;h2 id=&#34;setup-of-an-nfs-folder-in-a-home-cluster&#34;&gt;Setup of an NFS folder in a home cluster&lt;/h2&gt;
+&lt;p&gt;To setup the shared folder we&amp;rsquo;ll need to do some things in the &lt;em&gt;host&lt;/em&gt;, and some things in the &lt;em&gt;clients&lt;/em&gt;. Let&amp;rsquo;s start with the host.&lt;/p&gt;
+&lt;h4 id=&#34;preparing-the-host-computer&#34;&gt;Preparing the host computer&lt;/h4&gt;
 &lt;p&gt;First we need to install the &lt;code&gt;nfs-kernel-server&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo apt update
-sudo apt install nfs-kernel-server&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt update
+sudo apt install nfs-kernel-server
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now we can create the shared folder. Remember to replace &lt;code&gt;user&lt;/code&gt; with your user name, and &lt;code&gt;cluster_shared&lt;/code&gt; with the actual folder name you want to use.&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;mkdir /home/user/cluster_shared&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;To broadcast it we need to open the file &lt;code&gt;/etc/exports&lt;/code&gt;…&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo gedit /etc/exports&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;… and add the following line&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;/home/user/cluster_shared IP_CLIENT1(rw,no_subtree_check) IP_CLIENT2(rw,no_subtree_check) IP_CLIENT3(rw,no_subtree_check)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir /home/user/cluster_shared
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To broadcast it we need to open the file &lt;code&gt;/etc/exports&lt;/code&gt;&amp;hellip;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo gedit /etc/exports
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;hellip; and add the following line&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/home/user/cluster_shared IP_CLIENT1(rw,no_subtree_check) IP_CLIENT2(rw,no_subtree_check) IP_CLIENT3(rw,no_subtree_check)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;where:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;/home/user/cluster_shared&lt;/code&gt; is the path of the shared folder.&lt;/li&gt;
@@ -5356,46 +5331,50 @@ sudo apt install nfs-kernel-server&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;code&gt;no_subtree_check&lt;/code&gt; prevents the host from checking the complete tree of shares before attending a request (read or write) by a client.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For example, the last line of my &lt;code&gt;/etc/exports&lt;/code&gt; file looks like this:&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;/home/blas/cluster_shared 10.42.0.34(rw,async,no_subtree_check) 10.42.0.104(rw,async,no_subtree_check)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/home/blas/cluster_shared 10.42.0.34(rw,async,no_subtree_check) 10.42.0.104(rw,async,no_subtree_check)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Save the file, and to make the changes effective, execute:&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo exportfs -ra&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo exportfs -ra
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To end preparing the host we have to update the firewall rules to allow nfs connections from the clients. Notice that one rule per client needs to be defined, using the clients IPs to identify them.&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo ufw allow from IP_CLIENT1 to any port nfs
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo ufw allow from IP_CLIENT1 to any port nfs
 sudo ufw allow from IP_CLIENT2 to any port nfs
-sudo ufw status&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;preparing-the-clients&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;Preparing the clients&lt;/h4&gt;
+sudo ufw status
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;preparing-the-clients&#34;&gt;Preparing the clients&lt;/h4&gt;
 &lt;p&gt;First we have to install the Linux package &lt;code&gt;nfs-common&lt;/code&gt; on each client.&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo apt update
-sudp apt install nfs-common&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt update
+sudp apt install nfs-common
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now we can create a folder in the clients and use it to mount the NFS folder of the host.&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;mkdir -p /home/user/cluster_shared
-sudo mount IP_HOST:/home/user/cluster_shared /home/user/cluster_shared&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir -p /home/user/cluster_shared
+sudo mount IP_HOST:/home/user/cluster_shared /home/user/cluster_shared
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The second line of code is mounting the folder &lt;code&gt;/home/user/cluster_shared&lt;/code&gt; of the host in the folder &lt;code&gt;/home/user/cluster_shared&lt;/code&gt; of the client.&lt;/p&gt;
-&lt;p&gt;To make the mount permanent, we have to open &lt;code&gt;/etc/fstab&lt;/code&gt; with super-user privilege in the clients…&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo gedit /etc/fstab&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;… and add the line&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;IP_HOST:/home/user/cluster_shared /home/user/cluster_shared   nfs     defaults 0 0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To make the mount permanent, we have to open &lt;code&gt;/etc/fstab&lt;/code&gt; with super-user privilege in the clients&amp;hellip;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo gedit /etc/fstab
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;hellip; and add the line&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;IP_HOST:/home/user/cluster_shared /home/user/cluster_shared   nfs     defaults 0 0
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Remember to replace &lt;code&gt;IP_HOST&lt;/code&gt; and &lt;code&gt;user&lt;/code&gt; with the right values!&lt;/p&gt;
 &lt;p&gt;Now we can test that the shared folder works as intended by writing one file into it from each computer in the network using the code below in the command line.&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cd cluster_shared
-touch filename.txt&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;terminator.png&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd cluster_shared
+touch filename.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;terminator.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Once the files are created, we can check they are visible from each computer using the &lt;code&gt;ls&lt;/code&gt; command.&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;ls&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;terminator2.png&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ls
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;terminator2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;using-an-nfs-folder-in-a-parallelized-loop&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Using an NFS folder in a parallelized loop&lt;/h2&gt;
-&lt;p&gt;In a &lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34;&gt;previous post&lt;/a&gt; I described how to run parallelized tasks with &lt;code&gt;foreach&lt;/code&gt; in R. This section intends to complete that post by showing how a shared NFS folder can be used to store input and output files during the execution of a parallelized loop&lt;/p&gt;
-&lt;div id=&#34;the-task&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;The task&lt;/h3&gt;
+&lt;h2 id=&#34;using-an-nfs-folder-in-a-parallelized-loop&#34;&gt;Using an NFS folder in a parallelized loop&lt;/h2&gt;
+&lt;p&gt;In a 
+&lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;previous post&lt;/a&gt; I described how to run parallelized tasks with &lt;code&gt;foreach&lt;/code&gt; in R. This section intends to complete that post by showing how a shared NFS folder can be used to store input and output files during the execution of a parallelized loop&lt;/p&gt;
+&lt;h3 id=&#34;the-task&#34;&gt;The task&lt;/h3&gt;
 &lt;p&gt;In this hypothetical example we have a large number of data frames stored in &lt;code&gt;/home/user/cluster_shared/input&lt;/code&gt;. Each data frame has the same predictors &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;, &lt;code&gt;c&lt;/code&gt;, and &lt;code&gt;d&lt;/code&gt;, and a different response variable, named &lt;code&gt;y1&lt;/code&gt; for the data frame &lt;code&gt;y1&lt;/code&gt;, &lt;code&gt;y2&lt;/code&gt; for the data frame &lt;code&gt;y2&lt;/code&gt;, and so on. In the example we will be using 100 data frames, but there could be thousands. This example would be valid as well for any other kind of object, such as raster files, time-series, etc etc.&lt;/p&gt;
-&lt;p&gt;First we have to load the libraries we’ll be using.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#automatic install of packages if they are not installed already
+&lt;p&gt;First we have to load the libraries we&amp;rsquo;ll be using.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#automatic install of packages if they are not installed already
 list.of.packages &amp;lt;- c(
   &amp;quot;foreach&amp;quot;,
   &amp;quot;doParallel&amp;quot;,
@@ -5416,9 +5395,10 @@ for(package.i in list.of.packages){
       character.only = TRUE
       )
     )
-}&lt;/code&gt;&lt;/pre&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The code chunk below generates the folder &lt;code&gt;/home/user/cluster_shared/input&lt;/code&gt; and populates it with the dummy files.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#creating the input folder
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#creating the input folder
 input.folder &amp;lt;- &amp;quot;/home/blas/cluster_shared/input&amp;quot;
 dir.create(input.folder)
 
@@ -5452,20 +5432,21 @@ for(i in df.names){
   #removing the generated data frame form the environment
   rm(list = i, df.i, i)
   
-}&lt;/code&gt;&lt;/pre&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Our target now will be to fit one &lt;code&gt;ranger::ranger()&lt;/code&gt; model per data frame stored in &lt;code&gt;/home/blas/cluster_shared/input&lt;/code&gt;, save the model result to a folder with the path &lt;code&gt;/home/blas/cluster_shared/input&lt;/code&gt;, and write a small summary of the model to the output of &lt;code&gt;foreach&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Such target is based on this rationale: When executing a &lt;code&gt;foreach&lt;/code&gt; loop as in &lt;code&gt;x &amp;lt;- foreach(...) %dopar% {...}&lt;/code&gt;, the variable &lt;code&gt;x&lt;/code&gt; is going to grow in memory very fast, competing for RAM resources with the worker nodes. Furthermore, since &lt;code&gt;x&lt;/code&gt; is being written on the fly, the results would be lost if the computer crashes. When the size of the input and the output of our parallelized operation is larger than memory, we can use an NFS folder to store inputs and outputs, while keeping the RAM memory free for computational tasks only, with the positive side effect of having our outputs already stored should our computer decide to crash.&lt;/p&gt;
 &lt;p&gt;Also, please notice that here I am focusing in a cluster setting, but using a folder to read and write data during a loop paralellized with &lt;code&gt;foreach&lt;/code&gt; can indeed be done in a single computer without an NFS folder. Any folder in your system will do the trick as well!&lt;/p&gt;
 &lt;p&gt;So, from here, we are going to prepare the cluster, and execute a parallelized loop fitting one model per data frame that reads the inputs and writes the outputs to the shared folder.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;cluster-setup&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Cluster setup&lt;/h3&gt;
-&lt;p&gt;We will also need the function I showed in the previous post to generate the cluster specification from a &lt;a href=&#34;https://gist.github.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca&#34;&gt;GitHub Gist&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;source(&amp;quot;https://gist.githubusercontent.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca/raw/de57b23740ca90bc02fbd0d5cd3551106ff2fb6d/cluster_spec.R&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;cluster-setup&#34;&gt;Cluster setup&lt;/h3&gt;
+&lt;p&gt;We will also need the function I showed in the previous post to generate the cluster specification from a 
+&lt;a href=&#34;https://gist.github.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub Gist&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;source(&amp;quot;https://gist.githubusercontent.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca/raw/de57b23740ca90bc02fbd0d5cd3551106ff2fb6d/cluster_spec.R&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Below I use the function to create a cluster specification and initiate the cluster with &lt;code&gt;parallel::makeCluster()&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#generate cluster specification
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#generate cluster specification
 spec &amp;lt;- cluster_spec(
-  ips = c(&amp;#39;10.42.0.1&amp;#39;, &amp;#39;10.42.0.34&amp;#39;, &amp;#39;10.42.0.104&amp;#39;),
+  ips = c(&#39;10.42.0.1&#39;, &#39;10.42.0.34&#39;, &#39;10.42.0.104&#39;),
   cores = c(7, 4, 4),
   user = &amp;quot;blas&amp;quot;
 )
@@ -5476,7 +5457,7 @@ Sys.getenv(&amp;quot;R_PARALLEL_PORT&amp;quot;)
 
 #setting up cluster
 my.cluster &amp;lt;- parallel::makeCluster(
-  master = &amp;#39;10.42.0.1&amp;#39;, 
+  master = &#39;10.42.0.1&#39;, 
   spec = spec,
   port = Sys.getenv(&amp;quot;R_PARALLEL_PORT&amp;quot;),
   outfile = &amp;quot;&amp;quot;,
@@ -5490,23 +5471,23 @@ print(my.cluster)
 doParallel::registerDoParallel(cl = my.cluster)
 
 #check number of workers
-foreach::getDoParWorkers()&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;parallelized-loop&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Parallelized loop&lt;/h3&gt;
+foreach::getDoParWorkers()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;parallelized-loop&#34;&gt;Parallelized loop&lt;/h3&gt;
 &lt;p&gt;For everything to work as intended, we first need to create the output folder.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;output.folder &amp;lt;- &amp;quot;/home/blas/cluster_shared/output&amp;quot;
-dir.create(output.folder)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;output.folder &amp;lt;- &amp;quot;/home/blas/cluster_shared/output&amp;quot;
+dir.create(output.folder)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;And now we are ready to execute the parallelized loop. Notice that I am using the output of &lt;code&gt;list.files()&lt;/code&gt; to have a vector of file names the loop will iterate over. The steps inside of the loop go as follows:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;em&gt;1.&lt;/em&gt; Remove the extension &lt;code&gt;.RData&lt;/code&gt; from the file name. We’ll later use the result to use &lt;code&gt;assign()&lt;/code&gt; on the fitted model to change its name to the same as the input file before saving it.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;1.&lt;/em&gt; Remove the extension &lt;code&gt;.RData&lt;/code&gt; from the file name. We&amp;rsquo;ll later use the result to use &lt;code&gt;assign()&lt;/code&gt; on the fitted model to change its name to the same as the input file before saving it.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;2.&lt;/em&gt; Read the input data frame and store in an object named &lt;code&gt;df&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;3.&lt;/em&gt; Fit the model with ranger, using the first column of &lt;code&gt;df&lt;/code&gt; as respose variable.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;4.&lt;/em&gt; Change the model name to the name of the input file without extension, resulting from the first step described above.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;5.&lt;/em&gt; Save the model into the output folder with the extension &lt;code&gt;.RData&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;6.&lt;/em&gt; Return a data frame with one line with the name of the response variable, the r-squared, and the importance of each predictor.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#list of input files as iterator
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#list of input files as iterator
 input.files &amp;lt;- list.files(
   path = input.folder,
   full.names = FALSE
@@ -5514,7 +5495,7 @@ input.files &amp;lt;- list.files(
 
 modelling.summary &amp;lt;- foreach(
   input.file = input.files,
-  .combine = &amp;#39;rbind&amp;#39;, 
+  .combine = &#39;rbind&#39;, 
   .packages = &amp;quot;ranger&amp;quot;
 ) %dopar% {
   
@@ -5552,22 +5533,22 @@ modelling.summary &amp;lt;- foreach(
     )
   )
   
-}&lt;/code&gt;&lt;/pre&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Once this parallelized loop is executed, the folder &lt;code&gt;/home/blas/cluster_shared/output&lt;/code&gt; should be filled with the results from the cluster workers, and the &lt;code&gt;modelling.summary&lt;/code&gt; data frame contains the summary of each fitted model.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;output.png&#34; alt=&#34;Listing outputs in the shared folder&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;output.png&#34; alt=&#34;Listing outputs in the shared folder&#34;&gt;
 Now that the work is done, we can stop the cluster.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;parallel::stopCluster(cl = my.cluster)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;parallel::stopCluster(cl = my.cluster)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now you know how to work with data larger than memory in a parallelized loop!&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     
     <item>
       <title>Setup of a Shared Folder in a Home Cluster</title>
-      <link>https://blasbenito.com/post/shared-folder-home-cluster/</link>
+      <link>https://blasbenito.com/post/shared-folder-beowulf-cluster/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://blasbenito.com/post/shared-folder-home-cluster/</guid>
+      <guid>https://blasbenito.com/post/shared-folder-beowulf-cluster/</guid>
       <description>&lt;p&gt;In the previous posts I have covered how to 
 &lt;a href=&#34;https://www.blasbenito.com/post/01_home_cluster/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;setup a home cluster&lt;/a&gt;, and how to 
 &lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;run parallel processes with &lt;code&gt;foreach&lt;/code&gt; in R&lt;/a&gt;. However, so far I haven&amp;rsquo;t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.&lt;/p&gt;
@@ -6041,15 +6022,11 @@ Now that the work is done, we can stop the cluster.&lt;/p&gt;
       <link>https://blasbenito.com/post/02_parallelizing_loops_with_r/</link>
       <pubDate>Sat, 26 Dec 2020 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/post/02_parallelizing_loops_with_r/</guid>
-      <description>
-&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
-
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; to better follow this tutorial you can download the .Rmd file &lt;a href=&#34;https://www.dropbox.com/s/wsl2hcex3w0lr6u/parallelized_loops.Rmd?dl=1&#34;&gt;from here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In &lt;a href=&#34;https://www.blasbenito.com/post/01_home_cluster/&#34;&gt;a previous post&lt;/a&gt; I explained how to set up a small home cluster. Many things can be done with a cluster, and parallelizing loops is one of them. But there is no need of a cluster to parallelize loops and improve the efficiency of your coding!&lt;/p&gt;
-&lt;p&gt;I believe that coding parallelized loops is an important asset for anyone working with R. That’s why this post covers the following topics:&lt;/p&gt;
+      <description>&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; to better follow this tutorial you can download the .Rmd file 
+&lt;a href=&#34;https://www.dropbox.com/s/wsl2hcex3w0lr6u/parallelized_loops.Rmd?dl=1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;from here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In 
+&lt;a href=&#34;https://www.blasbenito.com/post/01_home_cluster/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;a previous post&lt;/a&gt; I explained how to set up a small home cluster. Many things can be done with a cluster, and parallelizing loops is one of them. But there is no need of a cluster to parallelize loops and improve the efficiency of your coding!&lt;/p&gt;
+&lt;p&gt;I believe that coding parallelized loops is an important asset for anyone working with R. That&amp;rsquo;s why this post covers the following topics:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Beyond &lt;code&gt;for&lt;/code&gt;: building loops with &lt;code&gt;foreach&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;What is a parallel backend?&lt;/li&gt;
@@ -6059,23 +6036,24 @@ Now that the work is done, we can stop the cluster.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Tuning of random forest hyperparameters.&lt;/li&gt;
 &lt;li&gt;Confidence intervals of the importance scores of the predictors in random forest models.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;div id=&#34;for-loops-are-fine-but&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;code&gt;for&lt;/code&gt; loops are fine, but…&lt;/h2&gt;
-&lt;p&gt;Many experienced R users frequently say that nobody should write loops with R because they are tacky or whatever. However, I find loops easy to write, read, and debug, and are therefore my workhorse whenever I need to repeat a task and I don’t feel like using &lt;code&gt;apply()&lt;/code&gt; and the likes. However, regular &lt;code&gt;for&lt;/code&gt; loops in R are highly inefficient, because they only use one of your computer cores to perform the iterations.&lt;/p&gt;
+&lt;h2 id=&#34;for-loops-are-fine-but&#34;&gt;&lt;code&gt;for&lt;/code&gt; loops are fine, but&amp;hellip;&lt;/h2&gt;
+&lt;p&gt;Many experienced R users frequently say that nobody should write loops with R because they are tacky or whatever. However, I find loops easy to write, read, and debug, and are therefore my workhorse whenever I need to repeat a task and I don&amp;rsquo;t feel like using &lt;code&gt;apply()&lt;/code&gt; and the likes. However, regular &lt;code&gt;for&lt;/code&gt; loops in R are highly inefficient, because they only use one of your computer cores to perform the iterations.&lt;/p&gt;
 &lt;p&gt;For example, the &lt;code&gt;for&lt;/code&gt; loop below sorts vectors of random numbers a given number of times, and will only work on one of your computer cores for a few seconds, while the others are there, procrastinating with no shame.&lt;/p&gt;
-&lt;div class=&#34;tenor-gif-embed&#34; data-postid=&#34;16563810&#34; data-share-method=&#34;host&#34; data-width=&#34;60%&#34; data-aspect-ratio=&#34;1.7785714285714287&#34;&gt;
-&lt;a href=&#34;https://tenor.com/view/wot-cpu-danceing-break-dancing-cool-gif-16563810&#34;&gt;Wot Cpu GIF&lt;/a&gt; from &lt;a href=&#34;https://tenor.com/search/wot-gifs&#34;&gt;Wot GIFs&lt;/a&gt;
-&lt;/div&gt;
-&lt;script type=&#34;text/javascript&#34; async src=&#34;https://tenor.com/embed.js&#34;&gt;&lt;/script&gt;
-&lt;p&gt;(gif kindly suggested by &lt;a href=&#34;https://twitter.com/AndrosSpica&#34;&gt;Andreas Angourakis&lt;/a&gt;)&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;for(i in 1:10000){
+&lt;div class=&#34;tenor-gif-embed&#34; data-postid=&#34;16563810&#34; data-share-method=&#34;host&#34; data-width=&#34;60%&#34; data-aspect-ratio=&#34;1.7785714285714287&#34;&gt;&lt;a href=&#34;https://tenor.com/view/wot-cpu-danceing-break-dancing-cool-gif-16563810&#34;&gt;Wot Cpu GIF&lt;/a&gt; from &lt;a href=&#34;https://tenor.com/search/wot-gifs&#34;&gt;Wot GIFs&lt;/a&gt;&lt;/div&gt;&lt;script type=&#34;text/javascript&#34; async src=&#34;https://tenor.com/embed.js&#34;&gt;&lt;/script&gt;
+&lt;p&gt;(gif kindly suggested by 
+&lt;a href=&#34;https://twitter.com/AndrosSpica&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Andreas Angourakis&lt;/a&gt;)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;for(i in 1:10000){
   sort(runif(10000))
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If every &lt;code&gt;i&lt;/code&gt; could run in a different core, the operation would indeed run a bit faster, and we would get rid of lazy cores. This is were packages like &lt;a href=&#34;https://cran.r-project.org/web/packages/foreach&#34;&gt;&lt;code&gt;foreach&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://cran.r-project.org/web/packages/doParallel&#34;&gt;&lt;code&gt;doParallel&lt;/code&gt;&lt;/a&gt; come into play. Let’s start installing these packages and a few others that will be useful throughout this tutorial.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#automatic install of packages if they are not installed already
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If every &lt;code&gt;i&lt;/code&gt; could run in a different core, the operation would indeed run a bit faster, and we would get rid of lazy cores. This is were packages like 
+&lt;a href=&#34;https://cran.r-project.org/web/packages/foreach&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;foreach&lt;/code&gt;&lt;/a&gt; and 
+&lt;a href=&#34;https://cran.r-project.org/web/packages/doParallel&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;doParallel&lt;/code&gt;&lt;/a&gt; come into play. Let&amp;rsquo;s start installing these packages and a few others that will be useful throughout this tutorial.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#automatic install of packages if they are not installed already
 list.of.packages &amp;lt;- c(
   &amp;quot;foreach&amp;quot;,
   &amp;quot;doParallel&amp;quot;,
@@ -6090,8 +6068,16 @@ new.packages &amp;lt;- list.of.packages[!(list.of.packages %in% installed.packag
 if(length(new.packages) &amp;gt; 0){
   install.packages(new.packages, dep=TRUE)
 }
-
-#loading packages
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Installing packages into &#39;/home/blas/R/x86_64-pc-linux-gnu-library/4.4&#39;
+## (as &#39;lib&#39; is unspecified)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## also installing the dependencies &#39;SQUAREM&#39;, &#39;diagram&#39;, &#39;lava&#39;, &#39;AsioHeaders&#39;, &#39;cpp11&#39;, &#39;prodlim&#39;, &#39;websocket&#39;, &#39;clock&#39;, &#39;gower&#39;, &#39;hardhat&#39;, &#39;ipred&#39;, &#39;timeDate&#39;, &#39;gargle&#39;, &#39;cellranger&#39;, &#39;ids&#39;, &#39;selectr&#39;, &#39;chromote&#39;, &#39;recipes&#39;, &#39;conflicted&#39;, &#39;dtplyr&#39;, &#39;forcats&#39;, &#39;googledrive&#39;, &#39;googlesheets4&#39;, &#39;haven&#39;, &#39;readxl&#39;, &#39;reprex&#39;, &#39;rvest&#39;, &#39;feather&#39;, &#39;mockr&#39;, &#39;magick&#39;, &#39;formattable&#39;, &#39;sparkline&#39;, &#39;webshot2&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in install.packages(new.packages, dep = TRUE): installation of package
+## &#39;magick&#39; had non-zero exit status
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#loading packages
 for(package.i in list.of.packages){
   suppressPackageStartupMessages(
     library(
@@ -6102,25 +6088,28 @@ for(package.i in list.of.packages){
 }
 
 #loading example data
-data(&amp;quot;penguins&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+data(&amp;quot;penguins&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;beyond-for-building-loops-with-foreach&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Beyond &lt;code&gt;for&lt;/code&gt;: building loops with &lt;code&gt;foreach&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;foreach&lt;/code&gt; package (the vignette is &lt;a href=&#34;https://cran.r-project.org/web/packages/foreach/vignettes/foreach.html&#34;&gt;here&lt;/a&gt;) provides a way to build loops that support parallel execution, and easily gather the results provided by each iteration in the loop.&lt;/p&gt;
-&lt;p&gt;For example, this classic &lt;code&gt;for&lt;/code&gt; loop computes the square root of the numbers 1 to 5 with &lt;code&gt;sqrt()&lt;/code&gt; (the function is vectorized, but let’s conveniently forget that for a moment). Notice that I have to create a vector &lt;code&gt;x&lt;/code&gt; to gather the results before executing the loop.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- vector()
+&lt;h2 id=&#34;beyond-for-building-loops-with-foreach&#34;&gt;Beyond &lt;code&gt;for&lt;/code&gt;: building loops with &lt;code&gt;foreach&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;foreach&lt;/code&gt; package (the vignette is 
+&lt;a href=&#34;https://cran.r-project.org/web/packages/foreach/vignettes/foreach.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;) provides a way to build loops that support parallel execution, and easily gather the results provided by each iteration in the loop.&lt;/p&gt;
+&lt;p&gt;For example, this classic &lt;code&gt;for&lt;/code&gt; loop computes the square root of the numbers 1 to 5 with &lt;code&gt;sqrt()&lt;/code&gt; (the function is vectorized, but let&amp;rsquo;s conveniently forget that for a moment). Notice that I have to create a vector &lt;code&gt;x&lt;/code&gt; to gather the results before executing the loop.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;x &amp;lt;- vector()
 for(i in 1:10){
   x[i] &amp;lt;- sqrt(i)
   }
-x&lt;/code&gt;&lt;/pre&gt;
+x
+&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427
-##  [9] 3.000000 3.162278&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;foreach&lt;/code&gt; version returns a list with the results automatically. Notice that &lt;code&gt;%do%&lt;/code&gt; operator after the loop definition, I’ll talk more about it later.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- foreach(i = 1:10) %do% {
+##  [9] 3.000000 3.162278
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;foreach&lt;/code&gt; version returns a list with the results automatically. Notice that &lt;code&gt;%do%&lt;/code&gt; operator after the loop definition, I&amp;rsquo;ll talk more about it later.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;x &amp;lt;- foreach(i = 1:10) %do% {
   sqrt(i)
   }
-x&lt;/code&gt;&lt;/pre&gt;
+x
+&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [[1]]
 ## [1] 1
 ## 
@@ -6149,126 +6138,135 @@ x&lt;/code&gt;&lt;/pre&gt;
 ## [1] 3
 ## 
 ## [[10]]
-## [1] 3.162278&lt;/code&gt;&lt;/pre&gt;
+## [1] 3.162278
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can use the &lt;code&gt;.combine&lt;/code&gt; argument of &lt;code&gt;foreach&lt;/code&gt; to arrange the list as a vector. Other options such as &lt;code&gt;cbind&lt;/code&gt;, &lt;code&gt;rbind&lt;/code&gt;, or even custom functions can be used as well, only depending on the structure of the output of each iteration.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- foreach(
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;x &amp;lt;- foreach(
   i = 1:10, 
-  .combine = &amp;#39;c&amp;#39;
+  .combine = &#39;c&#39;
 ) %do% {
     sqrt(i)
   }
-x&lt;/code&gt;&lt;/pre&gt;
+x
+&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427
-##  [9] 3.000000 3.162278&lt;/code&gt;&lt;/pre&gt;
+##  [9] 3.000000 3.162278
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Another interesting capability of &lt;code&gt;foreach&lt;/code&gt; is that it supports several iterators of the same length at once. Notice that the values of the iterators are not combined. When the first value of one iterator is being used, the first value of the other iterators will be used as well.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- foreach(
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;x &amp;lt;- foreach(
   i = 1:3, 
   j = 1:3, 
   k = 1:3, 
-  .combine = &amp;#39;c&amp;#39;
+  .combine = &#39;c&#39;
   ) %do% {
   i + j + k
   }
-x&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 3 6 9&lt;/code&gt;&lt;/pre&gt;
+x
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3 6 9
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;running-foreach-loops-in-parallel&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Running &lt;code&gt;foreach&lt;/code&gt; loops in parallel&lt;/h2&gt;
+&lt;h2 id=&#34;running-foreach-loops-in-parallel&#34;&gt;Running &lt;code&gt;foreach&lt;/code&gt; loops in parallel&lt;/h2&gt;
 &lt;p&gt;The &lt;code&gt;foreach&lt;/code&gt; loops shown above use the operator &lt;code&gt;%do%&lt;/code&gt;, that processes the tasks sequentially. To run tasks in parallel, &lt;code&gt;foreach&lt;/code&gt; uses the operator &lt;code&gt;%dopar%&lt;/code&gt;, that has to be supported by a parallel &lt;em&gt;backend&lt;/em&gt;. If there is no parallel backend, &lt;code&gt;%dopar%&lt;/code&gt; warns the user that it is being run sequentially, as shown below. But what the heck is a parallel backend?&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- foreach(
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;x &amp;lt;- foreach(
   i = 1:10, 
-  .combine = &amp;#39;c&amp;#39;
+  .combine = &#39;c&#39;
 ) %dopar% {
     sqrt(i)
-  }&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: executing %dopar% sequentially: no parallel backend registered&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x&lt;/code&gt;&lt;/pre&gt;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: executing %dopar% sequentially: no parallel backend registered
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;x
+&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427
-##  [9] 3.000000 3.162278&lt;/code&gt;&lt;/pre&gt;
+##  [9] 3.000000 3.162278
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;div id=&#34;what-is-a-parallel-backend&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;What is a parallel backend?&lt;/h3&gt;
+&lt;h3 id=&#34;what-is-a-parallel-backend&#34;&gt;What is a parallel backend?&lt;/h3&gt;
 &lt;p&gt;When running tasks in parallel, there should be a &lt;em&gt;director&lt;/em&gt; node that tells a group of &lt;em&gt;workers&lt;/em&gt; what to do with a given set of data and functions. The &lt;em&gt;workers&lt;/em&gt; execute the iterations, and the &lt;em&gt;director&lt;/em&gt; manages execution and gathers the results provided by the &lt;em&gt;workers&lt;/em&gt;. A parallel backend provides the means for the director and workers to communicate, while allocating and managing the required computing resources (processors, RAM memory, and network bandwidth among others).&lt;/p&gt;
 &lt;p&gt;There are two types of parallel backends that can be used with &lt;code&gt;foreach&lt;/code&gt;, &lt;strong&gt;FORK&lt;/strong&gt; and &lt;strong&gt;PSOCK&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;div id=&#34;fork&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;FORK&lt;/h4&gt;
-&lt;p&gt;FORK backends are only available on UNIX machines (Linux, Mac, and the likes), and do not work in clusters [sad face], so only single-machine environments are appropriate for this backend. In a FORK backend, the workers share the same environment (data, loaded packages, and functions) as the director. This setup is highly efficient because the main environment doesn’t have to be copied, and only worker outputs need to be sent back to the director.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;FORK.png&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;fork&#34;&gt;FORK&lt;/h4&gt;
+&lt;p&gt;FORK backends are only available on UNIX machines (Linux, Mac, and the likes), and do not work in clusters [sad face], so only single-machine environments are appropriate for this backend. In a FORK backend, the workers share the same environment (data, loaded packages, and functions) as the director. This setup is highly efficient because the main environment doesn&amp;rsquo;t have to be copied, and only worker outputs need to be sent back to the director.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;FORK.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;psock&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;PSOCK&lt;/h4&gt;
+&lt;h4 id=&#34;psock&#34;&gt;PSOCK&lt;/h4&gt;
 &lt;p&gt;PSOCK backends (Parallel Socket Cluster) are available for both UNIX and WINDOWS systems, and are the default option provided with &lt;code&gt;foreach&lt;/code&gt;. As their main disadvantage, the environment of the director needs to be copied to the environment of each worker, which increases network overhead while decreasing the overall efficiency of the cluster. By default, all the functions available in base R are copied to each worker, and if a particular set of R packages are needed in the workers, they need to be copied to the respective environments of the workers as well.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.r-bloggers.com/2019/06/parallel-r-socket-or-fork/&#34;&gt;This post&lt;/a&gt; compares both backends and concludes that FORK is about a 40% faster than PSOCK.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;PSOCK.png&#34; /&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://www.r-bloggers.com/2019/06/parallel-r-socket-or-fork/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;This post&lt;/a&gt; compares both backends and concludes that FORK is about a 40% faster than PSOCK.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;PSOCK.png&#34; alt=&#34;&#34;&gt;
  &lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;setup-of-a-parallel-backend&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Setup of a parallel backend&lt;/h2&gt;
-&lt;p&gt;Here I explain how to setup the parallel backend for a simple computer and for a Beowulf cluster as &lt;a href=&#34;(https://www.blasbenito.com/post/01_home_cluster/)&#34;&gt;the one I described in a previous post&lt;/a&gt;.&lt;/p&gt;
-&lt;div id=&#34;setup-for-a-single-computer&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Setup for a single computer&lt;/h3&gt;
+&lt;h2 id=&#34;setup-of-a-parallel-backend&#34;&gt;Setup of a parallel backend&lt;/h2&gt;
+&lt;p&gt;Here I explain how to setup the parallel backend for a simple computer and for a Beowulf cluster as 
+&lt;a href=&#34;%28https://www.blasbenito.com/post/01_home_cluster/%29&#34;&gt;the one I described in a previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;setup-for-a-single-computer&#34;&gt;Setup for a single computer&lt;/h3&gt;
 &lt;p&gt;Setting up a cluster in a single computer requires first to find out how many cores we want to use from the ones we have available. It is recommended to leave one free core for other tasks.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;parallel::detectCores()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 8&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;n.cores &amp;lt;- parallel::detectCores() - 1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now we need to define the cluster with &lt;code&gt;parallel::makeCluster()&lt;/code&gt; and register it so it can be used by &lt;code&gt;%dopar%&lt;/code&gt; with &lt;code&gt;doParallel::registerDoParallel(my.cluster)&lt;/code&gt;. The &lt;code&gt;type&lt;/code&gt; argument of &lt;code&gt;parallel::makeCluster()&lt;/code&gt; accepts the strings “PSOCK” and “FORK” to define the type of parallel backend to be used.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#create the cluster
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;parallel::detectCores()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 16
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;n.cores &amp;lt;- parallel::detectCores() - 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we need to define the cluster with &lt;code&gt;parallel::makeCluster()&lt;/code&gt; and register it so it can be used by &lt;code&gt;%dopar%&lt;/code&gt; with &lt;code&gt;doParallel::registerDoParallel(my.cluster)&lt;/code&gt;. The &lt;code&gt;type&lt;/code&gt; argument of &lt;code&gt;parallel::makeCluster()&lt;/code&gt; accepts the strings &amp;ldquo;PSOCK&amp;rdquo; and &amp;ldquo;FORK&amp;rdquo; to define the type of parallel backend to be used.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#create the cluster
 my.cluster &amp;lt;- parallel::makeCluster(
   n.cores, 
   type = &amp;quot;PSOCK&amp;quot;
   )
 
 #check cluster definition (optional)
-print(my.cluster)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## socket cluster with 7 nodes on host &amp;#39;localhost&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#register it to be used by %dopar%
+print(my.cluster)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## socket cluster with 15 nodes on host &#39;localhost&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#register it to be used by %dopar%
 doParallel::registerDoParallel(cl = my.cluster)
 
 #check if it is registered (optional)
-foreach::getDoParRegistered()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] TRUE&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#how many workers are available? (optional)
-foreach::getDoParWorkers()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 7&lt;/code&gt;&lt;/pre&gt;
+foreach::getDoParRegistered()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] TRUE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#how many workers are available? (optional)
+foreach::getDoParWorkers()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 15
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now we can run a set of tasks in parallel!&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- foreach(
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;x &amp;lt;- foreach(
   i = 1:10, 
-  .combine = &amp;#39;c&amp;#39;
+  .combine = &#39;c&#39;
 ) %dopar% {
     sqrt(i)
   }
-x&lt;/code&gt;&lt;/pre&gt;
+x
+&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427
-##  [9] 3.000000 3.162278&lt;/code&gt;&lt;/pre&gt;
+##  [9] 3.000000 3.162278
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If everything went well, now &lt;code&gt;%dopar%&lt;/code&gt; should not be throwing the warning &lt;code&gt;executing %dopar% sequentially: no parallel backend registered&lt;/code&gt;, meaning that the parallel execution is working as it should. In this little example there is no gain in execution speed, because the operation being executed is extremely fast, but this will change when the operations running inside of the loop take longer times to run.&lt;/p&gt;
 &lt;p&gt;Finally, it is always recommendable to stop the cluster when we are done working with it.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;parallel::stopCluster(cl = my.cluster)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;setup-for-a-beowulf-cluster&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Setup for a Beowulf cluster&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;parallel::stopCluster(cl = my.cluster)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;setup-for-a-beowulf-cluster&#34;&gt;Setup for a Beowulf cluster&lt;/h3&gt;
 &lt;p&gt;This setup is a bit more complex, because it requires to open a &lt;em&gt;port&lt;/em&gt; in every computer of the cluster. Ports are virtual communication channels, and are identified by a number.&lt;/p&gt;
 &lt;p&gt;First, lets tell R what port we want to use:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#define port
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#define port
 Sys.setenv(R_PARALLEL_PORT = 11000)
 
 #check that it
-Sys.getenv(&amp;quot;R_PARALLEL_PORT&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now, we need to open the selected port in every computer of the network. In Linux we need to setup the firewall to allow connections from the network &lt;code&gt;10.42.1.0/24&lt;/code&gt; (replace this with your network range if different!) to the port &lt;code&gt;11000&lt;/code&gt; by splitting the window of the &lt;a href=&#34;https://gnometerminator.blogspot.com/p/introduction.html&#34;&gt;Terminator console&lt;/a&gt; in as many computers available in your network (the figure below shows three, one for my PC and two for my Intel NUCs), opening an ssh session on each remote machine, and setting Terminator with &lt;em&gt;Grouping&lt;/em&gt; equal to &lt;em&gt;Broadcast all&lt;/em&gt; so we only need to type the commands once.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;terminator.png&#34; alt=&#34;&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;Opening port 11000 in three computers at once with Terminator&lt;/p&gt;
-&lt;/div&gt;
+Sys.getenv(&amp;quot;R_PARALLEL_PORT&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, we need to open the selected port in every computer of the network. In Linux we need to setup the firewall to allow connections from the network &lt;code&gt;10.42.1.0/24&lt;/code&gt; (replace this with your network range if different!) to the port &lt;code&gt;11000&lt;/code&gt; by splitting the window of the 
+&lt;a href=&#34;https://gnometerminator.blogspot.com/p/introduction.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Terminator console&lt;/a&gt; in as many computers available in your network (the figure below shows three, one for my PC and two for my Intel NUCs), opening an ssh session on each remote machine, and setting Terminator with &lt;em&gt;Grouping&lt;/em&gt; equal to &lt;em&gt;Broadcast all&lt;/em&gt; so we only need to type the commands once.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;terminator.png&#34; alt=&#34;Opening port 11000 in three computers at once with Terminator&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Now we have to create an object defining the IPs of the computers in the network, the number of cores to use from each computer, the user name, and the identity of the &lt;em&gt;director&lt;/em&gt;. This will be the &lt;code&gt;spec&lt;/code&gt; argument required by &lt;code&gt;parallel::makeCluster()&lt;/code&gt; to create the cluster throughtout the machines in the network. It is a list of lists, with as many lists as nodes are defined. Each &lt;em&gt;sub-list&lt;/em&gt; has a slot named &lt;em&gt;host&lt;/em&gt; with the IP of the computer where the given node is, and &lt;em&gt;user&lt;/em&gt;, with the name of the user in each computer.&lt;/p&gt;
 &lt;p&gt;The code below shows how this would be done, step by step. Yes, this is CUMBERSOME.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#main parameters
-director &amp;lt;- &amp;#39;10.42.0.1&amp;#39;
-nuc2 &amp;lt;- &amp;#39;10.42.0.34&amp;#39;
-nuc1 &amp;lt;- &amp;#39;10.42.0.104&amp;#39;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#main parameters
+director &amp;lt;- &#39;10.42.0.1&#39;
+nuc2 &amp;lt;- &#39;10.42.0.34&#39;
+nuc1 &amp;lt;- &#39;10.42.0.104&#39;
 user &amp;lt;- &amp;quot;blas&amp;quot;
 
 #list of machines, user names, and cores
@@ -6307,9 +6305,10 @@ spec &amp;lt;- lapply(
 spec &amp;lt;- unlist(
   spec, 
   recursive = FALSE
-)&lt;/code&gt;&lt;/pre&gt;
+)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Generating the &lt;code&gt;spec&lt;/code&gt; definition is a bit easier with the function below.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#function to generate cluster specifications from a vector of IPs, a vector with the number of cores to use on each IP, and a user name
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#function to generate cluster specifications from a vector of IPs, a vector with the number of cores to use on each IP, and a user name
 cluster_spec &amp;lt;- function(
   ips,
   cores,
@@ -6347,24 +6346,27 @@ cluster_spec &amp;lt;- function(
   
   return(spec)
   
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This function is also available in &lt;a href=&#34;https://gist.github.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca&#34;&gt;this GitHub Gist&lt;/a&gt;, so you can load it into your R environment by executing:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;source(&amp;quot;https://gist.githubusercontent.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca/raw/de57b23740ca90bc02fbd0d5cd3551106ff2fb6d/cluster_spec.R&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This function is also available in 
+&lt;a href=&#34;https://gist.github.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this GitHub Gist&lt;/a&gt;, so you can load it into your R environment by executing:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;source(&amp;quot;https://gist.githubusercontent.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca/raw/de57b23740ca90bc02fbd0d5cd3551106ff2fb6d/cluster_spec.R&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Below I use it to generate the input to the &lt;code&gt;spec&lt;/code&gt; argument to start the cluster with &lt;code&gt;parallel::makeCluster()&lt;/code&gt;. Notice that I have added several arguments.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The argument &lt;code&gt;outfile&lt;/code&gt; determines where the workers write a log. In this case it is set to &lt;em&gt;nowhere&lt;/em&gt; with the double quotes, but the path to a text file in the director could be provided here.&lt;/li&gt;
-&lt;li&gt;The argument &lt;code&gt;homogeneous = TRUE&lt;/code&gt; indicates that all machines have the &lt;code&gt;Rscript&lt;/code&gt; in the same location. In this case all three machines have it at “/usr/lib/R/bin/Rscript”. Otherwise, set it up to &lt;code&gt;FALSE&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The argument &lt;code&gt;homogeneous = TRUE&lt;/code&gt; indicates that all machines have the &lt;code&gt;Rscript&lt;/code&gt; in the same location. In this case all three machines have it at &amp;ldquo;/usr/lib/R/bin/Rscript&amp;rdquo;. Otherwise, set it up to &lt;code&gt;FALSE&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#generate cluster specification
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#generate cluster specification
 spec &amp;lt;- cluster_spec(
-  ips = c(&amp;#39;10.42.0.1&amp;#39;, &amp;#39;10.42.0.34&amp;#39;, &amp;#39;10.42.0.104&amp;#39;),
+  ips = c(&#39;10.42.0.1&#39;, &#39;10.42.0.34&#39;, &#39;10.42.0.104&#39;),
   cores = c(7, 4, 4),
   user = &amp;quot;blas&amp;quot;
 )
 
 #setting up cluster
 my.cluster &amp;lt;- parallel::makeCluster(
-  master = &amp;#39;10.42.0.1&amp;#39;, 
+  master = &#39;10.42.0.1&#39;, 
   spec = spec,
   port = Sys.getenv(&amp;quot;R_PARALLEL_PORT&amp;quot;),
   outfile = &amp;quot;&amp;quot;,
@@ -6378,29 +6380,32 @@ print(my.cluster)
 doParallel::registerDoParallel(cl = my.cluster)
 
 #how many workers are available? (optional)
-foreach::getDoParWorkers()&lt;/code&gt;&lt;/pre&gt;
+foreach::getDoParWorkers()
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now we can use the cluster to execute a dummy operation in parallel using all machines in the network.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- foreach(
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;x &amp;lt;- foreach(
   i = 1:20, 
-  .combine = &amp;#39;c&amp;#39;
+  .combine = &#39;c&#39;
 ) %dopar% {
     sqrt(i)
   }
-x&lt;/code&gt;&lt;/pre&gt;
+x
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Once everything is done, remember to close the cluster.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;parallel::stopCluster(cl = my.cluster)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;parallel::stopCluster(cl = my.cluster)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;practical-examples&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Practical examples&lt;/h2&gt;
+&lt;h2 id=&#34;practical-examples&#34;&gt;Practical examples&lt;/h2&gt;
 &lt;p&gt;In this section I cover two examples on how to use parallelized loops to explore model outputs:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Tuning random forest &lt;a href=&#34;https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning)&#34;&gt;&lt;em&gt;hyperparameters&lt;/em&gt;&lt;/a&gt; to maximize classification accuracy.&lt;/li&gt;
-&lt;li&gt;Obtain a confidence interval for the importance score of each predictor from a set random forest models fitted with &lt;a href=&#34;https://github.com/imbs-hl/ranger&#34;&gt;&lt;code&gt;ranger()&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Tuning random forest 
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Hyperparameter_%28machine_learning%29&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;hyperparameters&lt;/em&gt;&lt;/a&gt; to maximize classification accuracy.&lt;/li&gt;
+&lt;li&gt;Obtain a confidence interval for the importance score of each predictor from a set random forest models fitted with 
+&lt;a href=&#34;https://github.com/imbs-hl/ranger&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;ranger()&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;In the examples I use the &lt;code&gt;penguins&lt;/code&gt; data from the &lt;a href=&#34;https://github.com/allisonhorst/palmerpenguins&#34;&gt;&lt;code&gt;palmerpenguins&lt;/code&gt;&lt;/a&gt; package to fit classification models with random forest using &lt;em&gt;species&lt;/em&gt; as a response, and &lt;em&gt;bill_length_mm&lt;/em&gt;, &lt;em&gt;bill_depth_mm&lt;/em&gt;, &lt;em&gt;flipper_length_mm&lt;/em&gt;, and &lt;em&gt;body_mass_g&lt;/em&gt; as predictors.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#removing NA and subsetting columns
+&lt;p&gt;In the examples I use the &lt;code&gt;penguins&lt;/code&gt; data from the 
+&lt;a href=&#34;https://github.com/allisonhorst/palmerpenguins&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;palmerpenguins&lt;/code&gt;&lt;/a&gt; package to fit classification models with random forest using &lt;em&gt;species&lt;/em&gt; as a response, and &lt;em&gt;bill_length_mm&lt;/em&gt;, &lt;em&gt;bill_depth_mm&lt;/em&gt;, &lt;em&gt;flipper_length_mm&lt;/em&gt;, and &lt;em&gt;body_mass_g&lt;/em&gt; as predictors.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#removing NA and subsetting columns
 penguins &amp;lt;- as.data.frame(
   na.omit(
     penguins[, c(
@@ -6411,372 +6416,164 @@ penguins &amp;lt;- as.data.frame(
       &amp;quot;body_mass_g&amp;quot;
     )]
     )
-  )&lt;/code&gt;&lt;/pre&gt;
+  )
+&lt;/code&gt;&lt;/pre&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-species
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-bill_length_mm
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-bill_depth_mm
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-flipper_length_mm
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-body_mass_g
-&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;species&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;bill_length_mm&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;bill_depth_mm&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;flipper_length_mm&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;body_mass_g&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-39.1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-18.7
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-181
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3750
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;39.1&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;18.7&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;181&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3750&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-39.5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-17.4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-186
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3800
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;39.5&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;17.4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;186&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3800&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-40.3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-18.0
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-195
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3250
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;40.3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;18.0&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;195&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3250&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-36.7
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-19.3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-193
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3450
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;36.7&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;19.3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;193&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3450&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-39.3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20.6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-190
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3650
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;39.3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20.6&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;190&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3650&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-38.9
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-17.8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-181
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3625
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;38.9&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;17.8&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;181&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3625&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-39.2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-19.6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-195
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4675
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;39.2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;19.6&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;195&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4675&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-34.1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-18.1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-193
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3475
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;34.1&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;18.1&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;193&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3475&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-42.0
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20.2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-190
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4250
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;42.0&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20.2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;190&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4250&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-37.8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-17.1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-186
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3300
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;37.8&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;17.1&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;186&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3300&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-37.8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-17.3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-180
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3700
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;37.8&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;17.3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;180&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3700&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-41.1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-17.6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-182
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3200
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;41.1&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;17.6&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;182&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3200&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-38.6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-21.2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-191
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3800
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;38.6&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;21.2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;191&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3800&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-34.6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-21.1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-198
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4400
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;34.6&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;21.1&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;198&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4400&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-36.6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-17.8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-185
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3700
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;36.6&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;17.8&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;185&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3700&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-38.7
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-19.0
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-195
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3450
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;38.7&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;19.0&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;195&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3450&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-42.5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20.7
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-197
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4500
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;42.5&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20.7&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;197&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4500&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-34.4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-18.4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-184
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3325
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;34.4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;18.4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;184&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3325&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-46.0
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-21.5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-194
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4200
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;46.0&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;21.5&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;194&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4200&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Adelie
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-37.8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-18.3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-174
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3400
-&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Adelie&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;37.8&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;18.3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;174&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3400&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;We’ll fit random forest models with the &lt;a href=&#34;https://cran.r-project.org/package=ranger&#34;&gt;&lt;code&gt;ranger&lt;/code&gt;&lt;/a&gt; package, which works as follows:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#fitting classification model
+&lt;p&gt;We&amp;rsquo;ll fit random forest models with the 
+&lt;a href=&#34;https://cran.r-project.org/package=ranger&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;ranger&lt;/code&gt;&lt;/a&gt; package, which works as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#fitting classification model
 m &amp;lt;- ranger::ranger(
   data = penguins,
   dependent.variable.name = &amp;quot;species&amp;quot;,
@@ -6784,7 +6581,8 @@ m &amp;lt;- ranger::ranger(
 )
 
 #summary
-m&lt;/code&gt;&lt;/pre&gt;
+m
+&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Ranger result
 ## 
 ## Call:
@@ -6798,17 +6596,19 @@ m&lt;/code&gt;&lt;/pre&gt;
 ## Target node size:                 1 
 ## Variable importance mode:         permutation 
 ## Splitrule:                        gini 
-## OOB prediction error:             2.34 %&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#variable importance
-m$variable.importance&lt;/code&gt;&lt;/pre&gt;
+## OOB prediction error:             2.63 %
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#variable importance
+m$variable.importance
+&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
-##        0.30464149        0.16554689        0.22329574        0.07775624&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The output shows that the percentage of misclassified cases is 2.34, and that &lt;em&gt;bill_length_mm&lt;/em&gt; is the variable that contributes the most to the accuracy of the classification.&lt;/p&gt;
-&lt;p&gt;If you are not familiar with random forest, &lt;a href=&#34;https://victorzhou.com/blog/intro-to-random-forests/&#34;&gt;this post&lt;/a&gt; and the video below do a pretty good job in explaining the basics:&lt;/p&gt;
-&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/D_2LkhMJcfY&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;
-&lt;/iframe&gt;
-&lt;div id=&#34;tuning-random-forest-hyperparameters&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Tuning random forest hyperparameters&lt;/h3&gt;
+##        0.30913224        0.16916726        0.20410227        0.08218859
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The output shows that the percentage of misclassified cases is 2.63, and that &lt;em&gt;bill_length_mm&lt;/em&gt; is the variable that contributes the most to the accuracy of the classification.&lt;/p&gt;
+&lt;p&gt;If you are not familiar with random forest, 
+&lt;a href=&#34;https://victorzhou.com/blog/intro-to-random-forests/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this post&lt;/a&gt; and the video below do a pretty good job in explaining the basics:&lt;/p&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/D_2LkhMJcfY&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;h3 id=&#34;tuning-random-forest-hyperparameters&#34;&gt;Tuning random forest hyperparameters&lt;/h3&gt;
 &lt;p&gt;Random forest has several hyperparameters that influence model fit:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;num.trees&lt;/code&gt; is the total number of trees to fit. The default value is 500.&lt;/li&gt;
@@ -6817,328 +6617,161 @@ m$variable.importance&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;p&gt;Here we are going to explore how combinations of these values increase or decrease the prediction error of the model (percentage of misclassified cases) on the out-of-bag data (not used to train each decision tree). This operation is usually named &lt;strong&gt;grid search for hyperparameter optimization&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;To create these combinations of hyperparameters we use &lt;code&gt;expand.grid()&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sensitivity.df &amp;lt;- expand.grid(
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;sensitivity.df &amp;lt;- expand.grid(
   num.trees = c(500, 1000, 1500),
   mtry = 2:4,
   min.node.size = c(1, 10, 20)
-)&lt;/code&gt;&lt;/pre&gt;
+)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-num.trees
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-mtry
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-min.node.size
-&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;num.trees&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;mtry&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;min.node.size&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1000
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1000&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1000
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1000&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1000
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1000&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;10&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1000
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1000&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;10&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;10&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;10&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1000
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1000&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;10&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;10&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;10&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1000
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1000&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;10&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;10&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1000
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1000&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1000
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1000&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1000
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1000&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;Each row in &lt;code&gt;sensitivity.df&lt;/code&gt; corresponds to a combination of parameters to test, so there are 27 models to fit. The code below prepares the cluster, and uses the ability of &lt;code&gt;foreach&lt;/code&gt; to work with several iterators at once to easily introduce the right set of hyperparameters to each fitted model.&lt;/p&gt;
 &lt;p&gt;Notice how in the &lt;code&gt;foreach&lt;/code&gt; definition I use the &lt;code&gt;.packages&lt;/code&gt; argument to export the &lt;code&gt;ranger&lt;/code&gt; package to the environments of the workers.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#create and register cluster
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#create and register cluster
 my.cluster &amp;lt;- parallel::makeCluster(n.cores)
 doParallel::registerDoParallel(cl = my.cluster)
   
@@ -7147,7 +6780,7 @@ prediction.error &amp;lt;- foreach(
   num.trees = sensitivity.df$num.trees,
   mtry = sensitivity.df$mtry,
   min.node.size = sensitivity.df$min.node.size,
-  .combine = &amp;#39;c&amp;#39;, 
+  .combine = &#39;c&#39;, 
   .packages = &amp;quot;ranger&amp;quot;
 ) %dopar% {
   
@@ -7166,9 +6799,10 @@ prediction.error &amp;lt;- foreach(
 }
 
 #adding the prediction error column
-sensitivity.df$prediction.error &amp;lt;- prediction.error&lt;/code&gt;&lt;/pre&gt;
+sensitivity.df$prediction.error &amp;lt;- prediction.error
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To plot the results:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot2::ggplot(data = sensitivity.df) + 
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot2::ggplot(data = sensitivity.df) + 
   ggplot2::aes(
     x = mtry,
     y = as.factor(min.node.size),
@@ -7178,69 +6812,56 @@ sensitivity.df$prediction.error &amp;lt;- prediction.error&lt;/code&gt;&lt;/pre&
   ggplot2::geom_tile() + 
   ggplot2::scale_y_discrete(breaks = c(1, 10, 20)) +
   ggplot2::scale_fill_viridis_c() + 
-  ggplot2::ylab(&amp;quot;min.node.size&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;sensitivity.png&#34; /&gt;&lt;/p&gt;
+  ggplot2::ylab(&amp;quot;min.node.size&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;sensitivity.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The figure shows that combinations of lower values of &lt;code&gt;min.node.size&lt;/code&gt; and &lt;code&gt;mtry&lt;/code&gt; generally lead to models with a lower prediction error across different numbers of trees. Retrieving the first line of &lt;code&gt;sensitivity.df&lt;/code&gt; ordered by ascending &lt;code&gt;prediction.error&lt;/code&gt; will give us the values of the hyperparameters we need to use to reduce the prediction error as much as possible.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;best.hyperparameters &amp;lt;- sensitivity.df %&amp;gt;% 
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;best.hyperparameters &amp;lt;- sensitivity.df %&amp;gt;% 
   dplyr::arrange(prediction.error) %&amp;gt;% 
-  dplyr::slice(1)&lt;/code&gt;&lt;/pre&gt;
+  dplyr::slice(1)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-num.trees
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-mtry
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-min.node.size
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-prediction.error
-&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;num.trees&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;mtry&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;min.node.size&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;prediction.error&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-500
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.339181
-&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;500&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;2.339181&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;/div&gt;
-&lt;div id=&#34;confidence-intervals-of-variable-importance-scores&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Confidence intervals of variable importance scores&lt;/h3&gt;
+&lt;h3 id=&#34;confidence-intervals-of-variable-importance-scores&#34;&gt;Confidence intervals of variable importance scores&lt;/h3&gt;
 &lt;p&gt;Random forest has an important stochastic component during model fitting, and as consequence, the same model will return slightly different results in different runs (unless &lt;code&gt;set.seed()&lt;/code&gt; or the &lt;code&gt;seed&lt;/code&gt; argument of &lt;code&gt;ranger&lt;/code&gt; are used). This variability also affects the importance scores of the predictors, and can be use to our advantage to assess whether the importance scores of different variables do really overlap or not.&lt;/p&gt;
 &lt;p&gt;I have written a little function to transform the vector of importance scores returned by &lt;code&gt;ranger&lt;/code&gt; into a data frame (of one row). It helps arranging the importance scores of different runs into a long format, which helps a lot to plot a boxplot with &lt;code&gt;ggplot2&lt;/code&gt; right away. This function could have been just some code thrown inside the &lt;code&gt;foreach&lt;/code&gt; loop, but I want to illustrate how &lt;code&gt;foreach&lt;/code&gt; automatically transfers functions available in the R environment into the environments of the workers when required, without the intervention of the user. The same will happen with the &lt;code&gt;best.hyperparameters&lt;/code&gt; tiny data frame we created in the previous section.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;importance_to_df &amp;lt;- function(model){
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;importance_to_df &amp;lt;- function(model){
   x &amp;lt;- as.data.frame(model$variable.importance)
   x$variable &amp;lt;- rownames(x)
   colnames(x)[1] &amp;lt;- &amp;quot;importance&amp;quot;
   rownames(x) &amp;lt;- NULL
   return(x)
-}&lt;/code&gt;&lt;/pre&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The code chunk below setups the cluster and runs 1000 random forest models in parallel (using the best hyperparameters computed in the previous section) while using &lt;code&gt;system.time()&lt;/code&gt; to assess running time.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#we don&amp;#39;t need to create the cluster, it is still up
-print(my.cluster)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## socket cluster with 7 nodes on host &amp;#39;localhost&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#assessing execution time
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#we don&#39;t need to create the cluster, it is still up
+print(my.cluster)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## socket cluster with 15 nodes on host &#39;localhost&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#assessing execution time
 system.time(
   
   #performing 1000 iterations in parallel
   importance.scores &amp;lt;- foreach(
     i = 1:1000, 
-    .combine = &amp;#39;rbind&amp;#39;, 
+    .combine = &#39;rbind&#39;, 
     .packages = &amp;quot;ranger&amp;quot;
   ) %dopar% {
     
@@ -7262,28 +6883,31 @@ system.time(
     
   }
   
-)&lt;/code&gt;&lt;/pre&gt;
+)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    user  system elapsed 
-##   0.267   0.027   6.556&lt;/code&gt;&lt;/pre&gt;
+##   0.331   0.061   4.283
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output of &lt;code&gt;system.time()&lt;/code&gt; goes as follows:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;user&lt;/em&gt;: seconds the R session has been using the CPU.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;system&lt;/em&gt;: seconds the operating system has been using the CPU.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;elapsed&lt;/em&gt;: the total execution time experienced by the user.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;This will make sense in a minute. In the meantime, let’s plot our results!&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot2::ggplot(data = importance.scores) + 
+&lt;p&gt;This will make sense in a minute. In the meantime, let&amp;rsquo;s plot our results!&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot2::ggplot(data = importance.scores) + 
   ggplot2::aes(
     y = reorder(variable, importance), 
     x = importance
   ) +
   ggplot2::geom_boxplot() + 
-  ggplot2::ylab(&amp;quot;&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;boxplot.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;The figure shows that the variable &lt;em&gt;bill_length_mm&lt;/em&gt; is the most important in helping the model classifying penguin species, with no overlap with any other variable. In this particular case, since the distributions of the importance scores do not overlap, this analysis isn’t truly helpful, but now you know how to do it!&lt;/p&gt;
+  ggplot2::ylab(&amp;quot;&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;boxplot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The figure shows that the variable &lt;em&gt;bill_length_mm&lt;/em&gt; is the most important in helping the model classifying penguin species, with no overlap with any other variable. In this particular case, since the distributions of the importance scores do not overlap, this analysis isn&amp;rsquo;t truly helpful, but now you know how to do it!&lt;/p&gt;
 &lt;p&gt;I assessed the running time with &lt;code&gt;system.time()&lt;/code&gt; because &lt;code&gt;ranger()&lt;/code&gt; can run in parallel by itself just by setting the &lt;code&gt;num.threads&lt;/code&gt; argument to the number of cores available in the machine. This capability cannot be used when executing &lt;code&gt;ranger()&lt;/code&gt; inside a parallelized &lt;code&gt;foreach&lt;/code&gt; loop though, and it is only useful inside classic &lt;code&gt;for&lt;/code&gt; loops.&lt;/p&gt;
 &lt;p&gt;What option is more efficient then? The code below executes a regular &lt;code&gt;for&lt;/code&gt; loop running the function sequentially to evaluate whether it is more efficient to run &lt;code&gt;ranger()&lt;/code&gt; in parallel using one core per model, as we did above, or sequentially while using several cores per model on each iteration.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#list to save results
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#list to save results
 importance.scores.list &amp;lt;- list()
 
 #performing 1000 iterations sequentially
@@ -7304,24 +6928,24 @@ system.time(
     importance.scores.list[[i]] &amp;lt;- importance_to_df(model = m.i)
     
   }
-)&lt;/code&gt;&lt;/pre&gt;
+)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    user  system elapsed 
-##  43.663   2.815  12.948&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;As you can see, &lt;code&gt;ranger()&lt;/code&gt; takes longer to execute in a regular &lt;code&gt;for&lt;/code&gt; loop using several cores at once than in a parallel &lt;code&gt;foreach&lt;/code&gt; loop using one core at once. That’s a win for the parallelized loop!&lt;/p&gt;
+##  44.377   3.010   9.909
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see, &lt;code&gt;ranger()&lt;/code&gt; takes longer to execute in a regular &lt;code&gt;for&lt;/code&gt; loop using several cores at once than in a parallel &lt;code&gt;foreach&lt;/code&gt; loop using one core at once. That&amp;rsquo;s a win for the parallelized loop!&lt;/p&gt;
 &lt;p&gt;We can stop our cluster now, we are done with it.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;parallel::stopCluster(cl = my.cluster)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;parallel::stopCluster(cl = my.cluster)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;a-few-things-to-take-in-mind&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;A few things to take in mind&lt;/h2&gt;
+&lt;h2 id=&#34;a-few-things-to-take-in-mind&#34;&gt;A few things to take in mind&lt;/h2&gt;
 &lt;p&gt;As I have shown in this post, using parallelized &lt;code&gt;foreach&lt;/code&gt; loops can accelerate long computing processes, even when some functions have the ability to run in parallel on their own. However, there are things to take in mind, that might vary depending on whether we are executing the parallelized task on a single computer or on a small cluster.&lt;/p&gt;
-&lt;p&gt;In a single computer, the communication between workers and the director is usually pretty fast, so there are no obvious bottlenecks to take into account here. The only limitation that might arise comes from the availability of RAM memory. For example, if a computer has 8 cores and 8GB of RAM, less than 1GB of RAM will be available for each worker. So, if you need to repeat a process that consumes a significant amount of RAM, the ideal number of cores running in parallel might be lower than the total number of cores available in your system. Don’t be greedy, and try to understand the capabilities of your machine while designing a parallelized task.&lt;/p&gt;
-&lt;p&gt;When running &lt;code&gt;foreach&lt;/code&gt; loops as in &lt;code&gt;x &amp;lt;- foreach(...){...}&lt;/code&gt;, the variable &lt;code&gt;x&lt;/code&gt; is receiving whatever results the workers are producing. For example, if you are only returning the prediction error of a model, or its importance scores, &lt;code&gt;x&lt;/code&gt; will have a very manageable size. But if you are returning heavy objects such as complete random forest models, the size of &lt;code&gt;x&lt;/code&gt; is going to grow VERY FAST, and at the end it will be competing for RAM resources with the workers, which might even crash your R session. Again, don’t be greedy, and size your outputs carefully.&lt;/p&gt;
-&lt;p&gt;Clusters spanning several computers are a different beast, since the workers and the director communicate through a switch and network wires and interfaces. If the amount of data going to and coming from the workers is large, the network can get clogged easily, reducing the cluster’s efficiency drastically. In general, if the amount of data produced by a worker on each iteration takes longer to arrive to the director than the time it takes the worker to produce it, then a cluster is not going to be more efficient than a single machine. But this is not important if you don’t care about efficiency.&lt;/p&gt;
-&lt;p&gt;Other issues you might come across while parallelizing tasks in R are thoroughly commented in &lt;a href=&#34;https://towardsdatascience.com/parallelization-caveats-in-r-1-the-basics-multiprocessing-and-multithreading-performance-eb584b7e850e&#34;&gt;this post&lt;/a&gt;, by Imre Gera.&lt;/p&gt;
-&lt;p&gt;That’s all for now folks, happy parallelization!&lt;/p&gt;
-&lt;/div&gt;
+&lt;p&gt;In a single computer, the communication between workers and the director is usually pretty fast, so there are no obvious bottlenecks to take into account here. The only limitation that might arise comes from the availability of RAM memory. For example, if a computer has 8 cores and 8GB of RAM, less than 1GB of RAM will be available for each worker. So, if you need to repeat a process that consumes a significant amount of RAM, the ideal number of cores running in parallel might be lower than the total number of cores available in your system. Don&amp;rsquo;t be greedy, and try to understand the capabilities of your machine while designing a parallelized task.&lt;/p&gt;
+&lt;p&gt;When running &lt;code&gt;foreach&lt;/code&gt; loops as in &lt;code&gt;x &amp;lt;- foreach(...){...}&lt;/code&gt;, the variable &lt;code&gt;x&lt;/code&gt; is receiving whatever results the workers are producing. For example, if you are only returning the prediction error of a model, or its importance scores, &lt;code&gt;x&lt;/code&gt; will have a very manageable size. But if you are returning heavy objects such as complete random forest models, the size of &lt;code&gt;x&lt;/code&gt; is going to grow VERY FAST, and at the end it will be competing for RAM resources with the workers, which might even crash your R session. Again, don&amp;rsquo;t be greedy, and size your outputs carefully.&lt;/p&gt;
+&lt;p&gt;Clusters spanning several computers are a different beast, since the workers and the director communicate through a switch and network wires and interfaces. If the amount of data going to and coming from the workers is large, the network can get clogged easily, reducing the cluster&amp;rsquo;s efficiency drastically. In general, if the amount of data produced by a worker on each iteration takes longer to arrive to the director than the time it takes the worker to produce it, then a cluster is not going to be more efficient than a single machine. But this is not important if you don&amp;rsquo;t care about efficiency.&lt;/p&gt;
+&lt;p&gt;Other issues you might come across while parallelizing tasks in R are thoroughly commented in 
+&lt;a href=&#34;https://towardsdatascience.com/parallelization-caveats-in-r-1-the-basics-multiprocessing-and-multithreading-performance-eb584b7e850e&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this post&lt;/a&gt;, by Imre Gera.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s all for now folks, happy parallelization!&lt;/p&gt;
 </description>
     </item>
     
@@ -7412,9 +7036,9 @@ variability in defining the shape of pollen curves.&lt;/p&gt;
     
     <item>
       <title>Setting up a Beowulf Home Cluster</title>
-      <link>https://blasbenito.com/post/home-cluster/</link>
+      <link>https://blasbenito.com/post/beowulf-cluster/</link>
       <pubDate>Mon, 07 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://blasbenito.com/post/home-cluster/</guid>
+      <guid>https://blasbenito.com/post/beowulf-cluster/</guid>
       <description>&lt;p&gt;In this post I explain how to setup a small 
 &lt;a href=&#34;https://en.wikipedia.org/wiki/Beowulf_cluster&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Beowulf cluster&lt;/a&gt; with a personal PC running Ubuntu 20.04 and a couple of 
 &lt;a href=&#34;https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Intel NUCs&lt;/a&gt; running Ubuntu Server 20.04, with the end-goal of parallelizing R tasks.&lt;/p&gt;
@@ -8173,17 +7797,11 @@ $$&lt;/p&gt;
       <link>https://blasbenito.com/post_examples/2015-07-23-r-rmarkdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       <guid>https://blasbenito.com/post_examples/2015-07-23-r-rmarkdown/</guid>
-      <description>
-&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://blasbenito.com/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
-
-
-&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;h1 id=&#34;r-markdown&#34;&gt;R Markdown&lt;/h1&gt;
+&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see 
+&lt;a href=&#34;http://rmarkdown.rstudio.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;summary(cars)
 ##      speed           dist       
 ##  Min.   : 4.0   Min.   :  2.00  
 ##  1st Qu.:12.0   1st Qu.: 26.00  
@@ -8199,24 +7817,21 @@ fit
 ## 
 ## Coefficients:
 ## (Intercept)        speed  
-##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
+##     -17.579        3.932
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;including-plots&#34;&gt;Including Plots&lt;/h1&gt;
 &lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;par(mar = c(0, 1, 0, 1))
 pie(
   c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
+  c(&#39;Sky&#39;, &#39;Sunny side of pyramid&#39;, &#39;Shady side of pyramid&#39;),
+  col = c(&#39;#0292D8&#39;, &#39;#F7EA39&#39;, &#39;#C4B632&#39;),
   init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;https://blasbenito.com/post_examples/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
+&lt;p class=&#34;caption&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;Figure 1: A fancy pie chart.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

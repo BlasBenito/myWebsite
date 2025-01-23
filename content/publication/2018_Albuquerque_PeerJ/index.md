@@ -16,15 +16,13 @@ image:
 publication: '*PeerJ+*'
 publication_types:
 - "2"
-date: "2018-09-19T00:00:00Z"
 summary: "The goals of this study are to provide a map of actual habitat suitability (1), describe the relationships between abiotic predictors and the saguaro distribution at regional extents (2), and describe the potential effect of climate change on the spatial distribution of the saguaro (3)."
 tags:
-- Biogeography
+- Research Papers
 - Climate Change
+- Biodiversity Informatics
 - Species Distribution Models
-- Machine Learning
-- Gradient Boosting
-- Plant Ecology
+- GIS
 title: 'Potential changes in the distribution of Carnegiea gigantea under future scenarios'
 url_pdf: https://peerj.com/articles/5623.pdf
 ---

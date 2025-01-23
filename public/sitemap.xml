@@ -11,19 +11,13 @@
     <loc>https://blasbenito.com/courses/example/example2/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/</loc>
-    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/talk/example/</loc>
-    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/talk/</loc>
-    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/authors/</loc>
     <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/blas-m.-benito/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/</loc>
     <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/coding/</loc>
@@ -41,9 +35,6 @@
     <loc>https://blasbenito.com/post/</loc>
     <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/r-tutorial/</loc>
-    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/tag/rstats/</loc>
     <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
@@ -53,10 +44,13 @@
     <loc>https://blasbenito.com/tag/time-series-analysis/</loc>
     <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
+    <loc>https://blasbenito.com/tag/tutorial/</loc>
+    <lastmod>2025-01-13T05:14:20+01:00</lastmod>
+  </url><url>
     <loc>https://blasbenito.com/tag/analytics/</loc>
     <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/lock-step/</loc>
+    <loc>https://blasbenito.com/tag/linear-modelling/</loc>
     <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/machine-learning/</loc>
@@ -74,29 +68,14 @@
     <loc>https://blasbenito.com/project/distantia/</loc>
     <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/r-packages/</loc>
-    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/tag/statistics/</loc>
     <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/target-encoding/</loc>
     <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/time-series/</loc>
-    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/post/dynamic-time-warping/</loc>
     <lastmod>2025-01-05T05:14:20+01:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/data-preprocessing/</loc>
-    <lastmod>2024-12-10T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/model-explainability/</loc>
-    <lastmod>2024-12-10T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/model-interpretability/</loc>
-    <lastmod>2024-12-10T08:14:23+02:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/post/my-reading-list-data-science/</loc>
     <lastmod>2024-12-10T08:14:23+02:00</lastmod>
@@ -104,13 +83,16 @@
     <loc>https://blasbenito.com/post/target-encoding/</loc>
     <lastmod>2023-11-15T08:14:23+02:00</lastmod>
   </url><url>
+    <loc>https://blasbenito.com/tag/r-packages/</loc>
+    <lastmod>2023-11-15T08:14:23+02:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/stats/</loc>
+    <lastmod>2023-11-15T08:14:23+02:00</lastmod>
+  </url><url>
     <loc>https://blasbenito.com/tag/variable-selection/</loc>
     <lastmod>2023-11-15T08:14:23+02:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/post/variance-inflation-factor/</loc>
-    <lastmod>2023-11-05T08:14:23+02:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/linear-modelling/</loc>
     <lastmod>2023-11-05T08:14:23+02:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/post/multicollinearity-model-interpretability/</loc>
@@ -120,9 +102,6 @@
     <lastmod>2023-10-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/biogeography/</loc>
-    <lastmod>2023-10-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/dryland-ecology/</loc>
     <lastmod>2023-10-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/emilio-guirado/</loc>
@@ -143,9 +122,6 @@
     <loc>https://blasbenito.com/author/miguel-berdugo/</loc>
     <lastmod>2023-10-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/plant-ecology/</loc>
-    <lastmod>2023-10-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/publication_types/</loc>
     <lastmod>2023-10-03T00:00:00+00:00</lastmod>
   </url><url>
@@ -155,7 +131,7 @@
     <loc>https://blasbenito.com/tag/random-forest/</loc>
     <lastmod>2023-10-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/spatialrf/</loc>
+    <loc>https://blasbenito.com/tag/research-papers/</loc>
     <lastmod>2023-10-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/publication/2023_guirado_pnas/</loc>
@@ -164,7 +140,7 @@
     <loc>https://blasbenito.com/project/post-title/</loc>
     <lastmod>2023-09-26T08:14:23+02:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/spatial-regression/</loc>
+    <loc>https://blasbenito.com/tag/spatial-modelling/</loc>
     <lastmod>2023-09-26T08:14:23+02:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/alexandre-robert/</loc>
@@ -176,13 +152,7 @@
     <loc>https://blasbenito.com/author/anne-christine-monnet/</loc>
     <lastmod>2023-06-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/habitat-suitability/</loc>
-    <lastmod>2023-06-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/population-dynamics/</loc>
-    <lastmod>2023-06-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/quantile-regression/</loc>
+    <loc>https://blasbenito.com/tag/biodiversity-informatics/</loc>
     <lastmod>2023-06-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/species-distribution-models/</loc>
@@ -197,13 +167,7 @@
     <loc>https://blasbenito.com/author/carlos-sangil/</loc>
     <lastmod>2022-10-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/conservation/</loc>
-    <lastmod>2022-10-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/publication/2022_martin_marine_environmental_research/</loc>
-    <lastmod>2022-10-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/extinction/</loc>
     <lastmod>2022-10-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/javier-reyes/</loc>
@@ -218,14 +182,8 @@
     <loc>https://blasbenito.com/author/nereida-m.-rancel-rodriguez/</loc>
     <lastmod>2022-10-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/population-analysis/</loc>
-    <lastmod>2022-10-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/author/sharay-orellana/</loc>
     <lastmod>2022-10-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/generalized-additive-models/</loc>
-    <lastmod>2022-06-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/publication/2022_benito_stoten/</loc>
     <lastmod>2022-06-20T00:00:00+00:00</lastmod>
@@ -242,9 +200,6 @@
     <loc>https://blasbenito.com/author/maria-i.-velez/</loc>
     <lastmod>2022-06-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/palaeoecology/</loc>
-    <lastmod>2022-06-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/author/tobias-schneider/</loc>
     <lastmod>2022-06-20T00:00:00+00:00</lastmod>
   </url><url>
@@ -254,13 +209,10 @@
     <loc>https://blasbenito.com/publication/2022_monnier_global_ecology_and_conservation/</loc>
     <lastmod>2022-02-24T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://blasbenito.com/tag/gis/</loc>
+    <lastmod>2022-02-24T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blasbenito.com/author/leo-bacon/</loc>
-    <lastmod>2022-02-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/population-density/</loc>
-    <lastmod>2022-02-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/population-ecology/</loc>
     <lastmod>2022-02-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/publication/2022_moreno_scientific_data/</loc>
@@ -272,22 +224,10 @@
     <loc>https://blasbenito.com/author/david-s.-pescador/</loc>
     <lastmod>2022-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/environmental-data/</loc>
-    <lastmod>2022-01-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/author/joaquin-moreno/</loc>
     <lastmod>2022-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/linear-models/</loc>
-    <lastmod>2022-01-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/author/sergio-asensio/</loc>
-    <lastmod>2022-01-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/soil-ecology/</loc>
-    <lastmod>2022-01-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/soil-sensors/</loc>
     <lastmod>2022-01-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/victoria-ochoa/</loc>
@@ -320,7 +260,7 @@
     <loc>https://blasbenito.com/post/betadiversity/</loc>
     <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/home-cluster/</loc>
+    <loc>https://blasbenito.com/tag/beowulf-cluster/</loc>
     <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/post_projects/</loc>
@@ -329,25 +269,19 @@
     <loc>https://blasbenito.com/post_projects/template/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/post/shared-folder-home-cluster/</loc>
+    <loc>https://blasbenito.com/post/shared-folder-beowulf-cluster/</loc>
     <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/abm/</loc>
-    <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/tag/agent-based-models/</loc>
-    <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/fire-dynamics/</loc>
-    <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/mechanistic-simulation/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/tag/netlogo/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/project/palaeo_fire_modeling/</loc>
+    <lastmod>2021-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/simulation/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/antonio-j.-perez-luque/</loc>
@@ -362,19 +296,13 @@
     <loc>https://blasbenito.com/author/regino-zamora/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/dispersal/</loc>
-    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/range-shift-simulation/</loc>
-    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/project/quercus_range_shift/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/post/02_parallelizing_loops_with_r/</loc>
     <lastmod>2020-12-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/ecological-memory/</loc>
+    <loc>https://blasbenito.com/tag/ecology/</loc>
     <lastmod>2020-12-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/project/memoria/</loc>
@@ -386,13 +314,10 @@
     <loc>https://blasbenito.com/tag/distributed-computing/</loc>
     <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/post/home-cluster/</loc>
+    <loc>https://blasbenito.com/post/beowulf-cluster/</loc>
     <lastmod>2025-01-13T05:14:20+01:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/boyan-angelov/</loc>
-    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/explainable-artificial-intelligence-xai/</loc>
     <lastmod>2020-11-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/publication/2020_ryo_ecography/</loc>
@@ -426,9 +351,6 @@
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/publication/2020_contina_ecological_modelling/</loc>
-    <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/irresponsible-covid19-modelling/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/joseph-chipperfield/</loc>
@@ -498,9 +420,6 @@
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/clara-anton-fernandez/</loc>
-    <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/climate-change/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/constantin-m.-zohner/</loc>
@@ -578,9 +497,6 @@
     <loc>https://blasbenito.com/author/peter-schall/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/phenology/</loc>
-    <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/author/purabi-saikia/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
   </url><url>
@@ -635,9 +551,6 @@
     <loc>https://blasbenito.com/author/anne-laure-daniau/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/generalized-least-squares/</loc>
-    <lastmod>2020-05-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/author/graciela-gil-romera/</loc>
     <lastmod>2020-05-01T00:00:00+00:00</lastmod>
   </url><url>
@@ -662,16 +575,10 @@
     <loc>https://blasbenito.com/publication/2020_benito_ecography_memoria/</loc>
     <lastmod>2020-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/quantitative-methods/</loc>
-    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/publication/2019_valero-garces_quaternary_geochronology/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/a.-moreno/</loc>
-    <lastmod>2019-10-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/age-depth-modelling/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/b.-oliva-urcia/</loc>
@@ -680,7 +587,7 @@
     <loc>https://blasbenito.com/author/b.l-valero-garces/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/bayesian-models/</loc>
+    <loc>https://blasbenito.com/tag/bayesian-modelling/</loc>
     <lastmod>2019-10-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/c.s.-lane/</loc>
@@ -767,14 +674,11 @@
     <loc>https://blasbenito.com/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/gradient-boosting/</loc>
+    <loc>https://blasbenito.com/tag/climate-change/</loc>
     <lastmod>2018-09-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/publication/2018_albuquerque_peerj/</loc>
     <lastmod>2018-09-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/generalized-linear-models/</loc>
-    <lastmod>2018-05-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/jacob-hoglund/</loc>
     <lastmod>2018-05-29T00:00:00+00:00</lastmod>
@@ -806,16 +710,7 @@
     <loc>https://blasbenito.com/author/ziyu-ma/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/biodiversity-conservation/</loc>
-    <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/biogeography-of-neanderthals/</loc>
-    <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/author/brody-sandel/</loc>
-    <lastmod>2017-05-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/ensemble-models/</loc>
     <lastmod>2017-05-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/felix-riede/</loc>
@@ -908,9 +803,6 @@
     <loc>https://blasbenito.com/author/solomon-dobrowski/</loc>
     <lastmod>2015-04-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/forests/</loc>
-    <lastmod>2015-03-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/publication/2015_albuquerque_naturaleza_and_conservacao/</loc>
     <lastmod>2015-03-03T00:00:00+00:00</lastmod>
   </url><url>
@@ -920,9 +812,6 @@
     <loc>https://blasbenito.com/author/e.-salmeron-sanchez/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/ecoinformatics/</loc>
-    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/publication/2015_mendoza-fernandez_plant_biosystems/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
   </url><url>
@@ -930,9 +819,6 @@
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/f.j.-perez-garcia/</loc>
-    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/habitat-loss/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/j.-guirado/</loc>
@@ -979,9 +865,6 @@
   </url><url>
     <loc>https://blasbenito.com/author/ramon-perez-perez/</loc>
     <lastmod>2014-02-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/conditional-inference-trees/</loc>
-    <lastmod>2014-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/publication/2014_benito_diversity_and_distributions/</loc>
     <lastmod>2014-01-01T00:00:00+00:00</lastmod>
@@ -1046,6 +929,9 @@
     <loc>https://blasbenito.com/author/dick-j.-de-jong/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://blasbenito.com/tag/gradient-boosting/</loc>
+    <lastmod>2013-03-15T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blasbenito.com/author/guillem-chust/</loc>
     <lastmod>2013-03-15T00:00:00+00:00</lastmod>
   </url><url>
@@ -1076,16 +962,7 @@
     <loc>https://blasbenito.com/publication/2012_perez-perez_expert_systems_with_applications/</loc>
     <lastmod>2012-02-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blasbenito.com/tag/drylands/</loc>
-    <lastmod>2011-03-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/endangered-plants/</loc>
-    <lastmod>2011-03-26T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blasbenito.com/author/eva-maria-canadas/</loc>
-    <lastmod>2011-03-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blasbenito.com/tag/habitat-fragmentation/</loc>
     <lastmod>2011-03-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/publication/2011_penas_environmental_management/</loc>
@@ -1104,6 +981,9 @@
     <lastmod>2010-03-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/publication/2010_lorite_annales_botanici_fennici/</loc>
+    <lastmod>2010-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blasbenito.com/tag/endangered-plants/</loc>
     <lastmod>2010-03-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blasbenito.com/author/eva-canadas/</loc>
@@ -1154,6 +1034,8 @@
     <loc>https://blasbenito.com/author/gray-c./</loc>
   </url><url>
     <loc>https://blasbenito.com/author/malcolm-l.-hunter-jr./</loc>
+  </url><url>
+    <loc>https://blasbenito.com/talk/</loc>
   </url><url>
     <loc>https://blasbenito.com/author/rodriguez-mam./</loc>
   </url><url>

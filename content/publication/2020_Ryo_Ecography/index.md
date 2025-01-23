@@ -18,11 +18,11 @@ image:
 publication: '*Ecography*'
 publication_types:
 - "2"
-publishDate: "2020-11-17T00:00:00Z"
 summary: Here we draw attention to an emerging subdiscipline of artificial intelligence, explainable AI (xAI), as a toolbox for better interpreting SDMs. xAI aims at deciphering the behavior of complex statistical or machine learning models (e.g. neural networks, random forests, boosted regression trees), and can produce more transparent and understandable SDM predictions.
 tags:
+- Research Papers
 - Species Distribution Models
-- Explainable Artificial Intelligence (xAI)
+- Machine Learning
 title: Explainable artificial intelligence enhances the ecological interpretability of black‐box species distribution models
 url_code: "https://zenodo.org/record/4048271#.X8OPwMIo-1c"
 url_pdf: https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.05360

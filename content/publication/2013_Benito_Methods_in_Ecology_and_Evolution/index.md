@@ -16,14 +16,13 @@ image:
 publication: '*Methods in Ecology and Evolution*'
 publication_types:
 - "2"
-date: "2013-03-06T00:00:00Z"
 summary: "We generated 380 S‐SDMs of 1224 tree species in Mesoamerica by combining 19 distribution modelling methods with 20 different thresholds using presence‐only data from the Global Biodiversity Information Facility. We compared the predicted richness and composition with inventory data obtained from the BIOTREE‐NET forest plot database. We designed two indicators of predictive performance that were based on the diversity factors used to measure species turnover: a (shared species between the observed and predicted compositions), b and c (the exclusive species of the predicted and observed compositions respectively) and compared them with the Sorensen and Beta‐Simpson turnover measures. Some modelling methods – especially machine learning and ensemble model forecasting methods performed significantly better than others in minimizing the error in predicted richness and composition. Our results also indicate that restrictive thresholds (with high omission errors) lead to more accurate S‐SDMs in terms of species richness and composition. Here, we demonstrate that particular combinations of modelling methods and thresholds provide results with higher predictive performance."
 tags:
+- Research Papers
+- Biodiversity Informatics
 - Species Distribution Models
-- Ecoinformatics
-- Random Forest
-- Ensemble models
-- Machine Learning
+- Spatial Modelling
+- GIS
 title: 'The impact of modelling choices in the predictive performance of richness maps derived from species‐distribution models: guidelines to build better diversity models'
 url_pdf: https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/2041-210x.12022
 url_dataset: https://besjournals.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2F2041-210x.12022&file=mee312022-sup-0001-AppendixS1-S2.zip

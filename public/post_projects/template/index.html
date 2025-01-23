@@ -30,7 +30,7 @@
   
     
   
-  <meta name="description" content="In the previous posts I have covered how to setup a home cluster, and how to run parallel processes with foreach in R. However, so far I haven’t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.">
+  <meta name="description" content="In the previous posts I have covered how to setup a home cluster, and how to run parallel processes with foreach in R. However, so far I haven&rsquo;t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://blasbenito.com/post_projects/template/">
@@ -251,7 +251,7 @@
   <meta property="og:site_name" content="Blas M. Benito, PhD">
   <meta property="og:url" content="https://blasbenito.com/post_projects/template/">
   <meta property="og:title" content="Setup of a shared folder in a home cluster | Blas M. Benito, PhD">
-  <meta property="og:description" content="In the previous posts I have covered how to setup a home cluster, and how to run parallel processes with foreach in R. However, so far I haven’t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations."><meta property="og:image" content="https://blasbenito.com/post_projects/template/featured.png">
+  <meta property="og:description" content="In the previous posts I have covered how to setup a home cluster, and how to run parallel processes with foreach in R. However, so far I haven&rsquo;t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations."><meta property="og:image" content="https://blasbenito.com/post_projects/template/featured.png">
   <meta property="twitter:image" content="https://blasbenito.com/post_projects/template/featured.png"><meta property="og:locale" content="en-us">
   
     
@@ -725,13 +725,9 @@
   <div class="article-container">
 
     <div class="article-style">
-      
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
-<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
-
-
-<p>In the previous posts I have covered how to <a href="https://www.blasbenito.com/post/01_home_cluster/">setup a home cluster</a>, and how to <a href="https://www.blasbenito.com/post/02_parallelizing_loops_with_r/">run parallel processes with <code>foreach</code> in R</a>. However, so far I haven’t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.</p>
+      <p>In the previous posts I have covered how to 
+<a href="https://www.blasbenito.com/post/01_home_cluster/" target="_blank" rel="noopener">setup a home cluster</a>, and how to 
+<a href="https://www.blasbenito.com/post/02_parallelizing_loops_with_r/" target="_blank" rel="noopener">run parallel processes with <code>foreach</code> in R</a>. However, so far I haven&rsquo;t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.</p>
 <p>This post (developed on Ubuntu and Ubuntu Server 20.04) assumes that the home cluster runs on Linux, and covers the following topics.</p>
 <ul>
 <li>Basics of the Network File System protocol (NFS).</li>
@@ -739,27 +735,28 @@
 <li>Using an NFS folder in a parallelized loop.</li>
 </ul>
 <p> </p>
-<div id="the-network-file-system-protocol-nfs" class="section level2">
-<h2>The Network File System protocol (NFS)</h2>
-<p>The <a href="https://en.wikipedia.org/wiki/Network_File_System">Network File System</a> protocol offers the means for a <em>host</em> computer to allow other computers in the network (<em>clients</em>) to read and write the contents of a given folder. The clients access such folder like if it was a local one, while in fact it is a <em>reference</em> to the one in the host computer.</p>
+<h2 id="the-network-file-system-protocol-nfs">The Network File System protocol (NFS)</h2>
+<p>The 
+<a href="https://en.wikipedia.org/wiki/Network_File_System" target="_blank" rel="noopener">Network File System</a> protocol offers the means for a <em>host</em> computer to allow other computers in the network (<em>clients</em>) to read and write the contents of a given folder. The clients access such folder like if it was a local one, while in fact it is a <em>reference</em> to the one in the host computer.</p>
 <p>The image at the beginning of the post illustrates the concept. There is a <em>host</em> computer with a folder in the path <code>/home/user/cluster_shared</code> (were <code>user</code> is your user name) that is broadcasted to the network, and there are one or several <em>clients</em> that are mounting <em>mounting</em> (making accessible) the same folder in their local paths <code>/home/user/cluster_shared</code>.</p>
 <p>If the host writes a file to the shared folder, it is available right away for the clients, and the other way around. At the end, the idea is to have a folder shared among all computers in the cluster, while having the same exact path on each one of them to write or read files from such shared folder.</p>
 <p> </p>
-</div>
-<div id="setup-of-an-nfs-folder-in-a-home-cluster" class="section level2">
-<h2>Setup of an NFS folder in a home cluster</h2>
-<p>To setup the shared folder we’ll need to do some things in the <em>host</em>, and some things in the <em>clients</em>. Let’s start with the host.</p>
-<div id="preparing-the-host-computer" class="section level4">
-<h4>Preparing the host computer</h4>
+<h2 id="setup-of-an-nfs-folder-in-a-home-cluster">Setup of an NFS folder in a home cluster</h2>
+<p>To setup the shared folder we&rsquo;ll need to do some things in the <em>host</em>, and some things in the <em>clients</em>. Let&rsquo;s start with the host.</p>
+<h4 id="preparing-the-host-computer">Preparing the host computer</h4>
 <p>First we need to install the <code>nfs-kernel-server</code>.</p>
-<pre class="bash"><code>sudo apt update
-sudo apt install nfs-kernel-server</code></pre>
+<pre><code class="language-bash">sudo apt update
+sudo apt install nfs-kernel-server
+</code></pre>
 <p>Now we can create the shared folder. Remember to replace <code>user</code> with your user name, and <code>cluster_shared</code> with the actual folder name you want to use.</p>
-<pre class="bash"><code>mkdir /home/user/cluster_shared</code></pre>
-<p>To broadcast it we need to open the file <code>/etc/exports</code>…</p>
-<pre class="bash"><code>sudo gedit /etc/exports</code></pre>
-<p>… and add the following line</p>
-<pre class="bash"><code>/home/user/cluster_shared IP_CLIENT1(rw,no_subtree_check) IP_CLIENT2(rw,no_subtree_check) IP_CLIENT3(rw,no_subtree_check)</code></pre>
+<pre><code class="language-bash">mkdir /home/user/cluster_shared
+</code></pre>
+<p>To broadcast it we need to open the file <code>/etc/exports</code>&hellip;</p>
+<pre><code class="language-bash">sudo gedit /etc/exports
+</code></pre>
+<p>&hellip; and add the following line</p>
+<pre><code class="language-bash">/home/user/cluster_shared IP_CLIENT1(rw,no_subtree_check) IP_CLIENT2(rw,no_subtree_check) IP_CLIENT3(rw,no_subtree_check)
+</code></pre>
 <p>where:</p>
 <ul>
 <li><code>/home/user/cluster_shared</code> is the path of the shared folder.</li>
@@ -768,46 +765,50 @@ sudo apt install nfs-kernel-server</code></pre>
 <li><code>no_subtree_check</code> prevents the host from checking the complete tree of shares before attending a request (read or write) by a client.</li>
 </ul>
 <p>For example, the last line of my <code>/etc/exports</code> file looks like this:</p>
-<pre class="bash"><code>/home/blas/cluster_shared 10.42.0.34(rw,async,no_subtree_check) 10.42.0.104(rw,async,no_subtree_check)</code></pre>
+<pre><code class="language-bash">/home/blas/cluster_shared 10.42.0.34(rw,async,no_subtree_check) 10.42.0.104(rw,async,no_subtree_check)
+</code></pre>
 <p>Save the file, and to make the changes effective, execute:</p>
-<pre class="bash"><code>sudo exportfs -ra</code></pre>
+<pre><code class="language-bash">sudo exportfs -ra
+</code></pre>
 <p>To end preparing the host we have to update the firewall rules to allow nfs connections from the clients. Notice that one rule per client needs to be defined, using the clients IPs to identify them.</p>
-<pre class="bash"><code>sudo ufw allow from IP_CLIENT1 to any port nfs
+<pre><code class="language-bash">sudo ufw allow from IP_CLIENT1 to any port nfs
 sudo ufw allow from IP_CLIENT2 to any port nfs
-sudo ufw status</code></pre>
-</div>
-<div id="preparing-the-clients" class="section level4">
-<h4>Preparing the clients</h4>
+sudo ufw status
+</code></pre>
+<h4 id="preparing-the-clients">Preparing the clients</h4>
 <p>First we have to install the Linux package <code>nfs-common</code> on each client.</p>
-<pre class="bash"><code>sudo apt update
-sudp apt install nfs-common</code></pre>
+<pre><code class="language-bash">sudo apt update
+sudp apt install nfs-common
+</code></pre>
 <p>Now we can create a folder in the clients and use it to mount the NFS folder of the host.</p>
-<pre class="bash"><code>mkdir -p /home/user/cluster_shared
-sudo mount IP_HOST:/home/user/cluster_shared /home/user/cluster_shared</code></pre>
+<pre><code class="language-bash">mkdir -p /home/user/cluster_shared
+sudo mount IP_HOST:/home/user/cluster_shared /home/user/cluster_shared
+</code></pre>
 <p>The second line of code is mounting the folder <code>/home/user/cluster_shared</code> of the host in the folder <code>/home/user/cluster_shared</code> of the client.</p>
-<p>To make the mount permanent, we have to open <code>/etc/fstab</code> with super-user privilege in the clients…</p>
-<pre class="bash"><code>sudo gedit /etc/fstab</code></pre>
-<p>… and add the line</p>
-<pre class="bash"><code>IP_HOST:/home/user/cluster_shared /home/user/cluster_shared   nfs     defaults 0 0</code></pre>
+<p>To make the mount permanent, we have to open <code>/etc/fstab</code> with super-user privilege in the clients&hellip;</p>
+<pre><code class="language-bash">sudo gedit /etc/fstab
+</code></pre>
+<p>&hellip; and add the line</p>
+<pre><code class="language-bash">IP_HOST:/home/user/cluster_shared /home/user/cluster_shared   nfs     defaults 0 0
+</code></pre>
 <p>Remember to replace <code>IP_HOST</code> and <code>user</code> with the right values!</p>
 <p>Now we can test that the shared folder works as intended by writing one file into it from each computer in the network using the code below in the command line.</p>
-<pre class="bash"><code>cd cluster_shared
-touch filename.txt</code></pre>
-<p><img src="terminator.png" /></p>
+<pre><code class="language-bash">cd cluster_shared
+touch filename.txt
+</code></pre>
+<p><img src="terminator.png" alt=""></p>
 <p>Once the files are created, we can check they are visible from each computer using the <code>ls</code> command.</p>
-<pre class="bash"><code>ls</code></pre>
-<p><img src="terminator2.png" /></p>
+<pre><code class="language-bash">ls
+</code></pre>
+<p><img src="terminator2.png" alt=""></p>
 <p> </p>
-</div>
-</div>
-<div id="using-an-nfs-folder-in-a-parallelized-loop" class="section level2">
-<h2>Using an NFS folder in a parallelized loop</h2>
-<p>In a <a href="https://www.blasbenito.com/post/02_parallelizing_loops_with_r/">previous post</a> I described how to run parallelized tasks with <code>foreach</code> in R. This section intends to complete that post by showing how a shared NFS folder can be used to store input and output files during the execution of a parallelized loop</p>
-<div id="the-task" class="section level3">
-<h3>The task</h3>
+<h2 id="using-an-nfs-folder-in-a-parallelized-loop">Using an NFS folder in a parallelized loop</h2>
+<p>In a 
+<a href="https://www.blasbenito.com/post/02_parallelizing_loops_with_r/" target="_blank" rel="noopener">previous post</a> I described how to run parallelized tasks with <code>foreach</code> in R. This section intends to complete that post by showing how a shared NFS folder can be used to store input and output files during the execution of a parallelized loop</p>
+<h3 id="the-task">The task</h3>
 <p>In this hypothetical example we have a large number of data frames stored in <code>/home/user/cluster_shared/input</code>. Each data frame has the same predictors <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code>, and a different response variable, named <code>y1</code> for the data frame <code>y1</code>, <code>y2</code> for the data frame <code>y2</code>, and so on. In the example we will be using 100 data frames, but there could be thousands. This example would be valid as well for any other kind of object, such as raster files, time-series, etc etc.</p>
-<p>First we have to load the libraries we’ll be using.</p>
-<pre class="r"><code>#automatic install of packages if they are not installed already
+<p>First we have to load the libraries we&rsquo;ll be using.</p>
+<pre><code class="language-r">#automatic install of packages if they are not installed already
 list.of.packages &lt;- c(
   &quot;foreach&quot;,
   &quot;doParallel&quot;,
@@ -828,9 +829,10 @@ for(package.i in list.of.packages){
       character.only = TRUE
       )
     )
-}</code></pre>
+}
+</code></pre>
 <p>The code chunk below generates the folder <code>/home/user/cluster_shared/input</code> and populates it with the dummy files.</p>
-<pre class="r"><code>#creating the input folder
+<pre><code class="language-r">#creating the input folder
 input.folder &lt;- &quot;/home/blas/cluster_shared/input&quot;
 dir.create(input.folder)
 
@@ -864,20 +866,21 @@ for(i in df.names){
   #removing the generated data frame form the environment
   rm(list = i, df.i, i)
   
-}</code></pre>
+}
+</code></pre>
 <p>Our target now will be to fit one <code>ranger::ranger()</code> model per data frame stored in <code>/home/blas/cluster_shared/input</code>, save the model result to a folder with the path <code>/home/blas/cluster_shared/input</code>, and write a small summary of the model to the output of <code>foreach</code>.</p>
 <p>Such target is based on this rationale: When executing a <code>foreach</code> loop as in <code>x &lt;- foreach(...) %dopar% {...}</code>, the variable <code>x</code> is going to grow in memory very fast, competing for RAM resources with the worker nodes. Furthermore, since <code>x</code> is being written on the fly, the results would be lost if the computer crashes. When the size of the input and the output of our parallelized operation is larger than memory, we can use an NFS folder to store inputs and outputs, while keeping the RAM memory free for computational tasks only, with the positive side effect of having our outputs already stored should our computer decide to crash.</p>
 <p>Also, please notice that here I am focusing in a cluster setting, but using a folder to read and write data during a loop paralellized with <code>foreach</code> can indeed be done in a single computer without an NFS folder. Any folder in your system will do the trick as well!</p>
 <p>So, from here, we are going to prepare the cluster, and execute a parallelized loop fitting one model per data frame that reads the inputs and writes the outputs to the shared folder.</p>
-</div>
-<div id="cluster-setup" class="section level3">
-<h3>Cluster setup</h3>
-<p>We will also need the function I showed in the previous post to generate the cluster specification from a <a href="https://gist.github.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca">GitHub Gist</a>.</p>
-<pre class="r"><code>source(&quot;https://gist.githubusercontent.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca/raw/de57b23740ca90bc02fbd0d5cd3551106ff2fb6d/cluster_spec.R&quot;)</code></pre>
+<h3 id="cluster-setup">Cluster setup</h3>
+<p>We will also need the function I showed in the previous post to generate the cluster specification from a 
+<a href="https://gist.github.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca" target="_blank" rel="noopener">GitHub Gist</a>.</p>
+<pre><code class="language-r">source(&quot;https://gist.githubusercontent.com/BlasBenito/93ee54d3a98d101754aaff0d658dccca/raw/de57b23740ca90bc02fbd0d5cd3551106ff2fb6d/cluster_spec.R&quot;)
+</code></pre>
 <p>Below I use the function to create a cluster specification and initiate the cluster with <code>parallel::makeCluster()</code>.</p>
-<pre class="r"><code>#generate cluster specification
+<pre><code class="language-r">#generate cluster specification
 spec &lt;- cluster_spec(
-  ips = c(&#39;10.42.0.1&#39;, &#39;10.42.0.34&#39;, &#39;10.42.0.104&#39;),
+  ips = c('10.42.0.1', '10.42.0.34', '10.42.0.104'),
   cores = c(7, 4, 4),
   user = &quot;blas&quot;
 )
@@ -888,7 +891,7 @@ Sys.getenv(&quot;R_PARALLEL_PORT&quot;)
 
 #setting up cluster
 my.cluster &lt;- parallel::makeCluster(
-  master = &#39;10.42.0.1&#39;, 
+  master = '10.42.0.1', 
   spec = spec,
   port = Sys.getenv(&quot;R_PARALLEL_PORT&quot;),
   outfile = &quot;&quot;,
@@ -902,23 +905,23 @@ print(my.cluster)
 doParallel::registerDoParallel(cl = my.cluster)
 
 #check number of workers
-foreach::getDoParWorkers()</code></pre>
-</div>
-<div id="parallelized-loop" class="section level3">
-<h3>Parallelized loop</h3>
+foreach::getDoParWorkers()
+</code></pre>
+<h3 id="parallelized-loop">Parallelized loop</h3>
 <p>For everything to work as intended, we first need to create the output folder.</p>
-<pre class="r"><code>output.folder &lt;- &quot;/home/blas/cluster_shared/output&quot;
-dir.create(output.folder)</code></pre>
+<pre><code class="language-r">output.folder &lt;- &quot;/home/blas/cluster_shared/output&quot;
+dir.create(output.folder)
+</code></pre>
 <p>And now we are ready to execute the parallelized loop. Notice that I am using the output of <code>list.files()</code> to have a vector of file names the loop will iterate over. The steps inside of the loop go as follows:</p>
 <ul>
-<li><em>1.</em> Remove the extension <code>.RData</code> from the file name. We’ll later use the result to use <code>assign()</code> on the fitted model to change its name to the same as the input file before saving it.</li>
+<li><em>1.</em> Remove the extension <code>.RData</code> from the file name. We&rsquo;ll later use the result to use <code>assign()</code> on the fitted model to change its name to the same as the input file before saving it.</li>
 <li><em>2.</em> Read the input data frame and store in an object named <code>df</code>.</li>
 <li><em>3.</em> Fit the model with ranger, using the first column of <code>df</code> as respose variable.</li>
 <li><em>4.</em> Change the model name to the name of the input file without extension, resulting from the first step described above.</li>
 <li><em>5.</em> Save the model into the output folder with the extension <code>.RData</code>.</li>
 <li><em>6.</em> Return a data frame with one line with the name of the response variable, the r-squared, and the importance of each predictor.</li>
 </ul>
-<pre class="r"><code>#list of input files as iterator
+<pre><code class="language-r">#list of input files as iterator
 input.files &lt;- list.files(
   path = input.folder,
   full.names = FALSE
@@ -926,7 +929,7 @@ input.files &lt;- list.files(
 
 modelling.summary &lt;- foreach(
   input.file = input.files,
-  .combine = &#39;rbind&#39;, 
+  .combine = 'rbind', 
   .packages = &quot;ranger&quot;
 ) %dopar% {
   
@@ -964,14 +967,14 @@ modelling.summary &lt;- foreach(
     )
   )
   
-}</code></pre>
+}
+</code></pre>
 <p>Once this parallelized loop is executed, the folder <code>/home/blas/cluster_shared/output</code> should be filled with the results from the cluster workers, and the <code>modelling.summary</code> data frame contains the summary of each fitted model.</p>
-<p><img src="output.png" alt="Listing outputs in the shared folder" />
+<p><img src="output.png" alt="Listing outputs in the shared folder">
 Now that the work is done, we can stop the cluster.</p>
-<pre class="r"><code>parallel::stopCluster(cl = my.cluster)</code></pre>
+<pre><code class="language-r">parallel::stopCluster(cl = my.cluster)
+</code></pre>
 <p>Now you know how to work with data larger than memory in a parallelized loop!</p>
-</div>
-</div>
 
     </div>
 

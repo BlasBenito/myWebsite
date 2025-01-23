@@ -13,10 +13,13 @@ featured: false
 publication: '*Biological Conservation*'
 publication_types:
 - "2"
-date: "2013-01-21T00:00:00Z"
 summary: "Our assessments showed little association between bird richness patterns and the cover of protected areas (PAs) across EU countries. The congruence between high-value richness areas of all bird species and IBS with PAs cover was moderate, suggesting that different conservation planning targets should be taken into account to safeguard IBS, or the composition of bird species. Our results also showed that 16 (3.9%) threatened species were present in gaps of PAs. The poor relationship between PAs cover and bird richness pattern found herein may provide evidence that the establishment of SPAs across Europe may not be fully accounting for richness patterns to enhance the performance of the current network."
 tags:
-- Biodiversity Conservation
+- Research Papers
+- Biodiversity Informatics
+- Species Distribution Models
+- Spatial Modelling
+- GIS
 title: 'European Bird distribution is “well” represented by Special Protected Areas: Mission accomplished?'
 url_pdf: https://www.sciencedirect.com/science/article/pii/S0006320712004326/pdfft?casa_token=dxNQg0UoRJYAAAAA:eeX7LLvfmt1l1OuSf9SVHKS5mKLF0Vod99OOUaVMgE4CJeFpxWdQNEwpN0dMrA7yxDsSDRfl&md5=80a29e8a2c149e8d96f36730c82c528f&pid=1-s2.0-S0006320712004326-main.pdf
 ---

@@ -20,14 +20,13 @@ image:
 publication: '*Journal of Biogeography*'
 publication_types:
 - "2"
-date: "2017-05-01T00:00:00Z"
 summary: "This paper [was highlighted in the *Editor's Picks* section of the Science Journal](https://www.dropbox.com/s/6k308eczv7i6kbj/2017_BMB_Journal_of_Biogeography_editors_choice.pdf?dl=1), and was among the [top downloaded articles](https://www.dropbox.com/s/sowq1h4bdngmipy/2017_BMB_Journal_of_Biogeography.png?dl=1) from the *Journal of Biogeography* during the 12 months after its publication."
 tags:
-- Biogeography
+- Research Papers
 - Species Distribution Models
-- Biogeography of Neanderthals
-- Generalized Linear Models
-- Ensemble models
+- Spatial Modelling
+- Biogeography
+- GIS
 title: 'The ecological niche and distribution of Neanderthals during the Last Interglacial'
 url_pdf: https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1
 url_dataset: https://zenodo.org/record/4311198#.X89WmMIo-1c

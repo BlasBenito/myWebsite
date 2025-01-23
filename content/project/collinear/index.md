@@ -16,11 +16,12 @@ links:
   name: CRAN
   url: https://CRAN.R-project.org/package=collinear
 tags: 
-- R packages
+- Rstats
+- Statistics
+- Linear Modelling
 - Machine Learning
 - Multicollinearity
 - Target Encoding
-- Statistics
 - Analytics
 - Data Science
 ---

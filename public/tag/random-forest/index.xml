@@ -356,7 +356,7 @@ predictor.variable.names &amp;lt;- spatialRF::auto_cor(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; interaction.name &lt;/th&gt;
@@ -524,7 +524,7 @@ predictor.variable.names &amp;lt;- interactions$predictor.variable.names
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; variable &lt;/th&gt;
@@ -724,7 +724,7 @@ predictor.variable.names &amp;lt;- interactions$predictor.variable.names
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; climate_aridity_index_average &lt;/th&gt;
@@ -934,7 +934,7 @@ p1 + p2
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; response &lt;/th&gt;
@@ -1223,7 +1223,7 @@ p1 | p2
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; variable &lt;/th&gt;
@@ -1501,7 +1501,7 @@ kableExtra::kbl(
   ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; Model &lt;/th&gt;
@@ -1597,7 +1597,7 @@ mems &amp;lt;- spatialRF::mem_multithreshold(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; spatial_predictor_0_1 &lt;/th&gt;
@@ -1787,7 +1787,7 @@ kableExtra::kbl(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; Model &lt;/th&gt;
@@ -1911,14 +1911,6 @@ dominance).&lt;/p&gt;
     </item>
     
     <item>
-      <title>Supporting underrepresented forests in Mesoamerica</title>
-      <link>https://blasbenito.com/publication/2015_albuquerque_naturaleza_and_conservacao/</link>
-      <pubDate>Tue, 03 Mar 2015 00:00:00 +0000</pubDate>
-      <guid>https://blasbenito.com/publication/2015_albuquerque_naturaleza_and_conservacao/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Distribution and conservation of the relict interaction between the butterfly Agriades zullichi and its larval foodplant (Androsace vitaliana nevadensis)</title>
       <link>https://blasbenito.com/publication/2014_barea-azcon_and_benito_biodiversity_and_conservation/</link>
       <pubDate>Thu, 20 Feb 2014 00:00:00 +0000</pubDate>
@@ -1927,26 +1919,10 @@ dominance).&lt;/p&gt;
     </item>
     
     <item>
-      <title>Forecasting plant range collapse in a mediterranean hotspot: when dispersal uncertainties matter</title>
-      <link>https://blasbenito.com/publication/2014_benito_diversity_and_distributions/</link>
-      <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
-      <guid>https://blasbenito.com/publication/2014_benito_diversity_and_distributions/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Comparing the performance of species distribution models of Zostera marina: Implications for conservation</title>
       <link>https://blasbenito.com/publication/2013_valle_journal_of_sea_research/</link>
       <pubDate>Fri, 15 Mar 2013 00:00:00 +0000</pubDate>
       <guid>https://blasbenito.com/publication/2013_valle_journal_of_sea_research/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>The impact of modelling choices in the predictive performance of richness maps derived from species‐distribution models: guidelines to build better diversity models</title>
-      <link>https://blasbenito.com/publication/2013_benito_methods_in_ecology_and_evolution/</link>
-      <pubDate>Wed, 06 Mar 2013 00:00:00 +0000</pubDate>
-      <guid>https://blasbenito.com/publication/2013_benito_methods_in_ecology_and_evolution/</guid>
       <description></description>
     </item>
     

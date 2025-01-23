@@ -82,7 +82,7 @@ For GIS tasks, I turn to industry-standard tools like [GRASS GIS](https://grass.
 
 My data management and processing are handled by [PostgreSQL](https://www.postgresql.org/), [DuckDB](https://duckdb.org/), [Apache Arrow](https://arrow.apache.org/), and [Apache Spark](https://spark.apache.org/).
 
-Computationally-intensive pipelines find their home in my tiny home-cluster managed by [slurm](https://slurm.schedmd.com/documentation.html).
+Computationally-intensive pipelines find their home in my tiny Beowulf Cluster managed by [slurm](https://slurm.schedmd.com/documentation.html).
 
 For developing and deploying REST APIs, I turn to [plumber](https://www.rplumber.io/), while interactive apps are crafted with [Shiny](https://shiny.posit.co/). My interactive reports come to life using either [Rmarkdown](https://rmarkdown.rstudio.com/) or [Quarto](https://quarto.org/docs/computations/r.html).
 

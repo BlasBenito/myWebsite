@@ -202,8 +202,8 @@ ts_preprocessing &amp;lt;- function(x){
 ## attr(,&amp;quot;name&amp;quot;)
 ## [1] zoo_germany
 ## attr(,&amp;quot;scaled:center&amp;quot;)
-##           evi      rainfall   temperature 
-## -9.607699e-18  2.903660e-16  4.440892e-16 
+##          evi     rainfall  temperature 
+## 2.135044e-18 8.113168e-16 5.465713e-16 
 ## attr(,&amp;quot;scaled:scale&amp;quot;)
 ##         evi    rainfall temperature 
 ##   0.1733241  27.6809389   7.6110663
@@ -942,6 +942,1906 @@ dynamic_time_warping &amp;lt;- function(a, b, plot = FALSE){
     </item>
     
     <item>
+      <title>R package collinear</title>
+      <link>https://blasbenito.com/project/collinear/</link>
+      <pubDate>Sun, 12 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/project/collinear/</guid>
+      <description>&lt;!-- badges: start --&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://doi.org/10.5281/zenodo.10039489&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/DOI/10.5281/zenodo.10039489.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://cran.r-project.org/package=collinear&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://www.r-pkg.org/badges/version/collinear&#34; alt=&#34;CRAN status&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=collinear&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;http://cranlogs.r-pkg.org/badges/grand-total/collinear&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;!-- badges: end --&gt;
+&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://www.blasbenito.com/post/multicollinearity-model-interpretability/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Multicollinearity hinders the interpretability&lt;/a&gt; of linear and machine learning models.&lt;/p&gt;
+&lt;p&gt;The R package 
+&lt;a href=&#34;https://blasbenito.github.io/collinear/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;&lt;code&gt;collinear&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;, 
+&lt;a href=&#34;https://CRAN.R-project.org/package=collinear&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;available on CRAN&lt;/a&gt;, combines four methods for easy management of multicollinearity in modelling data frames with numeric and categorical variables:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Target Encoding&lt;/strong&gt;: Transforms categorical predictors to numeric using a numeric response as reference.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Preference Order&lt;/strong&gt;: Ranks predictors by their association with a response variable to preserve important ones in multicollinearity filtering.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pairwise Correlation Filtering&lt;/strong&gt;: Automated multicollinearity filtering of numeric and categorical predictors based&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;main-improvements-in-version-200&#34;&gt;Main Improvements in Version 2.0.0&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Expanded Functionality&lt;/strong&gt;: Functions &lt;code&gt;collinear()&lt;/code&gt; and &lt;code&gt;preference_order()&lt;/code&gt; support both categorical and numeric responses and predictors, and can handle several responses at once.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Robust Selection Algorithms&lt;/strong&gt;: Enhanced selection in &lt;code&gt;vif_select()&lt;/code&gt; and &lt;code&gt;cor_select()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Enhanced Functionality to Rank Predictors&lt;/strong&gt;: New functions to compute association between response and predictors covering most use-cases, and automated function selection depending on data features.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Simplified Target Encoding&lt;/strong&gt;: Streamlined and parallelized for better efficiency, and new default is &amp;ldquo;loo&amp;rdquo; (leave-one-out).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parallelization and Progress Bars&lt;/strong&gt;: Utilizes &lt;code&gt;future&lt;/code&gt; and &lt;code&gt;progressr&lt;/code&gt; for enhanced performance and user experience.on pairwise correlations.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Variance Inflation Factor Filtering&lt;/strong&gt;: Automated multicollinearity filtering of numeric predictors based on Variance Inflation Factors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The article 
+&lt;a href=&#34;https://blasbenito.github.io/collinear/articles/how_it_works.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;How It Works&lt;/a&gt; explains how the package works in detail.&lt;/p&gt;
+&lt;h2 id=&#34;citation&#34;&gt;Citation&lt;/h2&gt;
+&lt;p&gt;If you find this package useful, please cite it as:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Blas M. Benito (2024). collinear: R Package for Seamless Multicollinearity Management. Version 2.0.0. doi: 10.5281/zenodo.10039489&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R package distantia</title>
+      <link>https://blasbenito.com/project/distantia/</link>
+      <pubDate>Sun, 12 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/project/distantia/</guid>
+      <description>&lt;!-- badges: start --&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://zenodo.org/badge/latestdoi/187805264&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/187805264.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://www.r-pkg.org/badges/version-ago/distantia&#34; alt=&#34;CRAN\_Release\_Badge&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://cranlogs.r-pkg.org/badges/distantia&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;!-- badges: end --&gt;
+&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
+&lt;p&gt;The R package 
+&lt;a href=&#34;https://blasbenito.github.io/distantia/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;&lt;code&gt;distantia&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;, 
+&lt;a href=&#34;https://CRAN.R-project.org/package=distantia&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;available on CRAN&lt;/a&gt;, offers an efficient, feature-rich toolkit for managing, comparing, and analyzing time series data. It is designed to handle a wide range of scenarios, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Multivariate and univariate time series.&lt;/li&gt;
+&lt;li&gt;Regular and irregular sampling.&lt;/li&gt;
+&lt;li&gt;Time series of different lengths.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;key-features&#34;&gt;Key Features&lt;/h2&gt;
+&lt;h3 id=&#34;comprehensive-analytical-tools&#34;&gt;Comprehensive Analytical Tools&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;10 distance metrics: see &lt;code&gt;distantia::distances&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The normalized dissimilarity metric &lt;code&gt;psi&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Free and Restricted Dynamic Time Warping (DTW) for shape-based comparison.&lt;/li&gt;
+&lt;li&gt;A Lock-Step method for sample-to-sample comparison&lt;/li&gt;
+&lt;li&gt;Restricted permutation tests for robust inferential support.&lt;/li&gt;
+&lt;li&gt;Analysis of contribution to dissimilarity of individual variables in multivariate time series.&lt;/li&gt;
+&lt;li&gt;Hierarchical and K-means clustering of time series based on dissimilarity matrices.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;computational-efficiency&#34;&gt;Computational Efficiency&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;strong&gt;C++ back-end&lt;/strong&gt; powered by 
+&lt;a href=&#34;https://www.rcpp.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Rcpp&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parallel processing&lt;/strong&gt; managed through the 
+&lt;a href=&#34;https://future.futureverse.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;future&lt;/a&gt; package.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Efficient data handling&lt;/strong&gt; via 
+&lt;a href=&#34;https://CRAN.R-project.org/package=zoo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;zoo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;time-series-management-tools&#34;&gt;Time Series Management Tools&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduces &lt;strong&gt;time series lists&lt;/strong&gt; (TSL), a versatile format for handling collections of time series stored as lists of &lt;code&gt;zoo&lt;/code&gt; objects.&lt;/li&gt;
+&lt;li&gt;Includes a suite of &lt;code&gt;tsl_...()&lt;/code&gt; functions for generating, resampling, transforming, analyzing, and visualizing univariate and multivariate time series.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;citation&#34;&gt;Citation&lt;/h3&gt;
+&lt;p&gt;If you find this package useful, please cite it as:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Blas M. Benito, H. John B. Birks (2020). distantia: an open-source toolset to quantify dissimilarity between multivariate ecological time-series. Ecography, 43(5), 660-667. doi: 
+&lt;a href=&#34;https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.04895&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;10.1111/ecog.04895&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Blas M. Benito (2024). distantia: A Toolset for Time Series Dissimilarity Analysis. R package version 2.0.0. url:  
+&lt;a href=&#34;https://blasbenito.github.io/distantia/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://blasbenito.github.io/distantia/&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R package spatialRF</title>
+      <link>https://blasbenito.com/project/post-title/</link>
+      <pubDate>Tue, 26 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/project/post-title/</guid>
+      <description>&lt;script src=&#34;https://blasbenito.com/project/post-title/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/project/post-title/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/project/post-title/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/project/post-title/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/project/post-title/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/project/post-title/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/project/post-title/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/project/post-title/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/project/post-title/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/project/post-title/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/project/post-title/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/project/post-title/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/project/post-title/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/project/post-title/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://blasbenito.com/project/post-title/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://blasbenito.com/project/post-title/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;!---
+[![R-CMD-check](https://github.com/BlasBenito/spatialRF/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/BlasBenito/spatialRF/actions/workflows/R-CMD-check.yaml)
+--&gt;
+&lt;!-- badges: start --&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://cran.r-project.org/package=spatialRF&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://www.r-pkg.org/badges/version/spatialRF&#34; alt=&#34;CRAN status&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=spatialRF&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;http://cranlogs.r-pkg.org/badges/grand-total/spatialRF&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;!-- badges: end --&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;The package &lt;strong&gt;spatialRF&lt;/strong&gt; facilitates fitting spatial regression models on regular or irregular data with Random Forest. It does so by generating &lt;em&gt;spatial predictors&lt;/em&gt; that help the model &amp;ldquo;understand&amp;rdquo; the spatial structure of the training data with the end goal of minimizing the spatial autocorrelation of the model residuals and offering honest variable importance scores.&lt;/p&gt;
+&lt;p&gt;Two main methods to generate &lt;em&gt;spatial predictors&lt;/em&gt; from the distance matrix of the data points are implemented in the package:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Moran&amp;rsquo;s Eigenvector Maps 
+&lt;a href=&#34;https://www.sciencedirect.com/science/article/abs/pii/S0304380006000925&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;(Dray, Legendre, and Peres-Neto 2006)&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Distance matrix columns as explanatory variables 
+&lt;a href=&#34;https://peerj.com/articles/5518/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;(Hengl et al. 2018)&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The package is designed to minimize the code required to fit a spatial model from a training dataset, the names of the response and the predictors, and a distance matrix, as shown below.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatial.model &amp;lt;- spatialRF::rf_spatial(
+  data = your_dataframe,
+  dependent.variable.name = &amp;quot;your_response_variable&amp;quot;,
+  predictor.variable.names = c(&amp;quot;predictor1&amp;quot;, &amp;quot;predictor2&amp;quot;, ..., &amp;quot;predictorN&amp;quot;),
+  distance.matrix = your_distance_matrix
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;spatialRF&lt;/strong&gt; uses the fast and efficient &lt;code&gt;ranger&lt;/code&gt; package under the hood 
+&lt;a href=&#34;https://arxiv.org/abs/1508.04409&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;(Wright and Ziegler 2017)&lt;/a&gt;, so please, cite the &lt;code&gt;ranger&lt;/code&gt; package when using &lt;code&gt;spatialRF&lt;/code&gt;!&lt;/p&gt;
+&lt;p&gt;This package also provides tools to identify potentially interesting variable interactions, tune random forest hyperparameters, assess model performance on spatially independent data folds, and examine the resulting models via importance plots, response curves, and response surfaces.&lt;/p&gt;
+&lt;h1 id=&#34;development&#34;&gt;Development&lt;/h1&gt;
+&lt;p&gt;This package is reaching its final form, and big changes are not expected at this stage. However, it has many functions, and even though all them have been tested, only one dataset has been used for those tests. You will find bugs, and something will go wrong almost surely. If you have time to report bugs, please, do so in any of the following ways:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open a new issue in the 
+&lt;a href=&#34;https://github.com/BlasBenito/spatialRF/issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Issues GitHub page of the package&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Send me an email explaining the issue and the error messages with enough detail at blasbenito at gmail dot com.&lt;/li&gt;
+&lt;li&gt;Send a direct message to 
+&lt;a href=&#34;https://twitter.com/blasbenito&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;my twitter account&lt;/a&gt; explaining the issue.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I will do my best to solve any issues ASAP!&lt;/p&gt;
+&lt;h1 id=&#34;applications&#34;&gt;Applications&lt;/h1&gt;
+&lt;p&gt;The goal of &lt;code&gt;spatialRF&lt;/code&gt; is to help fitting &lt;em&gt;explanatory spatial regression&lt;/em&gt;, where the target is to understand how a set of predictors and the spatial structure of the data influences response variable. Therefore, the spatial analyses implemented in the package can be applied to any spatial dataset, regular or irregular, with a sample size between ~100 and ~5000 cases (the higher end will depend on the RAM memory available), a quantitative or binary (values 0 and 1) response variable, and a more or less large set of predictive variables.&lt;/p&gt;
+&lt;p&gt;All functions but &lt;code&gt;rf_spatial()&lt;/code&gt; work with non-spatial data as well if the arguments &lt;code&gt;distance.matrix&lt;/code&gt; and &lt;code&gt;distance.thresholds&lt;/code&gt; are not provided In such case, the number of training cases is no longer limited by the size of the distance matrix, and models can be trained with hundreds of thousands of rows. In such case, the spatial autocorrelation of the model&amp;rsquo;s residuals is not assessed.&lt;/p&gt;
+&lt;p&gt;However, &lt;strong&gt;when the focus is on fitting spatial models&lt;/strong&gt;, and due to the nature of the &lt;em&gt;spatial predictors&lt;/em&gt; used to represent the spatial structure of the training data, &lt;strong&gt;there are many things this package cannot do&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Predict model results over raster data.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Predict a model result over another region with a different spatial structure.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Work with &amp;ldquo;big data&amp;rdquo;, whatever that means.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Imputation or extrapolation (it can be done, but models based on spatial predictors are hardly transferable).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Take temporal autocorrelation into account (but this is something that might be implemented later on).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If after considering these limitations you are still interested, follow me, I will show you how it works.&lt;/p&gt;
+&lt;h1 id=&#34;citation&#34;&gt;Citation&lt;/h1&gt;
+&lt;p&gt;There is a paper in the making about this package. In the meantime, if you find it useful for your academic work, please cite the &lt;code&gt;ranger&lt;/code&gt; package as well, it is the true core of &lt;code&gt;spatialRF&lt;/code&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Marvin N. Wright, Andreas Ziegler (2017). ranger: A Fast Implementation of Random Forests for High Dimensional Data in C++ and R. Journal of Statistical Software, 77(1), 1-17. doi:10.18637/jss.v077.i01&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Blas M. Benito (2021). spatialRF: Easy Spatial Regression with Random Forest. R package version 1.1.0. doi: 10.5281/zenodo.4745208. url: 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://blasbenito.github.io/spatialRF/&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id=&#34;install&#34;&gt;Install&lt;/h1&gt;
+&lt;p&gt;The version 1.1.3 can be installed from CRAN:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;install.packages(&amp;quot;spatialRF&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The package can also be installed from GitHub as follows. There are several branches in the repository:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;main&lt;/code&gt;: latest stable version (1.1.0 currently).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;development&lt;/code&gt;: development version, usually very broken.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;v.1.0.9&lt;/code&gt; to &lt;code&gt;v.1.1.2&lt;/code&gt;: archived versions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;remotes::install_github(
+  repo = &amp;quot;blasbenito/spatialRF&amp;quot;, 
+  ref = &amp;quot;main&amp;quot;,
+  force = TRUE,
+  quiet = TRUE
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are a few other libraries that will be useful during this tutorial.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(spatialRF)
+library(kableExtra)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(tidyverse)
+library(randomForestExplainer)
+library(pdp)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;data-requirements&#34;&gt;Data requirements&lt;/h1&gt;
+&lt;p&gt;The data required to fit random forest models with &lt;code&gt;spatialRF&lt;/code&gt; must fulfill several conditions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The input format is data.frame&lt;/strong&gt;. At the moment, tibbles are not fully supported.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The number of rows must be somewhere between 100 and ~5000&lt;/strong&gt;, at least if your target is fitting spatial models. This limitation comes from the fact that the distance matrix grows very fast with an increasing number of training records, so for large datasets, there might not be enough RAM in your machine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The number of predictors should be larger than 3&lt;/strong&gt;. Fitting a Random Forest model is moot otherwise.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Factors in the response or the predictors are not explicitly supported in the package&lt;/strong&gt;. They may work, or they won&amp;rsquo;t, but in any case, I designed this package for quantitative data alone. However, binary responses with values 0 and 1 are partially supported.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Must be free of &lt;code&gt;NA&lt;/code&gt;&lt;/strong&gt;. You can check if there are NA records with &lt;code&gt;sum(apply(df, 2, is.na))&lt;/code&gt;. If the result is larger than 0, then just execute &lt;code&gt;df &amp;lt;- na.omit(df)&lt;/code&gt; to remove rows with empty cells.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Columns cannot have zero variance&lt;/strong&gt;. This condition can be checked with &lt;code&gt;apply(df, 2, var) == 0&lt;/code&gt;. Columns yielding TRUE should be removed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Columns must not yield &lt;code&gt;NaN&lt;/code&gt; or &lt;code&gt;Inf&lt;/code&gt; when scaled&lt;/strong&gt;. You can check each condition with &lt;code&gt;sum(apply(scale(df), 2, is.nan))&lt;/code&gt; and &lt;code&gt;sum(apply(scale(df), 2, is.infinite))&lt;/code&gt;. If higher than 0, you can find what columns are giving issues with &lt;code&gt;sapply(as.data.frame(scale(df)), function(x)any(is.nan(x)))&lt;/code&gt; and &lt;code&gt;sapply(as.data.frame(scale(df)), function(x)any(is.infinite(x)))&lt;/code&gt;. Any column yielding &lt;code&gt;TRUE&lt;/code&gt; will generate issues while trying to fit models with &lt;code&gt;spatialRF&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;example-data&#34;&gt;Example data&lt;/h1&gt;
+&lt;p&gt;The package includes an example dataset that fulfills the conditions mentioned above, named 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/plant_richness_df.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;plant_richness_df&lt;/code&gt;&lt;/a&gt;. It is a data frame with plant species richness and predictors for 227 ecoregions in the Americas, and a distance matrix among the ecoregion edges named, well, 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/distance_matrix.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;distance_matrix&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The package follows a convention throughout functions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The argument &lt;code&gt;data&lt;/code&gt; requires a training data frame.&lt;/li&gt;
+&lt;li&gt;The argument &lt;code&gt;dependent.variable.name&lt;/code&gt; is the column name of the response variable.&lt;/li&gt;
+&lt;li&gt;The argument &lt;code&gt;predictor.variable.names&lt;/code&gt; contains the column names of the predictors.&lt;/li&gt;
+&lt;li&gt;The argument &lt;code&gt;xy&lt;/code&gt; takes a data frame or matrix with two columns named &amp;ldquo;x&amp;rdquo; and &amp;ldquo;y&amp;rdquo;, in that order, with the case coordinates.&lt;/li&gt;
+&lt;li&gt;The argument &lt;code&gt;distance.matrix&lt;/code&gt; requires a matrix of distances between the cases in &lt;code&gt;data&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The argument &lt;code&gt;distance.thresholds&lt;/code&gt; is a numeric vector of distances at with spatial autocorrelation wants to be computed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It is convenient to define these arguments at the beginning of the workflow.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#loading training data and distance matrix from the package
+data(plant_richness_df)
+data(distance_matrix)
+
+#names of the response variable and the predictors
+dependent.variable.name &amp;lt;- &amp;quot;richness_species_vascular&amp;quot;
+predictor.variable.names &amp;lt;- colnames(plant_richness_df)[5:21]
+
+#coordinates of the cases
+xy &amp;lt;- plant_richness_df[, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)]
+
+#distance matrix
+distance.matrix &amp;lt;- distance_matrix
+
+#distance thresholds (same units as distance_matrix)
+distance.thresholds &amp;lt;- c(0, 1000, 2000, 4000, 8000)
+
+#random seed for reproducibility
+random.seed &amp;lt;- 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The response variable of &lt;code&gt;plant_richness_df&lt;/code&gt; is &amp;ldquo;richness_species_vascular&amp;rdquo;, that represents the total count of vascular plant species found on each ecoregion. The figure below shows the centroids of each ecoregion along with their associated value of the response variable.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;world &amp;lt;- rnaturalearth::ne_countries(
+  scale = &amp;quot;medium&amp;quot;, 
+  returnclass = &amp;quot;sf&amp;quot;
+  )
+
+ggplot2::ggplot() +
+  ggplot2::geom_sf(
+    data = world, 
+    fill = &amp;quot;white&amp;quot;
+    ) +
+  ggplot2::geom_point(
+    data = plant_richness_df,
+    ggplot2::aes(
+      x = x,
+      y = y,
+      color = richness_species_vascular
+    ),
+    size = 2.5
+  ) +
+  ggplot2::scale_color_viridis_c(
+    direction = -1, 
+    option = &amp;quot;F&amp;quot;
+    ) +
+  ggplot2::theme_bw() +
+  ggplot2::labs(color = &amp;quot;Plant richness&amp;quot;) +
+  ggplot2::scale_x_continuous(limits = c(-170, -30)) +
+  ggplot2::scale_y_continuous(limits = c(-58, 80))  +
+  ggplot2::ggtitle(&amp;quot;Plant richness of the American ecoregions&amp;quot;) + 
+  ggplot2::xlab(&amp;quot;Longitude&amp;quot;) + 
+  ggplot2::ylab(&amp;quot;Latitude&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;The predictors (columns 5 to 21) represent diverse factors that may influence plant richness such as sampling bias, the area of the ecoregion, climatic variables, human presence and impact, topography, geographical fragmentation, and features of the neighbors of each ecoregion. The figure below shows the scatterplots of the response variable (y axis) against each predictor (x axis).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Every plotting function in the package now allows changing the colors of their main features via specific arguments such as &lt;code&gt;point.color&lt;/code&gt;, &lt;code&gt;line.color&lt;/code&gt;, or &lt;code&gt;fill.color&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_training_df(
+  data = plant_richness_df,
+  dependent.variable.name = dependent.variable.name,
+  predictor.variable.names = predictor.variable.names,
+  ncol = 3,
+  point.color = viridis::viridis(100, option = &amp;quot;F&amp;quot;),
+  line.color = &amp;quot;gray30&amp;quot;
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;The function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/plot_training_df_moran.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;plot_training_df_moran()&lt;/code&gt;&lt;/a&gt; helps assessing the spatial autocorrelation of the response variable and the predictors across different distance thresholds. Low Moran&amp;rsquo;s I and p-values equal or larger than 0.05 indicate that there is no spatial autocorrelation for the given variable and distance threshold.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_training_df_moran(
+  data = plant_richness_df,
+  dependent.variable.name = dependent.variable.name,
+  predictor.variable.names = predictor.variable.names,
+  distance.matrix = distance.matrix,
+  distance.thresholds = distance.thresholds,
+  fill.color = viridis::viridis(
+    100,
+    option = &amp;quot;F&amp;quot;,
+    direction = -1
+    ),
+  point.color = &amp;quot;gray40&amp;quot;
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;h1 id=&#34;reducing-multicollinearity-in-the-predictors&#34;&gt;Reducing multicollinearity in the predictors&lt;/h1&gt;
+&lt;p&gt;The functions 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/auto_cor.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;auto_cor()&lt;/code&gt;&lt;/a&gt; and 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/auto_vif.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;auto_vif()&lt;/code&gt;&lt;/a&gt; help reduce redundancy in the predictors by using different criteria (bivariate R squared vs. 
+&lt;a href=&#34;https://www.statisticshowto.com/variance-inflation-factor/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;variance inflation factor&lt;/a&gt;), while allowing the user to define an &lt;em&gt;order of preference&lt;/em&gt;, which can be based either on domain expertise or on a quantitative assessment (e.g., order of preference based on variable importance scores or model coefficients). The preference order is defined as a character vector in the &lt;code&gt;preference.order&lt;/code&gt; argument of both functions, and does not need to include the names of all predictors, but just the ones the user would like to keep in the analysis.&lt;/p&gt;
+&lt;p&gt;Notice that I have set &lt;code&gt;cor.threshold&lt;/code&gt; and &lt;code&gt;vif.threshold&lt;/code&gt; to low values because the predictors in &lt;code&gt;plant_richness_df&lt;/code&gt; already have little multicollinearity,. The default values (&lt;code&gt;cor.threshold = 0.75&lt;/code&gt; and &lt;code&gt;vif.threshold = 5&lt;/code&gt;) should work well when combined together for any other set of predictors.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;preference.order &amp;lt;- c(
+    &amp;quot;climate_bio1_average_X_bias_area_km2&amp;quot;,
+    &amp;quot;climate_aridity_index_average&amp;quot;,
+    &amp;quot;climate_hypervolume&amp;quot;,
+    &amp;quot;climate_bio1_average&amp;quot;,
+    &amp;quot;climate_bio15_minimum&amp;quot;,
+    &amp;quot;bias_area_km2&amp;quot;
+  )
+
+predictor.variable.names &amp;lt;- spatialRF::auto_cor(
+  x = plant_richness_df[, predictor.variable.names],
+  cor.threshold = 0.6,
+  preference.order = preference.order
+) %&amp;gt;% 
+  spatialRF::auto_vif(
+    vif.threshold = 2.5,
+    preference.order = preference.order
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [auto_cor()]: Removed variables: human_footprint_average
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [auto_vif()]: Variables are not collinear.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The output of &lt;code&gt;auto_cor()&lt;/code&gt; or &lt;code&gt;auto_vif()&lt;/code&gt; has the class &amp;ldquo;variable_selection&amp;rdquo;, which can be used as input in every function having the argument &lt;code&gt;predictor.variable.names&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;names(predictor.variable.names)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;vif&amp;quot;                   &amp;quot;selected.variables&amp;quot;    &amp;quot;selected.variables.df&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The slot &lt;code&gt;selected.variables&lt;/code&gt; contains the names of the selected predictors.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;predictor.variable.names$selected.variables
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;climate_aridity_index_average&amp;quot;   &amp;quot;climate_hypervolume&amp;quot;            
+##  [3] &amp;quot;climate_bio1_average&amp;quot;            &amp;quot;climate_bio15_minimum&amp;quot;          
+##  [5] &amp;quot;bias_area_km2&amp;quot;                   &amp;quot;bias_species_per_record&amp;quot;        
+##  [7] &amp;quot;climate_velocity_lgm_average&amp;quot;    &amp;quot;neighbors_count&amp;quot;                
+##  [9] &amp;quot;neighbors_percent_shared_edge&amp;quot;   &amp;quot;human_population_density&amp;quot;       
+## [11] &amp;quot;topography_elevation_average&amp;quot;    &amp;quot;landcover_herbs_percent_average&amp;quot;
+## [13] &amp;quot;fragmentation_cohesion&amp;quot;          &amp;quot;fragmentation_division&amp;quot;         
+## [15] &amp;quot;neighbors_area&amp;quot;                  &amp;quot;human_population&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;finding-promising-variable-interactions&#34;&gt;Finding promising variable interactions&lt;/h1&gt;
+&lt;p&gt;Random Forests already takes into account variable interactions of the form &amp;ldquo;variable &lt;code&gt;a&lt;/code&gt; becomes important when &lt;code&gt;b&lt;/code&gt; is higher than x&amp;rdquo;. However, Random Forest can also take advantage of variable interactions of the form &lt;code&gt;a * b&lt;/code&gt;, across the complete ranges of the predictors, as they are commonly defined in regression models, and &amp;ldquo;interactions&amp;rdquo; (not the proper name, but used here for simplicity) represented by the first component of a PCA on the predictors &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/the_feature_engineer.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;the_feature_engineer()&lt;/code&gt;&lt;/a&gt; tests all possible interactions of both types among the most important predictors, and suggesting the ones not correlated among themselves and with the other predictors inducing an increase in the model&amp;rsquo;s R squared (or AUC when the response is binary) on independent data via spatial cross-validation (see &lt;code&gt;rf_evaluate()&lt;/code&gt;).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;interactions &amp;lt;- spatialRF::the_feature_engineer(
+  data = plant_richness_df,
+  dependent.variable.name = dependent.variable.name,
+  predictor.variable.names = predictor.variable.names,
+  xy = xy,
+  importance.threshold = 0.50, #uses 50% best predictors
+  cor.threshold = 0.60, #max corr between interactions and predictors
+  seed = random.seed,
+  repetitions = 100,
+  verbose = TRUE
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Fitting and evaluating a model without interactions.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Testing 28 candidate interactions.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Interactions identified: 5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  ┌──────────────────┬──────────────────┬──────────────────┬──────────────────┐
+##  │ Interaction      │ Importance (% of │        R-squared │     Max cor with │
+##  │                  │             max) │      improvement │       predictors │
+##  ├──────────────────┼──────────────────┼──────────────────┼──────────────────┤
+##  │ bias_area_km2..x │             60.8 │            0.096 │            0.60  │
+##  │ ..bias_species_p │                  │                  │                  │
+##  │ er_record        │                  │                  │                  │
+##  ├──────────────────┼──────────────────┼──────────────────┼──────────────────┤
+##  │ climate_bio1_ave │             97.9 │            0.067 │            0.34  │
+##  │ rage..pca..human │                  │                  │                  │
+##  │ _population_dens │                  │                  │                  │
+##  │ ity              │                  │                  │                  │
+##  ├──────────────────┼──────────────────┼──────────────────┼──────────────────┤
+##  │ climate_bio1_ave │             98.7 │            0.049 │            0.24  │
+##  │ rage..pca..neigh │                  │                  │                  │
+##  │ bors_count       │                  │                  │                  │
+##  ├──────────────────┼──────────────────┼──────────────────┼──────────────────┤
+##  │ human_population │             66.5 │            0.021 │            0.55  │
+##  │ ..x..bias_specie │                  │                  │                  │
+##  │ s_per_record     │                  │                  │                  │
+##  ├──────────────────┼──────────────────┼──────────────────┼──────────────────┤
+##  │ bias_area_km2..p │             62.7 │            0.029 │            0.305 │
+##  │ ca..neighbors_pe │                  │                  │                  │
+##  │ rcent_shared_edg │                  │                  │                  │
+##  │ e                │                  │                  │                  │
+##  └──────────────────┴──────────────────┴──────────────────┴──────────────────┘
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Comparing models with and without interactions via spatial cross-validation.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;1248&#34; /&gt;
+&lt;p&gt;The upper panel in the plot plot above shows the relationship between the interaction and the response variable. It also indicates the gain in R squared (+R2), the importance, in percentage, when used in a model along the other predictors (Imp. (%)), and the maximum Pearson correlation of the interaction with the predictors. The violin-plot shows a comparison of the model with and without the selected interaction made via spatial cross-validation using 100 repetitions (see 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/rf_evaluate.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;rf_evaluate()&lt;/code&gt;&lt;/a&gt; and 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/rf_compare.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;rf_compare()&lt;/code&gt;&lt;/a&gt; for further details).&lt;/p&gt;
+&lt;p&gt;The function also returns a data frame with all the interactions considered.  The columns are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;interaction.name&lt;/code&gt;: Interactions computed via multiplication are named &lt;code&gt;a..x..b&lt;/code&gt;, while interactions computed via PCA are named &lt;code&gt;a..pca..b&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;interaction.importance&lt;/code&gt;: Importance of the interaction expressed as a percentage. If &lt;code&gt;interaction.importance == 100&lt;/code&gt;, that means that the interaction is the most important predictor in the model fitted with the interaction and the predictors named in &lt;code&gt;predictor.variable.names&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;interaction.metric.gain&lt;/code&gt;: Difference in R squared (or AUC for models fitting a binary response) between a model with and a model without the interaction.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;max.cor.with.predictors&lt;/code&gt;: The maximum Pearson correlation of the interaction with the predictors named in &lt;code&gt;predictor.variable.names&lt;/code&gt;. Gives an idea of the amount of multicollinearity the interaction introduces in the model.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;variable.a.name&lt;/code&gt; and &lt;code&gt;variable.b.name&lt;/code&gt;: Names of the predictors involved in the interaction.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;selected&lt;/code&gt;: &lt;code&gt;TRUE&lt;/code&gt; if the interaction fulfills the selection criteria (importance higher than a threshold, positive gain in R squared or AUC, and Pearson correlation with other predictors lower than a threshold). The selected interactions have a correlation among themselves always lower than the value of the argument &lt;code&gt;cor.threshold&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;kableExtra::kbl(
+  head(interactions$screening, 10),
+  format = &amp;quot;html&amp;quot;
+) %&amp;gt;%
+  kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; interaction.name &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; interaction.importance &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; interaction.metric.gain &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; max.cor.with.predictors &lt;/th&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; variable.a.name &lt;/th&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; variable.b.name &lt;/th&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; selected &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2..x..bias_species_per_record &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 60.779 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.096 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.5962899 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_species_per_record &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 97.944 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.067 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.3369664 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..neighbors_count &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 98.742 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.049 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.2441858 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; neighbors_count &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..neighbors_percent_shared_edge &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 84.196 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.066 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.2215337 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; neighbors_percent_shared_edge &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; human_population..x..bias_species_per_record &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 66.512 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.021 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.5462406 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; human_population &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_species_per_record &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..bias_species_per_record &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 70.082 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.018 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.3469834 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_species_per_record &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2..pca..neighbors_percent_shared_edge &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 62.678 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.029 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.3046471 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; neighbors_percent_shared_edge &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_hypervolume..x..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 49.367 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.006 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.5599486 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_hypervolume &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; FALSE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; neighbors_count..pca..neighbors_percent_shared_edge &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 63.808 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.016 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.1584006 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; neighbors_count &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; neighbors_percent_shared_edge &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2..pca..neighbors_count &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 58.662 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.012 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.2166191 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; neighbors_count &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; TRUE &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The function returns a data frame with the response variables, the predictors, and the selected interactions that can be used right away as a training data frame. However, the function cannot say whether an interaction &lt;em&gt;makes sense&lt;/em&gt;, and it is up to the user to choose wisely whether to select an interaction or not. In this particular case, and just for the sake of simplicity, we will be using the resulting data frame as training data.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#adding interaction column to the training data
+plant_richness_df &amp;lt;- interactions$data
+
+#adding interaction name to predictor.variable.names
+predictor.variable.names &amp;lt;- interactions$predictor.variable.names
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;fitting-a-non-spatial-random-forest-model-with-rf&#34;&gt;Fitting a non-spatial Random Forest model with &lt;code&gt;rf()&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;The function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/rf.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;rf()&lt;/code&gt;&lt;/a&gt; is a convenient wrapper for &lt;code&gt;ranger::ranger()&lt;/code&gt; used in every modelling function of the &lt;em&gt;spatialRF&lt;/em&gt; package. It takes the training data, the names of the response and the predictors, and optionally (to assess the spatial autocorrelation of the residuals), the distance matrix, and a vector of distance thresholds (in the same units as the distances in &lt;strong&gt;distance_matrix&lt;/strong&gt;).&lt;/p&gt;
+&lt;p&gt;These distance thresholds are the neighborhoods at which the model will check the spatial autocorrelation of the residuals. Their values may depend on the spatial scale of the data, and the ecological system under study.&lt;/p&gt;
+&lt;p&gt;Notice that here I plug the object &lt;code&gt;predictor.variable.names&lt;/code&gt;, output of &lt;code&gt;auto_cor()&lt;/code&gt; and &lt;code&gt;auto_vif()&lt;/code&gt;, directly into the &lt;code&gt;predictor.variable.names&lt;/code&gt; argument of the &lt;code&gt;rf()&lt;/code&gt; function to fit a random forest model.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model.non.spatial &amp;lt;- spatialRF::rf(
+  data = plant_richness_df,
+  dependent.variable.name = dependent.variable.name,
+  predictor.variable.names = predictor.variable.names,
+  distance.matrix = distance.matrix,
+  distance.thresholds = distance.thresholds,
+  xy = xy, #not needed by rf, but other functions read it from the model
+  seed = random.seed,
+  verbose = FALSE
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The output is a list with several slots containing the information required to interpret the model. The information available in these slots can be plotted (functions named &lt;code&gt;plot_...()&lt;/code&gt;), printed to screen (&lt;code&gt;print_...()&lt;/code&gt;) and captured for further analyses (&lt;code&gt;get_...()&lt;/code&gt;).&lt;/p&gt;
+&lt;h2 id=&#34;residuals&#34;&gt;Residuals&lt;/h2&gt;
+&lt;p&gt;The slot &lt;strong&gt;residuals&lt;/strong&gt; (&lt;code&gt;model.non.spatial$residuals&lt;/code&gt;) stores the values of the residuals and the results of the normality and spatial autocorrelation tests, and its content can be plotted with 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/plot_residuals_diagnostics.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;plot_residuals_diagnostics()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_residuals_diagnostics(
+  model.non.spatial,
+  verbose = FALSE
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;The upper panels show the results of the normality test (interpretation in the title), the middle panel shows the relationship between the residuals and the fitted values, important to understand the behavior of the residuals, and the lower panel shows the Moran&amp;rsquo;s I of the residuals across distance thresholds and their respective p-values (positive for 0 and 1000 km).&lt;/p&gt;
+&lt;h2 id=&#34;variable-importance&#34;&gt;Variable importance&lt;/h2&gt;
+&lt;h3 id=&#34;global-variable-importance&#34;&gt;Global variable importance&lt;/h3&gt;
+&lt;p&gt;The slot &lt;strong&gt;importance&lt;/strong&gt; (&lt;code&gt;model.non.spatial$variable.importance&lt;/code&gt;) contains the variable importance scores. These can be plotted with 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/plot_importance.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;plot_importance()&lt;/code&gt;&lt;/a&gt;, printed with 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/print_importance.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;print_importance()&lt;/code&gt;&lt;/a&gt;, and the dataframe retrieved with 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/get_importance.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;get_importance()&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_importance(
+  model.non.spatial,
+  verbose = FALSE
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;Variable importance represents the increase in mean error (computed on the out-of-bag data) across trees when a predictor is permuted. Values lower than zero would indicate that the variable performs worse than a random one.&lt;/p&gt;
+&lt;p&gt;If the argument &lt;code&gt;scaled.importance = TRUE&lt;/code&gt; is used, the variable importance scores are computed from the scaled data, making the importance scores easier to compare across different models.&lt;/p&gt;
+&lt;p&gt;The package 
+&lt;a href=&#34;https://github.com/ModelOriented/randomForestExplainer&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;randomForestExplainer&lt;/code&gt;&lt;/a&gt; offers a couple of interesting options to deepen our understanding on variable importance scores. The first one is &lt;code&gt;measure_importance()&lt;/code&gt;, which analyzes the forest to find out the average minimum tree depth at which each variable can be found (&lt;code&gt;mean_min_depth&lt;/code&gt;), the number of nodes in which a variable was selected to make a split (&lt;code&gt;no_of_nodes&lt;/code&gt;), the number of times the variable was selected as the first one to start a tree (&lt;code&gt;times_a_root&lt;/code&gt;), and the probability of a variable to be in more nodes than what it would be expected by chance (&lt;code&gt;p_value&lt;/code&gt;).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;importance.df &amp;lt;- randomForestExplainer::measure_importance(
+  model.non.spatial,
+  measures = c(&amp;quot;mean_min_depth&amp;quot;, &amp;quot;no_of_nodes&amp;quot;, &amp;quot;times_a_root&amp;quot;, &amp;quot;p_value&amp;quot;)
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;kableExtra::kbl(
+  importance.df %&amp;gt;% 
+    dplyr::arrange(mean_min_depth) %&amp;gt;% 
+    dplyr::mutate(p_value = round(p_value, 4)),
+  format = &amp;quot;html&amp;quot;
+) %&amp;gt;%
+  kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; variable &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; mean_min_depth &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; no_of_nodes &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; times_a_root &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; p_value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..neighbors_count &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 2.811087 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 2098 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 86 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; human_population &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 2.989940 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 2222 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 51 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3.117996 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1979 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 57 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_hypervolume &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3.200133 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 2072 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 44 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3.201070 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1781 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 64 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.4909 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2..x..bias_species_per_record &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3.379787 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1797 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 46 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.3406 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3.454233 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1900 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 23 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0020 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_species_per_record &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3.564676 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 2321 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 2 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2..pca..neighbors_percent_shared_edge &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3.959485 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1712 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 33 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.9519 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; human_population..x..bias_species_per_record &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3.977952 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1780 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 32 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.5006 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 4.186849 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1800 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 10 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.3144 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; neighbors_count &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 4.204326 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1325 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 29 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; topography_elevation_average &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 4.306636 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1732 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.8795 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; neighbors_percent_shared_edge &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 4.409251 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1700 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 5 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.9749 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; neighbors_area &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 4.643590 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1621 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 2 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; fragmentation_cohesion &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 4.770930 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1518 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 8 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_velocity_lgm_average &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 4.845155 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1658 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.9986 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_aridity_index_average &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 4.858302 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1682 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.9919 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; landcover_herbs_percent_average &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 4.984346 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1656 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.9988 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio15_minimum &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 5.057002 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1552 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 2 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; fragmentation_division &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 5.229187 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1468 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;contribution-of-predictors-to-model-transferability&#34;&gt;Contribution of predictors to model transferability&lt;/h3&gt;
+&lt;p&gt;The new function &lt;code&gt;rf_importance()&lt;/code&gt; offers a way to assess to what extent each predictor contributes to model transferability (predictive ability on independent spatial folds measured with &lt;code&gt;rf_evaluate()&lt;/code&gt;, see below). It does so by comparing the performance of the full model with models fitted without each one of the predictors. The difference in performance between the full model and a model without a given predictor represents the contribution of such predictor to model transferability.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model.non.spatial &amp;lt;- spatialRF::rf_importance(
+  model = model.non.spatial
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-20-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;p&gt;The function results are added to the &amp;ldquo;importance&amp;rdquo; slot of the model.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;names(model.non.spatial$importance)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;per.variable&amp;quot;          &amp;quot;local&amp;quot;                 &amp;quot;oob.per.variable.plot&amp;quot;
+## [4] &amp;quot;cv.per.variable.plot&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The data frame &amp;ldquo;per.variable&amp;rdquo; contains the columns &amp;ldquo;importance.cv&amp;rdquo; (median importance), &amp;ldquo;importance.cv.mad&amp;rdquo; (median absolute deviation), &amp;ldquo;importance.cv.percent&amp;rdquo; (median importance in percentage), and &amp;ldquo;importance.cv.percent.mad&amp;rdquo; (median absolute deviation of the importance in percent). The ggplot object &amp;ldquo;cv.per.variable.plot&amp;rdquo; contains the importance plot with the median and the median absolute deviation shown above.&lt;/p&gt;
+&lt;p&gt;The importance computed by random forest on the out-of-bag data by permutating each predictor (as computed by &lt;code&gt;rf()&lt;/code&gt;) and the contribution of each predictor to model transferability (as computed by &lt;code&gt;rf_importance()&lt;/code&gt;) show a moderate correlation, indicating that both importance measures capture different aspects of the effect of the variables on the model results.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model.non.spatial$importance$per.variable %&amp;gt;% 
+  ggplot2::ggplot() +
+  ggplot2::aes(
+    x = importance.oob,
+    y = importance.cv
+  ) + 
+  ggplot2::geom_point(size = 3) + 
+  ggplot2::theme_bw() +
+  ggplot2::xlab(&amp;quot;Importance (out-of-bag)&amp;quot;) + 
+  ggplot2::ylab(&amp;quot;Contribution to transferability&amp;quot;) + 
+  ggplot2::geom_smooth(method = &amp;quot;lm&amp;quot;, formula = y ~ x, color = &amp;quot;red4&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-22-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;h3 id=&#34;local-variable-importance&#34;&gt;Local variable importance&lt;/h3&gt;
+&lt;p&gt;Random forest also computes the average increase in error when a variable is permuted for each case. This is named &amp;ldquo;local importance&amp;rdquo;, is stored in &lt;code&gt;model.non.spatial$importance$local&lt;/code&gt; as a data frame, and can be retrieved with 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/get_importance_local.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;get_importance_local()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;local.importance &amp;lt;- spatialRF::get_importance_local(model.non.spatial)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The table below shows the first few records and columns. Larger values indicate larger average errors when estimating a case with the permuted version of the variable, so more important variables will show larger values.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;kableExtra::kbl(
+  round(local.importance[1:10, 1:5], 0),
+  format = &amp;quot;html&amp;quot;
+) %&amp;gt;%
+  kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; climate_aridity_index_average &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; climate_hypervolume &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; climate_bio1_average &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; climate_bio15_minimum &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; bias_area_km2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -120 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 705 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 214 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 231 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -274 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 502 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -400 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -431 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 375 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 470 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -182 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -155 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1152 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 46 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -75 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 384 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 769 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 704 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 5 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -538 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -399 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -706 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -669 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 350 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -711 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 248 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1113 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 715 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 483 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 475 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 195 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 705 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 513 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 286 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 332 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -247 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -629 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 506 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -332 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -125 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 335 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -519 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1016 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 95 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -246 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 275 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1154 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 429 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 71 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 234 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;When case coordinates are joined with the local importance scores, it is possible to draw maps showing how variable importance changes over space.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#adding coordinates
+local.importance &amp;lt;- cbind(
+  xy,
+  local.importance
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#colors
+color.low &amp;lt;- viridis::viridis(
+    3,
+    option = &amp;quot;F&amp;quot;
+    )[2]
+color.high &amp;lt;- viridis::viridis(
+    3,
+    option = &amp;quot;F&amp;quot;
+    )[1]
+
+#plot of climate_bio1_average
+p1 &amp;lt;- ggplot2::ggplot() +
+  ggplot2::geom_sf(
+    data = world,
+    fill = &amp;quot;white&amp;quot;
+  ) +
+  ggplot2::geom_point(
+    data = local.importance,
+    ggplot2::aes(
+      x = x,
+      y = y,
+      color = climate_bio1_average
+    )
+  ) +
+  ggplot2::scale_x_continuous(limits = c(-170, -30)) +
+  ggplot2::scale_y_continuous(limits = c(-58, 80)) +
+  ggplot2::scale_color_gradient2(
+    low = color.low, 
+    high = color.high
+    ) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(legend.position = &amp;quot;bottom&amp;quot;) + 
+  ggplot2::ggtitle(&amp;quot;climate_bio1_average&amp;quot;) +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(hjust = 0.5),
+    legend.key.width = ggplot2::unit(1,&amp;quot;cm&amp;quot;)
+    ) + 
+  ggplot2::labs(color = &amp;quot;Importance&amp;quot;) + 
+  ggplot2::xlab(&amp;quot;Longitude&amp;quot;) + 
+  ggplot2::ylab(&amp;quot;Latitude&amp;quot;)
+
+p2 &amp;lt;- ggplot2::ggplot() +
+  ggplot2::geom_sf(
+    data = world,
+    fill = &amp;quot;white&amp;quot;
+  ) +
+  ggplot2::geom_point(
+    data = local.importance,
+    ggplot2::aes(
+      x = x,
+      y = y,
+      color = human_population
+    )
+  ) +
+  ggplot2::scale_x_continuous(limits = c(-170, -30)) +
+  ggplot2::scale_y_continuous(limits = c(-58, 80)) +
+  ggplot2::scale_color_gradient2(
+    low = color.low, 
+    high = color.high
+    ) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(legend.position = &amp;quot;bottom&amp;quot;) +
+  ggplot2::ggtitle(&amp;quot;human_population&amp;quot;) +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(hjust = 0.5),
+    legend.key.width = ggplot2::unit(1,&amp;quot;cm&amp;quot;)
+    ) + 
+  ggplot2::labs(color = &amp;quot;Importance&amp;quot;) + 
+  ggplot2::xlab(&amp;quot;Longitude&amp;quot;) + 
+  ggplot2::ylab(&amp;quot;Latitude&amp;quot;)
+
+p1 + p2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;p&gt;In these maps, values lower than 0 indicate that for a given record, the permuted version of the variable led to an accuracy score even higher than the one of the non-permuted variable, so again these negative values can be interpreted as &amp;ldquo;worse than chance&amp;rdquo;.&lt;/p&gt;
+&lt;h2 id=&#34;response-curves-and-surfaces&#34;&gt;Response curves and surfaces&lt;/h2&gt;
+&lt;p&gt;The variable importance scores are also used by the function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/plot_response_curves.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;plot_response_curves()&lt;/code&gt;&lt;/a&gt; to plot partial dependence curves for the predictors (by default, only the ones with an importance score above the median). Building the partial dependency curve of a predictor requires setting the other predictors to their quantiles (0.1, 0.5, and 0.9 by default). This helps to understand how the response curve of a variable changes when all the other variables have low, centered, or high values. The function also allows to see the training data&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_response_curves(
+  model.non.spatial,
+  quantiles = c(0.1, 0.5, 0.9),
+  line.color = viridis::viridis(
+    3, #same number of colors as quantiles
+    option = &amp;quot;F&amp;quot;, 
+    end = 0.9
+    ),
+  ncol = 3,
+  show.data = TRUE
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;864&#34; /&gt;
+&lt;p&gt;Setting the argument &lt;code&gt;quantiles&lt;/code&gt; to 0.5 and setting &lt;code&gt;show.data&lt;/code&gt; to &lt;code&gt;FALSE&lt;/code&gt; (default optioin) accentuates the shape of the response curves.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_response_curves(
+  model.non.spatial,
+  quantiles = 0.5,
+  ncol = 3
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-28-1.png&#34; width=&#34;864&#34; /&gt;
+&lt;p&gt;The package 
+&lt;a href=&#34;https://bgreenwell.github.io/pdp/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;pdp&lt;/code&gt;&lt;/a&gt; provides a general way to plot partial dependence plots.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;pdp::partial(
+  model.non.spatial, 
+  train = plant_richness_df, 
+  pred.var = &amp;quot;climate_bio1_average&amp;quot;, 
+  plot = TRUE, 
+  grid.resolution = 200
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-29-1.png&#34; width=&#34;384&#34; /&gt;
+&lt;p&gt;If you need to do your own plots in a different way, the function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/get_response_curves.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;get_response_curves()&lt;/code&gt;&lt;/a&gt; returns a data frame with the required data.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;reponse.curves.df &amp;lt;- spatialRF::get_response_curves(model.non.spatial)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;kableExtra::kbl(
+  head(reponse.curves.df, n = 10),
+  format = &amp;quot;html&amp;quot;
+) %&amp;gt;%
+  kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; response &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; predictor &lt;/th&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; quantile &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; model &lt;/th&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; predictor.name &lt;/th&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; response.name &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3081.941 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -4.428994 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; 0.1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; richness_species_vascular &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3081.941 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -4.393562 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; 0.1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; richness_species_vascular &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3081.941 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -4.358129 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; 0.1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; richness_species_vascular &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3081.941 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -4.322697 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; 0.1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; richness_species_vascular &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3081.941 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -4.287265 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; 0.1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; richness_species_vascular &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3081.941 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -4.251833 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; 0.1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; richness_species_vascular &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3081.941 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -4.216400 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; 0.1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; richness_species_vascular &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3081.941 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -4.180968 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; 0.1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; richness_species_vascular &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3081.941 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -4.145536 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; 0.1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; richness_species_vascular &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 3081.941 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -4.110104 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; 0.1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; richness_species_vascular &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Interactions between two variables can be plotted with 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/plot_response_surface.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;plot_response_surface()&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_response_surface(
+  model.non.spatial,
+  a = &amp;quot;climate_bio1_average&amp;quot;,
+  b = &amp;quot;neighbors_count&amp;quot;
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-32-1.png&#34; width=&#34;432&#34; /&gt;
+&lt;p&gt;This can be done as well with the &lt;code&gt;pdp&lt;/code&gt; package, that uses a slightly different algorithm to plot interaction surfaces.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;pdp::partial(
+  model.non.spatial, 
+  train = plant_richness_df, 
+  pred.var = c(&amp;quot;climate_bio1_average&amp;quot;, &amp;quot;neighbors_count&amp;quot;), 
+  plot = TRUE
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-33-1.png&#34; width=&#34;432&#34; /&gt;
+&lt;h2 id=&#34;model-performance&#34;&gt;Model performance&lt;/h2&gt;
+&lt;p&gt;The &lt;strong&gt;performance&lt;/strong&gt; slot (in &lt;code&gt;model.non.spatial$performance&lt;/code&gt;) contains the values of several performance measures. It be printed via the function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/print_performance.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;print_performance()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::print_performance(model.non.spatial)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Model performance 
+##   - R squared (oob):                  0.6075314
+##   - R squared (cor(obs, pred)^2):     0.9543769
+##   - Pseudo R squared (cor(obs, pred)):0.9769221
+##   - RMSE (oob):                       2111.241
+##   - RMSE:                             902.1424
+##   - Normalized RMSE:                  0.2604337
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;R squared (oob)&lt;/code&gt; and &lt;code&gt;RMSE (oob)&lt;/code&gt; are the R squared of the model and its root mean squared error when predicting the out-of-bag data (fraction of data not used to train individual trees). From all the values available in the &lt;code&gt;performance&lt;/code&gt; slot, probably these the most honest ones, as it is the closer trying to get a performance estimate on independent data. However, out-of-bag data is not fully independent, and therefore will still be inflated, especially if the data is highly aggregated in space.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;R squared&lt;/code&gt; and &lt;code&gt;pseudo R squared&lt;/code&gt; are computed from the observations and the predictions, and indicate to what extent model outcomes represent the input data. These values will usually be high the data is highly aggregated in space.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;RMSE&lt;/code&gt; and its normalized version are computed via 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/root_mean_squared_error.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;root_mean_squared_error()&lt;/code&gt;&lt;/a&gt;, and are linear with &lt;code&gt;R squared&lt;/code&gt; and &lt;code&gt;pseudo R squared&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;spatial-cross-validation&#34;&gt;Spatial cross-validation&lt;/h2&gt;
+&lt;p&gt;The function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/rf_evaluate.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;rf_evaluate()&lt;/a&gt; overcomes the limitations of the performance scores explained above by providing honest performance based on &lt;em&gt;spatial cross-validation&lt;/em&gt;. The function separates the data into a number of spatially independent training and testing folds. Then, it fits a model on each training fold, predicts over each testing fold, and computes statistics of performance measures across folds. Let&amp;rsquo;s see how it works.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model.non.spatial &amp;lt;- spatialRF::rf_evaluate(
+  model = model.non.spatial,
+  xy = xy,                  #data coordinates
+  repetitions = 30,         #number of spatial folds
+  training.fraction = 0.75, #training data fraction on each fold
+  metrics = &amp;quot;r.squared&amp;quot;,
+  seed = random.seed,
+  verbose = FALSE
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The function generates a new slot in the model named &lt;strong&gt;evaluation&lt;/strong&gt; (&lt;code&gt;model.non.spatial$evaluation&lt;/code&gt;) with several objects that summarize the spatial cross-validation results.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;names(model.non.spatial$evaluation)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;metrics&amp;quot;           &amp;quot;training.fraction&amp;quot; &amp;quot;spatial.folds&amp;quot;    
+## [4] &amp;quot;per.fold&amp;quot;          &amp;quot;per.fold.long&amp;quot;     &amp;quot;per.model&amp;quot;        
+## [7] &amp;quot;aggregated&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The slot &amp;ldquo;spatial.folds&amp;rdquo;, produced by 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/make_spatial_folds.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;make_spatial_folds()&lt;/code&gt;&lt;/a&gt;, contains the indices of the training and testing cases for each cross-validation repetition. The maps below show two sets of training and testing folds.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;pr &amp;lt;- plant_richness_df[, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)]
+pr$group.2 &amp;lt;- pr$group.1 &amp;lt;- &amp;quot;Training&amp;quot;
+pr[model.non.spatial$evaluation$spatial.folds[[1]]$testing, &amp;quot;group.1&amp;quot;] &amp;lt;- &amp;quot;Testing&amp;quot;
+pr[model.non.spatial$evaluation$spatial.folds[[25]]$testing, &amp;quot;group.2&amp;quot;] &amp;lt;- &amp;quot;Testing&amp;quot;
+
+p1 &amp;lt;- ggplot2::ggplot() +
+  ggplot2::geom_sf(data = world, fill = &amp;quot;white&amp;quot;) +
+  ggplot2::geom_point(data = pr,
+          ggplot2::aes(
+            x = x,
+            y = y,
+            color = group.1
+            ),
+          size = 2
+          ) +
+  ggplot2::scale_color_viridis_d(
+    direction = -1, 
+    end = 0.5, 
+    alpha = 0.8, 
+    option = &amp;quot;F&amp;quot;
+    ) +
+  ggplot2::theme_bw() +
+  ggplot2::labs(color = &amp;quot;Group&amp;quot;) +
+  ggplot2::scale_x_continuous(limits = c(-170, -30)) +
+  ggplot2::scale_y_continuous(limits = c(-58, 80))  +
+  ggplot2::ggtitle(&amp;quot;Spatial fold 1&amp;quot;) + 
+  ggplot2::theme(
+    legend.position = &amp;quot;none&amp;quot;, 
+    plot.title = ggplot2::element_text(hjust = 0.5)
+  ) + 
+  ggplot2::xlab(&amp;quot;Longitude&amp;quot;) + 
+  ggplot2::ylab(&amp;quot;Latitude&amp;quot;)
+
+p2 &amp;lt;- ggplot2::ggplot() +
+  ggplot2::geom_sf(data = world, fill = &amp;quot;white&amp;quot;) +
+  ggplot2::geom_point(data = pr,
+          ggplot2::aes(
+            x = x,
+            y = y,
+            color = group.2
+            ),
+          size = 2
+          ) +
+  ggplot2::scale_color_viridis_d(
+    direction = -1, 
+    end = 0.5, 
+    alpha = 0.8, 
+    option = &amp;quot;F&amp;quot;
+    ) +
+  ggplot2::theme_bw() +
+  ggplot2::labs(color = &amp;quot;Group&amp;quot;) +
+  ggplot2::scale_x_continuous(limits = c(-170, -30)) +
+  ggplot2::scale_y_continuous(limits = c(-58, 80)) +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(hjust = 0.5)
+  ) + 
+  ggplot2::ggtitle(&amp;quot;Spatial fold 25&amp;quot;) + 
+  ggplot2::xlab(&amp;quot;Longitude&amp;quot;) + 
+  ggplot2::ylab(&amp;quot;&amp;quot;)
+
+p1 | p2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-37-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;The information available in this new slot can be accessed with the functions 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/print_evaluation.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;print_evaluation()&lt;/code&gt;&lt;/a&gt;, 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/plot_evaluation.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;plot_evaluation()&lt;/code&gt;&lt;/a&gt;, and 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/get_evaluation.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;get_evaluation()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_evaluation(model.non.spatial)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-38-1.png&#34; width=&#34;432&#34; /&gt;
+&lt;p&gt;&lt;code&gt;Full&lt;/code&gt; represents the R squared of the model trained on the full dataset. &lt;code&gt;Training&lt;/code&gt; are the R-squared of the models fitted on the spatial folds (named &lt;code&gt;Training&lt;/code&gt; in the maps above), and &lt;code&gt;Testing&lt;/code&gt; are the R-squared of the same models on &amp;ldquo;unseen&amp;rdquo; data (data not used to train the model, named &lt;code&gt;Testing&lt;/code&gt; in the maps above). The median, median absolute deviation (MAD), minimum, and maximum R-squared values on the testing folds can be printed with &lt;code&gt;print_evaluation()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::print_evaluation(model.non.spatial)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Spatial evaluation 
+##   - Training fraction:             0.75
+##   - Spatial folds:                 29
+## 
+##     Metric Median   MAD Minimum Maximum
+##  r.squared  0.517 0.085   0.122   0.781
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;other-important-things-stored-in-the-model&#34;&gt;Other important things stored in the model&lt;/h2&gt;
+&lt;p&gt;The model predictions are stored in the slot &lt;strong&gt;predictions&lt;/strong&gt;, the arguments used to fit the model in &lt;strong&gt;ranger.arguments&lt;/strong&gt;, and the model itself, used to predict new values (see code chunk below), is in the &lt;strong&gt;forest&lt;/strong&gt; slot.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;predicted &amp;lt;- stats::predict(
+  object = model.non.spatial,
+  data = plant_richness_df,
+  type = &amp;quot;response&amp;quot;
+  )$predictions
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;fitting-a-spatial-model-with-rf_spatial&#34;&gt;Fitting a spatial model with &lt;code&gt;rf_spatial()&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;The spatial autocorrelation of the residuals of a model like &lt;code&gt;model.non.spatial&lt;/code&gt;, measured with 
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Moran%27s_I&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Moran&amp;rsquo;s I&lt;/a&gt;, can be plotted with 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/plot_moran.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;plot_moran()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_moran(
+  model.non.spatial, 
+  verbose = FALSE
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-41-1.png&#34; width=&#34;384&#34; /&gt;
+According to the plot, the spatial autocorrelation of the residuals of `model.non.spatial` is highly positive for a neighborhood of 0 and 1000 km, while it becomes non-significant (p-value \&gt; 0.05) at 2000, 4000, and 8000 km. To reduce the spatial autocorrelation of the residuals as much as possible, the non-spatial model can be transformed into a *spatial model* very easily with the function [`rf_spatial()`](https://blasbenito.github.io/spatialRF/reference/rf_spatial.html). This function is the true core of the package!
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model.spatial &amp;lt;- spatialRF::rf_spatial(
+  model = model.non.spatial,
+  method = &amp;quot;mem.moran.sequential&amp;quot;, #default method
+  verbose = FALSE,
+  seed = random.seed
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The plot below shows the Moran&amp;rsquo;s I of the residuals of the spatial model, and indicates that the residuals are not autocorrelated at any distance.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_moran(
+  model.spatial, 
+  verbose = FALSE
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-43-1.png&#34; width=&#34;384&#34; /&gt;
+&lt;p&gt;If we compare the variable importance plots of both models, we can see that the spatial model has an additional set of dots under the name &amp;ldquo;spatial_predictors&amp;rdquo;, and that the maximum importance of a few of these &lt;em&gt;spatial predictors&lt;/em&gt; matches the importance of the most relevant non-spatial predictors.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;p1 &amp;lt;- spatialRF::plot_importance(
+  model.non.spatial, 
+  verbose = FALSE) + 
+  ggplot2::ggtitle(&amp;quot;Non-spatial model&amp;quot;) 
+
+p2 &amp;lt;- spatialRF::plot_importance(
+  model.spatial,
+  verbose = FALSE) + 
+  ggplot2::ggtitle(&amp;quot;Spatial model&amp;quot;)
+
+p1 | p2 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-44-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;If we look at the ten most important variables in &lt;code&gt;model.spatial&lt;/code&gt; we will see that a few of them are &lt;em&gt;spatial predictors&lt;/em&gt;. Spatial predictors are named &lt;code&gt;spatial_predictor_X_Y&lt;/code&gt;, where &lt;code&gt;X&lt;/code&gt; is the neighborhood distance at which the predictor has been generated, and &lt;code&gt;Y&lt;/code&gt; is the index of the predictor.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;kableExtra::kbl(
+  head(model.spatial$importance$per.variable, n = 10),
+  format = &amp;quot;html&amp;quot;
+) %&amp;gt;%
+  kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; variable &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; importance &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..neighbors_count &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1094.792 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_hypervolume &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1067.111 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; spatial_predictor_0_2 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1035.365 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; human_population &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 997.965 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 973.243 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2..pca..neighbors_percent_shared_edge &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 902.209 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; climate_bio1_average..pca..human_population_density &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 882.910 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; spatial_predictor_0_1 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 815.656 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_area_km2 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 750.278 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bias_species_per_record &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 712.031 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;But what are spatial predictors? Spatial predictors, as shown below, are smooth surfaces representing neighborhood among records at different spatial scales. They are computed from the distance matrix in different ways. The ones below are the eigenvectors of the double-centered distance matrix of weights (a.k.a, Moran&amp;rsquo;s Eigenvector Maps). They represent the effect of spatial proximity among records, helping to represent biogeographic and spatial processes not considered by the non-spatial predictors.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatial.predictors &amp;lt;- spatialRF::get_spatial_predictors(model.spatial)
+pr &amp;lt;- data.frame(spatial.predictors, plant_richness_df[, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)])
+
+p1 &amp;lt;- ggplot2::ggplot() +
+  ggplot2::geom_sf(data = world, fill = &amp;quot;white&amp;quot;) +
+  ggplot2::geom_point(
+    data = pr,
+    ggplot2::aes(
+      x = x,
+      y = y,
+      color = spatial_predictor_0_2
+    ),
+    size = 2.5
+  ) +
+  ggplot2::scale_color_viridis_c(option = &amp;quot;F&amp;quot;) +
+  ggplot2::theme_bw() +
+  ggplot2::labs(color = &amp;quot;Eigenvalue&amp;quot;) +
+  ggplot2::scale_x_continuous(limits = c(-170, -30)) +
+  ggplot2::scale_y_continuous(limits = c(-58, 80))  +
+  ggplot2::ggtitle(&amp;quot;Variable: spatial_predictor_0_2&amp;quot;) + 
+  ggplot2::theme(legend.position = &amp;quot;bottom&amp;quot;)+ 
+  ggplot2::xlab(&amp;quot;Longitude&amp;quot;) + 
+  ggplot2::ylab(&amp;quot;Latitude&amp;quot;)
+
+p2 &amp;lt;- ggplot2::ggplot() +
+  ggplot2::geom_sf(data = world, fill = &amp;quot;white&amp;quot;) +
+  ggplot2::geom_point(
+    data = pr,
+    ggplot2::aes(
+      x = x,
+      y = y,
+      color = spatial_predictor_0_5,
+    ),
+    size = 2.5
+  ) +
+  ggplot2::scale_color_viridis_c(option = &amp;quot;F&amp;quot;) +
+  ggplot2::theme_bw() +
+  ggplot2::labs(color = &amp;quot;Eigenvalue&amp;quot;) +
+  ggplot2::scale_x_continuous(limits = c(-170, -30)) +
+  ggplot2::scale_y_continuous(limits = c(-58, 80))  +
+  ggplot2::ggtitle(&amp;quot;Variable: spatial_predictor_0_5&amp;quot;) + 
+  ggplot2::theme(legend.position = &amp;quot;bottom&amp;quot;) + 
+  ggplot2::xlab(&amp;quot;Longitude&amp;quot;) + 
+  ggplot2::ylab(&amp;quot;&amp;quot;)
+
+p1 | p2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-46-1.png&#34; width=&#34;1152&#34; /&gt;
+&lt;p&gt;The spatial predictors are included in the model one by one, in the order of their Moran&amp;rsquo;s I (spatial predictors with Moran&amp;rsquo;s I lower than 0 are removed). The selection procedure is performed by the function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/select_spatial_predictors_sequential.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;select_spatial_predictors_sequential()&lt;/code&gt;&lt;/a&gt;, which finds the smaller subset of spatial predictors maximizing the model&amp;rsquo;s R squared, and minimizing the Moran&amp;rsquo;s I of the residuals. This is shown in the optimization plot below (dots linked by lines represent the selected spatial predictors).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;p &amp;lt;- spatialRF::plot_optimization(model.spatial)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-47-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;h1 id=&#34;tuning-random-forest-hyperparameters&#34;&gt;Tuning Random Forest hyperparameters&lt;/h1&gt;
+&lt;p&gt;The model fitted above was based on the default random forest hyperparameters of &lt;code&gt;ranger()&lt;/code&gt;, and those might not be the most adequate ones for a given dataset. The function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/rf_tuning.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;rf_tuning()&lt;/code&gt;&lt;/a&gt; helps the user to choose sensible values for three Random Forest hyperparameters that are critical to model performance:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;num.trees&lt;/code&gt;: number of regression trees in the forest.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mtry&lt;/code&gt;: number of variables to choose from on each tree split.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;min.node.size&lt;/code&gt;: minimum number of cases on a terminal node.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These values can be modified in any model fitted with the package using the &lt;code&gt;ranger.arguments&lt;/code&gt; argument. The example below shows how to fit a spatial model with a given set of hyperparameters.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model.spatial &amp;lt;- spatialRF::rf_spatial(
+  model = model.non.spatial,
+  method = &amp;quot;mem.moran.sequential&amp;quot;, #default method
+  ranger.arguments = list(
+    mtry = 5,
+    min.node.size = 20,
+    num.trees = 1000
+  ),
+  verbose = FALSE,
+  seed = random.seed
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The usual method for model tuning relies on a grid search exploring the results of all the combinations of hyperparameters selected by the user. In &lt;code&gt;spatialRF&lt;/code&gt;,
+model tuning is done via spatial cross-validation, to ensure that the selected combination of hyperparameters maximizes the ability of the model to predict over data not used to train it. &lt;strong&gt;Warning&lt;/strong&gt;: model tuning consumes a lot of computational resources, using it on large datasets might freeze your computer.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;WARNING&lt;/strong&gt;: model tunning is very RAM-hungry, but you can control RAM usage by defining a lower value for the argument &lt;code&gt;n.cores&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model.spatial &amp;lt;- rf_tuning(
+  model = model.spatial,
+  xy = xy,
+  repetitions = 30,
+  num.trees = c(500, 1000),
+  mtry = seq(
+    2,
+    length(model.spatial$ranger.arguments$predictor.variable.names), #number of predictors
+    by = 9),
+  min.node.size = c(5, 15),
+  seed = random.seed,
+  verbose = FALSE
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The function returns a tuned model only if the tuning finds a solution better than the original model. Otherwise the original model is returned. The results of the tuning are stored in the model under the name &amp;ldquo;tuning&amp;rdquo;.&lt;/p&gt;
+&lt;h1 id=&#34;repeating-a-model-execution&#34;&gt;Repeating a model execution&lt;/h1&gt;
+&lt;p&gt;Random Forest is an stochastic algorithm that yields slightly different results on each run unless a random seed is set. This particularity has implications for the interpretation of variable importance scores and response curves. The function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/rf_repeat.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;rf_repeat()&lt;/code&gt;&lt;/a&gt; repeats a model execution and yields the distribution of importance scores of the predictors across executions. &lt;strong&gt;NOTE&lt;/strong&gt;: this function works better when used at the end of a workflow&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model.spatial.repeat &amp;lt;- spatialRF::rf_repeat(
+  model = model.spatial, 
+  repetitions = 30,
+  seed = random.seed,
+  verbose = FALSE
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The importance scores of a model fitted with &lt;code&gt;rf_repeat()&lt;/code&gt; are plotted as a violin plot, with the distribution of the importance scores of each predictor across repetitions.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_importance(
+  model.spatial.repeat, 
+  verbose = FALSE
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-51-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;The response curves of models fitted with &lt;code&gt;rf_repeat()&lt;/code&gt; can be plotted with &lt;code&gt;plot_response_curves()&lt;/code&gt; as well. The median prediction is shown with a thicker line.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::plot_response_curves(
+  model.spatial.repeat, 
+  quantiles = 0.5,
+  ncol = 3
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-52-1.png&#34; width=&#34;864&#34; /&gt;
+&lt;p&gt;The function &lt;code&gt;print_performance()&lt;/code&gt; generates a summary of the performance scores across model repetitions. As every other function of the package involving repetitions, the provided stats are the median, and the median absolute deviation (mad).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;spatialRF::print_performance(model.spatial.repeat)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Model performance (median +/- mad) 
+##   - R squared (oob):              0.593 +/- 0.0098
+##   - R squared (cor(obs, pred)^2): 0.957 +/- 0.0016
+##   - Pseudo R squared:             0.978 +/- 8e-04
+##   - RMSE (oob):                   2151.154 +/- 25.7818
+##   - RMSE:                         914.973 +/- 15.5809
+##   - Normalized RMSE:              0.264 +/- 0.0045
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;taking-advantage-of-the---pipe&#34;&gt;Taking advantage of the &lt;code&gt; %&amp;gt;%&lt;/code&gt; pipe&lt;/h1&gt;
+&lt;p&gt;The modeling functions of &lt;code&gt;spatialRF&lt;/code&gt; are designed to facilitate using the pipe to combine them. The code below fits a spatial model, tunes its hyperparameters, evaluates it using spatial cross-validation, and repeats the execution several times, just by passing the model from one function to another. Replace &lt;code&gt;eval = FALSE&lt;/code&gt; with &lt;code&gt;eval = TRUE&lt;/code&gt; if you want to execute the code chunk.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model.full &amp;lt;- rf_spatial(
+  data = plant_richness_df,
+  dependent.variable.name = dependent.variable.name,
+  predictor.variable.names = predictor.variable.names,
+  distance.matrix = distance_matrix,
+  distance.thresholds = distance.thresholds,
+  xy = xy
+) %&amp;gt;%
+  rf_tuning() %&amp;gt;%
+  rf_evaluate() %&amp;gt;%
+  rf_repeat()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The code structure shown above can also be used to take advantage of a custom cluster, either defined in the local host, or a Beowulf cluster.&lt;/p&gt;
+&lt;p&gt;When working with a single machine, a cluster can be defined and used as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#creating and registering the cluster
+local.cluster &amp;lt;- parallel::makeCluster(
+  parallel::detectCores() - 1,
+  type = &amp;quot;PSOCK&amp;quot;
+)
+doParallel::registerDoParallel(cl = local.cluster)
+
+#fitting, tuning, evaluating, and repeating a model
+model.full &amp;lt;- rf_spatial(
+  data = plant_richness_df,
+  dependent.variable.name = dependent.variable.name,
+  predictor.variable.names = predictor.variable.names,
+  distance.matrix = distance_matrix,
+  distance.thresholds = distance.thresholds,
+  xy = xy,
+  cluster = local.cluster #is passed via pipe to the other functions
+) %&amp;gt;%
+  rf_tuning() %&amp;gt;%
+  rf_evaluate() %&amp;gt;%
+  rf_repeat()
+
+#stopping the cluster
+parallel::stopCluster(cl = local.cluster)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To facilitate working with Beowulf clusters (
+&lt;a href=&#34;https://www.blasbenito.com/post/01_home_cluster/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;just several computers connected via SSH&lt;/a&gt;), the package provides the function &lt;code&gt;beowulf_cluster()&lt;/code&gt;, that generates the cluster definition from details such as the IPs of the machines, the number of cores to be used on each machine, the user name, and the connection port.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#creating and registering the cluster
+beowulf.cluster &amp;lt;- beowulf_cluster(
+  cluster.ips = c(
+    &amp;quot;10.42.0.1&amp;quot;,
+    &amp;quot;10.42.0.34&amp;quot;,
+    &amp;quot;10.42.0.104&amp;quot;
+  ),
+  cluster.cores = c(7, 4, 4),
+  cluster.user = &amp;quot;blas&amp;quot;,
+  cluster.port = &amp;quot;11000&amp;quot;
+)
+
+#fitting, tuning, evaluating, and repeating a model
+model.full &amp;lt;- rf_spatial(
+  data = plant_richness_df,
+  dependent.variable.name = dependent.variable.name,
+  predictor.variable.names = predictor.variable.names,
+  distance.matrix = distance_matrix,
+  distance.thresholds = distance.thresholds,
+  xy = xy,
+  cluster = beowulf.cluster 
+) %&amp;gt;%
+  rf_tuning() %&amp;gt;%
+  rf_evaluate() %&amp;gt;%
+  rf_repeat()
+
+doParallel::registerDoParallel(cl = beowulf.cluster)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;comparing-several-models&#34;&gt;Comparing several models&lt;/h1&gt;
+&lt;p&gt;The function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/rf_compare.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;rf_compare()&lt;/code&gt;&lt;/a&gt; takes named list with as many models as the user needs to compare, and applies &lt;code&gt;rf_evaluate()&lt;/code&gt; to each one of them to compare their predictive performances across spatial folds.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;comparison &amp;lt;- spatialRF::rf_compare(
+  models = list(
+    `Non-spatial` = model.non.spatial,
+    `Spatial` = model.spatial
+  ),
+  xy = xy,
+  repetitions = 30,
+  training.fraction = 0.8,
+  metrics = &amp;quot;r.squared&amp;quot;,
+  seed = random.seed
+  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-57-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;x &amp;lt;- comparison$comparison.df %&amp;gt;% 
+    dplyr::group_by(model, metric) %&amp;gt;% 
+    dplyr::summarise(value = round(median(value), 3)) %&amp;gt;% 
+    dplyr::arrange(metric) %&amp;gt;% 
+    as.data.frame()
+colnames(x) &amp;lt;- c(&amp;quot;Model&amp;quot;, &amp;quot;Metric&amp;quot;, &amp;quot;Median&amp;quot;)
+kableExtra::kbl(
+  x,
+  format = &amp;quot;html&amp;quot;
+  ) %&amp;gt;%
+  kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; Model &lt;/th&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; Metric &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; Median &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Non-spatial &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; r.squared &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.494 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Spatial &lt;/td&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; r.squared &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.305 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;working-with-a-binomial-response&#34;&gt;Working with a binomial response&lt;/h1&gt;
+&lt;p&gt;This package can also perform binomial regression on response variables with zeros and ones. Let&amp;rsquo;s work on a quick example by turning the response variable of the previous models into a binomial one.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;plant_richness_df$response_binomial &amp;lt;- ifelse(
+  plant_richness_df$richness_species_vascular &amp;gt; 5000,
+  1,
+  0
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The new response variable, &lt;code&gt;response_binomial&lt;/code&gt;, will have ones where &lt;code&gt;richness_species_vascular &amp;gt; 5000&lt;/code&gt;, and zeros otherwise. This would be equivalent to having the classes &amp;ldquo;high richness&amp;rdquo; (represented by the ones) and &amp;ldquo;low richness&amp;rdquo;, represented by the zeros. The binomial regression model would then have as objective to compute the probability of each ecoregion to belong to the &amp;ldquo;high richness&amp;rdquo; class.&lt;/p&gt;
+&lt;p&gt;There is something important to notice before moving forward though. The number of zeros in the new response variable is larger than the number of ones.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;table(plant_richness_df$response_binomial)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##   0   1 
+## 165  62
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This means that there is &lt;strong&gt;class imbalance&lt;/strong&gt;, and under this scenario, any random forest model is going to get better at predicting the most abundant class, while in our case the &amp;ldquo;target&amp;rdquo; is the less abundant one. But the function &lt;code&gt;rf()&lt;/code&gt; is ready to deal with this issue. Let&amp;rsquo;s fit a model to see what am I talking about.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model.non.spatial &amp;lt;- spatialRF::rf(
+  data = plant_richness_df,
+  dependent.variable.name = &amp;quot;response_binomial&amp;quot;,
+  predictor.variable.names = predictor.variable.names,
+  distance.matrix = distance.matrix,
+  distance.thresholds = distance.thresholds,
+  seed = random.seed,
+  verbose = FALSE
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The function detects that the response variable is binary (using the function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/is_binary.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;is_binary()&lt;/code&gt;&lt;/a&gt;), and computes &lt;em&gt;case weights&lt;/em&gt; for the ones and the zeros. These case weights are stored in the &lt;code&gt;ranger.arguments&lt;/code&gt; slot of the model, and are used to give preference to the cases with larger weights during the selection of the out-of-bag data (check the &lt;code&gt;case.weights&lt;/code&gt; argument in &lt;code&gt;ranger::ranger()&lt;/code&gt;). As a result, each individual tree in the forest is trained with a similar proportion of zeros and ones, which helps mitigate the class imbalance issue. This method is named &lt;em&gt;weighted Random Forest&lt;/em&gt;, and is very well explained in this 
+&lt;a href=&#34;https://statistics.berkeley.edu/sites/default/files/tech-reports/666.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;white paper&lt;/a&gt; that includes the father of Random Forest, Leo Breiman, as coauthor.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;unique(model.non.spatial$ranger.arguments$case.weights)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.006060606 0.016129032
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This model could be projected right away onto a raster stack with maps of the predictors, so, in fact, &lt;code&gt;spatialRF&lt;/code&gt; can be used to fit Species Distribution Models, when it actually wasn&amp;rsquo;t really designed with such a purpose in mind. And as an additional advantage, the model can be evaluated with &lt;code&gt;rf_evaluate()&lt;/code&gt;, which is way better than cross-validation via random data-splitting (
+&lt;a href=&#34;https://methodsblog.com/2018/11/29/blockcv-english/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this blog post&lt;/a&gt; explains explains why).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;model.non.spatial &amp;lt;- spatialRF::rf_evaluate(
+  model.non.spatial,
+  xy = xy,
+  metrics = &amp;quot;auc&amp;quot;,
+  verbose = FALSE
+)
+
+spatialRF::print_evaluation(model.non.spatial)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Spatial evaluation 
+##   - Training fraction:             0.75
+##   - Spatial folds:                 29
+## 
+##  Metric Median   MAD Minimum Maximum
+##     auc  0.932 0.024    0.83   0.977
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;strong&gt;take away message&lt;/strong&gt; here is that you can work with a binomial response with &lt;code&gt;spatialRF&lt;/code&gt;, just as you would do with a continuous response, as long as it is represented with zeros and ones. Just remember that the class imbalance problem is tackled via case weights, and that predictive performance is also measured using the Area Under the ROC Curve (AUC).&lt;/p&gt;
+&lt;h1 id=&#34;generating-spatial-predictors-for-other-modelling-methods&#34;&gt;Generating spatial predictors for other modelling methods&lt;/h1&gt;
+&lt;p&gt;You might not love Random Forest, but &lt;code&gt;spatialRF&lt;/code&gt; loves you, and as such, it gives you tools to generate spatial predictors for other models anyway.&lt;/p&gt;
+&lt;p&gt;The first step requires generating Moran&amp;rsquo;s Eigenvector Maps (MEMs) from the distance matrix. Here there are two options, computing MEMs for a single neighborhood distance with 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/mem.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;mem()&lt;/code&gt;&lt;/a&gt;, and computing MEMs for several neighborhood distances at once with 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/mem_multithreshold.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;mem_multithreshold()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#single distance (0km by default)
+mems &amp;lt;- spatialRF::mem(distance.matrix = distance_matrix)
+
+#several distances
+mems &amp;lt;- spatialRF::mem_multithreshold(
+  distance.matrix = distance.matrix,
+  distance.thresholds = distance.thresholds
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In either case the result is a data frame with Moran&amp;rsquo;s Eigenvector Maps (&amp;ldquo;just&amp;rdquo; the positive eigenvectors of the double-centered distance matrix).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;kableExtra::kbl(
+  head(mems[, 1:4], n = 10),
+  format = &amp;quot;html&amp;quot;
+) %&amp;gt;%
+  kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; spatial_predictor_0_1 &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; spatial_predictor_0_2 &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; spatial_predictor_0_3 &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; spatial_predictor_0_4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0259217 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0052203 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0416969 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0363324 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0996679 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0539713 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.1324480 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.3826928 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0010477 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0143046 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0443602 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0031386 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0165695 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0047991 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0307457 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0005170 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0225761 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0019595 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0230368 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0524239 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0155252 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0023742 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0197953 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0338956 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0229197 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0039860 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0312561 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0416697 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.2436009 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.1155295 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0791452 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0189996 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0150725 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0158684 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.1010284 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0095590 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.1187381 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0471879 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; -0.0359881 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.0065211 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;But not all MEMs are made equal, and you will need to rank them by their Moran&amp;rsquo;s I. The function 
+&lt;a href=&#34;https://blasbenito.github.io/spatialRF/reference/rank_spatial_predictors.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;rank_spatial_predictors()&lt;/code&gt;&lt;/a&gt; will help you do so.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;mem.rank &amp;lt;- spatialRF::rank_spatial_predictors(
+  distance.matrix = distance_matrix,
+  spatial.predictors.df = mems,
+  ranking.method = &amp;quot;moran&amp;quot;
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The output of &lt;code&gt;rank_spatial_predictors()&lt;/code&gt; is a list with three slots: &amp;ldquo;method&amp;rdquo;, a character string with the name of the ranking method; &amp;ldquo;criteria&amp;rdquo;, an ordered data frame with the criteria used to rank the spatial predictors; and &amp;ldquo;ranking&amp;rdquo;, a character vector with the names of the spatial predictors in the order of their ranking (it is just the first column of the &amp;ldquo;criteria&amp;rdquo; data frame). We can use this &amp;ldquo;ranking&amp;rdquo; object to reorder or &lt;code&gt;mems&lt;/code&gt; data frame.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;mems &amp;lt;- mems[, mem.rank$ranking]
+
+#also:
+#mems &amp;lt;- mem.rank$spatial.predictors.df
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;From here, spatial predictors can be included in any model one by one, in the order of the ranking, until the spatial autocorrelation of the residuals becomes neutral, if possible. A little example with a linear model follows.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#model definition
+predictors &amp;lt;- c(
+  &amp;quot;climate_aridity_index_average &amp;quot;,
+  &amp;quot;climate_bio1_average&amp;quot;,
+  &amp;quot;bias_species_per_record&amp;quot;,
+  &amp;quot;human_population_density&amp;quot;,
+  &amp;quot;topography_elevation_average&amp;quot;,
+  &amp;quot;fragmentation_division&amp;quot;
+)
+model.formula &amp;lt;- as.formula(
+  paste(
+    dependent.variable.name,
+    &amp;quot; ~ &amp;quot;,
+    paste(
+      predictors,
+      collapse = &amp;quot; + &amp;quot;
+    )
+  )
+)
+
+#scaling the data
+model.data &amp;lt;- scale(plant_richness_df) %&amp;gt;% 
+  as.data.frame()
+
+#fitting the model
+m &amp;lt;- lm(model.formula, data = model.data)
+
+#Moran&#39;s I test of the residuals
+moran.test &amp;lt;- spatialRF::moran(
+  x = residuals(m),
+  distance.matrix = distance_matrix,
+  verbose = FALSE
+)
+moran.test$plot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-68-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;According to the Moran&amp;rsquo;s I test, the model residuals show spatial autocorrelation. Let&amp;rsquo;s introduce MEMs one by one until the problem is solved.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#add mems to the data and applies scale()
+model.data &amp;lt;- data.frame(
+  plant_richness_df,
+  mems
+) %&amp;gt;%
+  scale() %&amp;gt;%
+  as.data.frame()
+
+#initialize predictors.i
+predictors.i &amp;lt;- predictors
+
+#iterating through MEMs
+for(mem.i in colnames(mems)){
+  
+  #add mem name to model definintion
+  predictors.i &amp;lt;- c(predictors.i, mem.i)
+  
+  #generate model formula with the new spatial predictor
+  model.formula.i &amp;lt;- as.formula(
+    paste(
+      dependent.variable.name,
+      &amp;quot; ~ &amp;quot;,
+      paste(
+        predictors.i,
+        collapse = &amp;quot; + &amp;quot;
+      )
+    )
+  )
+  
+  #fit model
+  m.i &amp;lt;- lm(model.formula.i, data = model.data)
+  
+  #Moran&#39;s I test
+  moran.test.i &amp;lt;- moran(
+    x = residuals(m.i),
+    distance.matrix = distance_matrix,
+    verbose = FALSE
+  )
+  
+  #stop if no autocorrelation
+  if(moran.test.i$test$interpretation == &amp;quot;No spatial correlation&amp;quot;){
+    break
+  }
+  
+}#end of loop
+
+#last moran test
+moran.test.i$plot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;img src=&#34;https://blasbenito.com/project/post-title/index_files/figure-html/unnamed-chunk-69-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;Now we can compare the model without spatial predictors &lt;code&gt;m&lt;/code&gt; and the model with spatial predictors &lt;code&gt;m.i&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;comparison.df &amp;lt;- data.frame(
+  Model = c(&amp;quot;Non-spatial&amp;quot;, &amp;quot;Spatial&amp;quot;),
+  Predictors = c(length(predictors), length(predictors.i)),
+  R_squared = round(c(summary(m)$r.squared, summary(m.i)$r.squared), 2),
+  AIC = round(c(AIC(m), AIC(m.i)), 0),
+  BIC = round(c(BIC(m), BIC(m.i)), 0),
+  `Moran I` = round(c(moran.test$test$moran.i, moran.test.i$test$moran.i), 2)
+)
+
+kableExtra::kbl(
+  comparison.df,
+  format = &amp;quot;html&amp;quot;
+) %&amp;gt;%
+  kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; Model &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; Predictors &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; R_squared &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; AIC &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; BIC &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; Moran.I &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Non-spatial &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 6 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.38 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 551 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 578 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Spatial &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 22 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.50 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 533 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 615 &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.06 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;According to the model comparison, it can be concluded that the addition of spatial predictors, in spite of the increase in complexity, has improved the model. In any case, this is just a simple demonstration of how spatial predictors generated with functions of the &lt;code&gt;spatialRF&lt;/code&gt; package can still help you fit spatial models with other modeling methods.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Designing R Functions to Compute Betadiversity Indices</title>
       <link>https://blasbenito.com/post/betadiversity/</link>
       <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
@@ -1599,6 +3499,91 @@ site.combinations
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;source(&amp;quot;https://gist.githubusercontent.com/BlasBenito/4c3740b056a0c9bb3602f33dfd35990c/raw/bbb40d868787fc5d10e391a2121045eb5d75f165/functions_betadiversity.R&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I hope this post helped you to better understand how to write and organize R functions!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R package memoria</title>
+      <link>https://blasbenito.com/project/memoria/</link>
+      <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/project/memoria/</guid>
+      <description>&lt;p&gt;
+&lt;a href=&#34;https://zenodo.org/badge/latestdoi/179102027&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/179102027.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=memoria&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://www.r-pkg.org/badges/version-ago/memoria&#34; alt=&#34;CRAN\_Release\_Badge&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=memoria&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://cranlogs.r-pkg.org/badges/memoria&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The goal of &lt;em&gt;memoria&lt;/em&gt; is to provide the tools to quantify &lt;strong&gt;ecological
+memory&lt;/strong&gt; in long time-series involving environmental drivers and biotic
+responses, including palaeoecological datasets.&lt;/p&gt;
+&lt;p&gt;Ecological memory has two main components: the &lt;em&gt;endogenous&lt;/em&gt; component,
+which represents the effect of antecedent values of the response on
+itself, and &lt;em&gt;endogenous&lt;/em&gt; component, which represents the effect of
+antecedent values of the driver or drivers on the current state of the
+biotic response. Additionally, the &lt;em&gt;concurrent effect&lt;/em&gt;, which represents
+the synchronic effect of the environmental drivers over the response is
+measured. The functions in the package allow the user&lt;/p&gt;
+&lt;p&gt;The package &lt;em&gt;memoria&lt;/em&gt; uses the fast implementation of Random Forest
+available in the 
+&lt;a href=&#34;https://CRAN.R-project.org/package=ranger&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ranger&lt;/a&gt;
+package to fit a model of the form shown in &lt;strong&gt;Equation 1&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Equation 1&lt;/strong&gt; (simplified from the one in the paper):
+$$p_{t} = p_{t-1} +&amp;hellip;+ p_{t-n} + d_{t} + d_{t-1} +&amp;hellip;+ d_{t-n}$$&lt;/p&gt;
+&lt;p&gt;Where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$p$ is the response variable, &lt;em&gt;Pollen&lt;/em&gt; counts were used in this particular case..&lt;/li&gt;
+&lt;li&gt;$d$ is an environmental &lt;em&gt;Driver&lt;/em&gt; influencing the response variable.&lt;/li&gt;
+&lt;li&gt;$t$ is the time of any given value of the response $p$.&lt;/li&gt;
+&lt;li&gt;$t-1$ is the lag 1.&lt;/li&gt;
+&lt;li&gt;$p_{t-1} +&amp;hellip;+ p_{t-n}$ represents the endogenous component of
+ecological memory.&lt;/li&gt;
+&lt;li&gt;$d_{t-1} +&amp;hellip;+ d_{t-n}$ represents the exogenous component of
+ecological memory.&lt;/li&gt;
+&lt;li&gt;$d_{t}$ represents the concurrent effect of the driver over the
+response.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Random Forest returns an importance score for each model term, and the
+functions in &lt;em&gt;memoria&lt;/em&gt; let the user to plot the importance scores across
+time lags for each ecological memory components, and to compute
+different features of each memory component (length, strength, and
+dominance).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;output.png&#34; alt=&#34;Outputs produced by memoria from the analysis of a multivariate time series&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://github.com/BlasBenito/memoria&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub page&lt;/a&gt; of the package features complete examples on how to use the package. The 
+&lt;a href=&#34;https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04772&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paper published in the Ecography journal&lt;/a&gt; describes ecological memory concepts and the method based on Random Forest used to assess ecological memory components. The code used to generate the supplementary materials can be found in 
+&lt;a href=&#34;https://github.com/BlasBenito/EcologicalMemory&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt; and 
+&lt;a href=&#34;https://zenodo.org/record/3236128#.X941v9Yo-1c&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Zenodo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you ever use the package, please, cite it as:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Benito, B.M., Gil‐Romera, G. and Birks, H.J.B. (2020), Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features. Ecography, 43: 1-10. 
+&lt;a href=&#34;https://doi.org/10.1111/ecog.04772&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/ecog.04772&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R package virtualPollen</title>
+      <link>https://blasbenito.com/project/virtualpollen/</link>
+      <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://blasbenito.com/project/virtualpollen/</guid>
+      <description>&lt;p&gt;
+&lt;a href=&#34;https://CRAN.R-project.org/package=virtualPollen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://www.r-pkg.org/badges/version-ago/virtualPollen&#34; alt=&#34;CRAN\_Release\_Badge&#34;&gt;&lt;/a&gt;
+
+&lt;a href=&#34;https://CRAN.R-project.org/package=virtualPollen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;https://cranlogs.r-pkg.org/badges/virtualPollen&#34; alt=&#34;CRAN\_Download\_Badge&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The goal of &lt;code&gt;virtualPollen&lt;/code&gt; is to provide the tools to simulate pollen
+curves over millenial time-scales generated by virtual taxa with
+different life traits (life-span, fecundity, growth-rate) and niche
+features (niche position and breadth) as a response to virtual
+environmental drivers with a given temporal autocorrelation. It furthers
+allow to simulate specific data properties of fossil pollen datasets,
+such as sediment accumulation rate, and depth intervals between
+consecutive pollen samples. The simulation outcomes are useful to better
+understand the role of plant traits, niche properties, and climatic
+variability in defining the shape of pollen curves.&lt;/p&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://github.com/BlasBenito/virtualPollen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub page&lt;/a&gt; of the package offers a complete tutorial on how to use the package. The 
+&lt;a href=&#34;https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04772&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;paper published in the Ecography journal&lt;/a&gt; describes the foundations of the model in brief.&lt;/p&gt;
+&lt;p&gt;If you ever use the package, please, cite it as:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Benito, B.M., Gil‐Romera, G. and Birks, H.J.B. (2020), Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features. Ecography, 43: 1-10. 
+&lt;a href=&#34;https://doi.org/10.1111/ecog.04772&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/ecog.04772&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     

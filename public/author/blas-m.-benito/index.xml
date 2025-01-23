@@ -202,8 +202,8 @@ ts_preprocessing &amp;lt;- function(x){
 ## attr(,&amp;quot;name&amp;quot;)
 ## [1] zoo_germany
 ## attr(,&amp;quot;scaled:center&amp;quot;)
-##           evi      rainfall   temperature 
-## -9.607699e-18  2.903660e-16  4.440892e-16 
+##          evi     rainfall  temperature 
+## 2.135044e-18 8.113168e-16 5.465713e-16 
 ## attr(,&amp;quot;scaled:scale&amp;quot;)
 ##         evi    rainfall temperature 
 ##   0.1733241  27.6809389   7.6110663
@@ -2366,11 +2366,11 @@ collinear::cor_df(df = df.q)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##   x y   correlation
 ## 1 d c  4.823037e-04
-## 2 d a  1.585298e-16
-## 3 c b  1.708728e-17
-## 4 c a -3.036108e-18
-## 5 d b  2.385256e-18
-## 6 b a -1.431486e-18
+## 2 c b -5.439825e-17
+## 3 d b  3.896078e-17
+## 4 d a  3.837016e-17
+## 5 c a -3.786884e-17
+## 6 b a -1.098207e-17
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The new set of predictors we are left with after the QR decomposition have exactly zero correlation! And now they are not our original predictors anymore, and have a different interpretation:&lt;/p&gt;
 &lt;ul&gt;
@@ -2971,7 +2971,7 @@ predictor.variable.names &amp;lt;- spatialRF::auto_cor(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; interaction.name &lt;/th&gt;
@@ -3139,7 +3139,7 @@ predictor.variable.names &amp;lt;- interactions$predictor.variable.names
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; variable &lt;/th&gt;
@@ -3339,7 +3339,7 @@ predictor.variable.names &amp;lt;- interactions$predictor.variable.names
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; climate_aridity_index_average &lt;/th&gt;
@@ -3549,7 +3549,7 @@ p1 + p2
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; response &lt;/th&gt;
@@ -3838,7 +3838,7 @@ p1 | p2
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; variable &lt;/th&gt;
@@ -4116,7 +4116,7 @@ kableExtra::kbl(
   ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; Model &lt;/th&gt;
@@ -4212,7 +4212,7 @@ mems &amp;lt;- spatialRF::mem_multithreshold(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; spatial_predictor_0_1 &lt;/th&gt;
@@ -4402,7 +4402,7 @@ kableExtra::kbl(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; Model &lt;/th&gt;
@@ -5147,9 +5147,9 @@ site.combinations
     
     <item>
       <title>Setup of a Shared Folder in a Home Cluster</title>
-      <link>https://blasbenito.com/post/shared-folder-home-cluster/</link>
+      <link>https://blasbenito.com/post/shared-folder-beowulf-cluster/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://blasbenito.com/post/shared-folder-home-cluster/</guid>
+      <guid>https://blasbenito.com/post/shared-folder-beowulf-cluster/</guid>
       <description>&lt;p&gt;In the previous posts I have covered how to 
 &lt;a href=&#34;https://www.blasbenito.com/post/01_home_cluster/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;setup a home cluster&lt;/a&gt;, and how to 
 &lt;a href=&#34;https://www.blasbenito.com/post/02_parallelizing_loops_with_r/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;run parallel processes with &lt;code&gt;foreach&lt;/code&gt; in R&lt;/a&gt;. However, so far I haven&amp;rsquo;t covered how to setup a folder shared among the cluster nodes to store the results of parallel computations.&lt;/p&gt;
@@ -5413,9 +5413,9 @@ Now that the work is done, we can stop the cluster.&lt;/p&gt;
     
     <item>
       <title>Setting up a Beowulf Home Cluster</title>
-      <link>https://blasbenito.com/post/home-cluster/</link>
+      <link>https://blasbenito.com/post/beowulf-cluster/</link>
       <pubDate>Mon, 07 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://blasbenito.com/post/home-cluster/</guid>
+      <guid>https://blasbenito.com/post/beowulf-cluster/</guid>
       <description>&lt;p&gt;In this post I explain how to setup a small 
 &lt;a href=&#34;https://en.wikipedia.org/wiki/Beowulf_cluster&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Beowulf cluster&lt;/a&gt; with a personal PC running Ubuntu 20.04 and a couple of 
 &lt;a href=&#34;https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Intel NUCs&lt;/a&gt; running Ubuntu Server 20.04, with the end-goal of parallelizing R tasks.&lt;/p&gt;

@@ -24,12 +24,10 @@ image:
 publication: '*New Phytologist (Tansley Review)*'
 publication_types:
 - "2"
-publishDate: "2021-04-17T00:00:00Z"
 summary: "Here we synthesize the biogeography of key organisms (vascular and non‐vascular vegetation and soil microorganisms), attributes (functional traits, spatial patterns, plant‐plant and plant‐soil interactions) and processes (productivity and land cover) across global drylands. We finish our review discussing major research gaps, which include: i) studying regular vegetation spatial patterns, ii) establishing large‐scale plant and biocrust field surveys assessing individual‐level trait measurements, iii) knowing whether plant‐plant and plant‐soil interactions impacts on biodiversity are predictable and iv) assessing how elevated CO2 modulates future aridity conditions and plant productivity."
 tags:
+- Research Papers
 - Biogeography
-- Plant Ecology
-- Dryland ecology
 title: "Biogeography of global drylands"
 url_pdf: https://nph.onlinelibrary.wiley.com/doi/epdf/10.1111/nph.17395
 ---

@@ -14,11 +14,10 @@ featured: false
 publication: '*Conservation Biology*'
 publication_types:
 - "2"
-publishDate: "2015-04-28T00:00:00Z"
 summary: "Paleoecology provides a valuable perspective on coarse‐filter strategies by marshaling the natural experiments of the past to contextualize extinction risk due to the emerging impacts of climate change and anthropogenic threats. We reviewed examples from the paleoecological record that highlight the strengths, opportunities, and caveats of a CNS approach. We focused on the near‐time geological past of the Quaternary, during which species were subjected to widespread changes in climate and concomitant changes in the physical environment in general."
 tags:
-- Palaeoecology
-- Biodiversity conservation
+- Research Papers
+- Climate Change
 title: "A 2.5‐million‐year perspective on coarse‐filter strategies for conserving nature's stage"
 url_pdf: https://www.dropbox.com/s/w0gx08dgzjytp0i/2015_BMB_Conservation_Biology.pdf?dl=1
 ---

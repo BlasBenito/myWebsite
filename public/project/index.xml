@@ -447,7 +447,7 @@ predictor.variable.names &amp;lt;- spatialRF::auto_cor(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; interaction.name &lt;/th&gt;
@@ -615,7 +615,7 @@ predictor.variable.names &amp;lt;- interactions$predictor.variable.names
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; variable &lt;/th&gt;
@@ -815,7 +815,7 @@ predictor.variable.names &amp;lt;- interactions$predictor.variable.names
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; climate_aridity_index_average &lt;/th&gt;
@@ -1025,7 +1025,7 @@ p1 + p2
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; response &lt;/th&gt;
@@ -1314,7 +1314,7 @@ p1 | p2
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; variable &lt;/th&gt;
@@ -1592,7 +1592,7 @@ kableExtra::kbl(
   ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; Model &lt;/th&gt;
@@ -1688,7 +1688,7 @@ mems &amp;lt;- spatialRF::mem_multithreshold(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:right;&#34;&gt; spatial_predictor_0_1 &lt;/th&gt;
@@ -1878,7 +1878,7 @@ kableExtra::kbl(
 ) %&amp;gt;%
   kableExtra::kable_paper(&amp;quot;hover&amp;quot;, full_width = F)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
+&lt;table class=&#34; lightable-paper lightable-hover&#34; style=&#39;color: black; font-family: &#34;Arial Narrow&#34;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;&#39;&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt; Model &lt;/th&gt;

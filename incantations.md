@@ -9,3 +9,21 @@ src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM
 </script>
 
 Also, as note, be aware of https://www.stderr.nl/Blog/Blog/MathJaxInMarkdown.html
+
+#Code highlighting
+Downloaded highlightjs from https://highlightjs.org/download, and unpacked in /static.
+
+Added this code to themes/hugo-academic/layouts/partials/page_footer.html:
+
+<!-- Add highlight.js CSS -->
+<link rel="stylesheet" href="/static/highlight/styles/agate.css">
+<!-- Add highlight.js JS -->
+<script src="/static/highlight/highlight.min.js"></script>
+<!-- Initialize highlight.js -->
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>

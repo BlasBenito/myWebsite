@@ -22,7 +22,6 @@ tags:
 - Machine Learning
 - Multicollinearity
 - Target Encoding
-- Analytics
 - Data Science
 ---
 

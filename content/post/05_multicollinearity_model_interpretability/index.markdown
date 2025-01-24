@@ -7,7 +7,11 @@ output:
   blogdown::html_page:
     toc: true
 categories: []
-tags: [Stats, Multicollinearity, Data Science, Linear Modelling]
+tags:
+- Quantitative Methods
+- Multicollinearity
+- Data Science
+- Linear Modelling
 subtitle: ''
 summary: 'In this post, I delve into the intricacies of model interpretation under the influence of multicollinearity, and use R and a toy data set to demonstrate how this phenomenon impacts both linear and machine learning models.'
 authors: [admin]

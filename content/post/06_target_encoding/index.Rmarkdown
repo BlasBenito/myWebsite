@@ -9,7 +9,11 @@ links:
   name: GitHub
   url: https://github.com/BlasBenito/collinear
 categories: []
-tags: [R packages, Stats, Data Science, Multicollinearity, Variable Selection]
+tags:
+- R packages
+- Quantitative Methods
+- Data Science
+- Multicollinearity
 subtitle: ''
 summary: 'Target encoding is commonly used to map categorical variables to numeric with the objective of facilitating exploratory data analysis and machine learning modeling. This post covers the basics of this method, and explains how and when to use it.'
 authors: [admin]

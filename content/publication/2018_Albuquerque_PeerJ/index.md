@@ -20,7 +20,7 @@ summary: "The goals of this study are to provide a map of actual habitat suitabi
 tags:
 - Research Papers
 - Ecological Dynamics
-- Quantitative Ecology
+- Computational Ecology
 - Species Distribution Models
 - GIS
 title: 'Potential changes in the distribution of Carnegiea gigantea under future scenarios'

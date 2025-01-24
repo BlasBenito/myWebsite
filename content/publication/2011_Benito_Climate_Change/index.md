@@ -19,7 +19,7 @@ publication_types:
 summary: "According to the simulations, the suitable habitat for the key species inhabiting the summit area, where most of the endemic and/or rare species are located, may disappear before the middle of the century. The other key species considered show moderate to drastic suitable habitat loss depending on the considered scenario. Climate warming should provoke a strong substitution dynamics between species, increasing spatial competition between both of them. In this study, we introduce the application of differential suitability concept into the analysis of potential impact of climate change, forest management and environmental monitoring, and discuss the limitations and uncertainties of these simulations."
 tags:
 - Research Papers
-- Quantitative Ecology
+- Computational Ecology
 - Species Distribution Models
 - Spatial Modelling
 - Dynamic Simulation

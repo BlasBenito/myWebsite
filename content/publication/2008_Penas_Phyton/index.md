@@ -13,7 +13,7 @@ publication_types:
 summary: "We we develop a methodology predicting the expansion of greenhouses by combining a species distribution model (MaxEnt) and a simulator of land use change (Geomod)."
 tags:
 - Research Papers
-- Quantitative Ecology
+- Computational Ecology
 - Species Distribution Models
 - Dynamic Simulation
 - Spatial Modelling

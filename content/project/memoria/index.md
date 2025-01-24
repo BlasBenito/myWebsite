@@ -21,7 +21,7 @@ links:
 summary: R package to assess ecological memory in multivariate time-series.
 tags: 
 - Rstats
-- Quantitative Ecology
+- Computational Ecology
 - Time Series Analysis
 - Machine Learning
 - Random Forest

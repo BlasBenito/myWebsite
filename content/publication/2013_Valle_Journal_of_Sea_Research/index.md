@@ -23,7 +23,7 @@ tags:
 - Random Forest
 - Gradient Boosting
 - Research Papers
-- Quantitative Ecology
+- Computational Ecology
 - Species Distribution Models
 - Spatial Modelling
 - GIS

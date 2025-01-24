@@ -14,7 +14,7 @@ publication_types:
 summary: "In this paper, we present the development of ModeleR, a repository of models accessible from the web, which enables the user to design, document, manage, and execute environmental models."
 tags:
 - Research Papers
-- Quantitative Ecology
+- Computational Ecology
 title: "ModeleR: An enviromental model repository as knowledge base for experts"
 url_pdf: https://www.dropbox.com/s/tc9uueq8oljenam/2012_BMB_Expert_systems_with_applications.pdf?dl=1
 ---

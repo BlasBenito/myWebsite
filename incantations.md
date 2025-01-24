@@ -11,15 +11,20 @@ src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM
 Also, as note, be aware of https://www.stderr.nl/Blog/Blog/MathJaxInMarkdown.html
 
 #Code highlighting
-Downloaded highlightjs from https://highlightjs.org/download, and unpacked in /static.
 
-Added this code to themes/hugo-academic/layouts/partials/page_footer.html:
+Add this to config.toml
 
-<!-- Add highlight.js CSS -->
-<link rel="stylesheet" href="/static/highlight/styles/agate.css">
-<!-- Add highlight.js JS -->
-<script src="/static/highlight/highlight.min.js"></script>
-<!-- Initialize highlight.js -->
+  [markup.highlight]
+    codeFences = true
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+#styles here https://xyproto.github.io/splash/docs/all.html, but not all work
+    style = "github" #style name
+    tabWidth = 4
+
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelectorAll('pre code').forEach((block) => {
@@ -27,3 +32,8 @@ Added this code to themes/hugo-academic/layouts/partials/page_footer.html:
     });
   });
 </script>
+
+
+#Copy Button (could not make it work though)
+https://github.com/jmooring/hugo-testing/tree/hugo-forum-topic-49633
+

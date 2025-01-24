@@ -18,7 +18,7 @@ summary: "This is a spatio-temporal simulation of the effect of fire regimes on 
 tags: 
 - Agent Based Models
 - Netlogo
-- Simulation
+- Dynamic Simulation
 title: "Palaeo fire modeling"
 url_pdf: ""
 url_slides: ""

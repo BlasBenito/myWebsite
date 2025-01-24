@@ -23,7 +23,7 @@ publication_types:
 - "2"
 summary: "Climate change research is an interdisciplinary field, and understanding its social, political, and environmental implications requires integration across fields of research where different tools may be used to address common concerns. One of the many advantages of interdisciplinary approaches is that they open communication between complementary fields, filling knowledge gaps and facilitating progression within both individual fields and the broader field of climate change research."
 tags:
-- Climate Change
+- Ecological Dynamics
 title: "Interdisciplinary Climate Change Collaborations Are Essential for Early‐Career Scientists"
 url_pdf: https://www.dropbox.com/s/t9cncnmjlmisad0/2013_BMB_EOS.pdf?dl=1
 ---

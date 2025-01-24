@@ -20,9 +20,9 @@ tags:
 - Research Papers
 - Time Series Analysis
 - Dynamic Time Warping
-- Simulation
+- Dynamic Simulation
 - Random Forest
-- Statistics
+- Quantitative Methods
 title: 'Ecological memory at millennial time‐scales: the importance of data constraints, species longevity and niche features'
 url_code: "https://github.com/BlasBenito/EcologicalMemory"
 url_pdf: https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.04772

@@ -22,7 +22,7 @@ summary: R package to simulate pollen production of mono-specific tree populatio
 tags: 
 - Rstats
 - Time Series Analysis
-- Simulation
+- Dynamic Simulation
 title: "R package virtualPollen"
 url_code: ""
 url_pdf: ""

@@ -19,7 +19,7 @@ publication_types:
 summary: "Quaternary palaeopalynological records collected throughout the Iberian Peninsula and species distribution models (SDMs) were integrated to gain a better understanding of the historical biogeography of the Iberian Abies species (i.e. Abies pinsapo and Abies alba). We hypothesize that SDMs and Abies palaeorecords are closely correlated, assuming a certain stasis in climatic and topographic ecological niche dimensions. In addition, the modelling results were used to assign the fossil records to A. alba or A. pinsapo, to identify environmental variables affecting their distribution, and to evaluate the ecological segregation between the two taxa."
 tags:
 - Research Papers
-- Biodiversity Informatics
+- Quantitative Ecology
 - Species Distribution Models
 - Spatial Modelling
 - Biogeography

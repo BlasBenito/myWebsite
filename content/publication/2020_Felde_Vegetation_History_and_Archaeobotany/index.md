@@ -16,7 +16,7 @@ summary: 'The Eemian interglacial represents a natural experiment on how past ve
 tags:
 - Research Papers
 - Time Series Analysis
-- Statistics
+- Quantitative Methods
 title: Compositional turnover and variation in Eemian pollen sequences in Europe
 url_pdf: https://www.dropbox.com/s/ugmv44g0u32oo3e/2020_BMB_Vegetation_History_and_Archaeobotany.pdf?dl=0
 ---

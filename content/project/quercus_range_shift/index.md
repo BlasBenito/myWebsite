@@ -14,7 +14,7 @@ summary: Agent-based model coded with Netlogo to simulate range shift of *Quercu
 tags: 
 - Agent Based Models
 - Netlogo
-- Simulation
+- Dynamic Simulation
 title: "Range-shift simulation"
 url_pdf: ""
 url_slides: ""

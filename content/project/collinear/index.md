@@ -17,7 +17,7 @@ links:
   url: https://CRAN.R-project.org/package=collinear
 tags: 
 - Rstats
-- Statistics
+- Quantitative Methods
 - Linear Modelling
 - Machine Learning
 - Multicollinearity

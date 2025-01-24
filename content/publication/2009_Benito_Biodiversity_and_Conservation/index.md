@@ -21,7 +21,7 @@ publication_types:
 summary: "In this paper, we propose the application of SDMs to assess the extinction-risk of plant species in relation to the spread of greenhouses in a Mediterranean landscape, where habitat depletion is one of the main causes of biodiversity loss."
 tags:
 - Research Papers
-- Biodiversity Informatics
+- Quantitative Ecology
 - Species Distribution Models
 - Spatial Modelling
 - Biogeography

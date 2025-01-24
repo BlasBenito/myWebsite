@@ -16,7 +16,7 @@ publication_types:
 summary: "We had three key findings. First, dry forest is the least protected biome in Mesoamerica (4.5% protected), indicating that further action to safeguard this biome is warranted. Secondly, the poor overlap between protected areas and high-value forest conservation areas found herein may provide evidence that the establishment of protected areas may not be fully accounting for tree priority rank map. Third, high percentages of forest cover and high-value forest conservation areas still need to be represented by the protected areas network. Because deforestation rates are still increasing in this region, Mesoamerica needs funding and coordinated action by policy makers, national and local governmental and non-governmental organizations, conservationists and other stakeholders."
 tags:
 - Research Papers
-- Biodiversity Informatics
+- Quantitative Ecology
 - Spatial Modelling
 - GIS
 title: 'Supporting underrepresented forests in Mesoamerica'

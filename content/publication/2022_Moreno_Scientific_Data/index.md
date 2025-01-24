@@ -20,7 +20,7 @@ summary: "Drylands cover ~41% of the terrestrial surface. In these water-limited
 tags:
 - Research Papers
 - Time Series Analysis
-- Statistics
+- Quantitative Methods
 title: " Fourteen years of continuous soil moisture records from plant and biocrust-dominated microsites."
 url_pdf: https://www.nature.com/articles/s41597-021-01111-6.pdf
 ---

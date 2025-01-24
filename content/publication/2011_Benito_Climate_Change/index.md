@@ -19,11 +19,11 @@ publication_types:
 summary: "According to the simulations, the suitable habitat for the key species inhabiting the summit area, where most of the endemic and/or rare species are located, may disappear before the middle of the century. The other key species considered show moderate to drastic suitable habitat loss depending on the considered scenario. Climate warming should provoke a strong substitution dynamics between species, increasing spatial competition between both of them. In this study, we introduce the application of differential suitability concept into the analysis of potential impact of climate change, forest management and environmental monitoring, and discuss the limitations and uncertainties of these simulations."
 tags:
 - Research Papers
-- Biodiversity Informatics
+- Quantitative Ecology
 - Species Distribution Models
 - Spatial Modelling
-- Simulation
-- Climate Change
+- Dynamic Simulation
+- Ecological Dynamics
 - GIS
 title: 'Simulating potential effects of climatic warming on altitudinal patterns of key species in Mediterranean-alpine ecosystems'
 url_pdf: https://www.dropbox.com/s/7cai34zh603vidr/2011_BMB_Climate_Change.pdf?dl=1

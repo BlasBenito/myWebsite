@@ -19,7 +19,7 @@ summary: "Anthropogenic climate change and landscape alteration are two of the m
 tags:
 - Research Papers
 - Time Series Analysis
-- Statistics
+- Quantitative Methods
 title: "Human practices behind the aquatic and terrestrial ecological decoupling to climate change in the tropical Andes."
 url_pdf: https://www.sciencedirect.com/science/article/am/pii/S0048969722012074
 ---

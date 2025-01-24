@@ -16,9 +16,9 @@ publication_types:
 summary: "Here we investigated the demographic history of the willow grouse (Lagopus lagopus), rock ptarmigan (Lagopus muta), and black grouse (Tetrao tetrix) through the Late Pleistocene using two complementary methods and whole genome data. Species distribution modeling (SDM) allowed us to estimate the total range size during the Last Interglacial (LIG) and Last Glacial Maximum (LGM) as well as to indicate potential population subdivisions."
 tags:
 - Research Papers
-- Biodiversity Informatics
+- Quantitative Ecology
 - Species Distribution Models
-- Statistics
+- Quantitative Methods
 - GIS
 title: 'Past and potential future population dynamics of three grouse species using ecological and whole genome coalescent modeling'
 url_pdf: https://onlinelibrary.wiley.com/doi/epdf/10.1002/ece3.4163

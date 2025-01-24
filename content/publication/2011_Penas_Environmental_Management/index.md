@@ -19,7 +19,7 @@ publication_types:
 summary: "The results indicate that greenhouses and construction activities (mainly for tourist purposes) exert a strong impact on the populations of this endangered species. The habitat depletion showed peaks that constitute the destruction of 85% of the initial area in only 20 years for some populations of L. nigricans. According to the forecast established by the model, a rapid extinction could take place and some populations may disappear as early as the year 2030. Fragmentation-cadence analysis can help identify population units of primary concern for its conservation, by means of the adoption of improved management and regulatory measures."
 tags:
 - Research Papers
-- Biodiversity Informatics
+- Quantitative Ecology
 - Species Distribution Models
 - Spatial Modelling
 - GIS

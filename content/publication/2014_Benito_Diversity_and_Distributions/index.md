@@ -21,11 +21,11 @@ publication_types:
 summary: "The Mediterranean Basin is threatened by climate change, and there is an urgent need for studies to determine the risk of plant range shift and potential extinction. In this study, we simulate potential range shifts of 176 plant species to perform a detailed prognosis of critical range decline and extinction in a transformed mediterranean landscape. Particularly, we seek to answer two pivotal questions: (1) what are the general plant‐extinction patterns we should expect in mediterranean landscapes during the 21st century? and (2) does dispersal ability prevent extinction under climate change?."
 tags:
 - Research Papers
-- Biodiversity Informatics
+- Quantitative Ecology
 - Species Distribution Models
 - Spatial Modelling
-- Simulation
-- Statistics
+- Dynamic Simulation
+- Quantitative Methods
 - GIS
 title: 'Forecasting plant range collapse in a mediterranean hotspot: when dispersal uncertainties matter'
 url_pdf: https://onlinelibrary.wiley.com/doi/pdf/10.1111/ddi.12148

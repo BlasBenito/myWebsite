@@ -21,7 +21,7 @@ links:
   url: https://onlinelibrary.wiley.com/doi/epdf/10.1111/ecog.04895
 tags: 
 - Rstats
-- Statistics
+- Quantitative Methods
 - Time Series Analysis
 - Dynamic Time Warping
 - Data Science

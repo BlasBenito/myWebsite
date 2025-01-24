@@ -30,7 +30,7 @@ publication_types:
 summary: "We hypothesize that fire has influenced Erica communities in the Bale Mountains at millennial time-scales. To test this, we (1) identify the fire history of the Bale Mountains through a pollen and charcoal record from Garba Guracha, a lake at 3950 m.a.s.l., and (2) describe the long-term bidirectional feedback between wildfire and Erica, which may control the ecosystem's resilience."
 tags:
 - Research Papers
-- Statistics
+- Quantitative Methods
 - Time Series Analysis
 title: 'Long-term fire resilience of the Ericaceous Belt, Bale Mountains, Ethiopia'
 url_code: https://github.com/BlasBenito/BaleFire

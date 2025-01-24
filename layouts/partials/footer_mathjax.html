@@ -3,11 +3,6 @@
 <script async src="{{ .Site.Params.MathJaxCDN | default "//cdnjs.cloudflare.com/ajax/libs" }}/mathjax/{{ .Site.Params.MathJaxVersion | default "2.7.5" }}/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 {{ end }}
 
-<!-- Add highlight.js CSS -->
-<link rel="stylesheet" href="/static/highlight/styles/agate.css">
-<!-- Add highlight.js JS -->
-<script src="/static/highlight/highlight.min.js"></script>
-<!-- Initialize highlight.js -->
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelectorAll('pre code').forEach((block) => {

@@ -8,7 +8,7 @@ tags:
 - Rstats
 - Dynamic Time Warping
 - Data Science
-- Programming
+- Scientific Programming
 - Tutorial
 - Time Series Analysis
 subtitle: ''
@@ -22,6 +22,7 @@ image:
   focal_point: Smart
   margin: auto
 projects: []
+toc: true
 ---
 
 ```{r, echo = FALSE, eval = FALSE}
@@ -35,13 +36,13 @@ options(digits = 8)
 ```
 
 
-# Summary
+## Summary
 
 This post walks you through the implementation of a minimalistic yet fully functional [Dynamic Time Warping](https://www.blasbenito.com/post/dynamic-time-warping/) (DTW) library in R, built entirely from scratch without dependencies or complex abstractions. While there are many [open-source DTW implementations](https://blasbenito.github.io/distantia/articles/dtw_applications.html) readily available, understanding the inner workings of the algorithm can be invaluable. Whether you’re simply curious or need a deeper grasp of DTW for your projects, this step-by-step guide offers a hands-on approach to demystify the method.
 
-# Design
+## Design
 
-## Example Data
+### Example Data
 
 Having good example data at hand is a must when developing new code. For this tutorial we use three multivariate time series of temperature, rainfall, and normalized vegetation index. These time series are named `zoo_germany`, `zoo_sweden`, and `zoo_spain`, and are stored as objects of the class [zoo](https://CRAN.R-project.org/package=zoo), which is a very robust time series management library.
 
@@ -86,7 +87,7 @@ zoo::index(zoo_sweden)
 ```
 
 
-## Required Library Functions
+### Required Library Functions
 
 The section *DTW Step by Step* from the previous article [A Gentle Intro to Dynamic Time Warping](https://www.blasbenito.com/post/dynamic-time-warping/) describes the computational steps required by the algorithm. Below, these steps are broken down into sub-steps that will correspond to specific functions in our library:
 
@@ -111,7 +112,7 @@ These steps perform dynamic time warping and evaluate the dissimilarity between 
 
 Once all the steps above are implemented in their respective functions, we will wrap all them in a single function to streamline the DTW analysis.
   
-# Implementation
+## Implementation
 
 In this section we will be developing the library concept by concept and function by function.
 
@@ -287,6 +288,7 @@ distance_euclidean(
   y = as.numeric(zoo_germany[2, ])
 )
 ```
+
 Ok, that makes more sense! 
 
 Then, we just have to move these `as.numeric()` commands inside `distance_euclidean()` to simplify the usage of the function:

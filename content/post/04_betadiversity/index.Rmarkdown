@@ -4,7 +4,10 @@ author: ''
 date: "2021-01-06"
 slug: betadiversity
 categories: []
-tags: [Rstats]
+tags: 
+- Scientific Programming
+- Rstats
+- Tutorial
 subtitle: ''
 summary: 'Brief tutorial on writing R functions to compute betadiversity scores'
 authors: [admin]
@@ -17,6 +20,7 @@ image:
   margin: auto
 math: true
 projects: []
+toc: true
 ---
 
 {{% alert note %}}

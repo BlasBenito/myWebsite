@@ -16,15 +16,16 @@ image:
   focal_point: Smart
   margin: auto
 projects: []
+toc: true
 ---
 
-# Resources
+## Resources
 
   + [Rmarkdown notebook used in this tutorial](https://github.com/BlasBenito/notebooks/blob/main/variance_inflation_factors.Rmd)
   + [Multicollinearity Hinders Model Interpretability](/post/multicollinearity-model-interpretability/)
   + [R package `collinear`](https://blasbenito.github.io/collinear/)
 
-# Summary
+## Summary
 
 This post focuses on Variance Inflation Factors (VIF) and their crucial role in identifying multicollinearity within linear models.
 
@@ -36,7 +37,7 @@ The post covers the following main points:
 
 Ultimately, this post serves as a comprehensive resource for understanding, interpreting, and managing VIF in the context of linear modeling. It caters to those with a strong command of R and a keen interest in statistical modeling.
 
-# R packages
+## R packages
 
 This tutorial requires the development version (>= 1.0.3) of the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more.
 
@@ -54,7 +55,7 @@ install.packages("ggplot2")
 ```
 
 
-# Example data
+## Example data
 
 This post uses the `toy` data set shipped with the version >= 1.0.3 of the R package [`collinear`](https://blasbenito.github.io/collinear/). It is a data frame of centered and scaled variables representing a model design of the form `y ~ a + b + c + d`, where the predictors show varying degrees of relatedness. Let's load and check it.
 
@@ -109,7 +110,7 @@ collinear::cor_df(
 
 Keep these pairwise correlations in mind for what comes next!
 
-# The Meaning of Variance Inflation Factors
+## The Meaning of Variance Inflation Factors
 
 There are two general cases of multicollinearity in model designs:
 
@@ -143,7 +144,7 @@ Since the R-squared of `a` against all other predictors is pretty high, it defin
 
 However, as informative as this R-squared is, it tells us nothing about the consequences of having multicollinearity in our model design. And this is where **Variance Inflation Factors**, or **VIF** for short, come into play.
 
-## What are Variance Inflation Factors?
+### What are Variance Inflation Factors?
 
 The Variance Inflation Factor (VIF) of a predictor is computed as `\(1/(1 - R^2)\)`, where `\(R^²\)` is the R-squared of the multiple linear regression of the predictor against all other predictors. 
 
@@ -203,7 +204,7 @@ So far, we have learned that to assess whether the predictor `a` induces multico
 
 But still, we have no indication of what these VIF values actually mean! I will try to fix that in the next section.
 
-## But really, what are Variance Inflation Factors?
+### But really, what are Variance Inflation Factors?
 
 Variance Inflation Factors are inherently linked to these fundamental linear modeling concepts:
 
@@ -372,7 +373,7 @@ Again, the square root of the VIF of `b` in `y ~ a + b + c + d` is a great indic
 
 And that, folks, is the meaning of VIF.
 
-# When the VIF Hurts
+## When the VIF Hurts
 
 In the previous sections we acquired an intuition of how Variance Inflation Factors measure the effect of multicollinearity in the precision of the coefficient estimates in a linear model. But there is more to that!
 
@@ -532,7 +533,7 @@ The gray vertical line represents the real value of the slope of `b`, and each d
 
 **Finding the true effect of a predictor with a moderate effect becomes harder under multicollinearity.**
 
-# Managing VIF in a Model Design
+## Managing VIF in a Model Design
 
 The second most common form of modeling self-sabotage is *having high VIF predictors in a model design*, just right after *throwing deep learning at tabular problems to see what sticks*. I don't have solutions for the deep learning issue, but I have some pointers for the VIFs one: **letting things go!**. And with *things* I mean *predictors*, not the pictures of your old love. There is no rule *the more predictors the better* rule written anywhere relevant, and letting your model shed some fat is the best way to go here.
 

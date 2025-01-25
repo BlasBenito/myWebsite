@@ -17,6 +17,7 @@ image:
   margin: auto
 projects: []
 math: true
+toc: true
 ---
 
 In the previous posts I have covered how to [setup a home cluster](https://www.blasbenito.com/post/01_home_cluster/), and how to [run parallel processes with `foreach` in R](https://www.blasbenito.com/post/02_parallelizing_loops_with_r/). However, so far I haven't covered how to setup a folder shared among the cluster nodes to store the results of parallel computations. 

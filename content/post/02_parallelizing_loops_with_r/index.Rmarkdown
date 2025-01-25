@@ -1,12 +1,25 @@
 ---
+title: "Parallelized Loops with R"
+author: ''
 date: "2020-12-26"
-diagram: true
+slug: parallelized-loops-r
+categories: []
+tags:
+- Rstats
+- Tutorial
+subtitle: ''
+summary: 'Tutorial on how to parallelize for loops in R.'
+authors: [admin]
+lastmod: '2020-12-26T05:14:20+01:00'
+featured: yes
+draft: false
 image:
   caption: 'Image credit: **Blas M. Benito**'
-  placement: 3
+  focal_point: Smart
+  margin: auto
+projects: []
 math: true
-title: Parallelized loops with R
-draft: false
+toc: true
 ---
 
 **Note:** to better follow this tutorial you can download the .Rmd file [from here](https://www.dropbox.com/s/wsl2hcex3w0lr6u/parallelized_loops.Rmd?dl=1).

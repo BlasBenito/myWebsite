@@ -25,10 +25,11 @@ image:
   focal_point: Smart
   margin: auto
 projects: []
+toc: true
 ---
 
 
-# Summary
+## Summary
 
 Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. The explains how to deal with these types of predictors using methods such as one-hot encoding (please don't) or target encoding, and provides insights into their mechanisms and quirks.
 
@@ -47,7 +48,7 @@ Categorical predictors are annoying stringy monsters that can turn any data anal
 The post intends to serve as a useful resource for data scientists exploring alternative encoding techniques for categorical predictors.
 
 
-# Resources
+## Resources
 
   + [Interactive notebook of this post](https://github.com/BlasBenito/notebooks/blob/main/target_encoding.Rmd).
   + [A preprocessing scheme for high-cardinality categorical attributes in classification and prediction problems](https://doi.org/10.1145/507533.507538)
@@ -56,7 +57,7 @@ The post intends to serve as a useful resource for data scientists exploring alt
 
   
 
-# R packages
+## R packages
 
 This tutorial requires the development version (>= 1.0.3) of the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more.
 
@@ -79,7 +80,7 @@ install.packages("ggplot2")
 
 
 
-# Categorical Predictors Can Be Annoying
+## Categorical Predictors Can Be Annoying
 
 I bet you have experienced it during an Exploratory Data Analysis (EDA) or a feature selection for model training and the likes. You likely had a nice bunch of numerical predictors, and then some things like "sampling_location", "region_name", "favorite_color", or any other type of character or factor columns. And you had to branch your code to deal with numeric and categorical variables separately. Or maybe chose to ignore them, as I have done plenty of times.
 
@@ -234,7 +235,7 @@ sort(unique(vi$koppen_zone))
 ## [25] "ET"
 ```
 
-# One-hot Encoding is here...
+## One-hot Encoding is here...
 
 Let's use it as predictor of `vi_numeric` in a linear model and take a look at the summary.
 
@@ -377,7 +378,7 @@ dplyr::glimpse(df)
 ## $ koppen_zone_ET  <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
 ```
 
-# ...to mess-up your models
+## ...to mess-up your models
 
 As good as one-hot encoding is to fit linear models when predictors are categorical, it creates a couple of glaring issues that are hard to address when the number of encoded categories is high. 
 
@@ -462,7 +463,7 @@ Notice the stark differences in tree structure between both options. On the left
 
 In the end, the magic of one-hot encoding is in its inherent ability to create two or three problems for each one it promised to solve. We all know someone like that. Not so hot, if you ask me.
 
-# Target Encoding, Mean Encoding, and Dummy Variables (All The Same)
+## Target Encoding, Mean Encoding, and Dummy Variables (All The Same)
 
 On a bright summer day of 2001, [Daniele Micci-Barreca](https://www.aitimejournal.com/interview-with-daniele-micci-barreca-product-analytics-lead-data-science-google/30110/) finally got sick of the one-hot encoding wonders and decided to publish [his ideas on a suitable alternative](https://doi.org/10.1145/507533.507538) others later named *mean encoding* or *target encoding*. He told the story himself 20 years later, in a nice blog post titled [Extending Target Encoding](https://towardsdatascience.com/extending-target-encoding-443aa9414cae).
 
@@ -470,7 +471,7 @@ But what is target encoding? Let's start with a continuous response variable `y`
 
 
 
-## Mean Encoding
+### Mean Encoding
 
 In *it's simplest form*, target encoding replaces each category in `x` with the mean of `y` across the category cases. This results in a new numeric version of `x` named `x_encoded` in the example below.
 
@@ -499,7 +500,7 @@ yx |>
 
 Simple is good, right? But sometimes it's not. In our toy case, the category "c" has only one case that maps directly to an actual value of `y`.Imagine the worst case scenario of `x` having one different category per row, then `x_encoded` would be identical to `y`!
 
-## Mean Encoding With Additive Smoothing
+### Mean Encoding With Additive Smoothing
 
 The issue can be solved by pushing the mean of `y` for each category in `x` towards the global mean of `y` by the weighted sample size of the category, as suggested by the expression
 
@@ -542,7 +543,7 @@ yx |>
 
 So far so good! But still, the simplest implementations of target encoding generate repeated values for all cases within a category. This can still mess-up tree-based models a bit, because splits may happen again and again in the same values of the predictor. However, there are several strategies to limit this issue as well.
 
-## Leave-one-out Target Encoding
+### Leave-one-out Target Encoding
 
 In this version of target encoding, the encoded value of one case within a category is the mean of all other cases within the same category. This results in a robust encoding that avoids direct reference to the target value of the sample being encoded, and does not generate repeated values.
 
@@ -571,7 +572,7 @@ yx |>
 ## 7     7 c         NaN
 ```
 
-## Mean Encoding with White Noise
+### Mean Encoding with White Noise
 
 Another way to avoid repeated values while keeping the encoding as simple as possible consists of just adding a white noise to the encoded values. The code below adds noise generated by `stats::runif()` to the mean-encoded values, but other options such as `stats::rnorm()` (noise from a normal distribution) can be useful here. Since white noise is random, we need to set the seed of the pseudo-random number generator (with `set.seed()`) to obtain constant results every time we run the code below.
 
@@ -608,7 +609,7 @@ yx |>
 
 This method can deal with one-case categories without issues, and does not generate repeated values, but in exchange, we have to be mindful of the amount of noise we add, and we have to set a random seed to ensure reproducibility.
 
-## Rank Encoding plus White Noise
+### Rank Encoding plus White Noise
 
 This is a little different from all the other methods, because it does not map the categories to values from the target, but to the rank/order of the target means per category. It basically converts the categorical variable into an ordinal one arranged along with the target, and then adds white noise on top to avoid value repetition.
 
@@ -638,7 +639,8 @@ yx |>
 ## 6     6 b          2.02
 ## 7     7 c          3.01
 ```
-## The Target Encoding Lab
+
+### The Target Encoding Lab
 
 The function `collinear::target_encoding_lab()` implements all these encoding methods, and allows defining different combinations of parameters. It was designed to help understand how they work, and maybe help make choices about what's the right encoding for a given categorical predictor.
 
@@ -707,6 +709,7 @@ yx_encoded |>
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="1152" />
+
 The function also allows to replace a given predictor with their selected encoding.
 
 

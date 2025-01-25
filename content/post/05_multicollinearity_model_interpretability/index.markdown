@@ -22,13 +22,14 @@ image:
   focal_point: Smart
   margin: auto
 projects: []
+toc: true
 ---
 
 {{% alert note %}}
 This post is written for beginner to intermediate R users wishing to learn what multicollinearity is and how it can turn model interpretation into a challenge. 
 {{% /alert %}}
 
-# Summary
+## Summary
 
 In this post, I delve into the intricacies of model interpretation under the influence of multicollinearity, and use R and a toy data set to demonstrate how this phenomenon impacts both linear and machine learning models:
 
@@ -38,7 +39,7 @@ In this post, I delve into the intricacies of model interpretation under the inf
   
 I hope you'll enjoy it!
 
-# R packages
+## R packages
 
 This tutorial requires the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more listed below. The optional ones are used only in the *Appendix* at the end of the post.
 
@@ -55,7 +56,7 @@ install.packages("glmnet")
 install.packages("xgboost")
 ```
 
-# Multicollinearity Explained
+## Multicollinearity Explained
 
 This cute word comes from the amalgamation of these three Latin terms:
   + *multus*: adjective meaning *many* or *multiple*.
@@ -69,7 +70,7 @@ If I lost you there, we can move forward with this idea instead: **multicollinea
 Multicollinearity is a fact of life that lurks in most data sets. For example, in climate data, variables like temperature, humidity and air pressure are closely intertwined, leading to multicollinearity. That's the case as well in medical research, where parameters like blood pressure, heart rate, and body mass index frequently display common patterns. Economic analysis is another good example, as variables such as Gross Domestic Product (GDP), unemployment rate, and consumer spending often exhibit multicollinearity.
 
 
-# Model Interpretation Challenges
+## Model Interpretation Challenges
 
 Multicollinearity isn't inherently problematic, but it can be a real buzz kill when the goal is interpreting predictor importance in explanatory models. In the presence of highly correlated predictors, most modelling methods, from the veteran linear models to the fancy gradient boosting, attribute a large part of the importance to only one of the predictors and not the others. In such cases, neglecting multicollinearity will certainly lead to underestimate the relevance of certain predictors.
 
@@ -214,11 +215,11 @@ collinear::cor_df(df = df.q)
 ```
 ##   x y   correlation
 ## 1 d c  4.823037e-04
-## 2 c b -5.439825e-17
-## 3 d b  3.896078e-17
-## 4 d a  3.837016e-17
-## 5 c a -3.786884e-17
-## 6 b a -1.098207e-17
+## 2 d a  1.585298e-16
+## 3 c b  1.708728e-17
+## 4 c a -3.036108e-18
+## 5 d b  2.385256e-18
+## 6 b a -1.431486e-18
 ```
 The new set of predictors we are left with after the QR decomposition have exactly zero correlation! And now they are not our original predictors anymore, and have a different interpretation:
 
@@ -365,11 +366,11 @@ With all that in mind, we can conclude that interpreting importance scores in Ra
 
 And that's all for now, folks, I hope you found this post useful!
 
-# Appendix
+## Appendix
 
 This section shows several extra examples of linear and machine learning models you can play with.
 
-## Other linear models using QR decomposition
+### Other Linear Models using QR Decomposition
 
 As I commented above, many linear modeling functions use QR decomposition, and you will have to be careful interpreting model coefficients in the presence of strong multicollinearity in the predictors. 
 
@@ -506,7 +507,7 @@ round(coef(glmnet_abcd$glmnet.fit, s = glmnet_abcd$lambda.min), 4)[2:5]
 ```
 
 
-## Extreme Gradient Boosting under multicollinearity
+### Extreme Gradient Boosting and Multicollinearity
 
 Gradient Boosting models trained with multicollinear predictors behave in a way similar to linear models with QR decomposition. When two variables are highly correlated, one of them is going to have an importance much higher than the other.
 

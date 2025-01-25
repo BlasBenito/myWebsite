@@ -37,3 +37,6 @@ Add this to config.toml
 #Copy Button (could not make it work though)
 https://github.com/jmooring/hugo-testing/tree/hugo-forum-topic-49633
 
+#Table of Contents
+https://github.com/HugoBlox/hugo-blox-builder/issues/1520#issuecomment-601982609
+http://ericfong.ca/post/floatingtoc/

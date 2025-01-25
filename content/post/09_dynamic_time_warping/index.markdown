@@ -16,9 +16,10 @@ image:
   focal_point: Smart
   margin: auto
 projects: []
+toc: true
 ---
 
-# Summary
+## Summary
 
 This post provides a gentle conceptual introduction to *Dynamic Time Warping* (DTW), a method to compare time series of different lengths that has found its way into our daily lives. It starts with a very general introduction to the comparison of time series, follows with a bit of history about its development and a step-by-step breakdown, to finalize with a summary of its real-world applications.
 
@@ -31,7 +32,7 @@ This post provides a gentle conceptual introduction to *Dynamic Time Warping* (D
 
 
 
-# Comparing Time Series
+## Comparing Time Series
 
 Time series comparison is a critical task in many fields, such as environmental monitoring, finance, and healthcare. The goal is often to quantify similarities or differences between pairs of time series to gain insights into how the data is structured and identify meaningful patterns.
 
@@ -48,7 +49,7 @@ Comparing `c` with `a` and/or `b` is a completely different task though, exactly
 
 Now it would make sense to explain right away what dynamic time warping is and how it works, but there's a bit of history to explore first.
 
-# A Bit of History
+## A Bit of History
 
 Dynamic Time Warping (DTW) might sound like a modern high-tech buzzword, but its roots go way back—older than me (gen X guy here!). This powerful method was first developed in the pioneering days of speech recognition. The earliest reference I uncovered is from Shearme and Leach’s 1968 paper, [*Some experiments with a simple word recognition system*](https://doi.org/10.1109/TAU.1968.1161985), published by the Joint Speech Research Unit in the UK.
 
@@ -58,7 +59,7 @@ From there, DTW has found applications in diverse fields relying on time-depende
 
 Ok, let's stop wandering in time, and go back to the meat in this post.
 
-# What is *Dynamic Time Warping*?
+## What is *Dynamic Time Warping*?
 
 Dynamic Time Warping is a method to compare univariate or multivariate time series of different length, timing, and/or shape. To do so, DTW stretches or compresses parts of the time series (hence *warping*) until it finds the alignment that minimizes their overall differences. Think of it as a way to match the rhythm of two songs even if one plays faster than the other.
 
@@ -74,7 +75,7 @@ This ability to warp time makes DTW incredibly useful for analyzing time series 
 
 The next section delves into the computational steps of DTW.
 
-# DTW Step by Step
+## DTW Step by Step
 
 Time series comparison via Dynamic Time Warping (DTW) involves several key steps:
 
@@ -84,7 +85,7 @@ Time series comparison via Dynamic Time Warping (DTW) involves several key steps
 - **Finding the least-cost path** within the cost matrix.
 - **Computation of a similarity metric** based on the least-cost path.
 
-## Detrending and Z-score Normalization
+### Detrending and Z-score Normalization
 
 DTW is highly sensitive to differences in trends and ranges between time series (see the *Pitfalls* section). To address this, [detrending](https://sherbold.github.io/intro-to-data-science/09_Time-Series-Analysis.html#Trend-and-Seasonal-Effects) and [z-score normalization](https://developers.google.com/machine-learning/crash-course/numerical-data/normalization#z-score_scaling) are important preprocessing steps. The former removes any upwards or downwards trend in the time series, while the later scales the time series values to a mean of zero and a standard deviation of one.
 
@@ -92,7 +93,7 @@ In this example, the time series `a` and `c` already have matching ranges, so no
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="750" />
 
-## Distance Matrix
+### Distance Matrix
 
 This step involves computing the distance matrix, which contains pairwise distances between all combinations of samples in the two time series. 
 
@@ -100,7 +101,7 @@ This step involves computing the distance matrix, which contains pairwise distan
 
 Choosing an appropriate distance metric is crucial. While Euclidean distance works well in many cases, other metrics may be more suitable depending on the data.
 
-## Cost Matrix
+### Cost Matrix
 
 The cost matrix is derived from the distance matrix by accumulating distances recursively, neighbor to neighbor, from the starting corner (lower-left) to the ending one (upper-right). 
 
@@ -117,7 +118,7 @@ The result of the cost matrix is similar to the topographic map of a valley, in 
 
 Now that we have a valley, let's go create a river!
 
-## Least-cost Path
+### Least-cost Path
 
 This is the step where the actual time warping happens! 
 
@@ -129,7 +130,7 @@ The figure below shows the least-cost path (black line). Deviations from the dia
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="600" />
 
-## Similarity Metric
+### Similarity Metric
 
 Finally, DTW produces a similarity metric based on the least-cost path. The simplest approach is to sum the distances of all points along the path.
 
@@ -143,7 +144,7 @@ However, when comparing time series of varying lengths, normalization is often u
 
 These normalized metrics allow comparisons across datasets with varying characteristics.
 
-# Real World Applications
+## Real World Applications
 
 Dynamic Time Warping is a well-studied topic in academic community, with more than 86k research articles listed in [Google Scholar](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22dynamic+time+warping%22&btnG=). However, the real-world impact of an academic concept often differs from its academic popularity. Examining DTW-related patents provides a clearer view of its practical applications.
 
@@ -153,26 +154,26 @@ Using the [European Patent Office](https://www.epo.org/en) search tool [Spacenet
 
 While patents illustrate the technical implementation of DTW, uncovering its application in company blogs, wikis, or manuals is more challenging. Nonetheless, a few compelling examples demonstrate DTW's real-world utility.
 
-**Media and Entertainment***
+### Media and Entertainment
 
 Closed caption alignment is perhaps the most pervasive yet invisible application of DTW. Companies like [Netflix](https://netflixtechblog.com/detecting-scene-changes-in-audiovisual-content-77a61d3eaad6) and [Microsoft](https://patents.google.com/patent/US20150271442A1/en) use DTW to synchronize subtitles with soundtracks in movies, TV shows, and video games, ensuring an accurate match regardless of pacing or timing inconsistencies.
 
-**Wearables and Fitness Devices**
+### Wearables and Fitness Devices
 
 Many wearables employ DTW to classify user activities by aligning accelerometer and gyroscope data with predefined templates. For example, [Goertek's](https://patents.google.com/patent/US11517789B2) *Comma 2* smart ring [presented in January 2025](https://sleepreviewmag.com/sleep-diagnostics/consumer-sleep-tracking/wearable-sleep-trackers/goertek-reveals-smart-ring-reference-designs-voice-gesture-controls/) uses DTW to recognize user movements. Another creative example is the [Wave](https://genkiinstruments.com/products/wave) MIDI controller ring, [patented by Genki](https://patents.google.com/patent/US20220085841A1/en). This device applies DTW with a nearest-neighbor classifier to analyze hand movements and trigger musical effects.
 
-**Biomechanics**
+### Biomechanics
 
 In biomechanics, DTW helps analyze movement patterns and detect anomalies. For instance, the software [Sift](https://wiki.has-motion.com/doku.php?id=sift:sift_overview) by [HAS Motion](https://www.has-motion.ca/) [uses DTW](https://wiki.has-motion.com/doku.php?id=sift:dynamic_time_warping:dynamic_time_warping) to compare large datasets of movement traces and identify deviations. Similarly, the [OrthoLoad](https://orthoload.com/) processes load measurements on joint implants [using DTW](https://orthoload.com/software/) to analyze patterns and identify irregularities.
 
-**Industrial Applications**
+### Industrial Applications
 
 DTW is also used in manufacturing to monitor machinery health.  Toshiba's [LAMTSS](https://www.global.toshiba/ww/technology/corporate/rdc/rd/topics/20/2006-01.html) technology applies DTW to noise and motion data from manufacturing equipment, helping detect and predict operational failures before they occur.
 
 These examples highlight the versatility and practical relevance of DTW, spanning industries from entertainment to biomechanics and industrial maintenance. Its ability to adapt to diverse time series challenges underscores its value in real-world problem-solving.
 
 
-# Closing Thoughts
+## Closing Thoughts
 
 Dynamic Time Warping exemplifies how a sophisticated algorithm, initially developed for niche applications, has evolved into a versatile tool with real-world significance. From aligning movie subtitles to monitoring machinery health, DTW bridges the gap between academic theory and practical innovation. Its ability to adapt to various industries highlights the importance of robust time series analysis techniques, and further cements its place in both research and applied fields.
 

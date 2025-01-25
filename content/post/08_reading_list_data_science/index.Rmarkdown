@@ -16,33 +16,34 @@ image:
   focal_point: Smart
   margin: auto
 projects: []
+toc: true
 ---
 
 This is a live post listing links to Data Science related posts and videos I consider to be interesting, high-quality, or even essential to better understand particular topics within such a wide field.
 
-# Data 
+## Data 
 
-## Preprocessing
+### Preprocessing
 
 [**Extending Target Encoding**](https://towardsdatascience.com/extending-target-encoding-443aa9414cae): post by [Daniele Micci-Barreca](https://www.aitimejournal.com/interview-with-daniele-micci-barreca-product-analytics-lead-data-science-google/30110/) explaining how he came up with the idea of target encoding, and its possible extensions.
 
 [**Target encoding done the right way**](https://maxhalford.github.io/blog/target-encoding/): post by [Max Halford](https://maxhalford.github.io/bio/), Head of Data at [Carbonfact](https://www.carbonfact.com/), explaining in detail how to combine additive smoothing and target encoding.
 
-## Handling and Management
+### Handling and Management
 
-### Apache Parquet
+#### Apache Parquet
 
 [**A Deep Dive into Parquet: The Data Format Engineers Need to Know**](https://airbyte.com/data-engineering-resources/parquet-data-format): This by Aditi Prakash, published in the [Airbyte Blog](https://airbyte.com/blog) offers a complete guide about the [Apache Parquet](https://parquet.apache.org/) file format.
 
 [**Querying Parquet with Millisecond Latency**](https://www.influxdata.com/blog/querying-parquet-millisecond-latency/) this post from by Raphael Taylor-Davies and Andrew Lamb explains in deep the optimization methods used in [Apache Parquet](https://parquet.apache.org/) files. Warning, this is a very technical read!
 
-### DuckDB
+#### DuckDB
 
 [**Multi-Database Support in DuckDB**](https://duckdb.org/2024/01/26/multi-database-support-in-duckdb) This post by Mark Raasveldt published in the DuckDB blog explains how to query together data from different databases at once.
 
-# Analysis and Modeling
+## Analysis and Modeling
 
-## Modeling Methods
+### Modeling Methods
 
 [**Unraveling Principal Component Analysis**](https://loreley.one/2024-09-pca/): This book, reviewed [here](https://loreley.one/2024-09-pca/), is a *tour of linear algebra* focused on intuitive explanations rather than mathematical demonstrations.
 
@@ -50,7 +51,7 @@ This is a live post listing links to Data Science related posts and videos I con
 
 [**Generalized Additive Models**](https://m-clark.github.io/generalized-additive-models/): A good online book on Generalized Additive Models by [Michael Clark](https://m-clark.github.io/about.html), Senior Machine Learning Scientist at [Strong Analytics](https://www.strong.io/).
 
-## Model Explainability
+### Model Explainability
 
 [**Model-Independent Score Explanation**](https://towardsdatascience.com/a-simple-model-independent-score-explanation-method-c17002d66da7): Post by [Daniele Micci-Barreca](https://www.aitimejournal.com/interview-with-daniele-micci-barreca-product-analytics-lead-data-science-google/30110/) on model explainability. It also explains a very clever method to better understand any model just from it's predictions.
 
@@ -58,21 +59,21 @@ This is a live post listing links to Data Science related posts and videos I con
 
 [**Towards A Rigorous Science of Interpretable Machine Learning**](https://arxiv.org/abs/1702.08608): Pre-print by Finale Doshi-Velez and Been Kim offering a rigorous definition and evaluation of model interpretability.
 
-## Spatial Analysis
+### Spatial Analysis
 
 [**PostGEESE? Introducing The DuckDB Spatial Extension**](https://duckdb.org/2023/04/28/spatial.html): In this post, the authors of [DuckDB](https://duckdb.org/) present the new PostGIS-like *spatial* extension for this popular in-process data base engine.
 
 [**Geocomputation with Python**](https://py.geocompx.org/): A very nice book on geographic data analysis with Python.
 
-# Coding
+## Coding
 
-## General Concepts
+### General Concepts
 
 [**A Philosophy Of Software Design**](https://archive.org/details/a-philosophy-of-software-design/mode/2up): This book by [John Ousterhout](https://web.stanford.edu/~ouster/cgi-bin/home.php) is full of high-level concepts and tips to help tackle software complexity. It's so good I had to buy a hard copy that now lives in my desk. [This post](https://blog.pragmaticengineer.com/a-philosophy-of-software-design-review/) by [Gergely Orosz](https://blog.pragmaticengineer.com/) offers a balanced review of the book.
 
 [**Why You Shouldn't Nest Your Code**](https://youtu.be/CFRhGnuXG-4?si=7Xr3E9L7GFvoRJqA): In this wonderful video, [CodeAesthetic](https://www.youtube.com/@CodeAesthetic) explains in detail (and beautiful graphics!) a couple of methods to reduce the level of nesting in our code to improve readability and maintainability. This video has truly changed how I code in R!
 
-## R
+### R
 
 [**Beautiful Code, Because We’re Worth It!**](https://ropensci.org/blog/2024/02/22/beautiful-code/): This post by [Maëlle Salmon](https://mastodon.social/@maelle) (research software engineer), and [Yanina Bellini Saibene](https://fosstodon.org/@yabellini) (rOpenSci Community Manager) provides simple tips to help write more visually pleasant R code.
 
@@ -84,17 +85,17 @@ This is a live post listing links to Data Science related posts and videos I con
 
 [**Building a team of internal R packages**](https://www.emilyriederer.com/post/team-of-packages/): This post by [Emily Riederer](https://www.emilyriederer.com/about) delves into the particularities of building a team of R packages to do jobs helping a organization answer impactful questions.
 
-## Python
+### Python
 
 [**Deep Learning With Python**](https://archive.org/details/francois-chollet-deep-learning-with-python-manning-2018): This book by [François Chollet](https://fchollet.com/), Software Engineer at Google and creator of the Keras library, seems to me like the best resource out there for those wanting to understand and build deep learning models from scratch. I have a hard copy on my desk, and I am finding it pretty easy to follow. Also, the code examples are clearly explained, and they ramp up in a very consistent manner. 
 
 [**Python Rgonomics**](https://www.emilyriederer.com/post/py-rgo/): In this post, [Emily Riederer](https://www.emilyriederer.com/about) offers a list of Python libraries with an "R feeling".
 
-## Coding Workflow
+### Coding Workflow
 
 [**How to use stacked PRs to unblock your entire team**](https://graphite.dev/blog/stacked-prs): This post in [Graphite](https://graphite.dev/)'s blog explains how to split large coding changes into small managed PRs (aka "stacked PRs") to avoid blocks when PR reviews are hard to come by.
 
-# Other Fancy Things
+## Other Fancy Things
 
 [**What's new with ML in production**](https://vickiboykis.com/2024/01/15/whats-new-with-ml-in-production/): This post by [Vicki Boykis](https://vickiboykis.com/about/), machine learning engineer at Mozilla.ai, goes deep into the differences and similarities between classical Machine Learning approaches and Large Language Models. I learned a lot from this read!
 
@@ -105,7 +106,7 @@ This is a live post listing links to Data Science related posts and videos I con
 [**Large Models for Time Series and
 Spatio-Temporal Data A Survey and Outlook**](https://arxiv.org/pdf/2310.10196.pdf): This pre-print by Weng and collaborators reviews the current state of the art in spatio-temporal modelling with Large Language Models and Pre-Trained Foundation Models.
 
-# Management and Leadership
+## Management and Leadership
 
 [**Using fake deadlines without driving your engineers crazy**](https://zaidesanton.substack.com/p/using-fake-deadlines-without-driving?publication_id=1804629&post_id=152010688): In this post, [James Stanier](https://substack.com/@jstanier) explains how fake deadlines can help push projects forward in healthy work environments.
 

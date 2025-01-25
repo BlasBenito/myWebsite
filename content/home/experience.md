@@ -120,20 +120,18 @@ date_format = "Jan 2006"
   """
   
 [[experience]]
-  title = "Data Scientist and Team Lead"
+  title = "Spatial Data Scientist"
   company = "Biome Makers Inc."
   company_url = "https://biomemakers.com"
   location = "US and Spain"
   date_start = "2022-01-03"
   date_end = ""
   description = """
-  - Founder and lead of the Environmental Data Team.
-  - Design and development of an automated Environmental Data Infrastructure to enhance the company flagship products.
-  - Development of 5 R packages to improve the workflow within the Data Science department. 
-  - Introduced remote-sensing as a tool for product research and development.
-  - Acquired the skillset to put models and workflows in production."""
-
-
-
+  - Team lead of the Environmental Data Team.
+  - Product development from the whiteboard to production.
+  - Design and development of remote sensing products.
+  - High resolution soil microbiome mapping.
+  - Designer and manager of BMK's Environmental Data Infrastructure.
+  - Development of scientific software (R packages)."""
 
 +++

@@ -1,0 +1,89 @@
+---
+title: "Showcasing {distantia}: Covid-19 Prevalence in California"
+author: ""
+date: '2025-01-25'
+slug: distantia-showcase-covid
+categories: []
+tags:
+- Rstats
+- Dynamic Time Warping
+- Data Science
+- Time Series Analysis
+- Tutorial
+subtitle: ''
+summary: "Showcase with real examples of the analytical capabilities implemented in the R package 'distantia'."
+authors: [admin]
+lastmod: '2025-01-25T07:28:01+01:00'
+featured: no
+draft: true
+image:
+  caption: ''
+  focal_point: Smart
+  margin: auto
+projects: []
+toc: true
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  fig.width = 7, fig.height = 6
+)
+```
+
+
+## Summary
+
+This post showcases the capabilities of the R package [`distantia`](https://blasbenito.github.io/distantia/) to process, compare, and analyze different types of time series.
+
+## Setup
+
+```{r, message = FALSE, warning = FALSE}
+library(distantia, quietly = TRUE)
+library(sf, quietly = TRUE)
+library(mapview, quietly = TRUE)
+library(gt, quietly = TRUE)
+```
+
+## COVID-19 Prevalence in California
+
+```{r, echo = FALSE}
+la_population <- mapview(
+  covid_counties, 
+  zcol = "population",
+  label = "name"
+  )
+
+htmlwidgets::saveWidget(
+  la_population@map, 
+  file = "la_population.html", 
+  selfcontained = TRUE
+  )
+```
+
+<iframe src="la_population.html" name="LA_Population"
+  width="800" height="600" scrolling="auto" frameborder="0">
+   <p>California counties represented in the Covid-19 dataset.</p>
+</iframe>
+
+```{r}
+gt(data = head(covid_prevalence))
+```
+
+```{r}
+tsl <- tsl_initialize(
+  x = covid_prevalence,
+  name_column = "name",
+  time_column = "time"
+)
+```
+
+```{r, fig.height=6}
+tsl_plot(
+  tsl = tsl[1:12],
+  columns = 2,
+  guide = FALSE,
+  text_cex = 1.2
+)
+```
+
+

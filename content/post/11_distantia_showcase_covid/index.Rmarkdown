@@ -26,7 +26,8 @@ toc: true
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  fig.width = 7, fig.height = 6
+  fig.width = 7, 
+  fig.height = 6
 )
 ```
 
@@ -37,18 +38,41 @@ This post showcases the capabilities of the R package [`distantia`](https://blas
 
 ## Setup
 
+This tutorial requires the following packages:
+
+  - [`distantia`](https://blasbenito.github.io/distantia/): time series analysis via dynamic time warping.
+  - [`dplyr`](https://dplyr.tidyverse.org/): data frame manipulation.
+  - [`mapview`](https://r-spatial.github.io/mapview/): easy to use interactive map visualization.
+  - [`gt`](https://github.com/rstudio/gt): table formatting.
+
 ```{r, message = FALSE, warning = FALSE}
 library(distantia)
 library(dplyr)
-library(tidyr)
 library(mapview)
 library(gt)
-library(dygraphs)
 ```
 
-## COVID-19 Prevalence in California
+## Example Data
 
+This demo focuses on two example datasets shipped with the package `distantia`:
+
+  - `covid_prevalence`: weekly Covid-19 prevalence in 36 California counties between 2020-03-16 and 2023-12-18.
+  - `covid_counties`: [`simple features`](https://r-spatial.github.io/sf/) data frame with county polygons and several socioeconomic variables (population, median income, employment, et).
+  
+The prevalence time series has the columns `name` (county name), `time` (date), and `prevalence` (expressed as proportion of infected population).
+  
 ```{r, echo = FALSE}
+covid_prevalence |> 
+  head(n = 20) |>
+  gt::gt() |> 
+  gt::tab_style(
+    style = gt::cell_text(font = "Montserrat"),
+    locations = gt::cells_body()
+  )
+```
+The spatial data frame contains county polygons identified by the column `name` (common with `covid_prevalence`).
+
+```{r, echo = FALSE, cache=TRUE}
 la_population <- mapview(
   covid_counties, 
   zcol = "population",
@@ -67,18 +91,36 @@ htmlwidgets::saveWidget(
    <p>California counties represented in the Covid-19 dataset.</p>
 </iframe>
 
-```{r, echo = FALSE}
-covid_prevalence |> 
-  head(n = 20) |>
-  gt::gt() |> 
-  gt::tab_style(
-    style = gt::cell_text(font = "Montserrat"),
-    locations = gt::cells_body()
-  )
-```
+Additionally, the `covid_counties` dataset also contains the following columns:
+
+  - `area_hectares`: county surface.
+  - `population`: county population.
+  - `poverty_percentage`: population percentage below the poverty line.
+  - `median_income`: median county income in dollars.
+  - `domestic_product`: yearly domestic product in **b**illions (not a typo) of dollars.
+  - `daily_miles_traveled`: daily miles traveled by the average inhabitant.
+  - `employed_percentage`: percentage of the county population under employment.
+  
+## Objective
+
+This post focuses on the Covid-19 dataset described above to showcase the applications of `distantia` to the analysis of epidemiological time series.
+
+This post touches base on these topics:
+
+  - **Basic Data Exploration**: time series visualization and numerical exploration.
+  - **Pairwise Dissimilarity Analysis**:
+    - 
+  - Spatial Clustering:
+  - 
+  
+**DISCLAIMER:** I am not an epidemiologist, so I will refrain from interpreting any results, and will focus on technical details about the usage of `distantia` insted.
+  
+## Data Preparation and Exploration
+
+
 
 ```{r}
-tsl <- tsl_initialize(
+tsl <- distantia::tsl_initialize(
   x = covid_prevalence,
   name_column = "name",
   time_column = "time"
@@ -93,19 +135,6 @@ tsl_plot(
   text_cex = 1.2
 )
 ```
-Comparison two by two.
-
-```{r, fig.height=2}
-par(mar = c(3, 3, 1, 1))
-zoo_plot(
-  x = cbind(
-    tsl$Los_Angeles, 
-    tsl$San_Francisco
-    ),
-  guide = TRUE
-)
-```
-
 
 Time summary
 
@@ -137,7 +166,7 @@ df_stats <- tsl_stats(
 
 ```{r, echo = FALSE}
 df_stats |> 
-  select(name, q1, median, q3, max, dplyr::contains("lag")) |> 
+  select(name, q1, median, q3, max, ac_lag_1) |> 
   dplyr::arrange(dplyr::desc(max)) |> 
   gt::gt() |> 
   gt::fmt_number(decimals = 2) |> 
@@ -147,39 +176,6 @@ df_stats |>
   )
 ```
 
-Plot autocorrelation as time series.
-
-```{r}
-tsl_ac <- df_stats |> 
-  tidyr::pivot_longer(
-    cols = dplyr::contains("lag"),
-    names_to = "lag",
-    values_to = "autocorrelation"
-  ) |> 
-  dplyr::select(
-    name, autocorrelation
-  ) |> 
-  dplyr::group_by(
-    name
-  ) |> 
-  dplyr::mutate(
-    time = dplyr::row_number()
-  ) |> 
-  distantia::tsl_initialize(
-    name_column = "name",
-    time_column = "time"
-  )
-```
-
-
-```{r, fig.height=3.5}
-zoo_plot(
-  x = cbind(tsl_ac$Los_Angeles, tsl_ac$San_Francisco, tsl_ac$Kings),
-  guide = TRUE,
-  xlab = "Weeks",
-  ylab = "Autocorrelation"
-)
-```
 Computation of time series dissimilarity with dynamic time warping, and restricted permutation test with a block size of 12 weeks to assess significance.
 
 ```{r}
@@ -193,7 +189,7 @@ df_psi <- distantia(
   distance = "euclidean",
   permutation = "restricted",
   block_size = 12, #3 months, one season
-  repetitions = 1000
+  repetitions = 10
 )
 ```
 
@@ -208,4 +204,5 @@ df_psi |>
     locations = gt::cells_body()
   )
 ```
+
 The p-value represents the probability of finding a lower psi (higher similarity) when the time series are permuted. Low p-values indicate a strong similarity, better than expected by chance.

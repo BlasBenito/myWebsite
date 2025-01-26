@@ -1,5 +1,5 @@
 ---
-title: "Showcasing {distantia}: Covid-19 Prevalence in California"
+title: "{distantia} Demo: Covid-19 Prevalence in California"
 author: ""
 date: '2025-01-25'
 slug: distantia-showcase-covid
@@ -38,10 +38,12 @@ This post showcases the capabilities of the R package [`distantia`](https://blas
 ## Setup
 
 ```{r, message = FALSE, warning = FALSE}
-library(distantia, quietly = TRUE)
-library(sf, quietly = TRUE)
-library(mapview, quietly = TRUE)
-library(gt, quietly = TRUE)
+library(distantia)
+library(dplyr)
+library(tidyr)
+library(mapview)
+library(gt)
+library(dygraphs)
 ```
 
 ## COVID-19 Prevalence in California
@@ -65,8 +67,14 @@ htmlwidgets::saveWidget(
    <p>California counties represented in the Covid-19 dataset.</p>
 </iframe>
 
-```{r}
-gt(data = head(covid_prevalence))
+```{r, echo = FALSE}
+covid_prevalence |> 
+  head(n = 20) |>
+  gt::gt() |> 
+  gt::tab_style(
+    style = gt::cell_text(font = "Montserrat"),
+    locations = gt::cells_body()
+  )
 ```
 
 ```{r}
@@ -85,5 +93,119 @@ tsl_plot(
   text_cex = 1.2
 )
 ```
+Comparison two by two.
+
+```{r, fig.height=2}
+par(mar = c(3, 3, 1, 1))
+zoo_plot(
+  x = cbind(
+    tsl$Los_Angeles, 
+    tsl$San_Francisco
+    ),
+  guide = TRUE
+)
+```
 
 
+Time summary
+
+```{r}
+df_time <- tsl_time(
+  tsl = tsl
+)
+```
+
+```{r, echo = FALSE}
+df_time |> 
+  dplyr::select(name, class, units, length, resolution, begin, end) |> 
+  slice_head(n = 5) |> 
+  gt::gt() |> 
+  gt::tab_style(
+    style = gt::cell_text(font = "Montserrat"),
+    locations = gt::cells_body()
+  )
+```
+
+Time series stats ordered from max prevalence.
+
+```{r}
+df_stats <- tsl_stats(
+  tsl = tsl,
+  lags = 1:12 #weeks
+)
+```
+
+```{r, echo = FALSE}
+df_stats |> 
+  select(name, q1, median, q3, max, dplyr::contains("lag")) |> 
+  dplyr::arrange(dplyr::desc(max)) |> 
+  gt::gt() |> 
+  gt::fmt_number(decimals = 2) |> 
+  gt::tab_style(
+    style = gt::cell_text(font = "Montserrat"),
+    locations = gt::cells_body()
+  )
+```
+
+Plot autocorrelation as time series.
+
+```{r}
+tsl_ac <- df_stats |> 
+  tidyr::pivot_longer(
+    cols = dplyr::contains("lag"),
+    names_to = "lag",
+    values_to = "autocorrelation"
+  ) |> 
+  dplyr::select(
+    name, autocorrelation
+  ) |> 
+  dplyr::group_by(
+    name
+  ) |> 
+  dplyr::mutate(
+    time = dplyr::row_number()
+  ) |> 
+  distantia::tsl_initialize(
+    name_column = "name",
+    time_column = "time"
+  )
+```
+
+
+```{r, fig.height=3.5}
+zoo_plot(
+  x = cbind(tsl_ac$Los_Angeles, tsl_ac$San_Francisco, tsl_ac$Kings),
+  guide = TRUE,
+  xlab = "Weeks",
+  ylab = "Autocorrelation"
+)
+```
+Computation of time series dissimilarity with dynamic time warping, and restricted permutation test with a block size of 12 weeks to assess significance.
+
+```{r}
+future::plan(
+  strategy = future::multisession,
+  workers = future::availableCores() - 1
+)
+
+df_psi <- distantia(
+  tsl = tsl,
+  distance = "euclidean",
+  permutation = "restricted",
+  block_size = 12, #3 months, one season
+  repetitions = 1000
+)
+```
+
+```{r, echo = FALSE}
+df_psi |> 
+  select(x, y, psi, p_value) |> 
+  dplyr::arrange(psi) |> 
+  gt::gt() |> 
+  gt::fmt_number(decimals = 3) |> 
+  gt::tab_style(
+    style = gt::cell_text(font = "Montserrat"),
+    locations = gt::cells_body()
+  )
+```
+The p-value represents the probability of finding a lower psi (higher similarity) when the time series are permuted. Low p-values indicate a strong similarity, better than expected by chance.

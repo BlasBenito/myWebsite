@@ -103,8 +103,8 @@ date_format = "Jan 2006"
   - Executed a €199000 project by the Norwegian National Science Foundation (NFR).
   - Published 6 papers in peer-reviewed international journals.
   - [One paper](https://onlinelibrary.wiley.com/doi/full/10.1111/ecog.04772) received the Most Downloaded Paper Award and was highlighted as an Editor's Pick by the Journal
-  - Developed 3 R packages with a total of 53000 downloads for time-series comparison and analysis. 
-  - Enhanced my skills in time-series analysis and developer of R packages."""
+  - Developed 3 R packages with a total of 70.000 downloads for time-series comparison and analysis. 
+  - Enhanced my skill set in time-series analysis and R package development."""
   
 [[experience]]
   title = "Staff researcher"
@@ -116,7 +116,7 @@ date_format = "Jan 2006"
   description = """
   - Published 15 papers in peer-reviewed international journals.
   - [One paper](https://nph.onlinelibrary.wiley.com/doi/10.1111/nph.17395) received a "Most Downloaded Paper Award".
-  - Developed the R package spatialRF for spatial modelling, with 8000 downloads.
+  - Developed the R package spatialRF for spatial modelling, with 13.000 downloads.
   """
   
 [[experience]]
@@ -127,11 +127,12 @@ date_format = "Jan 2006"
   date_start = "2022-01-03"
   date_end = ""
   description = """
-  - Team lead of the Environmental Data Team.
-  - Product development from the whiteboard to production.
-  - Design and development of remote sensing products.
-  - High resolution soil microbiome mapping.
-  - Designer and manager of BMK's Environmental Data Infrastructure.
-  - Development of scientific software (R packages)."""
+  
+  - **Geospatial Tech Lead**: Directed a high-performing team to drive innovation in soil microbiome mapping, leveraging remote sensing, spatial modeling, and machine learning.
+  - **Product Engineering**: Designed and deployed advanced remote sensing products, including high-resolution soil microbiome maps and automated sampling workflows.
+  - **Data Engineering**: Built and maintained BMK’s Environmental Data Infrastructure, integrating large-scale environmental and geospatial datasets.
+  - **Scientific Software Development**: Authored and maintained R packages and automated pipelines to optimize analyses and accelerate product development.
+  - **Stakeholder Collaboration**: Delivered impactful insights and solutions to stakeholders through clear communication and data-driven reporting.
+  """
 
 +++

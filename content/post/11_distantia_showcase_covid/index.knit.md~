@@ -24,11 +24,15 @@ projects: []
 toc: true
 ---
 
+
+
+
 ## Summary
 
 This post showcases the capabilities of the R package [`distantia`](https://blasbenito.github.io/distantia/) to process, compare, and analyze different types of time series.
 
 ## Setup
+
 
 ``` r
 library(distantia)
@@ -41,25 +45,32 @@ library(dygraphs)
 
 ## COVID-19 Prevalence in California
 
-<iframe src="la_population.html" name="LA_Population" width="800" height="600" scrolling="auto" frameborder="0">
-<p>
-California counties represented in the Covid-19 dataset.
-</p>
+
+
+<iframe src="la_population.html" name="LA_Population"
+  width="800" height="600" scrolling="auto" frameborder="0">
+   <p>California counties represented in the Covid-19 dataset.</p>
 </iframe>
-<div id="cfidkoigsq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cfidkoigsq table {
+
+
+```{=html}
+<div id="tfhhawknhx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tfhhawknhx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-&#10;#cfidkoigsq thead, #cfidkoigsq tbody, #cfidkoigsq tfoot, #cfidkoigsq tr, #cfidkoigsq td, #cfidkoigsq th {
+
+#tfhhawknhx thead, #tfhhawknhx tbody, #tfhhawknhx tfoot, #tfhhawknhx tr, #tfhhawknhx td, #tfhhawknhx th {
   border-style: none;
 }
-&#10;#cfidkoigsq p {
+
+#tfhhawknhx p {
   margin: 0;
   padding: 0;
 }
-&#10;#cfidkoigsq .gt_table {
+
+#tfhhawknhx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -84,11 +95,13 @@ California counties represented in the Covid-19 dataset.
   border-left-width: 2px;
   border-left-color: #D3D3D3;
 }
-&#10;#cfidkoigsq .gt_caption {
+
+#tfhhawknhx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
-&#10;#cfidkoigsq .gt_title {
+
+#tfhhawknhx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -99,7 +112,8 @@ California counties represented in the Covid-19 dataset.
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
-&#10;#cfidkoigsq .gt_subtitle {
+
+#tfhhawknhx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -110,7 +124,8 @@ California counties represented in the Covid-19 dataset.
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
-&#10;#cfidkoigsq .gt_heading {
+
+#tfhhawknhx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -121,12 +136,14 @@ California counties represented in the Covid-19 dataset.
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#cfidkoigsq .gt_bottom_border {
+
+#tfhhawknhx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#cfidkoigsq .gt_col_headings {
+
+#tfhhawknhx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -140,7 +157,8 @@ California counties represented in the Covid-19 dataset.
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#cfidkoigsq .gt_col_heading {
+
+#tfhhawknhx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -159,7 +177,8 @@ California counties represented in the Covid-19 dataset.
   padding-right: 5px;
   overflow-x: hidden;
 }
-&#10;#cfidkoigsq .gt_column_spanner_outer {
+
+#tfhhawknhx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -170,13 +189,16 @@ California counties represented in the Covid-19 dataset.
   padding-left: 4px;
   padding-right: 4px;
 }
-&#10;#cfidkoigsq .gt_column_spanner_outer:first-child {
+
+#tfhhawknhx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
-&#10;#cfidkoigsq .gt_column_spanner_outer:last-child {
+
+#tfhhawknhx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
-&#10;#cfidkoigsq .gt_column_spanner {
+
+#tfhhawknhx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -187,10 +209,12 @@ California counties represented in the Covid-19 dataset.
   display: inline-block;
   width: 100%;
 }
-&#10;#cfidkoigsq .gt_spanner_row {
+
+#tfhhawknhx .gt_spanner_row {
   border-bottom-style: hidden;
 }
-&#10;#cfidkoigsq .gt_group_heading {
+
+#tfhhawknhx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -215,7 +239,8 @@ California counties represented in the Covid-19 dataset.
   vertical-align: middle;
   text-align: left;
 }
-&#10;#cfidkoigsq .gt_empty_group_heading {
+
+#tfhhawknhx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -229,13 +254,16 @@ California counties represented in the Covid-19 dataset.
   border-bottom-color: #D3D3D3;
   vertical-align: middle;
 }
-&#10;#cfidkoigsq .gt_from_md > :first-child {
+
+#tfhhawknhx .gt_from_md > :first-child {
   margin-top: 0;
 }
-&#10;#cfidkoigsq .gt_from_md > :last-child {
+
+#tfhhawknhx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
-&#10;#cfidkoigsq .gt_row {
+
+#tfhhawknhx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -253,7 +281,8 @@ California counties represented in the Covid-19 dataset.
   vertical-align: middle;
   overflow-x: hidden;
 }
-&#10;#cfidkoigsq .gt_stub {
+
+#tfhhawknhx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -265,7 +294,8 @@ California counties represented in the Covid-19 dataset.
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#cfidkoigsq .gt_stub_row_group {
+
+#tfhhawknhx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -278,13 +308,16 @@ California counties represented in the Covid-19 dataset.
   padding-right: 5px;
   vertical-align: top;
 }
-&#10;#cfidkoigsq .gt_row_group_first td {
+
+#tfhhawknhx .gt_row_group_first td {
   border-top-width: 2px;
 }
-&#10;#cfidkoigsq .gt_row_group_first th {
+
+#tfhhawknhx .gt_row_group_first th {
   border-top-width: 2px;
 }
-&#10;#cfidkoigsq .gt_summary_row {
+
+#tfhhawknhx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -293,14 +326,17 @@ California counties represented in the Covid-19 dataset.
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#cfidkoigsq .gt_first_summary_row {
+
+#tfhhawknhx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
-&#10;#cfidkoigsq .gt_first_summary_row.thick {
+
+#tfhhawknhx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
-&#10;#cfidkoigsq .gt_last_summary_row {
+
+#tfhhawknhx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -309,7 +345,8 @@ California counties represented in the Covid-19 dataset.
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#cfidkoigsq .gt_grand_summary_row {
+
+#tfhhawknhx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -318,7 +355,8 @@ California counties represented in the Covid-19 dataset.
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#cfidkoigsq .gt_first_grand_summary_row {
+
+#tfhhawknhx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -327,7 +365,8 @@ California counties represented in the Covid-19 dataset.
   border-top-width: 6px;
   border-top-color: #D3D3D3;
 }
-&#10;#cfidkoigsq .gt_last_grand_summary_row_top {
+
+#tfhhawknhx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -336,10 +375,12 @@ California counties represented in the Covid-19 dataset.
   border-bottom-width: 6px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#cfidkoigsq .gt_striped {
+
+#tfhhawknhx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
-&#10;#cfidkoigsq .gt_table_body {
+
+#tfhhawknhx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -347,7 +388,8 @@ California counties represented in the Covid-19 dataset.
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#cfidkoigsq .gt_footnotes {
+
+#tfhhawknhx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -360,7 +402,8 @@ California counties represented in the Covid-19 dataset.
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#cfidkoigsq .gt_footnote {
+
+#tfhhawknhx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -368,7 +411,8 @@ California counties represented in the Covid-19 dataset.
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#cfidkoigsq .gt_sourcenotes {
+
+#tfhhawknhx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -381,64 +425,81 @@ California counties represented in the Covid-19 dataset.
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#cfidkoigsq .gt_sourcenote {
+
+#tfhhawknhx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#cfidkoigsq .gt_left {
+
+#tfhhawknhx .gt_left {
   text-align: left;
 }
-&#10;#cfidkoigsq .gt_center {
+
+#tfhhawknhx .gt_center {
   text-align: center;
 }
-&#10;#cfidkoigsq .gt_right {
+
+#tfhhawknhx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-&#10;#cfidkoigsq .gt_font_normal {
+
+#tfhhawknhx .gt_font_normal {
   font-weight: normal;
 }
-&#10;#cfidkoigsq .gt_font_bold {
+
+#tfhhawknhx .gt_font_bold {
   font-weight: bold;
 }
-&#10;#cfidkoigsq .gt_font_italic {
+
+#tfhhawknhx .gt_font_italic {
   font-style: italic;
 }
-&#10;#cfidkoigsq .gt_super {
+
+#tfhhawknhx .gt_super {
   font-size: 65%;
 }
-&#10;#cfidkoigsq .gt_footnote_marks {
+
+#tfhhawknhx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
-&#10;#cfidkoigsq .gt_asterisk {
+
+#tfhhawknhx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
-&#10;#cfidkoigsq .gt_indent_1 {
+
+#tfhhawknhx .gt_indent_1 {
   text-indent: 5px;
 }
-&#10;#cfidkoigsq .gt_indent_2 {
+
+#tfhhawknhx .gt_indent_2 {
   text-indent: 10px;
 }
-&#10;#cfidkoigsq .gt_indent_3 {
+
+#tfhhawknhx .gt_indent_3 {
   text-indent: 15px;
 }
-&#10;#cfidkoigsq .gt_indent_4 {
+
+#tfhhawknhx .gt_indent_4 {
   text-indent: 20px;
 }
-&#10;#cfidkoigsq .gt_indent_5 {
+
+#tfhhawknhx .gt_indent_5 {
   text-indent: 25px;
 }
-&#10;#cfidkoigsq .katex-display {
+
+#tfhhawknhx .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
-&#10;#cfidkoigsq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+
+#tfhhawknhx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -512,9 +573,12 @@ California counties represented in the Covid-19 dataset.
 <td headers="time" class="gt_row gt_right" style="font-family: Montserrat;">2020-07-27</td>
 <td headers="prevalence" class="gt_row gt_right" style="font-family: Montserrat;">0.01</td></tr>
   </tbody>
-  &#10;  
+  
+  
 </table>
 </div>
+```
+
 
 ``` r
 tsl <- tsl_initialize(
@@ -523,6 +587,7 @@ tsl <- tsl_initialize(
   time_column = "time"
 )
 ```
+
 
 ``` r
 tsl_plot(
@@ -533,24 +598,26 @@ tsl_plot(
 )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 Comparison two by two.
+
 
 ``` r
 par(mar = c(3, 3, 1, 1))
 zoo_plot(
   x = cbind(
     tsl$Los_Angeles, 
-    tsl$San_Francisco, 
-    tsl$Kings
+    tsl$San_Francisco
     ),
-  guide = FALSE
+  guide = TRUE
 )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+
 
 Time summary
+
 
 ``` r
 df_time <- tsl_time(
@@ -558,20 +625,25 @@ df_time <- tsl_time(
 )
 ```
 
-<div id="tdzqmltjzg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tdzqmltjzg table {
+
+```{=html}
+<div id="avulpwzimd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#avulpwzimd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-&#10;#tdzqmltjzg thead, #tdzqmltjzg tbody, #tdzqmltjzg tfoot, #tdzqmltjzg tr, #tdzqmltjzg td, #tdzqmltjzg th {
+
+#avulpwzimd thead, #avulpwzimd tbody, #avulpwzimd tfoot, #avulpwzimd tr, #avulpwzimd td, #avulpwzimd th {
   border-style: none;
 }
-&#10;#tdzqmltjzg p {
+
+#avulpwzimd p {
   margin: 0;
   padding: 0;
 }
-&#10;#tdzqmltjzg .gt_table {
+
+#avulpwzimd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -596,11 +668,13 @@ df_time <- tsl_time(
   border-left-width: 2px;
   border-left-color: #D3D3D3;
 }
-&#10;#tdzqmltjzg .gt_caption {
+
+#avulpwzimd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
-&#10;#tdzqmltjzg .gt_title {
+
+#avulpwzimd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -611,7 +685,8 @@ df_time <- tsl_time(
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
-&#10;#tdzqmltjzg .gt_subtitle {
+
+#avulpwzimd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -622,7 +697,8 @@ df_time <- tsl_time(
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
-&#10;#tdzqmltjzg .gt_heading {
+
+#avulpwzimd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -633,12 +709,14 @@ df_time <- tsl_time(
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#tdzqmltjzg .gt_bottom_border {
+
+#avulpwzimd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#tdzqmltjzg .gt_col_headings {
+
+#avulpwzimd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -652,7 +730,8 @@ df_time <- tsl_time(
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#tdzqmltjzg .gt_col_heading {
+
+#avulpwzimd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -671,7 +750,8 @@ df_time <- tsl_time(
   padding-right: 5px;
   overflow-x: hidden;
 }
-&#10;#tdzqmltjzg .gt_column_spanner_outer {
+
+#avulpwzimd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -682,13 +762,16 @@ df_time <- tsl_time(
   padding-left: 4px;
   padding-right: 4px;
 }
-&#10;#tdzqmltjzg .gt_column_spanner_outer:first-child {
+
+#avulpwzimd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
-&#10;#tdzqmltjzg .gt_column_spanner_outer:last-child {
+
+#avulpwzimd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
-&#10;#tdzqmltjzg .gt_column_spanner {
+
+#avulpwzimd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -699,10 +782,12 @@ df_time <- tsl_time(
   display: inline-block;
   width: 100%;
 }
-&#10;#tdzqmltjzg .gt_spanner_row {
+
+#avulpwzimd .gt_spanner_row {
   border-bottom-style: hidden;
 }
-&#10;#tdzqmltjzg .gt_group_heading {
+
+#avulpwzimd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -727,7 +812,8 @@ df_time <- tsl_time(
   vertical-align: middle;
   text-align: left;
 }
-&#10;#tdzqmltjzg .gt_empty_group_heading {
+
+#avulpwzimd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -741,13 +827,16 @@ df_time <- tsl_time(
   border-bottom-color: #D3D3D3;
   vertical-align: middle;
 }
-&#10;#tdzqmltjzg .gt_from_md > :first-child {
+
+#avulpwzimd .gt_from_md > :first-child {
   margin-top: 0;
 }
-&#10;#tdzqmltjzg .gt_from_md > :last-child {
+
+#avulpwzimd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
-&#10;#tdzqmltjzg .gt_row {
+
+#avulpwzimd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -765,7 +854,8 @@ df_time <- tsl_time(
   vertical-align: middle;
   overflow-x: hidden;
 }
-&#10;#tdzqmltjzg .gt_stub {
+
+#avulpwzimd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -777,7 +867,8 @@ df_time <- tsl_time(
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#tdzqmltjzg .gt_stub_row_group {
+
+#avulpwzimd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -790,13 +881,16 @@ df_time <- tsl_time(
   padding-right: 5px;
   vertical-align: top;
 }
-&#10;#tdzqmltjzg .gt_row_group_first td {
+
+#avulpwzimd .gt_row_group_first td {
   border-top-width: 2px;
 }
-&#10;#tdzqmltjzg .gt_row_group_first th {
+
+#avulpwzimd .gt_row_group_first th {
   border-top-width: 2px;
 }
-&#10;#tdzqmltjzg .gt_summary_row {
+
+#avulpwzimd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -805,14 +899,17 @@ df_time <- tsl_time(
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#tdzqmltjzg .gt_first_summary_row {
+
+#avulpwzimd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
-&#10;#tdzqmltjzg .gt_first_summary_row.thick {
+
+#avulpwzimd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
-&#10;#tdzqmltjzg .gt_last_summary_row {
+
+#avulpwzimd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -821,7 +918,8 @@ df_time <- tsl_time(
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#tdzqmltjzg .gt_grand_summary_row {
+
+#avulpwzimd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -830,7 +928,8 @@ df_time <- tsl_time(
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#tdzqmltjzg .gt_first_grand_summary_row {
+
+#avulpwzimd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -839,7 +938,8 @@ df_time <- tsl_time(
   border-top-width: 6px;
   border-top-color: #D3D3D3;
 }
-&#10;#tdzqmltjzg .gt_last_grand_summary_row_top {
+
+#avulpwzimd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -848,10 +948,12 @@ df_time <- tsl_time(
   border-bottom-width: 6px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#tdzqmltjzg .gt_striped {
+
+#avulpwzimd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
-&#10;#tdzqmltjzg .gt_table_body {
+
+#avulpwzimd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -859,7 +961,8 @@ df_time <- tsl_time(
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#tdzqmltjzg .gt_footnotes {
+
+#avulpwzimd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -872,7 +975,8 @@ df_time <- tsl_time(
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#tdzqmltjzg .gt_footnote {
+
+#avulpwzimd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -880,7 +984,8 @@ df_time <- tsl_time(
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#tdzqmltjzg .gt_sourcenotes {
+
+#avulpwzimd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -893,64 +998,81 @@ df_time <- tsl_time(
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#tdzqmltjzg .gt_sourcenote {
+
+#avulpwzimd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#tdzqmltjzg .gt_left {
+
+#avulpwzimd .gt_left {
   text-align: left;
 }
-&#10;#tdzqmltjzg .gt_center {
+
+#avulpwzimd .gt_center {
   text-align: center;
 }
-&#10;#tdzqmltjzg .gt_right {
+
+#avulpwzimd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-&#10;#tdzqmltjzg .gt_font_normal {
+
+#avulpwzimd .gt_font_normal {
   font-weight: normal;
 }
-&#10;#tdzqmltjzg .gt_font_bold {
+
+#avulpwzimd .gt_font_bold {
   font-weight: bold;
 }
-&#10;#tdzqmltjzg .gt_font_italic {
+
+#avulpwzimd .gt_font_italic {
   font-style: italic;
 }
-&#10;#tdzqmltjzg .gt_super {
+
+#avulpwzimd .gt_super {
   font-size: 65%;
 }
-&#10;#tdzqmltjzg .gt_footnote_marks {
+
+#avulpwzimd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
-&#10;#tdzqmltjzg .gt_asterisk {
+
+#avulpwzimd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
-&#10;#tdzqmltjzg .gt_indent_1 {
+
+#avulpwzimd .gt_indent_1 {
   text-indent: 5px;
 }
-&#10;#tdzqmltjzg .gt_indent_2 {
+
+#avulpwzimd .gt_indent_2 {
   text-indent: 10px;
 }
-&#10;#tdzqmltjzg .gt_indent_3 {
+
+#avulpwzimd .gt_indent_3 {
   text-indent: 15px;
 }
-&#10;#tdzqmltjzg .gt_indent_4 {
+
+#avulpwzimd .gt_indent_4 {
   text-indent: 20px;
 }
-&#10;#tdzqmltjzg .gt_indent_5 {
+
+#avulpwzimd .gt_indent_5 {
   text-indent: 25px;
 }
-&#10;#tdzqmltjzg .katex-display {
+
+#avulpwzimd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
-&#10;#tdzqmltjzg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+
+#avulpwzimd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1003,11 +1125,14 @@ df_time <- tsl_time(
 <td headers="begin" class="gt_row gt_right" style="font-family: Montserrat;">2020-03-16</td>
 <td headers="end" class="gt_row gt_right" style="font-family: Montserrat;">2023-12-18</td></tr>
   </tbody>
-  &#10;  
+  
+  
 </table>
 </div>
+```
 
 Time series stats ordered from max prevalence.
+
 
 ``` r
 df_stats <- tsl_stats(
@@ -1016,20 +1141,25 @@ df_stats <- tsl_stats(
 )
 ```
 
-<div id="tdvtfclwcf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tdvtfclwcf table {
+
+```{=html}
+<div id="ncusfsotwz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ncusfsotwz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-&#10;#tdvtfclwcf thead, #tdvtfclwcf tbody, #tdvtfclwcf tfoot, #tdvtfclwcf tr, #tdvtfclwcf td, #tdvtfclwcf th {
+
+#ncusfsotwz thead, #ncusfsotwz tbody, #ncusfsotwz tfoot, #ncusfsotwz tr, #ncusfsotwz td, #ncusfsotwz th {
   border-style: none;
 }
-&#10;#tdvtfclwcf p {
+
+#ncusfsotwz p {
   margin: 0;
   padding: 0;
 }
-&#10;#tdvtfclwcf .gt_table {
+
+#ncusfsotwz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1054,11 +1184,13 @@ df_stats <- tsl_stats(
   border-left-width: 2px;
   border-left-color: #D3D3D3;
 }
-&#10;#tdvtfclwcf .gt_caption {
+
+#ncusfsotwz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
-&#10;#tdvtfclwcf .gt_title {
+
+#ncusfsotwz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1069,7 +1201,8 @@ df_stats <- tsl_stats(
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
-&#10;#tdvtfclwcf .gt_subtitle {
+
+#ncusfsotwz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1080,7 +1213,8 @@ df_stats <- tsl_stats(
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
-&#10;#tdvtfclwcf .gt_heading {
+
+#ncusfsotwz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1091,12 +1225,14 @@ df_stats <- tsl_stats(
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#tdvtfclwcf .gt_bottom_border {
+
+#ncusfsotwz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#tdvtfclwcf .gt_col_headings {
+
+#ncusfsotwz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1110,7 +1246,8 @@ df_stats <- tsl_stats(
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#tdvtfclwcf .gt_col_heading {
+
+#ncusfsotwz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1129,7 +1266,8 @@ df_stats <- tsl_stats(
   padding-right: 5px;
   overflow-x: hidden;
 }
-&#10;#tdvtfclwcf .gt_column_spanner_outer {
+
+#ncusfsotwz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1140,13 +1278,16 @@ df_stats <- tsl_stats(
   padding-left: 4px;
   padding-right: 4px;
 }
-&#10;#tdvtfclwcf .gt_column_spanner_outer:first-child {
+
+#ncusfsotwz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
-&#10;#tdvtfclwcf .gt_column_spanner_outer:last-child {
+
+#ncusfsotwz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
-&#10;#tdvtfclwcf .gt_column_spanner {
+
+#ncusfsotwz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1157,10 +1298,12 @@ df_stats <- tsl_stats(
   display: inline-block;
   width: 100%;
 }
-&#10;#tdvtfclwcf .gt_spanner_row {
+
+#ncusfsotwz .gt_spanner_row {
   border-bottom-style: hidden;
 }
-&#10;#tdvtfclwcf .gt_group_heading {
+
+#ncusfsotwz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1185,7 +1328,8 @@ df_stats <- tsl_stats(
   vertical-align: middle;
   text-align: left;
 }
-&#10;#tdvtfclwcf .gt_empty_group_heading {
+
+#ncusfsotwz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1199,13 +1343,16 @@ df_stats <- tsl_stats(
   border-bottom-color: #D3D3D3;
   vertical-align: middle;
 }
-&#10;#tdvtfclwcf .gt_from_md > :first-child {
+
+#ncusfsotwz .gt_from_md > :first-child {
   margin-top: 0;
 }
-&#10;#tdvtfclwcf .gt_from_md > :last-child {
+
+#ncusfsotwz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
-&#10;#tdvtfclwcf .gt_row {
+
+#ncusfsotwz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1223,7 +1370,8 @@ df_stats <- tsl_stats(
   vertical-align: middle;
   overflow-x: hidden;
 }
-&#10;#tdvtfclwcf .gt_stub {
+
+#ncusfsotwz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1235,7 +1383,8 @@ df_stats <- tsl_stats(
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#tdvtfclwcf .gt_stub_row_group {
+
+#ncusfsotwz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1248,13 +1397,16 @@ df_stats <- tsl_stats(
   padding-right: 5px;
   vertical-align: top;
 }
-&#10;#tdvtfclwcf .gt_row_group_first td {
+
+#ncusfsotwz .gt_row_group_first td {
   border-top-width: 2px;
 }
-&#10;#tdvtfclwcf .gt_row_group_first th {
+
+#ncusfsotwz .gt_row_group_first th {
   border-top-width: 2px;
 }
-&#10;#tdvtfclwcf .gt_summary_row {
+
+#ncusfsotwz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1263,14 +1415,17 @@ df_stats <- tsl_stats(
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#tdvtfclwcf .gt_first_summary_row {
+
+#ncusfsotwz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
-&#10;#tdvtfclwcf .gt_first_summary_row.thick {
+
+#ncusfsotwz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
-&#10;#tdvtfclwcf .gt_last_summary_row {
+
+#ncusfsotwz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1279,7 +1434,8 @@ df_stats <- tsl_stats(
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#tdvtfclwcf .gt_grand_summary_row {
+
+#ncusfsotwz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1288,7 +1444,8 @@ df_stats <- tsl_stats(
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#tdvtfclwcf .gt_first_grand_summary_row {
+
+#ncusfsotwz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1297,7 +1454,8 @@ df_stats <- tsl_stats(
   border-top-width: 6px;
   border-top-color: #D3D3D3;
 }
-&#10;#tdvtfclwcf .gt_last_grand_summary_row_top {
+
+#ncusfsotwz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1306,10 +1464,12 @@ df_stats <- tsl_stats(
   border-bottom-width: 6px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#tdvtfclwcf .gt_striped {
+
+#ncusfsotwz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
-&#10;#tdvtfclwcf .gt_table_body {
+
+#ncusfsotwz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1317,7 +1477,8 @@ df_stats <- tsl_stats(
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#tdvtfclwcf .gt_footnotes {
+
+#ncusfsotwz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1330,7 +1491,8 @@ df_stats <- tsl_stats(
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#tdvtfclwcf .gt_footnote {
+
+#ncusfsotwz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1338,7 +1500,8 @@ df_stats <- tsl_stats(
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#tdvtfclwcf .gt_sourcenotes {
+
+#ncusfsotwz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1351,64 +1514,81 @@ df_stats <- tsl_stats(
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#tdvtfclwcf .gt_sourcenote {
+
+#ncusfsotwz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#tdvtfclwcf .gt_left {
+
+#ncusfsotwz .gt_left {
   text-align: left;
 }
-&#10;#tdvtfclwcf .gt_center {
+
+#ncusfsotwz .gt_center {
   text-align: center;
 }
-&#10;#tdvtfclwcf .gt_right {
+
+#ncusfsotwz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-&#10;#tdvtfclwcf .gt_font_normal {
+
+#ncusfsotwz .gt_font_normal {
   font-weight: normal;
 }
-&#10;#tdvtfclwcf .gt_font_bold {
+
+#ncusfsotwz .gt_font_bold {
   font-weight: bold;
 }
-&#10;#tdvtfclwcf .gt_font_italic {
+
+#ncusfsotwz .gt_font_italic {
   font-style: italic;
 }
-&#10;#tdvtfclwcf .gt_super {
+
+#ncusfsotwz .gt_super {
   font-size: 65%;
 }
-&#10;#tdvtfclwcf .gt_footnote_marks {
+
+#ncusfsotwz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
-&#10;#tdvtfclwcf .gt_asterisk {
+
+#ncusfsotwz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
-&#10;#tdvtfclwcf .gt_indent_1 {
+
+#ncusfsotwz .gt_indent_1 {
   text-indent: 5px;
 }
-&#10;#tdvtfclwcf .gt_indent_2 {
+
+#ncusfsotwz .gt_indent_2 {
   text-indent: 10px;
 }
-&#10;#tdvtfclwcf .gt_indent_3 {
+
+#ncusfsotwz .gt_indent_3 {
   text-indent: 15px;
 }
-&#10;#tdvtfclwcf .gt_indent_4 {
+
+#ncusfsotwz .gt_indent_4 {
   text-indent: 20px;
 }
-&#10;#tdvtfclwcf .gt_indent_5 {
+
+#ncusfsotwz .gt_indent_5 {
   text-indent: 25px;
 }
-&#10;#tdvtfclwcf .katex-display {
+
+#ncusfsotwz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
-&#10;#tdvtfclwcf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+
+#ncusfsotwz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2048,11 +2228,14 @@ df_stats <- tsl_stats(
 <td headers="ac_lag_11" class="gt_row gt_right" style="font-family: Montserrat;">−0.09</td>
 <td headers="ac_lag_12" class="gt_row gt_right" style="font-family: Montserrat;">−0.12</td></tr>
   </tbody>
-  &#10;  
+  
+  
 </table>
 </div>
+```
 
 Plot autocorrelation as time series.
+
 
 ``` r
 tsl_ac <- df_stats |> 
@@ -2076,16 +2259,19 @@ tsl_ac <- df_stats |>
   )
 ```
 
+
+
 ``` r
 zoo_plot(
-  x = cbind(tsl_ac$Los_Angeles, tsl_ac$San_Francisco, tsl_ac$Butte),
+  x = cbind(tsl_ac$Los_Angeles, tsl_ac$San_Francisco, tsl_ac$Kings),
   guide = TRUE,
   xlab = "Weeks",
   ylab = "Autocorrelation"
 )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="index_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+
 
 ``` r
 future::plan(
@@ -2094,6 +2280,12 @@ future::plan(
 )
 
 df_psi <- distantia(
-  tsl = tsl
+  tsl = tsl,
+  distance = "euclidean",
+  permutation = "restricted",
+  block_size = 12, #3 months, one season
+  repetitions = 10
 )
 ```
+
+

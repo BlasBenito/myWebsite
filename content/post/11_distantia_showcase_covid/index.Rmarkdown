@@ -70,6 +70,7 @@ covid_prevalence |>
     locations = gt::cells_body()
   )
 ```
+
 The spatial data frame contains county polygons identified by the column `name` (common with `covid_prevalence`).
 
 ```{r, echo = FALSE, cache=TRUE}
@@ -118,8 +119,7 @@ This post touches base on these topics:
 ## Data Preparation and Exploration
 
 
-
-```{r}
+```{r tsl_init, cache=TRUE, cache.path="cache/"}
 tsl <- distantia::tsl_initialize(
   x = covid_prevalence,
   name_column = "name",
@@ -178,20 +178,41 @@ df_stats |>
 
 Computation of time series dissimilarity with dynamic time warping, and restricted permutation test with a block size of 12 weeks to assess significance.
 
-```{r}
+```{r, echo = FALSE}
+if(file.exists("distantia_output.RData")){
+  load("distantia_output.RData")
+}
+```
+
+
+```{r psi, eval=FALSE}
 future::plan(
   strategy = future::multisession,
   workers = future::availableCores() - 1
 )
 
-df_psi <- distantia(
+df_psi_dtw <- distantia(
   tsl = tsl,
   distance = "euclidean",
   permutation = "restricted",
   block_size = 12, #3 months, one season
-  repetitions = 10
+  repetitions = 1000
+)
+
+df_psi_ls <- distantia(
+  tsl = tsl,
+  lock_step = TRUE,
+  distance = "euclidean",
+  permutation = "restricted",
+  block_size = 12, #3 months, one season
+  repetitions = 1000
 )
 ```
+
+```{r}
+save(df_psi_dtw, df_psi_ls, file = "distantia_output.RData")
+```
+
 
 ```{r, echo = FALSE}
 df_psi |> 

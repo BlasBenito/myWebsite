@@ -26,7 +26,7 @@ toc: true
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  fig.width = 7, 
+  fig.width = 8, 
   fig.height = 6
 )
 ```
@@ -47,31 +47,20 @@ This tutorial requires the following packages:
 
 ```{r, message = FALSE, warning = FALSE}
 library(distantia)
+library(zoo)
 library(dplyr)
 library(mapview)
 library(gt)
+library(dygraphs)
 ```
 
 ## Example Data
 
-This demo focuses on two example datasets shipped with the package `distantia`:
+This demo focuses on two example data frames shipped with the package `distantia`: `covid_counties`, and `covid_prevalence`.
 
-  - `covid_prevalence`: weekly Covid-19 prevalence in 36 California counties between 2020-03-16 and 2023-12-18.
-  - `covid_counties`: [`simple features`](https://r-spatial.github.io/sf/) data frame with county polygons and several socioeconomic variables (population, median income, employment, et).
-  
-The prevalence time series has the columns `name` (county name), `time` (date), and `prevalence` (expressed as proportion of infected population).
-  
-```{r, echo = FALSE}
-covid_prevalence |> 
-  head(n = 20) |>
-  gt::gt() |> 
-  gt::tab_style(
-    style = gt::cell_text(font = "Montserrat"),
-    locations = gt::cells_body()
-  )
-```
+### `covid_counties`
 
-The spatial data frame contains county polygons identified by the column `name` (common with `covid_prevalence`).
+Stored as a [`simple features`](https://r-spatial.github.io/sf/) data frame, `covid_counties` contains county polygons and several socioeconomic variables. It is connected to `covid_prevalence` by county name, which is stored in the column `name`.
 
 ```{r, echo = FALSE, cache=TRUE}
 la_population <- mapview(
@@ -92,7 +81,7 @@ htmlwidgets::saveWidget(
    <p>California counties represented in the Covid-19 dataset.</p>
 </iframe>
 
-Additionally, the `covid_counties` dataset also contains the following columns:
+The socioeconomic variables available in `covid_counties` are:
 
   - `area_hectares`: county surface.
   - `population`: county population.
@@ -102,22 +91,51 @@ Additionally, the `covid_counties` dataset also contains the following columns:
   - `daily_miles_traveled`: daily miles traveled by the average inhabitant.
   - `employed_percentage`: percentage of the county population under employment.
   
+Please, take in mind that these variables were included in the dataset because they were easy to capture from on-line sources, not because of their importance for epidemiological analyses.
+
+### `covid_prevalence`
+
+This data frame contains weekly Covid-19 prevalence in 36 California counties between 2020-03-16 and 2023-12-18. It is derived from a daily prevalence dataset available [here](https://github.com/BlasBenito/distantia/blob/main/data_full/covid_prevalence.rda).
+  
+The prevalence time series has the columns `name`, `time`, with the date of the first day of the week each data point represents, and `prevalence`, expressed as proportion of positive tests. The table below shows the first rows of this data frame.
+  
+```{r, echo = FALSE}
+covid_prevalence |> 
+  head(n = 20) |>
+  gt::gt() |> 
+  gt::tab_style(
+    style = gt::cell_text(font = "Montserrat"),
+    locations = gt::cells_body()
+  ) |> 
+  gt::tab_style(
+    style = gt::cell_text(weight = "bold"),
+    locations = gt::cells_column_labels()
+  ) |>
+  gt::tab_style(
+    style = gt::cell_text(align = "center"),
+    locations = gt::cells_body()
+  )
+```
+
 ## Objective
 
-This post focuses on the Covid-19 dataset described above to showcase the applications of `distantia` to the analysis of epidemiological time series.
+This post focuses on the Covid-19 dataset described above to showcase the applications of `distantia` to the analysis of epidemiological time series. 
 
-This post touches base on these topics:
 
-  - **Basic Data Exploration**: time series visualization and numerical exploration.
-  - **Pairwise Dissimilarity Analysis**:
-    - 
-  - Spatial Clustering:
-  - 
+  - **Prepare**: transform the data into a format compatible with `distantia`.
+  - **Explore**:
+  - **Analyze**: 
+  - **Model**:
   
 **DISCLAIMER:** I am not an epidemiologist, so I will refrain from interpreting any results, and will focus on technical details about the usage of `distantia` insted.
-  
-## Data Preparation and Exploration
 
+## Data Preparation
+
+This section shows how to transform the data frame `covid_prevalence` into a format compatible with `distantia`.
+
+A **time series list**, or `tsl` for short, is a list of [`zoo`](https://cran.r-project.org/web/packages/zoo/index.html) time series representing unique realizations of the same phenomena observed in different sites, times, or individuals. All [data manipulation](https://blasbenito.github.io/distantia/articles/time_series_lists.html) and analysis functions in `distantia` are designed to be applied to all time series in a `tsl` at once.
+
+The function `tsl_initialize()` transforms time series stored as long data frames into time series lists.
 
 ```{r tsl_init, cache=TRUE, cache.path="cache/"}
 tsl <- distantia::tsl_initialize(
@@ -127,14 +145,78 @@ tsl <- distantia::tsl_initialize(
 )
 ```
 
+Each element in `tsl` is named after the county the data belongs to.
+
+```{r}
+names(tsl)
+```
+The `zoo` objects within `tsl` also have the attribute `name` to help track the data in case it is extracted from the time series list.
+
+```{r}
+attributes(tsl[[1]])$name
+attributes(tsl[[2]])$name
+```
+Each individual `zoo` object comprises a time index and a data matrix.
+
+```{r}
+zoo::index(tsl[["Alameda"]]) |> 
+  head()
+```
+
+```{r}
+zoo::coredata(tsl[["Alameda"]]) |> 
+  head()
+```
+
+## Exploration
+
+This section describes the tools in `distantia` that may help develop an intuition on the properties of the data at hand, either via visualization or descriptive analysis.
+
+### Visualization
+
+The individual `zoo` objects in `tsl` can be plotted right away using `plot()` or `distantia::zoo_plot()`. However, `dygraphs::dygraph()` offers an interactive visualization that helps localize specific events in time, and compare several time series at once.
+
+<br>
+
+```{r, fig.height=2}
+dygraphs::dygraph(
+  data = cbind(tsl$Napa, tsl$Butte, tsl$Kings), 
+  ylab = "Covid-19 Prevalence"
+  )
+```
+<br>
+
+On the other hand, `distantia::tsl_plot()` provides a static multipanel visualization of a larger number of time series at once.
+
 ```{r, fig.height=6}
-tsl_plot(
+distantia::tsl_plot(
   tsl = tsl[1:12],
   columns = 2,
   guide = FALSE,
   text_cex = 1.2
 )
 ```
+
+Combined with `tsl_subset()` it can help focus on particular counties and time periods.
+
+```{r}
+distantia::tsl_plot(
+  tsl = tsl_subset(
+    tsl = tsl,
+    names = c("Los_Angeles", "Kings"),
+    time = c("2021-09-01", "2022-01-31")
+  ),
+  guide = FALSE
+)
+```
+### Descriptive Statistics
+  
+
+  
+## Data Exploration
+
+
+
 
 Time summary
 
@@ -215,7 +297,7 @@ save(df_psi_dtw, df_psi_ls, file = "distantia_output.RData")
 
 
 ```{r, echo = FALSE}
-df_psi |> 
+df_psi_dtw |> 
   select(x, y, psi, p_value) |> 
   dplyr::arrange(psi) |> 
   gt::gt() |> 

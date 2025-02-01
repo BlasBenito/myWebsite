@@ -174,32 +174,20 @@ This section describes the tools in `distantia` that may help develop an intuiti
 
 ### Visualization
 
-The individual `zoo` objects in `tsl` can be plotted right away using `plot()` or `distantia::zoo_plot()`. However, `dygraphs::dygraph()` offers an interactive visualization that helps localize specific events in time, and compare several time series at once.
+The function `tsl_plot()` provides a static multipanel visualization of a large number of time series at once.
 
-<br>
-
-```{r, fig.height=2}
-dygraphs::dygraph(
-  data = cbind(tsl$Napa, tsl$Butte, tsl$Kings), 
-  ylab = "Covid-19 Prevalence"
-  )
-```
-<br>
-
-On the other hand, `distantia::tsl_plot()` provides a static multipanel visualization of a larger number of time series at once.
-
-```{r, fig.height=6}
+```{r, fig.height=12}
 distantia::tsl_plot(
-  tsl = tsl[1:12],
-  columns = 2,
+  tsl = tsl,
+  columns = 3,
   guide = FALSE,
   text_cex = 1.2
 )
 ```
 
-Combined with `tsl_subset()` it can help focus on particular counties and time periods.
+Combined with `tsl_subset()`, it can help focus on particular counties and zoom-in over specific time periods.
 
-```{r}
+```{r, fig.height=3}
 distantia::tsl_plot(
   tsl = tsl_subset(
     tsl = tsl,
@@ -209,12 +197,22 @@ distantia::tsl_plot(
   guide = FALSE
 )
 ```
+
+The individual `zoo` objects in `tsl` can be plotted right away using `plot()` or `distantia::zoo_plot()`. However, `dygraphs::dygraph()` offers an interactive visualization that helps localize specific events in time and compare several time series at once.
+
+```{r, fig.height=2}
+dygraphs::dygraph(
+  data = cbind(tsl$Los_Angeles, tsl$Kings), 
+  ylab = "Covid-19 Prevalence"
+  )
+```
+
+<br>
+
 ### Descriptive Statistics
   
 
   
-## Data Exploration
-
 
 
 

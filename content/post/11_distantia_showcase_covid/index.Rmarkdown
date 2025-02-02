@@ -51,6 +51,7 @@ library(zoo)
 library(dplyr)
 library(mapview)
 library(gt)
+library(reactable)
 library(dygraphs)
 ```
 
@@ -101,19 +102,19 @@ The prevalence time series has the columns `name`, `time`, with the date of the 
   
 ```{r, echo = FALSE}
 covid_prevalence |> 
-  head(n = 20) |>
-  gt::gt() |> 
-  gt::tab_style(
-    style = gt::cell_text(font = "Montserrat"),
-    locations = gt::cells_body()
-  ) |> 
-  gt::tab_style(
-    style = gt::cell_text(weight = "bold"),
-    locations = gt::cells_column_labels()
-  ) |>
-  gt::tab_style(
-    style = gt::cell_text(align = "center"),
-    locations = gt::cells_body()
+  reactable::reactable(
+    pagination = TRUE,
+    searchable = TRUE,
+    sortable = TRUE,
+    showSortable = TRUE,
+    filterable = TRUE,
+    resizable = TRUE,
+    defaultPageSize = 10,
+    showPageSizeOptions = TRUE,
+    striped = TRUE,
+    compact = TRUE,
+    wrap = FALSE,
+    fullWidth = FALSE
   )
 ```
 
@@ -121,11 +122,10 @@ covid_prevalence |>
 
 This post focuses on the Covid-19 dataset described above to showcase the applications of `distantia` to the analysis of epidemiological time series. 
 
-
   - **Prepare**: transform the data into a format compatible with `distantia`.
-  - **Explore**:
-  - **Analyze**: 
-  - **Model**:
+  - **Explore**: time series visualization and computation of descriptive statistics.
+  - **Compare**: 
+  - **Analyze**:
   
 **DISCLAIMER:** I am not an epidemiologist, so I will refrain from interpreting any results, and will focus on technical details about the usage of `distantia` insted.
 
@@ -198,7 +198,15 @@ distantia::tsl_plot(
 )
 ```
 
-The individual `zoo` objects in `tsl` can be plotted right away using `plot()` or `distantia::zoo_plot()`. However, `dygraphs::dygraph()` offers an interactive visualization that helps localize specific events in time and compare several time series at once.
+The individual `zoo` objects in `tsl` can be plotted right away using `plot()` or `distantia::zoo_plot()`. 
+
+```{r, fig.height=2.5}
+distantia::zoo_plot(
+  x = tsl$Los_Angeles
+  )
+```
+
+Another good option to plot zoo objects comes with the package [`dygraphs`](https://rstudio.github.io/dygraphs/). The function `dygraphs::dygraph()` produces an interactive visualization that helps localize specific events in time and compare several time series at once.
 
 ```{r, fig.height=2}
 dygraphs::dygraph(
@@ -209,54 +217,135 @@ dygraphs::dygraph(
 
 <br>
 
-### Descriptive Statistics
-  
+### Descriptive Stats
 
-  
+Time series have at least two dimensions of interest: *time*, and the variable/s of interest, such as prevalence in this case.
 
-
-
-Time summary
+Having a good understanding of the time features of a time series is important, because some data management decisions depend on it. Details like length, resolution, time units, or regularity may define how we design an analysis. In `distantia`, the function `tsl_time()` provides all relevant details about the time in your time series list. 
 
 ```{r}
-df_time <- tsl_time(
+df_time <- distantia::tsl_time(
   tsl = tsl
 )
 ```
 
+The table below shows the first five rows of `df_time`, with the name of the time series, the class of the time index in each zoo object, the units, length and resolution, and their time ranges.
+
 ```{r, echo = FALSE}
 df_time |> 
   dplyr::select(name, class, units, length, resolution, begin, end) |> 
-  slice_head(n = 5) |> 
-  gt::gt() |> 
-  gt::tab_style(
-    style = gt::cell_text(font = "Montserrat"),
-    locations = gt::cells_body()
+  reactable::reactable(
+    pagination = TRUE,
+    searchable = TRUE,
+    sortable = TRUE,
+    showSortable = TRUE,
+    filterable = TRUE,
+    resizable = TRUE,
+    defaultPageSize = 10,
+    showPageSizeOptions = TRUE,
+    striped = TRUE,
+    compact = TRUE,
+    wrap = FALSE,
+    fullWidth = FALSE
   )
 ```
+Here, all time series are regular and have the same time resolution and range, which makes the table above rightfully boring.
 
-Time series stats ordered from max prevalence.
-
+Once acquainted with time, having a summary of the values in each time series also helps make sense of the main properties of the data. The function `tsl_stats()` summarizes several important statistical properties of the time series in `tsl`.
+  
 ```{r}
-df_stats <- tsl_stats(
+df_stats <- distantia::tsl_stats(
   tsl = tsl,
-  lags = 1:12 #weeks
+  lags = 1:6 #weeks
 )
 ```
 
-```{r, echo = FALSE}
+The first part of the output corresponds with common statistical descriptors, such as centrality and dispersion metrics, and higher moments.
+
+```{r, echo=FALSE}
 df_stats |> 
-  select(name, q1, median, q3, max, ac_lag_1) |> 
-  dplyr::arrange(dplyr::desc(max)) |> 
-  gt::gt() |> 
-  gt::fmt_number(decimals = 2) |> 
-  gt::tab_style(
-    style = gt::cell_text(font = "Montserrat"),
-    locations = gt::cells_body()
+  dplyr::select(name, min, q1, median, q3, max, sd, range, iq_range, skewness, kurtosis) |> 
+  dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~ round(.x, 2))) |> 
+  reactable::reactable(
+    pagination = TRUE,
+    searchable = TRUE,
+    sortable = TRUE,
+    showSortable = TRUE,
+    filterable = TRUE,
+    resizable = TRUE,
+    defaultPageSize = 10,
+    showPageSizeOptions = TRUE,
+    striped = TRUE,
+    compact = TRUE,
+    wrap = FALSE,
+    fullWidth = FALSE
   )
 ```
 
-Computation of time series dissimilarity with dynamic time warping, and restricted permutation test with a block size of 12 weeks to assess significance.
+The second part of the output, produced by the `lags` argument, shows time series autocorrelation (Moran's I) for different time lags. Since the resolution of all time series is 7 days per data-point, each time lag represents a week. A value of 0.9 for the lag 1 indicates the Pearson correlation between the prevalence of each data point and its precedent neighbor.
+
+```{r, echo = FALSE}
+df_stats |> 
+  select(name, dplyr::contains("lag")) |> 
+  dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~ round(.x, 2))) |> 
+  reactable::reactable(
+    pagination = TRUE,
+    searchable = TRUE,
+    sortable = TRUE,
+    showSortable = TRUE,
+    filterable = TRUE,
+    resizable = TRUE,
+    defaultPageSize = 10,
+    showPageSizeOptions = TRUE,
+    striped = TRUE,
+    compact = TRUE,
+    wrap = FALSE,
+    fullWidth = TRUE
+  )
+```
+
+The output of `tsl_stats()` can be joined to the spatial data frame `covid_counties`.
+
+```{r}
+covid_counties <- covid_counties |> 
+  dplyr::inner_join(
+    y = df_stats,
+    by = "name"
+  )
+```
+
+This join facilitates mapping any of the descriptive stats.
+
+```{r, eval = FALSE}
+mapview::mapview(
+  covid_counties, 
+  zcol = "max",
+  label = "name",
+  col.regions = grDevices::hcl.colors(n = 5, palette = "Zissou 1")
+  )
+```
+
+```{r, echo = FALSE, cache=TRUE, warning = FALSE}
+max_prevalence <- mapview(
+  covid_counties, 
+  zcol = "max",
+  label = "name",
+  col.regions = grDevices::hcl.colors(n = 5, palette = "Zissou 1")
+  )
+
+htmlwidgets::saveWidget(
+  max_prevalence@map, 
+  file = "la_population.html", 
+  selfcontained = TRUE
+  )
+```
+
+<iframe src="la_population.html" name="LA_Population"
+  width="800" height="600" scrolling="auto" frameborder="0">
+   <p>California counties represented in the Covid-19 dataset.</p>
+</iframe>
+
+## Pairwise Comparison
 
 ```{r, echo = FALSE}
 if(file.exists("distantia_output.RData")){
@@ -264,22 +353,19 @@ if(file.exists("distantia_output.RData")){
 }
 ```
 
+Parallelization setup.
 
-```{r psi, eval=FALSE}
+```{r, eval = FALSE}
 future::plan(
   strategy = future::multisession,
   workers = future::availableCores() - 1
 )
+```
 
-df_psi_dtw <- distantia(
-  tsl = tsl,
-  distance = "euclidean",
-  permutation = "restricted",
-  block_size = 12, #3 months, one season
-  repetitions = 1000
-)
+### Lock-Step
 
-df_psi_ls <- distantia(
+```{r}
+df_psi_ls <- distantia::distantia(
   tsl = tsl,
   lock_step = TRUE,
   distance = "euclidean",
@@ -289,7 +375,21 @@ df_psi_ls <- distantia(
 )
 ```
 
-```{r}
+
+### Dynamic Time Warping
+
+```{r psi, eval=FALSE}
+df_psi_dtw <- distantia::distantia(
+  tsl = tsl,
+  distance = "euclidean",
+  permutation = "restricted",
+  block_size = 12, #3 months, one season
+  repetitions = 1000
+)
+```
+
+
+```{r, echo = FALSE}
 save(df_psi_dtw, df_psi_ls, file = "distantia_output.RData")
 ```
 
@@ -297,12 +397,19 @@ save(df_psi_dtw, df_psi_ls, file = "distantia_output.RData")
 ```{r, echo = FALSE}
 df_psi_dtw |> 
   select(x, y, psi, p_value) |> 
-  dplyr::arrange(psi) |> 
-  gt::gt() |> 
-  gt::fmt_number(decimals = 3) |> 
-  gt::tab_style(
-    style = gt::cell_text(font = "Montserrat"),
-    locations = gt::cells_body()
+  reactable::reactable(
+    pagination = TRUE,
+    searchable = TRUE,
+    sortable = TRUE,
+    showSortable = TRUE,
+    filterable = TRUE,
+    resizable = TRUE,
+    defaultPageSize = 10,
+    showPageSizeOptions = TRUE,
+    striped = TRUE,
+    compact = TRUE,
+    wrap = FALSE,
+    fullWidth = TRUE
   )
 ```
 

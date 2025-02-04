@@ -288,6 +288,8 @@ The second part of the output, produced by the `lags` argument, shows time serie
 df_stats |> 
   select(name, dplyr::contains("lag")) |> 
   dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~ round(.x, 2))) |> 
+  dplyr::rename_with(~ gsub("ac_", "", .)) |> 
+  dplyr::rename_with(~ gsub("_", "", .)) |> 
   reactable::reactable(
     pagination = TRUE,
     searchable = TRUE,
@@ -304,22 +306,23 @@ df_stats |>
   )
 ```
 
-The output of `tsl_stats()` can be joined to the spatial data frame `covid_counties`.
+The stats produced by `tsl_stats()` can be joined to the spatial data frame `covid_counties` using their common column `name` to link cases.
 
 ```{r}
-covid_counties <- covid_counties |> 
-  dplyr::inner_join(
-    y = df_stats,
-    by = "name"
-  )
+covid_counties <- dplyr::inner_join(
+  x = covid_counties,
+  y = df_stats,
+  by = "name"
+)
 ```
 
-This join facilitates mapping any of the descriptive stats.
+This join facilitates mapping any of the descriptive stats. For example, the map below shows the maximum prevalence per county. 
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, warning = FALSE}
 mapview::mapview(
   covid_counties, 
-  zcol = "max",
+  zcol = "q3",
+  layer.name = "Max prevalence",
   label = "name",
   col.regions = grDevices::hcl.colors(n = 5, palette = "Zissou 1")
   )
@@ -345,7 +348,16 @@ htmlwidgets::saveWidget(
    <p>California counties represented in the Covid-19 dataset.</p>
 </iframe>
 
-## Pairwise Comparison
+
+## Dissimilarity Analysis
+
+
+
+The package `distantia` 
+
+This section describes a pairwise time series comparison analysis using two different methods:
+
+  - **Lock-Step**: 
 
 ```{r, echo = FALSE}
 if(file.exists("distantia_output.RData")){

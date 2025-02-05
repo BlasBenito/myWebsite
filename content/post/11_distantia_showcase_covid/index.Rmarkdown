@@ -34,30 +34,34 @@ knitr::opts_chunk$set(
 
 ## Summary
 
-This post showcases the capabilities of the R package [`distantia`](https://blasbenito.github.io/distantia/) to process, compare, and analyze different types of time series.
+This post showcases the capabilities of the R package [`distantia`](https://blasbenito.github.io/distantia/) to load, explore, and analyze epidemiological time series.
 
 ## Setup
 
 This tutorial requires the following packages:
 
   - [`distantia`](https://blasbenito.github.io/distantia/): time series analysis via dynamic time warping.
+  - [`dtw`](https://dynamictimewarping.github.io/): dynamic time warping library.
+  - [`future`](https://future.futureverse.org/): parallelized execution.
+  - [`zoo`](https://cran.r-project.org/web/packages/zoo/index.html): management of regular and irregular time series.
   - [`dplyr`](https://dplyr.tidyverse.org/): data frame manipulation.
   - [`mapview`](https://r-spatial.github.io/mapview/): easy to use interactive map visualization.
-  - [`gt`](https://github.com/rstudio/gt): table formatting.
+  - [`reactable`](https://glin.github.io/reactable/): interactive tables.
+  - [`dygraphs`](https://github.com/rstudio/dygraphs): interactive time series plots.
 
 ```{r, message = FALSE, warning = FALSE}
 library(distantia)
+library(dtw)
 library(zoo)
 library(dplyr)
 library(mapview)
-library(gt)
 library(reactable)
 library(dygraphs)
 ```
 
 ## Example Data
 
-This demo focuses on two example data frames shipped with the package `distantia`: `covid_counties`, and `covid_prevalence`.
+This demo focuses on two example data frames shipped with the package `distantia`: `covid_counties` and `covid_prevalence`.
 
 ### `covid_counties`
 
@@ -122,7 +126,7 @@ covid_prevalence |>
 
 This post focuses on the Covid-19 dataset described above to showcase the applications of `distantia` to the analysis of epidemiological time series. 
 
-  - **Prepare**: transform the data into a format compatible with `distantia`.
+  - **Prepare**: transform the `covid_prevalence` data frame into a format compatible with `distantia`.
   - **Explore**: time series visualization and computation of descriptive statistics.
   - **Compare**: 
   - **Analyze**:
@@ -150,12 +154,14 @@ Each element in `tsl` is named after the county the data belongs to.
 ```{r}
 names(tsl)
 ```
+
 The `zoo` objects within `tsl` also have the attribute `name` to help track the data in case it is extracted from the time series list.
 
 ```{r}
 attributes(tsl[[1]])$name
 attributes(tsl[[2]])$name
 ```
+
 Each individual `zoo` object comprises a time index and a data matrix.
 
 ```{r}
@@ -249,6 +255,7 @@ df_time |>
     fullWidth = FALSE
   )
 ```
+
 Here, all time series are regular and have the same time resolution and range, which makes the table above rightfully boring.
 
 Once acquainted with time, having a summary of the values in each time series also helps make sense of the main properties of the data. The function `tsl_stats()` summarizes several important statistical properties of the time series in `tsl`.
@@ -316,7 +323,7 @@ covid_counties <- dplyr::inner_join(
 )
 ```
 
-This join facilitates mapping any of the descriptive stats. For example, the map below shows the maximum prevalence per county. 
+This join facilitates mapping any of the descriptive stats. For example, the map below shows the maximum prevalence per county across the complete time period. 
 
 ```{r, eval = FALSE, warning = FALSE}
 mapview::mapview(
@@ -348,24 +355,106 @@ htmlwidgets::saveWidget(
    <p>California counties represented in the Covid-19 dataset.</p>
 </iframe>
 
+The functions `tsl_subset()` and `tsl_stats()` can be combined to generate stats focused in a given period of time or sub-group of time series. As example, the code below illustrates how to generate the stats for the year 2021.
+
+```{r, eval = FALSE}
+df_stats_2021 <- distantia::tsl_stats(
+  tsl = tsl_subset(
+    tsl = tsl,
+    time = c("2021-01-01", "2021-12-31")
+  ),
+  lags = 1:6
+)
+```
+
 
 ## Dissimilarity Analysis
 
+The package `distantia` is specifically designed to compare time series, and provides two general methods to do so: **Lock-Step (LS)**  and [**Dynamic time warping (DTW)**](https://www.blasbenito.com/post/dynamic-time-warping/). 
 
+The **LS** method directly compares samples observed at the same time in time series of the same length. It is computationally efficient and easy to interpret but cannot account for differences in outbreak speed or timing, potentially missing underlying similarities when outbreaks are not synchronized.
 
-The package `distantia` 
+**DTW** warps the time axis of the compared time series to maximize shape similarity. It adjusts for differences in the speed and timing of outbreaks, such as epidemic waves peaking at different times in different regions, and works well with time series of varying lengths or temporal resolutions. However, DTW is computationally expensive for large data sets, can be harder to interpret, and is sensitive to data scaling.
 
-This section describes a pairwise time series comparison analysis using two different methods:
+Before going forward, let me show a little example to help develop a sense of how DTW and LS work on a small subset of our time series. The figure below shows two years of data for San Francisco, Napa, and Solano.
 
-  - **Lock-Step**: 
+```{r, fig.height=3.5, echo = FALSE}
+tsl_smol <- distantia::tsl_subset(
+  tsl = tsl,
+  names = c("San_Francisco", "Napa", "Solano"),
+  time = c("2021-01-01", "2023-01-01")
+)
 
-```{r, echo = FALSE}
-if(file.exists("distantia_output.RData")){
-  load("distantia_output.RData")
-}
+distantia::tsl_plot(
+  tsl = tsl_smol, 
+  guide = FALSE,
+  text_cex = 1.3
+  )
+```
+At first glance, Napa and Solano seem quite well synchronized and look very similar. On the other hand, San Francisco, in spite of having the same number of events as the other two, shows a timing difference of several months.
+
+The table below shows the **LS** comparison between these time series. The `psi` column indicates the dissimilarity between pairs of time series.
+
+```{r}
+tsl_smol |> 
+  distantia::distantia_ls() |> 
+  dplyr::mutate(
+    psi = round(psi, 3)
+  ) |> 
+  reactable::reactable(
+    resizable = TRUE,
+    striped = TRUE,
+    compact = TRUE,
+    wrap = FALSE,
+    fullWidth = FALSE
+  )
+```
+As expected, LS captures the synchronicity between Napa and Solano quite well, and returns a `psi` score indicating a high similarity. Meanwhile, San Francisco shows a high `psi` score when compared with the other two time series, indicating dissimilarity due to its asynchronous pattern. So far so good!
+
+Now, let's take a look at the **DTW** result:
+
+```{r}
+tsl_smol |> 
+  distantia::distantia_dtw() |> 
+  dplyr::mutate(
+    psi = round(psi, 3)
+  ) |> 
+  reactable::reactable(
+    resizable = TRUE,
+    striped = TRUE,
+    compact = TRUE,
+    wrap = FALSE,
+    fullWidth = FALSE
+  )
+```
+It might be surprising, but after cancelling out the time shift between time series, it turns out that San Francisco is more similar to Solano than Napa!
+
+This happens because DTW ignores the dates of the observations, and can link one sample of one time series with one or several samples of the other time series. In the left side of the plot below, done with `dtw::dtw()` and `dtw::dtwPlotTwoWay()`, we can see how the first sample of San Francisco, with prevalence 0, is linked to all samples with prevalence 0 in the beginning of the Napa series. Since the distance of all these links is 0, this operation cancels out the difference in timing between both series.
+
+```{r, fig.height=3.5, echo = FALSE}
+xy_dtw <- dtw::dtw(
+  x = tsl_smol$Solano$prevalence,
+  y = tsl_smol$San_Francisco$prevalence,
+  keep = TRUE
+  )
+
+dtw::dtwPlotTwoWay(xy_dtw, offset = 0.5)
 ```
 
-Parallelization setup.
+
+```{r, fig.height=5, fig.width=6}
+distantia::distantia_dtw_plot(
+  tsl = tsl_smol[c("San_Francisco", "Solano")]
+)
+```
+
+
+
+In general, DTW is preferable when outbreak timing varies significantly and shape similarity is more important than exact time alignment, while LS is best applied when time series are naturally synchronized.
+  
+[This article](https://blasbenito.github.io/distantia/articles/dynamic_time_warping_and_lock_step.html) provides a detailed guide on applying DTW and LS analyses with `distantia`. 
+
+Before running DTW and LS with `distantia`, we are going to define a parallelization backend to speed-up the execution of the significance permutation tests
 
 ```{r, eval = FALSE}
 future::plan(
@@ -373,6 +462,12 @@ future::plan(
   workers = future::availableCores() - 1
 )
 ```
+
+```{r, echo = FALSE}
+load("distantia_output.RData")
+```
+
+
 
 ### Lock-Step
 

@@ -370,7 +370,9 @@ df_stats_2021 <- distantia::tsl_stats(
 
 ## Dissimilarity Analysis
 
-The package `distantia` is specifically designed to compare time series, and provides two general methods to do so: **Lock-Step (LS)**  and [**Dynamic time warping (DTW)**](https://www.blasbenito.com/post/dynamic-time-warping/). 
+The package `distantia` is specifically designed to compare time series, and provides two general methods to do so: **Lock-Step (LS)**  and [**Dynamic time warping (DTW)**](https://www.blasbenito.com/post/dynamic-time-warping/). [This article](https://blasbenito.github.io/distantia/articles/dynamic_time_warping_and_lock_step.html) provides a detailed guide on how to apply these methods with `distantia`. 
+
+### Dynamic Time Warping and Lock-Step Comparison
 
 The **LS** method directly compares samples observed at the same time in time series of the same length. It is computationally efficient and easy to interpret but cannot account for differences in outbreak speed or timing, potentially missing underlying similarities when outbreaks are not synchronized.
 
@@ -427,9 +429,9 @@ tsl_smol |>
     fullWidth = FALSE
   )
 ```
-It might be surprising, but after cancelling out the time shift between time series, it turns out that San Francisco is more similar to Solano than Napa!
+Surprising, right? When cancelling out the time shift between time series, it turns out that San Francisco is more similar to Solano than Napa!
 
-This happens because DTW ignores the dates of the observations, and can link one sample of one time series with one or several samples of the other time series. In the left side of the plot below, done with `dtw::dtw()` and `dtw::dtwPlotTwoWay()`, we can see how the first sample of San Francisco, with prevalence 0, is linked to all samples with prevalence 0 in the beginning of the Napa series. Since the distance of all these links is 0, this operation cancels out the difference in timing between both series.
+This happens because DTW ignores the dates of the observations, and can link one sample of one time series with one or several samples of the other time series. The plot below, done with `dtw::dtw()` and `dtw::dtwPlotTwoWay()`, shows first sample of San Francisco (first case of the dashed red line), with prevalence 0, is linked to all samples with prevalence 0 at the beginning of the Napa series. Since the distance of all these links is 0, this operation cancels out the difference in timing between both time series.
 
 ```{r, fig.height=3.5, echo = FALSE}
 xy_dtw <- dtw::dtw(
@@ -441,70 +443,39 @@ xy_dtw <- dtw::dtw(
 dtw::dtwPlotTwoWay(xy_dtw, offset = 0.5)
 ```
 
+These DTW results indicate that, for the given period of time, San Francisco, Napa, and Solano might be parts of the same system, in spite of the time-delay between them. This is a conclusion that cannot be achieved when applying the lock-step method!
 
-```{r, fig.height=5, fig.width=6}
-distantia::distantia_dtw_plot(
-  tsl = tsl_smol[c("San_Francisco", "Solano")]
-)
-```
+It is for this reason that DTW is preferable when outbreak timing varies significantly and shape similarity is more important than exact time alignment. On the other hand, LS is best applied when the question at hand is focused on time-series synchronization rather than shape similarity.
 
-
-
-In general, DTW is preferable when outbreak timing varies significantly and shape similarity is more important than exact time alignment, while LS is best applied when time series are naturally synchronized.
+##Computing Dissimilarity with `distantia`
   
-[This article](https://blasbenito.github.io/distantia/articles/dynamic_time_warping_and_lock_step.html) provides a detailed guide on applying DTW and LS analyses with `distantia`. 
+Now that the features of DTW and LS are clear, we are going to compute dissimilarity scores with both methods for the complete dataset. 
 
-Before running DTW and LS with `distantia`, we are going to define a parallelization backend to speed-up the execution of the significance permutation tests
-
-```{r, eval = FALSE}
-future::plan(
-  strategy = future::multisession,
-  workers = future::availableCores() - 1
-)
-```
-
-```{r, echo = FALSE}
-load("distantia_output.RData")
-```
-
-
-
-### Lock-Step
 
 ```{r}
-df_psi_ls <- distantia::distantia(
-  tsl = tsl,
-  lock_step = TRUE,
-  distance = "euclidean",
-  permutation = "restricted",
-  block_size = 12, #3 months, one season
-  repetitions = 1000
-)
-```
+#lock-step
+psi_ls <- distantia::distantia_ls(tsl = tsl)
 
-
-### Dynamic Time Warping
-
-```{r psi, eval=FALSE}
-df_psi_dtw <- distantia::distantia(
-  tsl = tsl,
-  distance = "euclidean",
-  permutation = "restricted",
-  block_size = 12, #3 months, one season
-  repetitions = 1000
-)
+#dynamic time warping
+psi_dtw <- distantia::distantia_dtw(tsl = tsl)
 ```
 
 
 ```{r, echo = FALSE}
-save(df_psi_dtw, df_psi_ls, file = "distantia_output.RData")
-```
+temp_df <- psi_dtw |> 
+  dplyr::select(x, y, psi) |> 
+  dplyr::inner_join(
+    y = dplyr::select(psi_ls, x, y, psi),
+    by = c("x", "y")
+  ) |> 
+  dplyr::transmute(
+    x, y,
+    `psi_dtw` = round(psi.x, 3),
+    psi_ls = round(psi.y, 3)
+  )
 
-
-```{r, echo = FALSE}
-df_psi_dtw |> 
-  select(x, y, psi, p_value) |> 
   reactable::reactable(
+    temp_df,
     pagination = TRUE,
     searchable = TRUE,
     sortable = TRUE,
@@ -516,8 +487,10 @@ df_psi_dtw |>
     striped = TRUE,
     compact = TRUE,
     wrap = FALSE,
-    fullWidth = TRUE
+    fullWidth = FALSE
   )
 ```
 
 The p-value represents the probability of finding a lower psi (higher similarity) when the time series are permuted. Low p-values indicate a strong similarity, better than expected by chance.
+
+

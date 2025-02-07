@@ -448,21 +448,35 @@ These DTW results indicate that, for the given period of time, San Francisco, Na
 It is for this reason that DTW is preferable when outbreak timing varies significantly and shape similarity is more important than exact time alignment. On the other hand, LS is best applied when the question at hand is focused on time-series synchronization rather than shape similarity.
 
 ##Computing Dissimilarity with `distantia`
-  
-Now that the features of DTW and LS are clear, we are going to compute dissimilarity scores with both methods for the complete dataset. 
 
+Now that the features of LS and DTW are clear, it is time to compute the dissimilarity between all time series. But a little word of advice first: This section shows how to work with LS and DTW for the sake of completeness. However, in a real analysis with a well-defined question, the most suitable method should be selected! 
+  
+The most straightforward way of computing DTW and LS in `distantia`involves the functions `distantia_ls()` and `distantia_dtw()`.
+
+The function `distantia_ls()` computes lock-step dissimilarity using euclidean distances by default. It returns a data frame with the columns `x` and `y` with the time series names, and the `psi` score.
 
 ```{r}
-#lock-step
-psi_ls <- distantia::distantia_ls(tsl = tsl)
+psi_ls <- distantia::distantia_ls(
+  tsl = tsl,
+  distance = "euclidean"
+  )
 
-#dynamic time warping
-psi_dtw <- distantia::distantia_dtw(tsl = tsl)
+str(psi_ls)
+```
+The function `distantia_dtw()` returns the same result, but in this case the column `psi` represents dissimilarity scores computed with dynamic time warping.
+
+```{r}
+psi_dtw <- distantia::distantia_dtw(
+  tsl = tsl
+  )
+
+str(psi_dtw)
 ```
 
+The table below combines both results:
 
 ```{r, echo = FALSE}
-temp_df <- psi_dtw |> 
+psi_df <- psi_dtw |> 
   dplyr::select(x, y, psi) |> 
   dplyr::inner_join(
     y = dplyr::select(psi_ls, x, y, psi),
@@ -475,7 +489,7 @@ temp_df <- psi_dtw |>
   )
 
   reactable::reactable(
-    temp_df,
+    psi_df,
     pagination = TRUE,
     searchable = TRUE,
     sortable = TRUE,
@@ -491,6 +505,7 @@ temp_df <- psi_dtw |>
   )
 ```
 
-The p-value represents the probability of finding a lower psi (higher similarity) when the time series are permuted. Low p-values indicate a strong similarity, better than expected by chance.
+
+
 
 

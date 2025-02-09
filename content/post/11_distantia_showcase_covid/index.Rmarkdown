@@ -47,7 +47,6 @@ This tutorial requires the following packages:
   - [`dplyr`](https://dplyr.tidyverse.org/): data frame manipulation.
   - [`mapview`](https://r-spatial.github.io/mapview/): easy to use interactive map visualization.
   - [`reactable`](https://glin.github.io/reactable/): interactive tables.
-  - [`dygraphs`](https://github.com/rstudio/dygraphs): interactive time series plots.
 
 ```{r, message = FALSE, warning = FALSE}
 library(distantia)
@@ -56,7 +55,6 @@ library(zoo)
 library(dplyr)
 library(mapview)
 library(reactable)
-library(dygraphs)
 ```
 
 ## Example Data
@@ -85,6 +83,11 @@ htmlwidgets::saveWidget(
   width="800" height="600" scrolling="auto" frameborder="0">
    <p>California counties represented in the Covid-19 dataset.</p>
 </iframe>
+
+```{r, echo = FALSE}
+rm(la_population)
+```
+
 
 The socioeconomic variables available in `covid_counties` are:
 
@@ -204,25 +207,6 @@ distantia::tsl_plot(
 )
 ```
 
-The individual `zoo` objects in `tsl` can be plotted right away using `plot()` or `distantia::zoo_plot()`. 
-
-```{r, fig.height=2.5}
-distantia::zoo_plot(
-  x = tsl$Los_Angeles
-  )
-```
-
-Another good option to plot zoo objects comes with the package [`dygraphs`](https://rstudio.github.io/dygraphs/). The function `dygraphs::dygraph()` produces an interactive visualization that helps localize specific events in time and compare several time series at once.
-
-```{r, fig.height=2}
-dygraphs::dygraph(
-  data = cbind(tsl$Los_Angeles, tsl$Kings), 
-  ylab = "Covid-19 Prevalence"
-  )
-```
-
-<br>
-
 ### Descriptive Stats
 
 Time series have at least two dimensions of interest: *time*, and the variable/s of interest, such as prevalence in this case.
@@ -316,7 +300,7 @@ df_stats |>
 The stats produced by `tsl_stats()` can be joined to the spatial data frame `covid_counties` using their common column `name` to link cases.
 
 ```{r}
-covid_counties <- dplyr::inner_join(
+sf_stats <- dplyr::inner_join(
   x = covid_counties,
   y = df_stats,
   by = "name"
@@ -327,20 +311,20 @@ This join facilitates mapping any of the descriptive stats. For example, the map
 
 ```{r, eval = FALSE, warning = FALSE}
 mapview::mapview(
-  covid_counties, 
+  sf_stats, 
   zcol = "q3",
   layer.name = "Max prevalence",
   label = "name",
-  col.regions = grDevices::hcl.colors(n = 5, palette = "Zissou 1")
+  col.regions = distantia::color_continuous()
   )
 ```
 
 ```{r, echo = FALSE, cache=TRUE, warning = FALSE}
 max_prevalence <- mapview(
-  covid_counties, 
+  sf_stats, 
   zcol = "max",
   label = "name",
-  col.regions = grDevices::hcl.colors(n = 5, palette = "Zissou 1")
+  col.regions = distantia::color_continuous()
   )
 
 htmlwidgets::saveWidget(
@@ -348,6 +332,8 @@ htmlwidgets::saveWidget(
   file = "la_population.html", 
   selfcontained = TRUE
   )
+
+rm(max_prevalence)
 ```
 
 <iframe src="la_population.html" name="LA_Population"
@@ -368,7 +354,7 @@ df_stats_2021 <- distantia::tsl_stats(
 ```
 
 
-## Dissimilarity Analysis
+## Dissimilarity Scores
 
 The package `distantia` is specifically designed to compare time series, and provides two general methods to do so: **Lock-Step (LS)**  and [**Dynamic time warping (DTW)**](https://www.blasbenito.com/post/dynamic-time-warping/). [This article](https://blasbenito.github.io/distantia/articles/dynamic_time_warping_and_lock_step.html) provides a detailed guide on how to apply these methods with `distantia`. 
 
@@ -447,7 +433,12 @@ These DTW results indicate that, for the given period of time, San Francisco, Na
 
 It is for this reason that DTW is preferable when outbreak timing varies significantly and shape similarity is more important than exact time alignment. On the other hand, LS is best applied when the question at hand is focused on time-series synchronization rather than shape similarity.
 
-##Computing Dissimilarity with `distantia`
+```{r, echo = FALSE}
+rm(tsl_smol, xy_dtw)
+```
+
+
+###Computing Dissimilarity with `distantia`
 
 Now that the features of LS and DTW are clear, it is time to compute the dissimilarity between all time series. But a little word of advice first: This section shows how to work with LS and DTW for the sake of completeness. However, in a real analysis with a well-defined question, the most suitable method should be selected! 
   
@@ -456,30 +447,31 @@ The most straightforward way of computing DTW and LS in `distantia`involves the 
 The function `distantia_ls()` computes lock-step dissimilarity using euclidean distances by default. It returns a data frame with the columns `x` and `y` with the time series names, and the `psi` score.
 
 ```{r}
-psi_ls <- distantia::distantia_ls(
+df_psi_ls <- distantia::distantia_ls(
   tsl = tsl,
   distance = "euclidean"
   )
 
-str(psi_ls)
+str(df_psi_ls)
 ```
-The function `distantia_dtw()` returns the same result, but in this case the column `psi` represents dissimilarity scores computed with dynamic time warping.
+
+The function `distantia_dtw()` returns an output with the same structure, but in this case the column `psi` represents dissimilarity scores computed with dynamic time warping.
 
 ```{r}
-psi_dtw <- distantia::distantia_dtw(
+df_psi_dtw <- distantia::distantia_dtw(
   tsl = tsl
   )
 
-str(psi_dtw)
+str(df_psi_dtw)
 ```
 
-The table below combines both results:
+The table below combines both results to facilitate a direct comparison.
 
 ```{r, echo = FALSE}
-psi_df <- psi_dtw |> 
+df_table <- df_psi_dtw |> 
   dplyr::select(x, y, psi) |> 
   dplyr::inner_join(
-    y = dplyr::select(psi_ls, x, y, psi),
+    y = dplyr::select(df_psi_ls, x, y, psi),
     by = c("x", "y")
   ) |> 
   dplyr::transmute(
@@ -488,24 +480,208 @@ psi_df <- psi_dtw |>
     psi_ls = round(psi.y, 3)
   )
 
-  reactable::reactable(
-    psi_df,
-    pagination = TRUE,
-    searchable = TRUE,
-    sortable = TRUE,
-    showSortable = TRUE,
-    filterable = TRUE,
-    resizable = TRUE,
-    defaultPageSize = 10,
-    showPageSizeOptions = TRUE,
-    striped = TRUE,
-    compact = TRUE,
-    wrap = FALSE,
-    fullWidth = FALSE
+reactable::reactable(
+  df_table,
+  pagination = TRUE,
+  searchable = TRUE,
+  sortable = TRUE,
+  showSortable = TRUE,
+  filterable = TRUE,
+  resizable = TRUE,
+  defaultPageSize = 10,
+  showPageSizeOptions = TRUE,
+  striped = TRUE,
+  compact = TRUE,
+  wrap = FALSE,
+  fullWidth = FALSE
+)
+
+rm(df_table)
+```
+
+## Dissimilarity Analysis
+
+Having a dissimilarity data frame may be kinda cool, but it won't get you very far by itself. To give you a push in the right direction, this section focuses on several analyses that can help unveil the underlying structure of the data set.
+
+For the sake of simplicity, this section focuses on the DTW results alone. But if you wish to use the LS results instead, just replace `df_psi_dtw` with `df_psi_ls` in the code below. 
+
+```{r}
+df_psi <- df_psi_dtw
+```
+
+### Summarizing Dissimilarity Scores
+
+The functions `distantia_stats()` and `distantia_boxplot()` provide alternative summarized representations of dissimilarity (a data frame and a boxplot, respectively) via aggregation of `psi` values by time series.
+
+```{r, fig.height=10, warning = FALSE, fig.width=5}
+df_psi_stats <- distantia::distantia_stats(
+  df = df_psi
+)
+```
+
+```{r, echo = FALSE}
+reactable::reactable(
+  df_psi_stats |>  
+    mutate_if(is.numeric, round, 3),
+  pagination = FALSE,
+  sortable = TRUE,
+  showSortable = TRUE,
+  filterable = TRUE,
+  resizable = TRUE,
+  defaultPageSize = nrow(df_psi_stats),
+  showPageSizeOptions = TRUE,
+  striped = TRUE,
+  compact = TRUE,
+  wrap = FALSE,
+  fullWidth = TRUE
+)
+```
+Just as we did before with the time series stats generated by `tsl_stats()`, we can join the result of `distantia_stats()` with the spatial data frame `covid_counties` to obtain summary maps.
+
+```{r}
+sf_psi_stats <- dplyr::inner_join(
+  x = covid_counties,
+  y = df_psi_stats,
+  by = "name"
+)
+```
+
+```{r, eval = FALSE, warning = FALSE}
+mapview::mapview(
+  sf_psi_stats, 
+  zcol = "median",
+  layer.name = "Median psi",
+  label = "name",
+  col.regions = distantia::color_continuous()
   )
 ```
 
+```{r, echo = FALSE, cache=TRUE, warning = FALSE}
+median_psi <- mapview::mapview(
+  sf_psi_stats, 
+  zcol = "median",
+  layer.name = "Median psi",
+  label = "name",
+  col.regions = distantia::color_continuous()
+  )
+
+htmlwidgets::saveWidget(
+  median_psi@map, 
+  file = "median_psi.html", 
+  selfcontained = TRUE
+  )
+
+rm(median_psi)
+```
+
+<iframe src="median_psi.html" name="Median_psi"
+  width="800" height="600" scrolling="auto" frameborder="0">
+   <p>Median dissimilarity between Covid-19 time series..</p>
+</iframe>
+
+The boxplot generated by `distantia_boxplot()`, shown below, is ordered from higher to lower median dissimilarity with all other time series.
+
+```{r, fig.height=8, warning = FALSE, fig.width=5}
+distantia::distantia_boxplot(
+  df = df_psi,
+  text_cex = 1.4
+)
+```
+
+### Network Mapping
+
+```{r}
+sf_psi <- distantia::distantia_spatial(
+  df = df_psi,
+  sf = covid_counties,
+  network = FALSE
+)
+```
+
+```{r}
+#subset one county
+sf_psi_subset <- sf_psi[
+  sf_psi$x == "San_Francisco", 
+  ]
+
+#one-to-many visualization
+mapview::mapview(
+    sf_psi_subset,
+    layer.name = "Psi",
+    label = "y",
+    zcol = "psi",
+    col.regions = distantia::color_continuous(
+      rev = TRUE
+      )
+  )
+```
+
+### Hierarchical Clustering
+
+### Dissimilarity Modelling
+
+
+This is a very rough approximation to
 
 
 
+
+
+
+
+
+
+
+## Time-Delay Analysis
+
+```{r}
+df_delay <- distantia::distantia_time_delay(
+  tsl = tsl,
+  bandwidth = 0.125
+)
+```
+
+```{r}
+reactable::reactable(
+  df_delay,
+  pagination = TRUE,
+  searchable = TRUE,
+  sortable = TRUE,
+  showSortable = TRUE,
+  filterable = TRUE,
+  resizable = TRUE,
+  defaultPageSize = 10,
+  showPageSizeOptions = TRUE,
+  striped = TRUE,
+  compact = TRUE,
+  wrap = FALSE,
+  fullWidth = FALSE
+)
+```
+
+```{r}
+distantia::distantia_dtw_plot(
+  tsl = tsl[c("Napa", "San_Francisco")],
+  bandwidth = 0.125
+)
+```
+
+```{r}
+distantia::tsl_plot(
+  tsl = tsl[c("San_Francisco", "Napa")],
+  xlim = c("2021-07-01", "2022-01-10")
+)
+```
+
+```{r}
+sf_delay <- distantia::distantia_spatial(
+  df = df_delay,
+  sf = covid_counties
+)
+```
+
+
+```{r}
+mapview(sf_delay |> dplyr::filter(x == "Napa", y == "San_Francisco"))
+```
 

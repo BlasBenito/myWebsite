@@ -2,9 +2,11 @@ foreach
 future
 doFuture
 distantia
+proxy
+dtw
 zoo
 dplyr
 mapview
-gt
-dygraphs
 reactable
+ggplot2
+factoextra

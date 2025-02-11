@@ -48,6 +48,9 @@ This tutorial requires the following packages:
   - [`mapview`](https://r-spatial.github.io/mapview/): easy to use interactive map visualization.
   - [`reactable`](https://glin.github.io/reactable/): interactive tables.
   - [`factoextra`](https://rpkgs.datanovia.com/factoextra/index.html): plot results of hierarchical clustering.
+  - [`collinear`](https://blasbenito.github.io/collinear/): multicollinearity filtering in model frames.
+  - [`coefplot`](https://CRAN.R-project.org/package=coefplot): coefficient plots.
+  - [`visreg`](https://CRAN.R-project.org/package=visreg): response curves of statistical models.
 
 ```{r, message = FALSE, warning = FALSE}
 library(distantia, quietly = TRUE)
@@ -57,6 +60,9 @@ library(dplyr)
 library(mapview)
 library(reactable)
 library(factoextra, quietly = TRUE)
+library(collinear)
+library(coefplot)
+library(visreg)
 ```
 
 ## Example Data
@@ -303,7 +309,7 @@ The stats produced by `tsl_stats()` can be joined to the spatial data frame `cov
 
 ```{r}
 sf_stats <- dplyr::inner_join(
-  x = covid_counties,
+  x = covid_counties[, "name"],
   y = df_stats,
   by = "name"
 )
@@ -558,12 +564,20 @@ By default, the function `distantia_cluster_hclust()` selects by itself the clus
 psi_cluster <- distantia::distantia_cluster_hclust(
   df = df_psi
 )
+
+names(psi_cluster)
 ```
 
 The output is a list with several components, but these are the key ones:
 
-  - `cluster_object`: the output of `stats::hclust()`
-  - `df` (shown below): data frame with time series names, cluster group, and silhouette width.
+  - `df`: data frame with time series names, cluster group, and silhouette width. 
+  - `cluster_object`: the output of `stats::hclust()`.
+
+The object `df` has the column `silhouette_width`, in the range [-1, 1], which informs about how well each case fits within its assigned cluster:
+
+  - `<0`: misclassified.
+  - `≈0`: near decision boundary.
+  - `≈1`: well-clustered.
   
 ```{r, echo = FALSE}
 reactable::reactable(
@@ -582,8 +596,9 @@ reactable::reactable(
   fullWidth = TRUE
 )
 ```
+The hirarchical clustering highlights "Santa Cruz", with a silhouette score of `r round(psi_cluster$df$silhouette_width[which(psi_cluster$df$name == "Santa_Cruz")], 3)`, as the county with the most dubious cluster membership.
 
-The dendrogram object can be plotted with `factoextra::fviz_dend()` as follows.
+The cluster object can be plotted as a dendrogram with `factoextra::fviz_dend()`.
 
 ```{r, fig.height=10, warning = FALSE}
 #number of clusters
@@ -601,18 +616,19 @@ factoextra::fviz_dend(
   ylab = "Dissimilarity"
   )
 ```
-
-If we now join `psi_cluster$df` to the spatial data frame `covid_counties` as follows...
+Mapping these groups may be helpful for the ones like me not fully acquainted with the distribution of counties in California. To get there we first need to join `psi_cluster$df` to the spatial data frame `covid_counties`.
 
 ```{r}
 sf_cluster <- dplyr::inner_join(
-  x = covid_counties,
+  x = covid_counties[, "name"],
   y = psi_cluster$df,
   by = "name"
 )
 ```
 
-... we can map these clusters:
+Now we can use `mapview::mapview()` again to plot cluster membership, but with a twist: we are going to code the silhouette score of each case as polygon transparency, with higher transparency indicating a lower silhouette width. This will help identify these cases that do not fully belong to their assigned groups. 
+
+Notice that to do so, the code below applies `distantia::f_rescale_local()` to rescale silhouette width between 0.1 and 1 to adjust it to what the argument `alpha.regions` expects.
 
 ```{r, eval = FALSE, warning = FALSE}
 mapview::mapview(
@@ -621,7 +637,25 @@ mapview::mapview(
   layer.name = "Cluster",
   label = "name",
   col.regions = distantia::color_discrete(n = k),
-  legend.position = "upperleft"
+  alpha.regions = distantia::f_rescale_local(
+    x = sf_cluster$silhouette_width, 
+    new_min = 0.1
+    )
+  )
+```
+
+
+```{r, eval = FALSE, warning = FALSE}
+mapview::mapview(
+  sf_cluster, 
+  zcol = "cluster",
+  layer.name = "Cluster",
+  label = "name",
+  col.regions = distantia::color_discrete(n = k),
+  alpha.regions = distantia::f_rescale_local(
+    x = sf_cluster$silhouette_width, 
+    new_min = 0.1
+    )
   )
 ```
 
@@ -631,7 +665,12 @@ clustering <- mapview::mapview(
   zcol = "cluster",
   layer.name = "Cluster",
   label = "name",
-  col.regions = distantia::color_discrete(n = k)
+  col.regions = distantia::color_discrete(n = k),
+  alpha.regions = distantia::f_rescale_local(
+    x = sf_cluster$silhouette_width, 
+    new_min = 0.1
+    ),
+  legend.position = "upperleft"
   )
 
 htmlwidgets::saveWidget(
@@ -649,48 +688,191 @@ rm(max_prevalence)
 </iframe>
 
 
+
 ### Dissimilarity Modelling
 
-
-This is a very rough approximation to
-
-
-
-
-
-
-
-### Network Mapping
-
-#### One-to-many
+Dissimilarity scores reveal the degree of interrelation between time series but do not explain the underlying reasons for their similarity or difference. To fill this gap, the function [`distantia_model_frame()`](https://blasbenito.github.io/distantia/reference/distantia_model_frame.html) helps combine dissimilarity scores (stored in `df_psi`) with other quantitative attributes of the time series locations (stored in `covid_counties`) to build a model frame.
 
 ```{r}
-sf_psi <- distantia::distantia_spatial(
-  df = df_psi,
-  sf = covid_counties,
-  network = FALSE
+df_model <- distantia::distantia_model_frame(
+  response_df = df_psi,
+  predictors_df = covid_counties,
+  scale = FALSE
 )
 ```
 
-```{r}
-#subset one county
-sf_psi_subset <- sf_psi[
-  sf_psi$x == "San_Francisco", 
-  ]
+Let's take a look at the output:
 
-#one-to-many visualization
-mapview::mapview(
-    sf_psi_subset,
-    layer.name = "Psi",
-    label = "y",
-    zcol = "psi",
-    col.regions = distantia::color_continuous(
-      rev = TRUE
+```{r, echo=FALSE}
+df_model |> 
+  dplyr::mutate(
+    dplyr::across(
+      dplyr::where(is.numeric), ~ round(.x, 2)
       )
+    ) |> 
+  reactable::reactable(
+    pagination = TRUE,
+    searchable = TRUE,
+    sortable = TRUE,
+    showSortable = TRUE,
+    filterable = TRUE,
+    resizable = TRUE,
+    defaultPageSize = 10,
+    showPageSizeOptions = TRUE,
+    striped = TRUE,
+    compact = TRUE,
+    wrap = FALSE,
+    fullWidth = TRUE
   )
 ```
 
-#### Many-to-many
+In the model frame above, the response variable `psi`, from `df_psi`, represents time series dissimilarity. On the other hand, the predictors, from `covid_counties`, represent the difference in values for the given predictor between the two counties in the row. 
+
+For example, the value of the column `area_hectares` for the counties Sacramento and Sonoma is `r df_model$area_hectares[which(df_model$x == "Sacramento" & df_model$y == "Sonoma")]` hectares. This is the absolute difference between the area of Sacramento (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sacramento")]` hectares) and the area of Sonoma (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sonoma")]` hectares).
+
+Notice that the column `geographic_distance`, not in `covid_counties`, also appeared as a predictor. This only happens when the input of the argument `predictors_df` is an sf data frame, as it is the case with `covid_counties`.
+
+#### Model Frame
+
+The function `distantia_model_frame()` has two other features: it can scale the predictors when they have different scales, and can combine different predictors into a new one. In the example below, the distance between counties for the scaled predictors `poverty_percentage`, `median_income`, `employed_percentage`, and `domestic_product` is encoded as the column `economy`, which represents the overall difference in economy indicators between counties.
+
+```{r}
+df_model <- distantia::distantia_model_frame(
+  response_df = df_psi,
+  predictors_df = covid_counties,
+  composite_predictors = list(
+    economy = c(
+      "poverty_percentage",
+      "median_income",
+      "domestic_product",
+      "employed_percentage"
+    )
+  ),
+  scale = TRUE
+)
+```
+
+```{r, echo=FALSE}
+df_model |> 
+  dplyr::mutate(
+    dplyr::across(
+      dplyr::where(is.numeric), ~ round(.x, 2)
+      )
+    ) |> 
+  reactable::reactable(
+    pagination = TRUE,
+    searchable = TRUE,
+    sortable = TRUE,
+    showSortable = TRUE,
+    filterable = TRUE,
+    resizable = TRUE,
+    defaultPageSize = 10,
+    showPageSizeOptions = TRUE,
+    striped = TRUE,
+    compact = TRUE,
+    wrap = FALSE,
+    fullWidth = TRUE
+  )
+```
+
+#### Multicollinearity Analysis
+
+Since the predictor `economy` combines four other predictors, it introduces multicollinearity in the model frame, as shown in the [variance inflation factor](https://www.blasbenito.com/post/variance-inflation-factor/) analysis shown below.
+
+```{r}
+predictors <- setdiff(
+  x = colnames(df_model),
+  y = c("x", "y", "psi")
+)
+
+df_model_vif <- collinear::vif_df(
+  df = df_model,
+  predictors = predictors
+)
+```
+
+```{r, echo=FALSE}
+reactable::reactable(
+  df_model_vif, 
+  striped = TRUE,
+  fullWidth = FALSE,
+  resizable = TRUE
+  )
+```
+The function [`collinear::collinear()`](https://blasbenito.github.io/collinear/reference/collinear.html) helps control potential issues arising from multicollinearity while preserving predictors of special interest (`economy`, `population_density` and `geographic_distance` in the example below).
+
+```{r}
+selected_predictors <- collinear::collinear(
+  df = df_model,
+  response = "psi",
+  predictors = predictors,
+  preference_order = c(
+    "economy",
+    "population_density",
+    "geographic_distance"
+  ),
+  quiet = TRUE,
+  max_cor = 0.60,
+  max_vif = 2.5
+)
+```
+
+
+```{r, echo = FALSE}
+reactable(
+  as.data.frame(selected_predictors), 
+  striped = TRUE,
+  fullWidth = FALSE,
+  resizable = TRUE
+  )
+```
+
+#### Model Fitting
+
+We can convert these predictors into an additive formula right away with [`collinear::model_formula()`](https://blasbenito.github.io/collinear/reference/model_formula.html).
+
+
+```{r}
+model_formula <- collinear::model_formula(
+  response = "psi",
+  predictors = selected_predictors
+)[[1]]
+
+model_formula
+```
+```{r}
+m <- stats::lm(
+  formula = model_formula,
+  data = df_model
+)
+```
+
+```{r, fig.height=4, fig.width=4}
+coefplot::coefplot(
+  model = m,
+  interactive = TRUE,
+  intercept = FALSE,
+  color = "red"
+)
+```
+```{r, fig.height=3, fig.width=8}
+par(mfrow = c(1, 3))
+visreg::visreg(
+  fit = m,
+  xvar = "geographic_distance",
+  line = list(col = "red", lwd = 1)
+)
+visreg::visreg(
+  fit = m,
+  xvar = "economy",
+  line = list(col = "red", lwd = 1)
+)
+visreg::visreg(
+  fit = m,
+  xvar = "area_hectares",
+  line = list(col = "red", lwd = 1)
+)
+```
 
 
 ## Time-Delay Analysis

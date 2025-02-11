@@ -10,3 +10,6 @@ mapview
 reactable
 ggplot2
 factoextra
+collinear
+coefplot
+visreg

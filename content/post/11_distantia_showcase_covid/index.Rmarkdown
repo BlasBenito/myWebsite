@@ -51,13 +51,13 @@ This tutorial requires the following packages:
   - [`visreg`](https://CRAN.R-project.org/package=visreg): response curves of statistical models.
 
 ```{r, message = FALSE, warning = FALSE}
-library(distantia, quietly = TRUE)
+library(distantia)
 library(dtw)
 library(zoo)
 library(dplyr)
 library(mapview)
 library(reactable)
-library(factoextra, quietly = TRUE)
+library(factoextra)
 library(collinear)
 library(coefplot)
 library(visreg)
@@ -130,6 +130,7 @@ covid_prevalence |>
     fullWidth = FALSE
   )
 ```
+<br>
 
 ## Objective
 
@@ -245,6 +246,7 @@ df_time |>
     fullWidth = FALSE
   )
 ```
+<br>
 
 Here, all time series are regular and have the same time resolution and range, which makes the table above rightfully boring.
 
@@ -278,6 +280,7 @@ df_stats |>
     fullWidth = FALSE
   )
 ```
+<br>
 
 The second part of the output, produced by the `lags` argument, shows time series autocorrelation (Moran's I) for different time lags. Since the resolution of all time series is 7 days per data-point, each time lag represents a week. A value of 0.9 for the lag 1 indicates the Pearson correlation between the prevalence of each data point and its precedent neighbor.
 
@@ -302,6 +305,7 @@ df_stats |>
     fullWidth = TRUE
   )
 ```
+<br>
 
 The stats produced by `tsl_stats()` can be joined to the spatial data frame `covid_counties` using their common column `name` to link cases.
 
@@ -362,13 +366,13 @@ df_stats_2021 <- distantia::tsl_stats(
 
 ## Computing Dissimilarity Scores
 
-The package `distantia` is specifically designed to compare time series, and provides two general methods to do so: **Lock-Step (LS)**  and [**Dynamic time warping (DTW)**](https://www.blasbenito.com/post/dynamic-time-warping/). [This article](https://blasbenito.github.io/distantia/articles/dynamic_time_warping_and_lock_step.html) provides a detailed guide on how to apply these methods with `distantia`. 
+The package `distantia` is specifically designed to compare time series, and provides two general methods to do so: *Lock-Step (LS)*  and [*Dynamic time warping (DTW)*](https://www.blasbenito.com/post/dynamic-time-warping/).
 
 ### Dynamic Time Warping and Lock-Step Comparison
 
-The **LS** method directly compares samples observed at the same time in time series of the same length. It is computationally efficient and easy to interpret but cannot account for differences in outbreak speed or timing, potentially missing underlying similarities when outbreaks are not synchronized.
+The *LS* method directly compares samples observed at the same time in time series of the same length. It is computationally efficient and easy to interpret but cannot account for differences in outbreak speed or timing, potentially missing underlying similarities when outbreaks are not synchronized.
 
-**DTW** warps the time axis of the compared time series to maximize shape similarity. It adjusts for differences in the speed and timing of outbreaks, such as epidemic waves peaking at different times in different regions, and works well with time series of varying lengths or temporal resolutions. However, DTW is computationally expensive for large data sets, can be harder to interpret, and is sensitive to data scaling.
+*DTW* warps the time axis of the compared time series to maximize shape similarity. It adjusts for differences in the speed and timing of outbreaks, such as epidemic waves peaking at different times in different regions, and works well with time series of varying lengths or temporal resolutions. However, DTW is computationally expensive for large data sets, can be harder to interpret, and is sensitive to data scaling.
 
 Before going forward, let me show a little example to help develop a sense of how DTW and LS work on a small subset of our time series. The figure below shows two years of data for San Francisco, Napa, and Solano.
 
@@ -403,6 +407,8 @@ tsl_smol |>
     fullWidth = FALSE
   )
 ```
+<br>
+
 As expected, LS captures the synchronicity between Napa and Solano quite well, and returns a `psi` score indicating a high similarity. Meanwhile, San Francisco shows a high `psi` score when compared with the other two time series, indicating dissimilarity due to its asynchronous pattern. So far so good!
 
 Now, let's take a look at the **DTW** result:
@@ -421,6 +427,7 @@ tsl_smol |>
     fullWidth = FALSE
   )
 ```
+<br>
 
 Surprising, right? When cancelling out the time shift between time series, it turns out that San Francisco is more similar to Solano than Napa!
 
@@ -441,7 +448,7 @@ These DTW results indicate that, for the given period of time, San Francisco, Na
 It is for this reason that DTW is preferable when outbreak timing varies significantly and shape similarity is more important than exact time alignment. On the other hand, LS is best applied when the question at hand is focused on time-series synchronization rather than shape similarity.
 
 ```{r, echo = FALSE}
-rm(tsl_smol, xy_dtw)
+rm(xy_dtw)
 ```
 
 
@@ -505,6 +512,7 @@ reactable::reactable(
 
 rm(df_table)
 ```
+<br>
 
 ## Analyzing Dissimilarity Scores
 
@@ -543,6 +551,7 @@ reactable::reactable(
   fullWidth = TRUE
 )
 ```
+<br>
 
 The boxplot generated by `distantia_boxplot()`, shown below, serves as a visual summary of the table displayed above.
 
@@ -595,6 +604,7 @@ reactable::reactable(
   fullWidth = TRUE
 )
 ```
+<br>
 
 The hirarchical clustering highlights "Santa Cruz", with a silhouette score of `r round(psi_cluster$df$silhouette_width[which(psi_cluster$df$name == "Santa_Cruz")], 3)`, as the county with the most dubious cluster membership.
 
@@ -678,13 +688,13 @@ rm(max_prevalence)
 
 ### Dissimilarity Modelling
 
-Dissimilarity scores reveal the degree of interrelation between time series but do not explain the underlying reasons for their similarity or difference. 
+Dissimilarity scores reveal the degree of interrelation between time series but do not explain the underlying reasons for their similarity/dissimilarity. 
 
-To fill this gap, this shows how combining dissimilarity scores with meaningful variables to fit linear models may help unveil important drivers of dissimilarity between epidemiological time series. 
+To fill this gap, this section shows how combining dissimilarity scores with geographic and socioeconomic variables to fit models may help unveil important drivers of dissimilarity between epidemiological time series. 
 
 #### Model Frame
 
-The function [`distantia_model_frame()`](https://blasbenito.github.io/distantia/reference/distantia_model_frame.html) helps combine dissimilarity scores (stored in `df_psi`) with other quantitative attributes of the time series locations (stored in `covid_counties`) to build a model frame.
+The function [`distantia_model_frame()`](https://blasbenito.github.io/distantia/reference/distantia_model_frame.html) combines dissimilarity scores (stored in `df_psi`) with other county variables (stored in `covid_counties`) to build a model frame.
 
 ```{r}
 df_model <- distantia::distantia_model_frame(
@@ -694,7 +704,7 @@ df_model <- distantia::distantia_model_frame(
 )
 ```
 
-Let's take a look at the output:
+Let's take a look at the output!
 
 ```{r, echo=FALSE}
 df_model |> 
@@ -718,14 +728,19 @@ df_model |>
     fullWidth = TRUE
   )
 ```
+<br>
 
-In the model frame above, the response variable `psi`, from `df_psi`, represents time series dissimilarity. On the other hand, the predictors, from `covid_counties`, represent the difference in values for the given predictor between the two counties in the row. 
+In the model frame above, the response variable `psi`, from `df_psi`, represents time series dissimilarity. On the other hand, each predictor from `covid_counties` is transformed to absolute differences between the pair of counties. 
 
 For example, the value of the column `area_hectares` for the counties Sacramento and Sonoma is `r df_model$area_hectares[which(df_model$x == "Sacramento" & df_model$y == "Sonoma")]` hectares. This is the absolute difference between the area of Sacramento (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sacramento")]` hectares) and the area of Sonoma (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sonoma")]` hectares).
 
-Notice that the column `geographic_distance`, not in `covid_counties`, also appeared as a predictor. This only happens when the input of the argument `predictors_df` is an simple features data frame, as it is the case with `covid_counties`.
+Notice that the column `geographic_distance`, not in `covid_counties`, also showed-up as a new column This happens when the input of `predictors_df` is spatial data frame, like `covid_counties`.
 
-The function `distantia_model_frame()` has a neat feature: it can scale the predictors when they have different scales, and can combine different predictors into a new one. In the example below the distance between counties for the scaled predictors `poverty_percentage`, `median_income`, `employed_percentage`, `daily_miles_traveled` and `domestic_product` is encoded in the column `economy`, which represents the overall difference in economy indicators between counties. This aggregation of variables will help find out how geographic distance, economy, and population density (computed on the fly from `covid_counties` in the code below) drive the similarity between Covid-19 time series.
+The function `distantia_model_frame()` has a neat feature: it can combine different predictors into a new one! 
+
+In the example below, the predictors `poverty_percentage`, `median_income`, `employed_percentage`, `daily_miles_traveled` and `domestic_product` are scaled, and for each pair of counties their multivariate distances are computed and stored in the column `economy`. This new variable represents difference in economy between counties. 
+
+Additionally, the code below uses de data in `covid_counties` to compute population density as `density`.
 
 Notice that the code below also scales the predictors, because in `distantia` version <=2.0.2 the argument `scale` of `distantia_model_frame()` does not work as it should.
 
@@ -764,8 +779,6 @@ df_model <- distantia::distantia_model_frame(
   )
 ```
 
-Notice how to simplify things a bit the code above renames `geographic_distance` to `connectivity` (arguing whether distance is a proxy of connectivity is beyond the point here), and shortened `population_density` to `density`.
-
 ```{r, echo=FALSE}
 df_model |> 
   dplyr::mutate(
@@ -788,18 +801,22 @@ df_model |>
     fullWidth = TRUE
   )
 ```
+<br>
 
+With these variables at hand now we are ready to better understand how the similarity/dissimilarity between prevalence time series changes as a function of differences in distance, economy, and population density between counties.
 
 #### Model Fitting
 
-The model frame generated above shows no multicollinearity between predictors, so it can be used right away fit a multiple regression model.
+The model frame generated above shows no multicollinearity between predictors (you can check yourself with `cor(df_model[, -1])`), so it can be used right away fit a multiple regression model.
 
 ```{r}
 m <- stats::lm(
-  formula = psi ~ distance + economy + density,
+  formula = psi ~ distance + density + economy,
   data = df_model
 )
 ```
+
+<br>
 
 ```{r, echo = FALSE}
 m |> 
@@ -816,12 +833,13 @@ m |>
     showSortable = TRUE
     )
 ```
+<br>
 
 The coefficients table shows that `distance` has a slightly larger effect than `economy`, and both have a positive effect on time series dissimilarity. On the other hand, `density` has a weaker and negative effect.
 
 
-```{r, fig.height=3, fig.width=8}
-par(mfrow = c(1, 3))
+```{r, fig.height=3, fig.width=8, echo = FALSE}
+par(mfrow = c(1, 3), cex.axis = 1.5, cex.lab = 2)
 line_params <- list(col = "red4", lwd = 1)
 visreg::visreg(
   fit = m,
@@ -840,14 +858,88 @@ visreg::visreg(
 )
 ```
 
-The effect plots above paint a clear picture: counties that are closer and have similar economies are more similar than counties that are far apart or have economies of different magnitudes. However, the interpretation of the variable `density` may remain dubious due to a signal that may be mostly driven by outliers.
+The effect plots above paint a clear picture: maximum similarity in prevalence curves happens in neighboring counties with comparable economies. 
+
+Additionally, large differences in population density show a weak contribution to similarity in prevalence curves. However, this effect seems mostly driven by a set of outliers with large density differences. Removing these outliers or adding the interaction `distance * density` did not improve the model.
 
 ## Time-Delay Analysis
+
+Time-delay or time-lag analyisis is an experimental feature in `distantia`. It applies dynamic time warping to assess the overall delay between irregular time series of different lengths, and it is an alternative to cross-correlation analysis. Let's take a look at how it works! 
+
+### Computing Time-Delay with DTW
+
+This section focuses on the example data `tsl_smol` to show how DTW can be used to compute time-lags.
+
+
+```{r, fig.height=3.5, echo = FALSE}
+distantia::tsl_plot(tsl = tsl_smol, guide = FALSE)
+```
+
+The computation of DTW involves finding the *least-cost path* within a cost matrix derived from the distances between all samples in two time series. The plot below shows the least-cost path between Napa and San Francisco as a black wiggly line running in parallel to the white diagonal.
+
+```{r, fig.height=4.5, fig.width=6}
+distantia::distantia_dtw_plot(
+  tsl = tsl_smol[c("Napa", "San_Francisco")]
+)
+```
+The least-cost path above comprises pairs of time coordinates connecting samples from each time series. Computing the time difference between each pair of samples connected by the least-cost path results in a distribution of values representing the time-delay between both time series.
+
+```{r}
+df_delay <- distantia::distantia_time_delay(
+  tsl = tsl_smol[c("Napa", "San_Francisco")]
+)
+```
+
+```{r, echo = FALSE}
+df_delay |> 
+  dplyr::select(
+    -distance,
+    -sd
+  ) |> 
+  dplyr::mutate(
+    mean = round(mean, 1)
+  ) |> 
+  reactable(
+    fullWidth = TRUE,
+    resizable = TRUE,
+    sortable = TRUE,
+    showSortable = TRUE
+    )
+```
+
+
+
+
+The argument `bandwidth`, expressed as a fraction of the length of the time series, restricts how far in time the algorithm can go to find synchronicity between outbreaks. The plot below sets it to two months (2/12) for demonstration purposes only.
+
+```{r, fig.height=4.5, fig.width=6}
+distantia::distantia_dtw_plot(
+  tsl = tsl_smol[c("San_Francisco", "Napa")],
+  bandwidth = 2/12
+)
+```
+The value of `bandwidth` should be reasonable. For example, setting `bandwidth = 0.25` (a full year) in four years time series with seasonal outbreaks like the ones in `tsl` might be excessive, and would allow the alignment of outbreaks separated by a year.
+
+```{r, fig.height=4.5, fig.width=6}
+distantia::distantia_dtw_plot(
+  tsl = tsl[c("San_Francisco", "Napa")],
+  bandwidth = 1/8
+)
+
+distantia::distantia_time_delay(
+  tsl = tsl[c("San_Francisco", "Napa")],
+  bandwidth = 6/48
+)
+```
+
+
+
+
 
 ```{r}
 df_delay <- distantia::distantia_time_delay(
   tsl = tsl,
-  bandwidth = 0.125
+  bandwidth = 0.25
 )
 ```
 

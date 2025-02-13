@@ -875,19 +875,21 @@ This section focuses on the example data `tsl_smol` to show how DTW can be used 
 distantia::tsl_plot(tsl = tsl_smol, guide = FALSE)
 ```
 
-The computation of DTW involves finding the *least-cost path* within a cost matrix derived from the distances between all samples in two time series. The plot below shows the least-cost path between Napa and San Francisco as a black wiggly line running in parallel to the white diagonal.
+The computation of DTW involves finding the *least-cost path* within a cost matrix derived from the distances between all samples in two time series. In the plot below there is a black wiggly line running in parallel to the white diagonal. That's the least-cost path aligning the time series of Napa and San Francisco.
 
 ```{r, fig.height=4.5, fig.width=6}
 distantia::distantia_dtw_plot(
-  tsl = tsl_smol[c("Napa", "San_Francisco")]
+  tsl = tsl_smol[c("San_Francisco", "Napa")]
 )
 ```
-The least-cost path above comprises pairs of time coordinates connecting samples from each time series. Computing the time difference between each pair of samples connected by the least-cost path results in a distribution of values representing the time-delay between both time series.
+
+A least-cost path comprises pairs of time coordinates connecting samples from each time series. Computing the time difference between these pairs of samples results in a distribution of time differences we can use to assess the time-delay between these time series.
 
 ```{r}
-df_delay <- distantia::distantia_time_delay(
+df_delay <- distantia_time_delay(
   tsl = tsl_smol[c("Napa", "San_Francisco")]
 )
+df_delay
 ```
 
 ```{r, echo = FALSE}

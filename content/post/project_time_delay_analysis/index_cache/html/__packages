@@ -1,0 +1,17 @@
+base
+methods
+datasets
+utils
+grDevices
+graphics
+stats
+foreach
+future
+doFuture
+distantia
+proxy
+dtw
+zoo
+dplyr
+mapview
+reactable

@@ -1,5 +1,5 @@
 ---
-title: "{distantia} Demo: Covid-19 Prevalence in California"
+title: "Epidemiological Time Series Analysis with the R package {distantia}"
 author: ""
 date: '2025-01-25'
 slug: distantia-showcase-covid
@@ -34,42 +34,54 @@ knitr::opts_chunk$set(
 
 ## Summary
 
-This post showcases the capabilities of the R package [`distantia`](https://blasbenito.github.io/distantia/) to load, explore, and analyze epidemiological time series.
+This post showcases the applications of the R package [`distantia`](https://blasbenito.github.io/distantia/) to the analysis of epidemiological time series.
 
-## Setup
+The data used in this tutorial comprises univariate time series of Covid-19 prevalence at weekly resolution from 36 counties in California between 2020-03-16 to 2023-12-18.
+
+This post is divided into these sections:
+
+  - **Data Preparation**: describes how to transform the original data into a *time series list*, the format used by `distantia`.
+  
+  - **Exploration**: shows how to obtain an overview of main data features via visualization and computing descriptive statistics.
+  
+  - **Computing Dissimilarity Scores**: explains how to compute time series dissimilarity scores using lock-step and dynamic time warping.
+  
+  - **Analyzing Dissimilarity Scores**: this section shows several methods to gain insights from dissimilarity scores, such as hierarchical clustering and mapping, and dissimilarity modelling.
+  
+**DISCLAIMER:** I am **not** an epidemiologist, so I will refrain from interpreting any results shown herein. Instead, I will focus on technical details about the usage of `distantia` on this kind of data. If at any point I go beyond the red line I am drawing here, please ignore me, because I might just be forgetting about it.
+
+## R packages
 
 This tutorial requires the following packages:
 
   - [`distantia`](https://blasbenito.github.io/distantia/): time series analysis via dynamic time warping.
-  - [`dtw`](https://dynamictimewarping.github.io/): dynamic time warping library.
-  - [`future`](https://future.futureverse.org/): parallelized execution.
   - [`zoo`](https://cran.r-project.org/web/packages/zoo/index.html): management of regular and irregular time series.
   - [`dplyr`](https://dplyr.tidyverse.org/): data frame manipulation.
   - [`mapview`](https://r-spatial.github.io/mapview/): easy to use interactive map visualization.
   - [`reactable`](https://glin.github.io/reactable/): interactive tables.
   - [`factoextra`](https://rpkgs.datanovia.com/factoextra/index.html): plot results of hierarchical clustering.
   - [`visreg`](https://CRAN.R-project.org/package=visreg): response curves of statistical models.
+  - [`ranger`](https://github.com/imbs-hl/ranger): random forest modelling.
 
 ```{r, message = FALSE, warning = FALSE}
 library(distantia)
-library(dtw)
 library(zoo)
 library(dplyr)
 library(mapview)
 library(reactable)
 library(factoextra)
-library(collinear)
 library(coefplot)
 library(visreg)
+library(ranger)
 ```
 
 ## Example Data
 
-This demo focuses on two example data frames shipped with the package `distantia`: `covid_counties` and `covid_prevalence`.
+This demo focuses on two example data frames shipped with `distantia`: `covid_counties` and `covid_prevalence`.
 
 ### `covid_counties`
 
-Stored as a [`simple features`](https://r-spatial.github.io/sf/) data frame, `covid_counties` contains county polygons and several socioeconomic variables. It is connected to `covid_prevalence` by county name, which is stored in the column `name`.
+This dataset comprises county polygons and several socioeconomic variables stored as a [`simple features`](https://r-spatial.github.io/sf/) data frame. It is connected to `covid_prevalence` by the county name stored in the column `name`.
 
 ```{r, echo = FALSE, cache=TRUE}
 la_population <- mapview(
@@ -95,7 +107,7 @@ rm(la_population)
 ```
 
 
-The socioeconomic variables available in `covid_counties` are:
+The socioeconomic variables available in this dataset are:
 
   - `area_hectares`: county surface.
   - `population`: county population.
@@ -109,7 +121,7 @@ Please, take in mind that these variables were included in the dataset because t
 
 ### `covid_prevalence`
 
-This data frame contains weekly Covid-19 prevalence in 36 California counties between 2020-03-16 and 2023-12-18. It is derived from a daily prevalence dataset available [here](https://github.com/BlasBenito/distantia/blob/main/data_full/covid_prevalence.rda).
+Data frame with weekly Covid-19 prevalence in 36 California counties between 2020-03-16 and 2023-12-18. It is derived from a daily prevalence dataset available [here](https://github.com/BlasBenito/distantia/blob/main/data_full/covid_prevalence.rda).
   
 The prevalence time series has the columns `name`, `time`, with the date of the first day of the week each data point represents, and `prevalence`, expressed as proportion of positive tests. The table below shows the first rows of this data frame.
   
@@ -131,17 +143,6 @@ covid_prevalence |>
   )
 ```
 <br>
-
-## Objective
-
-This post focuses on the Covid-19 dataset described above to showcase the applications of `distantia` to the analysis of epidemiological time series. 
-
-  - **Prepare**: transform the `covid_prevalence` data frame into a format compatible with `distantia`.
-  - **Explore**: time series visualization and computation of descriptive statistics.
-  - **Compare**: 
-  - **Analyze**:
-  
-**DISCLAIMER:** I am not an epidemiologist, so I will refrain from interpreting any results, and will focus on technical details about the usage of `distantia` insted.
 
 ## Data Preparation
 
@@ -431,9 +432,10 @@ tsl_smol |>
 
 Surprising, right? When cancelling out the time shift between time series, it turns out that San Francisco is more similar to Solano than Napa!
 
-This happens because DTW ignores the dates of the observations, and can link one sample of one time series with one or several samples of the other time series. The plot below, done with `dtw::dtw()` and `dtw::dtwPlotTwoWay()`, shows first sample of San Francisco (first case of the dashed red line), with prevalence 0, is linked to all samples with prevalence 0 at the beginning of the Napa series. Since the distance of all these links is 0, this operation cancels out the difference in timing between both time series.
+This happens because DTW ignores the dates of the observations, and can link one sample of one time series with one or several samples of the other time series. The plot below, shows first sample of San Francisco (first case of the dashed red line), with prevalence 0, is linked to all samples with prevalence 0 at the beginning of the Napa series. Since the distance of all these links is 0, this operation cancels out the difference in timing between both time series.
 
 ```{r, fig.height=3.5, echo = FALSE}
+library(dtw)
 xy_dtw <- dtw::dtw(
   x = tsl_smol$Solano$prevalence,
   y = tsl_smol$San_Francisco$prevalence,
@@ -692,7 +694,7 @@ Dissimilarity scores reveal the degree of interrelation between time series but 
 
 To fill this gap, this section shows how combining dissimilarity scores with geographic and socioeconomic variables to fit models may help unveil important drivers of dissimilarity between epidemiological time series. 
 
-#### Model Frame
+#### Building a Model Frame
 
 The function [`distantia_model_frame()`](https://blasbenito.github.io/distantia/reference/distantia_model_frame.html) combines dissimilarity scores (stored in `df_psi`) with other county variables (stored in `covid_counties`) to build a model frame.
 
@@ -704,7 +706,6 @@ df_model <- distantia::distantia_model_frame(
 )
 ```
 
-Let's take a look at the output!
 
 ```{r, echo=FALSE}
 df_model |> 
@@ -730,27 +731,20 @@ df_model |>
 ```
 <br>
 
-In the model frame above, the response variable `psi`, from `df_psi`, represents time series dissimilarity. On the other hand, each predictor from `covid_counties` is transformed to absolute differences between the pair of counties. 
+In the data frame `df_model`, the response variable `psi` (from `df_psi`) represents time series dissimilarity. On the other hand, each predictor in `covid_counties` is transformed into absolute differences between each pair of counties. For example, the value of the column `area_hectares` for the counties Sacramento and Sonoma is `r df_model$area_hectares[which(df_model$x == "Sacramento" & df_model$y == "Sonoma")]` hectares. This is the absolute difference between the area of Sacramento (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sacramento")]` hectares) and the area of Sonoma (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sonoma")]` hectares).
 
-For example, the value of the column `area_hectares` for the counties Sacramento and Sonoma is `r df_model$area_hectares[which(df_model$x == "Sacramento" & df_model$y == "Sonoma")]` hectares. This is the absolute difference between the area of Sacramento (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sacramento")]` hectares) and the area of Sonoma (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sonoma")]` hectares).
-
-Notice that the column `geographic_distance`, not in `covid_counties`, also showed-up as a new column This happens when the input of `predictors_df` is spatial data frame, like `covid_counties`.
+Notice that the column `geographic_distance`, not in `covid_counties`, also showed up as a new column. This happens when the input of `predictors_df` is spatial data frame, like `covid_counties`.
 
 The function `distantia_model_frame()` has a neat feature: it can combine different predictors into a new one! 
 
-In the example below, the predictors `poverty_percentage`, `median_income`, `employed_percentage`, `daily_miles_traveled` and `domestic_product` are scaled, and for each pair of counties their multivariate distances are computed and stored in the column `economy`. This new variable represents difference in economy between counties. 
-
-Additionally, the code below uses de data in `covid_counties` to compute population density as `density`.
+In the example below, the predictors `poverty_percentage`, `median_income`, `employed_percentage`, `daily_miles_traveled` and `domestic_product` are scaled, their multivariate distances between pairs of counties are computed and stored in the column `economy`. This new variable represents overall differences in economy between counties. 
 
 Notice that the code below also scales the predictors, because in `distantia` version <=2.0.2 the argument `scale` of `distantia_model_frame()` does not work as it should.
 
 ```{r}
 df_model <- distantia::distantia_model_frame(
   response_df = df_psi,
-  predictors_df = covid_counties |> 
-    dplyr::mutate(
-      density = population / area_hectares
-    ),
+  predictors_df = covid_counties,
   composite_predictors = list(
     economy = c(
       "poverty_percentage",
@@ -767,13 +761,14 @@ df_model <- distantia::distantia_model_frame(
   dplyr::transmute(
     psi, 
     economy, 
-    density,
+    population,
+    area = area_hectares,
     distance = geographic_distance
   ) |> 
   #scale
   dplyr::mutate(
     dplyr::across(
-      dplyr::all_of(c("economy", "density", "distance")), 
+      dplyr::all_of(c("economy", "distance", "population", "area")), 
       ~ as.numeric(scale(.x))
     )
   )
@@ -803,20 +798,22 @@ df_model |>
 ```
 <br>
 
-With these variables at hand now we are ready to better understand how the similarity/dissimilarity between prevalence time series changes as a function of differences in distance, economy, and population density between counties.
+With these variables at hand now we are ready to better understand how the similarity/dissimilarity between prevalence time series changes as a function of differences in distance, area, economy, and population between counties.
 
-#### Model Fitting
+#### Fitting a Linear Model
 
 The model frame generated above shows no multicollinearity between predictors (you can check yourself with `cor(df_model[, -1])`), so it can be used right away fit a multiple regression model.
 
 ```{r}
 m <- stats::lm(
-  formula = psi ~ distance + density + economy,
+  formula = psi ~ distance + area + economy + population,
   data = df_model
 )
 ```
 
 <br>
+
+The model has an R-squared of `r round(summary(m)$r.squared, 2)` and a standard error of the residuals (sigma) of `r round(summary(m)$sigma, 2)`. Model coefficients are shown below.
 
 ```{r, echo = FALSE}
 m |> 
@@ -835,15 +832,20 @@ m |>
 ```
 <br>
 
-The coefficients table shows that `distance` has a slightly larger effect than `economy`, and both have a positive effect on time series dissimilarity. On the other hand, `density` has a weaker and negative effect.
+The coefficients table shows that all effects are statistically different than zero. The predictor `distance` has the largest effect estimate, which is almost twice the estimate of `area` and `economy`, and more than four times the estimate of `population`.
 
 
-```{r, fig.height=3, fig.width=8, echo = FALSE}
-par(mfrow = c(1, 3), cex.axis = 1.5, cex.lab = 2)
+```{r, fig.height=6, fig.width=6, echo = FALSE}
+par(mfrow = c(2, 2), cex.axis = 1.5, cex.lab = 2)
 line_params <- list(col = "red4", lwd = 1)
 visreg::visreg(
   fit = m,
   xvar = "distance",
+  line = line_params
+)
+visreg::visreg(
+  fit = m,
+  xvar = "area",
   line = line_params
 )
 visreg::visreg(
@@ -853,139 +855,116 @@ visreg::visreg(
 )
 visreg::visreg(
   fit = m,
-  xvar = "density",
+  xvar = "population",
   line = line_params
 )
 ```
 
-The effect plots above paint a clear picture: maximum similarity in prevalence curves happens in neighboring counties with comparable economies. 
+All predictors show a positive relationship with the response, meaning that increasing differences in distance, area, economy, and population leads to increased dissimilarity between the compared time series.
 
-Additionally, large differences in population density show a weak contribution to similarity in prevalence curves. However, this effect seems mostly driven by a set of outliers with large density differences. Removing these outliers or adding the interaction `distance * density` did not improve the model.
+The dissimilarity model seems relatively strong, but, as the calibration plot below shows, it is also moderately biased. 
 
-## Time-Delay Analysis
+```{r, fig.width=3.5, fig.height=3.5}
+df_model$psi_predicted <- stats::predict(object = m)
 
-Time-delay or time-lag analyisis is an experimental feature in `distantia`. It applies dynamic time warping to assess the overall delay between irregular time series of different lengths, and it is an alternative to cross-correlation analysis. Let's take a look at how it works! 
-
-### Computing Time-Delay with DTW
-
-This section focuses on the example data `tsl_smol` to show how DTW can be used to compute time-lags.
-
-
-```{r, fig.height=3.5, echo = FALSE}
-distantia::tsl_plot(tsl = tsl_smol, guide = FALSE)
+ggplot(df_model) + 
+  aes(
+    x = psi,
+    y = psi_predicted
+  ) + 
+  geom_point(alpha = 0.5, col = "gray50") + 
+  coord_fixed(
+    xlim = range(c(df_model$psi, df_model$psi_predicted)),
+    ylim = range(c(df_model$psi, df_model$psi_predicted))
+  ) + 
+  geom_smooth(
+    method = "lm", 
+    col = "red4",
+    formula = y ~ x
+    ) + 
+  geom_abline(
+    intercept = 0, 
+    slope = 1,
+    col = "black",
+    lty = 2
+  ) +
+  labs(
+    x = "Observed psi",
+    y = "Predicted psi",
+    title = "Calibration plot - Linear Model"
+  ) +
+  theme_bw()
 ```
+The scatterplot of the observations (x axis) vs predictions shows that the model underpredicts high psi values and overpredict low psi values. This kind of bias indicates that there are relevant predictors, interactions, or transformations missing from the model.
 
-The computation of DTW involves finding the *least-cost path* within a cost matrix derived from the distances between all samples in two time series. In the plot below there is a black wiggly line running in parallel to the white diagonal. That's the least-cost path aligning the time series of Napa and San Francisco.
+#### Training a Random Forest Model
 
-```{r, fig.height=4.5, fig.width=6}
-distantia::distantia_dtw_plot(
-  tsl = tsl_smol[c("San_Francisco", "Napa")]
-)
-```
-
-A least-cost path comprises pairs of time coordinates connecting samples from each time series. Computing the time difference between these pairs of samples results in a distribution of time differences we can use to assess the time-delay between these time series.
+If the objective is obtaining a model with a stronger predictive ability, Random Forest always can help with that!
 
 ```{r}
-df_delay <- distantia_time_delay(
-  tsl = tsl_smol[c("Napa", "San_Francisco")]
+m <- ranger::ranger(
+  formula = psi ~ distance + area + economy + population,
+  data = df_model,
+  importance = "permutation"
 )
-df_delay
 ```
 
+The random forest model has an R-squared (on the out-of-bag data) of `r round(m$r.squared, 2)`, and as the permutation importance scores below show, it downplays the effects of `economy` and `population` when compared with the linear model.
+
 ```{r, echo = FALSE}
-df_delay |> 
-  dplyr::select(
-    -distance,
-    -sd
-  ) |> 
-  dplyr::mutate(
-    mean = round(mean, 1)
-  ) |> 
+data.frame(
+  variable = names(m$variable.importance),
+  importance = m$variable.importance
+) |> 
+  dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~ round(.x, 4))) |> 
   reactable(
-    fullWidth = TRUE,
+    striped = TRUE,
+    fullWidth = FALSE,
     resizable = TRUE,
     sortable = TRUE,
-    showSortable = TRUE
+    showSortable = TRUE,
+    rownames = FALSE
     )
 ```
 
+Still, as the calibration plot below shows, it has a very small amount of prediction bias.
 
+```{r, fig.width=3.5, fig.height=3.5}
+df_model$psi_predicted <- stats::predict(
+  object = m, 
+  data = df_model
+  )$predictions
 
-
-The argument `bandwidth`, expressed as a fraction of the length of the time series, restricts how far in time the algorithm can go to find synchronicity between outbreaks. The plot below sets it to two months (2/12) for demonstration purposes only.
-
-```{r, fig.height=4.5, fig.width=6}
-distantia::distantia_dtw_plot(
-  tsl = tsl_smol[c("San_Francisco", "Napa")],
-  bandwidth = 2/12
-)
-```
-The value of `bandwidth` should be reasonable. For example, setting `bandwidth = 0.25` (a full year) in four years time series with seasonal outbreaks like the ones in `tsl` might be excessive, and would allow the alignment of outbreaks separated by a year.
-
-```{r, fig.height=4.5, fig.width=6}
-distantia::distantia_dtw_plot(
-  tsl = tsl[c("San_Francisco", "Napa")],
-  bandwidth = 1/8
-)
-
-distantia::distantia_time_delay(
-  tsl = tsl[c("San_Francisco", "Napa")],
-  bandwidth = 6/48
-)
-```
-
-
-
-
-
-```{r}
-df_delay <- distantia::distantia_time_delay(
-  tsl = tsl,
-  bandwidth = 0.25
-)
-```
-
-```{r}
-reactable::reactable(
-  df_delay,
-  pagination = TRUE,
-  searchable = TRUE,
-  sortable = TRUE,
-  showSortable = TRUE,
-  filterable = TRUE,
-  resizable = TRUE,
-  defaultPageSize = 10,
-  showPageSizeOptions = TRUE,
-  striped = TRUE,
-  compact = TRUE,
-  wrap = FALSE,
-  fullWidth = FALSE
-)
-```
-
-```{r}
-distantia::distantia_dtw_plot(
-  tsl = tsl[c("Napa", "San_Francisco")],
-  bandwidth = 0.125
-)
-```
-
-```{r}
-distantia::tsl_plot(
-  tsl = tsl[c("San_Francisco", "Napa")],
-  xlim = c("2021-07-01", "2022-01-10")
-)
-```
-
-```{r}
-sf_delay <- distantia::distantia_spatial(
-  df = df_delay,
-  sf = covid_counties
-)
+ggplot(df_model) + 
+  aes(
+    x = psi,
+    y = psi_predicted
+  ) + 
+  geom_point(alpha = 0.5, col = "gray50") + 
+  coord_fixed(
+    xlim = range(c(df_model$psi, df_model$psi_predicted)),
+    ylim = range(c(df_model$psi, df_model$psi_predicted))
+  ) + 
+  geom_smooth(
+    method = "lm", 
+    col = "red4",
+    formula = y ~ x
+    ) + 
+  geom_abline(
+    intercept = 0, 
+    slope = 1,
+    col = "black",
+    lty = 2
+  ) +
+  labs(
+    x = "Observed psi",
+    y = "Predicted psi",
+    title = "Calibration plot - Random Forest"
+  ) +
+  theme_bw()
 ```
 
 
-```{r}
-mapview(sf_delay |> dplyr::filter(x == "Napa", y == "San_Francisco"))
-```
+## Closing Thoughts
 
+TODO

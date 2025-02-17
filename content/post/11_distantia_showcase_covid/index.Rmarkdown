@@ -1,5 +1,5 @@
 ---
-title: "Epidemiological Time Series Analysis with the R package {distantia}"
+title: "Analyzing Epidemiological Time Series With The R Package {distantia}"
 author: ""
 date: '2025-01-25'
 slug: distantia-showcase-covid
@@ -24,6 +24,14 @@ projects: []
 toc: true
 ---
 
+<style>
+.alert-warning {
+  background-color: #f4f4f4;
+  color: #333333;
+  border-color: #333333;
+}
+</style>
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   fig.width = 8, 
@@ -34,7 +42,7 @@ knitr::opts_chunk$set(
 
 ## Summary
 
-This post demonstrates how the R package [`distantia`](https://blasbenito.github.io/distantia/) can be applied to the analysis of epidemiological time series. The tutorial uses weekly Covid-19 prevalence data from 36 California counties between 2020-03-16 and 2023-12-18.
+In this post I show how the R package [`distantia`](https://blasbenito.github.io/distantia/) can help compare and analyze epidemiological time series. The the example data comprises weekly Covid-19 prevalence curves from 36 California counties between 2020-03-16 and 2023-12-18.
 
 The post is structured as follows:
 
@@ -45,19 +53,22 @@ The post is structured as follows:
   - **Computing Dissimilarity Scores**: Calculate time series dissimilarity using lock-step and dynamic time warping.
 
   - **Analyzing Dissimilarity Scores**: Explore methods like hierarchical clustering, mapping, and dissimilarity modeling to analyze the results.
-  
-**DISCLAIMER:** I am **not** an epidemiologist, so I will focus on the technical of using `distantia` with this kind of data. If at any point I go beyond the red line I am drawing here, please ignore me, because I might just be forgetting about it.
+
+<div class="alert alert-warning">
+  <strong>DISCLAIMER:</strong>  I am **not** an epidemiologist, so I will be focusing on the technical aspects of the applications of {distantia} to this kind of data, without any attempt to draw conclusions from the results.
+</div>
 
 ## R packages
 
 This tutorial requires the following packages:
 
-  - [`distantia`](https://blasbenito.github.io/distantia/): time series analysis via dynamic time warping.
+  - [`distantia`](https://blasbenito.github.io/distantia/): time series dissimilarity analysis.
   - [`zoo`](https://cran.r-project.org/web/packages/zoo/index.html): management of regular and irregular time series.
-  - [`dplyr`](https://dplyr.tidyverse.org/): data frame manipulation.
-  - [`mapview`](https://r-spatial.github.io/mapview/): easy to use interactive map visualization.
-  - [`reactable`](https://glin.github.io/reactable/): interactive tables.
-  - [`factoextra`](https://rpkgs.datanovia.com/factoextra/index.html): plot results of hierarchical clustering.
+  - [`dplyr`](https://dplyr.tidyverse.org/): data frame processing.
+  - [`ggplot2`](https://ggplot2.tidyverse.org/): to make a few charts.
+  - [`mapview`](https://r-spatial.github.io/mapview/): interactive spatial visualization.
+  - [`reactable`](https://glin.github.io/reactable/): interactive tables
+  - [`factoextra`](https://rpkgs.datanovia.com/factoextra/index.html): plotting results of hierarchical clustering.
   - [`visreg`](https://CRAN.R-project.org/package=visreg): response curves of statistical models.
   - [`ranger`](https://github.com/imbs-hl/ranger): random forest modelling.
 
@@ -65,21 +76,21 @@ This tutorial requires the following packages:
 library(distantia)
 library(zoo)
 library(dplyr)
+library(ggplot2)
 library(mapview)
 library(reactable)
 library(factoextra)
-library(coefplot)
 library(visreg)
 library(ranger)
 ```
 
 ## Example Data
 
-This demo focuses on two example data frames shipped with `distantia`: `covid_counties` and `covid_prevalence`.
+We will be working with two example data frames shipped with `distantia`: the simple features data frame `covid_counties`, and the data frame `covid_prevalence`.
 
 ### `covid_counties`
 
-This dataset comprises county polygons and several socioeconomic variables stored as a [`simple features`](https://r-spatial.github.io/sf/) data frame. It is connected to `covid_prevalence` by the county name stored in the column `name`.
+This [`simple features`](https://r-spatial.github.io/sf/) data frame comprises county polygons and several socioeconomic variables. It is connected to `covid_prevalence` by the column `name`.
 
 ```{r, echo = FALSE, cache=TRUE}
 la_population <- mapview(
@@ -115,11 +126,43 @@ The socioeconomic variables available in this dataset are:
   - `daily_miles_traveled`: daily miles traveled by the average inhabitant.
   - `employed_percentage`: percentage of the county population under employment.
   
-Please, take in mind that these variables were included in the dataset because they were easy to capture from on-line sources, not because of their importance for epidemiological analyses.
+
+```{r, echo = FALSE}
+covid_counties |> 
+  sf::st_drop_geometry() |> 
+  dplyr::transmute(
+    name, 
+    area_hectares = floor(area_hectares), 
+    population, 
+    poverty_percentage, 
+    median_income, 
+    domestic_product = floor(domestic_product), 
+    daily_miles_traveled = round(daily_miles_traveled, 1), 
+    employed_percentage = round(employed_percentage, 1)
+  ) |> 
+  reactable::reactable(
+    pagination = TRUE,
+    searchable = TRUE,
+    sortable = TRUE,
+    showSortable = TRUE,
+    filterable = TRUE,
+    resizable = TRUE,
+    defaultPageSize = 10,
+    showPageSizeOptions = TRUE,
+    striped = TRUE,
+    compact = TRUE,
+    wrap = FALSE,
+    fullWidth = TRUE
+  )
+```
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> These variables were included in the dataset because they were easy to capture from on-line sources, not because of their importance for epidemiological analyses..
+</div>
 
 ### `covid_prevalence`
 
-Data frame with weekly Covid-19 prevalence in 36 California counties between 2020-03-16 and 2023-12-18. It has the columns `name`, `time`, with the date of the first day of the week each data point represents, and `prevalence`, expressed as proportion of positive tests. 
+Long format data frame with weekly Covid-19 prevalence in 36 California counties between 2020-03-16 and 2023-12-18. It has the columns `name`, `time`, and `prevalence`, with the county name, the date of the first day of the week each data point represents, and the maximum Covid-19 prevalence observed during the given week, expressed as proportion of positive tests. 
   
 ```{r, echo = FALSE}
 covid_prevalence |> 
@@ -142,9 +185,11 @@ covid_prevalence |>
 
 ## Data Preparation
 
-This section shows how to transform the data frame `covid_prevalence` into a format compatible with `distantia`.
+Before starting with the analysis, we need to transform the data frame `covid_prevalence` into the format required by `distantia`.
 
-A **time series list**, or `tsl` for short, is a list of [`zoo`](https://cran.r-project.org/web/packages/zoo/index.html) time series representing unique realizations of the same phenomena observed in different sites, times, or individuals. All [data manipulation](https://blasbenito.github.io/distantia/articles/time_series_lists.html) and analysis functions in `distantia` are designed to be applied to all time series in a `tsl` at once. The function `tsl_initialize()` transforms time series stored as long data frames into time series lists.
+A **time series list**, or `tsl` for short, is a list of [`zoo`](https://cran.r-project.org/web/packages/zoo/index.html) time series representing unique realizations of the same phenomena observed in different sites, times, or individuals. All [data manipulation](https://blasbenito.github.io/distantia/articles/time_series_lists.html) and analysis functions in `distantia` are designed to work with all time series stored in a `tsl` at once. 
+
+The code below applies `tsl_initialize()` to `covid_prevalence` and returns the object `tsl`.
 
 ```{r tsl_init, cache=TRUE, cache.path="cache/"}
 tsl <- distantia::tsl_initialize(
@@ -167,7 +212,7 @@ attributes(tsl[[1]])$name
 attributes(tsl[[2]])$name
 ```
 
-Each individual `zoo` object comprises a time index and a data matrix.
+Each individual `zoo` object comprises a time index, extracted with `zoo::index()`, and a data matrix accessed via `zoo::coredata()`.
 
 ```{r}
 zoo::index(tsl[["Alameda"]]) |> 
@@ -181,7 +226,7 @@ zoo::coredata(tsl[["Alameda"]]) |>
 
 ## Exploration
 
-This section describes several tools in `distantia` to help explore and understand basic properties of the data at hand.
+In the package `distantia` there are several tools to help you visualize your time series and explore their basic properties.
 
 ### Visualization
 
@@ -196,7 +241,7 @@ distantia::tsl_plot(
 )
 ```
 
-Combined with `tsl_subset()`, it can help focus on particular counties and zoom-in over specific time periods.
+If we combine `tsl_subset()` with `tsl_plot()`, we can focus on any particular sub-group of counties and zoom-in over specific time periods.
 
 ```{r, fig.height=3}
 distantia::tsl_plot(
@@ -211,9 +256,7 @@ distantia::tsl_plot(
 
 ### Descriptive Stats
 
-Time series have at least two relevant dimensions: *time*, and the variable/s of interest, such as `prevalence` in this case.
-
-Having a good understanding of the time features of a time series may help guide some important data management decisions. Details like length, resolution, time units, or regularity usually define the design of an analysis. In `distantia`, the function `tsl_time()` provides all relevant details about the time in a time series list. 
+Having a good understanding of the time in a time series is important, because details such as length, resolution, time units, or regularity usually define the design of an analysis. Here, the function `tsl_time()` will give us all relevant details about the time in a time series list. 
 
 ```{r}
 df_time <- distantia::tsl_time(
@@ -242,9 +285,9 @@ df_time |>
 ```
 <br>
 
-Here, all time series are regular and have the same time resolution and range, which makes the table above rightfully boring.
+In our case all time series are regular and have the same time resolution and range, which makes the table above rightfully boring.
 
-Once acquainted with time, having a summary of the values in each time series also helps make sense of the main properties of the data. The function `tsl_stats()` summarizes several important statistical properties of the time series in `tsl`.
+Once acquainted with time, having a summary of the values in each time series also helps make sense of the data, and that's where `tsl_stats()` comes into play.
   
 ```{r}
 df_stats <- distantia::tsl_stats(
@@ -276,7 +319,7 @@ df_stats |>
 ```
 <br>
 
-The second part of the output, produced by the `lags` argument, shows time series autocorrelation (Moran's I) for different time lags. Since the resolution of all time series is 7 days per data-point, each time lag represents a week. A value of 0.9 for the lag 1 indicates the Pearson correlation between the prevalence of each data point and its precedent neighbor.
+The second part, produced by the `lags` argument, shows time series autocorrelation (Moran's I) for different time lags. Since the resolution of all time series is 7 days per data-point, each time lag represents a week. A value of 0.9 for the lag 1 indicates the Pearson correlation between the prevalence of each data point and its antecedent neighbor.
 
 ```{r, echo = FALSE}
 df_stats |> 
@@ -301,7 +344,7 @@ df_stats |>
 ```
 <br>
 
-The stats produced by `tsl_stats()` can be joined to the spatial data frame `covid_counties` using their common column `name`.
+The stats produced by `tsl_stats()` can be joined to `covid_counties` using their common column `name`.
 
 ```{r}
 sf_stats <- dplyr::inner_join(
@@ -311,7 +354,7 @@ sf_stats <- dplyr::inner_join(
 )
 ```
 
-This join facilitates mapping any of the descriptive stats. For example, the map below shows the maximum prevalence per county across the complete time period. 
+After the join, we can map any of these stats with `mapview()`. For example, the map below shows the maximum prevalence per county across the full period. 
 
 ```{r, eval = FALSE, warning = FALSE}
 mapview::mapview(
@@ -345,7 +388,7 @@ rm(max_prevalence)
    <p>Maximum Covid-19 prevalence in California counties.</p>
 </iframe>
 
-The functions `tsl_subset()` and `tsl_stats()` can be combined to generate stats focused in a given period of time or sub-group of time series. As example, the code below illustrates how to generate the stats for the year 2021.
+If for any particular reason you need to compute stats focused on a given period or group of counties, then you can combine `tsl_subset()` and `tsl_stats()`.
 
 ```{r, eval = FALSE}
 df_stats_2021 <- distantia::tsl_stats(
@@ -361,15 +404,15 @@ df_stats_2021 <- distantia::tsl_stats(
 
 ## Computing Dissimilarity Scores
 
-The `distantia` package compares time series using two methods: *Lock-Step (LS)* and and [*Dynamic time warping (DTW)*](https://www.blasbenito.com/post/dynamic-time-warping/).
+The package `distantia` is designed to compare time series using two methods: *Lock-Step (LS)* and and [*Dynamic time warping (DTW)*](https://www.blasbenito.com/post/dynamic-time-warping/). In this section I explain and demonstrate how these methods work, and show how to compute them.
 
 ### Dynamic Time Warping and Lock-Step Comparison
 
 **LS** directly compares values at the same time points in equal-length time series. It is efficient and interpretable but cannot adjust for differences in outbreak timing, potentially missing similarities.
 
-**DTW** aligns time series by warping the time axis to maximize shape similarity. It accounts for differences in outbreak timing, making it useful for uneven-length or misaligned time series. However, DTW is computationally expensive, harder to interpret, and sensitive to scaling.
+**DTW** aligns time series by warping the time axis to maximize shape similarity. It accounts for differences in outbreak timing, making it useful for uneven-length or misaligned time series. However, it is computationally expensive, harder to interpret, and sensitive to scaling.
 
-Before proceeding, here’s a small example focused on the counties San Francisco, Napa, and Solano to illustrate LS and DTW.
+Before moving forward, let me show you a small example focused on San Francisco, Napa, and Solano to illustrate LS and DTW.
 
 ```{r, fig.height=3.5, echo = FALSE}
 tsl_smol <- distantia::tsl_subset(
@@ -385,9 +428,9 @@ distantia::tsl_plot(
   )
 ```
 
-At first glance, Napa and Solano seem quite well synchronized and look very similar. On the other hand, San Francisco, in spite of having the same number of events as the other two, shows a timing difference of several months.
+At first glance, Napa and Solano seem quite well synchronized, while San Francisco shows a timing difference of several months.
 
-The table below shows the **LS** comparison between these time series. The `psi` column indicates the dissimilarity between pairs of time series.
+The table below shows the **LS** comparison between these time series. The `psi` column indicates the dissimilarity between pairs of time series. The smaller the value, the more similar the time series are.
 
 ```{r}
 tsl_smol |> 
@@ -405,7 +448,9 @@ tsl_smol |>
 ```
 <br>
 
-As expected, LS captures the synchronicity between Napa and Solano quite well, and returns a `psi` score indicating a high similarity. Meanwhile, San Francisco shows a high `psi` score when compared with the other two time series, indicating dissimilarity due to its asynchronous pattern. So far so good!
+The counties Napa and Solano show the lower `psi` score, indicating that these are the most similar time series in this batch. As such, it seems that LS is capturing their synchronicity pretty well, isn't it?
+
+On the other hand, San Francisco shows a high `psi` score with the other two time series, indicating dissimilarity due to its asynchronous pattern. So far so good!
 
 Now, let's take a look at the **DTW** result:
 
@@ -425,9 +470,9 @@ tsl_smol |>
 ```
 <br>
 
-Surprisingly, when adjusting for time shifts, San Francisco appears more similar to Solano than Napa.
+Surprisingly, when adjusting for time shifts, San Francisco appears more similar to Solano than Napa!
 
-This happens because DTW ignores absolute dates, allowing one sample to map to multiple others. The plot below shows San Francisco’s first case (dashed red line) aligning with all Napa samples with prevalence 0, effectively canceling the timing difference.
+This happens because DTW ignores absolute dates, and allows any sample in a time series to map to multiple samples from the other. The left side of the plot below shows San Francisco’s first case (dashed red line) aligning with all Napa samples with prevalence 0, effectively canceling their timing differences.
 
 ```{r, fig.height=3.5, echo = FALSE}
 library(dtw)
@@ -440,9 +485,9 @@ xy_dtw <- dtw::dtw(
 dtw::dtwPlotTwoWay(xy_dtw, offset = 0.5)
 ```
 
-These results suggest San Francisco, Napa, and Solano are part of the same system, despite time lags—a conclusion LS alone would miss.
+These results suggest that, in spite of their timing differences, San Francisco, Napa, and Solano have a similar dynamics. This is a conclusion LS alone would miss.
 
-It is for this reason that DTW is preferable when outbreak timing varies significantly and shape similarity is more important than exact time alignment. On the other hand, LS is best applied when the question at hand is focused on time-series synchronization rather than shape similarity.
+It is for this reason that a DTW analysis is preferable when outbreak timing varies significantly and shape similarity is more important than exact time alignment. On the other hand, LS is best applied when the question at hand is focused on time-series synchronization rather than shape similarity.
 
 ```{r, echo = FALSE}
 rm(xy_dtw)
@@ -451,7 +496,7 @@ rm(xy_dtw)
 
 ### DTW and LS with `distantia`
 
-With LS and DTW clarified, let's compute dissimilarity across all time series. While both methods are demonstrated below, real analyses should select the most appropriate one based on the research question.
+With LS and DTW clarified, let me show you how to compute the `psi` dissimilarity score across all time series in our `tsl` object. While both methods are demonstrated below, real analyses should select the most appropriate one based on the research question.
   
 The most straightforward way of computing DTW and LS in `distantia`involves the functions `distantia_ls()` and `distantia_dtw()`.
 
@@ -459,14 +504,13 @@ The function `distantia_ls()` computes lock-step dissimilarity using euclidean d
 
 ```{r}
 df_psi_ls <- distantia::distantia_ls(
-  tsl = tsl,
-  distance = "euclidean"
+  tsl = tsl
   )
 
 str(df_psi_ls)
 ```
 
-The function `distantia_dtw()` returns an output with the same structure, but in this case the column `psi` represents dissimilarity scores computed with dynamic time warping.
+The function `distantia_dtw()` returns an output with the same structure, but in this case the column `psi` represents dissimilarity scores computed with dynamic time warping. You will notice that it runs a bit slower than `distantia_ls()`.
 
 ```{r}
 df_psi_dtw <- distantia::distantia_dtw(
@@ -506,15 +550,49 @@ reactable::reactable(
   wrap = FALSE,
   fullWidth = FALSE
 )
-
-rm(df_table)
 ```
+
+In case you are wondering, here goes a scatterplot showing how these two metrics of similarity/dissimilarity are related in this experiment.
+
+```{r, fig.width=5, fig.height=4.5, echo = FALSE}
+correlation <- stats::cor(df_table$psi_dtw, df_table$psi_ls)
+df_table$difference <- abs(df_table$psi_ls -  df_table$psi_dtw)
+
+ggplot(df_table) + 
+  aes(
+    x = psi_dtw,
+    y = psi_ls,
+    color = difference
+  ) + 
+  geom_point(
+    alpha = 0.75
+  ) + 
+  geom_smooth(
+    method = "lm", 
+    col = "gray20",
+    formula = y ~ x
+    ) + 
+  geom_abline(
+    intercept = 0, 
+    slope = 1,
+    col = "gray50",
+    lty = 2
+  ) + 
+  labs(
+    title = paste("Pearson Correlation between DTW and LS:", round(correlation, 2)),
+    x = "Psi score - Dynamic Time Warping",
+    y = "Psi score - Lock-Step",
+    color = "Difference\nLS - DTW"
+  ) +
+  theme_bw()
+```
+The chart shows that there is good correlation between the `psi` scores for DTW and LS, so in principle, using one or the other might not be so important, as they may lead to similar conclusions. However, notice all these cases colored with a lighter shade of blue. Each one of these dots represents a large mismatch between DTW and LS for a pair of time series (remember San Francisco vs Napa?). In the end, the research question must guide the methodological choice, but it is up to us to understand the consequences of the choice.
 
 <br>
 
 ## Analyzing Dissimilarity Scores
 
-For the sake of simplicity, this section focuses on DTW results alone. If you wish to use the LS results instead, just replace `df_psi_dtw` with `df_psi_ls` in the code below. 
+In this section I will show you the different kinds of analyses implemented in `distantia` that may help you better understand how your time series are related. For the sake of simplicity, I will focus on the DTW results alone. If you wish to use the LS results instead, just replace `df_psi_dtw` with `df_psi_ls` in the code below. 
 
 ```{r}
 df_psi <- df_psi_dtw

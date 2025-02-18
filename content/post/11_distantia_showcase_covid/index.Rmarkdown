@@ -65,6 +65,7 @@ This tutorial requires the following packages:
   - [`distantia`](https://blasbenito.github.io/distantia/): time series dissimilarity analysis.
   - [`zoo`](https://cran.r-project.org/web/packages/zoo/index.html): management of regular and irregular time series.
   - [`dplyr`](https://dplyr.tidyverse.org/): data frame processing.
+  - [`tidyr`](https://tidyr.tidyverse.org/): to pivot a few wide data frames.
   - [`ggplot2`](https://ggplot2.tidyverse.org/): to make a few charts.
   - [`mapview`](https://r-spatial.github.io/mapview/): interactive spatial visualization.
   - [`reactable`](https://glin.github.io/reactable/): interactive tables
@@ -644,7 +645,7 @@ In the end, the research question must guide the methodological choice, but it i
 
 ## Analyzing Dissimilarity Scores
 
-In this section I will show you the different kinds of analyses implemented in `distantia` that may help you better understand how your time series are related. For the sake of simplicity, I will focus on the DTW results alone. If you wish to use the LS results instead, just replace `df_psi_dtw` with `df_psi_ls` in the code below. 
+In this section we will have a look at the different kinds of analyses implemented in `distantia` that may help better understand how time series are related. For the sake of simplicity, I will focus on the DTW results alone. If you wish to use the LS results instead, just replace `df_psi_dtw` with `df_psi_ls` in the code below. 
 
 ```{r}
 df_psi <- df_psi_dtw
@@ -687,12 +688,14 @@ distantia::distantia_boxplot(
   text_cex = 1.4
 )
 ```
+According to the boxplot, San Bernardino is the county with a higher overall dissimilarity with all others. On the other hand, at the bottom of the boxplot, Santa Barbara seems to be the most similar to all others.
+
 
 ### Hierarchical Clustering
 
-The functions `distantia_cluster_hclust()` and `distantia_cluster_kmeans()` are designed to apply hierarchical and K-means clustering to the data frames produced by `distantia_dtw()` and `distantia_ls()` right away. This section will be focusing on hierarchical clustering, which is more appropriate for the analysis of epidemiological time series.
+The functions `distantia_cluster_hclust()` and `distantia_cluster_kmeans()` are designed to apply hierarchical and K-means clustering to the data frames produced by `distantia_dtw()` and `distantia_ls()`. In this section we will be focusing on hierarchical clustering.
 
-By default, the function `distantia_cluster_hclust()` selects the clustering method and the number of groups in the clustering solution via silhouette-width maximization (see [`distantia::utils_cluster_silhouette()`](https://blasbenito.github.io/distantia/reference/utils_cluster_silhouette.html) and [`distantia::utils_cluster_hclust_optimizer()`](https://blasbenito.github.io/distantia/reference/utils_cluster_hclust_optimizer.html) for further details).
+By default, the function `distantia_cluster_hclust()` selects the clustering method (see argument `method` in `help(hclust)`) and the number of groups in the clustering solution via silhouette-width maximization (see [`distantia::utils_cluster_silhouette()`](https://blasbenito.github.io/distantia/reference/utils_cluster_silhouette.html) and [`distantia::utils_cluster_hclust_optimizer()`](https://blasbenito.github.io/distantia/reference/utils_cluster_hclust_optimizer.html) for further details).
 
 ```{r}
 psi_cluster <- distantia::distantia_cluster_hclust(
@@ -704,8 +707,9 @@ names(psi_cluster)
 
 The output is a list with several components, but these are the key ones:
 
-  - `df`: data frame with time series names, cluster group, and silhouette width. 
+  - `df`: data frame with time series names, cluster assignation, and silhouette width. 
   - `cluster_object`: the output of `stats::hclust()`.
+  - `clusters`: the number of distinct clusters selected by the algorithm.
 
 The object `df` has the column `silhouette_width`, in the range [-1, 1], which informs about how well each case fits within its assigned cluster:
 
@@ -727,14 +731,14 @@ reactable::reactable(
   striped = TRUE,
   compact = TRUE,
   wrap = FALSE,
-  fullWidth = TRUE
+  fullWidth = FALSE
 )
 ```
 <br>
 
-Notice how the hirarchical clustering highlights "Santa Cruz", with a silhouette score of `r round(psi_cluster$df$silhouette_width[which(psi_cluster$df$name == "Santa_Cruz")], 3)`, as the county with the most dubious cluster membership.
+If you arrange the table above by `silhouette_width`, you will notice that "Santa Cruz", has a silhouette score of `r round(psi_cluster$df$silhouette_width[which(psi_cluster$df$name == "Santa_Cruz")], 3)`, which highlights it as the county with the most dubious cluster membership.
 
-The cluster object can be plotted as a dendrogram with `factoextra::fviz_dend()`.
+The cluster object can be plotted as a dendrogram with `factoextra::fviz_dend()`, using the number of clusters in the object `psi_cluster$clusters` as guide to colorize the different branches.
 
 ```{r, fig.height=10, warning = FALSE}
 #number of clusters
@@ -763,7 +767,7 @@ sf_cluster <- dplyr::inner_join(
 )
 ```
 
-Now we can use `mapview::mapview()` again to plot cluster membership, but with a twist: we are going to code the silhouette score of each case as polygon transparency, with higher transparency indicating a lower silhouette width. This will help identify these cases that do not fully belong to their assigned groups. 
+Now we can use `mapview::mapview()` again to plot cluster membership, but with a twist: we are going to code the silhouette score of each case as polygon transparency, with higher transparency indicating a lower silhouette width. This will help identify these cases that might not fully belong to their assigned groups. 
 
 Notice that to do so, the code below applies `distantia::f_rescale_local()` to rescale silhouette width between 0.1 and 1 to adjust it to what the argument `alpha.regions` expects.
 
@@ -811,16 +815,18 @@ rm(max_prevalence)
    <p>California counties grouped by similarity in their Covid-19 prevalence curves.</p>
 </iframe>
 
+The map shows something the dendrogram could not: the two groups of counties are geographically coherent! Additionally, the map shows that Santa Cruz, the county with a more dubious cluster membership, is surrounded by counties from the other cluster.
+
 
 ### Dissimilarity Modelling
 
-Dissimilarity scores reveal the degree of interrelation between time series but do not explain the reasons behind their similarity/dissimilarity. 
+Dissimilarity scores reveal the degree of interrelation between time series but do not explain the reasons behind their dissimilarity. 
 
-To fill this gap, this section shows how combining dissimilarity scores with geographic and socioeconomic variables to fit models may help unveil important drivers of dissimilarity between epidemiological time series. 
+To fill this gap, in this section I show how dissimilarity scores and geographic and socioeconomic variables can be combined to fit models  that may help unveil relevant drivers of dissimilarity between epidemiological time series. 
 
 #### Building a Model Frame
 
-The function [`distantia_model_frame()`](https://blasbenito.github.io/distantia/reference/distantia_model_frame.html) combines dissimilarity scores (stored in `df_psi`) with other county variables (stored in `covid_counties`) to build a model frame.
+The function [`distantia_model_frame()`](https://blasbenito.github.io/distantia/reference/distantia_model_frame.html) builds data frames for model fitting. In the code below we use it to combine the dissimilarity scores stored in `df_psi` with socioeconomic count variables stored in `covid_counties`.
 
 ```{r}
 df_model <- distantia::distantia_model_frame(
@@ -830,6 +836,7 @@ df_model <- distantia::distantia_model_frame(
 )
 ```
 
+Let's take a look at the output.
 
 ```{r, echo=FALSE}
 df_model |> 
@@ -855,15 +862,18 @@ df_model |>
 ```
 <br>
 
-In the data frame `df_model`, the response variable `psi` (from `df_psi`) represents time series dissimilarity. On the other hand, each predictor in `covid_counties` is transformed into absolute differences between each pair of counties. For example, the value of the column `area_hectares` for the counties Sacramento and Sonoma is `r df_model$area_hectares[which(df_model$x == "Sacramento" & df_model$y == "Sonoma")]` hectares. This is the absolute difference between the area of Sacramento (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sacramento")]` hectares) and the area of Sonoma (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sonoma")]` hectares).
+The model frame `df_model` has the following components:
 
-Notice that the column `geographic_distance`, not in `covid_counties`, also showed up as a new column. This happens when the input of `predictors_df` is spatial data frame, like `covid_counties`.
+  - Time series identifiers: in this case, county names in the columns `x` and `y`. These columns are not used during model fitting.
+  - Response variable: column `psi` from `df_psi`, representing time series dissimilarity.
+  - Predictors: the columns with socioeconomic data in `covid_counties` are transformed into absolute differences between each pair of counties. For example, the value of the column `area_hectares` for the counties Sacramento and Sonoma is `r df_model$area_hectares[which(df_model$x == "Sacramento" & df_model$y == "Sonoma")]` hectares. This is the absolute difference between the area of Sacramento (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sacramento")]` hectares) and the area of Sonoma (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sonoma")]` hectares).
+  - Geographic distance: the column `geographic_distance`, not in `covid_counties`, represents the distance between county limits. It is computed when the input of the argument `predictors_df` is spatial data frame.
 
-The function `distantia_model_frame()` has a neat feature: it can combine different predictors into a new one! 
+The function `distantia_model_frame()` has anotehr neat feature: it can combine different predictors into a new one! 
 
-In the example below, the predictors `poverty_percentage`, `median_income`, `employed_percentage`, `daily_miles_traveled` and `domestic_product` are scaled, their multivariate distances between pairs of counties are computed and stored in the column `economy`. This new variable represents overall differences in economy between counties. 
+In the example below, the predictors `poverty_percentage`, `median_income`, `employed_percentage`, `daily_miles_traveled` and `domestic_product` are scaled, and their multivariate distances between pairs of counties are computed and stored in the column `economy`. This new variable represents overall differences in economy between counties. 
 
-Notice that the code below also scales the predictors, because in `distantia` version <=2.0.2 the argument `scale` of `distantia_model_frame()` does not work as it should.
+Notice that the code below also scales the predictors, because in `distantia` version <= 2.0.2 the argument `scale` of `distantia_model_frame()` does not work as it should (this is fixed in version 2.0.3).
 
 ```{r}
 df_model <- distantia::distantia_model_frame(
@@ -922,22 +932,24 @@ df_model |>
 ```
 <br>
 
-With these variables at hand now we are ready to better understand how the similarity/dissimilarity between prevalence time series changes as a function of differences in distance, area, economy, and population between counties.
+
+
+Now, with the model frame at hand, we are ready to better understand how the dissimilarity between prevalence time series changes as a function of differences between counties in distance, area, economy, and population.
 
 #### Fitting a Linear Model
 
-The model frame generated above shows no multicollinearity between predictors (you can check yourself with `cor(df_model[, -1])`), so it can be used right away fit a multiple regression model.
+Since our model frame  shows no multicollinearity between predictors (you can check it with `cor(df_model[, -1])`), it can be used right away to fit a multiple regression model.
 
 ```{r}
 m <- stats::lm(
-  formula = psi ~ distance + area + economy + population,
+  formula = psi ~ distance + economy + area + population,
   data = df_model
 )
 ```
 
 <br>
 
-The model has an R-squared of `r round(summary(m)$r.squared, 2)` and a standard error of the residuals (sigma) of `r round(summary(m)$sigma, 2)`. Model coefficients are shown below.
+The model has an R-squared of `r round(summary(m)$r.squared, 2)`, which is *not great, not terrible*. 
 
 ```{r, echo = FALSE}
 m |> 
@@ -946,6 +958,7 @@ m |>
   dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~ round(.x, 4))) |> 
   dplyr::arrange(dplyr::desc(estimate)) |> 
   dplyr::filter(term != "(Intercept)") |> 
+  dplyr::select(term, estimate, std.error, p.value) |> 
   reactable(
     striped = TRUE,
     fullWidth = TRUE,
@@ -956,7 +969,7 @@ m |>
 ```
 <br>
 
-The coefficients table shows that all effects are statistically different than zero. The predictor `distance` has the largest effect estimate, which is almost twice the estimate of `area` and `economy`, and more than four times the estimate of `population`.
+The coefficients table supports the idea that all predictors have a positive relationship with dissimilarity. The predictor `distance` has the strongest effect, which is almost twice the effect of `area` and `economy`, and more than four times the effect of `population`.
 
 
 ```{r, fig.height=6, fig.width=6, echo = FALSE}
@@ -984,9 +997,7 @@ visreg::visreg(
 )
 ```
 
-All predictors show a positive relationship with the response, meaning that increasing differences in distance, area, economy, and population leads to increased dissimilarity between the compared time series.
-
-The dissimilarity model seems relatively strong, but, as the calibration plot below shows, it is also moderately biased. 
+When looking at the fixed effects plot we can see that the responses to `area` and `population` are influenced by a group of county pairs with very large differences in area and population, which complicates the model interpretation. That's probably one of the reasons behind the model bias shown in the calibration plot below.
 
 ```{r, fig.width=3.5, fig.height=3.5}
 df_model$psi_predicted <- stats::predict(object = m)
@@ -1019,7 +1030,7 @@ ggplot(df_model) +
   ) +
   theme_bw()
 ```
-The scatterplot of the observations (x axis) vs predictions shows that the model underpredicts high psi values and overpredict low psi values. This kind of bias indicates that there are relevant predictors, interactions, or transformations missing from the model.
+The scatterplot of the observations (x axis) vs predictions shows that the model underpredicts high `psi` values and overpredict low `psi` values. This kind of bias indicates that there are relevant predictors, interactions, or transformations missing from the model. From here, we could apply a logarithmic transformation to the predictors `area` and `population` within `covid_counties`, that is, before building the model frame, to check if that helps close the gap between the main cloud of data points and the outliers in these predictors. Or we could look for more meaningful variables. Or we could try with a different modelling method.
 
 #### Training a Random Forest Model
 
@@ -1088,6 +1099,7 @@ ggplot(df_model) +
   theme_bw()
 ```
 
+We are going to stop the modelling exercise here, because it could go on for a while. But at least we have learned about a few variables that are somewhat linked to the dissimilarity between prevalence time series. A deeper analysis into such link is not up to me though!
 
 ## Closing Thoughts
 

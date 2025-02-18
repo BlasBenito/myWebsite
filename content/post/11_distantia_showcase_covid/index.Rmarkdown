@@ -11,7 +11,7 @@ tags:
 - Time Series Analysis
 - Tutorial
 subtitle: ''
-summary: "Tutorial showing the applications of the R package {distantia} to the analysis of epidemiological time series."
+summary: "Tutorial on the applications of the R package {distantia} to the analysis of epidemiological time series."
 authors: [admin]
 lastmod: '2025-01-25T07:28:01+01:00'
 featured: no
@@ -319,29 +319,73 @@ df_stats |>
 ```
 <br>
 
-The second part, produced by the `lags` argument, shows time series autocorrelation (Moran's I) for different time lags. Since the resolution of all time series is 7 days per data-point, each time lag represents a week. A value of 0.9 for the lag 1 indicates the Pearson correlation between the prevalence of each data point and its antecedent neighbor.
+The second part, produced by the `lags` argument, shows the temporal autocorrelation of the different time series. Given that the resolution of all time series is 7 days per data-point, each time lag represents a week. A value of 0.9 for the lag 1 indicates the Pearson correlation between prevalence values in consecutive weeks.
 
 ```{r, echo = FALSE}
-df_stats |> 
+df_lags <- df_stats |> 
   select(name, dplyr::contains("lag")) |> 
   dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~ round(.x, 2))) |> 
   dplyr::rename_with(~ gsub("ac_", "", .)) |> 
-  dplyr::rename_with(~ gsub("_", "", .)) |> 
-  reactable::reactable(
-    pagination = TRUE,
-    searchable = TRUE,
-    sortable = TRUE,
-    showSortable = TRUE,
-    filterable = TRUE,
-    resizable = TRUE,
-    defaultPageSize = 10,
-    showPageSizeOptions = TRUE,
-    striped = TRUE,
-    compact = TRUE,
-    wrap = FALSE,
-    fullWidth = TRUE
-  )
+  dplyr::rename_with(~ gsub("_", "", .))
+
+reactable::reactable(
+  df_lags,
+  pagination = TRUE,
+  searchable = TRUE,
+  sortable = TRUE,
+  showSortable = TRUE,
+  filterable = TRUE,
+  resizable = TRUE,
+  defaultPageSize = 10,
+  showPageSizeOptions = TRUE,
+  striped = TRUE,
+  compact = TRUE,
+  wrap = FALSE,
+  fullWidth = TRUE
+)
 ```
+The autocorrelation values for each lag across all counties are summarized in the following boxplot.
+
+```{r, message = FALSE, warning = FALSE, fig.width=5, fig.height=4, echo = FALSE}
+df_lags |> 
+  tidyr::pivot_longer(
+    cols = starts_with("lag"),
+    names_to = "week"
+  ) |> 
+  dplyr::mutate(
+    week = as.numeric(gsub("lag", "", week))
+  ) |> 
+  ggplot() + 
+  geom_smooth(
+    aes(
+      x = week,
+      y = value,
+      alpha = 0.5
+    ),
+    col = alpha("gray50", 0.5),
+    se = FALSE
+  ) +
+  geom_boxplot(
+    aes(
+      x = week,
+      y = value,
+      group = week
+    ),
+    notch = TRUE, 
+    fill = distantia::color_continuous(n = 6),
+    alpha = 0.5
+  ) + 
+  guides(fill = FALSE, alpha = FALSE) +
+  labs(
+    x = "Lag (weeks)",
+    y = "Autocorrelation (Pearson)"
+  ) +
+  scale_x_continuous(breaks = 1:6) +
+  theme_bw()
+```
+
+According to the boxplot, our prevalence time series show a very strong short-term (1-2 weeks) memory, and a rapid diminishment of long-term memory (5-6 weeks), suggesting that the influence of past prevalence on future values dissipates quickly.
+
 <br>
 
 The stats produced by `tsl_stats()` can be joined to `covid_counties` using their common column `name`.
@@ -388,7 +432,7 @@ rm(max_prevalence)
    <p>Maximum Covid-19 prevalence in California counties.</p>
 </iframe>
 
-If for any particular reason you need to compute stats focused on a given period or group of counties, then you can combine `tsl_subset()` and `tsl_stats()`.
+If you wish to compute stats for a given period or group of counties, then you can combine `tsl_subset()` and `tsl_stats()`, as we did before.
 
 ```{r, eval = FALSE}
 df_stats_2021 <- distantia::tsl_stats(
@@ -401,23 +445,26 @@ df_stats_2021 <- distantia::tsl_stats(
 )
 ```
 
+```{r, echo = FALSE}
+rm(sf_stats, df_lags, df_stats)
+```
 
 ## Computing Dissimilarity Scores
 
-The package `distantia` is designed to compare time series using two methods: *Lock-Step (LS)* and and [*Dynamic time warping (DTW)*](https://www.blasbenito.com/post/dynamic-time-warping/). In this section I explain and demonstrate how these methods work, and show how to compute them.
+The package `distantia` was designed to streamline the comparison of time series using two methods: *Lock-Step (LS)* and and [*Dynamic time warping (DTW)*](https://www.blasbenito.com/post/dynamic-time-warping/). In this section I explain both methods in brief, demonstrate how they work, and show how to compute them to compare all our prevalence time series.
 
 ### Dynamic Time Warping and Lock-Step Comparison
 
-**LS** directly compares values at the same time points in equal-length time series. It is efficient and interpretable but cannot adjust for differences in outbreak timing, potentially missing similarities.
+**LS** directly compares values at the same time points in equal-length time series. It is efficient and interpretable but cannot adjust for differences in outbreak timing, potentially missing relevant time series similarities.
 
 **DTW** aligns time series by warping the time axis to maximize shape similarity. It accounts for differences in outbreak timing, making it useful for uneven-length or misaligned time series. However, it is computationally expensive, harder to interpret, and sensitive to scaling.
 
-Before moving forward, let me show you a small example focused on San Francisco, Napa, and Solano to illustrate LS and DTW.
+Before moving forward, let me show you a small example focused on San Francisco, Napa, and Solano to illustrate how LS and DTW work.
 
 ```{r, fig.height=3.5, echo = FALSE}
 tsl_smol <- distantia::tsl_subset(
   tsl = tsl,
-  names = c("San_Francisco", "Napa", "Solano"),
+  names = c("Napa", "Solano", "San_Francisco"),
   time = c("2021-01-01", "2023-01-01")
 )
 
@@ -428,9 +475,7 @@ distantia::tsl_plot(
   )
 ```
 
-At first glance, Napa and Solano seem quite well synchronized, while San Francisco shows a timing difference of several months.
-
-The table below shows the **LS** comparison between these time series. The `psi` column indicates the dissimilarity between pairs of time series. The smaller the value, the more similar the time series are.
+At first glance, Napa and Solano seem quite well synchronized, while San Francisco shows a timing difference of several months. The table below shows the **LS** comparison between these time series. The `psi` column indicates the dissimilarity between pairs of time series. The smaller the value, the more similar the time series are.
 
 ```{r}
 tsl_smol |> 
@@ -448,9 +493,7 @@ tsl_smol |>
 ```
 <br>
 
-The counties Napa and Solano show the lower `psi` score, indicating that these are the most similar time series in this batch. As such, it seems that LS is capturing their synchronicity pretty well, isn't it?
-
-On the other hand, San Francisco shows a high `psi` score with the other two time series, indicating dissimilarity due to its asynchronous pattern. So far so good!
+As we could expect, Napa and Solano show the lower `psi` score, indicating that these are the most similar pair in this batch. LS seems to be capturing their synchronicity quite well! On the other hand, San Francisco shows a high dissimilarity with the other two time series, as expected due to its asynchronous pattern. So far so good!
 
 Now, let's take a look at the **DTW** result:
 
@@ -472,7 +515,7 @@ tsl_smol |>
 
 Surprisingly, when adjusting for time shifts, San Francisco appears more similar to Solano than Napa!
 
-This happens because DTW ignores absolute dates, and allows any sample in a time series to map to multiple samples from the other. The left side of the plot below shows San Francisco’s first case (dashed red line) aligning with all Napa samples with prevalence 0, effectively canceling their timing differences.
+This happens because DTW ignores absolute dates, and allows any sample in a time series to map to multiple samples from the other. That's where the *time warping* happens! The left side of the plot below shows San Francisco’s (dashed red line) first case aligning with a group of Napa samples with prevalence 0, effectively canceling their timing differences.
 
 ```{r, fig.height=3.5, echo = FALSE}
 library(dtw)
@@ -482,10 +525,16 @@ xy_dtw <- dtw::dtw(
   keep = TRUE
   )
 
-dtw::dtwPlotTwoWay(xy_dtw, offset = 0.5)
+dtw::dtwPlotTwoWay(
+  xy_dtw, 
+  offset = 0.5,
+  xlab = "Sample index",
+  ylab = "Prevalence",
+  main = "DTW alignment: San Francisco vs. Napa"
+  )
 ```
 
-These results suggest that, in spite of their timing differences, San Francisco, Napa, and Solano have a similar dynamics. This is a conclusion LS alone would miss.
+These results suggest that, in spite of their timing differences, San Francisco, Napa, and Solano have a similar dynamics. This is a conclusion LS alone would miss!
 
 It is for this reason that a DTW analysis is preferable when outbreak timing varies significantly and shape similarity is more important than exact time alignment. On the other hand, LS is best applied when the question at hand is focused on time-series synchronization rather than shape similarity.
 
@@ -494,11 +543,9 @@ rm(xy_dtw)
 ```
 
 
-### DTW and LS with `distantia`
+### Computing DTW and LS with `distantia`
 
-With LS and DTW clarified, let me show you how to compute the `psi` dissimilarity score across all time series in our `tsl` object. While both methods are demonstrated below, real analyses should select the most appropriate one based on the research question.
-  
-The most straightforward way of computing DTW and LS in `distantia`involves the functions `distantia_ls()` and `distantia_dtw()`.
+The most straightforward way of computing DTW and LS in `distantia` involves the functions `distantia_ls()` and `distantia_dtw()`. Both are simplified versions of the function `distantia()`, which has a whole set of bells and whistles that are out of the scope of this post.
 
 The function `distantia_ls()` computes lock-step dissimilarity using euclidean distances by default. It returns a data frame with the columns `x` and `y` with the time series names, and the `psi` score.
 
@@ -510,7 +557,7 @@ df_psi_ls <- distantia::distantia_ls(
 str(df_psi_ls)
 ```
 
-The function `distantia_dtw()` returns an output with the same structure, but in this case the column `psi` represents dissimilarity scores computed with dynamic time warping. You will notice that it runs a bit slower than `distantia_ls()`.
+The function `distantia_dtw()` returns an output with the same structure. You will notice that it runs a bit slower than `distantia_ls()`.
 
 ```{r}
 df_psi_dtw <- distantia::distantia_dtw(
@@ -520,7 +567,7 @@ df_psi_dtw <- distantia::distantia_dtw(
 str(df_psi_dtw)
 ```
 
-The table below combines both results to facilitate a direct comparison.
+The table below combines both results to facilitate a direct comparison between both dissimilarity scores.
 
 ```{r, echo = FALSE}
 df_table <- df_psi_dtw |> 
@@ -552,7 +599,7 @@ reactable::reactable(
 )
 ```
 
-In case you are wondering, here goes a scatterplot showing how these two metrics of similarity/dissimilarity are related in this experiment.
+Here goes a scatterplot between the columns `psi_dtw` and `psi_ls`, in case you are wondering how these two metrics are related in our experiment.
 
 ```{r, fig.width=5, fig.height=4.5, echo = FALSE}
 correlation <- stats::cor(df_table$psi_dtw, df_table$psi_ls)
@@ -568,9 +615,9 @@ ggplot(df_table) +
     alpha = 0.75
   ) + 
   geom_smooth(
-    method = "lm", 
+    method = mgcv::gam, 
     col = "gray20",
-    formula = y ~ x
+    formula = y ~ s(x)
     ) + 
   geom_abline(
     intercept = 0, 
@@ -578,6 +625,9 @@ ggplot(df_table) +
     col = "gray50",
     lty = 2
   ) + 
+  scale_color_gradientn(
+    colors = distantia::color_continuous()
+  ) +
   labs(
     title = paste("Pearson Correlation between DTW and LS:", round(correlation, 2)),
     x = "Psi score - Dynamic Time Warping",
@@ -586,7 +636,9 @@ ggplot(df_table) +
   ) +
   theme_bw()
 ```
-The chart shows that there is good correlation between the `psi` scores for DTW and LS, so in principle, using one or the other might not be so important, as they may lead to similar conclusions. However, notice all these cases colored with a lighter shade of blue. Each one of these dots represents a large mismatch between DTW and LS for a pair of time series (remember San Francisco vs Napa?). In the end, the research question must guide the methodological choice, but it is up to us to understand the consequences of the choice.
+The chart shows that there is good correlation between the `psi` scores for DTW and LS, so in principle, using one or the other might not be *that* important, as they may lead to similar conclusions. However, notice all these cases with a warmer color in the upper-left corner. These represent pairs of time series with a large dissimilarity mismatch between DTW and LS. Remember San Francisco *versus* Napa? If these cases are important to your research question, then DTW is the method of choice. Otherwise, LS is a reasonable alternative.
+
+In the end, the research question must guide the methodological choice, but it is up to us to understand the consequences of such choice.
 
 <br>
 
@@ -600,9 +652,9 @@ df_psi <- df_psi_dtw
 
 ### Summary Stats
 
-The functions `distantia_stats()` and `distantia_boxplot()` provide alternative summarized representations of dissimilarity (a data frame and a boxplot, respectively) via aggregation of `psi` values by time series.
+The functions `distantia_stats()` and `distantia_boxplot()` provide alternative summarized representations of dissimilarity by aggregating `psi` scores across all time series.
 
-```{r, fig.height=10, warning = FALSE, fig.width=5}
+```{r}
 df_psi_stats <- distantia::distantia_stats(
   df = df_psi
 )

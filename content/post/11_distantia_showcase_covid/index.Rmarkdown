@@ -15,7 +15,7 @@ summary: "Tutorial on the applications of the R package {distantia} to the analy
 authors: [admin]
 lastmod: '2025-01-25T07:28:01+01:00'
 featured: no
-draft: true
+draft: false
 image:
   caption: ''
   focal_point: Smart
@@ -52,7 +52,7 @@ The post is structured as follows:
 
   - **Computing Dissimilarity Scores**: Calculate time series dissimilarity using lock-step and dynamic time warping.
 
-  - **Analyzing Dissimilarity Scores**: Explore methods like hierarchical clustering, mapping, and dissimilarity modeling to analyze the results.
+  - **Analyzing Dissimilarity Scores**: Explore methods like hierarchical clustering, mapping, and dissimilarity modeling to analyze dissimilarity scores.
 
 <div class="alert alert-warning">
   <strong>DISCLAIMER:</strong>  I am **not** an epidemiologist, so I will be focusing on the technical aspects of the applications of {distantia} to this kind of data, without any attempt to draw conclusions from the results.
@@ -71,7 +71,6 @@ This tutorial requires the following packages:
   - [`reactable`](https://glin.github.io/reactable/): interactive tables
   - [`factoextra`](https://rpkgs.datanovia.com/factoextra/index.html): plotting results of hierarchical clustering.
   - [`visreg`](https://CRAN.R-project.org/package=visreg): response curves of statistical models.
-  - [`ranger`](https://github.com/imbs-hl/ranger): random forest modelling.
 
 ```{r, message = FALSE, warning = FALSE}
 library(distantia)
@@ -82,7 +81,6 @@ library(mapview)
 library(reactable)
 library(factoextra)
 library(visreg)
-library(ranger)
 ```
 
 ## Example Data
@@ -283,6 +281,8 @@ df_time |>
     wrap = FALSE,
     fullWidth = FALSE
   )
+
+rm(df_time)
 ```
 <br>
 
@@ -540,7 +540,7 @@ These results suggest that, in spite of their timing differences, San Francisco,
 It is for this reason that a DTW analysis is preferable when outbreak timing varies significantly and shape similarity is more important than exact time alignment. On the other hand, LS is best applied when the question at hand is focused on time-series synchronization rather than shape similarity.
 
 ```{r, echo = FALSE}
-rm(xy_dtw)
+rm(xy_dtw, tsl_smol)
 ```
 
 
@@ -641,7 +641,10 @@ The chart shows that there is good correlation between the `psi` scores for DTW 
 
 In the end, the research question must guide the methodological choice, but it is up to us to understand the consequences of such choice.
 
-<br>
+```{r, echo = FALSE}
+rm(df_table, correlation)
+```
+
 
 ## Analyzing Dissimilarity Scores
 
@@ -650,6 +653,11 @@ In this section we will have a look at the different kinds of analyses implement
 ```{r}
 df_psi <- df_psi_dtw
 ```
+
+```{r, echo = FALSE}
+rm(df_psi_dtw, df_psi_ls)
+```
+
 
 ### Summary Stats
 
@@ -689,6 +697,10 @@ distantia::distantia_boxplot(
 )
 ```
 According to the boxplot, San Bernardino is the county with a higher overall dissimilarity with all others. On the other hand, at the bottom of the boxplot, Santa Barbara seems to be the most similar to all others.
+
+```{r, echo = FALSE}
+rm(df_psi_stats)
+```
 
 
 ### Hierarchical Clustering
@@ -807,7 +819,7 @@ htmlwidgets::saveWidget(
   selfcontained = TRUE
   )
 
-rm(max_prevalence)
+rm(max_prevalence, clustering, sf_cluster, k)
 ```
 
 <iframe src="clustering.html" name="Covid_clustering"
@@ -873,12 +885,16 @@ The function `distantia_model_frame()` has anotehr neat feature: it can combine 
 
 In the example below, the predictors `poverty_percentage`, `median_income`, `employed_percentage`, `daily_miles_traveled` and `domestic_product` are scaled, and their multivariate distances between pairs of counties are computed and stored in the column `economy`. This new variable represents overall differences in economy between counties. 
 
-Notice that the code below also scales the predictors, because in `distantia` version <= 2.0.2 the argument `scale` of `distantia_model_frame()` does not work as it should (this is fixed in version 2.0.3).
+Notice that the code below applies log transformations to the county areas and populations, and square root transformation to the geographic distances between counties. Finally, it also scales the predictors, because in `distantia` version <= 2.0.2 the argument `scale` of `distantia_model_frame()` does not work as it should (this issue is fixed in version 2.0.3).
 
 ```{r}
 df_model <- distantia::distantia_model_frame(
   response_df = df_psi,
-  predictors_df = covid_counties,
+  predictors_df = covid_counties |> 
+    dplyr::mutate(
+      area = log(area_hectares),
+      population = log(population)
+    ),
   composite_predictors = list(
     economy = c(
       "poverty_percentage",
@@ -893,11 +909,13 @@ df_model <- distantia::distantia_model_frame(
   ) |> 
   #selecting and renaming columns
   dplyr::transmute(
+    x,
+    y,
     psi, 
     economy, 
     population,
-    area = area_hectares,
-    distance = geographic_distance
+    area,
+    distance = sqrt(geographic_distance)
   ) |> 
   #scale
   dplyr::mutate(
@@ -932,8 +950,6 @@ df_model |>
 ```
 <br>
 
-
-
 Now, with the model frame at hand, we are ready to better understand how the dissimilarity between prevalence time series changes as a function of differences between counties in distance, area, economy, and population.
 
 #### Fitting a Linear Model
@@ -942,7 +958,7 @@ Since our model frame  shows no multicollinearity between predictors (you can ch
 
 ```{r}
 m <- stats::lm(
-  formula = psi ~ distance + economy + area + population,
+  formula = psi ~ distance + area + economy + population,
   data = df_model
 )
 ```
@@ -969,9 +985,6 @@ m |>
 ```
 <br>
 
-The coefficients table supports the idea that all predictors have a positive relationship with dissimilarity. The predictor `distance` has the strongest effect, which is almost twice the effect of `area` and `economy`, and more than four times the effect of `population`.
-
-
 ```{r, fig.height=6, fig.width=6, echo = FALSE}
 par(mfrow = c(2, 2), cex.axis = 1.5, cex.lab = 2)
 line_params <- list(col = "red4", lwd = 1)
@@ -997,7 +1010,9 @@ visreg::visreg(
 )
 ```
 
-When looking at the fixed effects plot we can see that the responses to `area` and `population` are influenced by a group of county pairs with very large differences in area and population, which complicates the model interpretation. That's probably one of the reasons behind the model bias shown in the calibration plot below.
+The coefficients table and the effects plot support the idea that all predictors have a positive relationship with dissimilarity between prevalence time series. The predictor `distance` has the strongest effect, which is almost trhee times the effect `economy` and area, and more than six times the effect of `population`.
+
+The scatterplot below confronts the observations versus the model predictions. This kind of plot is known as *calibration plot*, and helps assess prediction bias in a model.
 
 ```{r, fig.width=3.5, fig.height=3.5}
 df_model$psi_predicted <- stats::predict(object = m)
@@ -1030,77 +1045,16 @@ ggplot(df_model) +
   ) +
   theme_bw()
 ```
-The scatterplot of the observations (x axis) vs predictions shows that the model underpredicts high `psi` values and overpredict low `psi` values. This kind of bias indicates that there are relevant predictors, interactions, or transformations missing from the model. From here, we could apply a logarithmic transformation to the predictors `area` and `population` within `covid_counties`, that is, before building the model frame, to check if that helps close the gap between the main cloud of data points and the outliers in these predictors. Or we could look for more meaningful variables. Or we could try with a different modelling method.
 
-#### Training a Random Forest Model
 
-If the objective is obtaining a model with a stronger predictive ability, Random Forest always can help with that!
+The calibration plot shows that our model underpredicts high and overpredicts low dissimilarity values. This kind of bias indicates that there are relevant predictors, interactions, or transformations missing from the model. At this point we could look for more meaningful variables, we could disaggregate the variable `economy`, or maybe decide that this linear model does not fit our purpose and try with a different modelling method.
 
-```{r}
-m <- ranger::ranger(
-  formula = psi ~ distance + area + economy + population,
-  data = df_model,
-  importance = "permutation"
-)
-```
-
-The random forest model has an R-squared (on the out-of-bag data) of `r round(m$r.squared, 2)`, and as the permutation importance scores below show, it downplays the effects of `economy` and `population` when compared with the linear model.
-
-```{r, echo = FALSE}
-data.frame(
-  variable = names(m$variable.importance),
-  importance = m$variable.importance
-) |> 
-  dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~ round(.x, 4))) |> 
-  reactable(
-    striped = TRUE,
-    fullWidth = FALSE,
-    resizable = TRUE,
-    sortable = TRUE,
-    showSortable = TRUE,
-    rownames = FALSE
-    )
-```
-
-Still, as the calibration plot below shows, it has a very small amount of prediction bias.
-
-```{r, fig.width=3.5, fig.height=3.5}
-df_model$psi_predicted <- stats::predict(
-  object = m, 
-  data = df_model
-  )$predictions
-
-ggplot(df_model) + 
-  aes(
-    x = psi,
-    y = psi_predicted
-  ) + 
-  geom_point(alpha = 0.5, col = "gray50") + 
-  coord_fixed(
-    xlim = range(c(df_model$psi, df_model$psi_predicted)),
-    ylim = range(c(df_model$psi, df_model$psi_predicted))
-  ) + 
-  geom_smooth(
-    method = "lm", 
-    col = "red4",
-    formula = y ~ x
-    ) + 
-  geom_abline(
-    intercept = 0, 
-    slope = 1,
-    col = "black",
-    lty = 2
-  ) +
-  labs(
-    x = "Observed psi",
-    y = "Predicted psi",
-    title = "Calibration plot - Random Forest"
-  ) +
-  theme_bw()
-```
-
-We are going to stop the modelling exercise here, because it could go on for a while. But at least we have learned about a few variables that are somewhat linked to the dissimilarity between prevalence time series. A deeper analysis into such link is not up to me though!
+In any case, we are going to stop the modelling exercise here, because it could go on for a while, and this post is freaking long already. Whatever comes next is up to you now!
 
 ## Closing Thoughts
 
-TODO
+In this rather long post I've gone through the main functionalities in `distantia` that are helpful to better understand how univariate epidemiological time series are related and to explore drivers of dissimilarity. However, there are other utilities in `distantia` that may be useful in this field, such as *network plots*, which are described in the post [Mapping Time Series Dissimilarity](https://blasbenito.github.io/distantia/articles/mapping_dissimilarity.html), and time-delay analysis, as implemented in the function [`distantia_time_delay()`](https://blasbenito.github.io/distantia/reference/distantia_time_delay.html). I hope I'll have time to combine these ideas in a new post soon.
+
+And that's all folks, I hope you got something to take home from this tutorial!
+
+BMB

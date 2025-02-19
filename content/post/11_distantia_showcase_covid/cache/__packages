@@ -9,11 +9,10 @@ foreach
 future
 doFuture
 distantia
-proxy
-dtw
 zoo
 dplyr
+ggplot2
 mapview
 reactable
-ggplot2
 factoextra
+visreg

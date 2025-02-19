@@ -14,8 +14,8 @@ subtitle: ''
 summary: "Tutorial on the applications of the R package {distantia} to the analysis of epidemiological time series."
 authors: [admin]
 lastmod: '2025-01-25T07:28:01+01:00'
-featured: no
-draft: true
+featured: yes
+draft: false
 image:
   caption: ''
   focal_point: Smart
@@ -463,6 +463,21 @@ tsl_smol |>
 Surprisingly, when adjusting for time shifts, San Francisco appears more similar to Solano than Napa!
 
 This happens because DTW ignores absolute dates, and allows any sample in a time series to map to multiple samples from the other. That’s where the *time warping* happens! The left side of the plot below shows San Francisco’s (dashed red line) first case aligning with a group of Napa samples with prevalence 0, effectively canceling their timing differences.
+
+    ## Loading required package: proxy
+
+    ## 
+    ## Attaching package: 'proxy'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     as.dist, dist
+
+    ## The following object is masked from 'package:base':
+    ## 
+    ##     as.matrix
+
+    ## Loaded dtw v1.23-1. See ?dtw for help, citation("dtw") for use in publication.
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" width="768" />
 

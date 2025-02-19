@@ -14,7 +14,7 @@ subtitle: ''
 summary: "Tutorial on the applications of the R package {distantia} to the analysis of epidemiological time series."
 authors: [admin]
 lastmod: '2025-01-25T07:28:01+01:00'
-featured: no
+featured: yes
 draft: false
 image:
   caption: ''

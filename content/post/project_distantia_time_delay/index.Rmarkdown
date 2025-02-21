@@ -1,7 +1,7 @@
 ---
 title: "Time Delay Analysis with the R package {distantia}"
 author: ""
-date: '2025-01-25'
+date: '2025-02-21'
 slug: distantia-showcase-covid
 categories: []
 tags:
@@ -11,7 +11,7 @@ tags:
 - Time Series Analysis
 - Tutorial
 subtitle: ''
-summary: "Demonstrates a simple time-delay analysis with the R package distantia."
+summary: "A brief tutorial on how to perform time-delay analyses with the R package {distantia}."
 authors: [admin]
 lastmod: '2025-01-25T07:28:01+01:00'
 featured: no
@@ -34,21 +34,20 @@ knitr::opts_chunk$set(
 
 ## Summary
 
-This post explains how to perform a time-delay analysis in epidemiological time series with the R pacakge  [`distantia`](https://blasbenito.github.io/distantia/).
+The R package [`distantia`](https://blasbenito.github.io/distantia/) has an experimental function named `distantia_time_delay()`
+
+
+This post explains how to perform a time-delay analysis in epidemiological time series with the R pacakge  .
 
 ## Setup
 
 This tutorial requires the following packages:
 
   - [`distantia`](https://blasbenito.github.io/distantia/): time series analysis via dynamic time warping.
-  - [`dtw`](https://dynamictimewarping.github.io/): dynamic time warping library.
   - [`future`](https://future.futureverse.org/): parallelized execution.
-  - [`zoo`](https://cran.r-project.org/web/packages/zoo/index.html): management of regular and irregular time series.
   - [`dplyr`](https://dplyr.tidyverse.org/): data frame manipulation.
   - [`mapview`](https://r-spatial.github.io/mapview/): easy to use interactive map visualization.
   - [`reactable`](https://glin.github.io/reactable/): interactive tables.
-  - [`factoextra`](https://rpkgs.datanovia.com/factoextra/index.html): plot results of hierarchical clustering.
-  - [`visreg`](https://CRAN.R-project.org/package=visreg): response curves of statistical models.
 
 ```{r, message = FALSE, warning = FALSE}
 library(distantia)
@@ -126,18 +125,9 @@ covid_prevalence |>
     fullWidth = FALSE
   )
 ```
+
 <br>
 
-## Objective
-
-This post focuses on the Covid-19 dataset described above to showcase the applications of `distantia` to the analysis of epidemiological time series. 
-
-  - **Prepare**: transform the `covid_prevalence` data frame into a format compatible with `distantia`.
-  - **Explore**: time series visualization and computation of descriptive statistics.
-  - **Compare**: 
-  - **Analyze**:
-  
-**DISCLAIMER:** I am not an epidemiologist, so I will refrain from interpreting any results, and will focus on technical details about the usage of `distantia` insted.
 
 ## Data Preparation
 

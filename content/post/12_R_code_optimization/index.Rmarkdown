@@ -9,7 +9,7 @@ tags:
 - Data Science
 - Tutorial
 subtitle: ''
-summary: "Post focused on optimization techniques for R code."
+summary: "Post focused on fundamental concepts on code optimization, with a practical showcase of optimization techniques for R code."
 authors: [admin]
 lastmod: '2025-02-21T07:28:01+01:00'
 featured: no
@@ -21,6 +21,14 @@ image:
 projects: []
 toc: true
 ---
+
+<style>
+.alert-warning {
+  background-color: #f4f4f4;
+  color: #333333;
+  border-color: #333333;
+}
+</style>
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -36,7 +44,7 @@ knitr::opts_chunk$set(
   - [Time Complexity and Space Complexity](https://www.geeksforgeeks.org/time-complexity-and-space-complexity/)
   - [Time and Space Complexity](https://itsgg.com/2025/01/15/time-and-space-complexity.html)
 
-# Summary
+## Summary
 
 Optimizing code isn't just about speed, it’s about writing *efficient* code. Efficient for the developer (you, maybe?), and efficient for the machine running it. 
 
@@ -44,32 +52,61 @@ Drawing from my experience handling large, complex datasets and pipelines in aca
 
 If you're looking to make your R code both faster and more maintainable, this guide is for you.
 
-# Understanding Code Efficiency
+## Understanding Code Efficiency
 
-When you're working with large data or complex machine learning models, performance bottlenecks can quickly turn into time sinks and money pits. That's when **code optimization** says "hi" and comes to save or ruin your day.
+When working with large datasets or complex machine learning models, performance bottlenecks can drain both time and money. That’s where **code optimization** steps in to either save the day or make things worse.
 
-As data scientists and researchers, optimizing code isn't just a matter of improving raw speed, it's about making our workflows more **efficient**, whatever that means for you. 
+For data scientists and researchers, optimization isn’t just about raw speed; it’s about making workflows more efficient, whatever that means for you. 
 
-There is a hierarchy of key dimensions across which code can be made more efficient. 
+The diagram below illustrates the hierarchy of elements defining code efficiency. The orange boxes highlight modifiable code components, while the green boxes indicate measurable performance dimensions and emergent performance properties.
 
-At the lowest level, the two fundamental elements of overall code efficiency are **algorithm design** and **data structures**. A careful but balanced design of the computational core of your code and an appropriate selection of the data structures it relies on are largest contributors to code efficiency in most cases. However, the choice of **programming language** also plays a crucial role. An efficient algorithm implemented in C++ may vastly outperform the same algorithm written in R, simply due to differences in compilation, memory management, and execution models.
+![](diagram.png)
 
-Building on this foundation, **hardware utilization** describes how algorithm and data structures leverage the available computational resources on an actual machine. At this stage, the combined application of methods such as *vectorization*, *parallelization*, *GPU usage*, and *garbage collection* or other memory management techniques can help multiply code performance.
+Software exists for us developers and users, and our time is far more valuable than CPU time! That's why **code simplicity** sits at the top of the hierarchy of elements defining code efficiency. The best way to improve efficiency? **Make your code simple!** Simplicity means writing readable, modular, and easy-to-use code. However, striking a balance between readability and optimization is key: over-optimization can make code unreadable, while excessive simplicity might leave major performance gains on the table.
 
-The interplay between algorithm design, data structures, and hardware utilization determines overall performance, which can be measured across three key dimensions:
+Beneath simplicity, **algorithm design** and **data structures** form the core of code efficiency. Well-designed algorithms and appropriate data structures contribute the most to performance in most cases. However, the **programming language** also plays a crucial role. An efficient algorithm implemented in C++ may vastly outperform the same algorithm written in R due to differences in compilation, memory management, and execution models.
 
-  - **Execution Speed**: also known as *Time Complexity*, represents the time required by the computer to run the code.
-  - **Memory Usage**: a.k.a *Space Complexity*, represents the peak usage of Random Access Memory during execution.
-  - **Input/Output Efficiency**: Describes how efficiently data is moved via file access, network usage, and database queries.
+Next, **hardware utilization** determines how well algorithms and data structures leverage computational resources. Techniques like *vectorization*, *parallelization*, *GPU acceleration*, and *memory management* can dramatically increase performance and improve efficiency.
 
-At an even higher level lie two emergent properties: **scalability** and **energy efficiency**. The former refers to how well the code can leverage larger computational infrastructures to handle increasing workloads, while the latter refers to the cost-benefit relationship between the code output and its energy consumption.
+These foundational choices impact three key performance dimensions:
 
-Since software exists for developers and users, and their time is far more valuable than CPU time, **code simplicity** sits at the top, balancing raw performance with long-term *usability* and *maintainability*. Simplicity means writing code that is readable, modular, and easy to use, avoiding unnecessary complexity in the pursuit of efficiency. A small performance gain is rarely worth the cost of making code harder to use, maintain and debug. But striving for both readability and performance requires a careful consideration: over-optimization can lead to code that’s hard to follow, whereas overly simplistic code may leave performance on the table.
+  - **Execution Speed** (Time Complexity): The time required to run the code.
+  - **Memory Usage** (Space Complexity): Peak RAM consumption during execution.
+  - **Input/Output Efficiency**: How well the code handles file access, network usage, and database queries.
 
-Code efficiency is a multidimensional trade-off space where optimizing one dimension often impacts others. A few typical instances are: a modification to speed up execution that ends increasing memory usage and limiting scalability; a parallelization setup that should increase time efficiency but creates an I/O bottleneck instead; a code refactoring to increase performance that reduces readability. There’s rarely a single "best" solution when increasing code efficiency, just different trade-offs depending on the context and constraints.
+At a higher level, two emergent properties arise:
 
+  - **Scalability**: How well the code adapts to increasing workloads and larger infrastructures.
+  - **Energy Efficiency**: The trade-off between computational cost and energy consumption.
 
+Code optimization is a multidimensional trade-off. Improving one aspect often affects others. For example, speeding up execution might increase memory usage, parallelization can create I/O bottlenecks, and refactoring for performance may reduce readability. There’s rarely a single "best" solution, only trade-offs based on context and constraints.
 
+## To Optimize Or Not To Optimize, That Is The Question
+
+> "Thou shall not optimize thy code."  
+> — The God of The Priceless Time
+
+The First Commandment of Code Optimization, also known in some circles as the *[YOLO](https://dictionary.cambridge.org/dictionary/english/yolo) Principle*, reveals the righteous path in most cases. If your code **is reasonably simple and works as expected**, any optimization effort risks yielding zero net gain and a waste of your time.
+
+That said, there are legitimate reasons to break this commandment. Maybe you are bold enough to publish your code in a paper (*Reviewer #2 says hi*), releasing it as package for the community, or simply sharing it with your data team. In these cases, the Second Commandment comes into play.
+
+> "Thou shall make thy code simple."  
+> — The God of Maintainability
+
+Simplicity isn’t just about aesthetics; it’s about making your code readable, maintainable, and easy to debug. The best optimization is often no optimization at all, because well-structured, straightforward code prevents a tangled mess down the line.
+
+But sometimes, simplicity alone isn’t enough. If your code runs once and gets the job done, great! But what if it must run thousands of times in production? Or worse—what if a single execution takes hours or even days?
+
+That’s when we reach the Third Commandment:
+
+> "Thou shall optimize wisely, for premature optimization is the root of all evil."  
+> — The God of Computational Sanity (and Donald Knuth)
+
+This commandment comes into play when your code must run many times (as in production) or takes too long to execute (think days per run). In these cases, time gains are no longer just a luxury—they’re a necessity.
+
+At this level, optimization shifts from a nice-to-have to a core requirement. The key is to focus on algorithm design and data structures, as these provide the biggest performance improvements. But beware—optimization is a delicate balance. Over-optimized code can turn into an unreadable mess, undermining future maintainability.
+
+The golden rule? Optimize when needed, and do it in ways that preserve clarity.
 
 
 

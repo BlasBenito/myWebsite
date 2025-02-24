@@ -83,31 +83,94 @@ Code optimization is a multidimensional trade-off. Improving one aspect often af
 
 ## To Optimize Or Not To Optimize, That Is The Question
 
+If for some reason you find yourself in the conundrum expressed in the title of this section, then you might find solace in the *First Commandment of Code Optimization*.
+
 > "Thou shall not optimize thy code."  
 > — The God of The Priceless Time
 
-The First Commandment of Code Optimization, also known in some circles as the *[YOLO](https://dictionary.cambridge.org/dictionary/english/yolo) Principle*, reveals the righteous path in most cases. If your code **is reasonably simple and works as expected**, any optimization effort risks yielding zero net gain and a waste of your time.
+This commandment, also known in some circles as the *[YOLO](https://dictionary.cambridge.org/dictionary/english/yolo) Principle*, reveals the righteous path in most cases. If your code **is reasonably simple and works as expected**, any optimization effort risks yielding a zero net gain, resulting in a waste of your *priceless* time. 
 
-That said, there are legitimate reasons to break this commandment. Maybe you are bold enough to publish your code in a paper (*Reviewer #2 says hi*), releasing it as package for the community, or simply sharing it with your data team. In these cases, the Second Commandment comes into play.
+That said, there are legitimate reasons to break this commandment. Maybe you are bold enough to publish your code in a paper (Reviewer #2 says *hi*), releasing it as package for the community, or simply sharing it with your data team. In these cases, the Second Commandment comes into play.
 
 > "Thou shall make thy code simple."  
 > — The God of Maintainability
 
-Simplicity isn’t just about aesthetics; it’s about making your code readable, maintainable, and easy to debug. The best optimization is often no optimization at all, because well-structured, straightforward code prevents a tangled mess down the line.
+Simplicity isn't just about aesthetics; it's about making your code readable, maintainable, and easy to debug. The best optimization is often no optimization at all, because well-structured, straightforward code prevents a tangled mess down the line. 
 
-But sometimes, simplicity alone isn’t enough. If your code runs once and gets the job done, great! But what if it must run thousands of times in production? Or worse—what if a single execution takes hours or even days?
+This post is not focused on code simplicity, but here are a few key principles that might be helpful:
 
-That’s when we reach the Third Commandment:
+  - **Use a consistent style**: Stick to a recognizable style guide, such as the [tidyverse style guide](https://style.tidyverse.org/) or [Google’s R style guide](https://google.github.io/styleguide/Rguide.html).
+  
+  - **Avoid deep nesting**: Excessive nesting makes code harder to read and debug. This wonderful video makes the point quite clear: [Why You Shouldn't Nest Your Code](https://www.youtube.com/watch?v=CFRhGnuXG-4).
+  
+  - **Use meaningful names**: Clear names for functions, arguments, and variables make the code self-explanatory! Avoid cryptic abbreviations or single-letter names and do not hesitate to use long and descriptive names. The video [Naming Things in Code](https://www.youtube.com/watch?v=-J3wNP6u5YU) is a great resource on this topic.
+  
+  - **Limit number of function arguments**: According to [Uncle Bob Martin](https://en.wikipedia.org/wiki/Robert_C._Martin), author of the book ["Clean Code"](https://www.oreilly.com/library/view/clean-code-a/9780136083238/), *the ideal number of arguments for a function is zero*. There's no need to be that extreme, but it is important to acknowledge that the user's cognitive load increases with the number of arguments. If a function has more than five args you can either rethink your approach or let the user pay the check.
+  
+Beyond these tips, I highly recommend the book [A Philosophy of Software Design](https://www.amazon.com/dp/173210221X), by [John Ousterhout](https://en.wikipedia.org/wiki/John_Ousterhout). It helped me find new ways to write better code!
+
+Ok, let's keep this going!
+
+The thing is that sometimes simplicity alone isn’t enough. If your code runs once and gets the job done, great! But what if it must run thousands of times in production? Or worse, what if a single execution takes hours or even days? In these cases, optimization shifts from a nice-to-have to a requirement, and the Third Commandment comes into play.
 
 > "Thou shall optimize wisely, for premature optimization is the root of all evil."  
-> — The God of Computational Sanity (and Donald Knuth)
+> — The God of Computational Sanity (and [Donald Knuth](https://en.wikipedia.org/wiki/Donald_Knuth))
 
-This commandment comes into play when your code must run many times (as in production) or takes too long to execute (think days per run). In these cases, time gains are no longer just a luxury—they’re a necessity.
+At this point you are committed to code optimization. 
 
-At this level, optimization shifts from a nice-to-have to a core requirement. The key is to focus on algorithm design and data structures, as these provide the biggest performance improvements. But beware—optimization is a delicate balance. Over-optimized code can turn into an unreadable mess, undermining future maintainability.
 
-The golden rule? Optimize when needed, and do it in ways that preserve clarity.
+But there are a couple of considerations to take in mind here: *premature optimization* and *over-optimization*.
 
+*Premature optimization* happens when we let performance considerations get in the way of our code design. Code design is hard, and designing code while trying to make it efficient at the same time is even harder. Having part of our mental bandwidth distracted with optimization may lead to code that is more complex than it should and to unexpected bugs.
+
+On the other hand, *over-optimization* happens when we keep pushing for marginal performance gains at the expense of clarity. It often results in convoluted one-liners and obscure tricks to save milliseconds that will confuse future you while making your code harder to maintain.
+
+There is no golden rule to follow here beyond following the commandment. Optimize when needed, and do it in ways that preserve clarity to set yourself for success.
+
+## The Optimization Loop
+
+Optimizing R code isn’t a one-time task—it’s an iterative process. The best way to balance performance and maintainability is to follow a structured approach:
+1. Start with Clean Design
+
+Before thinking about optimization, focus entirely on writing clear, well-structured code. This means:
+
+    Choosing the best algorithm and most appropriate data structures for the problem.
+    Writing modular, easy-to-read functions with meaningful names.
+    Avoiding unnecessary complexity—clarity trumps cleverness.
+
+At this stage, don’t worry about performance at all. A well-designed foundation will naturally lead to better efficiency later.
+2. Measure Performance (Profile Your Code!)
+
+Instead of guessing where bottlenecks might be, use profiling tools to identify the actual slow parts of your code:
+
+    Use profvis::profvis() or Rprof() for detailed profiling.
+    For quick benchmarking, use bench::mark() or microbenchmark::microbenchmark().
+    Log memory usage with lobstr::mem_used() if memory is a concern.
+
+This step helps you find real inefficiencies, so you don’t waste time optimizing parts of the code that aren’t problematic.
+3. Optimize the Low-Hanging Fruit
+
+Once you know where the real slowdowns are, optimize only the parts that provide significant gains without compromising clarity. Some common low-hanging fruit:
+
+    Eliminate unnecessary computations (e.g., avoid redundant loops, reuse calculations).
+    Refactor bottleneck functions (e.g., replace slow operations with built-in vectorized alternatives).
+    Simplify data handling (e.g., use appropriate data types, avoid excessive copies of large objects).
+
+Avoid over-optimizing too early—focus only on fixes that are clear, easy to implement, and make a measurable difference.
+4. Iterate Until Satisfied
+
+After each round of optimization, re-profile your code and check if further improvements are needed. If performance is now acceptable, stop optimizing. If not, repeat the process:
+
+    Profile again.
+    Identify new bottlenecks.
+    Optimize only where necessary.
+    Repeat until additional optimization no longer justifies the cost in complexity.
+
+The Golden Rule: Stop When It’s “Good Enough”
+
+Optimization should be goal-driven, not an endless pursuit of perfection. If your code is fast enough for its intended use case, further optimization is unnecessary—especially if it would reduce readability or maintainability.
+
+By following this loop, you ensure that your R code remains clean, efficient, and easy to maintain while optimizing only when it truly matters.
 
 
 

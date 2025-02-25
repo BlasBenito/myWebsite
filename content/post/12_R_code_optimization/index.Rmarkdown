@@ -86,46 +86,54 @@ Code optimization is a multidimensional trade-off. Improving one aspect often af
 If for some reason you find yourself in the conundrum expressed in the title of this section, then you might find solace in the *First Commandment of Code Optimization*.
 
 > "Thou shall not optimize thy code."  
-> — The God of The Priceless Time
+> — A Lazy God
 
-This commandment, also known in some circles as the *[YOLO](https://dictionary.cambridge.org/dictionary/english/yolo) Principle*, reveals the righteous path in most cases. If your code **is reasonably simple and works as expected**, any optimization effort risks yielding a zero net gain, resulting in a waste of your *priceless* time. 
+Also known in some circles as the *[YOLO](https://dictionary.cambridge.org/dictionary/english/yolo) Principle*, this commandment reveals the righteous path! If your code **is reasonably simple and works as expected**, you can call it a day and move on, because there is no reason whatsoever to attempt any optimization. This idea aligns well with a principle enunciated long ago:
 
-That said, there are legitimate reasons to break this commandment. Maybe you are bold enough to publish your code in a paper (Reviewer #2 says *hi*), releasing it as package for the community, or simply sharing it with your data team. In these cases, the Second Commandment comes into play.
+> "Premature optimization is the root of all evil."  
+> — [Donald Knuth](https://en.wikipedia.org/wiki/Donald_Knuth) - [*The Art of Computer Programming*](https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming)
+
+*Premature optimization* happens when we let performance considerations get in the way of our code design. Designing code is a taxing task already, and designing code while trying to make it efficient at once is even harder! Having a non-trivial fraction of our mental bandwidth focused on optimization results in code more complex than it should be, and increases the chance of introducing bugs.
+
+That said, there are legitimate reasons to break the first commandment. Maybe you are bold enough to publish your code in a paper (Reviewer #2 says *hi*), releasing it as package for the community, or simply sharing it with your data team. In these cases, the *Second Commandment* comes into play.
 
 > "Thou shall make thy code simple."  
-> — The God of Maintainability
+> — A Simple God
 
-Simplicity isn't just about aesthetics; it's about making your code readable, maintainable, and easy to debug. The best optimization is often no optimization at all, because well-structured, straightforward code prevents a tangled mess down the line. 
+Optimizing code for simplicity isn't just about aesthetics; it's about making it readable, maintainable, and easy to use and debug. In essence, this commandment ensures that we optimize the time required to interact with the code. Any code that saves the time of users and maintainers is efficient enough already! 
 
-This post is not focused on code simplicity, but here are a few key principles that might be helpful:
+At this point we have a clean and elegant code that runs once and gets the job done, great! But what if it must run thousands of times in production? Or worse, what if a single execution takes hours or even days? In these cases, optimization shifts from a nice-to-have to a requirement. Yep, there's a commandment for this too.
 
-  - **Use a consistent style**: Stick to a recognizable style guide, such as the [tidyverse style guide](https://style.tidyverse.org/) or [Google’s R style guide](https://google.github.io/styleguide/Rguide.html).
-  
-  - **Avoid deep nesting**: Excessive nesting makes code harder to read and debug. This wonderful video makes the point quite clear: [Why You Shouldn't Nest Your Code](https://www.youtube.com/watch?v=CFRhGnuXG-4).
-  
-  - **Use meaningful names**: Clear names for functions, arguments, and variables make the code self-explanatory! Avoid cryptic abbreviations or single-letter names and do not hesitate to use long and descriptive names. The video [Naming Things in Code](https://www.youtube.com/watch?v=-J3wNP6u5YU) is a great resource on this topic.
-  
-  - **Limit number of function arguments**: According to [Uncle Bob Martin](https://en.wikipedia.org/wiki/Robert_C._Martin), author of the book ["Clean Code"](https://www.oreilly.com/library/view/clean-code-a/9780136083238/), *the ideal number of arguments for a function is zero*. There's no need to be that extreme, but it is important to acknowledge that the user's cognitive load increases with the number of arguments. If a function has more than five args you can either rethink your approach or let the user pay the check.
-  
-Beyond these tips, I highly recommend the book [A Philosophy of Software Design](https://www.amazon.com/dp/173210221X), by [John Ousterhout](https://en.wikipedia.org/wiki/John_Ousterhout). It helped me find new ways to write better code!
+> "Thou shall optimize wisely." 
+> — A Simple God
 
-Ok, let's keep this going!
+At this point you might be at the ready, fingers on the keyboard, about to deface your pretty code for the sake of sheer performance. Just don't. This is a great point to stop, go back to the whiteboard, and think *carefully* about what you ~~want~~ need to do. You gotta be smart about your next steps! 
 
-The thing is that sometimes simplicity alone isn’t enough. If your code runs once and gets the job done, great! But what if it must run thousands of times in production? Or worse, what if a single execution takes hours or even days? In these cases, optimization shifts from a nice-to-have to a requirement, and the Third Commandment comes into play.
+There are three principles to think about while planning code optimization.
 
-> "Thou shall optimize wisely, for premature optimization is the root of all evil."  
-> — The God of Computational Sanity (and [Donald Knuth](https://en.wikipedia.org/wiki/Donald_Knuth))
+The first one is the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle):
 
-At this point you are committed to code optimization. 
+> "Roughly 80% of the consequences result from 20% of the causes." 
+> — A Simple God
+
+Pareto Principle has been widely applied in the context of software development and code optimization, often in the form of "80% of the execution time is spent in 20% of the code." This idea is echoed by many modern software engineers and performance experts, emphasizing that focusing optimization efforts on the most critical 20% of the code (often the bottlenecks) yields the most significant performance improvements.
+
+A modern paraphrase might go like this:
+
+"In software development, 80% of your program's performance issues come from 20% of your code. Identifying and optimizing that 20% is key to achieving the best performance improvements."
+
+While there's no single well-known quote that originated the idea in the specific context of code optimization, it is widely recognized in the development community. It’s often referenced in the context of profiling and identifying performance bottlenecks using tools like profilers or benchmarks.
+
+It captures the essence of Pareto’s principle: the idea that a small portion of the system or effort is responsible for most of the outcome (in this case, the performance).
 
 
-But there are a couple of considerations to take in mind here: *premature optimization* and *over-optimization*.
+most of our code performance issues (80 to 90 percent) result from a small fraction of the code (20 to 10 percent). Then, identifying and analyzing. 
 
-*Premature optimization* happens when we let performance considerations get in the way of our code design. Code design is hard, and designing code while trying to make it efficient at the same time is even harder. Having part of our mental bandwidth distracted with optimization may lead to code that is more complex than it should and to unexpected bugs.
+  - Beware over-optimization:  happens when we keep pushing for marginal performance gains at the expense of clarity. It often results in convoluted one-liners and obscure tricks to save milliseconds that will confuse future you while making your code harder to maintain.
 
-On the other hand, *over-optimization* happens when we keep pushing for marginal performance gains at the expense of clarity. It often results in convoluted one-liners and obscure tricks to save milliseconds that will confuse future you while making your code harder to maintain.
 
-There is no golden rule to follow here beyond following the commandment. Optimize when needed, and do it in ways that preserve clarity to set yourself for success.
+
+Beyond these important points, there is no golden rule to follow here. Optimize when needed, and do it in ways that preserve clarity to set yourself for success.
 
 ## The Optimization Loop
 
@@ -137,6 +145,18 @@ Before thinking about optimization, focus entirely on writing clear, well-struct
     Choosing the best algorithm and most appropriate data structures for the problem.
     Writing modular, easy-to-read functions with meaningful names.
     Avoiding unnecessary complexity—clarity trumps cleverness.
+    
+This post is not focused on code simplicity, but here are a few key principles that might be helpful:
+
+  - **Use a consistent style**: Stick to a recognizable style guide, such as the [tidyverse style guide](https://style.tidyverse.org/) or [Google’s R style guide](https://google.github.io/styleguide/Rguide.html).
+  
+  - **Avoid deep nesting**: Excessive nesting makes code harder to read and debug. This wonderful video makes the point quite clear: [Why You Shouldn't Nest Your Code](https://www.youtube.com/watch?v=CFRhGnuXG-4).
+  
+  - **Use meaningful names**: Clear names for functions, arguments, and variables make the code self-explanatory! Avoid cryptic abbreviations or single-letter names and do not hesitate to use long and descriptive names. The video [Naming Things in Code](https://www.youtube.com/watch?v=-J3wNP6u5YU) is a great resource on this topic.
+  
+  - **Limit number of function arguments**: According to [Uncle Bob Martin](https://en.wikipedia.org/wiki/Robert_C._Martin), author of the book ["Clean Code"](https://www.oreilly.com/library/view/clean-code-a/9780136083238/), *the ideal number of arguments for a function is zero*. There's no need to be that extreme, but it is important to acknowledge that the user's cognitive load increases with the number of arguments. If a function has more than five args you can either rethink your approach or let the user pay the check.
+  
+Beyond these tips, I highly recommend the book [A Philosophy of Software Design](https://www.amazon.com/dp/173210221X), by [John Ousterhout](https://en.wikipedia.org/wiki/John_Ousterhout). It helped me find new ways to write better code!
 
 At this stage, don’t worry about performance at all. A well-designed foundation will naturally lead to better efficiency later.
 2. Measure Performance (Profile Your Code!)

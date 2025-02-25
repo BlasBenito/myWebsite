@@ -49,45 +49,128 @@ If you're looking to make your R code both faster and more maintainable, this gu
 
 ## Understanding Code Efficiency
 
-When you're working with large data or complex machine learning models, performance bottlenecks can quickly turn into time sinks and money pits. That's when **code optimization** says "hi" and comes to save (or ruin) your day.
+When working with large datasets or complex machine learning models, performance bottlenecks can drain both time and money. That’s where **code optimization** steps in to either save the day or make things worse.
 
-As data scientists and researchers, optimizing code isn't just a matter of improving raw speed, it's about making our workflows more **efficient**, whatever that means for you. 
+For data scientists and researchers, optimization isn’t just about raw speed; it’s about making workflows more efficient, whatever that means for you. 
 
-The diagram below shows the hierarchy of elements defining code efficiency. The orange boxes highlight elements of the code that can be modified to improve performance, while the green boxes indicate performance dimensions and emergent properties.
+The diagram below illustrates the hierarchy of elements defining code efficiency. The orange boxes highlight modifiable code components, while the green boxes indicate measurable performance dimensions and emergent performance properties.
 
 ![](diagram.png)
 
-Software exists for us developers and users, and our time is far more valuable than CPU time! That's why **code simplicity** sits at the top of the hierarchy of elements defining code efficiency. To make code more efficient, **make it simple**! Simplicity means writing code that is readable, modular, and easy to use, avoiding unnecessary complexity in the pursuit of efficiency. Simplicity balances raw performance with long-term *usability* and *maintainability*. A small performance gain is rarely worth the cost of making code harder to use, maintain or debug. But striving for both readability and performance requires a careful consideration: over-optimization can lead to code that’s hard to follow, whereas overly simplistic code may leave performance gains off the table.
+Software exists for us developers and users, and our time is far more valuable than CPU time! That's why **code simplicity** sits at the top of the hierarchy of elements defining code efficiency. The best way to improve efficiency? **Make your code simple!** Simplicity means writing readable, modular, and easy-to-use code. However, striking a balance between readability and optimization is key: over-optimization can make code unreadable, while excessive simplicity might leave major performance gains on the table.
 
-The two next fundamental elements of code efficiency are **algorithm design** and **data structures**. A careful but balanced design of the computational core of your code and an appropriate selection of the data structures it relies on are largest contributors to code efficiency in most cases. However, the choice of **programming language** also plays a crucial role. An efficient algorithm implemented in C++ may vastly outperform the same algorithm written in R, simply due to differences in compilation, memory management, and execution models.
+Beneath simplicity, **algorithm design** and **data structures** form the core of code efficiency. Well-designed algorithms and appropriate data structures contribute the most to performance in most cases. However, the **programming language** also plays a crucial role. An efficient algorithm implemented in C++ may vastly outperform the same algorithm written in R due to differences in compilation, memory management, and execution models.
 
-Building on this foundation, **hardware utilization** describes how algorithm and data structures leverage the available computational resources on an actual machine. At this stage, the combined application of methods such as *vectorization*, *parallelization*, *GPU usage*, and *garbage collection* or other memory management techniques can help multiply code performance.
+Next, **hardware utilization** determines how well algorithms and data structures leverage computational resources. Techniques like *vectorization*, *parallelization*, *GPU acceleration*, and *memory management* can dramatically increase performance and improve efficiency.
 
-The interplay between algorithm design, data structures, and hardware utilization determines overall performance, which at its lowest level can be measured across three key dimensions:
+These foundational choices impact three key performance dimensions:
 
-  - **Execution Speed**: also known as *Time Complexity*, represents the time required by the computer to run the code.
-  - **Memory Usage**: a.k.a *Space Complexity*, represents the peak usage of Random Access Memory during execution.
-  - **Input/Output Efficiency**: Describes how efficiently data is moved via file access, network usage, and database queries.
+  - **Execution Speed** (Time Complexity): The time required to run the code.
+  - **Memory Usage** (Space Complexity): Peak RAM consumption during execution.
+  - **Input/Output Efficiency**: How well the code handles file access, network usage, and database queries.
 
-At an even higher level lie two emergent properties: **scalability** and **energy efficiency**. The former refers to how well the code can leverage larger computational infrastructures to handle increasing workloads, while the latter refers to the cost-benefit relationship between the code output and its energy consumption.
+At a higher level, two emergent properties arise:
 
-Code efficiency is a multidimensional trade-off space where optimizing one dimension often impacts others. A few typical instances are: a modification to speed up execution that ends increasing memory usage and limiting scalability; a parallelization setup that should increase time efficiency but creates an I/O bottleneck instead; a code refactoring to increase performance that reduces readability. There’s rarely a single "best" solution when increasing code efficiency, just different trade-offs depending on the context and constraints.
+  - **Scalability**: How well the code adapts to increasing workloads and larger infrastructures.
+  - **Energy Efficiency**: The trade-off between computational cost and energy consumption.
+
+Code optimization is a multidimensional trade-off. Improving one aspect often affects others. For example, speeding up execution might increase memory usage, parallelization can create I/O bottlenecks, and refactoring for performance may reduce readability. There’s rarely a single "best" solution, only trade-offs based on context and constraints.
 
 ## To Optimize Or Not To Optimize, That Is The Question
 
+If for some reason you find yourself in the conundrum expressed in the title of this section, then you might find solace in the *First Commandment of Code Optimization*.
+
 > "Thou shall not optimize thy code."  
-> — A God
+> — A Lazy God
+
+Also known in some circles as the *[YOLO](https://dictionary.cambridge.org/dictionary/english/yolo) Principle*, this commandment reveals the righteous path! If your code **is reasonably simple and works as expected**, you can call it a day and move on, because there is no reason whatsoever to attempt any optimization. This idea aligns well with a principle enunciated long ago:
+
+> "Premature optimization is the root of all evil."  
+> — [Donald Knuth](https://en.wikipedia.org/wiki/Donald_Knuth) - [*The Art of Computer Programming*](https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming)
+
+*Premature optimization* happens when we let performance considerations get in the way of our code design. Designing code is a taxing task already, and designing code while trying to make it efficient at once is even harder! Having a non-trivial fraction of our mental bandwidth focused on optimization results in code more complex than it should be, and increases the chance of introducing bugs.
+
+That said, there are legitimate reasons to break the first commandment. Maybe you are bold enough to publish your code in a paper (Reviewer #2 says *hi*), releasing it as package for the community, or simply sharing it with your data team. In these cases, the *Second Commandment* comes into play.
+
+> "Thou shall make thy code simple."  
+> — A Simple God
+
+Optimizing code for simplicity isn't just about aesthetics; it's about making it readable, maintainable, and easy to use and debug. In essence, this commandment ensures that we optimize the time required to interact with the code. Any code that saves the time of users and maintainers is efficient enough already! 
+
+At this point we have a clean and elegant code that runs once and gets the job done, great! But what if it must run thousands of times in production? Or worse, what if a single execution takes hours or even days? In these cases, optimization shifts from a nice-to-have to a requirement. Yep, there's a commandment for this too.
+
+> "Thou shall optimize wisely."  
+> — A Wise God
+
+At this point you are in the trench, fingers on the keyboard, ready to deface your pretty code for the sake of sheer performance. Just don't. This is a great point to stop, go back to the whiteboard, and think *carefully* about what you ~~want~~ need to do. You gotta be smart about your next steps! 
 
 
-The first commandment of code optimization is **thou shall not optimize thy code**. And this is a good approach in many cases! If your code is reasonably simple and works as expected, then any optimization effort comes with zero net gain and results in a waste of your precious time on this Earth.
 
-But of course, there are reasons to ignore the commandment above
-There are a few reasons to ignore the first commandment though: you are going to share your code with your community (your fellow researchers, your data team, etcetera)
+It is generally acknowledged that code performance follows a Pareto Principle: 80% of code performance come from 20% of the code.
 
-
+Code optimization usually follows the Pareto Principle: A fraction of your code as small as 20% is responsible for 80% of the runtime. Identifying and focusing on that 20% will yield the higher gains!
 
 
+On the other hand, *over-optimization* happens when we keep pushing for marginal performance gains at the expense of clarity. It often results in convoluted one-liners and obscure tricks to save milliseconds that will confuse future you while making your code harder to maintain.
 
+There is no golden rule to follow here beyond following the commandment. Optimize when needed, and do it in ways that preserve clarity to set yourself for success.
+
+## The Optimization Loop
+
+Optimizing R code isn’t a one-time task—it’s an iterative process. The best way to balance performance and maintainability is to follow a structured approach:
+1. Start with Clean Design
+
+Before thinking about optimization, focus entirely on writing clear, well-structured code. This means:
+
+    Choosing the best algorithm and most appropriate data structures for the problem.
+    Writing modular, easy-to-read functions with meaningful names.
+    Avoiding unnecessary complexity—clarity trumps cleverness.
+    
+This post is not focused on code simplicity, but here are a few key principles that might be helpful:
+
+  - **Use a consistent style**: Stick to a recognizable style guide, such as the [tidyverse style guide](https://style.tidyverse.org/) or [Google’s R style guide](https://google.github.io/styleguide/Rguide.html).
+  
+  - **Avoid deep nesting**: Excessive nesting makes code harder to read and debug. This wonderful video makes the point quite clear: [Why You Shouldn't Nest Your Code](https://www.youtube.com/watch?v=CFRhGnuXG-4).
+  
+  - **Use meaningful names**: Clear names for functions, arguments, and variables make the code self-explanatory! Avoid cryptic abbreviations or single-letter names and do not hesitate to use long and descriptive names. The video [Naming Things in Code](https://www.youtube.com/watch?v=-J3wNP6u5YU) is a great resource on this topic.
+  
+  - **Limit number of function arguments**: According to [Uncle Bob Martin](https://en.wikipedia.org/wiki/Robert_C._Martin), author of the book ["Clean Code"](https://www.oreilly.com/library/view/clean-code-a/9780136083238/), *the ideal number of arguments for a function is zero*. There's no need to be that extreme, but it is important to acknowledge that the user's cognitive load increases with the number of arguments. If a function has more than five args you can either rethink your approach or let the user pay the check.
+  
+Beyond these tips, I highly recommend the book [A Philosophy of Software Design](https://www.amazon.com/dp/173210221X), by [John Ousterhout](https://en.wikipedia.org/wiki/John_Ousterhout). It helped me find new ways to write better code!
+
+At this stage, don’t worry about performance at all. A well-designed foundation will naturally lead to better efficiency later.
+2. Measure Performance (Profile Your Code!)
+
+Instead of guessing where bottlenecks might be, use profiling tools to identify the actual slow parts of your code:
+
+    Use profvis::profvis() or Rprof() for detailed profiling.
+    For quick benchmarking, use bench::mark() or microbenchmark::microbenchmark().
+    Log memory usage with lobstr::mem_used() if memory is a concern.
+
+This step helps you find real inefficiencies, so you don’t waste time optimizing parts of the code that aren’t problematic.
+3. Optimize the Low-Hanging Fruit
+
+Once you know where the real slowdowns are, optimize only the parts that provide significant gains without compromising clarity. Some common low-hanging fruit:
+
+    Eliminate unnecessary computations (e.g., avoid redundant loops, reuse calculations).
+    Refactor bottleneck functions (e.g., replace slow operations with built-in vectorized alternatives).
+    Simplify data handling (e.g., use appropriate data types, avoid excessive copies of large objects).
+
+Avoid over-optimizing too early—focus only on fixes that are clear, easy to implement, and make a measurable difference.
+4. Iterate Until Satisfied
+
+After each round of optimization, re-profile your code and check if further improvements are needed. If performance is now acceptable, stop optimizing. If not, repeat the process:
+
+    Profile again.
+    Identify new bottlenecks.
+    Optimize only where necessary.
+    Repeat until additional optimization no longer justifies the cost in complexity.
+
+The Golden Rule: Stop When It’s “Good Enough”
+
+Optimization should be goal-driven, not an endless pursuit of perfection. If your code is fast enough for its intended use case, further optimization is unnecessary—especially if it would reduce readability or maintainability.
+
+By following this loop, you ensure that your R code remains clean, efficient, and easy to maintain while optimizing only when it truly matters.
 
 
 

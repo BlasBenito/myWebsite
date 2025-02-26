@@ -86,7 +86,6 @@ Code optimization is a multidimensional trade-off. Improving one aspect often af
 If for some reason you find yourself in the conundrum expressed in the title of this section, then you might find solace in the *First Commandment of Code Optimization*.
 
 > "Thou shall not optimize thy code."  
-> — A Lazy God
 
 Also known in some circles as the *[YOLO](https://dictionary.cambridge.org/dictionary/english/yolo) Principle*, this commandment reveals the righteous path! If your code **is reasonably simple and works as expected**, you can call it a day and move on, because there is no reason whatsoever to attempt any optimization. This idea aligns well with a principle enunciated long ago:
 
@@ -95,57 +94,14 @@ Also known in some circles as the *[YOLO](https://dictionary.cambridge.org/dicti
 
 *Premature optimization* happens when we let performance considerations get in the way of our code design. Designing code is a taxing task already, and designing code while trying to make it efficient at once is even harder! Having a non-trivial fraction of our mental bandwidth focused on optimization results in code more complex than it should be, and increases the chance of introducing bugs.
 
+![https://xkcd.com/1691/](https://imgs.xkcd.com/comics/optimization.png)
+
 That said, there are legitimate reasons to break the first commandment. Maybe you are bold enough to publish your code in a paper (Reviewer #2 says *hi*), releasing it as package for the community, or simply sharing it with your data team. In these cases, the *Second Commandment* comes into play.
 
 > "Thou shall make thy code simple."  
-> — A Simple God
 
 Optimizing code for simplicity isn't just about aesthetics; it's about making it readable, maintainable, and easy to use and debug. In essence, this commandment ensures that we optimize the time required to interact with the code. Any code that saves the time of users and maintainers is efficient enough already! 
 
-At this point we have a clean and elegant code that runs once and gets the job done, great! But what if it must run thousands of times in production? Or worse, what if a single execution takes hours or even days? In these cases, optimization shifts from a nice-to-have to a requirement. Yep, there's a commandment for this too.
-
-> "Thou shall optimize wisely." 
-> — A Simple God
-
-At this point you might be at the ready, fingers on the keyboard, about to deface your pretty code for the sake of sheer performance. Just don't. This is a great point to stop, go back to the whiteboard, and think *carefully* about what you ~~want~~ need to do. You gotta be smart about your next steps! 
-
-There are three principles to think about while planning code optimization.
-
-The first one is the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle):
-
-> "Roughly 80% of the consequences result from 20% of the causes." 
-> — A Simple God
-
-Pareto Principle has been widely applied in the context of software development and code optimization, often in the form of "80% of the execution time is spent in 20% of the code." This idea is echoed by many modern software engineers and performance experts, emphasizing that focusing optimization efforts on the most critical 20% of the code (often the bottlenecks) yields the most significant performance improvements.
-
-A modern paraphrase might go like this:
-
-"In software development, 80% of your program's performance issues come from 20% of your code. Identifying and optimizing that 20% is key to achieving the best performance improvements."
-
-While there's no single well-known quote that originated the idea in the specific context of code optimization, it is widely recognized in the development community. It’s often referenced in the context of profiling and identifying performance bottlenecks using tools like profilers or benchmarks.
-
-It captures the essence of Pareto’s principle: the idea that a small portion of the system or effort is responsible for most of the outcome (in this case, the performance).
-
-
-most of our code performance issues (80 to 90 percent) result from a small fraction of the code (20 to 10 percent). Then, identifying and analyzing. 
-
-  - Beware over-optimization:  happens when we keep pushing for marginal performance gains at the expense of clarity. It often results in convoluted one-liners and obscure tricks to save milliseconds that will confuse future you while making your code harder to maintain.
-
-
-
-Beyond these important points, there is no golden rule to follow here. Optimize when needed, and do it in ways that preserve clarity to set yourself for success.
-
-## The Optimization Loop
-
-Optimizing R code isn’t a one-time task—it’s an iterative process. The best way to balance performance and maintainability is to follow a structured approach:
-1. Start with Clean Design
-
-Before thinking about optimization, focus entirely on writing clear, well-structured code. This means:
-
-    Choosing the best algorithm and most appropriate data structures for the problem.
-    Writing modular, easy-to-read functions with meaningful names.
-    Avoiding unnecessary complexity—clarity trumps cleverness.
-    
 This post is not focused on code simplicity, but here are a few key principles that might be helpful:
 
   - **Use a consistent style**: Stick to a recognizable style guide, such as the [tidyverse style guide](https://style.tidyverse.org/) or [Google’s R style guide](https://google.github.io/styleguide/Rguide.html).
@@ -158,7 +114,29 @@ This post is not focused on code simplicity, but here are a few key principles t
   
 Beyond these tips, I highly recommend the book [A Philosophy of Software Design](https://www.amazon.com/dp/173210221X), by [John Ousterhout](https://en.wikipedia.org/wiki/John_Ousterhout). It helped me find new ways to write better code!
 
-At this stage, don’t worry about performance at all. A well-designed foundation will naturally lead to better efficiency later.
+At this point we have a clean and elegant code that runs once and gets the job done, great! But what if it must run thousands of times in production? Or worse, what if a single execution takes hours or even days? In these cases, optimization shifts from a nice-to-have to a requirement. Yep, there's a commandment for this too.
+
+> "Thou shall optimize wisely." 
+
+At this point you might be at the ready, fingers on the keyboard, about to deface your pretty code for the sake of sheer performance. Just don't. This is a great point to stop, go back to the whiteboard, and think *carefully* about what you ~~want~~ need to do. You gotta be smart about your next steps! 
+
+Here there are a couple of ideas that might help you *get smart* about optimization.
+
+First, keep the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle) in mind! It says that, roughly, 80% of the consequences result from 20% of the causes. When applied to code optimization, this principle translates into a simple fact: *most performance issues are produced by a small fraction of the code*. From here, the best course of action requires identifying these critical code blocks (more about this later) and focusing our optimization efforts on them. Once you've identified the real bottlenecks, the next step is making sure your optimizations don't introduce unnecessary complexity.
+
+Second, **beware of over-optimization**. Taking code optimization too far can do more harm than good! Over-optimization happens when we keep pushing for marginal performance gains at the expense of clarity. It often results in convoluted one-liners and obscure tricks to save milliseconds that will confuse future you while making your code harder to maintain. Worse yet, excessive tweaking can introduce subtle bugs. In short, optimizing wisely means knowing when to stop. A clear, maintainable solution that runs fast enough is often better than a convoluted one that chases marginal gains.
+
+![https://xkcd.com/1739](https://imgs.xkcd.com/comics/fixing_problems.png)
+
+Beyond these important points, there is no golden rule to follow here. Optimize when necessary, but never at the cost of clarity!
+
+## The Optimization Loop
+
+Optimizing R code isn’t a one-time task, it’s an iterative process with a simple structure 
+
+![](flowchart.png)
+
+
 2. Measure Performance (Profile Your Code!)
 
 Instead of guessing where bottlenecks might be, use profiling tools to identify the actual slow parts of your code:
@@ -168,6 +146,7 @@ Instead of guessing where bottlenecks might be, use profiling tools to identify 
     Log memory usage with lobstr::mem_used() if memory is a concern.
 
 This step helps you find real inefficiencies, so you don’t waste time optimizing parts of the code that aren’t problematic.
+
 3. Optimize the Low-Hanging Fruit
 
 Once you know where the real slowdowns are, optimize only the parts that provide significant gains without compromising clarity. Some common low-hanging fruit:
@@ -177,6 +156,9 @@ Once you know where the real slowdowns are, optimize only the parts that provide
     Simplify data handling (e.g., use appropriate data types, avoid excessive copies of large objects).
 
 Avoid over-optimizing too early—focus only on fixes that are clear, easy to implement, and make a measurable difference.
+
+![https://xkcd.com/1445](https://imgs.xkcd.com/comics/efficiency.png)
+
 4. Iterate Until Satisfied
 
 After each round of optimization, re-profile your code and check if further improvements are needed. If performance is now acceptable, stop optimizing. If not, repeat the process:
@@ -188,7 +170,7 @@ After each round of optimization, re-profile your code and check if further impr
 
 The Golden Rule: Stop When It’s “Good Enough”
 
-Optimization should be goal-driven, not an endless pursuit of perfection. If your code is fast enough for its intended use case, further optimization is unnecessary—especially if it would reduce readability or maintainability.
+Optimization should be goal-driven, not an endless pursuit of perfection. If your code is fast enough for its intended use case, further optimization is unnecessary, especially if it would reduce readability or maintainability.
 
 By following this loop, you ensure that your R code remains clean, efficient, and easy to maintain while optimizing only when it truly matters.
 

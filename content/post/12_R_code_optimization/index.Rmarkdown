@@ -132,7 +132,7 @@ Beyond these important points, there is no golden rule to follow here. Optimize 
 
 ## The Optimization Loop
 
-Optimizing R code isn’t a one-time task, it’s an iterative process with a simple structure 
+Optimizing R code isn’t a one-time task, it’s an iterative process that starts with 
 
 ![](flowchart.png)
 

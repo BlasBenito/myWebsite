@@ -130,6 +130,57 @@ Second, **beware of over-optimization**. Taking code optimization too far can do
 
 Beyond these important points, there is no golden rule to follow here. Optimize when necessary, but never at the cost of clarity!
 
+## Profiling and Benchmarking
+
+Profiling and benchmarking are methods to measure your code's performance and help guide optimization decisions. The former helps identify low-performance hot-spots in your code, while the latter helps make informed choices between alternative implementations.
+
+### Profiling: Understanding Where Time Goes
+
+In general, profiling is the process of analyzing your code to understand where the execution time and RAM memory are spent, and will help you answer the question: *Where should I start optimizing?* A profiler breaks down your code execution into function calls and shows which ones might be causing bottlenecks.
+
+In R, the function `utils::Rprof()` is the default tool to profile R expressions, but its usage is quite old-fashioned. You can read a great explanation on this tool in the chapter [Profiling R Code](https://bookdown.org/rdpeng/rprogdatascience/profiling-r-code.html#profiling-r-code) of the book *R Programming for Data Science*, by [Roger D. Peng](https://rdpeng.org/).
+
+The function [`profvis::profvis()`](https://profvis.r-lib.org/reference/profvis.html) is a more modern alternative that still uses `Rprof()` underneath, but generates a neat HTML widget to facilitate the visualization and interpretation of profiling data. The code below applies it to profile the silly function `f()`, which generates one million random numbers from a normal distribution, and another million from a uniform distribution.
+
+```{r, eval = FALSE}
+library(profvis)
+
+f <- function(){
+  stats::rnorm(n = 10e6)
+  stats::runif(n = 10e6)
+}
+
+profvis(expr = f())
+```
+
+![](profiler.png)
+
+The profiling details show that `stats::rnorm()` is the largest time bottleneck in `f()`, while showing that there are no memory usage differences with `stats::runif()`.
+
+If you wish to learn more, there several `profvis` examples available in this [vignette](https://profvis.r-lib.org/articles/examples.html). 
+
+The package [`proftools`](https://cran.r-project.org/package=proftools), also based on `Rprof()`, does not produce an html widget but has [extended plotting functionalities](https://cran.r-project.org/web/packages/proftools/vignettes/proftools.pdf).
+
+###Benchmarking: Comparing Performance
+
+Benchmarking is the process of running your code multiple times to compare how long it takes to execute under different conditions. This is especially useful when you're testing alternative implementations or optimizations. R has several excellent tools for benchmarking, such as the microbenchmark and bench packages. These allow you to compare execution times with high precision, even for very short tasks.
+
+    Benchmarking tips:
+        Test real-world data: Benchmarks should reflect the actual data and usage patterns in your application.
+        Be mindful of garbage collection: Garbage collection (GC) in R can introduce variability in execution time, so be sure to run benchmarks multiple times.
+        Use repeated trials: Small variations in timing can occur between trials, so repeat your benchmark several times and look for consistent results.
+
+Putting It Together
+
+    Profile your code first to identify the parts that need optimization.
+    Implement optimizations carefully and gradually.
+    Benchmark the old and new versions of your code to ensure that changes actually improve performance.
+
+Remember: performance tuning should be a process of continuous improvement, not an all-at-once overhaul. Focus on high-impact changes that significantly improve execution time or memory usage.
+
+![https://xkcd.com/1445](https://imgs.xkcd.com/comics/efficiency.png)
+
+
 ## The Optimization Loop
 
 Optimizing R code isn’t a one-time task, it’s an iterative process that starts with 
@@ -157,7 +208,7 @@ Once you know where the real slowdowns are, optimize only the parts that provide
 
 Avoid over-optimizing too early—focus only on fixes that are clear, easy to implement, and make a measurable difference.
 
-![https://xkcd.com/1445](https://imgs.xkcd.com/comics/efficiency.png)
+
 
 4. Iterate Until Satisfied
 

@@ -115,6 +115,8 @@ At this point we have a clean and elegant code that runs once and gets the job d
 
 At this point you might be at the ready, fingers on the keyboard, about to deface your pretty code for the sake of sheer performance. Just don't. This is a great point to stop, go back to the whiteboard, and think *carefully* about what you ~~want~~ need to do. You gotta be smart about your next steps! 
 
+Here there are a couple of ideas that might help you *get smart* about optimization.
+
 First, keep the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle) in mind! It says that, roughly, 80% of the consequences result from 20% of the causes. When applied to code optimization, this principle translates into a simple fact: *most performance issues are produced by a small fraction of the code*. From here, the best course of action requires identifying these critical code blocks (more about this later) and focusing our optimization efforts on them. Once you've identified the real bottlenecks, the next step is making sure your optimizations don't introduce unnecessary complexity.
 
 Second, **beware of over-optimization**. Taking code optimization too far can do more harm than good! Over-optimization happens when we keep pushing for marginal performance gains at the expense of clarity. It often results in convoluted one-liners and obscure tricks to save milliseconds that will confuse future you while making your code harder to maintain. Worse yet, excessive tweaking can introduce subtle bugs. In short, optimizing wisely means knowing when to stop. A clear, maintainable solution that runs fast enough is often better than a convoluted one that chases marginal gains.
@@ -123,20 +125,115 @@ Second, **beware of over-optimization**. Taking code optimization too far can do
 
 Beyond these important points, there is no golden rule to follow here. Optimize when necessary, but never at the cost of clarity!
 
+## Profiling and Benchmarking
+
+Profiling and benchmarking are methods to measure your code's performance and help guide optimization decisions. The former helps identify low-performance hot-spots in your code, while the latter helps make informed choices between alternative implementations.
+
+### Profiling: Understanding Where Time Goes
+
+Profiling helps analyze your code to understand where the execution time and RAM memory are spent, and will help you answer the question: *Where should I start optimizing?* Profilers break down code execution into function calls, highlighting potential bottlenecks
+
+In R, the function `utils::Rprof()` is the default tool to profile R expressions, but its usage is quite old-fashioned. You can read a great explanation on this tool in the chapter [Profiling R Code](https://bookdown.org/rdpeng/rprogdatascience/profiling-r-code.html#profiling-r-code) of the book *R Programming for Data Science*, by [Roger D. Peng](https://rdpeng.org/).
+
+The function [`profvis::profvis()`](https://profvis.r-lib.org/reference/profvis.html) is a more modern alternative that still uses `Rprof()` underneath, but generates a neat HTML widget to facilitate the visualization and interpretation of profiling data. The code below applies it to profile the silly function `f()`, which generates ten million random numbers from a normal distribution, and another ten million from a uniform distribution.
+
+
+``` r
+library(profvis)
+
+f <- function(){
+  stats::rnorm(n = 1e7)
+  stats::runif(n = 1e7)
+}
+
+profvis::profvis(
+  expr = f()
+  )
+```
+
+![](profiler.png)
+
+The profiling details show that `stats::rnorm()` is the largest time bottleneck in `f()`, while showing that there are no memory usage differences with `stats::runif()`.
+
+If you wish to learn more, there are several `profvis` examples available in this [vignette](https://profvis.r-lib.org/articles/examples.html). 
+
+The package [`proftools`](https://cran.r-project.org/package=proftools), also based on `Rprof()`, does not produce an html widget but has [extended plotting functionalities](https://cran.r-project.org/web/packages/proftools/vignettes/proftools.pdf).
+
+### Benchmarking: Comparing Performance
+
+In the context of code optimization, benchmarking is the process of running alternative versions (original *vs.* optimized) of a piece of code multiple times to compare their performance. It's purpose is helping make data-driven decisions during code optimization.
+
+![https://xkcd.com/1445](https://imgs.xkcd.com/comics/efficiency.png)
+The R package [`microbenchmark`](https://cran.r-project.org/package=microbenchmark) 
+
+
+``` r
+library(microbenchmark)
+
+df <- data.frame(
+  x = stats::runif(n = 1e7)
+)
+
+benchmark <- microbenchmark::microbenchmark(
+  df$x,
+  df[["x"]],
+  df[, "x"],
+  dplyr::pull(df, x),
+  times = 100
+)
+```
+
+
+
+The R package [`bench`](https://bench.r-lib.org/) provides a 
+
+
+``` r
+library(bench)
+
+bench::mark(
+  df$x,
+  df[["x"]],
+  df[, "x"],
+  dplyr::pull(df, x),
+  iterations = 100,
+  check = FALSE
+)
+```
+
+```
+## # A tibble: 4 × 6
+##   expression                min   median `itr/sec` mem_alloc `gc/sec`
+##   <bch:expr>           <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
+## 1 "df$x"                 1.34µs   1.41µs   626191.        0B      0  
+## 2 "df[[\"x\"]]"          8.67µs   9.43µs    89705.        0B      0  
+## 3 "df[, \"x\"]"         13.01µs  13.61µs    72192.        0B      0  
+## 4 "dplyr::pull(df, x)" 226.28µs  245.5µs     3574.      216B     36.1
+```
+
+R has several excellent benchmarking tools for benchmarking, such as the microbenchmark and bench packages. These allow you to compare execution times with high precision, even for very short tasks.
+    Benchmarking tips:
+        Test real-world data: Benchmarks should reflect the actual data and usage patterns in your application.
+        Use repeated trials: Small variations in timing can occur between trials, so repeat your benchmark several times and look for consistent results.
+
+Putting It Together
+
+    Profile your code first to identify the parts that need optimization.
+    Implement optimizations carefully and gradually.
+    Benchmark the old and new versions of your code to ensure that changes actually improve performance.
+
+Remember: performance tuning should be a process of continuous improvement, not an all-at-once overhaul. Focus on high-impact changes that significantly improve execution time or memory usage.
+
+
+
+
 ## The Optimization Loop
 
-Optimizing R code isn’t a one-time task—it’s an iterative process. The best way to balance performance and maintainability is to follow a structured approach:
-1. Start with Clean Design
+Optimizing R code isn’t a one-time task, it’s an iterative process that starts with 
 
-Before thinking about optimization, focus entirely on writing clear, well-structured code. This means:
-
-    Choosing the best algorithm and most appropriate data structures for the problem.
-    Writing modular, easy-to-read functions with meaningful names.
-    Avoiding unnecessary complexity—clarity trumps cleverness.
-    
+![](flowchart.png)
 
 
-At this stage, don’t worry about performance at all. A well-designed foundation will naturally lead to better efficiency later.
 2. Measure Performance (Profile Your Code!)
 
 Instead of guessing where bottlenecks might be, use profiling tools to identify the actual slow parts of your code:
@@ -146,6 +243,7 @@ Instead of guessing where bottlenecks might be, use profiling tools to identify 
     Log memory usage with lobstr::mem_used() if memory is a concern.
 
 This step helps you find real inefficiencies, so you don’t waste time optimizing parts of the code that aren’t problematic.
+
 3. Optimize the Low-Hanging Fruit
 
 Once you know where the real slowdowns are, optimize only the parts that provide significant gains without compromising clarity. Some common low-hanging fruit:
@@ -155,6 +253,9 @@ Once you know where the real slowdowns are, optimize only the parts that provide
     Simplify data handling (e.g., use appropriate data types, avoid excessive copies of large objects).
 
 Avoid over-optimizing too early—focus only on fixes that are clear, easy to implement, and make a measurable difference.
+
+
+
 4. Iterate Until Satisfied
 
 After each round of optimization, re-profile your code and check if further improvements are needed. If performance is now acceptable, stop optimizing. If not, repeat the process:
@@ -166,7 +267,7 @@ After each round of optimization, re-profile your code and check if further impr
 
 The Golden Rule: Stop When It’s “Good Enough”
 
-Optimization should be goal-driven, not an endless pursuit of perfection. If your code is fast enough for its intended use case, further optimization is unnecessary—especially if it would reduce readability or maintainability.
+Optimization should be goal-driven, not an endless pursuit of perfection. If your code is fast enough for its intended use case, further optimization is unnecessary, especially if it would reduce readability or maintainability.
 
 By following this loop, you ensure that your R code remains clean, efficient, and easy to maintain while optimizing only when it truly matters.
 

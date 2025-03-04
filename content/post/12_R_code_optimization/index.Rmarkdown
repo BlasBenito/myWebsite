@@ -142,7 +142,7 @@ In R, the function `utils::Rprof()` is the default profiling tool. You can find 
 
 The function [`profvis::profvis()`](https://profvis.r-lib.org/reference/profvis.html) is a modern alternative that still uses `Rprof()` underneath, but generates a neat HTML widget to facilitate the visualization and interpretation of profiling data. 
 
-The code block below shows the silly function `f()`, which computes a correlation test between two large vectors generated randomly from a normal and a uniform distribution.
+Let's check how it works on the silly function `f()` shown below. It runs a correlation test between two large vectors generated randomly from a normal and a uniform distribution.
 
 ```{r}
 f <- function(n = 1e7){
@@ -153,7 +153,7 @@ f <- function(n = 1e7){
 }
 ```
 
-Let's profile it with `profvis()`:
+To profile it with `profvis()` we just have to introduce our function into the argument `expr`. The argument `rerun = TRUE` is helpful to profile functions that might run too fast for the profiler.
 
 ```{r, eval = FALSE}
 profvis::profvis(
@@ -164,19 +164,34 @@ profvis::profvis(
 
 
 ```{r, echo = FALSE}
-profvis::profvis(
+p <- profvis::profvis(
   expr = f(), 
   rerun = TRUE,
   width = "100%", 
-  height = "400"
+  height = "300"
   )
+
+htmlwidgets::saveWidget(
+  p, 
+  file = "profiling.html", 
+  selfcontained = TRUE
+  )
+
+rm(p)
 ```
 
-The **Flame Graph** works better if you un-tick the box "Split horizontally" in the "Options" menu (upper-right corner). It shows what functions are called by other functions, and the time and memory used in those calls. For example, on the right side you can see how `cor.test` calls the functions `complete.cases` and `cor`. The gray blocks in this view show [garbage collection](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29) (`<GC>`) calls, used for memory housekeeping.
+<iframe src="profiling.html" name="profiler"
+  width="600" height="600" scrolling="auto" frameborder="0">
+   <p>Profiling result.</p>
+</iframe>
 
-The **Data** view, summarizes the flame graph in a more intuitive way to highlight the computational hotspots in our code. 
+<br>
 
-As you can see, `profvis()` is a very useful tool to guide software optimization. However, there are some limitations to be aware of. The column `Memory (MB)` can be unreliable due to R's lazy memory management and garbage collection, which can obscure memory allocations. 
+The **Flame Graph** shows the *call stack* of the profiled code. It indicates, from bottom to top, what functions are called by other functions, their run time, and memory allocated or deallocated. For example, on the lower right corner you can see how `cor.test.default` () calls the functions `complete.cases` and `cor`, and a gray block labelled `<GC>` wiht a negative memory number (indicating deallocated memory). These gray boxes show [garbage collection](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29) calls, used for memory housekeeping.
+
+The **Data** tab summarizes the profiling from top to bottom in a very intuitive way that highlights computational hot-spots in our code right away. 
+
+Even though `profvis()` is a very useful tool to guide software optimization, there are some limitations to be aware of: the memory usage values be unreliable due to R's lazy memory management and the automated application of garbage collection, which can obscure memory allocations and deallocations. 
 
 If you wish to learn more, there are several `profvis` examples available in this [vignette](https://profvis.r-lib.org/articles/examples.html). 
 
@@ -184,9 +199,26 @@ Another alternative leveraging `Rprof()` is the package [`proftools`](https://cr
 
 ### Benchmarking
 
-benchmarking is the process of running alternative versions (original *vs.* optimized) of a piece of code to compare their performance. It's purpose is helping make data-driven decisions during code optimization.
+Once we identify a worthy bottleneck in our code, it's time to start thinking about alternative implementations to mitigate the issue.
 
 ![https://xkcd.com/1445](https://imgs.xkcd.com/comics/efficiency.png)
+
+For example, the profiling of `f()` shows that `stats::cor.test()` requires 33% of the run time and has the highest memory usage. Here we could replace it with `stats::cor()` to see if we can improve performance.
+
+```{r}
+f_alt <- function(n = 1e7){
+  stats::cor(
+    x = stats::rnorm(n = n), 
+    y = stats::runif(n = n)
+  )
+}
+```
+
+Now, how do we compare `f()` and `f_alt()`? We could indeed profile each one of them and compare results.
+
+benchmarking is the process of running alternative versions (original *vs.* optimized) of a piece of code to compare their performance. It's purpose is helping make data-driven decisions during code optimization.
+
+
 The R package [`microbenchmark`](https://cran.r-project.org/package=microbenchmark) 
 
 ```{r}

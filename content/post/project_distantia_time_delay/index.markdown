@@ -24,13 +24,7 @@ projects: []
 toc: true
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  fig.width = 8, 
-  fig.height = 6,
-  eval = FALSE
-)
-```
+
 
 
 ## Summary
@@ -50,7 +44,8 @@ This tutorial requires the following packages:
   - [`mapview`](https://r-spatial.github.io/mapview/): easy to use interactive map visualization.
   - [`reactable`](https://glin.github.io/reactable/): interactive tables.
 
-```{r, message = FALSE, warning = FALSE}
+
+``` r
 library(distantia)
 library(dtw)
 library(zoo)
@@ -67,28 +62,14 @@ This demo focuses on two example data frames shipped with the package `distantia
 
 Stored as a [`simple features`](https://r-spatial.github.io/sf/) data frame, `covid_counties` contains county polygons and several socioeconomic variables. It is connected to `covid_prevalence` by county name, which is stored in the column `name`.
 
-```{r, echo = FALSE, cache=TRUE}
-la_population <- mapview(
-  covid_counties, 
-  zcol = "population",
-  label = "name"
-  )
 
-htmlwidgets::saveWidget(
-  la_population@map, 
-  file = "la_population.html", 
-  selfcontained = TRUE
-  )
-```
 
 <iframe src="la_population.html" name="LA_Population"
   width="600" height="600" scrolling="auto" frameborder="0">
    <p>California counties represented in the Covid-19 dataset.</p>
 </iframe>
 
-```{r, echo = FALSE}
-rm(la_population)
-```
+
 
 
 The socioeconomic variables available in `covid_counties` are:
@@ -109,23 +90,7 @@ This data frame contains weekly Covid-19 prevalence in 36 California counties be
   
 The prevalence time series has the columns `name`, `time`, with the date of the first day of the week each data point represents, and `prevalence`, expressed as proportion of positive tests. The table below shows the first rows of this data frame.
   
-```{r, echo = FALSE}
-covid_prevalence |> 
-  reactable::reactable(
-    pagination = TRUE,
-    searchable = TRUE,
-    sortable = TRUE,
-    showSortable = TRUE,
-    filterable = TRUE,
-    resizable = TRUE,
-    defaultPageSize = 10,
-    showPageSizeOptions = TRUE,
-    striped = TRUE,
-    compact = TRUE,
-    wrap = FALSE,
-    fullWidth = FALSE
-  )
-```
+
 
 <br>
 
@@ -138,7 +103,8 @@ A **time series list**, or `tsl` for short, is a list of [`zoo`](https://cran.r-
 
 The function `tsl_initialize()` transforms time series stored as long data frames into time series lists.
 
-```{r tsl_init, cache=TRUE, cache.path="cache/"}
+
+``` r
 tsl <- distantia::tsl_initialize(
   x = covid_prevalence,
   name_column = "name",
@@ -148,44 +114,36 @@ tsl <- distantia::tsl_initialize(
 
 Each element in `tsl` is named after the county the data belongs to.
 
-```{r}
+
+``` r
 names(tsl)
 ```
 
 The `zoo` objects within `tsl` also have the attribute `name` to help track the data in case it is extracted from the time series list.
 
-```{r}
+
+``` r
 attributes(tsl[[1]])$name
 attributes(tsl[[2]])$name
 ```
 
 Each individual `zoo` object comprises a time index and a data matrix.
 
-```{r}
+
+``` r
 zoo::index(tsl[["Alameda"]]) |> 
   head()
 ```
 
-```{r}
+
+``` r
 zoo::coredata(tsl[["Alameda"]]) |> 
   head()
 ```
 
 Before going forward, let me show a little example to help develop a sense of how DTW and LS work on a small subset of our time series. The figure below shows two years of data for San Francisco, Napa, and Solano.
 
-```{r, fig.height=3.5, echo = FALSE}
-tsl_smol <- distantia::tsl_subset(
-  tsl = tsl,
-  names = c("San_Francisco", "Napa", "Solano"),
-  time = c("2021-01-01", "2023-01-01")
-)
 
-distantia::tsl_plot(
-  tsl = tsl_smol, 
-  guide = FALSE,
-  text_cex = 1.3
-  )
-```
 
 At first glance, Napa and Solano seem quite well synchronized and look very similar. On the other hand, San Francisco, in spite of having the same number of events as the other two, shows a timing difference of several months.
 
@@ -198,13 +156,12 @@ Time-delay or time-lag analyisis is an experimental feature in `distantia`. It a
 This section focuses on the example data `tsl_smol` to show how DTW can be used to compute time-lags.
 
 
-```{r, fig.height=3.5, echo = FALSE}
-distantia::tsl_plot(tsl = tsl_smol, guide = FALSE)
-```
+
 
 The computation of DTW involves finding the *least-cost path* within a cost matrix derived from the distances between all samples in two time series. In the plot below there is a black wiggly line running in parallel to the white diagonal. That's the least-cost path aligning the time series of Napa and San Francisco.
 
-```{r, fig.height=4.5, fig.width=6}
+
+``` r
 distantia::distantia_dtw_plot(
   tsl = tsl_smol[c("San_Francisco", "Napa")]
 )
@@ -212,36 +169,23 @@ distantia::distantia_dtw_plot(
 
 A least-cost path comprises pairs of time coordinates connecting samples from each time series. Computing the time difference between these pairs of samples results in a distribution of time differences we can use to assess the time-delay between these time series.
 
-```{r}
+
+``` r
 df_delay <- distantia_time_delay(
   tsl = tsl_smol[c("Napa", "San_Francisco")]
 )
 df_delay
 ```
 
-```{r, echo = FALSE}
-df_delay |> 
-  dplyr::select(
-    -distance,
-    -sd
-  ) |> 
-  dplyr::mutate(
-    mean = round(mean, 1)
-  ) |> 
-  reactable(
-    fullWidth = TRUE,
-    resizable = TRUE,
-    sortable = TRUE,
-    showSortable = TRUE
-    )
-```
+
 
 
 
 
 The argument `bandwidth`, expressed as a fraction of the length of the time series, restricts how far in time the algorithm can go to find synchronicity between outbreaks. The plot below sets it to two months (2/12) for demonstration purposes only.
 
-```{r, fig.height=4.5, fig.width=6}
+
+``` r
 distantia::distantia_dtw_plot(
   tsl = tsl_smol[c("San_Francisco", "Napa")],
   bandwidth = 2/12
@@ -249,7 +193,8 @@ distantia::distantia_dtw_plot(
 ```
 The value of `bandwidth` should be reasonable. For example, setting `bandwidth = 0.25` (a full year) in four years time series with seasonal outbreaks like the ones in `tsl` might be excessive, and would allow the alignment of outbreaks separated by a year.
 
-```{r, fig.height=4.5, fig.width=6}
+
+``` r
 distantia::distantia_dtw_plot(
   tsl = tsl[c("San_Francisco", "Napa")],
   bandwidth = 1/8
@@ -265,14 +210,16 @@ distantia::distantia_time_delay(
 
 
 
-```{r}
+
+``` r
 df_delay <- distantia::distantia_time_delay(
   tsl = tsl,
   bandwidth = 0.25
 )
 ```
 
-```{r}
+
+``` r
 reactable::reactable(
   df_delay,
   pagination = TRUE,
@@ -290,21 +237,24 @@ reactable::reactable(
 )
 ```
 
-```{r}
+
+``` r
 distantia::distantia_dtw_plot(
   tsl = tsl[c("Napa", "San_Francisco")],
   bandwidth = 0.125
 )
 ```
 
-```{r}
+
+``` r
 distantia::tsl_plot(
   tsl = tsl[c("San_Francisco", "Napa")],
   xlim = c("2021-07-01", "2022-01-10")
 )
 ```
 
-```{r}
+
+``` r
 sf_delay <- distantia::distantia_spatial(
   df = df_delay,
   sf = covid_counties
@@ -312,7 +262,8 @@ sf_delay <- distantia::distantia_spatial(
 ```
 
 
-```{r}
+
+``` r
 mapview(sf_delay |> dplyr::filter(x == "Napa", y == "San_Francisco"))
 ```
 

@@ -70,16 +70,32 @@ That's why optimization isn’t just about squeezing out more speed, it’s abou
 
 ## Understanding Code Efficiency
 
-The diagram below illustrates a hierarchy of causes and effects one might want to consider when thinking about code efficiency.
+*Code efficiency* is an abstract concept involving a complex web of causes and effects. I don't have the intention of unveiling the whole thing bare here, but I do believe that understanding some of the foundations helps articulate successful code optimization strategies. These foundations are simplified in the diagram below, which represents the most relevant causes and consequences of code efficiency.
 
 ![](diagram.png)
-On the left side, *code architecture* refers to the elements of the software that can be tweaked to improve efficiency. The **efficiency landscape**, in green, shows measurable dimensions of performance for humans and machines, and the higher-order emergent properties of optimized code.
+On the left, the causes comprise several major *code features* that we can tweak to improve (or worsen!) the efficiency of our code. Changes in these features are bound to shape the *efficiency landscape* of our code in often divergent ways.
 
-Software exists for us developers and users, and our time is far more valuable than CPU time! That's why **simplicity** and **readability** sit at the top of the hierarchy. The best way to improve efficiency? **Make your code simple!** Simplicity means writing readable, modular, and easy-to-use code. However, striking a good balance between readability and optimization is key: over-optimization making code unreadable and excessive simplicity turning our code sluggish are the extremes to avoid.
+### The Causes
 
-Beneath simplicity, **algorithm design** and **data structures** form the core of code efficiency. Well-designed algorithms and appropriate data structures contribute the most to performance in most cases. However, the **programming language** also plays a crucial role. An efficient algorithm implemented in C++ may vastly outperform the same algorithm written in R due to differences in compilation, memory management, and execution models.
+The selection of an [interpreted versus a compiled language](https://github.com/MMT-Community/Compiler-Vs-Interpreter) defines major code features and efficiency consequences. Interpreted languages like R and Python offer a high-level syntax that helps write clear and concise code. They are also easier to debug, but are slow and memory-hungry. On the other hand, compiled languages such as C++ or Rust run fast with little memory overheads, but are harder to write and debug. In practice, a good sweet spot emerges from leveraging the best of both worlds. Tools like [Rcpp (runs C++ code within R)](https://www.rcpp.org/) or [Cython (runs C code within Python)](https://cython.org/) allow combining both kinds of languages to increase performance without sacrificing as much readability at the expense of higher code complexity.
 
-Next, **hardware utilization** determines how well algorithms and data structures leverage computational resources. Techniques like *vectorization*, *parallelization*, *GPU acceleration*, and *memory management* can dramatically increase performance and improve efficiency.
+Software exists for us developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to to improve efficiency is **making your code clean!** Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), and easy-to-use. However, striking a good balance between readability and optimization is key here: excessive simplicity may leave other efficiency gains off the table!
+
+
+Beyond language choice and clean code, the **algorithm design** and the proper choice of **data structures** plays a fundamental role in enhancing code efficiency. The key here is choosing algorithms scaling efficiently with data size, and memory-efficient data structures. For example, iterating through all possible pairwise comparisons between a set of elements in a data frame might be intuitive, but replacing it with a divide-and-conquer approach reliying on a tree-based structure can lead to a massive speed up without sacrificing much readability. Understanding these trade-offs allows for better optimization decisions: sometimes, a simple data structure is the best choice for readability, but in performance-critical sections, a more optimized structure can yield significant improvements.
+
+Next, hardware utilization determines how well algorithms and data structures leverage computational resources. Even a well-optimized algorithm can underperform if it doesn’t take full advantage of the underlying hardware. Several techniques can dramatically improve performance:
+
+    Vectorization – Instead of processing elements one by one in loops, vectorized operations allow entire arrays to be processed simultaneously at the CPU level. This is particularly powerful in languages like R and Python, where operations using numpy, data.table, or dplyr can vastly outperform explicit loops by leveraging low-level optimizations.
+
+    Parallelization – Modern CPUs feature multiple cores, and taking advantage of them can lead to significant speedups. Parallel execution—whether using multi-threading (future in R, concurrent.futures in Python) or multi-processing—allows tasks to run concurrently rather than sequentially, reducing overall computation time.
+
+    GPU Acceleration – Some tasks, particularly those involving deep learning, simulations, or matrix-heavy computations, can be offloaded to GPUs. Unlike CPUs, which have a few powerful cores, GPUs contain thousands of smaller cores optimized for parallel workloads. Libraries like torch (in R and Python) or cuDF (for GPU-accelerated data frames) help take advantage of this hardware for massive performance gains.
+
+    Memory Management – Efficient memory usage is critical, especially when working with large datasets. Poor memory handling (e.g., excessive copies of objects) can cause unnecessary slowdowns and even lead to crashes. Techniques like in-place modifications, avoiding redundant objects, and leveraging memory-efficient data structures (data.table in R, pandas' categorical types in Python) help keep memory overhead low while maintaining performance.
+
+By strategically integrating these hardware-aware optimizations, developers can extract the most performance from their code while maintaining efficiency across different computing environments.
+### The Effects
 
 These foundational choices impact three key performance dimensions:
 

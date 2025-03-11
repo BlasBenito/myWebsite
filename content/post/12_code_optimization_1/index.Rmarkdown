@@ -81,16 +81,26 @@ The selection of an [interpreted versus a compiled language](https://thevaluable
 
 Software exists for us developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to to improve efficiency is **making your code clean!** Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain. However, striking a good balance between readability and computational efficiency is key here: excessive simplicity may leave other gains off the table!
 
-[**Algorithms**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp) are the hearts of our code! They move bits around tirelessly until their purpose is achieved (or an exception is raised). A well designed algorithm is the hallmark of efficient code. A good algorithm has a clear scope, relies on memory-efficient **data structures**, scales efficiently with data size, and avoids redundant steps. At this stage, understanding the trade-offs between algorithm design and readability allows for better optimization decisions. For example, algorithms involving data frames in R are easy to read, but using a more optimized albeit less readable structure such as [data.table](https://rdatatable.gitlab.io/data.table/) in performance-critical sections can yield significant improvements.
+[**Algorithms**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp) are the hearts of our code! They move bits around tirelessly until their purpose is achieved or an exception is raise. A well designed algorithm is the hallmark of efficient code. A good algorithm has a clear scope, relies on memory-efficient **data structures**, scales efficiently with data size, and avoids redundant steps. At this stage, understanding the trade-offs between algorithm design and readability allows for better optimization decisions. For example, algorithms involving data frames in R are easy to read, but using a more optimized albeit less readable structure such as [data.table](https://rdatatable.gitlab.io/data.table/) in performance-critical sections can yield significant improvements.
 
-**Hardware utilization** refers to techniques improving how algorithms and data structures leverage computational resources. For example, [many functions in R leverage **vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously in the CPU, vastly outperforming explicit loops. **Parallelization** is another common technique to accelerate execution by spreading tasks across multiple cores. However, not all algorithms can be parallelized, it increases memory usage, and can cause [computational bottlenecks](https://en.wikipedia.org/wiki/Parallel_slowdown#cite_note-1).
+**Hardware utilization** refers to techniques improving how algorithms and data structures leverage computational resources. For example, many functions in R leverage [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously in the CPU, vastly outperforming explicit loops. 
+
+[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
+
+  - The code must be easy to split into independent tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
+  - Each task should take longer to compute than what's required to move its input and output data between memory or disk and the CPU, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). 
+  - The total memory required by all tasks running simultaneously must not exceed the available system memory.
+  
+Still, even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). We cannot simply throw more processors at our code and expect immediate gains in efficiency!
+
+Efficient **memory management** is a critical feature of efficient code, especially when working with large data.
+
 
 [memory fragmentation](https://stackoverflow.com/questions/3770457/what-is-memory-fragmentation)
 
+ Poor memory handling (e.g., excessive copies of objects) can cause unnecessary slowdowns and even lead to crashes. Techniques like in-place modifications, avoiding redundant objects, and leveraging memory-efficient data structures (data.table in R, pandas' categorical types in Python) help keep memory overhead low while maintaining performance.
 
-  - Memory Management – Efficient memory usage is critical, especially when working with large datasets. Poor memory handling (e.g., excessive copies of objects) can cause unnecessary slowdowns and even lead to crashes. Techniques like in-place modifications, avoiding redundant objects, and leveraging memory-efficient data structures (data.table in R, pandas' categorical types in Python) help keep memory overhead low while maintaining performance.
 
-By strategically integrating these hardware-aware optimizations, developers can extract the most performance from their code while maintaining efficiency across different computing environments.
 
 ### The Effects
 
@@ -103,6 +113,11 @@ These foundational choices impact three key performance dimensions:
 At a higher level, two emergent properties arise:
 
   - **Scalability**: How well the code adapts to increasing workloads and larger infrastructures.
+  
+https://cran.r-project.org/web/packages/usl/vignettes/usl.pdf
+https://en.wikipedia.org/wiki/Neil_J._Gunther#Universal_Scalability_Law
+https://tangowhisky37.github.io/PracticalPerformanceAnalyst/pages/spe_fundamentals/what_is_universal_scalability_law/
+  
   - **Energy Efficiency**: The trade-off between computational cost and energy consumption.
 
 Code optimization is a multidimensional trade-off. Improving one aspect often affects others. For example, speeding up execution might increase memory usage, parallelization can create I/O bottlenecks. There's rarely a single "best" solution, only trade-offs based on context and constraints.

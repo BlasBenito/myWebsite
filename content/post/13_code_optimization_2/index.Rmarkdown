@@ -106,6 +106,13 @@ If you wish to learn more, there are several `profvis` examples available in thi
 
 Another alternative leveraging `Rprof()` is the package [`proftools`](https://cran.r-project.org/package=proftools). It does not produce a neat html widget, but has [extended plotting functionalities](https://cran.r-project.org/web/packages/proftools/vignettes/proftools.pdf).
 
+Others
+
+https://cran.r-project.org/web/packages/profmem/index.html
+https://cran.r-project.org/web/packages/aprof/index.html
+https://cran.r-project.org/web/packages/profile/index.html
+https://github.com/atheriel/xrprof
+
 ### Benchmarking
 
 Once we identify a worthy bottleneck in our code, it's time to start thinking about alternative implementations to mitigate the issue.

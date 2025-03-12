@@ -77,28 +77,65 @@ On the left, the causes comprise several major *code features* that we can tweak
 
 ### The Causes
 
+#### Programming Language
+
 The selection of an [interpreted versus a compiled language](https://thevaluable.dev/difference-between-compiler-interpreter/) defines major code features and efficiency consequences. Interpreted languages like R and Python offer a high-level syntax that helps write clear and concise code. They are also easier to debug, but are slow and memory-hungry. On the other hand, compiled languages such as C++ or Rust run fast with little memory overheads, but are harder to write and debug. In practice, a good sweet spot emerges from leveraging the best of both worlds. Tools like [Rcpp (runs C++ code within R)](https://www.rcpp.org/) or [Cython (runs C code within Python)](https://cython.org/) allow combining both kinds of languages to increase performance without sacrificing as much readability at the expense of higher code complexity.
+
+#### Simplicity and Readability
 
 Software exists for us developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to to improve efficiency is **making your code clean!** Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain. However, striking a good balance between readability and computational efficiency is key here: excessive simplicity may leave other gains off the table!
 
+#### Algorithm Design and Data Structures
+
 [**Algorithms**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp) are the hearts of our code! They move bits around tirelessly until their purpose is achieved or an exception is raise. A well designed algorithm is the hallmark of efficient code. A good algorithm has a clear scope, relies on memory-efficient **data structures**, scales efficiently with data size, and avoids redundant steps. At this stage, understanding the trade-offs between algorithm design and readability allows for better optimization decisions. For example, algorithms involving data frames in R are easy to read, but using a more optimized albeit less readable structure such as [data.table](https://rdatatable.gitlab.io/data.table/) in performance-critical sections can yield significant improvements.
+
+#### Hardaware Utilization
 
 **Hardware utilization** refers to techniques improving how algorithms and data structures leverage computational resources. For example, many functions in R leverage [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously in the CPU, vastly outperforming explicit loops. 
 
 [**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
 
   - The code must be easy to split into independent tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
-  - Each task should take longer to compute than what's required to move its input and output data between memory or disk and the CPU, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). 
-  - The total memory required by all tasks running simultaneously must not exceed the available system memory.
+  - The computation time of a task must be longer than the time required to move its input and output data between memory or disk to the CPU and back, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). Parallelizing very short tasks is not worth it!
+  - The total memory required by all tasks running simultaneously must not exceed the available system memory. If a task consumes 2GB of RAM and the machine has 8GB of RAM and 4 cores, the parallelized program should only use 3 of these cores.
   
 Still, even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). We cannot simply throw more processors at our code and expect immediate gains in efficiency!
 
-Efficient **memory management** is a critical feature of efficient code, especially when working with large data.
+Efficient **memory management** ensures that our code uses only the resources it needs, avoiding unnecessary memory allocations due to excessive object copies. For instance, by default R uses [copy on modify](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/reference.html#copy-on-modify) to manage in-memory data. Every time we modify a data structure (data frame, list, matrix, etc), a new copy of the original object is made, and an additional chunk of memory is allocated. As a general principle, [deleting the original object](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/releasememory.html#use-rm) when not needed is a good idea. However, a program that repeatedly allocates and frees memory accumulates non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue, known as [memory fragmentation](https://www.softwareverify.com/blog/memory-fragmentation-your-worst-nightmare/), leads to a higher memory usage and performance slowdowns. 
 
+
+
+
+https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/reference.html
+
+To mitigate this, several strategies can be employed:
+
+    In-place modifications: R's data.table and dplyr functions often modify data in place, reducing the need for duplicating large datasets. Avoiding the creation of unnecessary copies can significantly cut down on memory usage.
+
+    Efficient data structures: Choosing appropriate data structures is key to minimizing memory overhead. For example, using sparse matrices for data that contains many zero values, or using categorical variables for factors with many levels, can save a lot of memory.
+
+    Memory-mapped files: For datasets too large to fit into RAM, memory-mapped files allow data to be loaded into memory only when needed, rather than loading the entire file at once. This can be crucial for big data processing.
+
+    Garbage collection: Regularly calling the garbage collector (gc()) in R can help free up unused memory, though R typically manages this automatically. Being mindful of memory-intensive operations and clearing objects when they are no longer needed can improve performance.
+    
+        Preallocate memory: Whenever possible, allocate memory in large blocks upfront, rather than in small chunks over time. This can prevent fragmentation by reducing the number of memory allocation requests.
+
+    Object pooling: Reusing memory blocks that are no longer needed can help avoid creating new allocations, thereby reducing fragmentation. This is especially useful in high-performance applications that repeatedly allocate and deallocate large objects.
+
+
+In essence, effective memory management can be the difference between code that barely runs and code that performs smoothly even under heavy loads. The goal is not only to avoid running out of memory but also to maximize the efficiency of the available memory to minimize computational overhead.
 
 [memory fragmentation](https://stackoverflow.com/questions/3770457/what-is-memory-fragmentation)
 
  Poor memory handling (e.g., excessive copies of objects) can cause unnecessary slowdowns and even lead to crashes. Techniques like in-place modifications, avoiding redundant objects, and leveraging memory-efficient data structures (data.table in R, pandas' categorical types in Python) help keep memory overhead low while maintaining performance.
+ 
+ In addition to these techniques, it's important to understand the concept of 
+
+
+
+
+
+By taking care to prevent or reduce fragmentation, you can ensure that your program makes the most efficient use of memory, improving both performance and stability.
 
 
 

@@ -183,6 +183,12 @@ Remember: performance tuning should be a process of continuous improvement, not 
 
 Advanced R, by Hadley Whickham, has a [great section in code optimization]().
 
+### Others
+
+https://stackoverflow.com/questions/17218404/should-i-get-a-habit-of-removing-unused-variables-in-r
+
+http://adv-r.had.co.nz/memory.html
+
 ## The Optimization Loop
 
 Optimizing R code isn’t a one-time task, it’s an iterative process that starts with 

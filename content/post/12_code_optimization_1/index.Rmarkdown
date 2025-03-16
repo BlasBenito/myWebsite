@@ -101,12 +101,29 @@ Software exists for us developers and users, and our time is far more valuable t
   
 Still, even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). We cannot simply throw more processors at our code and expect immediate gains in efficiency!
 
-Efficient **memory management** ensures that our code uses only the resources it needs, avoiding unnecessary memory allocations due to excessive object copies. For instance, by default R uses [copy on modify](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/reference.html#copy-on-modify) to manage in-memory data. Every time we modify a data structure (data frame, list, matrix, etc), a new copy of the original object is made, and an additional chunk of memory is allocated. As a general principle, [deleting the original object](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/releasememory.html#use-rm) when not needed is a good idea. However, a program that repeatedly allocates and frees memory accumulates non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue, known as [memory fragmentation](https://www.softwareverify.com/blog/memory-fragmentation-your-worst-nightmare/), leads to a higher memory usage and performance slowdowns. 
+Efficient **memory management** ensures that our code uses the memory resources it needs in a sensible manner. However, that's easier said than done 
+
+repeatedly allocating and freeing small chunks of memory accumulates non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue is known as [memory fragmentation](https://www.softwareverify.com/blog/memory-fragmentation-your-worst-nightmare/), and leads to a higher memory usage and performance slowdowns. 
+
+
+Memory management in R is a deep rabbit hole, but there are several great resources out there that may help you find your footing on this topic:
+
+  - [Best Coding Practices for R](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/): The chapters [10](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/types.html), [11](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/reference.html) and [12](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/releasememory.html) of this regrettably unfinished on-line book offers plenty of tips and tricks to improve memory management in R. 
+  - Chapter 14 of [The Art of R Programming](https://archive.org/details/Norman_Matloff___The_Art_of_R_Programming/mode/2up) (pdf available [here](https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf)): might seem dated, but goes deep on the trade-off between computational speed and memory usage through many enlightening examples.
+  - [Advanced R](http://adv-r.had.co.nz/): the first edition of this essential book has the chapter [Memory](http://adv-r.had.co.nz/memory.html#gc), which explains in detail how *modification in place* and *garbage collection* work in R.
 
 
 
 
-https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/reference.html
+As a general principle, [deleting the original object](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/releasememory.html#use-rm) when not needed is a good idea. 
+
+However, 
+
+There are several techniques to mitigate this issue
+
+Memory management in R is a complex topic that goes as deep as the design of the language goes, but there are many good resources out there to learn more about it. The first edition of the book Advanced R has a thorough section [Memory](http://adv-r.had.co.nz/memory.html#gc). The third chapter of the  [](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/types.html)
+
+
 
 To mitigate this, several strategies can be employed:
 
@@ -125,17 +142,12 @@ To mitigate this, several strategies can be employed:
 
 In essence, effective memory management can be the difference between code that barely runs and code that performs smoothly even under heavy loads. The goal is not only to avoid running out of memory but also to maximize the efficiency of the available memory to minimize computational overhead.
 
-[memory fragmentation](https://stackoverflow.com/questions/3770457/what-is-memory-fragmentation)
-
- Poor memory handling (e.g., excessive copies of objects) can cause unnecessary slowdowns and even lead to crashes. Techniques like in-place modifications, avoiding redundant objects, and leveraging memory-efficient data structures (data.table in R, pandas' categorical types in Python) help keep memory overhead low while maintaining performance.
- 
- In addition to these techniques, it's important to understand the concept of 
 
 
 
 
 
-By taking care to prevent or reduce fragmentation, you can ensure that your program makes the most efficient use of memory, improving both performance and stability.
+
 
 
 
@@ -209,7 +221,9 @@ Second, **beware of over-optimization**. Taking code optimization too far can do
 Beyond these important points, there is no golden rule to follow here. Optimize when necessary, but never at the cost of clarity!
 
 
+#Resources
 
+  - [Best Coding Practices for R](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/).
 
 
 

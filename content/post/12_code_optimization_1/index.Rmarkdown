@@ -101,9 +101,30 @@ Software exists for us developers and users, and our time is far more valuable t
   
 Still, even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). We cannot simply throw more processors at our code and expect immediate gains in efficiency!
 
-Efficient **memory management** ensures that our code uses the memory resources it needs in a sensible manner. However, that's easier said than done 
+Efficient **memory management** ensures that our code uses the system's memory in a *sensible* manner. But what seems *sensible* in a beefy development laptop might end crashing a production machine, so there are levels to what efficient memory management actually means.
 
-repeatedly allocating and freeing small chunks of memory accumulates non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue is known as [memory fragmentation](https://www.softwareverify.com/blog/memory-fragmentation-your-worst-nightmare/), and leads to a higher memory usage and performance slowdowns. 
+A first step in the right direction is to be what I call *memory aware*. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) open during code development and testing helps build an intuition on the memory usage pattern of our program. 
+
+That's not enough though, especially when there is a mismatch between the scale of the testing and the production data. In such cases, when memory is managed poorly, a pipeline repeatedly allocating and freeing chunks of memory of varying sizes accumulates non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue is known as [memory fragmentation](https://en.wikipedia.org/wiki/Fragmentation_%28computing%29), and leads to a higher memory usage, performance slowdowns. 
+
+What strategies are used to manage memory in R depend a lot on the context, but there are a few good practices we can apply to consistently improve memory management:
+
+  - In-place modification: modifying objects without duplicating them is probably the most efficient strategy we can apply to manage memory in R. [Section 2.5 of the book **Advanced R**](https://adv-r.hadley.nz/names-values.html#modify-in-place) covers the nitty-gritty details. Also, the package [`data.table`](https://rdatatable.gitlab.io/data.table/) comes as a life-saver, with its innate ability to modify large data frames in place.
+
+  - Pre-allocating object size: defining object size upfront rather than growing them iteratively, because each iteration creates a copy of the object being grown, which is inefficient. 
+
+Use of Sparse Matrice
+If your data contains many zeros, consider using sparse matrices from the Matrix package. Sparse matrices store only non-zero values, reducing memory consumption.
+
+Factorization of Categorical Variables:
+Categorical variables with many levels can consume a lot of memory. By converting them to factor types, you can reduce memory usage significantly because R stores factors as integers under the hood, with an associated character vector for the levels.
+
+Efficient Data Types:
+
+
+
+
+
 
 
 Memory management in R is a deep rabbit hole, but there are several great resources out there that may help you find your footing on this topic:
@@ -114,17 +135,6 @@ Memory management in R is a deep rabbit hole, but there are several great resour
 
 
 
-
-As a general principle, [deleting the original object](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/releasememory.html#use-rm) when not needed is a good idea. 
-
-However, 
-
-There are several techniques to mitigate this issue
-
-Memory management in R is a complex topic that goes as deep as the design of the language goes, but there are many good resources out there to learn more about it. The first edition of the book Advanced R has a thorough section [Memory](http://adv-r.had.co.nz/memory.html#gc). The third chapter of the  [](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/types.html)
-
-
-
 To mitigate this, several strategies can be employed:
 
     In-place modifications: R's data.table and dplyr functions often modify data in place, reducing the need for duplicating large datasets. Avoiding the creation of unnecessary copies can significantly cut down on memory usage.
@@ -132,12 +142,8 @@ To mitigate this, several strategies can be employed:
     Efficient data structures: Choosing appropriate data structures is key to minimizing memory overhead. For example, using sparse matrices for data that contains many zero values, or using categorical variables for factors with many levels, can save a lot of memory.
 
     Memory-mapped files: For datasets too large to fit into RAM, memory-mapped files allow data to be loaded into memory only when needed, rather than loading the entire file at once. This can be crucial for big data processing.
-
-    Garbage collection: Regularly calling the garbage collector (gc()) in R can help free up unused memory, though R typically manages this automatically. Being mindful of memory-intensive operations and clearing objects when they are no longer needed can improve performance.
     
         Preallocate memory: Whenever possible, allocate memory in large blocks upfront, rather than in small chunks over time. This can prevent fragmentation by reducing the number of memory allocation requests.
-
-    Object pooling: Reusing memory blocks that are no longer needed can help avoid creating new allocations, thereby reducing fragmentation. This is especially useful in high-performance applications that repeatedly allocate and deallocate large objects.
 
 
 In essence, effective memory management can be the difference between code that barely runs and code that performs smoothly even under heavy loads. The goal is not only to avoid running out of memory but also to maximize the efficiency of the available memory to minimize computational overhead.

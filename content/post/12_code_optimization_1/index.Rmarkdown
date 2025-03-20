@@ -91,7 +91,7 @@ Software exists for us developers and users, and our time is far more valuable t
 
 #### Hardaware Utilization
 
-**Hardware utilization** refers to techniques improving how algorithms and data structures leverage computational resources. For example, many functions in R leverage [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously in the CPU, vastly outperforming explicit loops. 
+There are many techniques to help improve how algorithms and data structures leverage our machine's resources. For example, many functions in R rely on [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously in the CPU, vastly outperforming explicit loops. 
 
 [**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
 
@@ -103,29 +103,15 @@ Still, even under ideal conditions, parallelization has well-known diminishing r
 
 Efficient **memory management** ensures that our code uses the system's memory in a *sensible* manner. But what seems *sensible* in a beefy development laptop might end crashing a production machine, so there are levels to what efficient memory management actually means.
 
-A first step in the right direction is to be what I call *memory aware*. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) open during code development and testing helps build an intuition on the memory usage pattern of our program. 
+A first step in the right direction is to be what I call *memory aware*. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) and the likes open during code development and testing helps build an intuition on the memory usage pattern of our program. 
 
 That's not enough though, especially when there is a mismatch between the scale of the testing and the production data. In such cases, when memory is managed poorly, a pipeline repeatedly allocating and freeing chunks of memory of varying sizes accumulates non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue is known as [memory fragmentation](https://en.wikipedia.org/wiki/Fragmentation_%28computing%29), and leads to a higher memory usage, performance slowdowns. 
 
 What strategies are used to manage memory in R depend a lot on the context, but there are a few good practices we can apply to consistently improve memory management:
 
-  - In-place modification: modifying objects without duplicating them is probably the most efficient strategy we can apply to manage memory in R. [Section 2.5 of the book **Advanced R**](https://adv-r.hadley.nz/names-values.html#modify-in-place) covers the nitty-gritty details. Also, the package [`data.table`](https://rdatatable.gitlab.io/data.table/) comes as a life-saver, with its innate ability to modify large data frames in place.
+  - **In-place modification** (also known as *modification by reference*): modifying objects without duplicating them is probably the most efficient strategy we can apply to manage memory in R. [Section 2.5 of the book **Advanced R**](https://adv-r.hadley.nz/names-values.html#modify-in-place) covers the nitty-gritty details. If you usually work with data frames, then the package [`data.table`](https://rdatatable.gitlab.io/data.table/) may come as a life-saver, as it has an [innate ability to modify large data frames in place](https://rdatatable.gitlab.io/data.table/articles/datatable-reference-semantics.html). 
 
-  - Pre-allocating object size: defining object size upfront rather than growing them iteratively, because each iteration creates a copy of the object being grown, which is inefficient. 
-
-Use of Sparse Matrice
-If your data contains many zeros, consider using sparse matrices from the Matrix package. Sparse matrices store only non-zero values, reducing memory consumption.
-
-Factorization of Categorical Variables:
-Categorical variables with many levels can consume a lot of memory. By converting them to factor types, you can reduce memory usage significantly because R stores factors as integers under the hood, with an associated character vector for the levels.
-
-Efficient Data Types:
-
-
-
-
-
-
+  - **Pre-allocating object size**: Growing objects in a loop (think of adding new rows to a data frame) [isn't great](https://library.virginia.edu/data/articles/why-preallocate-memory-r-loops) in terms of memory management and [makes things slow](https://privefl.github.io/blog/why-loops-are-slow-in-r/). This happens because [R has to to reallocate memory](https://insightr.wordpress.com/2018/08/23/growing-objects-and-loop-memory-pre-allocation/) on each iteration, and that takes time and increases memory usage. But if growing *something* is unavoidable, either [grow a list](https://stackoverflow.com/questions/68701726/r4-0-performance-dataframes-vs-lists-loops-vs-vectorized-example-with-consta), as lists are dynamically allocated (rather than pre-allocated) and don't require their elements to be stored in contiguous memory regions, or apply [benchmarking to identify the most efficient method](https://www.mm218.dev/posts/2023-08-29-allocations/)).
 
 Memory management in R is a deep rabbit hole, but there are several great resources out there that may help you find your footing on this topic:
 
@@ -133,36 +119,12 @@ Memory management in R is a deep rabbit hole, but there are several great resour
   - Chapter 14 of [The Art of R Programming](https://archive.org/details/Norman_Matloff___The_Art_of_R_Programming/mode/2up) (pdf available [here](https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf)): might seem dated, but goes deep on the trade-off between computational speed and memory usage through many enlightening examples.
   - [Advanced R](http://adv-r.had.co.nz/): the first edition of this essential book has the chapter [Memory](http://adv-r.had.co.nz/memory.html#gc), which explains in detail how *modification in place* and *garbage collection* work in R.
 
-
-
-To mitigate this, several strategies can be employed:
-
-    In-place modifications: R's data.table and dplyr functions often modify data in place, reducing the need for duplicating large datasets. Avoiding the creation of unnecessary copies can significantly cut down on memory usage.
-
-    Efficient data structures: Choosing appropriate data structures is key to minimizing memory overhead. For example, using sparse matrices for data that contains many zero values, or using categorical variables for factors with many levels, can save a lot of memory.
-
-    Memory-mapped files: For datasets too large to fit into RAM, memory-mapped files allow data to be loaded into memory only when needed, rather than loading the entire file at once. This can be crucial for big data processing.
-    
-        Preallocate memory: Whenever possible, allocate memory in large blocks upfront, rather than in small chunks over time. This can prevent fragmentation by reducing the number of memory allocation requests.
-
-
-In essence, effective memory management can be the difference between code that barely runs and code that performs smoothly even under heavy loads. The goal is not only to avoid running out of memory but also to maximize the efficiency of the available memory to minimize computational overhead.
-
-
-
-
-
-
-
-
-
-
 ### The Effects
 
 These foundational choices impact three key performance dimensions:
 
   - **Execution Speed** (Time Complexity): The time required to run the code.
-  - **Memory Usage** (Space Complexity): Peak RAM consumption during execution.
+  - **Memory Usage** (Space Complexity): Peak memory usage during run time.
   - **Input/Output Efficiency**: How well the code handles file access, network usage, and database queries.
 
 At a higher level, two emergent properties arise:
@@ -225,11 +187,6 @@ Second, **beware of over-optimization**. Taking code optimization too far can do
 ![https://xkcd.com/1739](https://imgs.xkcd.com/comics/fixing_problems.png)
 
 Beyond these important points, there is no golden rule to follow here. Optimize when necessary, but never at the cost of clarity!
-
-
-#Resources
-
-  - [Best Coding Practices for R](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/).
 
 
 

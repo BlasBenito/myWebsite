@@ -1,7 +1,7 @@
 ---
 title: "R Code Optimization I: A Few Principles"
 author: ""
-date: '2025-03-06'
+date: '2025-03-07'
 slug: R-code-optimization-principles
 categories: []
 tags:
@@ -12,7 +12,7 @@ tags:
 subtitle: ''
 summary: "This post presents a code optimization framework."
 authors: [admin]
-lastmod: '2025-03-06T07:28:01+01:00'
+lastmod: '2025-03-07T07:28:01+01:00'
 featured: no
 draft: true
 image:
@@ -33,69 +33,108 @@ toc: true
 
 
 
-## Summary
+## A Trilogy of Posts on Code Optimization
 
 This is the first post of a trilogy focused on code optimization.
 
-## Code Optimization: Who Dis?
+I'll draw from my experience developing scientific software in both academia and industry to share a practical techniques and tools that can help you streamline your R workflows without sacrificing clarity. By the end, you’ll have a solid understanding of the foundational principles of code optimization and when to approach it—without overcomplicating things.
 
-Whether you're playing with large data, designing spatial pipelines, or developing scientific packages, at some point you will find yourself as the creator of a regrettably sluggish piece of ~~junk~~ code.
-
-. No worries, it happens. A lot.
-
-The easiest solution is usually having **more**.
-
-![Kylo Ren says MORE!](more.gif)
-
-You know, more cores, more RAM, whatever makes AWS happy!
-
-too slow for your deadline, 
-
-or requiring *just a bit more memory* (AWS is gonna cash it!)
-
-And at that point you might start reading about **code optimization** because why not, we are nerds, and nerds do these kind of things.
-
-But what does it really mean to optimize code, and how far should we go?
-
-Optimizing code isn't just about speed; it's about writing *efficient* code. Efficient for the developer (you, maybe?), and efficient for the machine running it. However, code efficiency is in the eye of the beholder! For us, pitiful flesh blobs, **readable** code makes things easier, *ergo* efficient. On the other hand, for a machine, no matter whether we are talking about a tiny Raspberry Pi or a magnificent supercomputer, code that **runs fast** and has a **small memory footprint** makes things faster and cheaper.
-
-
-In this post, I'll draw from my experience developing scientific software in both academia and industry to share a practical techniques and tools that can help you streamline your R workflows without sacrificing clarity. By the end, you’ll have a solid understanding of the foundational principles of code optimization and when to approach it—without overcomplicating things.
-
-Whether you're optimizing for speed, memory efficiency, or reproducibility, the conceptual framework presented here provides general principles to improve your code in ways that are both effective and sustainable. 
+I hope the principles presented here will help you write code that’s not just faster but also sustainable and practical to maintain.
 
 Let’s dig in!
 
+## A Fine Balance
+
+Whether you're playing with large data, designing spatial pipelines, or developing scientific packages, at some point you will become the creator of a regrettably sluggish piece of ~~junk~~ code. That's not the end of the world though, there are options ahead!
+
+One of these options is quite *simple*: throw some money at AWS and just get **MORE**.
+
+![Kylo Ren says MORE!](more.gif)
+
+Of course I mean **more computational power**. Who doesn't love that? I definitely do!
+
+However, the MORE strategy is rarely ever enough for *bona fide* nerds, masochists, and anyone in between. Why? Because such folks (maybe you, maybe me) love their craft and can't run anything short of perfect in their machines. Such folks, for better or worse, **optimize their code**!
+
+But what does it really mean to optimize code, and how far should we go?
+
+Optimizing code isn't just about speed; it's about writing *efficient* code. Efficient for the developers and users, and efficient for the machines running it. For us, pitiful carbon-based blobs, **readable** code is easier to wield, *ergo* efficient. On the other hand, for a machine, whether we're talking about a tiny Raspberry Pi or a magnificent supercomputer, efficient code **runs fast** and has a **small memory footprint**. 
+
+Optimizing code to improve efficiency across the board means balancing the needs of both humans and machines. And there's an inherent tension there: maximizing computational performance often comes at the cost of readability, while clean, readable code can sometimes slow things down.
+
+That's why optimization isn’t just about squeezing out more speed, it’s about making strategic choices. Before diving headfirst into refactoring, it's crucial to **understand what efficiency really means** and **when optimization is actually worth it**.
+
 ## Understanding Code Efficiency
 
-When working with large datasets or complex machine learning models, performance bottlenecks can drain both time and money. That’s where **code optimization** steps in to either save the day or make things worse.
-
-For data scientists and researchers, optimization isn’t just about raw speed; it’s about making workflows more efficient, whatever that means for you. 
-
-The diagram below illustrates the hierarchy of elements defining code efficiency. The orange boxes highlight modifiable code components, while the green boxes indicate measurable performance dimensions and emergent performance properties.
+*Code efficiency* is an abstract concept involving a complex web of causes and effects. I don't have the intention of unveiling the whole thing bare here, but I do believe that understanding some of the foundations helps articulate successful code optimization strategies. These foundations are simplified in the diagram below, which represents the most relevant causes and consequences of code efficiency.
 
 ![](diagram.png)
+On the left, the causes comprise several major *code features* that we can tweak to improve (or worsen!) the efficiency of our code. Changes in these features are bound to shape the *efficiency landscape* of our code in often divergent ways.
 
-Software exists for us developers and users, and our time is far more valuable than CPU time! That's why **code simplicity** sits at the top of the hierarchy of elements defining code efficiency. The best way to improve efficiency? **Make your code simple!** Simplicity means writing readable, modular, and easy-to-use code. However, striking a balance between readability and optimization is key: over-optimization can make code unreadable, while excessive simplicity might leave major performance gains on the table.
+### The Causes
 
-Beneath simplicity, **algorithm design** and **data structures** form the core of code efficiency. Well-designed algorithms and appropriate data structures contribute the most to performance in most cases. However, the **programming language** also plays a crucial role. An efficient algorithm implemented in C++ may vastly outperform the same algorithm written in R due to differences in compilation, memory management, and execution models.
+#### Programming Language
 
-Next, **hardware utilization** determines how well algorithms and data structures leverage computational resources. Techniques like *vectorization*, *parallelization*, *GPU acceleration*, and *memory management* can dramatically increase performance and improve efficiency.
+The selection of an [interpreted versus a compiled language](https://thevaluable.dev/difference-between-compiler-interpreter/) defines major code features and efficiency consequences. Interpreted languages like R and Python offer a high-level syntax that helps write clear and concise code. They are also easier to debug, but are slow and memory-hungry. On the other hand, compiled languages such as C++ or Rust run fast with little memory overheads, but are harder to write and debug. In practice, a good sweet spot emerges from leveraging the best of both worlds. Tools like [Rcpp (runs C++ code within R)](https://www.rcpp.org/) or [Cython (runs C code within Python)](https://cython.org/) allow combining both kinds of languages to increase performance without sacrificing as much readability at the expense of higher code complexity.
+
+#### Simplicity and Readability
+
+Software exists for us developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to to improve efficiency is **making your code clean!** Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain. However, striking a good balance between readability and computational efficiency is key here: excessive simplicity may leave other gains off the table!
+
+#### Algorithm Design and Data Structures
+
+[**Algorithms**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp) are the hearts of our code! They move bits around tirelessly until their purpose is achieved or an exception is raise. A well designed algorithm is the hallmark of efficient code. A good algorithm has a clear scope, relies on memory-efficient **data structures**, scales efficiently with data size, and avoids redundant steps. At this stage, understanding the trade-offs between algorithm design and readability allows for better optimization decisions. For example, algorithms involving data frames in R are easy to read, but using a more optimized albeit less readable structure such as [data.table](https://rdatatable.gitlab.io/data.table/) in performance-critical sections can yield significant improvements.
+
+#### Hardaware Utilization
+
+**Hardware utilization** refers to techniques improving how algorithms and data structures leverage our machine's resources. For example, many functions in R rely on [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously in the CPU, vastly outperforming explicit loops. 
+
+[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
+
+  - The code must be easy to split into independent tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
+  - The computation time of a task must be longer than the time required to move its input and output data between memory or disk to the CPU and back, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). Parallelizing very short tasks is not worth it!
+  - The total memory required by all tasks running simultaneously must not exceed the available system memory. If a task consumes 2GB of RAM and the machine has 8GB of RAM and 4 cores, the parallelized program should only use 3 of these cores.
+  
+Still, even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). We cannot simply throw more processors at our code and expect immediate gains in efficiency!
+
+Efficient **memory management** ensures that our code uses the system's memory in a *sensible* manner. But what seems *sensible* in a beefy development laptop might end crashing a production machine, so there are levels to what efficient memory management actually means.
+
+A first step in the right direction is to be what I call *memory aware*. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) and the likes open during code development and testing helps build an intuition on the memory usage pattern of our program. 
+
+That's not enough though, especially when there is a mismatch between the scale of the testing and the production data. In such cases, when memory is managed poorly, a pipeline repeatedly allocating and freeing chunks of memory of varying sizes accumulates non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue is known as [memory fragmentation](https://en.wikipedia.org/wiki/Fragmentation_%28computing%29), and leads to a higher memory usage, performance slowdowns. 
+
+What strategies are used to manage memory in R depend a lot on the context, but there are a few good practices we can apply to consistently improve memory management:
+
+  - **In-place modification** (also known as *modification by reference*): modifying objects without duplicating them is probably the most efficient strategy we can apply to manage memory in R. [Section 2.5 of the book **Advanced R**](https://adv-r.hadley.nz/names-values.html#modify-in-place) covers the nitty-gritty details. If you usually work with data frames, then the package [`data.table`](https://rdatatable.gitlab.io/data.table/) may come as a life-saver, as it has an [innate ability to modify large data frames in place](https://rdatatable.gitlab.io/data.table/articles/datatable-reference-semantics.html). 
+
+  - **Pre-allocating object size**: Growing objects in a loop (think of adding new rows to a data frame) [isn't great](https://library.virginia.edu/data/articles/why-preallocate-memory-r-loops) in terms of memory management and [makes things slow](https://privefl.github.io/blog/why-loops-are-slow-in-r/). This happens because [R has to to reallocate memory](https://insightr.wordpress.com/2018/08/23/growing-objects-and-loop-memory-pre-allocation/) on each iteration, and that takes time and increases memory usage. But if growing *something* is unavoidable, either [grow a list](https://stackoverflow.com/questions/68701726/r4-0-performance-dataframes-vs-lists-loops-vs-vectorized-example-with-consta), as lists are dynamically allocated (rather than pre-allocated) and don't require their elements to be stored in contiguous memory regions, or apply [benchmarking to identify the most efficient method](https://www.mm218.dev/posts/2023-08-29-allocations/)).
+
+Memory management in R is a deep rabbit hole, but there are several great resources out there that may help you find your footing on this topic:
+
+  - [Best Coding Practices for R](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/): The chapters [10](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/types.html), [11](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/reference.html) and [12](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/releasememory.html) of this regrettably unfinished on-line book offers plenty of tips and tricks to improve memory management in R. 
+  - Chapter 14 of [The Art of R Programming](https://archive.org/details/Norman_Matloff___The_Art_of_R_Programming/mode/2up) (pdf available [here](https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf)): might seem dated, but goes deep on the trade-off between computational speed and memory usage through many enlightening examples.
+  - [Advanced R](http://adv-r.had.co.nz/): the first edition of this essential book has the chapter [Memory](http://adv-r.had.co.nz/memory.html#gc), which explains in detail how *modification in place* and *garbage collection* work in R.
+
+### The Effects
 
 These foundational choices impact three key performance dimensions:
 
   - **Execution Speed** (Time Complexity): The time required to run the code.
-  - **Memory Usage** (Space Complexity): Peak RAM consumption during execution.
+  - **Memory Usage** (Space Complexity): Peak memory usage during run time.
   - **Input/Output Efficiency**: How well the code handles file access, network usage, and database queries.
 
 At a higher level, two emergent properties arise:
 
   - **Scalability**: How well the code adapts to increasing workloads and larger infrastructures.
+  
+https://cran.r-project.org/web/packages/usl/vignettes/usl.pdf
+https://en.wikipedia.org/wiki/Neil_J._Gunther#Universal_Scalability_Law
+https://tangowhisky37.github.io/PracticalPerformanceAnalyst/pages/spe_fundamentals/what_is_universal_scalability_law/
+  
   - **Energy Efficiency**: The trade-off between computational cost and energy consumption.
 
-Code optimization is a multidimensional trade-off. Improving one aspect often affects others. For example, speeding up execution might increase memory usage, parallelization can create I/O bottlenecks, and refactoring for performance may reduce readability. There’s rarely a single "best" solution, only trade-offs based on context and constraints.
+Code optimization is a multidimensional trade-off. Improving one aspect often affects others. For example, speeding up execution might increase memory usage, parallelization can create I/O bottlenecks. There's rarely a single "best" solution, only trade-offs based on context and constraints.
 
-## To Optimize Or Not To Optimize, That Is The Question
+## To Optimize Or Not To Optimize
 
 If for some reason you find yourself in the conundrum expressed in the title of this section, then you might find solace in the *First Commandment of Code Optimization*.
 
@@ -145,7 +184,9 @@ Second, **beware of over-optimization**. Taking code optimization too far can do
 Beyond these important points, there is no golden rule to follow here. Optimize when necessary, but never at the cost of clarity!
 
 
+#Resources
 
+  - [Best Coding Practices for R](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/).
 
 
 

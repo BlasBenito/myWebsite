@@ -96,22 +96,36 @@ There are many techniques to help improve how algorithms and data structures lev
 [**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
 
   - The code must be easy to split into independent tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
-  - The computation time of a task must be longer than the time required to move its input and output data between memory or disk to the CPU and back, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). Parallelizing very short tasks is not worth it!
-  - The total memory required by all tasks running simultaneously must not exceed the available system memory. If a task consumes 2GB of RAM and the machine has 8GB of RAM and 4 cores, the parallelized program should only use 3 of these cores.
+  - The computation time of a task must be longer than the time required to move its input and output data between memory or disk to the CPU and back, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). **Parallelizing very fast tasks is nor worth it!**
+  - **The memory required by a parallel task times the number of processors must not exceed the available system memory**. I wrote this one in bold so you can remember it whenever your code crashes for this very reason!
   
-Still, even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). We cannot simply throw more processors at our code and expect immediate gains in efficiency!
+Even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). That just means that beyond some point we cannot simply throw more processors at our code and expect immediate efficiency gains.
 
-Efficient **memory management** ensures that our code uses the system's memory in a *sensible* manner. But what seems *sensible* in a beefy development laptop might end crashing a production machine, so there are levels to what efficient memory management actually means.
+Let's jump into the most interesting topic of this section: **memory management**!
 
-A first step in the right direction is to be what I call *memory aware*. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) and the likes open during code development and testing helps build an intuition on the memory usage pattern of our program. 
+![Easy Memory Mangement](more_ram.jpeg)
 
-That's not enough though, especially when there is a mismatch between the scale of the testing and the production data. In such cases, when memory is managed poorly, a pipeline repeatedly allocating and freeing chunks of memory of varying sizes accumulates non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue is known as [memory fragmentation](https://en.wikipedia.org/wiki/Fragmentation_%28computing%29), and leads to a higher memory usage, performance slowdowns. 
+Programs that repeatedly allocate and deallocate memory chunks of varying sizes usually accumulate non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue, known as [memory fragmentation](https://en.wikipedia.org/wiki/Fragmentation_%28computing%29), leads to performance slowdowns and a higher memory usage that can end with a crash. 
 
-What strategies are used to manage memory in R depend a lot on the context, but there are a few good practices we can apply to consistently improve memory management:
+Efficient memory management can help avoid these issues by ensuring that our code uses the system's memory in a *sensible* manner. 
+
+Being *memory aware* is a first step in the right direction. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) and the likes open during code development and testing helps build an intuition on how our program uses memory. 
+
+Other good practices we can apply to consistently improve memory management in R are:
 
   - **In-place modification** (also known as *modification by reference*): modifying objects without duplicating them is probably the most efficient strategy we can apply to manage memory in R. [Section 2.5 of the book **Advanced R**](https://adv-r.hadley.nz/names-values.html#modify-in-place) covers the nitty-gritty details. If you usually work with data frames, then the package [`data.table`](https://rdatatable.gitlab.io/data.table/) may come as a life-saver, as it has an [innate ability to modify large data frames in place](https://rdatatable.gitlab.io/data.table/articles/datatable-reference-semantics.html). 
 
   - **Pre-allocating object size**: Growing objects in a loop (think of adding new rows to a data frame) [isn't great](https://library.virginia.edu/data/articles/why-preallocate-memory-r-loops) in terms of memory management and [makes things slow](https://privefl.github.io/blog/why-loops-are-slow-in-r/). This happens because [R has to to reallocate memory](https://insightr.wordpress.com/2018/08/23/growing-objects-and-loop-memory-pre-allocation/) on each iteration, and that takes time and increases memory usage. But if growing *something* is unavoidable, either [grow a list](https://stackoverflow.com/questions/68701726/r4-0-performance-dataframes-vs-lists-loops-vs-vectorized-example-with-consta), as lists are dynamically allocated (rather than pre-allocated) and don't require their elements to be stored in contiguous memory regions, or apply [benchmarking to identify the most efficient method](https://www.mm218.dev/posts/2023-08-29-allocations/)).
+  
+  - **On-demand data access**: reading only the portions of a dataset required at a given momento is a common strategy to handle data larger than memory. Some approaches available in R are:
+  
+    - **[Memory-mapped files](https://en.wikipedia.org/wiki/Mmap)**: a file on disk can be mapped to the operating system's [virtual memory](https://en.wikipedia.org/wiki/Virtual_memory). Data chunks of the mapped file are read from disk when requested (see [lazy evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation)), without needing to load the full file in the system's memory. The R packages [mmap](https://cran.r-project.org/package=mmap) and [ff](https://cran.r-project.org/package=ff) offer low-level implementations of this data-handling method, while [bigmemory](https://cran.r-project.org/package=bigmemory) offers a more practical implementation for large matrices.
+    
+    - **Chunk-wise processing**: broom, arrow, disk.frame, fst, duckdb
+    
+    - **Tiled-raster access**:
+  
+  - **Multisession**:
 
 Memory management in R is a deep rabbit hole, but there are several great resources out there that may help you find your footing on this topic:
 

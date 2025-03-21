@@ -86,21 +86,27 @@ Software exists for us developers and users, and our time is far more valuable t
 
 #### Hardaware Utilization
 
-**Hardware utilization** refers to techniques improving how algorithms and data structures leverage our machine's resources. For example, many functions in R rely on [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously in the CPU, vastly outperforming explicit loops. 
+There are many techniques to help improve how algorithms and data structures leverage our machine's resources. For example, many functions in R rely on [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously in the CPU, vastly outperforming explicit loops. 
 
 [**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
 
   - The code must be easy to split into independent tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
   - The computation time of a task must be longer than the time required to move its input and output data between memory or disk to the CPU and back, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). Parallelizing very short tasks is not worth it!
-  - The total memory required by all tasks running simultaneously must not exceed the available system memory. If a task consumes 2GB of RAM and the machine has 8GB of RAM and 4 cores, the parallelized program should only use 3 of these cores.
+  - The total memory required by all tasks running simultaneously must not exceed the available system memory. 
+  - *The total memory required by all tasks running simultaneously must not exceed the available system memory*. 
+  - **The total memory required by all tasks running simultaneously must not exceed the available system memory**. 
   
-Still, even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). We cannot simply throw more processors at our code and expect immediate gains in efficiency!
+Still, even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). Beyond some point, we cannot simply throw more processors at our code and expect efficiency gains!
+
+But what about more memory?
+
+Bad **memory management** will kick your ass sooner or later.
+
+A program repeatedly allocating and freeing chunks of memory of varying sizes accumulates non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue is known as [memory fragmentation](https://en.wikipedia.org/wiki/Fragmentation_%28computing%29), and leads to a higher memory usage, performance slowdowns. 
 
 Efficient **memory management** ensures that our code uses the system's memory in a *sensible* manner. But what seems *sensible* in a beefy development laptop might end crashing a production machine, so there are levels to what efficient memory management actually means.
 
-A first step in the right direction is to be what I call *memory aware*. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) and the likes open during code development and testing helps build an intuition on the memory usage pattern of our program. 
-
-That's not enough though, especially when there is a mismatch between the scale of the testing and the production data. In such cases, when memory is managed poorly, a pipeline repeatedly allocating and freeing chunks of memory of varying sizes accumulates non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue is known as [memory fragmentation](https://en.wikipedia.org/wiki/Fragmentation_%28computing%29), and leads to a higher memory usage, performance slowdowns. 
+Being *memory aware* is a first step in the right direction. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) and the likes open during code development and testing helps build an intuition on the memory usage pattern of our program. 
 
 What strategies are used to manage memory in R depend a lot on the context, but there are a few good practices we can apply to consistently improve memory management:
 
@@ -182,11 +188,6 @@ Second, **beware of over-optimization**. Taking code optimization too far can do
 ![https://xkcd.com/1739](https://imgs.xkcd.com/comics/fixing_problems.png)
 
 Beyond these important points, there is no golden rule to follow here. Optimize when necessary, but never at the cost of clarity!
-
-
-#Resources
-
-  - [Best Coding Practices for R](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/).
 
 
 

@@ -92,16 +92,15 @@ Software exists for us developers and users, and our time is far more valuable t
 #### Hardaware Utilization
 
 There are many techniques to help improve how algorithms and data structures leverage our machine's resources. For example, many functions in R rely on [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously in the CPU, vastly outperforming explicit loops. 
-
 [**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
 
   - The code must be easy to split into independent tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
-  - The computation time of a task must be longer than the time required to move its input and output data between memory or disk to the CPU and back, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). **Parallelizing very fast tasks is nor worth it!**
+  - The computation time of a task must be longer than the time required to move its input and output data between memory or disk to the CPU and back, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). Parallelizing very fast tasks is rarely worth it!
   - **The memory required by a parallel task times the number of processors must not exceed the available system memory**. I wrote this one in bold so you can remember it whenever your code crashes for this very reason!
   
 Even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). That just means that beyond some point we cannot simply throw more processors at our code and expect immediate efficiency gains.
 
-Let's jump into the most interesting topic of this section: **memory management**!
+Let's jump into what's IMHO the most interesting topic of this section: **memory management**!
 
 ![Easy Memory Mangement](more_ram.jpeg)
 
@@ -117,11 +116,22 @@ Other good practices we can apply to consistently improve memory management in R
 
   - **Pre-allocating object size**: Growing objects in a loop (think of adding new rows to a data frame) [isn't great](https://library.virginia.edu/data/articles/why-preallocate-memory-r-loops) in terms of memory management and [makes things slow](https://privefl.github.io/blog/why-loops-are-slow-in-r/). This happens because [R has to to reallocate memory](https://insightr.wordpress.com/2018/08/23/growing-objects-and-loop-memory-pre-allocation/) on each iteration, and that takes time and increases memory usage. But if growing *something* is unavoidable, either [grow a list](https://stackoverflow.com/questions/68701726/r4-0-performance-dataframes-vs-lists-loops-vs-vectorized-example-with-consta), as lists are dynamically allocated (rather than pre-allocated) and don't require their elements to be stored in contiguous memory regions, or apply [benchmarking to identify the most efficient method](https://www.mm218.dev/posts/2023-08-29-allocations/)).
   
-  - **On-demand data access**: reading only the portions of a dataset required at a given momento is a common strategy to handle data larger than memory. Some approaches available in R are:
+  - **On-demand data access**: reading only the portions of a dataset required at a given momento is a common strategy to increase code efficiency when the data larger than memory. Some approaches available in R are:
   
-    - **[Memory-mapped files](https://en.wikipedia.org/wiki/Mmap)**: a file on disk can be mapped to the operating system's [virtual memory](https://en.wikipedia.org/wiki/Virtual_memory). Data chunks of the mapped file are read from disk when requested (see [lazy evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation)), without needing to load the full file in the system's memory. The R packages [mmap](https://cran.r-project.org/package=mmap) and [ff](https://cran.r-project.org/package=ff) offer low-level implementations of this data-handling method, while [bigmemory](https://cran.r-project.org/package=bigmemory) offers a more practical implementation for large matrices.
+    - **[Memory-mapped files](https://en.wikipedia.org/wiki/Mmap)**: A file on disk can be mapped to the operating system's [virtual memory](https://en.wikipedia.org/wiki/Virtual_memory), allowing direct access to its contents without fully loading it into RAM. Instead, the operating system handles reading and caching only the necessary portions on demand, reducing memory overhead. In R, the [mmap](https://cran.r-project.org/package=mmap) and [ff](https://cran.r-project.org/package=ff) packages offer flexible memory mapping implementations. The [bigmemory](https://cran.r-project.org/package=bigmemory) package [extends this concept to large matrices](http://www.stat.yale.edu/~mjk56/temp/bigmemory-vignette.pdf).
     
-    - **Chunk-wise processing**: broom, arrow, disk.frame, fst, duckdb
+    - **Chunk-wise processing**: this method allows reading and analyzing data in manageable pieces rather than loading everything at once. Here, the multi-platform library [Apache Arrow](https://arrow.apache.org/) allows efficient storage of data and retrieval  [feather](https://arrow.apache.org/docs/python/feather.html) and [parquet](https://parquet.apache.org/docs/overview/)
+
+    arrow and duckdb: More recent solutions that integrate well with modern data workflows. arrow enables efficient columnar storage and lazy-loading via Apache Arrow and Parquet files, while duckdb is an embedded analytical database that can query large datasets on disk with SQL-like operations, often outperforming traditional chunk-wise approaches.
+    
+    
+    Apache Arrow: The arrow package provides a columnar, memory-efficient format that supports on-demand access and streaming reads. With arrow::open_dataset(), you can process large datasets incrementally, loading only the necessary chunks without keeping everything in RAM.
+
+DuckDB: This in-process database system brings SQL-powered chunk-wise processing to R. It supports querying large Parquet, CSV, or Arrow datasets efficiently, allowing lazy evaluation and pushdown filtering (i.e., reading only relevant data subsets).
+    
+    Chunk-wise processing is particularly useful for data pipelines, where large datasets need to be filtered, transformed, and summarized without excessive memory consumption. Unlike memory mapping, which relies on virtual memory to access data lazily, chunk-wise processing explicitly loads, processes, and discards data in controlled segments, making it a flexible solution for handling large-scale computations efficiently.
+    
+    broom, arrow, disk.frame, fst, duckdb
     
     - **Tiled-raster access**:
   

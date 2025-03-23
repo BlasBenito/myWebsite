@@ -92,6 +92,7 @@ Software exists for us developers and users, and our time is far more valuable t
 #### Hardaware Utilization
 
 There are many techniques to help improve how algorithms and data structures leverage our machine's resources. For example, many functions in R rely on [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously in the CPU, vastly outperforming explicit loops. 
+
 [**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
 
   - The code must be easy to split into independent tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
@@ -110,15 +111,17 @@ Efficient memory management can help avoid these issues by ensuring that our cod
 
 Being *memory aware* is a first step in the right direction. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) and the likes open during code development and testing helps build an intuition on how our program uses memory. 
 
-Other good practices we can apply to consistently improve memory management in R are:
+Other good practices we can apply to consistently improve memory management in R are in-place modification, pre-allocating object size, and on-demand data access.
 
-  - **In-place modification** (also known as *modification by reference*): modifying objects without duplicating them is probably the most efficient strategy we can apply to manage memory in R. [Section 2.5 of the book **Advanced R**](https://adv-r.hadley.nz/names-values.html#modify-in-place) covers the nitty-gritty details. If you usually work with data frames, then the package [`data.table`](https://rdatatable.gitlab.io/data.table/) may come as a life-saver, as it has an [innate ability to modify large data frames in place](https://rdatatable.gitlab.io/data.table/articles/datatable-reference-semantics.html). 
+**In-place modification**, also known as *modification by reference*, involves modifying an object without duplicating it (known as *copy-on-modify*), and is probably the most consistent strategy we can apply to manage memory in R. The [section 2.5 of the book **Advanced R**](https://adv-r.hadley.nz/names-values.html#modify-in-place) covers the technical details, and offers great advice: *We can reduce the number of copies by using a list instead of a data frame. Modifying a list uses internal C code, so ... no copy is made*. If you still want/need to work with data frames, then the package [`data.table`](https://rdatatable.gitlab.io/data.table/) may come as a life-saver, as it has an [innate ability to modify large data frames in place](https://rdatatable.gitlab.io/data.table/articles/datatable-reference-semantics.html), making it fast and efficient. 
 
-  - **Pre-allocating object size**: Growing objects in a loop (think of adding new rows to a data frame) [isn't great](https://library.virginia.edu/data/articles/why-preallocate-memory-r-loops) in terms of memory management and [makes things slow](https://privefl.github.io/blog/why-loops-are-slow-in-r/). This happens because [R has to to reallocate memory](https://insightr.wordpress.com/2018/08/23/growing-objects-and-loop-memory-pre-allocation/) on each iteration, and that takes time and increases memory usage. But if growing *something* is unavoidable, either [grow a list](https://stackoverflow.com/questions/68701726/r4-0-performance-dataframes-vs-lists-loops-vs-vectorized-example-with-consta), as lists are dynamically allocated (rather than pre-allocated) and don't require their elements to be stored in contiguous memory regions, or apply [benchmarking to identify the most efficient method](https://www.mm218.dev/posts/2023-08-29-allocations/)).
-  
-  - **On-demand data access**: reading only the portions of a dataset required at a given momento is a common strategy to increase code efficiency when the data larger than memory. Some approaches available in R are:
-  
-    - **[Memory-mapped files](https://en.wikipedia.org/wiki/Mmap)**: A file on disk can be mapped to the operating system's [virtual memory](https://en.wikipedia.org/wiki/Virtual_memory), allowing direct access to its contents without fully loading it into RAM. Instead, the operating system handles reading and caching only the necessary portions on demand, reducing memory overhead. In R, the [mmap](https://cran.r-project.org/package=mmap) and [ff](https://cran.r-project.org/package=ff) packages offer flexible memory mapping implementations. The [bigmemory](https://cran.r-project.org/package=bigmemory) package [extends this concept to large matrices](http://www.stat.yale.edu/~mjk56/temp/bigmemory-vignette.pdf).
+[Growing data frames, vectors, or matrices in a loop](https://library.virginia.edu/data/articles/why-preallocate-memory-r-loops) triggers the *copy-on-modify* behavior of R and [makes things very slow](https://privefl.github.io/blog/why-loops-are-slow-in-r/). This happens because [R has to to reallocate memory](https://insightr.wordpress.com/2018/08/23/growing-objects-and-loop-memory-pre-allocation/) on each iteration for the object's copy, which takes time and increases memory usage. But if growing *something* is unavoidable, either **pre-allocate the object size**, or better, [grow a list](https://stackoverflow.com/questions/68701726/r4-0-performance-dataframes-vs-lists-loops-vs-vectorized-example-with-consta), as lists are dynamically allocated (rather than pre-allocated) and don't require their elements to be stored in contiguous memory regions. In any case, when in doubt, apply [benchmarking to identify the most efficient method](https://www.mm218.dev/posts/2023-08-29-allocations/).
+
+**On-demand data access** refers to a set of strategies that can be combined to improve memory efficiency when handling data larger than memory. 
+
+**[Memory-mapped files](https://en.wikipedia.org/wiki/Mmap)** are representations of large on-disk data in the [virtual memory of the operating system](https://en.wikipedia.org/wiki/Virtual_memory). The operating system handles directly the on-demand reading and caching of specific portions of these files, which reduces memory overhead at the expense of increased disk reads (having an efficient SSD is a game changer here!). In R, the packages [mmap](https://cran.r-project.org/package=mmap) and [ff](https://cran.r-project.org/package=ff) (see brief tutorial [here](https://bookdown.org/josephine_lukito/bookdown-demo/ff.html#ff-1)) packages offer low-level memory-mapping implementations, while the [bigmemory](https://cran.r-project.org/package=bigmemory) package [focuses on large matrices](http://www.stat.yale.edu/~mjk56/temp/bigmemory-vignette.pdf).
+
+**Chunk-wise processing** is a memory management method that explicitly loads, processes and discards controlled segments of data, making it a flexible solution for handling large-scale computations efficiently.
     
     - **Chunk-wise processing**: this method allows reading and analyzing data in manageable pieces rather than loading everything at once. Here, the multi-platform library [Apache Arrow](https://arrow.apache.org/) allows efficient storage of data and retrieval  [feather](https://arrow.apache.org/docs/python/feather.html) and [parquet](https://parquet.apache.org/docs/overview/)
 
@@ -132,8 +135,6 @@ DuckDB: This in-process database system brings SQL-powered chunk-wise processing
     Chunk-wise processing is particularly useful for data pipelines, where large datasets need to be filtered, transformed, and summarized without excessive memory consumption. Unlike memory mapping, which relies on virtual memory to access data lazily, chunk-wise processing explicitly loads, processes, and discards data in controlled segments, making it a flexible solution for handling large-scale computations efficiently.
     
     broom, arrow, disk.frame, fst, duckdb
-    
-    - **Tiled-raster access**:
   
   - **Multisession**:
 

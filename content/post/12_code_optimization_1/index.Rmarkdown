@@ -101,6 +101,8 @@ There are many techniques to help improve how algorithms and data structures lev
   
 Even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). That just means that beyond some point we cannot simply throw more processors at our code and expect immediate efficiency gains.
 
+Out-of-process execution
+
 Let's jump into what's IMHO the most interesting topic of this section: **memory management**!
 
 ![Easy Memory Mangement](more_ram.jpeg)
@@ -111,17 +113,33 @@ Efficient memory management can help avoid these issues by ensuring that our cod
 
 Being *memory aware* is a first step in the right direction. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) and the likes open during code development and testing helps build an intuition on how our program uses memory. 
 
-Other good practices we can apply to consistently improve memory management in R are in-place modification, pre-allocating object size, and on-demand data access.
+Other good techniques we can apply to consistently improve memory management in R are in-place modification, pre-allocating object size, and on-demand data access.
 
-**In-place modification**, also known as *modification by reference*, involves modifying an object without duplicating it (known as *copy-on-modify*), and is probably the most consistent strategy we can apply to manage memory in R. The [section 2.5 of the book **Advanced R**](https://adv-r.hadley.nz/names-values.html#modify-in-place) covers the technical details, and offers great advice: *We can reduce the number of copies by using a list instead of a data frame. Modifying a list uses internal C code, so ... no copy is made*. If you still want/need to work with data frames, then the package [`data.table`](https://rdatatable.gitlab.io/data.table/) may come as a life-saver, as it has an [innate ability to modify large data frames in place](https://rdatatable.gitlab.io/data.table/articles/datatable-reference-semantics.html), making it fast and efficient. 
+**In-place modification**
+
+Also known as *modification by reference*, it refers to object modification without duplication (see [*copy-on-modify in R*](https://stackoverflow.com/questions/15759117/what-exactly-is-copy-on-modify-semantics-in-r-and-where-is-the-canonical-source)). This is probably the most consistent strategy we can apply to manage memory in R! The [section 2.5 of the book **Advanced R**](https://adv-r.hadley.nz/names-values.html#modify-in-place) covers the technical details, and offers great advice: *We can reduce the number of copies by using a list instead of a data frame. Modifying a list uses internal C code, so ... no copy is made*. If data frames are your jam, then the package [`data.table`](https://rdatatable.gitlab.io/data.table/) may come as a life-saver, as it has an [innate ability to modify large data frames in place](https://rdatatable.gitlab.io/data.table/articles/datatable-reference-semantics.html), making it fast and efficient. 
+
+**Object size pre-allocation**
 
 [Growing data frames, vectors, or matrices in a loop](https://library.virginia.edu/data/articles/why-preallocate-memory-r-loops) triggers the *copy-on-modify* behavior of R and [makes things very slow](https://privefl.github.io/blog/why-loops-are-slow-in-r/). This happens because [R has to to reallocate memory](https://insightr.wordpress.com/2018/08/23/growing-objects-and-loop-memory-pre-allocation/) on each iteration for the object's copy, which takes time and increases memory usage. But if growing *something* is unavoidable, either **pre-allocate the object size**, or better, [grow a list](https://stackoverflow.com/questions/68701726/r4-0-performance-dataframes-vs-lists-loops-vs-vectorized-example-with-consta), as lists are dynamically allocated (rather than pre-allocated) and don't require their elements to be stored in contiguous memory regions. In any case, when in doubt, apply [benchmarking to identify the most efficient method](https://www.mm218.dev/posts/2023-08-29-allocations/).
 
-**On-demand data access** refers to a set of strategies that can be combined to improve memory efficiency when handling data larger than memory. 
+**On-demand data access** 
 
-**[Memory-mapped files](https://en.wikipedia.org/wiki/Mmap)** are representations of large on-disk data in the [virtual memory of the operating system](https://en.wikipedia.org/wiki/Virtual_memory). The operating system handles directly the on-demand reading and caching of specific portions of these files, which reduces memory overhead at the expense of increased disk reads (having an efficient SSD is a game changer here!). In R, the packages [mmap](https://cran.r-project.org/package=mmap) and [ff](https://cran.r-project.org/package=ff) (see brief tutorial [here](https://bookdown.org/josephine_lukito/bookdown-demo/ff.html#ff-1)) packages offer low-level memory-mapping implementations, while the [bigmemory](https://cran.r-project.org/package=bigmemory) package [focuses on large matrices](http://www.stat.yale.edu/~mjk56/temp/bigmemory-vignette.pdf).
+Refers to several data handling strategies to work with data larger than memory.
 
-**Chunk-wise processing** is a memory management method that explicitly loads, processes and discards controlled segments of data, making it a flexible solution for handling large-scale computations efficiently.
+*[Memory-mapped files](https://en.wikipedia.org/wiki/Mmap)* are representations of large on-disk data in the [virtual memory of the operating system](https://en.wikipedia.org/wiki/Virtual_memory). The operating system handles directly the on-demand reading and caching of specific portions of these files, which reduces memory overhead at the expense of increased disk reads (having an efficient SSD is a game changer here!) and computation time. In R, the packages [mmap](https://cran.r-project.org/package=mmap) and [ff](https://cran.r-project.org/package=ff) (see brief tutorial [here](https://bookdown.org/josephine_lukito/bookdown-demo/ff.html#ff-1)) offer low-level memory-mapping implementations, while the [bigmemory](https://cran.r-project.org/package=bigmemory) package [focuses on large matrices](http://www.stat.yale.edu/~mjk56/temp/bigmemory-vignette.pdf).
+
+*Chunk-wise processing* involves explicitly dividing large data into smaller and more manageable pieces, making it a flexible solution for handling large-scale computations efficiently. For example, the package [terra](https://rspatial.github.io/terra/index.html) combines this technique with [lazy evaluation](https://colinfay.me/lazyeval/) when working with large raster files to control memory usage. 
+
+
+
+
+
+The package [targets](https://docs.ropensci.org/targets/) combines chunk-wise processing, parallelization, and multisession execution seamlessly via [*dynamic branching*](https://books.ropensci.org/targets/dynamic.html).
+
+
+
+combines chunk-wise processing with parallelization via dynamic branching.
     
     - **Chunk-wise processing**: this method allows reading and analyzing data in manageable pieces rather than loading everything at once. Here, the multi-platform library [Apache Arrow](https://arrow.apache.org/) allows efficient storage of data and retrieval  [feather](https://arrow.apache.org/docs/python/feather.html) and [parquet](https://parquet.apache.org/docs/overview/)
 
@@ -132,7 +150,7 @@ Other good practices we can apply to consistently improve memory management in R
 
 DuckDB: This in-process database system brings SQL-powered chunk-wise processing to R. It supports querying large Parquet, CSV, or Arrow datasets efficiently, allowing lazy evaluation and pushdown filtering (i.e., reading only relevant data subsets).
     
-    Chunk-wise processing is particularly useful for data pipelines, where large datasets need to be filtered, transformed, and summarized without excessive memory consumption. Unlike memory mapping, which relies on virtual memory to access data lazily, chunk-wise processing explicitly loads, processes, and discards data in controlled segments, making it a flexible solution for handling large-scale computations efficiently.
+
     
     broom, arrow, disk.frame, fst, duckdb
   

@@ -91,7 +91,17 @@ Software exists for us developers and users, and our time is far more valuable t
 
 #### Hardaware Utilization
 
-There are many techniques to help improve how algorithms and data structures leverage our machine's resources. For example, many functions in R rely on [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously in the CPU, vastly outperforming explicit loops. 
+There are many techniques we can apply to improve how algorithms and data structures leverage our machine's resources. Vectorization and parallelization help us squeeze every last drop of juice in our CPUS, while methods such as in-place modification, object size pre-allocation, and on-demand data access are useful to manage the memory usage of our programs.
+
+**Vectorization**
+
+A modern processor can apply an operation to multiple elements at once. This is an architectural thing generally named [SIMD](https://en.algorithmica.org/hpc/simd/) (Single Instruction Multiple Data).
+
+is the application of an operation to several elements at once.
+
+Many functions in R rely on [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously, outperforming explicit loops.  
+
+**Parallelization**
 
 [**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
 
@@ -101,9 +111,9 @@ There are many techniques to help improve how algorithms and data structures lev
   
 Even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). That just means that beyond some point we cannot simply throw more processors at our code and expect immediate efficiency gains.
 
-Out-of-process execution
-
 Let's jump into what's IMHO the most interesting topic of this section: **memory management**!
+
+**Memory Management**
 
 ![Easy Memory Mangement](more_ram.jpeg)
 
@@ -133,7 +143,7 @@ Refers to several data handling strategies to work with data larger than memory.
 
 
 
-
+Out-of-process execution
 
 The package [targets](https://docs.ropensci.org/targets/) combines chunk-wise processing, parallelization, and multisession execution seamlessly via [*dynamic branching*](https://books.ropensci.org/targets/dynamic.html).
 
@@ -160,7 +170,7 @@ Memory management in R is a deep rabbit hole, but there are several great resour
 
   - [Best Coding Practices for R](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/): The chapters [10](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/types.html), [11](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/reference.html) and [12](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/releasememory.html) of this regrettably unfinished on-line book offers plenty of tips and tricks to improve memory management in R. 
   - Chapter 14 of [The Art of R Programming](https://archive.org/details/Norman_Matloff___The_Art_of_R_Programming/mode/2up) (pdf available [here](https://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf)): might seem dated, but goes deep on the trade-off between computational speed and memory usage through many enlightening examples.
-  - [Advanced R](http://adv-r.had.co.nz/): the first edition of this essential book has the chapter [Memory](http://adv-r.had.co.nz/memory.html#gc), which explains in detail how *modification in place* and *garbage collection* work in R.
+  - [Advanced R](https://adv-r.hadley.nz/index.html): the first edition of this essential book has the chapter [Memory](http://adv-r.had.co.nz/memory.html#gc), which explains in detail how *modification in place* and *garbage collection* work in R. Chapter 24 in the latest version, titled [Improving Performance](https://adv-r.hadley.nz/perf-improve.html#perf-improve) is full of tips to improve general performance in R code.
 
 ### The Effects
 

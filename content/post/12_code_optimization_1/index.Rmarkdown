@@ -79,7 +79,13 @@ On the left, the causes comprise several major *code features* that we can tweak
 
 #### Programming Language
 
-The selection of an [interpreted versus a compiled language](https://thevaluable.dev/difference-between-compiler-interpreter/) defines major code features and efficiency consequences. Interpreted languages like R and Python offer a high-level syntax that helps write clear and concise code. They are also easier to debug, but are slow and memory-hungry. On the other hand, compiled languages such as C++ or Rust run fast with little memory overheads, but are harder to write and debug. In practice, a good sweet spot emerges from leveraging the best of both worlds. Tools like [Rcpp (runs C++ code within R)](https://www.rcpp.org/) or [Cython (runs C code within Python)](https://cython.org/) allow combining both kinds of languages to increase performance without sacrificing as much readability at the expense of higher code complexity.
+The choice between an [compiled and a interpreted language](https://thevaluable.dev/difference-between-compiler-interpreter/) shapes key aspects of code structure and efficiency. 
+
+Code from compiled languages like C++ or Rust is first translated into machine code and then executed all at once. Compiled code has a high performance and low memory overhead, but is harder to write and debug.
+
+In contrast, the code of interpreted languages like R and Python, much easier to read, is translated line-by-line to machine code in real time. This makes it slower than compiled code, but allows running interactive sessions and facilitates debugging. To balance things out, many built-in functions in both languages use plenty of compiled C, C++, or Fortran code under the hood. 
+
+In practice, combination of interpreted and compiled languages can get us to a sweet spot between usability and efficiency. Tools like [Rcpp (runs C++ code within R)](https://www.rcpp.org/) or [Cython (runs C code within Python)](https://cython.org/) enhance performance by one or two orders of magnitude without sacrificing too much readability, albeit at the cost of increased code complexity.
 
 #### Simplicity and Readability
 
@@ -95,7 +101,9 @@ There are many techniques we can apply to improve how algorithms and data struct
 
 **Vectorization**
 
-A modern processor can apply an operation to multiple elements at once. This is an architectural thing generally named [SIMD](https://en.algorithmica.org/hpc/simd/) (Single Instruction Multiple Data).
+Computers have an architectural capability named [Single Instruction Multiple Data (SIMD)](https://en.algorithmica.org/hpc/simd/) designed to apply the same operation to multiple elements at once in a single core. For example, when adding two vectors, modern SIMD implementations can sum 16 pairs of elements in the same time it'd took to sum a single pair. That's a massive speed-up!   
+
+But there is a catch: SIMD can only be leveraged by compiled code, n
 
 is the application of an operation to several elements at once.
 

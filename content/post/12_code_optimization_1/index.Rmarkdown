@@ -79,11 +79,11 @@ On the left, the causes comprise several major *code features* that we can tweak
 
 #### Programming Language
 
-The choice between an [compiled and a interpreted language](https://thevaluable.dev/difference-between-compiler-interpreter/) shapes key aspects of code structure and efficiency. 
+The choice between an [compiled and a interpreted language](https://medium.com/basecs/a-deeper-inspection-into-compilation-and-interpretation-d98952ebc842) (another great post on this topic [here](https://thevaluable.dev/difference-between-compiler-interpreter/)) shapes key aspects of code efficiency. 
 
-Code from compiled languages like C++ or Rust is first translated into machine code and then executed all at once. Compiled code has a high performance and low memory overhead, but is harder to write and debug.
+Source code written in languages like C, C++, or Rust is first translated by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) into binary code optimized for the target machine's architecture. Then, the resulting program runs all at once rather than line by line, making debugging more challenging, but offering high performance and low memory overhead.
 
-In contrast, the code of interpreted languages like R and Python, much easier to read, is translated line-by-line to machine code in real time. This makes it slower than compiled code, but allows running interactive sessions and facilitates debugging. To balance things out, many built-in functions in both languages use plenty of compiled C, C++, or Fortran code under the hood. 
+In contrast, the source code of languages like R and Python, much easier to write and read, is translated and executed line-by-line by an interpreter. This makes it slower than compiled code, but allows running interactive sessions and facilitates debugging. To balance things out, built-in functions in interpreted languages use compiled C, C++, or Fortran code under the hood. 
 
 In practice, combination of interpreted and compiled languages can get us to a sweet spot between usability and efficiency. Tools like [Rcpp (runs C++ code within R)](https://www.rcpp.org/) or [Cython (runs C code within Python)](https://cython.org/) enhance performance by one or two orders of magnitude without sacrificing too much readability, albeit at the cost of increased code complexity.
 
@@ -101,7 +101,7 @@ There are many techniques we can apply to improve how algorithms and data struct
 
 **Vectorization**
 
-Computers have an architectural capability named [Single Instruction Multiple Data (SIMD)](https://en.algorithmica.org/hpc/simd/) designed to apply the same operation to multiple elements at once in a single core. For example, when adding two vectors, modern SIMD implementations can sum 16 pairs of elements in the same time it'd took to sum a single pair. That's a massive speed-up!   
+Computers have an architectural capability named [Single Instruction Multiple Data (SIMD)](https://en.algorithmica.org/hpc/simd/) designed to apply the same operation to multiple elements at once in a single core. For example, when adding two vectors, modern SIMD implementations can sum 16 pairs of elements at once. That's an important speed-up! However, SIMD can only be leveraged by compiled code  
 
 But there is a catch: SIMD can only be leveraged by compiled code, n
 

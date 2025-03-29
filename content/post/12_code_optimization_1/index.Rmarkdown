@@ -83,7 +83,7 @@ The choice between an [compiled and a interpreted language](https://medium.com/b
 
 Source code written in languages like C, C++, or Rust is first translated by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) into binary code optimized for the target machine's architecture. Then, the resulting program runs all at once rather than line by line, making debugging more challenging, but offering high performance and low memory overhead.
 
-In contrast, the source code of languages like R and Python, much easier to write and read, is translated and executed line-by-line by an interpreter. This makes it slower than compiled code, but allows running interactive sessions and facilitates debugging. To balance things out, built-in functions in interpreted languages use compiled C, C++, or Fortran code under the hood. 
+In contrast, the source code of languages like R and Python, much easier to write and read, is translated and executed line-by-line by an interpreter (rabbit-hole on the R interpreter [here](https://www.codeproject.com/Articles/5338916/Introducing-Rsharp-Language)). This makes it slower than compiled code, but allows running interactive sessions and facilitates debugging. To balance things out, built-in functions in interpreted languages use compiled C, C++, or Fortran code under the hood. 
 
 In practice, combination of interpreted and compiled languages can get us to a sweet spot between usability and efficiency. Tools like [Rcpp (runs C++ code within R)](https://www.rcpp.org/) or [Cython (runs C code within Python)](https://cython.org/) enhance performance by one or two orders of magnitude without sacrificing too much readability, albeit at the cost of increased code complexity.
 

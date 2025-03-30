@@ -79,13 +79,13 @@ On the left, the causes comprise several major *code features* that we can tweak
 
 #### Programming Language
 
-The choice between an [compiled and a interpreted language](https://medium.com/basecs/a-deeper-inspection-into-compilation-and-interpretation-d98952ebc842) (another great post on this topic [here](https://thevaluable.dev/difference-between-compiler-interpreter/)) shapes key aspects of code efficiency. 
+The choice between a compiled and a interpreted language (see [here](https://medium.com/basecs/a-deeper-inspection-into-compilation-and-interpretation-d98952ebc842) and [here](https://thevaluable.dev/difference-between-compiler-interpreter/)) shapes key aspects of code efficiency. 
 
-Source code written in languages like C, C++, or Rust is first translated by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) into binary code optimized for the target machine's architecture. Then, the resulting program runs all at once rather than line by line, making debugging more challenging, but offering high performance and low memory overhead.
+The code of languages like C, C++, or Fortran is translated into optimized binary code by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) before execution. In consequence, these languages lack interactive execution and are harder to debug, but run very fast and with a low memory overhead.
 
-In contrast, the source code of languages like R and Python, much easier to write and read, is translated and executed line-by-line by an interpreter (rabbit-hole on the R interpreter [here](https://www.codeproject.com/Articles/5338916/Introducing-Rsharp-Language)). This makes it slower than compiled code, but allows running interactive sessions and facilitates debugging. To balance things out, built-in functions in interpreted languages use compiled C, C++, or Fortran code under the hood. 
+In contrast, languages like R and Python, much easier to write and read, are translated and executed line-by-line by an [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)), which enables interactive execution and facilitate debugging at the expense of speed. Here goes [a rabbit-hole on the R interpreter](https://www.codeproject.com/Articles/5338916/Introducing-Rsharp-Language).
 
-In practice, combination of interpreted and compiled languages can get us to a sweet spot between usability and efficiency. Tools like [Rcpp (runs C++ code within R)](https://www.rcpp.org/) or [Cython (runs C code within Python)](https://cython.org/) enhance performance by one or two orders of magnitude without sacrificing too much readability, albeit at the cost of increased code complexity.
+But the boundary isn't rigid: many built-in functions in interpreted languages rely on compiled code for speed. In practice, hybrid approach often strikes the best balance between usability and efficiency. Tools like [Rcpp](https://www.rcpp.org/) (C++ in R) or [Cython ](https://cython.org/) (C in Python) can [boost performance](https://github.com/deanbodenham/benchmarks_rpycpp) by orders of magnitude, albeit with added code complexity.
 
 #### Simplicity and Readability
 
@@ -101,7 +101,16 @@ There are many techniques we can apply to improve how algorithms and data struct
 
 **Vectorization**
 
-Computers have an architectural capability named [Single Instruction Multiple Data (SIMD)](https://en.algorithmica.org/hpc/simd/) designed to apply the same operation to multiple elements at once in a single core. For example, when adding two vectors, modern SIMD implementations can sum 16 pairs of elements at once. That's an important speed-up! However, SIMD can only be leveraged by compiled code  
+Vectorization is the application of an operation to multiple elements simultaneously.
+
+At the hardware level vectorization is implemented via an architectural capability named [Single Instruction Multiple Data (SIMD)](https://johnnysswlab.com/crash-course-introduction-to-parallelism-simd-parallelism/). SIMD operations can, for example, sum 16 pairs of vector elements simultaneously, offering a major speed-up. However, only compiled languages (C, C++, Fortran, etc) can leverage SIMD instructions via specific [compiler optimizations](https://blog.minhazav.dev/guide-compiler-to-auto-vectorise/).
+
+At the software level, many languages implement a vectorized syntax. Think of `a = b + c` for the vectors `b` and `c`. This abstraction allows concise, readable code while benefiting from performance gains. In compiled languages like Fortran, such syntax is automatically optimized for SIMD operations when the code is compiled. In interpreted languages like R, it leverages optimized compiled routines (for example, `+` for vectors is implemented as a loop in C) or blazing-fast matrix algebra parallelized backends like [BLAS](https://brettklamer.com/diversions/statistical/faster-blas-in-r/) when operating with matrices.
+
+
+By combining both levels—SIMD for raw speed and high-level vectorization for usability—we maximize hardware utilization while keeping code clean and efficient.
+
+At a higher level, 
 
 But there is a catch: SIMD can only be leveraged by compiled code, n
 

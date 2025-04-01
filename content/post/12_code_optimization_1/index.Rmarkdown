@@ -101,11 +101,15 @@ There are many techniques we can apply to improve how algorithms and data struct
 
 **Vectorization**
 
-Vectorization is the application of an operation to multiple elements simultaneously.
+Vectorization is the application of an operation to multiple elements simultaneously. It can be achieved in different ways.
 
-At the hardware level vectorization is implemented via an architectural capability named [Single Instruction Multiple Data (SIMD)](https://johnnysswlab.com/crash-course-introduction-to-parallelism-simd-parallelism/). SIMD operations can, for example, sum 16 pairs of vector elements simultaneously, offering a major speed-up. However, only compiled languages (C, C++, Fortran, etc) can leverage SIMD instructions via specific [compiler optimizations](https://blog.minhazav.dev/guide-compiler-to-auto-vectorise/).
+At the hardware level vectorization is implemented as an architectural feature of processors named [Single Instruction Multiple Data (SIMD)](https://johnnysswlab.com/crash-course-introduction-to-parallelism-simd-parallelism/). SIMD operations can, for example, sum 16 pairs of vector elements simultaneously, offering a major speed-up. However, only compiled languages (C, C++, Fortran, etc) can leverage SIMD instructions via specific [compiler optimizations](https://blog.minhazav.dev/guide-compiler-to-auto-vectorise/).
 
-At the software level, many languages implement a vectorized syntax. Think of `a = b + c` for the vectors `b` and `c`. This abstraction allows concise, readable code while benefiting from performance gains. In compiled languages like Fortran, such syntax is automatically optimized for SIMD operations when the code is compiled. In interpreted languages like R, it leverages optimized compiled routines (for example, `+` for vectors is implemented as a loop in C) or [blazing-fast matrix algebra backends](https://medium.com/@shiansu/calling-blas-in-r-the-hard-way-da90e0206d99) like [BLAS](https://brettklamer.com/diversions/statistical/faster-blas-in-r/) when operating with matrices.
+At the software level, many languages implement a vectorized syntax. Think of `a = b + c` for the vectors `b` and `c`. This abstraction facilitates writing concise code, and may benefit from performance gains in different ways. In compiled languages like Fortran, vectorized syntax is automatically optimized for SIMD operations during compilation. In interpreted languages like R, many vectorized functions leverage optimized compiled routines. For example, `+` is implemented as a loop in C which does not leverage SIMD, but is still quite fast.
+
+it leverages optimized compiled routines (for example, `+` for vectors is implemented as a loop in C) or [blazing-fast matrix algebra backends](https://medium.com/@shiansu/calling-blas-in-r-the-hard-way-da90e0206d99) like [BLAS](https://brettklamer.com/diversions/statistical/faster-blas-in-r/) and LAPACK when operating with matrices.
+
+[This comprehensive reply in StackOverflow by the user Zheyuan Li](https://stackoverflow.com/a/37214261) explains everything there is to know about leveraging SIMD instructions in R.
 
 
 By combining both levels—SIMD for raw speed and high-level vectorization for usability—we maximize hardware utilization while keeping code clean and efficient.

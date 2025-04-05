@@ -103,24 +103,11 @@ There are many techniques we can apply to improve how algorithms and data struct
 
 Vectorization is the application of an operation to multiple elements simultaneously. It can be achieved in different ways.
 
-At the hardware level vectorization is implemented as an architectural feature of processors named [Single Instruction Multiple Data (SIMD)](https://johnnysswlab.com/crash-course-introduction-to-parallelism-simd-parallelism/). SIMD operations can, for example, sum 16 pairs of vector elements simultaneously, offering a major speed-up. However, only compiled languages (C, C++, Fortran, etc) can leverage SIMD instructions via specific [compiler optimizations](https://blog.minhazav.dev/guide-compiler-to-auto-vectorise/).
+At the hardware level, vectorization is implemented as an architectural feature named [Single Instruction Multiple Data (SIMD)](https://johnnysswlab.com/crash-course-introduction-to-parallelism-simd-parallelism/). SIMD operations can, for example, sum 16 pairs of vector elements simultaneously in the same core, offering a major speed-up. However, only compiled languages (C, C++, Fortran, etc) can leverage SIMD instructions via specific [compiler optimizations](https://blog.minhazav.dev/guide-compiler-to-auto-vectorise/).
 
-At the software level, many languages implement a vectorized syntax. Think of `a = b + c` for the vectors `b` and `c`. This abstraction facilitates writing concise code, and may benefit from performance gains in different ways. In compiled languages like Fortran, vectorized syntax is automatically optimized for SIMD operations during compilation. In interpreted languages like R, many vectorized functions leverage optimized compiled routines. For example, `+` is implemented as a loop in C which does not leverage SIMD, but is still quite fast.
+At the software level, many languages implement a vectorized syntax. Think of adding two vectors `b` and `c` with the expression `a = b + c`. This abstraction facilitates writing concise code and may yield performance benefits in different ways. In compiled languages like Fortran, such syntax is often optimized for SIMD operations during compilation. In interpreted languages like R, many vectorized functions run compiled code under the hood. For example, primitives like `+` are implemented as fast C loops, that may or may not be auto-vectorized by the compiler (see the section *R side: how can R possibly use SIMD?* in [this excellent StackOverflow answer](https://stackoverflow.com/a/37214261) for details). In contrast, matrix operations rely on [blazing-fast matrix algebra backends](https://medium.com/@shiansu/calling-blas-in-r-the-hard-way-da90e0206d99) such as [BLAS](https://brettklamer.com/diversions/statistical/faster-blas-in-r/) and [LAPACK](https://www.netlib.org/lapack/), which explicitly exploit SIMD vectorization.
 
-it leverages optimized compiled routines (for example, `+` for vectors is implemented as a loop in C) or [blazing-fast matrix algebra backends](https://medium.com/@shiansu/calling-blas-in-r-the-hard-way-da90e0206d99) like [BLAS](https://brettklamer.com/diversions/statistical/faster-blas-in-r/) and LAPACK when operating with matrices.
-
-[This comprehensive reply in StackOverflow by the user Zheyuan Li](https://stackoverflow.com/a/37214261) explains everything there is to know about leveraging SIMD instructions in R.
-
-
-By combining both levels—SIMD for raw speed and high-level vectorization for usability—we maximize hardware utilization while keeping code clean and efficient.
-
-At a higher level, 
-
-But there is a catch: SIMD can only be leveraged by compiled code, n
-
-is the application of an operation to several elements at once.
-
-Many functions in R rely on [**vectorization**](https://www.noamross.net/archives/2014-04-16-vectorization-in-r-why/) to processes entire vectors simultaneously, outperforming explicit loops.  
+By combining SIMD for raw speed and syntax-level vectorization for usability we maximize hardware utilization while keeping our code clean and efficient.
 
 **Parallelization**
 

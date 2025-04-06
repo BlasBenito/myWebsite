@@ -101,7 +101,7 @@ There are many techniques we can apply to improve how algorithms and data struct
 
 **Vectorization**
 
-Vectorization is the application of an operation to multiple elements simultaneously. It can be achieved in different ways.
+Vectorization refers to the application of an operation to multiple elements simultaneously.
 
 At the hardware level, vectorization is implemented as an architectural feature named [Single Instruction Multiple Data (SIMD)](https://johnnysswlab.com/crash-course-introduction-to-parallelism-simd-parallelism/). SIMD operations can, for example, sum 16 pairs of vector elements simultaneously in the same core, offering a major speed-up. However, only compiled languages (C, C++, Fortran, etc) can leverage SIMD instructions via specific [compiler optimizations](https://blog.minhazav.dev/guide-compiler-to-auto-vectorise/).
 
@@ -111,21 +111,34 @@ By combining SIMD for raw speed and syntax-level vectorization for usability we 
 
 **Parallelization**
 
-[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
+[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading independent tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
 
   - The code must be easy to split into independent tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
   - The computation time of a task must be longer than the time required to move its input and output data between memory or disk to the CPU and back, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). Parallelizing very fast tasks is rarely worth it!
-  - **The memory required by a parallel task times the number of processors must not exceed the available system memory**. I wrote this one in bold so you can remember it whenever your code crashes for this very reason!
+  - The memory required by a parallel task times the number of parallel processes **must not exceed the available system memory**. I wrote this one in bold so you can remember it whenever your code crashes for this very reason!
   
 Even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). That just means that beyond some point we cannot simply throw more processors at our code and expect immediate efficiency gains.
 
-Let's jump into what's IMHO the most interesting topic of this section: **memory management**!
+Let's jump into what's IMHO the most interesting topic of this section...
 
-**Memory Management**
+**Memory Management!**
+
+Computers have a [short-term memory](https://en.wikipedia.org/wiki/Computer_memory) directly connected to the processor named *main memory*, *system memory*, or *RAM*. Any code and data required by a program *lives* (and sometimes *dies*) there during run time. For example, when you start an R session, the operating system assigns it a section of the system memory, and all functions of the packages `base`, `stats`, `graphics`, and a few others are read from disk loaded there. So does the code of any package you load using `library()`, or the data your program reads from disk, or any results it generates via models or other computations. 
+
+Main memory is FAST, but FINITE! If a program requires more memory than available, the operating system starts writing and reading data from the main memory to the hard disk and back (see [memory paging](https://en.wikipedia.org/wiki/Memory_paging) and [swap file](https://www.linux.com/news/all-about-linux-swap-space/)), slowing things down. and in extreme cases, the system can just [run out of memory](https://en.wikipedia.org/wiki/Out_of_memory) and crash.
+
+Also, a program repeatedly allocate and deallocate memory chunks of varying sizes usually accumulate non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue, known as [memory fragmentation](https://en.wikipedia.org/wiki/Fragmentation_%28computing%29), leads to performance slowdowns and a higher memory usage that can end with a crash. 
+
+
+
+
+
+If your code tries to use more RAM than your system has available, things slow down dramatically or crash altogether.
+
 
 ![Easy Memory Mangement](more_ram.jpeg)
 
-Programs that repeatedly allocate and deallocate memory chunks of varying sizes usually accumulate non-contiguous free gaps between used memory blocks that are hard to re-allocate. This issue, known as [memory fragmentation](https://en.wikipedia.org/wiki/Fragmentation_%28computing%29), leads to performance slowdowns and a higher memory usage that can end with a crash. 
+
 
 Efficient memory management can help avoid these issues by ensuring that our code uses the system's memory in a *sensible* manner. 
 

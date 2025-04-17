@@ -50,38 +50,29 @@ Let’s dig in!
 
 ## A Fine Balance
 
-Whether you're playing with large data, designing spatial pipelines, or developing scientific packages, at some point you will become the creator of a regrettably sluggish piece of ~~junk~~ code.
+Whether you're playing with large data, designing spatial pipelines, or developing scientific packages, at some point you will write a regrettably sluggish piece of ~~junk~~ code. It's not a matter of *if*, but a matter of *when*. There's no way around that, it happens to the worst of us. But don't fret, there are options ahead!
 
-The least time-consuming option to make your ~~junk~~ code run is *simple* enough: just throw more money at AWS or update your rig and just get **MORE**!
+The least time-consuming alternative to make your ~~junk~~ code run is *simple* enough: just throw more money at your cloud provider or update your rig and just get **MORE**!
 
 ![Kylo Ren says MORE!](more.gif)
 More cores, more RAM, more POWER! Because who doesn't love bragging about that shit? I surely do!
 
 <blockquote class="mastodon-embed" data-embed-url="https://fosstodon.org/@blasbenito/110305047179219534/embed" style="background: #FCF8FF; border-radius: 8px; border: 1px solid #C9C4DA; margin: 0; max-width: 800; min-width: 270px; overflow: hidden; padding: 0;"> <a href="https://fosstodon.org/@blasbenito/110305047179219534" target="_blank" style="align-items: center; color: #1C1A25; display: flex; flex-direction: column; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Roboto, sans-serif; font-size: 14px; justify-content: center; letter-spacing: 0.25px; line-height: 20px; padding: 24px; text-decoration: none;"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 79 75"><path d="M74.7135 16.6043C73.6199 8.54587 66.5351 2.19527 58.1366 0.964691C56.7196 0.756754 51.351 0 38.9148 0H38.822C26.3824 0 23.7135 0.756754 22.2966 0.964691C14.1319 2.16118 6.67571 7.86752 4.86669 16.0214C3.99657 20.0369 3.90371 24.4888 4.06535 28.5726C4.29578 34.4289 4.34049 40.275 4.877 46.1075C5.24791 49.9817 5.89495 53.8251 6.81328 57.6088C8.53288 64.5968 15.4938 70.4122 22.3138 72.7848C29.6155 75.259 37.468 75.6697 44.9919 73.971C45.8196 73.7801 46.6381 73.5586 47.4475 73.3063C49.2737 72.7302 51.4164 72.086 52.9915 70.9542C53.0131 70.9384 53.0308 70.9178 53.0433 70.8942C53.0558 70.8706 53.0628 70.8445 53.0637 70.8179V65.1661C53.0634 65.1412 53.0574 65.1167 53.0462 65.0944C53.035 65.0721 53.0189 65.0525 52.9992 65.0371C52.9794 65.0218 52.9564 65.011 52.9318 65.0056C52.9073 65.0002 52.8819 65.0003 52.8574 65.0059C48.0369 66.1472 43.0971 66.7193 38.141 66.7103C29.6118 66.7103 27.3178 62.6981 26.6609 61.0278C26.1329 59.5842 25.7976 58.0784 25.6636 56.5486C25.6622 56.5229 25.667 56.4973 25.6775 56.4738C25.688 56.4502 25.7039 56.4295 25.724 56.4132C25.7441 56.397 25.7678 56.3856 25.7931 56.3801C25.8185 56.3746 25.8448 56.3751 25.8699 56.3816C30.6101 57.5151 35.4693 58.0873 40.3455 58.086C41.5183 58.086 42.6876 58.086 43.8604 58.0553C48.7647 57.919 53.9339 57.6701 58.7591 56.7361C58.8794 56.7123 58.9998 56.6918 59.103 56.6611C66.7139 55.2124 73.9569 50.665 74.6929 39.1501C74.7204 38.6967 74.7892 34.4016 74.7892 33.9312C74.7926 32.3325 75.3085 22.5901 74.7135 16.6043ZM62.9996 45.3371H54.9966V25.9069C54.9966 21.8163 53.277 19.7302 49.7793 19.7302C45.9343 19.7302 44.0083 22.1981 44.0083 27.0727V37.7082H36.0534V27.0727C36.0534 22.1981 34.124 19.7302 30.279 19.7302C26.8019 19.7302 25.0651 21.8163 25.0617 25.9069V45.3371H17.0656V25.3172C17.0656 21.2266 18.1191 17.9769 20.2262 15.568C22.3998 13.1648 25.2509 11.9308 28.7898 11.9308C32.8859 11.9308 35.9812 13.492 38.0447 16.6111L40.036 19.9245L42.0308 16.6111C44.0943 13.492 47.1896 11.9308 51.2788 11.9308C54.8143 11.9308 57.6654 13.1648 59.8459 15.568C61.9529 17.9746 63.0065 21.2243 63.0065 25.3172L62.9996 45.3371Z" fill="currentColor"/></svg> <div style="color: #787588; margin-top: 16px;">Post by @blasbenito@fosstodon.org</div> <div style="font-weight: 500;">View on Mastodon</div> </a> </blockquote> <script data-allowed-prefixes="https://fosstodon.org/" async src="https://fosstodon.org/embed.js"></script>
 
-There is a second, more enlightening but time consuming option: **code optimization** usually preferred by *bona fide* nerds and young padawans
+However, *bona fide* nerds may consider such a brute-force approach tasteless and wasteful. Nonetheless, [we went to the Moon on less than 4kb of RAM](https://en.wikipedia.org/wiki/Apollo_Guidance_Computer). And let's be honest, the only thing your ~~junk~~ code is gonna boost is your AWS bill.
 
-A second alternative, preferred by *bona fide* nerds that take pride on their craft, is 
+Then, the elegant but somewhat time consuming approach we are left with is **code optimization**. But what does it really mean, and how far should we go with it?
 
+Optimizing code isn't just about speed; it's about writing *efficient* code. Efficient for the developers and users, and efficient for the machines running it. For us, pitiful carbon-based blobs, **readable** code is easier to wield, *ergo* efficient. On the other hand, for a machine, whether we're talking about a tiny Raspberry Pi or a supercomputer, efficient code **runs fast** and has a **small memory footprint**. 
 
-may think that's just a shameful waste! Nonetheless, [we went to the Moon on one core and less than 4kb of RAM](https://en.wikipedia.org/wiki/Apollo_Guidance_Computer).
-
-the MORE strategy is rarely ever enough for *bona fide* nerds, masochists, and anyone in between. Why? Because such folks (maybe you, maybe me) love their craft and can't run anything short of perfect in their machines. Such folks, for better or worse, **optimize their code**!
-
-But what does it really mean to optimize code, and how far should we go with it?
-
-Optimizing code isn't just about speed; it's about writing *efficient* code. Efficient for the developers and users, and efficient for the machines running it. For us, pitiful carbon-based blobs, **readable** code is easier to wield, *ergo* efficient. On the other hand, for a machine, whether we're talking about a tiny Raspberry Pi or a magnificent supercomputer, efficient code **runs fast** and has a **small memory footprint**. 
-
-Optimizing code to improve efficiency across the board means balancing the needs of both humans and machines. And there's an inherent tension there: maximizing computational performance often comes at the cost of readability, while clean, readable code can sometimes slow things down.
-
-That's why optimization isn’t just about squeezing out more speed, it’s about making strategic choices. Before diving headfirst into refactoring, it's crucial to **understand what efficiency really means** and **when optimization is actually worth it**.
+But there is an inherent tension there: maximizing computational performance often comes at the cost of readability, while clean, readable code can sometimes slow things down. That's why optimization isn’t just about squeezing out more speed, it’s about making strategic choices. Before diving headfirst into refactoring, it's crucial to **understand what efficiency really means** and **when optimization is actually worth it**.
 
 ## Understanding Code Efficiency
 
-*Code efficiency* is an abstract concept involving a complex web of causes and effects. I don't have the intention of unveiling the whole thing bare here, but I do believe that understanding some of the foundations helps articulate successful code optimization strategies. These foundations are simplified in the diagram below, which represents the most relevant causes and consequences of code efficiency.
+*Code efficiency* is an abstract concept involving a complex web of causes and effects. I don't have the intention of unveiling the whole thing bare here, but I do believe that understanding some of the foundations may help articulate successful code optimization strategies. The diagram below shows a simplified view of these foundations I am talking about.
 
 ![](diagram.png)
-On the left, the causes comprise several major *code features* that we can tweak to improve (or worsen!) the efficiency of our code. Changes in these features are bound to shape the *efficiency landscape* of our code in often divergent ways.
+On the left, several major *code features* that we can tweak to improve (or worsen!) the efficiency of our code. Changes in these features are bound to shape the *efficiency landscape* of our code in often divergent ways.
 
 ### The Causes
 
@@ -89,39 +80,45 @@ On the left, the causes comprise several major *code features* that we can tweak
 
 The choice between a compiled and a interpreted language (see [here](https://medium.com/basecs/a-deeper-inspection-into-compilation-and-interpretation-d98952ebc842) and [here](https://thevaluable.dev/difference-between-compiler-interpreter/)) shapes key aspects of code efficiency. 
 
-The code of languages like C, C++, or Fortran is translated into optimized binary code by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) before execution. In consequence, these languages lack interactive execution and are harder to debug, but run very fast and with a low memory overhead.
+The code of languages like C, C++, or Fortran is translated into binary code optimized for the given hardware by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) before execution. As a result, compiled code runs very fast and with a low memory overhead, but lacks interactive execution and is harder to debug.
 
-In contrast, languages like R and Python, much easier to write and read, are translated and executed line-by-line by an [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)), which enables interactive execution and facilitate debugging at the expense of speed. Here goes [a rabbit-hole on the R interpreter](https://www.codeproject.com/Articles/5338916/Introducing-Rsharp-Language).
+In contrast, languages like R and Python, much easier to write and read, are translated and executed line-by-line by an [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)), which enables interactive execution and facilitate debugging at the expense of speed and a higher memory usage. Here goes [a rabbit-hole on the R interpreter](https://www.codeproject.com/Articles/5338916/Introducing-Rsharp-Language) for the brave!
 
-But the boundary isn't rigid: many built-in functions in interpreted languages rely on compiled code for speed. In practice, hybrid approach often strikes the best balance between usability and efficiency. Tools like [Rcpp](https://www.rcpp.org/) (C++ in R) or [Cython ](https://cython.org/) (C in Python) can [boost performance](https://github.com/deanbodenham/benchmarks_rpycpp) by orders of magnitude, albeit with added code complexity.
+But the boundary between compiled and interpreted languages isn't rigid: many built-in functions in interpreted languages rely on compiled code for speed. Tools like [Rcpp](https://www.rcpp.org/) (C++ in R) or [Cython ](https://cython.org/) (C in Python) can [boost performance](https://github.com/deanbodenham/benchmarks_rpycpp) by orders of magnitude, albeit with added code complexity.
 
 #### Simplicity and Readability
 
-Software exists for us developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to to improve efficiency is **making your code clean!** Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain. However, striking a good balance between readability and computational efficiency is key here: excessive simplicity may leave other gains off the table!
+Software exists for us developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to to improve efficiency is **making your code clean!** Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain. However, striking a good balance between readability and computational efficiency is key here: excessive simplicity may leave other efficiency gains off the table!
 
 #### Algorithm Design and Data Structures
 
-[**Algorithms**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp) are the hearts of our code! They move bits around tirelessly until their purpose is achieved or an exception is raise. A well designed algorithm is the hallmark of efficient code. A good algorithm has a clear scope, relies on memory-efficient **data structures**, scales efficiently with data size, and avoids redundant steps. At this stage, understanding the trade-offs between algorithm design and readability allows for better optimization decisions. For example, algorithms involving data frames in R are easy to read, but using a more optimized albeit less readable structure such as [data.table](https://rdatatable.gitlab.io/data.table/) in performance-critical sections can yield significant improvements.
+A well designed [**algorithm**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp) is the hallmark of efficient code. A good algorithm has a clear scope, relies on memory-efficient **data structures**, scales efficiently with data size, and avoids redundant steps. Understanding the trade-offs between algorithm design and readability allows for better optimization decisions. For example, algorithms involving data frames in R are easy to read, but using a more optimized structure such as [data.table](https://rdatatable.gitlab.io/data.table/) in performance-critical sections can yield significant improvements at the expense of readability.
 
 #### Hardaware Utilization
 
-There are many techniques we can apply to improve how algorithms and data structures leverage our machine's resources. Vectorization and parallelization help us squeeze every last drop of juice in our CPUS, while methods such as in-place modification, object size pre-allocation, and on-demand data access are useful to manage the memory usage of our programs.
+Hardware utilization refers to how our code leverages our machine's resources. For example, vectorization and parallelization help us squeeze every last drop of juice in our CPUS, while in-place modification, object size pre-allocation, and on-demand data access are useful to manage memory usage.
 
 **Vectorization**
 
 Vectorization refers to the application of an operation to multiple elements simultaneously.
 
-At the hardware level, vectorization is implemented as an architectural feature named [Single Instruction Multiple Data (SIMD)](https://johnnysswlab.com/crash-course-introduction-to-parallelism-simd-parallelism/). SIMD operations can, for example, sum 16 pairs of vector elements simultaneously in the same core, offering a major speed-up. However, only compiled languages (C, C++, Fortran, etc) can leverage SIMD instructions via specific [compiler optimizations](https://blog.minhazav.dev/guide-compiler-to-auto-vectorise/).
+At the hardware level, vectorization is enabled by an architectural feature known as [Single Instruction Multiple Data (SIMD)](https://johnnysswlab.com/crash-course-introduction-to-parallelism-simd-parallelism/). SIMD operations can, for example, sum 16 pairs of vector elements simultaneously within a single core, offering substantial speed-ups. However, only compiled languages (C, C++, Fortran, etc) can leverage SIMD instructions via specific [compiler optimizations](https://blog.minhazav.dev/guide-compiler-to-auto-vectorise/).
 
-At the software level, many languages implement a vectorized syntax. Think of adding two vectors `b` and `c` with the expression `a = b + c`. This abstraction facilitates writing concise code and may yield performance benefits in different ways. In compiled languages like Fortran, such syntax is often optimized for SIMD operations during compilation. In interpreted languages like R, many vectorized functions run compiled code under the hood. For example, primitives like `+` are implemented as fast C loops, that may or may not be auto-vectorized by the compiler (see the section *R side: how can R possibly use SIMD?* in [this excellent StackOverflow answer](https://stackoverflow.com/a/37214261) for details). In contrast, matrix operations rely on [blazing-fast matrix algebra backends](https://medium.com/@shiansu/calling-blas-in-r-the-hard-way-da90e0206d99) such as [BLAS](https://brettklamer.com/diversions/statistical/faster-blas-in-r/) and [LAPACK](https://www.netlib.org/lapack/), which explicitly exploit SIMD vectorization.
+At the software level, many languages implement **vectorized semantics**. Think of adding two vectors `b` and `c` with the expression `a = b + c`. This abstraction makes code concise, and can also unlock performance gains in different ways. In compiled languages like Fortran, such expressions are typically optimized for SIMD vectorization. In interpreted languages like R, many vectorized functions are backed by compiled code. For instance, primitives like `+` are implemented as fast C loops, that may or may not be optimized for SIMD by the compiler (see the section *R side: how can R possibly use SIMD?* in [this excellent StackOverflow answer](https://stackoverflow.com/a/37214261) for details). In contrast, matrix operations rely on [blazing-fast matrix algebra backends](https://medium.com/@shiansu/calling-blas-in-r-the-hard-way-da90e0206d99) such as [BLAS](https://brettklamer.com/diversions/statistical/faster-blas-in-r/) and [LAPACK](https://www.netlib.org/lapack/), which explicitly exploit SIMD vectorization (and parallelization!). 
 
-By combining SIMD for raw speed and syntax-level vectorization for usability we maximize hardware utilization while keeping our code clean and efficient.
+Some functions offer vectorized semantics without performance gains. This is the case with R functions like apply(), lapply(), purrr::map(), and the likes, which are essentially loops in a trenchcoat.
+
+By combining SIMD vectorization for raw performance with semantics-level vectorization for expressiveness, we maximize hardware utilization while keeping our code clean and efficient.
 
 **Parallelization**
 
-[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading independent tasks across multiple processors. There are several requirements to improve code efficiency via parallelization:
+[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading independent tasks across multiple cores. 
 
-  - The code must be easy to split into independent tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
+![Parallel but not parallel](cpu_dance.gif)
+
+Effective parallelization has several requirements:
+
+  - The task must be easy to split into independent sub-tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
   - The computation time of a task must be longer than the time required to move its input and output data between memory or disk to the CPU and back, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). Parallelizing very fast tasks is rarely worth it!
   - The memory required by a parallel task times the number of parallel processes **must not exceed the available system memory**. I wrote this one in bold so you can remember it whenever your code crashes for this very reason!
   

@@ -52,7 +52,7 @@ Let’s dig in!
 
 Whether you're playing with large data, designing spatial pipelines, or developing scientific packages, at some point everyone writes a regrettably sluggish piece of ~~junk~~ code.
 
-The simplest way to make such ~~junk~~ code run is *simple* enough: throw more money at your cloud provider and get **MORE**!
+The simplest way to make it run is simple enough: throw more money at your cloud provider, or upgrade your rig, and get **MORE**!
 
 ![Kylo Ren says MORE!](more.gif)
 More cores, more RAM, more POWER! Because who doesn't love bragging about that shit? I surely do!
@@ -63,36 +63,44 @@ More cores, more RAM, more POWER! Because who doesn't love bragging about that s
 
 On the other hand, money is expensive (duh!), and [computing has a serious environmental footprint](https://thereader.mitpress.mit.edu/the-staggering-ecological-impacts-of-computation-and-the-cloud/). With this in mind, it's also good to remember that [we went to the Moon and back on less than 4kb of RAM](https://en.wikipedia.org/wiki/Apollo_Guidance_Computer), so there must be a way to make our ~~junk~~ code run in a more sustainable manner.
 
-This is where **code optimization** comes into play! Optimizing code is about making it **efficient** for the developers, users, and the machines running it. For us, pitiful carbon-based blobs, **readable** code is easier to wield, *ergo* efficient. For a machine, whether it is a tiny Raspberry Pi or a supercomputer, efficient code **runs fast** and has a **small memory footprint**. 
+This is where **code optimization** comes into play! 
 
-But there is an inherent tension there! Optimizing computational performance often comes at the cost of readability, while clean, readable code can sometimes slow things down. That's why optimization requires making some strategic choices. Before diving headfirst into code optimization, it's crucial to **understand what code efficiency really means** and **when code optimization is actually worth it**.
+Optimizing code is not about making it faster, it is about about making it **efficient** for developers, users, and machines alike.  For us, pitiful carbon-based blobs, **readable** code is easier to wield, *ergo* efficient. For a machine, efficient code **runs fast** and has a **small memory footprint**. And there is an inherent tension there! Optimizing for computational performance alone often comes at the cost of readability, while clean, readable code can sometimes slow things down. That's why optimization requires making some strategic choices. Before diving headfirst into code optimization, it's crucial to understand **the dimensions of code efficiency** and **when** code optimization is actually worth it.
 
-## Understanding Code Efficiency
+## The Dimensions Code Efficiency
 
-*Code efficiency* is an abstract concept involving a complex web of causes and effects. I don't have the intention of unveiling the whole thing bare here, but I do believe that understanding some of the foundations may help articulate successful code optimization strategies. The diagram below shows a simplified view of these foundations I am talking about.
+*Code efficiency* is an abstract concept involving a complex web of causes and effects. Unveiling the whole thing bare here is beyond the scope of this post, but I believe that understanding some of the foundations may help articulate successful code optimization strategies. 
 
-![](diagram.png)
-On the left, several major *code features* that we can tweak to improve (or worsen!) the efficiency of our code. Changes in these features are bound to shape the *efficiency landscape* of our code in often divergent ways.
+Let's take a look at the diagram below.
 
-### The Causes
+![Pillars of Code Efficiency](diagram.png)
+On the left, there are several major *code features* that we can tweak to improve (or worsen!) the efficiency of our code. Changes in these features are bound to shape the *efficiency landscape* of our code in often divergent ways.
+
+### Code Features
 
 #### Programming Language
 
 The choice between a compiled and a interpreted language (see [here](https://medium.com/basecs/a-deeper-inspection-into-compilation-and-interpretation-d98952ebc842) and [here](https://thevaluable.dev/difference-between-compiler-interpreter/)) shapes key aspects of code efficiency. 
 
-The code of languages like C, C++, or Fortran is translated into binary code optimized for the given hardware by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) before execution. As a result, compiled code runs very fast and with a low memory overhead, but lacks interactive execution and is harder to debug.
+In languages like C, C++, or Fortran, the code we write is translated into binary code by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) before execution. Compilers optimize the binary code for the given hardware, resulting in a **very fast execution and a low memory overhead**. These are the hallmarks of efficient code for a machine! But on the other hand, compiled languages lack interactive execution, which makes them harder to debug.
 
-In contrast, languages like R and Python, much easier to write and read, are translated and executed line-by-line by an [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)), which enables interactive execution and facilitate debugging at the expense of speed and a higher memory usage. Here goes [a rabbit-hole on the R interpreter](https://www.codeproject.com/Articles/5338916/Introducing-Rsharp-Language) for the brave!
+In contrast, languages like R and Python, much easier to write and read, are translated and executed line-by-line by an [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)). Interpreters enable interactive execution and facilitate debugging at the expense of speed and a higher memory usage. Here goes [a rabbit-hole on the R interpreter](https://www.codeproject.com/Articles/5338916/Introducing-Rsharp-Language) for the brave!
 
-But the boundary between compiled and interpreted languages isn't rigid: many built-in functions in interpreted languages rely on compiled code for speed. Tools like [Rcpp](https://www.rcpp.org/) (C++ in R) or [Cython ](https://cython.org/) (C in Python) can [boost performance](https://github.com/deanbodenham/benchmarks_rpycpp) by orders of magnitude, albeit with added code complexity.
+The boundary between compiled and interpreted languages isn't rigid though: many built-in functions in interpreted languages rely on compiled code for speed. Tools like [Rcpp](https://www.rcpp.org/) (C++ in R) or [Cython ](https://cython.org/) (C in Python) can [boost performance](https://github.com/deanbodenham/benchmarks_rpycpp) by orders of magnitude, albeit with added code complexity.
 
 #### Simplicity and Readability
 
-Software exists for us developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to to improve efficiency is **making your code clean!** Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain. However, striking a good balance between readability and computational efficiency is key here: excessive simplicity may leave other efficiency gains off the table!
+Software exists for us, developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to to improve efficiency is **making your code clean!** Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain. However, striking a good balance between readability and computational efficiency is key here, as excessive simplicity may leave other efficiency gains off the table.
+
+The best resource I can recommend on this topic is the book [A Philosophy of Software Design](https://milkov.tech/assets/psd.pdf), by [John Ousterhout](https://en.wikipedia.org/wiki/John_Ousterhout), which changed the way I code. Before reading, you might want to check this [review](https://blog.pragmaticengineer.com/a-philosophy-of-software-design-review/), this [podcast with the author](https://www.youtube.com/watch?v=lz451zUlF-k), or even this [talk by John Ousterhout](https://www.youtube.com/watch?v=bmSAYlu0NcY).
 
 #### Algorithm Design and Data Structures
 
-A well designed [**algorithm**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp) is the hallmark of efficient code. A good algorithm has a clear scope, relies on memory-efficient **data structures**, scales efficiently with data size, and avoids redundant steps. Understanding the trade-offs between algorithm design and readability allows for better optimization decisions. For example, algorithms involving data frames in R are easy to read, but using a more optimized structure such as [data.table](https://rdatatable.gitlab.io/data.table/) in performance-critical sections can yield significant improvements at the expense of readability.
+There is no efficient code without a well designed [**algorithm**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp). Good algorithms have a clear scope, rely on memory-efficient **data structures**, scale efficiently with data size, and avoid redundant steps. 
+
+Understanding the trade-offs between algorithm design and code readability allows for better optimization decisions. For example, algorithms involving data frames in R are easy to read, but using a more optimized structure such as [data.table](https://rdatatable.gitlab.io/data.table/) in performance-critical sections can yield significant improvements at the expense of readability.
+
+The Algorithm Design Manual https://mimoza.marmara.edu.tr/~msakalli/cse706_12/SkienaTheAlgorithmDesignManual.pdf
 
 #### Hardaware Utilization
 

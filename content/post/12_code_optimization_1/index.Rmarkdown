@@ -90,17 +90,19 @@ The boundary between compiled and interpreted languages isn't rigid though: many
 
 #### Simplicity and Readability
 
-Software exists for us, developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to to improve efficiency is **making your code clean!** Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain. However, striking a good balance between readability and computational efficiency is key here, as excessive simplicity may leave other efficiency gains off the table.
+Software exists for us, developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to improve efficiency is writing **clean code**. Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain. 
 
-The best resource I can recommend on this topic is the book [A Philosophy of Software Design](https://milkov.tech/assets/psd.pdf), by [John Ousterhout](https://en.wikipedia.org/wiki/John_Ousterhout), which changed the way I code. Before reading, you might want to check this [review](https://blog.pragmaticengineer.com/a-philosophy-of-software-design-review/), this [podcast with the author](https://www.youtube.com/watch?v=lz451zUlF-k), or even this [talk by John Ousterhout](https://www.youtube.com/watch?v=bmSAYlu0NcY).
+The key here is reducing the cognitive load required to maintain AND use the code. That is exactly the focus of the best book I've read on this topic: [A Philosophy of Software Design](https://milkov.tech/assets/psd.pdf). It changed the way I code! For example, the book presents the concept of **deep modules**, which are classes or functions with very simple interfaces (think of a well-named function with one or two arguments) hiding a complex functionality or long sequences of processing steps. Before reading it you might want to check this [review](https://blog.pragmaticengineer.com/a-philosophy-of-software-design-review/) and this interesting [podcast with the author](https://www.youtube.com/watch?v=lz451zUlF-k), or even this [talk by John Ousterhout himself](https://www.youtube.com/watch?v=bmSAYlu0NcY).
+
+In the end, it is important to strike a good balance between code readability and computational efficiency, as excessive simplicity may leave other efficiency gains off the table.
 
 #### Algorithm Design and Data Structures
 
-There is no efficient code without a well designed [**algorithm**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp). Good algorithms have a clear scope, rely on memory-efficient **data structures**, scale efficiently with data size, and avoid redundant steps. 
+There is no efficient code without a well-designed [**algorithm**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp). Good algorithms have a clear purpose, avoid redundant steps, and scale well with data size.
 
-Understanding the trade-offs between algorithm design and code readability allows for better optimization decisions. For example, algorithms involving data frames in R are easy to read, but using a more optimized structure such as [data.table](https://rdatatable.gitlab.io/data.table/) in performance-critical sections can yield significant improvements at the expense of readability.
+Choosing the right **data structure** for the job can make a huge difference in speed, readability, and memory usage. For instance, in R, vectors and matrices are more memory-efficient and faster than data frames for numerical operations, but in certain contexts, [reference semantics](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reference-semantics.html) applied to a [`data.table`](https://rdatatable.gitlab.io/data.table/) (extension of R's data frames) can be orders of magnitude faster, at the expense of readability (the [syntax can get weird](http://brooksandrew.github.io/simpleblog/articles/advanced-data-table/)).
 
-The Algorithm Design Manual https://mimoza.marmara.edu.tr/~msakalli/cse706_12/SkienaTheAlgorithmDesignManual.pdf
+Algorithm design and theory on data structures are well beyond the scope of this post, but if you wish to go further, I strongly recommend the classic book [The Algorithm Design Manual](https://mimoza.marmara.edu.tr/~msakalli/cse706_12/SkienaTheAlgorithmDesignManual.pdf), which bridges theory and practice with elegance.
 
 #### Hardaware Utilization
 

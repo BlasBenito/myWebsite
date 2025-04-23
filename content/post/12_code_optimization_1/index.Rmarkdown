@@ -122,7 +122,13 @@ By combining SIMD vectorization for raw performance with semantics-level vectori
 
 **Parallelization**
 
-[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading independent tasks across multiple CPU cores. 
+[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading independent tasks across multiple cores. 
+
+At the software level, parallelization can be achieved by spawning multiple processes, each with its own memory space, or by a [process spawning several threads](https://www.geeksforgeeks.org/difference-between-process-and-thread/), all them sharing the same memory space.
+
+https://www.geeksforgeeks.org/difference-between-multiprocessing-and-multithreading/
+
+
 
 Parallelization can be **explicit** and **implicit*. 
 

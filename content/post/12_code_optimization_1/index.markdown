@@ -47,7 +47,7 @@ Let’s dig in!
 
 Whether you're playing with large data, designing spatial pipelines, or developing scientific packages, at some point everyone writes a regrettably sluggish piece of ~~junk~~ code.
 
-The simplest way to make such ~~junk~~ code run is *simple* enough: throw more money at your cloud provider and get **MORE**!
+The simplest way to make it run is simple enough: throw more money at your cloud provider, or upgrade your rig, and get **MORE**!
 
 ![Kylo Ren says MORE!](more.gif)
 More cores, more RAM, more POWER! Because who doesn't love bragging about that shit? I surely do!
@@ -58,42 +58,50 @@ More cores, more RAM, more POWER! Because who doesn't love bragging about that s
 
 On the other hand, money is expensive (duh!), and [computing has a serious environmental footprint](https://thereader.mitpress.mit.edu/the-staggering-ecological-impacts-of-computation-and-the-cloud/). With this in mind, it's also good to remember that [we went to the Moon and back on less than 4kb of RAM](https://en.wikipedia.org/wiki/Apollo_Guidance_Computer), so there must be a way to make our ~~junk~~ code run in a more sustainable manner.
 
-This is where **code optimization** comes into play!
+This is where **code optimization** comes into play! 
 
-Optimizing code isn't just about speed; it's about writing code that is **efficient** for the developers, users, and the machines running it. For us, pitiful carbon-based blobs, **readable** code is easier to wield, *ergo* efficient. For a machine, whether it is a tiny Raspberry Pi or a supercomputer, efficient code **runs fast** and has a **small memory footprint**. 
+Optimizing code is not about making it faster, it is about about making it **efficient** for developers, users, and machines alike.  For us, pitiful carbon-based blobs, **readable** code is easier to wield, *ergo* efficient. For a machine, efficient code **runs fast** and has a **small memory footprint**. And there is an inherent tension there! Optimizing for computational performance alone often comes at the cost of readability, while clean, readable code can sometimes slow things down. That's why optimization requires making some strategic choices. Before diving headfirst into code optimization, it's crucial to understand **the dimensions of code efficiency** and **when** code optimization is actually worth it.
 
-But there is an inherent tension there! Optimizing computational performance often comes at the cost of readability, while clean, readable code can sometimes slow things down. That's why optimization isn’t just about squeezing out more speed, it’s about making strategic choices. Before diving headfirst into code optimization, it's crucial to **understand what efficiency really means** and **when optimization is actually worth it**.
+## The Dimensions Code Efficiency
 
-## Understanding Code Efficiency
+*Code efficiency* is an abstract concept involving a complex web of causes and effects. Unveiling the whole thing bare here is beyond the scope of this post, but I believe that understanding some of the foundations may help articulate successful code optimization strategies. 
 
-*Code efficiency* is an abstract concept involving a complex web of causes and effects. I don't have the intention of unveiling the whole thing bare here, but I do believe that understanding some of the foundations may help articulate successful code optimization strategies. The diagram below shows a simplified view of these foundations I am talking about.
+Let's take a look at the diagram below.
 
-![](diagram.png)
-On the left, several major *code features* that we can tweak to improve (or worsen!) the efficiency of our code. Changes in these features are bound to shape the *efficiency landscape* of our code in often divergent ways.
+![Pillars of Code Efficiency](diagram.png)
+On the left, there are several major *code features* that we can tweak to improve (or worsen!) the efficiency of our code. Changes in these features are bound to shape the *efficiency landscape* of our code in often divergent ways.
 
-### The Causes
+### Code Features
 
 #### Programming Language
 
 The choice between a compiled and a interpreted language (see [here](https://medium.com/basecs/a-deeper-inspection-into-compilation-and-interpretation-d98952ebc842) and [here](https://thevaluable.dev/difference-between-compiler-interpreter/)) shapes key aspects of code efficiency. 
 
-The code of languages like C, C++, or Fortran is translated into binary code optimized for the given hardware by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) before execution. As a result, compiled code runs very fast and with a low memory overhead, but lacks interactive execution and is harder to debug.
+In languages like C, C++, or Fortran, the code we write is translated into binary code by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) before execution. Compilers optimize the binary code for the given hardware, resulting in a **very fast execution and a low memory overhead**. These are the hallmarks of efficient code for a machine! But on the other hand, compiled languages lack interactive execution, which makes them harder to debug.
 
-In contrast, languages like R and Python, much easier to write and read, are translated and executed line-by-line by an [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)), which enables interactive execution and facilitate debugging at the expense of speed and a higher memory usage. Here goes [a rabbit-hole on the R interpreter](https://www.codeproject.com/Articles/5338916/Introducing-Rsharp-Language) for the brave!
+In contrast, languages like R and Python, much easier to write and read, are translated and executed line-by-line by an [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)). Interpreters enable interactive execution and facilitate debugging at the expense of speed and a higher memory usage. Here goes [a rabbit-hole on the R interpreter](https://www.codeproject.com/Articles/5338916/Introducing-Rsharp-Language) for the brave!
 
-But the boundary between compiled and interpreted languages isn't rigid: many built-in functions in interpreted languages rely on compiled code for speed. Tools like [Rcpp](https://www.rcpp.org/) (C++ in R) or [Cython ](https://cython.org/) (C in Python) can [boost performance](https://github.com/deanbodenham/benchmarks_rpycpp) by orders of magnitude, albeit with added code complexity.
+The boundary between compiled and interpreted languages isn't rigid though: many built-in functions in interpreted languages rely on compiled code for speed. Tools like [Rcpp](https://www.rcpp.org/) (C++ in R) or [Cython ](https://cython.org/) (C in Python) can [boost performance](https://github.com/deanbodenham/benchmarks_rpycpp) by orders of magnitude, albeit with added code complexity.
 
 #### Simplicity and Readability
 
-Software exists for us developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to to improve efficiency is **making your code clean!** Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain. However, striking a good balance between readability and computational efficiency is key here: excessive simplicity may leave other efficiency gains off the table!
+Software exists for us, developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to improve efficiency is writing **clean code**. Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain. 
+
+The key here is reducing the cognitive load required to maintain AND use the code. That is exactly the focus of the best book I've read on this topic: [A Philosophy of Software Design](https://milkov.tech/assets/psd.pdf). It changed the way I code! For example, the book presents the concept of **deep modules**, which are classes or functions with very simple interfaces (think of a well-named function with one or two arguments) hiding a complex functionality or long sequences of processing steps. Before reading it you might want to check this [review](https://blog.pragmaticengineer.com/a-philosophy-of-software-design-review/) and this interesting [podcast with the author](https://www.youtube.com/watch?v=lz451zUlF-k), or even this [talk by John Ousterhout himself](https://www.youtube.com/watch?v=bmSAYlu0NcY).
+
+In the end, it is important to strike a good balance between code readability and computational efficiency, as excessive simplicity may leave other efficiency gains off the table.
 
 #### Algorithm Design and Data Structures
 
-A well designed [**algorithm**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp) is the hallmark of efficient code. A good algorithm has a clear scope, relies on memory-efficient **data structures**, scales efficiently with data size, and avoids redundant steps. Understanding the trade-offs between algorithm design and readability allows for better optimization decisions. For example, algorithms involving data frames in R are easy to read, but using a more optimized structure such as [data.table](https://rdatatable.gitlab.io/data.table/) in performance-critical sections can yield significant improvements at the expense of readability.
+There is no efficient code without a well-designed [**algorithm**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp). Good algorithms have a clear purpose, avoid redundant steps, and scale well with data size.
+
+Choosing the right **data structure** for the job can make a huge difference in speed, readability, and memory usage. For instance, in R, vectors and matrices are more memory-efficient and faster than data frames for numerical operations, but in certain contexts, [reference semantics](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reference-semantics.html) applied to a [`data.table`](https://rdatatable.gitlab.io/data.table/) (extension of R's data frames) can be orders of magnitude faster, at the expense of readability (the [syntax can get weird](http://brooksandrew.github.io/simpleblog/articles/advanced-data-table/)).
+
+A complete overview on the role of algorithm design and data structures in code optimization is well beyond the scope of this post. However, if you wish to go further, I strongly recommend the classic book [The Algorithm Design Manual](https://mimoza.marmara.edu.tr/~msakalli/cse706_12/SkienaTheAlgorithmDesignManual.pdf), which bridges theory and practice with elegance.
 
 #### Hardaware Utilization
 
-Hardware utilization refers to how our code leverages our machine's resources. For example, vectorization and parallelization help us squeeze every last drop of juice in our CPUS, while in-place modification, object size pre-allocation, and on-demand data access are useful to manage memory usage.
+Hardware utilization refers to how code leverages computational resources. For example, vectorization and parallelization help us squeeze every last drop of juice in our CPUS, while in-place modification, object size pre-allocation, and on-demand data access are useful to manage memory usage.
 
 **Vectorization**
 
@@ -109,17 +117,34 @@ By combining SIMD vectorization for raw performance with semantics-level vectori
 
 **Parallelization**
 
-[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading independent tasks across multiple cores. 
+[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading independent tasks across multiple CPU cores. 
 
-![Parallel but not parallel](cpu_dance.gif)
+Parallelization can be **explicit** and **implicit**. 
 
-Effective parallelization has several requirements:
+Explicit parallelization requires the user to define how and where parallel tasks are executed. In R, this is the case of [parallelized loops](https://www.blasbenito.com/post/parallelized-loops-r/) written with the packages [doParallel](https://cran.r-project.org/web/packages/doParallel/vignettes/gettingstartedParallel.pdf)  and [`foreach`](https://cran.r-project.org/package=foreach). These require the user to define a parallelization backend (a.k.a "cluster"), select the number of cores to use, and a specific syntax (`y <- foreach(...) %dopar% \{...\})
+
+require the user to define a cluster, a number of workers
+
+
+This approach offers fine control over execution but also demands more setup and understanding of parallel workflows. On the other hand, 
+
+
+On the other hand, the latter happens under the hood. For example, the package [`data.table`]()
+
+
+when fitting a GAM model with `mgcv::gam()`, matrix operations are run in parallel BLAS library runs in parallel during matrix operations, provided a multithreaded implementation like OpenBLAS or MKL is installed.
+
+In any case, parallelization has several requirements:
 
   - The task must be easy to split into independent sub-tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
   - The computation time of a task must be longer than the time required to move its input and output data between memory or disk to the CPU and back, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). Parallelizing very fast tasks is rarely worth it!
   - The memory required by a parallel task times the number of parallel processes **must not exceed the available system memory**. I wrote this one in bold so you can remember it whenever your code crashes for this very reason!
   
 Even under ideal conditions, parallelization has well-known diminishing returns formulated in [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law). That just means that beyond some point we cannot simply throw more processors at our code and expect immediate efficiency gains.
+
+
+
+Even though the R interpreter is single-threaded, the availability and usability of parallelization backends has improved dramatically over time.
 
 Let's jump into what's IMHO the most interesting topic of this section...
 

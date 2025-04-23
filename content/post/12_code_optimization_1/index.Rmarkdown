@@ -102,11 +102,11 @@ There is no efficient code without a well-designed [**algorithm**](https://www.g
 
 Choosing the right **data structure** for the job can make a huge difference in speed, readability, and memory usage. For instance, in R, vectors and matrices are more memory-efficient and faster than data frames for numerical operations, but in certain contexts, [reference semantics](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reference-semantics.html) applied to a [`data.table`](https://rdatatable.gitlab.io/data.table/) (extension of R's data frames) can be orders of magnitude faster, at the expense of readability (the [syntax can get weird](http://brooksandrew.github.io/simpleblog/articles/advanced-data-table/)).
 
-Algorithm design and theory on data structures are well beyond the scope of this post, but if you wish to go further, I strongly recommend the classic book [The Algorithm Design Manual](https://mimoza.marmara.edu.tr/~msakalli/cse706_12/SkienaTheAlgorithmDesignManual.pdf), which bridges theory and practice with elegance.
+A complete overview on the role of algorithm design and data structures in code optimization is well beyond the scope of this post. However, if you wish to go further, I strongly recommend the classic book [The Algorithm Design Manual](https://mimoza.marmara.edu.tr/~msakalli/cse706_12/SkienaTheAlgorithmDesignManual.pdf), which bridges theory and practice with elegance.
 
 #### Hardaware Utilization
 
-Hardware utilization refers to how our code leverages our machine's resources. For example, vectorization and parallelization help us squeeze every last drop of juice in our CPUS, while in-place modification, object size pre-allocation, and on-demand data access are useful to manage memory usage.
+Hardware utilization refers to how code leverages computational resources. For example, vectorization and parallelization help us squeeze every last drop of juice in our CPUS, while in-place modification, object size pre-allocation, and on-demand data access are useful to manage memory usage.
 
 **Vectorization**
 
@@ -122,11 +122,17 @@ By combining SIMD vectorization for raw performance with semantics-level vectori
 
 **Parallelization**
 
-[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading independent tasks across multiple cores. 
+[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading independent tasks across multiple CPU cores. 
 
-![Parallel but not parallel](cpu_dance.gif)
+Parallelization can be **explicit** and **implicit*. 
 
-Effective parallelization has several requirements:
+Explicit parallelization requires the user to define how and where parallel tasks are executed. This approach offers fine control over execution but also demands more setup and understanding of parallel workflows. In R, [parallelized loops](https://www.blasbenito.com/post/parallelized-loops-r/) written with the packages [`doParallel`](https://cran.r-project.org/web/packages/doParallel/vignettes/gettingstartedParallel.pdf) and [`foreach`](https://cran.r-project.org/package=foreach) require defining a parallelization backend (a.k.a "cluster"), selecting a number of cores, and a specific syntax (`y <- foreach(...) %dopar% \{...\}`). That's pretty explicit if you ask me! Modern alternatives like [`future`](https://future.futureverse.org/) and [`future.apply`](https://future.apply.futureverse.org/) achieve the same results with a less involved code.
+
+On the other hand, implicit parallelization happens without user intervention or even knowledge. For example, the packages [`arrow`](https://cran.r-project.org/package=arrow) and [`data.table`](https://rdatatable.gitlab.io/data.table/) apply multithreading to parallelize many data operations. This is also the case of matrix operations in R (i.e. GAM fitting with `mgcv::gam()`), which are multithreaded by the matrix algebra libraries BLAS and Intel MKL.
+
+The [CRAN Task View: High-Performance and Parallel Computing with R](https://cran.r-project.org/web/views/HighPerformanceComputing.html) offers a more complete overview of the different parallelization options available in R.
+
+In any case, parallelization has several requirements:
 
   - The task must be easy to split into independent sub-tasks (a.k.a [*embarrasingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)).
   - The computation time of a task must be longer than the time required to move its input and output data between memory or disk to the CPU and back, or otherwise the communication overhead will cause a [parallel slowdown](https://en.wikipedia.org/wiki/Parallel_slowdown). Parallelizing very fast tasks is rarely worth it!

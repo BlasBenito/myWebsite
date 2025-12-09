@@ -43,11 +43,7 @@ This tutorial requires the development version (>= 1.0.3) of the newly released 
 
 ```{r, eval = FALSE}
 #required
-install.packages("remotes")
-remotes::install_github(
-  repo = "blasbenito/collinear", 
-  ref = "development"
-  )
+install.packages("collinear")
 install.packages("ranger")
 install.packages("dplyr")
 install.packages("ggplot2")
@@ -579,7 +575,7 @@ preference <- collinear::preference_order(
   df = toy,
   response = "y",
   predictors = c("a", "b", "c", "d"),
-  f = collinear::f_r2_pearson,
+  f = f_auto,
   quiet = TRUE
 )
 

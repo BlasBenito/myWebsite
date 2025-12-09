@@ -44,7 +44,7 @@ I hope you'll enjoy it!
 This tutorial requires the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more listed below. The optional ones are used only in the *Appendix* at the end of the post.
 
 
-``` r
+```r
 #required
 install.packages("collinear")
 install.packages("ranger")
@@ -77,66 +77,46 @@ Multicollinearity isn't inherently problematic, but it can be a real buzz kill w
 Let me go ahead and develop a toy data set to showcase this issue. But let's load the required libraries first.
 
 
-``` r
+```r
 #load the collinear package and its example data
 library(collinear)
-data(vi)
+data(toy)
 
 #other required libraries
 library(ranger)
 library(dplyr)
 ```
 
-In the `vi` data frame shipped with the [`collinear`](https://blasbenito.github.io/collinear/) package, the variables "soil_clay" and "humidity_range" are not correlated at all (Pearson correlation = -0.06). 
-
-In the code block below, the `dplyr::transmute()` command selects and renames them as `a` and `b`. After that, the two variables are scaled and centered, and `dplyr::mutate()` generates a few new columns:
-
+In the `toy` data frame shipped with [`collinear`](https://blasbenito.github.io/collinear/) contains these columns:
+  + `a` and `b`: uncorrelated predictors
   + `y`: response variable resulting from a linear model where `a` has a slope of 0.75, `b` has a slope of 0.25, plus a bit of white noise generated with `runif()`.
-  + `c`: a new predictor highly correlated with `a`.
-  + `d`: a new predictor resulting from a linear combination of `a` and `b`.
-
-
-``` r
-set.seed(1)
-df <- vi |>
-  dplyr::slice_sample(n = 2000) |>
-  dplyr::transmute(
-    a = soil_clay,
-    b = humidity_range
-  ) |>
-  scale() |>
-  as.data.frame() |> 
-  dplyr::mutate(
-    y = a * 0.75 + b * 0.25 + runif(n = dplyr::n(), min = -0.5, max = 0.5),
-    c = a + runif(n = dplyr::n(), min = -0.5, max = 0.5),
-    d = (a + b)/2 + runif(n = dplyr::n(), min = -0.5, max = 0.5)
-  )
-```
+  + `c`: a predictor highly correlated with `a`.
+  + `d`: a predictor resulting from a linear combination of `a` and `b`.
 
 The Pearson correlation between all pairs of these predictors is shown below.
 
 
-``` r
+```r
 collinear::cor_df(
-  df = df,
+  df = toy,
   predictors = c("a", "b", "c", "d")
 )
 ```
 
 ```
-##   x y correlation
-## 1 c a  0.96154984
-## 2 d b  0.63903887
-## 3 d a  0.63575882
-## 4 d c  0.61480312
-## 5 b a -0.04740881
-## 6 c b -0.04218308
+##   x y correlation  metric
+## 1 a c  0.96154984 Pearson
+## 2 b d  0.63903887 Pearson
+## 3 a d  0.63575882 Pearson
+## 4 c d  0.61480312 Pearson
+## 5 a b -0.04740881 Pearson
+## 6 b c -0.04218308 Pearson
 ```
 
 At this point, we have are two groups of predictors useful to understand how multicollinearity muddles model interpretation:
 
-  + Predictors with **no** multicollinearity: `a` and `b`.
-  + Predictors with multicollinearity: `a`, `b`, `c`, and `d`.
+  + Non-collinear predictors: `a` and `b`.
+  + Collinear predictors: `a`, `b`, `c`, and `d`.
 
 In the next two sections and the *Appendix*, I show how and why model interpretation becomes challenging when multicollinearity is high. Let's start with linear models.
 
@@ -145,24 +125,24 @@ In the next two sections and the *Appendix*, I show how and why model interpreta
 The code below fits *multiple linear regression models* for both groups of predictors.
 
 
-``` r
+```r
 #non-collinear predictors
 lm_ab <- lm(
   formula = y ~ a + b,
-  data = df
+  data = toy
   )
 
 #collinear predictors
 lm_abcd <- lm(
   formula = y ~ a + b + c + d,
-  data = df
+  data = toy
   )
 ```
 
 I would like you to pay attention to the estimates of the predictors `a` and `b` for both models. The estimates are the slopes in the linear model, a direct indication of the effect of a predictor over the response.
 
 
-``` r
+```r
 coefficients(lm_ab)[2:3] |> 
   round(4)
 ```
@@ -172,7 +152,8 @@ coefficients(lm_ab)[2:3] |>
 ## 0.7477 0.2616
 ```
 
-``` r
+
+```r
 coefficients(lm_abcd)[2:5] |> 
   round(4)
 ```
@@ -197,29 +178,29 @@ The QR decomposition transforms the original predictors into a set of orthogonal
 The code below applies QR decomposition to our multicollinear predictors, extracts the Q matrix, and shows the correlation between the new versions of `a`, `b`, `c`, and `d`.
 
 
-``` r
+```r
 #predictors names
 predictors <- c("a", "b", "c", "d")
 
 #QR decomposition of predictors
-df.qr <- qr(df[, predictors])
+toy.qr <- qr(toy[, predictors])
 
 #extract Q matrix
-df.q <- qr.Q(df.qr)
-colnames(df.q) <- predictors
+toy.q <- as.data.frame(qr.Q(toy.qr))
+colnames(toy.q) <- predictors
 
 #correlation between transformed predictors
-collinear::cor_df(df = df.q)
+collinear::cor_df(df = toy.q)
 ```
 
 ```
-##   x y   correlation
-## 1 d c  4.823037e-04
-## 2 d a  1.585298e-16
-## 3 c b  1.708728e-17
-## 4 c a -3.036108e-18
-## 5 d b  2.385256e-18
-## 6 b a -1.431486e-18
+##   x y   correlation  metric
+## 1 c d  4.823037e-04 Pearson
+## 2 b c -5.439847e-17 Pearson
+## 3 b d  3.894252e-17 Pearson
+## 4 a d  3.836795e-17 Pearson
+## 5 a c -3.788868e-17 Pearson
+## 6 a b -1.100264e-17 Pearson
 ```
 The new set of predictors we are left with after the QR decomposition have exactly zero correlation! And now they are not our original predictors anymore, and have a different interpretation:
 
@@ -230,8 +211,8 @@ The new set of predictors we are left with after the QR decomposition have exact
 The result of the QR decomposition can be plugged into the `solve()` function along with the response vector to estimate the coefficients of the linear model.
 
 
-``` r
-solve(a = df.qr, b = df$y) |> 
+```r
+solve(a = toy.qr, b = toy$y) |> 
   round(4)
 ```
 
@@ -246,7 +227,7 @@ But this is not the only issue of model interpretability under multicollinearity
 The code below shows the standard errors of the model without and with multicollinearity.
 
 
-``` r
+```r
 summary(lm_ab)$coefficients[, "Std. Error"][2:3] |> 
   round(4)
 ```
@@ -256,7 +237,7 @@ summary(lm_ab)$coefficients[, "Std. Error"][2:3] |>
 ## 0.0066 0.0066
 ```
 
-``` r
+```r
 summary(lm_abcd)$coefficients[, "Std. Error"][2:5] |> 
   round(4)
 ```
@@ -275,16 +256,16 @@ Now, let's take a look at how multicollinearity can also mess up the interpretat
 
 ### Random Forest
 
-It is not uncommon to hear something like "random forest is insensitive to multicollinearity". Actually, I cannot confirm nor deny that I have said that before. Anyway, it is kind of true if one is focused on prediction problmes. However, when the aim is interpreting predictor importance scores, then one has to be mindful about multicollinearity as well. 
+It is not uncommon to hear something like "random forest is insensitive to multicollinearity". Actually, I cannot confirm nor deny that I have said that before. Anyway, it is kind of true if one is focused on prediction-only problems. However, when the aim is interpreting predictor importance scores, then one has to be mindful about multicollinearity as well. 
 
 Let's see an example. The code below fits two random forest models with our two sets of predictors.
 
 
-``` r
+```r
 #non-collinear predictors
 rf_ab <- ranger::ranger(
   formula = y ~ a + b,
-  data = df,
+  data = toy,
   importance = "permutation",
   seed = 1 #for reproducibility
 )
@@ -292,7 +273,7 @@ rf_ab <- ranger::ranger(
 #collinear predictors
 rf_abcd <- ranger::ranger(
   formula = y ~ a + b + c + d,
-  data = df,
+  data = toy,
   importance = "permutation",
   seed = 1
 )
@@ -301,7 +282,7 @@ rf_abcd <- ranger::ranger(
 Let's take a look at the prediction error the two models on the out-of-bag data. While building each regression tree, Random Forest leaves a random subset of the data out. Then, each case gets a prediction from all trees that had it in the out-of-bag data, and the prediction error is averaged across all cases to get the numbers below.
 
 
-``` r
+```r
 rf_ab$prediction.error
 ```
 
@@ -309,7 +290,7 @@ rf_ab$prediction.error
 ## [1] 0.1026779
 ```
 
-``` r
+```r
 rf_abcd$prediction.error
 ```
 
@@ -323,7 +304,8 @@ But now, you noticed that I set the argument `importance` to "permutation". Perm
 
 The permutation importance scores of the two random forest models are show below. 
 
-``` r
+
+```r
 rf_ab$variable.importance |> round(4)
 ```
 
@@ -332,7 +314,7 @@ rf_ab$variable.importance |> round(4)
 ## 1.0702 0.1322
 ```
 
-``` r
+```r
 rf_abcd$variable.importance |> round(4)
 ```
 
@@ -347,10 +329,10 @@ There is one interesting detail here. The predictor `a` has a permutation error 
   + The predictor `c` competes with `d`, that has around 50% of the information in `c` (and `a`). If we remove `d` from the model, then the permutation importance of `c` doubles up. Then, with `d` in the model, we underestimate the real importance of `c` due to multicollinearity alone.
   
 
-``` r
+```r
 rf_abc <- ranger::ranger(
   formula = y ~ a + b + c,
-  data = df,
+  data = toy,
   importance = "permutation",
   seed = 1
 )
@@ -379,12 +361,12 @@ Here I show several examples with `glm()` (Generalized Linear Models), `nlme::gl
 **Generalized Linear Models with glm()**
 
 
-``` r
+```r
 #Generalized Linear Models
 #non-collinear predictors
 glm_ab <- glm(
   formula = y ~ a + b,
-  data = df
+  data = toy
   )
 
 round(coefficients(glm_ab), 4)[2:3]
@@ -395,11 +377,11 @@ round(coefficients(glm_ab), 4)[2:3]
 ## 0.7477 0.2616
 ```
 
-``` r
+```r
 #collinear predictors
 glm_abcd <- glm(
   formula = y ~ a + b + c + d,
-  data = df
+  data = toy
   )
 
 round(coefficients(glm_abcd), 4)[2:5]
@@ -413,7 +395,7 @@ round(coefficients(glm_abcd), 4)[2:5]
 **Generalized Least Squares with nlme::gls()**
 
 
-``` r
+```r
 library(nlme)
 ```
 
@@ -428,12 +410,12 @@ library(nlme)
 ##     collapse
 ```
 
-``` r
+```r
 #Generalized Least Squares
 #non-collinear predictors
 gls_ab <- nlme::gls(
   model = y ~ a + b,
-  data = df
+  data = toy
   )
 
 round(coefficients(gls_ab), 4)[2:3]
@@ -444,11 +426,11 @@ round(coefficients(gls_ab), 4)[2:3]
 ## 0.7477 0.2616
 ```
 
-``` r
+```r
 #collinear predictors
 gls_abcd <- nlme::gls(
   model = y ~ a + b + c + d,
-  data = df
+  data = toy
   )
 
 round(coefficients(gls_abcd), 4)[2:5]
@@ -462,7 +444,7 @@ round(coefficients(gls_abcd), 4)[2:5]
 **Elastic Net Regularization and Lasso penalty with glmnet::glmnet()**
 
 
-``` r
+```r
 library(glmnet)
 ```
 
@@ -471,15 +453,15 @@ library(glmnet)
 ```
 
 ```
-## Loaded glmnet 4.1-8
+## Loaded glmnet 4.1-10
 ```
 
-``` r
+```r
 #Elastic net regularization with Lasso penalty
 #non-collinear predictors
 glmnet_ab <- glmnet::cv.glmnet(
-  x = as.matrix(df[, c("a", "b")]),
-  y = df$y,
+  x = as.matrix(toy[, c("a", "b")]),
+  y = toy$y,
   alpha = 1 #lasso penalty
 )
 
@@ -490,11 +472,11 @@ round(coef(glmnet_ab$glmnet.fit, s = glmnet_ab$lambda.min), 4)[2:3]
 ## [1] 0.7438 0.2578
 ```
 
-``` r
+```r
 #collinear predictors
 glmnet_abcd <- glmnet::cv.glmnet(
-  x = as.matrix(df[, c("a", "b", "c", "d")]),
-  y = df$y,
+  x = as.matrix(toy[, c("a", "b", "c", "d")]),
+  y = toy$y,
   alpha = 1 
 )
 
@@ -512,94 +494,115 @@ round(coef(glmnet_abcd$glmnet.fit, s = glmnet_abcd$lambda.min), 4)[2:5]
 Gradient Boosting models trained with multicollinear predictors behave in a way similar to linear models with QR decomposition. When two variables are highly correlated, one of them is going to have an importance much higher than the other.
 
 
-``` r
+```r
 library(xgboost)
-```
 
-```
-## 
-## Attaching package: 'xgboost'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     slice
-```
-
-``` r
 #without multicollinearity
 gb_ab <- xgboost::xgboost(
-  data = as.matrix(df[, c("a", "b")]),
-  label = df$y,
+  data = as.matrix(toy[, c("a", "b")]),
+  label = toy$y,
   objective = "reg:squarederror",
   nrounds = 100,
   verbose = FALSE
   )
+```
 
+```
+## Warning in throw_err_or_depr_msg("Passed unrecognized parameters: ",
+## paste(head(names_unrecognized), : Passed unrecognized parameters: verbose. This
+## warning will become an error in a future version.
+```
+
+```
+## Warning in throw_err_or_depr_msg("Parameter '", match_old, "' has been renamed
+## to '", : Parameter 'data' has been renamed to 'x'. This warning will become an
+## error in a future version.
+```
+
+```
+## Warning in throw_err_or_depr_msg("Parameter '", match_old, "' has been renamed
+## to '", : Parameter 'label' has been renamed to 'y'. This warning will become an
+## error in a future version.
+```
+
+```r
 #with multicollinearity
 gb_abcd <- xgboost::xgboost(
-  data = as.matrix(df[, c("a", "b", "c", "d")]),
-  label = df$y,
+  data = as.matrix(toy[, c("a", "b", "c", "d")]),
+  label = toy$y,
   objective = "reg:squarederror",
   nrounds = 100,
   verbose = FALSE
 )
 ```
 
+```
+## Warning in throw_err_or_depr_msg("Passed unrecognized parameters: ",
+## paste(head(names_unrecognized), : Passed unrecognized parameters: verbose. This
+## warning will become an error in a future version.
+```
 
-``` r
+```
+## Warning in throw_err_or_depr_msg("Parameter '", match_old, "' has been renamed
+## to '", : Parameter 'data' has been renamed to 'x'. This warning will become an
+## error in a future version.
+```
+
+```
+## Warning in throw_err_or_depr_msg("Parameter '", match_old, "' has been renamed
+## to '", : Parameter 'label' has been renamed to 'y'. This warning will become an
+## error in a future version.
+```
+
+
+```r
 xgb.importance(model = gb_ab)[, c(1:2)]
 ```
 
 ```
 ##    Feature      Gain
-##     <char>     <num>
-## 1:       a 0.8463005
-## 2:       b 0.1536995
+## 1:       a 0.8583137
+## 2:       b 0.1416863
 ```
 
 
-``` r
+```r
 xgb.importance(model = gb_abcd)[, c(1:2)] |> 
   dplyr::arrange(Feature)
 ```
 
 ```
 ##    Feature       Gain
-##     <char>      <num>
-## 1:       a 0.78129661
-## 2:       b 0.07386393
-## 3:       c 0.03595619
-## 4:       d 0.10888327
+## 1:       a 0.77891575
+## 2:       b 0.08050964
+## 3:       c 0.03198638
+## 4:       d 0.10858823
 ```
 
 But there is a twist too. When two variables are perfectly correlated, one of them is removed right away from the model!
 
 
-``` r
+```r
 #replace c with perfect copy of a
-df$c <- df$a
+toy$c <- toy$a
 
 #with multicollinearity
 gb_abcd <- xgboost::xgboost(
-  data = as.matrix(df[, c("a", "b", "c", "d")]),
-  label = df$y,
+  x = as.matrix(toy[, c("a", "b", "c", "d")]),
+  y = toy$y,
   objective = "reg:squarederror",
-  nrounds = 100,
-  verbose = FALSE
+  nrounds = 100
 )
 
-xgb.importance(model = gb_abcd)[, c(1:2)] |> 
+xgboost::xgb.importance(model = gb_abcd)[, c(1:2)] |> 
   dplyr::arrange(Feature)
 ```
 
 ```
 ##    Feature       Gain
-##     <char>      <num>
-## 1:       a 0.79469959
-## 2:       b 0.07857141
-## 3:       d 0.12672900
+## 1:       a 0.79846929
+## 2:       b 0.08155586
+## 3:       d 0.11997485
 ```
 
 

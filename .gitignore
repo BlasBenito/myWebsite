@@ -6,3 +6,4 @@ geotif/
 .Rhistory
 /public
 /resources
+.cleanup_trash/

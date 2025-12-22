@@ -31,7 +31,7 @@ toc: true
 
 ## Summary
 
-Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. The explains how to deal with these types of predictors using methods such as one-hot encoding (please don't) or target encoding, and provides insights into their mechanisms and quirks.
+Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. This post explains how to deal with these types of predictors using methods such as one-hot encoding (please don't) or target encoding, and provides insights into their mechanisms and quirks.
 
 ## Key Highlights:
 
@@ -62,7 +62,7 @@ The post intends to serve as a useful resource for data scientists exploring alt
 This tutorial requires the development version (>= 1.0.3) of the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more.
 
 
-```r
+``` r
 #required
 install.packages("collinear")
 install.packages("fastDummies")
@@ -84,7 +84,7 @@ That's why many efforts have been made to convert them to numeric and kill the p
 Let me go ahead and illustrate the issue. There is a data frame in the `collinear` R package named `vi_smol`, with one response variable named `vi_numeric`, and several numeric and categorical predictors in the vector `vi_predictors`.
 
 
-```r
+``` r
 data(
   vi_smol,
   vi_predictors
@@ -166,7 +166,7 @@ dplyr::glimpse(vi_smol)
 The categorical variables in this data frame are identified below:
 
 
-```r
+``` r
 vi_categorical <- collinear::identify_categorical_variables(
   df = vi_smol,
   predictors = vi_predictors
@@ -188,7 +188,7 @@ vi_categorical
 And finally, their number of categories:
 
 
-```r
+``` r
 data.frame(
   name = vi_categorical$valid,
   categories = lapply(
@@ -220,7 +220,7 @@ data.frame(
 Some of them, like `country_name` and `biogeo_ecoregion`, have a cardinality high enough to ruin our day, don't they? But ok, let's start with one with a moderate number of categories, like `koppen_zone`. This variable has 23 categories representing climate zones.
 
 
-```r
+``` r
 sort(unique(vi_smol$koppen_zone))
 ```
 
@@ -234,7 +234,7 @@ sort(unique(vi_smol$koppen_zone))
 Let's use it as predictor of `vi_numeric` in a linear model and take a look at the summary.
 
 
-```r
+``` r
 stats::lm(
   formula = vi_numeric ~ koppen_zone, 
   data = vi_smol
@@ -287,7 +287,7 @@ stats::lm(
 Look at that. What the hell happened there? Well, linear models need to create numeric **dummy variables** to deal with categorical predictors. The function `stats::model.matrix()` does exactly that:
 
 
-```r
+``` r
 dummy_variables <- stats::model.matrix( 
   ~ koppen_zone,
   data = vi_smol
@@ -299,7 +299,7 @@ ncol(dummy_variables)
 ## [1] 23
 ```
 
-```r
+``` r
 dummy_variables[1:10, 1:10]
 ```
 
@@ -342,7 +342,7 @@ dummy_variables[1:10, 1:10]
 This function first creates an Intercept column with all ones. Then, for each original category except the first one ("Af"), a new column with value 1 in the cases where the given category was present and 0 otherwise is created. The category with no column ("Af") is represented in these cases in the intercept where all other dummy columns are zero. This is, essentially, **one-hot encoding** with a little twist. You will find most people use the terms *dummy variables* and *one-hot encoding* interchangeably, and that's ok. But in the end, the little twist of omitting the first category is what differentiates them. Most functions performing one-hot encoding, no matter their name, are creating as many columns as categories. That is for example the case of `fastDummies::dummy_cols()`, from the R package [`fastDummies`](https://jacobkap.github.io/fastDummies/):
 
 
-```r
+``` r
 df <- fastDummies::dummy_cols(
   .data = vi_smol[, "koppen_zone", drop = FALSE],
   select_columns = "koppen_zone",
@@ -388,7 +388,7 @@ The first issue can easily be named the **dimensionality explosion**. If we crea
 The second issue is **increased multicollinearity**. One-hot encoded features are highly collinear, which makes obtaining accurate estimates for the coefficients of the encoded categories very hard. Look at the Variance Inflation Factors of the encoded Koppen zones, they have incredibly high values!
 
 
-```r
+``` r
 collinear::vif_df(
   df = df,
   quiet = TRUE
@@ -425,7 +425,7 @@ collinear::vif_df(
 On top of those issues, one-hot encoding also causes **sparsity** in tree-based models. Let me show you an example. Below I train a recursive partition tree using `vi_numeric` as response, and the one-hot encoded version of `koppen_zone` we have in `df`. 
 
 
-```r
+``` r
 #add response variable to df
 df$vi_numeric <- vi_smol$vi_numeric
 
@@ -439,7 +439,7 @@ koppen_zone_one_hot <- rpart::rpart(
 Now I do the same using the categorical version of `koppen_zone` in `vi_smol`.
 
 
-```r
+``` r
 koppen_zone_categorical <- rpart::rpart(
   formula = vi_numeric ~ koppen_zone,
   data = vi_smol
@@ -449,14 +449,14 @@ koppen_zone_categorical <- rpart::rpart(
 Finally, I am plotting the skeletons of these trees side by side (we don't care about numbers here).
 
 
-```r
+``` r
 #plot tree skeleton
 par(mfrow = c(1, 2))
 plot(koppen_zone_one_hot, main = "One-hot encoding")
 plot(koppen_zone_categorical, main = "Categorical")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="576" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" alt="" width="576" />
 
 Notice the stark differences in tree structure between both options. On the left, the tree trained on the one-hot encoded data only shows growth on one side! This is the *sparsity* I was talking about before. On the right side, however, the tree based on the categorical variable shows a balanced and healthy structure. One-hot encoded data can easily mess up a single univariate regression tree, so imagine what it can do to your fancy random forest model with hundreds of these trees.
 
@@ -475,7 +475,7 @@ But what is target encoding? Let's start with a continuous response variable `y`
 In *it's simplest form*, target encoding replaces each category in `x` with the mean of `y` across the category cases. This results in a new numeric version of `x` named `x_encoded` in the example below.
 
 
-```r
+``` r
 yx |> 
   dplyr::group_by(x) |> 
   dplyr::mutate(
@@ -513,7 +513,7 @@ where:
   + `\(\overline{y}\)` is the global mean of the target.
 
 
-```r
+``` r
 y_mean <- mean(yx$y)
 
 m <- 3
@@ -549,7 +549,7 @@ In this version of target encoding, the encoded value of one case within a categ
 The code below implements the idea in a way so simple that it cannot even deal with one-case categories.
 
 
-```r
+``` r
 yx |>
   dplyr::group_by(x) |>
   dplyr::mutate(
@@ -576,7 +576,7 @@ yx |>
 This is a little different from all the other methods, because it does not map the categories to values from the target, but to the rank/order of the target means per category. It basically converts the categorical variable into an ordinal one arranged along with the target.
 
 
-```r
+``` r
 yx |> 
   dplyr::arrange(y) |> 
   dplyr::group_by(x) |> 
@@ -606,7 +606,7 @@ The function `collinear::target_encoding_lab()` implements all these encoding me
 In the example below, the methods rank, mean, and leave-one-out are computed.
 
 
-```r
+``` r
 yx_encoded <- collinear::target_encoding_lab(
   df = yx,
   response = "y",
@@ -630,12 +630,12 @@ dplyr::glimpse(yx_encoded)
 ```
 
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="1152" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" alt="" width="1152" />
 
 The function also allows to replace a given predictor with their selected encoding.
 
 
-```r
+``` r
 yx_encoded <- collinear::target_encoding_lab(
   df = yx,
   response = "y",

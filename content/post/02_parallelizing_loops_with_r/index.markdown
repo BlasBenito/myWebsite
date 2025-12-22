@@ -55,7 +55,7 @@ for(i in 1:10000){
 }
 ```
 
-If every `i` could run in a different core, the operation would indeed run a bit faster, and we would get rid of lazy cores. This is were packages like [`foreach`](https://cran.r-project.org/web/packages/foreach) and [`doParallel`](https://cran.r-project.org/web/packages/doParallel) come into play. Let's start installing these packages and a few others that will be useful throughout this tutorial.
+If every `i` could run in a different core, the operation would indeed run a bit faster, and we would get rid of lazy cores. This is where packages like [`foreach`](https://cran.r-project.org/web/packages/foreach) and [`doParallel`](https://cran.r-project.org/web/packages/doParallel) come into play. Let's start installing these packages and a few others that will be useful throughout this tutorial.
 
 
 ``` r
@@ -261,7 +261,7 @@ parallel::detectCores()
 ```
 
 ```
-## [1] 4
+## [1] 16
 ```
 
 ``` r
@@ -283,7 +283,7 @@ print(my.cluster)
 ```
 
 ```
-## socket cluster with 3 nodes on host 'localhost'
+## socket cluster with 15 nodes on host 'localhost'
 ```
 
 ``` r
@@ -304,7 +304,7 @@ foreach::getDoParWorkers()
 ```
 
 ```
-## [1] 3
+## [1] 15
 ```
 
 Now we can run a set of tasks in parallel!
@@ -601,7 +601,7 @@ m$variable.importance
 
 ```
 ##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
-##        0.30731130        0.16504991        0.21363473        0.07961402
+##        0.30895931        0.16370797        0.21093957        0.08085026
 ```
 The output shows that the percentage of misclassified cases is 2.34, and that *bill_length_mm* is the variable that contributes the most to the accuracy of the classification.
 
@@ -756,7 +756,7 @@ print(my.cluster)
 ```
 
 ```
-## socket cluster with 3 nodes on host 'localhost'
+## socket cluster with 15 nodes on host 'localhost'
 ```
 
 ``` r
@@ -793,7 +793,7 @@ system.time(
 
 ```
 ##    user  system elapsed 
-##   0.614   0.079  37.216
+##   0.286   0.058   3.867
 ```
 
 The output of `system.time()` goes as follows:
@@ -851,7 +851,7 @@ system.time(
 
 ```
 ##    user  system elapsed 
-##  99.500   5.091  47.716
+##  46.877   3.342   8.373
 ```
 
 As you can see, `ranger()` takes longer to execute in a regular `for` loop using several cores at once than in a parallel `foreach` loop using one core at once. That's a win for the parallelized loop!
@@ -866,9 +866,9 @@ parallel::stopCluster(cl = my.cluster)
 
 &nbsp;
 
-## A few things to take in mind
+## A few things to keep in mind
 
-As I have shown in this post, using parallelized `foreach` loops can accelerate long computing processes, even when some functions have the ability to run in parallel on their own. However, there are things to take in mind, that might vary depending on whether we are executing the parallelized task on a single computer or on a small cluster.
+As I have shown in this post, using parallelized `foreach` loops can accelerate long computing processes, even when some functions have the ability to run in parallel on their own. However, there are things to keep in mind, that might vary depending on whether we are executing the parallelized task on a single computer or on a small cluster.
 
 In a single computer, the communication between workers and the director is usually pretty fast, so there are no obvious bottlenecks to take into account here. The only limitation that might arise comes from the availability of RAM memory. For example, if a computer has 8 cores and 8GB of RAM, less than 1GB of RAM will be available for each worker. So, if you need to repeat a process that consumes a significant amount of RAM, the ideal number of cores running in parallel might be lower than the total number of cores available in your system. Don't be greedy, and try to understand the capabilities of your machine while designing a parallelized task.
 

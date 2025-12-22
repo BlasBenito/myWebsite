@@ -35,9 +35,9 @@ The topics I cover here are:
 
 I have a little but nice HP ENVY model *TE01-0008ns* with 32 GB RAM, 8 CPUs, and 3TB of hard disk running Ubuntu 20.04 that I use to do all my computational work (and most of my tweeting). A few months ago I connected it with my two laptops (one of them deceased now, RIP my dear *skynet*) to create a little cluster to run parallel tasks in R.
 
-It was just a draft cluster running on a wireless network, but it served me to think about getting a more permanent solution not requiring two additional laptops in my desk.
+It was just a draft cluster running on a wireless network, but it served me to think about getting a more permanent solution not requiring two additional laptops on my desk.
 
-That's were the nice INTEL NUCs (from [*Next Unit of Computing*](https://en.wikipedia.org/wiki/Next_Unit_of_Computing)) come into play. NUCs are full-fledged computers fitted in small boxes usually sold without RAM memory sticks and no hard disk (hence the term *barebone*). Since they have a low energy consumption footprint, I thought these would be ideal units for my soon-to-be home cluster.
+That's where the nice INTEL NUCs (from [*Next Unit of Computing*](https://en.wikipedia.org/wiki/Next_Unit_of_Computing)) come into play. NUCs are full-fledged computers fitted in small boxes usually sold without RAM memory sticks and no hard disk (hence the term *barebone*). Since they have a low energy consumption footprint, I thought these would be ideal units for my soon-to-be home cluster.
 
 &nbsp;
 
@@ -87,7 +87,7 @@ Second, I have to configure the shared connection.
 nmcli connection add type ethernet ifname enp2s0 ipv4.method shared con-name cluster
 ```
 
-Were `ifname enp2s0` is the name of the interface I want to use for the new connection, `ipv4.method shared` is the type of connection, and `con-name cluster` is the name I want the connection to have. This operation adds firewall rules to manage traffic within the `cluster` network, starts a DHCP server in the computer that serves IPs to the NUCS, and a DNS server that allows the NUCs to translate internet addresses.
+Where `ifname enp2s0` is the name of the interface I want to use for the new connection, `ipv4.method shared` is the type of connection, and `con-name cluster` is the name I want the connection to have. This operation adds firewall rules to manage traffic within the `cluster` network, starts a DHCP server in the computer that serves IPs to the NUCS, and a DNS server that allows the NUCs to translate internet addresses.
 
 After turning on the switch, I can check the connection status again with
 
@@ -311,7 +311,7 @@ save, and execute the file to export the locale so R can read it.
 
 ### Finalizing the network configuration
 
-Each NUC needs firewall rules to grant access from other computers withinn the cluster network. To activate the NUC's firewall and check what ports are open:
+Each NUC needs firewall rules to grant access from other computers within the cluster network. To activate the NUC's firewall and check what ports are open:
 
 ```bash
 sudo ufw enable
@@ -328,7 +328,7 @@ sudo ufw allow from 10.42.0.1 to any port 22
 
 Finally, the other members of the cluster network must be declared in the `/etc/hosts` file of each computer. 
 
-In each NUC edit the file through ssh with `bash sudo nano /etc/hosts` and add the lines
+In each NUC, edit the file through ssh with `bash sudo nano /etc/hosts` and add the lines
 
 `10.42.0.1 pc_name`  
 `10.42.0.XXX name_of_the_other_nuc`
@@ -338,6 +338,6 @@ In the PC, add the lines
 `10.42.0.XXX name_of_one_nuc`  
 `10.42.0.XXX name_of_the_other_nuc`
 
-At this point, after rebooting every machine, the NUCs must be accessible through ssh by using their names (`ssh username@nuc_name`) instead of their IPs (`ssh username@n10.42.0.XXX`). Just take in mind that, since the `cluster` network works with dynamic IPs (and such setting cannot be changed in a shared connection), the IPs of the NUCs might change if a new device is added to the network. That's something you need to check from the PC with `sudo arp-scan 10.42.0.1/24`, to update every `/etc/hosts` file accordingly.
+At this point, after rebooting every machine, the NUCs must be accessible through ssh by using their names (`ssh username@nuc_name`) instead of their IPs (`ssh username@n10.42.0.XXX`). Just keep in mind that, since the `cluster` network works with dynamic IPs (and such setting cannot be changed in a shared connection), the IPs of the NUCs might change if a new device is added to the network. That's something you need to check from the PC with `sudo arp-scan 10.42.0.1/24`, to update every `/etc/hosts` file accordingly.
 
 I think that's all folks. Good luck setting your home cluster! Next time I will describe how to use it for parallel computing in R.

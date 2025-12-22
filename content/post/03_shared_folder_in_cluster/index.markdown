@@ -2,9 +2,10 @@
 title: "Setup of a Shared Folder in a Home Cluster"
 author: ''
 date: "2021-01-03"
-slug: shared-folder-Beowulf Cluster
+slug: shared-folder-cluster
 categories: []
-tags: [Beowulf Cluster]
+tags:
+- Beowulf Cluster
 subtitle: ''
 summary: 'Notes on how to configure a shared folder for a beowulf home cluster'
 authors: [admin]
@@ -35,7 +36,7 @@ This post (developed on Ubuntu and Ubuntu Server 20.04) assumes that the home cl
 
 The [Network File System](https://en.wikipedia.org/wiki/Network_File_System) protocol offers the means for a *host* computer to allow other computers in the network (*clients*) to read and write the contents of a given folder. The clients access such folder like if it was a local one, while in fact it is a *reference* to the one in the host computer.
 
-The image at the beginning of the post illustrates the concept. There is a *host* computer with a folder in the path `/home/user/cluster_shared` (were `user` is your user name) that is broadcasted to the network, and there are one or several *clients* that are mounting *mounting* (making accessible) the same folder in their local paths `/home/user/cluster_shared`. 
+The image at the beginning of the post illustrates the concept. There is a *host* computer with a folder in the path `/home/user/cluster_shared` (where `user` is your user name) that is broadcasted to the network, and there are one or several *clients* that are mounting (making accessible) the same folder in their local paths `/home/user/cluster_shared`. 
 
 If the host writes a file to the shared folder, it is available right away for the clients, and the other way around. At the end, the idea is to have a folder shared among all computers in the cluster, while having the same exact path on each one of them to write or read files from such shared folder.
 
@@ -115,7 +116,7 @@ First we have to install the Linux package `nfs-common` on each client.
 
 ``` bash
 sudo apt update
-sudp apt install nfs-common
+sudo apt install nfs-common
 ```
 
 Now we can create a folder in the clients and use it to mount the NFS folder of the host.
@@ -246,7 +247,7 @@ Our target now will be to fit one `ranger::ranger()` model per data frame stored
 
 Such target is based on this rationale: When executing a `foreach` loop as in `x <- foreach(...) %dopar% {...}`, the variable `x` is going to grow in memory very fast, competing for RAM resources with the worker nodes. Furthermore, since `x` is being written on the fly, the results would be lost if the computer crashes. When the size of the input and the output of our parallelized operation is larger than memory, we can use an NFS folder to store inputs and outputs, while keeping the RAM memory free for computational tasks only, with the positive side effect of having our outputs already stored should our computer decide to crash.
 
-Also, please notice that here I am focusing in a cluster setting, but using a folder to read and write data during a loop paralellized with `foreach` can indeed be done in a single computer without an NFS folder. Any folder in your system will do the trick as well!
+Also, please notice that here I am focusing in a cluster setting, but using a folder to read and write data during a loop parallelized with `foreach` can indeed be done in a single computer without an NFS folder. Any folder in your system will do the trick as well!
 
 So, from here, we are going to prepare the cluster, and execute a parallelized loop fitting one model per data frame that reads the inputs and writes the outputs to the shared folder.
  

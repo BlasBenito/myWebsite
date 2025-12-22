@@ -25,96 +25,174 @@ toc: true
 ---
 
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/core-js/shim.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/react/react-dom.min.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/reactwidget/react-tools.js"></script>
+
 <script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+
 <link href="{{< blogdown/postref >}}index_files/reactable/reactable.css" rel="stylesheet" />
 <script src="{{< blogdown/postref >}}index_files/reactable-binding/reactable.js"></script>
+
 <style>
 .alert-warning {
   background-color: #f4f4f4;
@@ -125,7 +203,7 @@ toc: true
 
 ## Summary
 
-In this post I show how the R package [`distantia`](https://blasbenito.github.io/distantia/) can help compare and analyze epidemiological time series. The the example data comprises weekly Covid-19 prevalence curves from 36 California counties between 2020-03-16 and 2023-12-18.
+In this post I show how the R package [`distantia`](https://blasbenito.github.io/distantia/) can help compare and analyze epidemiological time series. The example data comprises weekly Covid-19 prevalence curves from 36 California counties between 2020-03-16 and 2023-12-18.
 
 The post is structured as follows:
 
@@ -177,9 +255,12 @@ We will be working with two example data frames shipped with `distantia`: the si
 This [`simple features`](https://r-spatial.github.io/sf/) data frame comprises county polygons and several socioeconomic variables. It is connected to `covid_prevalence` by the column `name`.
 
 <iframe src="la_population.html" name="LA_Population" width="600" height="600" scrolling="auto" frameborder="0">
+
 <p>
+
 California counties represented in the Covid-19 dataset.
 </p>
+
 </iframe>
 
 The socioeconomic variables available in this dataset are:
@@ -296,7 +377,7 @@ distantia::tsl_plot(
 )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="768" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" alt="" width="768" />
 
 If we combine `tsl_subset()` with `tsl_plot()`, we can focus on any particular sub-group of counties and zoom-in over specific time periods.
 
@@ -311,7 +392,7 @@ distantia::tsl_plot(
 )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="768" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" alt="" width="768" />
 
 ### Descriptive Stats
 
@@ -353,7 +434,7 @@ The second part, produced by the `lags` argument, shows the temporal autocorrela
 
 The autocorrelation values for each lag across all counties are summarized in the following boxplot.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="480" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" alt="" width="480" />
 
 According to the boxplot, our prevalence time series show a very strong short-term (1-2 weeks) memory, and a rapid diminishment of long-term memory (5-6 weeks), suggesting that the influence of past prevalence on future values dissipates quickly.
 
@@ -382,9 +463,12 @@ mapview::mapview(
 ```
 
 <iframe src="max_prevalence.html" name="Max_prevalence" width="600" height="600" scrolling="auto" frameborder="0">
+
 <p>
+
 Maximum Covid-19 prevalence in California counties.
 </p>
+
 </iframe>
 
 If you wish to compute stats for a given period or group of counties, then you can combine `tsl_subset()` and `tsl_stats()`, as we did before.
@@ -412,7 +496,7 @@ The package `distantia` was designed to streamline the comparison of time series
 
 Before moving forward, let me show you a small example focused on San Francisco, Napa, and Solano to illustrate how LS and DTW work.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="768" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" alt="" width="768" />
 
 At first glance, Napa and Solano seem quite well synchronized, while San Francisco shows a timing difference of several months. The table below shows the **LS** comparison between these time series. The `psi` column indicates the dissimilarity between pairs of time series. The smaller the value, the more similar the time series are.
 
@@ -479,7 +563,7 @@ This happens because DTW ignores absolute dates, and allows any sample in a time
 
     ## Loaded dtw v1.23-1. See ?dtw for help, citation("dtw") for use in publication.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" width="768" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" alt="" width="768" />
 
 These results suggest that, in spite of their timing differences, San Francisco, Napa, and Solano have a similar dynamics. This is a conclusion LS alone would miss!
 
@@ -528,7 +612,7 @@ The table below combines both results to facilitate a direct comparison between 
 
 Here goes a scatterplot between the columns `psi_dtw` and `psi_ls`, in case you are wondering how these two metrics are related in our experiment.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="480" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" alt="" width="480" />
 The chart shows that there is good correlation between the `psi` scores for DTW and LS, so in principle, using one or the other might not be *that* important, as they may lead to similar conclusions. However, notice all these cases with a warmer color in the upper-left corner. These represent pairs of time series with a large dissimilarity mismatch between DTW and LS. Remember San Francisco *versus* Napa? If these cases are important to your research question, then DTW is the method of choice. Otherwise, LS is a reasonable alternative.
 
 In the end, the research question must guide the methodological choice, but it is up to us to understand the consequences of such choice.
@@ -565,7 +649,7 @@ distantia::distantia_boxplot(
 )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" width="480" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-38-1.png" alt="" width="480" />
 According to the boxplot, San Bernardino is the county with a higher overall dissimilarity with all others. On the other hand, at the bottom of the boxplot, Santa Barbara seems to be the most similar to all others.
 
 ### Hierarchical Clustering
@@ -623,7 +707,7 @@ factoextra::fviz_dend(
   )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" width="768" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-42-1.png" alt="" width="768" />
 
 Mapping these groups may be helpful for the ones like me not fully acquainted with the distribution of counties in California. To get there we first need to join `psi_cluster$df` to the spatial data frame `covid_counties`.
 
@@ -654,9 +738,12 @@ mapview::mapview(
 ```
 
 <iframe src="clustering.html" name="Covid_clustering" width="600" height="600" scrolling="auto" frameborder="0">
+
 <p>
+
 California counties grouped by similarity in their Covid-19 prevalence curves.
 </p>
+
 </iframe>
 
 The map shows something the dendrogram could not: the two groups of counties are geographically coherent! Additionally, the map shows that Santa Cruz, the county with a more dubious cluster membership, is surrounded by counties from the other cluster.
@@ -693,7 +780,7 @@ The model frame `df_model` has the following components:
 - Predictors: the columns with socioeconomic data in `covid_counties` are transformed into absolute differences between each pair of counties. For example, the value of the column `area_hectares` for the counties Sacramento and Sonoma is 1.5574908^{5} hectares. This is the absolute difference between the area of Sacramento (2.5695387^{5} hectares) and the area of Sonoma (4.1270295^{5} hectares).
 - Geographic distance: the column `geographic_distance`, not in `covid_counties`, represents the distance between county limits. It is computed when the input of the argument `predictors_df` is spatial data frame.
 
-The function `distantia_model_frame()` has anotehr neat feature: it can combine different predictors into a new one!
+The function `distantia_model_frame()` has another neat feature: it can combine different predictors into a new one!
 
 In the example below, the predictors `poverty_percentage`, `median_income`, `employed_percentage`, `daily_miles_traveled` and `domestic_product` are scaled, and their multivariate distances between pairs of counties are computed and stored in the column `economy`. This new variable represents overall differences in economy between counties.
 
@@ -765,9 +852,9 @@ The model has an R-squared of 0.29, which is *not great, not terrible*.
 
 <br>
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-52-1.png" width="576" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-52-1.png" alt="" width="576" />
 
-The coefficients table and the effects plot support the idea that all predictors have a positive relationship with dissimilarity between prevalence time series. The predictor `distance` has the strongest effect, which is almost trhee times the effect `economy` and area, and more than six times the effect of `population`.
+The coefficients table and the effects plot support the idea that all predictors have a positive relationship with dissimilarity between prevalence time series. The predictor `distance` has the strongest effect, which is almost three times the effect `economy` and area, and more than six times the effect of `population`.
 
 The scatterplot below confronts the observations versus the model predictions. This kind of plot is known as *calibration plot*, and helps assess prediction bias in a model.
 
@@ -803,7 +890,7 @@ ggplot(df_model) +
   theme_bw()
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-53-1.png" width="336" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-53-1.png" alt="" width="336" />
 
 The calibration plot shows that our model underpredicts high and overpredicts low dissimilarity values. This kind of bias indicates that there are relevant predictors, interactions, or transformations missing from the model. At this point we could look for more meaningful variables, we could disaggregate the variable `economy`, or maybe decide that this linear model does not fit our purpose and try with a different modelling method.
 

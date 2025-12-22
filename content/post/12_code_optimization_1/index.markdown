@@ -31,12 +31,7 @@ toc: true
 }
 </style>
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  fig.width = 8,
-  fig.height = 6
-)
-```
+
 
 ## Series of Posts on Code Optimization
 

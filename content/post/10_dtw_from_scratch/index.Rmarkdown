@@ -122,7 +122,7 @@ In this section we develop the function `ts_preprocessing()`, which will prepare
     
 ### Linear Detrending
 
-Applying linear detrending to a multivariate time series involves computing a linear model of each variable against time, and subtracting the the model prediction to the original data. This can be performed in two steps: 
+Applying linear detrending to a multivariate time series involves computing a linear model of each variable against time, and subtracting the model prediction to the original data. This can be performed in two steps: 
 
 First, the function `stats::lm()` can be applied to all variables in one of our time series at once.
 

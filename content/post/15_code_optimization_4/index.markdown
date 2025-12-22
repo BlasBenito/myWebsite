@@ -31,12 +31,7 @@ toc: true
 }
 </style>
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  fig.width = 8,
-  fig.height = 6
-)
-```
+
 
 In the [first post](/2025/12/18/r-code-optimization-foundations-principles/) we established when and why to optimize, along with the three commandments that guide smart optimization decisions. The [second post](/2025/12/19/r-code-optimization-design-readability/) explored programming languages, clean code principles, and algorithm design. The [third post](/2025/12/20/r-code-optimization-hardware-performance/) tackled the heavy hitters: vectorization, parallelization, and memory management.
 
@@ -46,7 +41,8 @@ Now it's time to bring theory into practice! This post focuses on the practical 
 
 This post uses several packages for profiling and benchmarking. Install them if you haven't already:
 
-```{r, eval = FALSE}
+
+``` r
 install.packages(c("profvis", "microbenchmark", "bench"))
 ```
 
@@ -64,7 +60,8 @@ The function [`profvis::profvis()`](https://profvis.r-lib.org/reference/profvis.
 
 Let's check how it works on the silly function `f()` shown below. It runs a correlation test between two large vectors generated randomly from a normal and a uniform distribution.
 
-```{r}
+
+``` r
 f <- function(n = 1e7){
   stats::cor.test(
     x = stats::rnorm(n = n), 
@@ -75,7 +72,8 @@ f <- function(n = 1e7){
 
 To profile it with `profvis()` we just have to introduce our function into the argument `expr`. The argument `rerun = TRUE` is helpful to profile functions that might run too fast for the profiler.
 
-```{r, eval = FALSE}
+
+``` r
 profvis::profvis(
   expr = f(), 
   rerun = TRUE
@@ -83,22 +81,7 @@ profvis::profvis(
 ```
 
 
-```{r, echo = FALSE}
-p <- profvis::profvis(
-  expr = f(), 
-  rerun = TRUE,
-  width = "100%", 
-  height = "300"
-  )
 
-htmlwidgets::saveWidget(
-  p, 
-  file = "profiling.html", 
-  selfcontained = TRUE
-  )
-
-rm(p)
-```
 
 <iframe src="profiling.html" name="profiler"
   width="600" height="600" scrolling="auto" frameborder="0">
@@ -139,7 +122,8 @@ This is where **benchmarking** comes in!
 
 Benchmarking is the process of running alternative versions of code multiple times to rigorously compare their performance. It helps us make data-driven optimization decisions rather than relying on hunches or one-off timing measurements. The key difference from profiling: profiling shows you *where* the problems are, benchmarking shows you *whether* your solution works.
 
-```{r}
+
+``` r
 f_alt <- function(n = 1e7){
   stats::cor(
     x = stats::rnorm(n = n), 
@@ -154,7 +138,8 @@ The [`microbenchmark`](https://cran.r-project.org/package=microbenchmark) packag
 
 Let's compare different ways to extract a column from a data frame—a common operation with surprisingly variable performance:
 
-```{r, eval = FALSE}
+
+``` r
 library(microbenchmark)
 
 df <- data.frame(
@@ -185,7 +170,8 @@ This kind of information helps you make informed trade-offs between code style, 
 
 The [`bench`](https://bench.r-lib.org/) package is a modern alternative to `microbenchmark` that provides additional insights, particularly around memory allocation.
 
-```{r, eval = FALSE}
+
+``` r
 library(bench)
 
 benchmark_results <- bench::mark(
@@ -211,7 +197,8 @@ The memory allocation data is particularly enlightening! It reveals that `df[, "
 
 You can also visualize the results for a quick performance comparison:
 
-```{r, eval = FALSE}
+
+``` r
 plot(benchmark_results)
 ```
 
@@ -269,7 +256,8 @@ If optimization is genuinely needed, don't guess where the problems are—**meas
 
 Use `profvis::profvis()` to identify where execution time and memory are actually spent. The Pareto Principle applies here: typically 80% of your performance issues come from 20% of your code.
 
-```{r, eval = FALSE}
+
+``` r
 profvis::profvis({
   # Your code here
 })
@@ -299,7 +287,8 @@ This step is critical—**never skip benchmarking**!
 
 Use `microbenchmark::microbenchmark()` or `bench::mark()` to rigorously compare your original code with the optimized version:
 
-```{r, eval = FALSE}
+
+``` r
 bench::mark(
   original = original_function(data),
   optimized = optimized_function(data),
@@ -340,7 +329,8 @@ Remember: optimization is about balance. A 90% performance improvement might be 
 
 Let's see the optimization loop in action with a concrete example. Here's some inefficient code that calculates rolling means on a vector:
 
-```{r, eval = FALSE}
+
+``` r
 # Original, inefficient version
 rolling_mean_slow <- function(x, window = 3) {
   n <- length(x)
@@ -360,7 +350,8 @@ test_data <- runif(10000)
 
 **Step 1: Profile it**
 
-```{r, eval = FALSE}
+
+``` r
 profvis::profvis({
   rolling_mean_slow(test_data)
 })
@@ -372,7 +363,8 @@ Profiling reveals that the bottleneck is the repeated subsetting `x[(i - window 
 
 From Post III, we know that R has highly optimized functions for common operations. The `stats::filter()` function is specifically designed for this kind of rolling calculation:
 
-```{r, eval = FALSE}
+
+``` r
 # Optimized version using vectorization
 rolling_mean_fast <- function(x, window = 3) {
   stats::filter(x, rep(1/window, window), sides = 1)
@@ -383,7 +375,8 @@ This version leverages R's built-in, compiled C code for filtering operations. N
 
 **Step 3: Benchmark the results**
 
-```{r, eval = FALSE}
+
+``` r
 bench::mark(
   slow = rolling_mean_slow(test_data),
   fast = rolling_mean_fast(test_data),

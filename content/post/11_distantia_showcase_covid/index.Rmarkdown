@@ -42,7 +42,7 @@ knitr::opts_chunk$set(
 
 ## Summary
 
-In this post I show how the R package [`distantia`](https://blasbenito.github.io/distantia/) can help compare and analyze epidemiological time series. The the example data comprises weekly Covid-19 prevalence curves from 36 California counties between 2020-03-16 and 2023-12-18.
+In this post I show how the R package [`distantia`](https://blasbenito.github.io/distantia/) can help compare and analyze epidemiological time series. The example data comprises weekly Covid-19 prevalence curves from 36 California counties between 2020-03-16 and 2023-12-18.
 
 The post is structured as follows:
 
@@ -881,7 +881,7 @@ The model frame `df_model` has the following components:
   - Predictors: the columns with socioeconomic data in `covid_counties` are transformed into absolute differences between each pair of counties. For example, the value of the column `area_hectares` for the counties Sacramento and Sonoma is `r df_model$area_hectares[which(df_model$x == "Sacramento" & df_model$y == "Sonoma")]` hectares. This is the absolute difference between the area of Sacramento (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sacramento")]` hectares) and the area of Sonoma (`r covid_counties[["area_hectares"]][which(covid_counties$name == "Sonoma")]` hectares).
   - Geographic distance: the column `geographic_distance`, not in `covid_counties`, represents the distance between county limits. It is computed when the input of the argument `predictors_df` is spatial data frame.
 
-The function `distantia_model_frame()` has anotehr neat feature: it can combine different predictors into a new one! 
+The function `distantia_model_frame()` has another neat feature: it can combine different predictors into a new one! 
 
 In the example below, the predictors `poverty_percentage`, `median_income`, `employed_percentage`, `daily_miles_traveled` and `domestic_product` are scaled, and their multivariate distances between pairs of counties are computed and stored in the column `economy`. This new variable represents overall differences in economy between counties. 
 
@@ -1010,7 +1010,7 @@ visreg::visreg(
 )
 ```
 
-The coefficients table and the effects plot support the idea that all predictors have a positive relationship with dissimilarity between prevalence time series. The predictor `distance` has the strongest effect, which is almost trhee times the effect `economy` and area, and more than six times the effect of `population`.
+The coefficients table and the effects plot support the idea that all predictors have a positive relationship with dissimilarity between prevalence time series. The predictor `distance` has the strongest effect, which is almost three times the effect `economy` and area, and more than six times the effect of `population`.
 
 The scatterplot below confronts the observations versus the model predictions. This kind of plot is known as *calibration plot*, and helps assess prediction bias in a model.
 

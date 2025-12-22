@@ -1,0 +1,730 @@
+---
+title: "Modern Parallel Processing in R"
+author: ''
+date: "2025-12-22"
+slug: modern-parallel-processing-r
+categories: []
+tags:
+- Rstats
+- Tutorial
+- Performance
+subtitle: ''
+summary: 'A modern approach to parallelizing R code with future, future.apply, and progressr'
+authors: [admin]
+lastmod: '2025-12-22T00:00:00+01:00'
+featured: yes
+draft: true
+image:
+  caption: 'Image credit: **Blas M. Benito**'
+  focal_point: Smart
+  margin: auto
+projects: []
+toc: true
+---
+
+Back in 2020, I wrote [a post about parallelizing loops in R](https://www.blasbenito.com/post/02_parallelizing_loops_with_r/) using the `foreach` and `doParallel` packages. That approach still works perfectly fine, but the R ecosystem has evolved quite a bit since then. These days, there's a simpler, more elegant, and (dare I say it) MORE powerful way to parallelize your R code using the `future` ecosystem.
+
+So why bother updating? Well, the `future` framework offers several advantages that make it worth the switch:
+
+  + **Write once, run anywhere**: Change execution strategy with literally one line of code.
+  + **Simpler syntax**: No manual cluster management, no `.packages` juggling, just clean code.
+  + **Better integration**: Works seamlessly with modern R packages and workflows.
+  + **Progress bars built-in**: Thanks to `progressr`, you get real-time feedback on parallel tasks.
+  + **Smarter defaults**: Automatic detection of globals and package dependencies.
+
+In this post, I'll show you how to leverage the modern parallelization stack in R for single-machine computing (laptops, workstations, or servers). We'll cover:
+
+  + Understanding the `future` philosophy and mental model.
+  + Setting up parallel execution with `future` plans.
+  + Parallelizing loops with `future.apply`.
+  + Adding progress bars with `progressr`.
+  + Real-world examples: hyperparameter tuning and bootstrap confidence intervals.
+  + Bonus: `furrr` for tidyverse enthusiasts.
+  + Best practices and common pitfalls.
+
+&nbsp;
+
+## Package installation and setup
+
+Let me go ahead and install (if needed) and load all the packages we'll use throughout this tutorial. The pattern below automatically installs any missing packages and loads everything we need.
+
+```{r}
+#automatic install of packages if they are not installed already
+list_of_packages <- c(
+  "future",
+  "future.apply",
+  "progressr",
+  "furrr",
+  "ranger",
+  "palmerpenguins",
+  "tidyverse",
+  "kableExtra"
+  )
+
+new_packages <- list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
+
+if(length(new_packages) > 0){
+  install.packages(new_packages, dep=TRUE)
+}
+
+#loading packages
+for(package_i in list_of_packages){
+  suppressPackageStartupMessages(
+    library(
+      package_i,
+      character.only = TRUE
+      )
+    )
+}
+
+#loading example data
+data("penguins")
+```
+
+&nbsp;
+
+## The `future` philosophy: a different mental model
+
+Here's the thing: most parallelization approaches tie your code to a specific execution method. With `foreach`, you had to explicitly set up clusters, register backends, and manage resources. It worked, but it was... cumbersome.
+
+The `future` framework flips this on its head. It separates **WHAT** you want to compute from **HOW** you want to compute it. You write your code once, and then you can switch between sequential and parallel execution by changing a single line. No rewriting, no complex setup, just a different execution strategy.
+
+Let me show you what I mean with a simple example:
+
+```{r}
+#sequential (base R)
+x <- sapply(1:10, sqrt)
+x
+```
+
+Now, let's make this explicit using `future.apply`:
+
+```{r}
+library(future)
+library(future.apply)
+
+#sequential future plan (default)
+plan(sequential)
+
+#same computation, explicit future style
+x <- future_sapply(1:10, sqrt)
+x
+```
+
+The results are identical. But here's where it gets interesting. Want to run this in parallel? Just change the plan:
+
+```{r}
+#parallel execution!
+plan(multisession, workers = 3)
+
+#same code, now running in parallel
+x <- future_sapply(1:10, sqrt)
+x
+```
+
+Same code. Different execution. That's the beauty of `future`. No warnings about missing backends (looking at you, `foreach`), no manual cluster registration, just a clean separation of concerns.
+
+&nbsp;
+
+## Understanding `future` plans
+
+So what exactly is a `plan`? Think of it as your execution strategy. The `future` package provides several plans for single-machine computing, each with different trade-offs:
+
+```{r, echo = FALSE}
+plan_comparison <- data.frame(
+  Plan = c("sequential", "multisession", "multicore"),
+  OS_Support = c("All", "All", "Unix only"),
+  Use_Case = c("Default, debugging", "Safe parallel", "Fastest local"),
+  Speed = c("Baseline", "Fast", "Fastest"),
+  Memory = c("Efficient", "Duplicates data", "Shared memory")
+)
+
+kableExtra::kable(plan_comparison)
+```
+
+&nbsp;
+
+### `sequential`
+
+This is the default plan. Everything runs sequentially, just like regular R code. It's useful for:
+
+  + Debugging your code before parallelizing.
+  + When the overhead of parallelization exceeds its benefits.
+  + Making sure your code works before scaling up.
+
+```{r}
+plan(sequential)
+result <- future_sapply(1:5, function(x) x^2)
+result
+```
+
+&nbsp;
+
+### `multisession`
+
+This is your go-to plan for parallel execution. It works on **all operating systems** (Windows, Mac, Linux) and is the safest choice for parallel computing. Under the hood, it uses PSOCK connections (similar to the old `doParallel` PSOCK backend), which means:
+
+  + It works everywhere.
+  + Each worker gets a fresh R session.
+  + Data is copied to each worker (memory overhead!).
+  + It's safe and reliable.
+
+```{r, eval = FALSE}
+#detect available cores
+future::availableCores()
+
+#set up multisession with 7 workers (leaving one core free)
+plan(multisession, workers = availableCores() - 1)
+
+#now this runs in parallel
+result <- future_sapply(1:100, function(x) {
+  Sys.sleep(0.1)  #simulate work
+  return(x^2)
+})
+```
+
+&nbsp;
+
+### `multicore`
+
+This is the **fastest** option, but it only works on **Unix systems** (Linux and Mac). It uses forking, which means workers share the same memory space as the main process. This is incredibly efficient, but there's a catch:
+
+**WARNING**: `multicore` does NOT work in RStudio! It will silently fall back to sequential execution. This is because RStudio's architecture doesn't play nice with forking. If you're working in RStudio (like most of us), stick with `multisession`.
+
+```{r, eval = FALSE}
+#only use this in terminal R sessions on Unix systems!
+plan(multicore, workers = availableCores() - 1)
+```
+
+&nbsp;
+
+### Setting up your plan
+
+At this point, you're probably wondering: "Which plan should I use?" Here's my recommendation:
+
+  + **For interactive work (RStudio, etc.)**: Use `multisession`.
+  + **For scripts on Unix servers**: Use `multicore` if you need maximum speed.
+  + **For debugging**: Use `sequential`.
+
+Let's set up a typical parallel session:
+
+```{r}
+#check available cores
+n_cores <- future::availableCores()
+print(paste("Available cores:", n_cores))
+
+#set up multisession plan (leaving one core free for system)
+plan(multisession, workers = n_cores - 1)
+
+#verify the plan
+print(plan())
+```
+
+&nbsp;
+
+## Parallelizing loops with `future.apply`
+
+Now that we understand plans, let's talk about actually parallelizing code. The `future.apply` package provides drop-in replacements for R's apply family of functions. If you know `lapply`, `sapply`, or `mapply`, you already know how to use `future.apply`.
+
+Here's the correspondence:
+
+```{r, echo = FALSE}
+apply_comparison <- data.frame(
+  Base_R = c("lapply", "sapply", "apply", "mapply", "Map"),
+  future.apply = c("future_lapply", "future_sapply", "future_apply", "future_mapply", "future_Map"),
+  Notes = c("Most common", "Simplifies output", "For matrices", "Multiple inputs", "Alternative to mapply")
+)
+
+kableExtra::kable(apply_comparison)
+```
+
+&nbsp;
+
+### Basic replacement: just add `future_`
+
+The simplest use case is taking existing code and adding the `future_` prefix. That said, let's see it in action:
+
+```{r, eval = FALSE}
+#sequential version
+results <- lapply(1:1000, function(i) {
+  sort(runif(10000))
+})
+
+#parallel version (just add future_ prefix!)
+plan(multisession, workers = 7)
+results <- future_lapply(1:1000, function(i) {
+  sort(runif(10000))
+})
+```
+
+Notice that the only change is `lapply` → `future_lapply`. Everything else stays the same. The `future.apply` package handles all the complexity of distributing work to workers, collecting results, and managing resources.
+
+&nbsp;
+
+### Multiple iterators with `future_mapply`
+
+Sometimes you need to iterate over multiple vectors simultaneously. For this, `future_mapply` is your friend:
+
+```{r}
+#create some data to iterate over
+numbers <- 1:10
+powers <- 2:11
+
+#parallel computation over two iterators
+results <- future_mapply(
+  function(x, y) x^y,
+  numbers,
+  powers,
+  SIMPLIFY = TRUE
+)
+
+results
+```
+
+Each worker gets pairs of values from `numbers` and `powers` and computes the corresponding power. Simple and clean.
+
+&nbsp;
+
+### Handling globals and packages
+
+Here's where `future` really shines. It automatically detects which variables and packages your code needs and exports them to workers. But what the heck does that mean?
+
+```{r}
+#define a custom function that uses an external variable
+custom_function <- function(x) x * multiplier
+
+#external variable
+multiplier <- 5
+
+#this just works! future auto-detects 'multiplier'
+results <- future_lapply(
+  1:10,
+  custom_function
+)
+
+results
+```
+
+In the old `foreach` approach, you'd need to explicitly export `multiplier` using `.export` arguments. Here, `future` figures it out automatically. Same goes for packages:
+
+```{r, eval = FALSE}
+#ranger is auto-detected and loaded in workers
+results <- future_lapply(
+  1:10,
+  function(i) {
+    #ranger package is automatically exported to workers
+    ranger::ranger(Species ~ ., data = iris, num.trees = 100)
+  }
+)
+```
+
+That said, if you need fine control, you can still specify globals manually:
+
+```{r, eval = FALSE}
+results <- future_lapply(
+  1:10,
+  custom_function,
+  future.globals = list(multiplier = multiplier)
+)
+```
+
+&nbsp;
+
+## Progress bars with `progressr`
+
+One of my favorite things about the `future` ecosystem is `progressr`. Parallel code is notoriously silent—you send off 1000 tasks and then... wait. Is it working? Is it stuck? Who knows!
+
+The `progressr` package solves this elegantly. It integrates seamlessly with `future` and works with **all** execution plans (even `sequential`, which is great for debugging).
+
+Here's the basic pattern:
+
+```{r, eval = FALSE}
+library(progressr)
+
+#enable progress reporting
+handlers(global = TRUE)
+handlers("progress")
+
+#wrap your code with with_progress()
+with_progress({
+
+  #create a progressor
+  p <- progressor(along = 1:100)
+
+  #run your parallel task
+  results <- future_lapply(1:100, function(i) {
+
+    #do some work
+    Sys.sleep(0.1)
+
+    #signal progress
+    p(sprintf("Processing iteration %d", i))
+
+    #return result
+    return(i^2)
+  })
+})
+```
+
+You can choose different progress bar styles:
+
+```{r, eval = FALSE}
+handlers("txtprogressbar")  #classic text-based bar
+handlers("progress")        #modern progress package style
+handlers("cli")             #fancy cli package style
+```
+
+And here's the beautiful part: the same code works whether you're running sequentially or in parallel. Change your `plan()`, and the progress bar still works. No special configuration needed.
+
+&nbsp;
+
+## Practical example 1: Hyperparameter tuning
+
+Alright, enough toy examples. Let's tackle something real. We're going to tune hyperparameters for a random forest model using the Palmer Penguins dataset.
+
+First, let's prepare the data:
+
+```{r}
+#removing NA and subsetting columns
+penguins_clean <- as.data.frame(
+  na.omit(
+    penguins[, c(
+      "species",
+      "bill_length_mm",
+      "bill_depth_mm",
+      "flipper_length_mm",
+      "body_mass_g"
+    )]
+    )
+  )
+```
+
+```{r, echo = FALSE}
+kableExtra::kable(head(penguins_clean, 20))
+```
+
+&nbsp;
+
+Random forest models have several hyperparameters that affect performance:
+
+  + `num.trees`: number of trees to fit (default is 500).
+  + `mtry`: number of variables to consider at each split.
+  + `min.node.size`: minimum number of samples in terminal nodes.
+
+We want to find the combination that minimizes prediction error. Let's create a grid of parameter combinations:
+
+```{r}
+#create parameter grid
+sensitivity_df <- expand.grid(
+  num.trees = c(500, 1000, 1500),
+  mtry = 2:4,
+  min.node.size = c(1, 10, 20)
+)
+```
+
+```{r, echo = FALSE}
+kableExtra::kable(sensitivity_df)
+```
+
+&nbsp;
+
+Now here's where parallelization shines. We have 27 models to fit, and each takes a few seconds. Running sequentially would take a while, but in parallel it's much faster.
+
+```{r}
+#set up parallel execution
+plan(multisession, workers = availableCores() - 1)
+
+#enable progress reporting
+handlers(global = TRUE)
+
+#fit all models in parallel with progress bar
+system.time({
+  with_progress({
+
+    #create progressor
+    p <- progressor(along = 1:nrow(sensitivity_df))
+
+    #parallel hyperparameter tuning
+    prediction_error <- future_mapply(
+      function(num_trees, mtry, min_node_size) {
+
+        #fit model
+        m <- ranger::ranger(
+          data = penguins_clean,
+          dependent.variable.name = "species",
+          num.trees = num_trees,
+          mtry = mtry,
+          min.node.size = min_node_size
+        )
+
+        #update progress
+        p()
+
+        #return prediction error as percentage
+        return(m$prediction.error * 100)
+      },
+      sensitivity_df$num.trees,
+      sensitivity_df$mtry,
+      sensitivity_df$min.node.size
+    )
+  })
+})
+
+#add results to dataframe
+sensitivity_df$prediction_error <- prediction_error
+```
+
+Let's visualize the results:
+
+```{r, eval = FALSE}
+ggplot2::ggplot(data = sensitivity_df) +
+  ggplot2::aes(
+    x = mtry,
+    y = as.factor(min.node.size),
+    fill = prediction_error
+  ) +
+  ggplot2::facet_wrap(~as.factor(num.trees), labeller = label_both) +
+  ggplot2::geom_tile() +
+  ggplot2::scale_y_discrete(breaks = c(1, 10, 20)) +
+  ggplot2::scale_fill_viridis_c() +
+  ggplot2::labs(
+    x = "mtry",
+    y = "min.node.size",
+    fill = "Prediction\nError (%)",
+    title = "Random Forest Hyperparameter Tuning"
+  ) +
+  ggplot2::theme_minimal()
+```
+
+And let's extract the best hyperparameters:
+
+```{r}
+best_hyperparameters <- sensitivity_df %>%
+  dplyr::arrange(prediction_error) %>%
+  dplyr::slice(1)
+```
+
+```{r, echo = FALSE}
+kableExtra::kable(best_hyperparameters)
+```
+
+&nbsp;
+
+Notice how clean the code is compared to the `foreach` approach. No cluster setup, no `.packages` arguments, just straightforward parallel execution with progress reporting. That's the power of the `future` ecosystem.
+
+&nbsp;
+
+## Practical example 2: Bootstrap confidence intervals
+
+Random forest models have a stochastic component, which means they produce slightly different results on each run (unless you set a seed). We can use this variability to our advantage by fitting many models and examining the distribution of variable importance scores.
+
+Let's create a helper function to format importance scores (same function from the original post, just with snake_case):
+
+```{r}
+importance_to_df <- function(model) {
+  x <- as.data.frame(model$variable.importance)
+  x$variable <- rownames(x)
+  colnames(x)[1] <- "importance"
+  rownames(x) <- NULL
+  return(x)
+}
+```
+
+Now we'll fit 1000 random forest models in parallel, using the best hyperparameters from the previous example. Each model will give us importance scores, and we'll combine them to see the distribution:
+
+```{r}
+#parallel bootstrap with progress
+system.time({
+  with_progress({
+
+    #create progressor
+    p <- progressor(along = 1:1000)
+
+    #fit 1000 models in parallel
+    importance_scores <- future_lapply(
+      1:1000,
+      function(i) {
+
+        #fit model with best hyperparameters
+        m <- ranger::ranger(
+          data = penguins_clean,
+          dependent.variable.name = "species",
+          importance = "permutation",
+          mtry = best_hyperparameters$mtry,
+          num.trees = best_hyperparameters$num.trees,
+          min.node.size = best_hyperparameters$min.node.size
+        )
+
+        #update progress
+        p()
+
+        #format and return importance
+        importance_to_df(model = m)
+      }
+    )
+  })
+})
+
+#combine all results into single dataframe
+importance_scores_combined <- dplyr::bind_rows(importance_scores)
+```
+
+Let's visualize the distributions:
+
+```{r, eval = FALSE}
+ggplot2::ggplot(data = importance_scores_combined) +
+  ggplot2::aes(
+    y = reorder(variable, importance),
+    x = importance
+  ) +
+  ggplot2::geom_boxplot(fill = "steelblue", alpha = 0.7) +
+  ggplot2::labs(
+    y = "",
+    x = "Variable Importance",
+    title = "Distribution of Variable Importance Scores",
+    subtitle = "Based on 1000 random forest models"
+  ) +
+  ggplot2::theme_minimal()
+```
+
+The figure shows that `bill_length_mm` is consistently the most important variable for classifying penguin species, with no overlap with other variables. The distributions are tight, indicating stable importance scores across model runs.
+
+What I love about this approach is how the same code pattern scales from 10 iterations to 1000 iterations. Just change the number, and `future` handles the rest. No manual cluster management, no worrying about collecting results—it just works.
+
+&nbsp;
+
+## Bonus: `furrr` for tidyverse users
+
+If you're a tidyverse enthusiast and love `purrr`, you'll be happy to know there's a package called `furrr` that combines `future` with `purrr` syntax. It uses the same `future` backend, so everything we've learned still applies.
+
+Here's a quick example:
+
+```{r, eval = FALSE}
+library(furrr)
+
+#set your plan (same as before)
+plan(multisession, workers = 7)
+
+#purrr-style parallel mapping
+results <- 1:1000 %>%
+  future_map(~ sort(runif(10000)))
+
+#works with all purrr variants
+results <- sensitivity_df %>%
+  future_pmap_dbl(function(num.trees, mtry, min.node.size) {
+    m <- ranger::ranger(
+      data = penguins_clean,
+      dependent.variable.name = "species",
+      num.trees = num.trees,
+      mtry = mtry,
+      min.node.size = min.node.size
+    )
+    return(m$prediction.error * 100)
+  })
+```
+
+Same execution plans, same parallelization, just different syntax. Use whatever feels natural for your workflow.
+
+&nbsp;
+
+## Best practices and common pitfalls
+
+After working with `future` for a while, I've learned a few things that might save you some headaches:
+
+&nbsp;
+
+### Best practices
+
+  + **Set your plan at the start**: Put your `plan()` call at the beginning of your script. It makes it obvious what execution strategy you're using.
+  + **Leave cores available**: Use `availableCores() - 1` to leave breathing room for other processes.
+  + **Use `sequential` for debugging**: When your code isn't working, switch to `plan(sequential)` to get better error messages.
+  + **Prefer `multisession` over `multicore`**: Unless you're running scripts on a Unix server, `multisession` is safer and more compatible.
+
+&nbsp;
+
+### Common pitfalls
+
+**RStudio + multicore = silent failure**
+
+I cannot stress this enough: `multicore` does NOT work in RStudio. It will silently fall back to sequential execution, and you'll wonder why your code isn't running faster. The reason is that RStudio uses multiple threads, and forking (which `multicore` uses) doesn't play nice with threads. Always use `multisession` in RStudio.
+
+**Memory overhead with `multisession`**
+
+Each worker in `multisession` gets a copy of your data. If you have a large dataset and spawn 7 workers, you're now using roughly 7× the memory. Keep in mind that your total memory usage is approximately:
+
+```
+total_memory = n_workers × data_size + overhead
+```
+
+If your data is huge, you might need fewer workers than you have cores.
+
+**Random number generation**
+
+For reproducible results with random number generation, use the `future.seed` argument:
+
+```{r, eval = FALSE}
+results <- future_lapply(
+  1:100,
+  function(i) {
+    rnorm(10)
+  },
+  future.seed = TRUE
+)
+```
+
+This ensures each worker gets a different but reproducible random seed.
+
+**When NOT to parallelize**
+
+Not everything benefits from parallelization. If each iteration is very fast (< 0.1 seconds), the overhead of parallelization can exceed its benefits. Profile your code first:
+
+```{r, eval = FALSE}
+#test with sequential first
+plan(sequential)
+system.time({
+  results <- future_lapply(1:100, my_function)
+})
+
+#then test with parallel
+plan(multisession, workers = 7)
+system.time({
+  results <- future_lapply(1:100, my_function)
+})
+```
+
+If the parallel version isn't noticeably faster, stick with sequential.
+
+**Network operations and rate limits**
+
+If you're making API calls or web scraping in parallel, be careful! Parallel requests can trigger rate limits or get your IP banned. Consider:
+
+  + Using smaller numbers of workers for network operations.
+  + Adding delays between requests.
+  + Using packages like `polite` for respectful web scraping.
+
+&nbsp;
+
+### Comparison with the old approach
+
+So how does this compare to `foreach` and `doParallel`? In a nutshell:
+
+  + **Simpler syntax**: No cluster registration, no `.packages` arguments, cleaner code.
+  + **Better defaults**: Automatic detection of globals and packages saves headaches.
+  + **More flexible**: Change execution strategy with one line.
+  + **Better integration**: Works seamlessly with modern R packages and workflows.
+
+That said, `foreach` and `doParallel` still work perfectly fine, and if you have existing code using them, there's no urgent need to rewrite. But for new projects, I'd recommend starting with `future`.
+
+&nbsp;
+
+## Wrapping up
+
+And that's all for now, folks! We've covered the modern approach to parallelization in R using the `future` ecosystem. From the simple philosophy of separating computation from execution, through practical examples with machine learning workflows, to best practices and common pitfalls.
+
+The beauty of `future` is that it makes parallel computing accessible without sacrificing power or flexibility. You write clean, straightforward code, and `future` handles the complexity of distributing work across cores. Add `progressr` for progress reporting, and you have a complete, modern parallelization stack.
+
+If you want to dive deeper, check out the excellent vignettes for [`future`](https://cran.r-project.org/web/packages/future/vignettes/future-1-overview.html), [`future.apply`](https://cran.r-project.org/web/packages/future.apply/), and [`progressr`](https://cran.r-project.org/web/packages/progressr/). Henrik Bengtsson (the creator of these packages) has done an amazing job documenting everything.
+
+Happy parallelizing!
+
+Blas

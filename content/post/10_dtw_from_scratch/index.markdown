@@ -38,7 +38,7 @@ This post walks you through the implementation of a minimalistic yet fully funct
 
 Having good example data at hand is a must when developing new code. For this tutorial we use three multivariate time series of temperature, rainfall, and normalized vegetation index. These time series are named `zoo_germany`, `zoo_sweden`, and `zoo_spain`, and are stored as objects of the class [zoo](https://CRAN.R-project.org/package=zoo), which is a very robust time series management library.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" alt="" width="672" />
 
 Each zoo object has a *core data* of the class `matrix` with one observation per row and one variable per column, and an *index*, which is a vector of dates, one per row in the time series.
 
@@ -112,7 +112,7 @@ In this section we develop the function `ts_preprocessing()`, which will prepare
     
 ### Linear Detrending
 
-Applying linear detrending to a multivariate time series involves computing a linear model of each variable against time, and subtracting the the model prediction to the original data. This can be performed in two steps: 
+Applying linear detrending to a multivariate time series involves computing a linear model of each variable against time, and subtracting the model prediction to the original data. This can be performed in two steps: 
 
 First, the function `stats::lm()` can be applied to all variables in one of our time series at once.
 
@@ -163,7 +163,7 @@ stats::residuals(model_sweden)
 ## [1] zoo_sweden
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" />
 Then, the pre-processing function of our library could be something like this:
 
 
@@ -190,7 +190,7 @@ We can use a mock-up time series with an ascending trend to really test the effe
 x <- zoo::zoo(0:10)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" />
 
 If we apply `ts_preprocessing()` to this time series, the result shows a horizontal line, which is a perfect linear detrending. Now we can be sure our implementation works!
 
@@ -199,7 +199,7 @@ If we apply `ts_preprocessing()` to this time series, the result shows a horizon
 x_detrended <- ts_preprocessing(x = x)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" alt="" width="672" />
 
 
 
@@ -288,8 +288,8 @@ ts_preprocessing(x = zoo_germany)
 ## attr(,"name")
 ## [1] zoo_germany
 ## attr(,"scaled:center")
-##           evi      rainfall   temperature 
-## -9.607699e-18  2.903660e-16  4.440892e-16 
+##          evi     rainfall  temperature 
+## 2.135044e-18 8.113168e-16 5.465713e-16 
 ## attr(,"scaled:scale")
 ##         evi    rainfall temperature 
 ##   0.1733241  27.6809389   7.6110663
@@ -467,7 +467,7 @@ graphics::image(
   )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" />
 
 Darker values indicate larger distances between pairs of samples in each time series.
 
@@ -555,7 +555,7 @@ m_cost[, 1] <- cumsum(m_dist[, 1])
 ```
 
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" />
 
 Now, before going into the third step, let's focus for a moment on the first cell of the cost matrix we need to fill, with coordinates `[2, 2]` and value `NA`.
 
@@ -597,7 +597,7 @@ m_cost[1:2, 1:2]
 
 But there are many cells to fill yet!
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" alt="" width="672" />
 
 The expression we used to fill the cell `m_cost[2, 2]` can be generalized to fill all remaining empty cells. We just have to wrap it in a nested loop that for each new empty cell identifies the smallest neighbor in the x and y axies, and adds its cumulative cost to the distance of the new cell.
 
@@ -627,7 +627,7 @@ for(row in 2:nrow(m_dist)){
 
 Running the code above results in a nicely filled cost matrix!
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" alt="" width="672" />
 
 Now that we have all the pieces figured out, we can define our new function to compute the cost matrix. Notice that the code within the nested loops is slightly more concise than shown before.
 
@@ -670,7 +670,7 @@ Let's test our new function using `m_dist` as input:
 m_cost <- cost_matrix(distance_matrix = m_dist)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672" />
 
 So far so good! We can now dive into the generation of the least-cost path.
 
@@ -892,7 +892,7 @@ graphics::lines(
   )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-46-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-46-1.png" alt="" width="672" />
 
 At this point we have all the pieces required to write the function `least_cost_path()`. Notice that the `repeat{}` statement is slightly more concise than before, as `least_cost_step()` is directly wrapped within `rbind()`. However, using `rbind()` in a loop to add rows to a data frame is not a computationally efficient operation, but it was used here anyway because it makes the code more concise.
 
@@ -1287,7 +1287,7 @@ dynamic_time_warping(
 )
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-63-1.png" alt="" width="672" />
 
 ```
 ## [1] 0.509285

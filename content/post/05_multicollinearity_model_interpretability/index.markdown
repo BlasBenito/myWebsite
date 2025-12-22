@@ -44,7 +44,7 @@ I hope you'll enjoy it!
 This tutorial requires the newly released R package [`collinear`](https://blasbenito.github.io/collinear/), and a few more listed below. The optional ones are used only in the *Appendix* at the end of the post.
 
 
-```r
+``` r
 #required
 install.packages("collinear")
 install.packages("ranger")
@@ -77,7 +77,7 @@ Multicollinearity isn't inherently problematic, but it can be a real buzz kill w
 Let me go ahead and develop a toy data set to showcase this issue. But let's load the required libraries first.
 
 
-```r
+``` r
 #load the collinear package and its example data
 library(collinear)
 data(toy)
@@ -96,7 +96,7 @@ In the `toy` data frame shipped with [`collinear`](https://blasbenito.github.io/
 The Pearson correlation between all pairs of these predictors is shown below.
 
 
-```r
+``` r
 collinear::cor_df(
   df = toy,
   predictors = c("a", "b", "c", "d")
@@ -125,7 +125,7 @@ In the next two sections and the *Appendix*, I show how and why model interpreta
 The code below fits *multiple linear regression models* for both groups of predictors.
 
 
-```r
+``` r
 #non-collinear predictors
 lm_ab <- lm(
   formula = y ~ a + b,
@@ -142,7 +142,7 @@ lm_abcd <- lm(
 I would like you to pay attention to the estimates of the predictors `a` and `b` for both models. The estimates are the slopes in the linear model, a direct indication of the effect of a predictor over the response.
 
 
-```r
+``` r
 coefficients(lm_ab)[2:3] |> 
   round(4)
 ```
@@ -153,7 +153,7 @@ coefficients(lm_ab)[2:3] |>
 ```
 
 
-```r
+``` r
 coefficients(lm_abcd)[2:5] |> 
   round(4)
 ```
@@ -178,7 +178,7 @@ The QR decomposition transforms the original predictors into a set of orthogonal
 The code below applies QR decomposition to our multicollinear predictors, extracts the Q matrix, and shows the correlation between the new versions of `a`, `b`, `c`, and `d`.
 
 
-```r
+``` r
 #predictors names
 predictors <- c("a", "b", "c", "d")
 
@@ -211,7 +211,7 @@ The new set of predictors we are left with after the QR decomposition have exact
 The result of the QR decomposition can be plugged into the `solve()` function along with the response vector to estimate the coefficients of the linear model.
 
 
-```r
+``` r
 solve(a = toy.qr, b = toy$y) |> 
   round(4)
 ```
@@ -227,7 +227,7 @@ But this is not the only issue of model interpretability under multicollinearity
 The code below shows the standard errors of the model without and with multicollinearity.
 
 
-```r
+``` r
 summary(lm_ab)$coefficients[, "Std. Error"][2:3] |> 
   round(4)
 ```
@@ -237,7 +237,7 @@ summary(lm_ab)$coefficients[, "Std. Error"][2:3] |>
 ## 0.0066 0.0066
 ```
 
-```r
+``` r
 summary(lm_abcd)$coefficients[, "Std. Error"][2:5] |> 
   round(4)
 ```
@@ -261,7 +261,7 @@ It is not uncommon to hear something like "random forest is insensitive to multi
 Let's see an example. The code below fits two random forest models with our two sets of predictors.
 
 
-```r
+``` r
 #non-collinear predictors
 rf_ab <- ranger::ranger(
   formula = y ~ a + b,
@@ -282,7 +282,7 @@ rf_abcd <- ranger::ranger(
 Let's take a look at the prediction error the two models on the out-of-bag data. While building each regression tree, Random Forest leaves a random subset of the data out. Then, each case gets a prediction from all trees that had it in the out-of-bag data, and the prediction error is averaged across all cases to get the numbers below.
 
 
-```r
+``` r
 rf_ab$prediction.error
 ```
 
@@ -290,7 +290,7 @@ rf_ab$prediction.error
 ## [1] 0.1026779
 ```
 
-```r
+``` r
 rf_abcd$prediction.error
 ```
 
@@ -305,7 +305,7 @@ But now, you noticed that I set the argument `importance` to "permutation". Perm
 The permutation importance scores of the two random forest models are show below. 
 
 
-```r
+``` r
 rf_ab$variable.importance |> round(4)
 ```
 
@@ -314,7 +314,7 @@ rf_ab$variable.importance |> round(4)
 ## 1.0702 0.1322
 ```
 
-```r
+``` r
 rf_abcd$variable.importance |> round(4)
 ```
 
@@ -329,7 +329,7 @@ There is one interesting detail here. The predictor `a` has a permutation error 
   + The predictor `c` competes with `d`, that has around 50% of the information in `c` (and `a`). If we remove `d` from the model, then the permutation importance of `c` doubles up. Then, with `d` in the model, we underestimate the real importance of `c` due to multicollinearity alone.
   
 
-```r
+``` r
 rf_abc <- ranger::ranger(
   formula = y ~ a + b + c,
   data = toy,
@@ -361,7 +361,7 @@ Here I show several examples with `glm()` (Generalized Linear Models), `nlme::gl
 **Generalized Linear Models with glm()**
 
 
-```r
+``` r
 #Generalized Linear Models
 #non-collinear predictors
 glm_ab <- glm(
@@ -377,7 +377,7 @@ round(coefficients(glm_ab), 4)[2:3]
 ## 0.7477 0.2616
 ```
 
-```r
+``` r
 #collinear predictors
 glm_abcd <- glm(
   formula = y ~ a + b + c + d,
@@ -395,7 +395,7 @@ round(coefficients(glm_abcd), 4)[2:5]
 **Generalized Least Squares with nlme::gls()**
 
 
-```r
+``` r
 library(nlme)
 ```
 
@@ -410,7 +410,7 @@ library(nlme)
 ##     collapse
 ```
 
-```r
+``` r
 #Generalized Least Squares
 #non-collinear predictors
 gls_ab <- nlme::gls(
@@ -426,7 +426,7 @@ round(coefficients(gls_ab), 4)[2:3]
 ## 0.7477 0.2616
 ```
 
-```r
+``` r
 #collinear predictors
 gls_abcd <- nlme::gls(
   model = y ~ a + b + c + d,
@@ -444,7 +444,7 @@ round(coefficients(gls_abcd), 4)[2:5]
 **Elastic Net Regularization and Lasso penalty with glmnet::glmnet()**
 
 
-```r
+``` r
 library(glmnet)
 ```
 
@@ -456,7 +456,7 @@ library(glmnet)
 ## Loaded glmnet 4.1-10
 ```
 
-```r
+``` r
 #Elastic net regularization with Lasso penalty
 #non-collinear predictors
 glmnet_ab <- glmnet::cv.glmnet(
@@ -472,7 +472,7 @@ round(coef(glmnet_ab$glmnet.fit, s = glmnet_ab$lambda.min), 4)[2:3]
 ## [1] 0.7438 0.2578
 ```
 
-```r
+``` r
 #collinear predictors
 glmnet_abcd <- glmnet::cv.glmnet(
   x = as.matrix(toy[, c("a", "b", "c", "d")]),
@@ -494,7 +494,7 @@ round(coef(glmnet_abcd$glmnet.fit, s = glmnet_abcd$lambda.min), 4)[2:5]
 Gradient Boosting models trained with multicollinear predictors behave in a way similar to linear models with QR decomposition. When two variables are highly correlated, one of them is going to have an importance much higher than the other.
 
 
-```r
+``` r
 library(xgboost)
 
 #without multicollinearity
@@ -525,7 +525,7 @@ gb_ab <- xgboost::xgboost(
 ## error in a future version.
 ```
 
-```r
+``` r
 #with multicollinearity
 gb_abcd <- xgboost::xgboost(
   data = as.matrix(toy[, c("a", "b", "c", "d")]),
@@ -555,7 +555,7 @@ gb_abcd <- xgboost::xgboost(
 ```
 
 
-```r
+``` r
 xgb.importance(model = gb_ab)[, c(1:2)]
 ```
 
@@ -566,7 +566,7 @@ xgb.importance(model = gb_ab)[, c(1:2)]
 ```
 
 
-```r
+``` r
 xgb.importance(model = gb_abcd)[, c(1:2)] |> 
   dplyr::arrange(Feature)
 ```
@@ -582,7 +582,7 @@ xgb.importance(model = gb_abcd)[, c(1:2)] |>
 But there is a twist too. When two variables are perfectly correlated, one of them is removed right away from the model!
 
 
-```r
+``` r
 #replace c with perfect copy of a
 toy$c <- toy$a
 

@@ -38,7 +38,7 @@ Time series comparison is a critical task in many fields, such as environmental 
 
 For example, the data below shows time series representing the same phenomenon in three different places and time ranges: `a` and `b` have 30 synchronized observations, while `c` has 20 observations from a different year. 
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="750" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" alt="" width="750" />
 
 
 There are several options to compare `a` and `b` directly, such as assessing their correlation (0.955), or computing the sum of Euclidean distances between their respective samples (2.021). 
@@ -65,11 +65,11 @@ Dynamic Time Warping is a method to compare univariate or multivariate time seri
 
 The figure below represents a dynamic time warping solution for the time series `c` and `a`. Notice how each sample in one time series matches one or several samples from the other. These matches are optimized to minimize the sum of distances between the samples they connect (3.285 in this case). Any other combination of matches would result in a higher sum of distances.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="750" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" alt="" width="750" />
 
 In dynamic time warping, the actual *warping* happens when a sample in one time series is matched with two or more samples from the other, independently of their observation times. The figure below identifies one of these instances with blue bubbles. The sample 10 of `c` (upper blue bubble), with date 2022-07-16, is matched with the samples 14 to 16 of `a` (lower bubble), with dates 2023-12-13 to 2024-03-09. This matching structure represents a time compression in `a` for the range of involved dates.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="750" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" alt="" width="750" />
 
 This ability to warp time makes DTW incredibly useful for analyzing time series that are similar in shape but don't have the same length or are not fully synchronized. 
 
@@ -91,13 +91,13 @@ DTW is highly sensitive to differences in trends and ranges between time series 
 
 In this example, the time series `a` and `c` already have matching ranges, so normalization is not strictly necessary. For demonstration purposes, however, the figure below shows them normalized using z-score scaling:
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="750" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" alt="" width="750" />
 
 ### Distance Matrix
 
 This step involves computing the distance matrix, which contains pairwise distances between all combinations of samples in the two time series. 
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="600" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" alt="" width="600" />
 
 Choosing an appropriate distance metric is crucial. While Euclidean distance works well in many cases, other metrics may be more suitable depending on the data.
 
@@ -112,7 +112,7 @@ Different rules for cell neighborhood determine how these costs propagate:
 
 The figure below illustrates the cost matrix with both orthogonal and diagonal paths.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="600" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" alt="" width="600" />
 
 The result of the cost matrix is similar to the topographic map of a valley, in which the value of each cell represents the slope we have to overcome to walk through it.
 
@@ -128,7 +128,7 @@ The algorithm building the least-cost path starts on the upper right corner of t
 
 The figure below shows the least-cost path (black line). Deviations from the diagonal represent adjustments made to align the time series.
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="600" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" alt="" width="600" />
 
 ### Similarity Metric
 

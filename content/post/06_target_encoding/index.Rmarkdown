@@ -31,7 +31,7 @@ toc: true
 
 ## Summary
 
-Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. The explains how to deal with these types of predictors using methods such as one-hot encoding (please don't) or target encoding, and provides insights into their mechanisms and quirks.
+Categorical predictors are annoying stringy monsters that can turn any data analysis and modeling effort into a real annoyance. This post explains how to deal with these types of predictors using methods such as one-hot encoding (please don't) or target encoding, and provides insights into their mechanisms and quirks.
 
 ## Key Highlights:
 

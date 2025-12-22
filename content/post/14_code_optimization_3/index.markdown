@@ -31,12 +31,7 @@ toc: true
 }
 </style>
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  fig.width = 8,
-  fig.height = 6
-)
-```
+
 
 Welcome to the third post in this series! In the [first article](/2025/12/18/r-code-optimization-foundations-principles/) we covered the foundational principles, in the [second](/2025/12/19/r-code-optimization-design-readability/) we explored language choices and algorithm design. Now we'll talk a bit about where the real performance gains happen: vectorization, parallelization, and memory management.
 

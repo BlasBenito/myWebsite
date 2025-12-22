@@ -54,7 +54,7 @@ for(i in 1:10000){
 }
 ```
 
-If every `i` could run in a different core, the operation would indeed run a bit faster, and we would get rid of lazy cores. This is were packages like [`foreach`](https://cran.r-project.org/web/packages/foreach) and [`doParallel`](https://cran.r-project.org/web/packages/doParallel) come into play. Let's start installing these packages and a few others that will be useful throughout this tutorial.
+If every `i` could run in a different core, the operation would indeed run a bit faster, and we would get rid of lazy cores. This is where packages like [`foreach`](https://cran.r-project.org/web/packages/foreach) and [`doParallel`](https://cran.r-project.org/web/packages/doParallel) come into play. Let's start installing these packages and a few others that will be useful throughout this tutorial.
 
 ```{r}
 #automatic install of packages if they are not installed already
@@ -184,7 +184,7 @@ PSOCK backends (Parallel Socket Cluster) are available for both UNIX and WINDOWS
 
 ## Setup of a parallel backend
 
-Here I explain how to setup the parallel backend for a simple computer and for a Beowulf cluster as [the one I described in a previous post]((https://www.blasbenito.com/post/01_home_cluster/)). 
+Here I explain how to setup the parallel backend for a simple computer and for a Beowulf cluster as [the one I described in a previous post](https://www.blasbenito.com/post/01_home_cluster/). 
 
 ### Setup for a single computer
 
@@ -664,9 +664,9 @@ parallel::stopCluster(cl = my.cluster)
 
 &nbsp;
 
-## A few things to take in mind
+## A few things to keep in mind
 
-As I have shown in this post, using parallelized `foreach` loops can accelerate long computing processes, even when some functions have the ability to run in parallel on their own. However, there are things to take in mind, that might vary depending on whether we are executing the parallelized task on a single computer or on a small cluster.
+As I have shown in this post, using parallelized `foreach` loops can accelerate long computing processes, even when some functions have the ability to run in parallel on their own. However, there are things to keep in mind, that might vary depending on whether we are executing the parallelized task on a single computer or on a small cluster.
 
 In a single computer, the communication between workers and the director is usually pretty fast, so there are no obvious bottlenecks to take into account here. The only limitation that might arise comes from the availability of RAM memory. For example, if a computer has 8 cores and 8GB of RAM, less than 1GB of RAM will be available for each worker. So, if you need to repeat a process that consumes a significant amount of RAM, the ideal number of cores running in parallel might be lower than the total number of cores available in your system. Don't be greedy, and try to understand the capabilities of your machine while designing a parallelized task.
 

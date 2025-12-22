@@ -31,12 +31,7 @@ toc: true
 }
 </style>
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  fig.width = 8,
-  fig.height = 6
-)
-```
+
 
 In the [first article](/2025/12/18/r-code-optimization-foundations-principles/) I covered the dimensions of code efficiency, and the three commandments of code optimization. This article focuses on the actual code features that shape efficiency: programming languages, code design, and algorithms.
 

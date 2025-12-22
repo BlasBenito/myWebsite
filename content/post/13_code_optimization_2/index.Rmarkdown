@@ -1,8 +1,8 @@
 ---
-title: "R Code Optimization II: The Toolbox"
+title: "R Code Optimization II: Language, Design, and Readability"
 author: ""
-date: '2025-03-15'
-slug: R-code-optimization-toolbox
+date: '2025-03-14'
+slug: R-code-optimization-design-readability
 categories: []
 tags:
 - Rstats
@@ -10,11 +10,11 @@ tags:
 - Tutorial
 - Code Optimization
 subtitle: ''
-summary: "Post focused on the R toolbox required for code optimization."
+summary: "The second post in a series on code optimization, exploring how programming languages, clean code principles, and how algorithm design shapes code efficiency."
 authors: [admin]
-lastmod: '2025-03-15T07:28:01+01:00'
+lastmod: '2025-03-14T07:28:01+01:00'
 featured: no
-draft: true
+draft: false
 image:
   caption: ''
   focal_point: Smart
@@ -33,209 +33,53 @@ toc: true
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  fig.width = 8, 
+  fig.width = 8,
   fig.height = 6
 )
 ```
 
+In the [first article](post/R-code-optimization-foundations-principles) we covered the foundations: when to optimize, the dimensions of code efficiency, and the three commandments. Now let's get into the actual code features that shape efficiency: programming languages, code design, and algorithms.
 
-## Profiling and Benchmarking
+Let's dig in!
 
-Profiling and benchmarking are methods to measure your code's performance and help guide optimization decisions. The former helps identify low-performance hot-spots in your code, while the latter helps make informed choices between alternative implementations.
+## Programming Language
 
-### Profiling
+The choice between a compiled and an interpreted language (see [here](https://medium.com/basecs/a-deeper-inspection-into-compilation-and-interpretation-d98952ebc842) and [here](https://thevaluable.dev/difference-between-compiler-interpreter/)) shapes key aspects of code efficiency.
 
-Profiling helps analyze your code to understand where the execution time and RAM memory are spent, and will help you answer the question: *Where should I start optimizing?* Profilers break down code execution into function calls, highlighting potential bottlenecks
+In languages like C, C++, or Fortran, the code we write is translated into binary code by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) before execution. Compilers optimize the binary code for the given hardware, resulting in **very fast execution and a low memory overhead**. These are the hallmarks of efficient code for a machine! But on the other hand, compiled languages lack interactive execution, which makes them harder to debug.
 
-In R, the function `utils::Rprof()` is the default profiling tool. You can find a great explanation on this tool in the chapter [Profiling R Code](https://bookdown.org/rdpeng/rprogdatascience/profiling-r-code.html#profiling-r-code) of the book *R Programming for Data Science*, by [Roger D. Peng](https://rdpeng.org/).
+In contrast, languages like R and Python, much easier to write and read, are translated and executed line-by-line by an [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)). Interpreters enable interactive execution and facilitate debugging at the expense of speed and a higher memory usage. Here goes [a rabbit-hole on the R interpreter](https://www.codeproject.com/Articles/5338916/Introducing-Rsharp-Language) for the brave!
 
-The function [`profvis::profvis()`](https://profvis.r-lib.org/reference/profvis.html) is a modern alternative that still uses `Rprof()` underneath, but generates a neat HTML widget to facilitate the visualization and interpretation of profiling data. 
+The boundary between compiled and interpreted languages isn't rigid though: many built-in functions in interpreted languages rely on compiled code for speed. Tools like [Rcpp](https://www.rcpp.org/) (C++ in R) or [Cython](https://cython.org/) (C in Python) can [boost performance](https://github.com/deanbodenham/benchmarks_rpycpp) by orders of magnitude, albeit with added code complexity.
 
-Let's check how it works on the silly function `f()` shown below. It runs a correlation test between two large vectors generated randomly from a normal and a uniform distribution.
+## Simplicity and Readability
 
-```{r}
-f <- function(n = 1e7){
-  stats::cor.test(
-    x = stats::rnorm(n = n), 
-    y = stats::runif(n = n)
-  )
-}
-```
+Software exists for us, developers and users, and our time is far more valuable than CPU time! That's why the most straightforward way to improve efficiency is writing **clean code**. Clean code is readable, modular (but not [excessively modular!](https://softengbook.org/articles/deep-modules)), easy to use, and easy to maintain.
 
-To profile it with `profvis()` we just have to introduce our function into the argument `expr`. The argument `rerun = TRUE` is helpful to profile functions that might run too fast for the profiler.
+The key here is reducing the cognitive load required to maintain AND use the code. That is exactly the focus of the best book I've read on this topic: [A Philosophy of Software Design](https://milkov.tech/assets/psd.pdf). It changed the way I code! 
 
-```{r, eval = FALSE}
-profvis::profvis(
-  expr = f(), 
-  rerun = TRUE
-  )
-```
+For example, the book presents the concept of **deep modules**, which are classes or functions with very simple interfaces (think of a well-named function with one or two arguments) hiding a complex functionality or long sequences of processing steps. Before reading it you might want to check this [review](https://blog.pragmaticengineer.com/a-philosophy-of-software-design-review/) and this interesting [podcast with the author](https://www.youtube.com/watch?v=lz451zUlF-k), or even this [talk by John Ousterhout himself](https://www.youtube.com/watch?v=bmSAYlu0NcY).
 
+In the end, it is important to strike a good balance between code readability and computational efficiency, as excessive simplicity may leave other efficiency gains off the table.
 
-```{r, echo = FALSE}
-p <- profvis::profvis(
-  expr = f(), 
-  rerun = TRUE,
-  width = "100%", 
-  height = "300"
-  )
+### Key Principles for Clean Code
 
-htmlwidgets::saveWidget(
-  p, 
-  file = "profiling.html", 
-  selfcontained = TRUE
-  )
+Here are some fundamental principles to keep your code readable and maintainable:
 
-rm(p)
-```
+- **Use a consistent style**: Stick to a recognizable style guide, such as the [tidyverse style guide](https://style.tidyverse.org/) or [Google's R style guide](https://google.github.io/styleguide/Rguide.html).
 
-<iframe src="profiling.html" name="profiler"
-  width="600" height="600" scrolling="auto" frameborder="0">
-   <p>Profiling result.</p>
-</iframe>
+- **Avoid deep nesting**: Excessive nesting makes code harder to read and debug. This wonderful video makes the point quite clear: [Why You Shouldn't Nest Your Code](https://www.youtube.com/watch?v=CFRhGnuXG-4).
 
-<br>
+- **Use meaningful names**: Clear names for functions, arguments, and variables make the code self-explanatory! Avoid cryptic abbreviations or single-letter names and do not hesitate to use long and descriptive names. The video [Naming Things in Code](https://www.youtube.com/watch?v=-J3wNP6u5YU) is a great resource on this topic.
 
-The **Flame Graph** shows the *call stack* of the profiled code. It indicates, from bottom to top, what functions are called by other functions, their run time, and memory allocated or deallocated. For example, on the lower right corner you can see how `cor.test.default` () calls the functions `complete.cases` and `cor`, and a gray block labelled `<GC>` wiht a negative memory number (indicating deallocated memory). These gray boxes show [garbage collection](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29) calls, used for memory housekeeping.
+- **Limit number of function arguments**: According to [Uncle Bob Martin](https://en.wikipedia.org/wiki/Robert_C._Martin), author of the book ["Clean Code"](https://www.oreilly.com/library/view/clean-code-a/9780136083238/), *the ideal number of arguments for a function is zero*. There's no need to be that extreme, but it is important to acknowledge that the user's cognitive load increases with the number of arguments. If a function has more than five args you can either rethink your approach or let the user pay the check.
 
-The **Data** tab summarizes the profiling from top to bottom in a very intuitive way that highlights computational hot-spots in our code right away. 
+## Algorithm Design and Data Structures
 
-Even though `profvis()` is a very useful tool to guide software optimization, there are some limitations to be aware of: the memory usage values be unreliable due to R's lazy memory management and the automated application of garbage collection, which can obscure memory allocations and deallocations. 
+There is no efficient code without a well-designed [**algorithm**](https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=lbp). Good algorithms have a clear purpose, avoid redundant steps, and scale well with data size.
 
-If you wish to learn more, there are several `profvis` examples available in this [vignette](https://profvis.r-lib.org/articles/examples.html). 
+Choosing the right **data structure** for the job can make a huge difference in speed, readability, and memory usage. For instance, in R, vectors and matrices are more memory-efficient and faster than data frames for numerical operations, but in certain contexts, [reference semantics](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reference-semantics.html) applied to a [`data.table`](https://rdatatable.gitlab.io/data.table/) (extension of R's data frames) can be orders of magnitude faster, at the expense of readability (the [syntax can get weird](http://brooksandrew.github.io/simpleblog/articles/advanced-data-table/)).
 
-Another alternative leveraging `Rprof()` is the package [`proftools`](https://cran.r-project.org/package=proftools). It does not produce a neat html widget, but has [extended plotting functionalities](https://cran.r-project.org/web/packages/proftools/vignettes/proftools.pdf).
+A complete overview on the role of algorithm design and data structures in code optimization is well beyond the scope of this post. However, if you wish to go further, I strongly recommend the classic book [The Algorithm Design Manual](https://mimoza.marmara.edu.tr/~msakalli/cse706_12/SkienaTheAlgorithmDesignManual.pdf), which bridges theory and practice with elegance.
 
-Others
-
-https://cran.r-project.org/web/packages/profmem/index.html
-https://cran.r-project.org/web/packages/aprof/index.html
-https://cran.r-project.org/web/packages/profile/index.html
-https://github.com/atheriel/xrprof
-
-### Benchmarking
-
-Once we identify a worthy bottleneck in our code, it's time to start thinking about alternative implementations to mitigate the issue.
-
-![https://xkcd.com/1445](https://imgs.xkcd.com/comics/efficiency.png)
-
-For example, the profiling of `f()` shows that `stats::cor.test()` requires 33% of the run time and has the highest memory usage. Here we could replace it with `stats::cor()` to see if we can improve performance.
-
-```{r}
-f_alt <- function(n = 1e7){
-  stats::cor(
-    x = stats::rnorm(n = n), 
-    y = stats::runif(n = n)
-  )
-}
-```
-
-Now, how do we compare `f()` and `f_alt()`? We could indeed profile each one of them and compare results.
-
-benchmarking is the process of running alternative versions (original *vs.* optimized) of a piece of code to compare their performance. It's purpose is helping make data-driven decisions during code optimization.
-
-
-The R package [`microbenchmark`](https://cran.r-project.org/package=microbenchmark) 
-
-```{r}
-library(microbenchmark)
-
-df <- data.frame(
-  x = stats::runif(n = 1e7)
-)
-
-microbenchmark::microbenchmark(
-  df$x,
-  df[["x"]],
-  df[, "x"],
-  dplyr::pull(df, x),
-  times = 100
-)
-```
-
-The R package [`bench`](https://bench.r-lib.org/) provides a 
-
-```{r}
-library(bench)
-
-benchmark <- bench::mark(
-  df$x,
-  df[["x"]],
-  df[, "x"],
-  dplyr::pull(df, x),
-  iterations = 100,
-  check = FALSE
-)
-```
-
-
-        Test real-world data: Benchmarks should reflect the actual data and usage patterns in your application.
-        Use repeated trials: Small variations in timing can occur between trials, so repeat your benchmark several times and look for consistent results.
-
-Putting It Together
-
-    Profile your code first to identify the parts that need optimization.
-    Implement optimizations carefully and gradually.
-    Benchmark the old and new versions of your code to ensure that changes actually improve performance.
-
-Remember: performance tuning should be a process of continuous improvement, not an all-at-once overhaul. Focus on high-impact changes that significantly improve execution time or memory usage.
-
-
-Advanced R, by Hadley Whickham, has a [great section in code optimization]().
-
-### Others
-
-https://stackoverflow.com/questions/17218404/should-i-get-a-habit-of-removing-unused-variables-in-r
-
-http://adv-r.had.co.nz/memory.html
-
-## The Optimization Loop
-
-Optimizing R code isn’t a one-time task, it’s an iterative process that starts with 
-
-![](flowchart.png)
-
-
-2. Measure Performance (Profile Your Code!)
-
-Instead of guessing where bottlenecks might be, use profiling tools to identify the actual slow parts of your code:
-
-    Use profvis::profvis() or Rprof() for detailed profiling.
-    For quick benchmarking, use bench::mark() or microbenchmark::microbenchmark().
-    Log memory usage with lobstr::mem_used() if memory is a concern.
-
-This step helps you find real inefficiencies, so you don’t waste time optimizing parts of the code that aren’t problematic.
-
-3. Optimize the Low-Hanging Fruit
-
-Once you know where the real slowdowns are, optimize only the parts that provide significant gains without compromising clarity. Some common low-hanging fruit:
-
-    Eliminate unnecessary computations (e.g., avoid redundant loops, reuse calculations).
-    Refactor bottleneck functions (e.g., replace slow operations with built-in vectorized alternatives).
-    Simplify data handling (e.g., use appropriate data types, avoid excessive copies of large objects).
-
-Avoid over-optimizing too early—focus only on fixes that are clear, easy to implement, and make a measurable difference.
-
-
-
-4. Iterate Until Satisfied
-
-After each round of optimization, re-profile your code and check if further improvements are needed. If performance is now acceptable, stop optimizing. If not, repeat the process:
-
-    Profile again.
-    Identify new bottlenecks.
-    Optimize only where necessary.
-    Repeat until additional optimization no longer justifies the cost in complexity.
-
-The Golden Rule: Stop When It’s “Good Enough”
-
-Optimization should be goal-driven, not an endless pursuit of perfection. If your code is fast enough for its intended use case, further optimization is unnecessary, especially if it would reduce readability or maintainability.
-
-By following this loop, you ensure that your R code remains clean, efficient, and easy to maintain while optimizing only when it truly matters.
-
-
-
-
-
-
-
+In the [next article](../R-code-optimization-hardware-performance/) I will tackle some juicy stuff: vectorization, parallelization, and memory management. See you there!

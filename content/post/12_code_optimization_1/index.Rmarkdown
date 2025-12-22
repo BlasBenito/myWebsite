@@ -44,6 +44,11 @@ This is the first post of a small series focused on code optimization.
 
 Here I draw from my experience developing scientific software in both academia and industry to share practical techniques and tools that help streamline R workflows without sacrificing clarity.
 
+- This post lays down some of the *whats* and *whys* of code optimization.
+- The [second post](post/R-code-optimization-design-readability) focuses on code design and readability.
+- The [third post](R-code-optimization-hardware-performance) goes deep into vectorization, parallelization, and memory management.
+- The [final post]()
+
 Let's dig in!
 
 ## A Fine Balance
@@ -122,19 +127,7 @@ That said, there are legitimate reasons to break the first commandment. Maybe yo
 
 Optimizing code for simplicity aims to make it readable, maintainable, and easy to use and debug. In essence, this commandment ensures that we optimize the time required to interact with the code. Any code that saves the time of users and maintainers is efficient enough already!
 
-This post is not focused on code simplicity, but here are a few key principles that might be helpful:
-
-- **Use a consistent style**: Stick to a recognizable style guide, such as the [tidyverse style guide](https://style.tidyverse.org/) or [Google's R style guide](https://google.github.io/styleguide/Rguide.html).
-
-- **Avoid deep nesting**: Excessive nesting makes code harder to read and debug. This wonderful video makes the point quite clear: [Why You Shouldn't Nest Your Code](https://www.youtube.com/watch?v=CFRhGnuXG-4).
-
-- **Use meaningful names**: Clear names for functions, arguments, and variables make the code self-explanatory! Avoid cryptic abbreviations or single-letter names and do not hesitate to use long and descriptive names. The video [Naming Things in Code](https://www.youtube.com/watch?v=-J3wNP6u5YU) is a great resource on this topic.
-
-- **Limit number of function arguments**: According to [Uncle Bob Martin](https://en.wikipedia.org/wiki/Robert_C._Martin), author of the book ["Clean Code"](https://www.oreilly.com/library/view/clean-code-a/9780136083238/), *the ideal number of arguments for a function is zero*. There's no need to be that extreme, but it is important to acknowledge that the user's cognitive load increases with the number of arguments. If a function has more than five args you can either rethink your approach or let the user pay the check.
-
-Beyond these tips, I highly recommend the book [A Philosophy of Software Design](https://www.amazon.com/dp/173210221X), by [John Ousterhout](https://en.wikipedia.org/wiki/John_Ousterhout). It helped me find new ways to write better code!
-
-Now we have a clean and elegant code that runs once and gets the job done, great! But what if it must run thousands of times in production? Or worse, what if a single execution takes hours or even days? In these cases, optimization shifts from a nice-to-have to a requirement. Yep, there's a commandment for this too:
+The next post in this series will elaborate on code simplicity. In the meantime, let's imagine we have a clean and elegant code that runs once and gets the job done, great! But what if it must run thousands of times in production? Or worse, what if a single execution takes hours or even days? In these cases, optimization shifts from a nice-to-have to a requirement. Yep, there's a commandment for this too:
 
 > "Thou shall optimize wisely."
 

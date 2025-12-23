@@ -1,0 +1,616 @@
+---
+title: "Modern Parallel Processing in R"
+author: ''
+date: "2025-12-22"
+slug: modern-parallel-processing-r
+categories: []
+tags:
+- Rstats
+- Tutorial
+- Performance
+subtitle: ''
+summary: 'A modern approach to parallelizing R code with future, future.apply, and progressr'
+authors: [admin]
+lastmod: '2025-12-22T00:00:00+01:00'
+featured: yes
+draft: true
+image:
+  caption: 'Image credit: **Blas M. Benito**'
+  focal_point: Smart
+  margin: auto
+projects: []
+toc: true
+---
+
+Back in 2020, I wrote [a post about parallelizing loops in R](https://www.blasbenito.com/post/02_parallelizing_loops_with_r/) using the `foreach` and `doParallel` packages. That approach still works perfectly fine, but the R ecosystem has evolved quite a bit since then. These days, there's a simpler, more elegant, and (dare I say it) MORE powerful way to parallelize your R code using the `future` ecosystem.
+
+So why bother updating? Well, the `future` framework offers several advantages that make it worth the switch:
+
+  + **Write once, run anywhere**: Change execution strategy with literally one line of code.
+  + **Simpler syntax**: No manual cluster management, no `.packages` juggling, just clean code.
+  + **Better integration**: Works seamlessly with modern R packages and workflows.
+  + **Progress bars built-in**: Thanks to `progressr`, you get real-time feedback on parallel tasks.
+  + **Smarter defaults**: Automatic detection of globals and package dependencies.
+
+In this post, I'll show you how to leverage the modern parallelization stack in R for single-machine computing (laptops, workstations, or servers). We'll cover:
+
+  + Understanding the `future` philosophy and mental model.
+  + Setting up parallel execution with `future` plans.
+  + Parallelizing loops with `future.apply`.
+  + Adding progress bars with `progressr`.
+  + Real-world examples: hyperparameter tuning and bootstrap confidence intervals.
+  + Bonus: `furrr` for tidyverse enthusiasts.
+  + Best practices and common pitfalls.
+
+&nbsp;
+
+## Package installation and setup
+
+Let me go ahead and install (if needed) and load all the packages we'll use throughout this tutorial. The pattern below automatically installs any missing packages and loads everything we need.
+
+
+``` r
+#automatic install of packages if they are not installed already
+list_of_packages <- c(
+  "future",
+  "future.apply",
+  "progressr",
+  "furrr",
+  "ranger",
+  "palmerpenguins",
+  "tidyverse",
+  "kableExtra"
+  )
+
+new_packages <- list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
+
+if(length(new_packages) > 0){
+  install.packages(new_packages, dep=TRUE)
+}
+
+#loading packages
+for(package_i in list_of_packages){
+  suppressPackageStartupMessages(
+    library(
+      package_i,
+      character.only = TRUE
+      )
+    )
+}
+
+#loading example data
+data("penguins")
+```
+
+&nbsp;
+
+## The `future` philosophy: a different mental model
+
+Here's the thing: most parallelization approaches tie your code to a specific execution method. With `foreach`, you had to explicitly set up clusters, register backends, and manage resources. It worked, but it was... cumbersome.
+
+The `future` framework flips this on its head. It separates **WHAT** you want to compute from **HOW** you want to compute it. You write your code once, and then you can switch between sequential and parallel execution by changing a single line. No rewriting, no complex setup, just a different execution strategy.
+
+Let me show you what I mean with a simple example:
+
+
+``` r
+#sequential (base R)
+x <- sapply(1:10, sqrt)
+x
+```
+
+```
+##  [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427
+##  [9] 3.000000 3.162278
+```
+
+Now, let's make this explicit using `future.apply`:
+
+
+``` r
+library(future)
+library(future.apply)
+
+#sequential future plan (default)
+plan(sequential)
+
+#same computation, explicit future style
+x <- future_sapply(1:10, sqrt)
+x
+```
+
+```
+##  [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427
+##  [9] 3.000000 3.162278
+```
+
+The results are identical. But here's where it gets interesting. Want to run this in parallel? Just change the plan:
+
+
+``` r
+#parallel execution!
+plan(multisession, workers = 3)
+
+#same code, now running in parallel
+x <- future_sapply(1:10, sqrt)
+x
+```
+
+```
+##  [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427
+##  [9] 3.000000 3.162278
+```
+
+Same code. Different execution. That's the beauty of `future`. No warnings about missing backends (looking at you, `foreach`), no manual cluster registration, just a clean separation of concerns.
+
+&nbsp;
+
+## Understanding `future` plans
+
+So what exactly is a `plan`? Think of it as your execution strategy. The `future` package provides several plans for single-machine computing, each with different trade-offs:
+
+
+|Plan         |OS_Support |Use_Case           |Speed    |Memory          |
+|:------------|:----------|:------------------|:--------|:---------------|
+|sequential   |All        |Default, debugging |Baseline |Efficient       |
+|multisession |All        |Safe parallel      |Fast     |Duplicates data |
+|multicore    |Unix only  |Fastest local      |Fastest  |Shared memory   |
+
+&nbsp;
+
+### `sequential`
+
+This is the default plan. Everything runs sequentially, just like regular R code. It's useful for:
+
+  + Debugging your code before parallelizing.
+  + When the overhead of parallelization exceeds its benefits.
+  + Making sure your code works before scaling up.
+
+
+``` r
+plan(sequential)
+result <- future_sapply(1:5, function(x) x^2)
+result
+```
+
+```
+## [1]  1  4  9 16 25
+```
+
+&nbsp;
+
+### `multisession`
+
+This is your go-to plan for parallel execution. It works on **all operating systems** (Windows, Mac, Linux) and is the safest choice for parallel computing. Under the hood, it uses PSOCK connections (similar to the old `doParallel` PSOCK backend), which means:
+
+  + It works everywhere.
+  + Each worker gets a fresh R session.
+  + Data is copied to each worker (memory overhead!).
+  + It's safe and reliable.
+
+
+``` r
+#detect available cores
+future::availableCores()
+
+#set up multisession with 7 workers (leaving one core free)
+plan(multisession, workers = availableCores() - 1)
+
+#now this runs in parallel
+result <- future_sapply(1:100, function(x) {
+  Sys.sleep(0.1)  #simulate work
+  return(x^2)
+})
+```
+
+&nbsp;
+
+### `multicore`
+
+This is the **fastest** option, but it only works on **Unix systems** (Linux and Mac). It uses forking, which means workers share the same memory space as the main process. This is incredibly efficient, but there's a catch:
+
+**WARNING**: `multicore` does NOT work in RStudio! It will silently fall back to sequential execution. This is because RStudio's architecture doesn't play nice with forking. If you're working in RStudio (like most of us), stick with `multisession`.
+
+
+``` r
+#only use this in terminal R sessions on Unix systems!
+plan(multicore, workers = availableCores() - 1)
+```
+
+&nbsp;
+
+### Setting up your plan
+
+At this point, you're probably wondering: "Which plan should I use?" Here's my recommendation:
+
+  + **For interactive work (RStudio, etc.)**: Use `multisession`.
+  + **For scripts on Unix servers**: Use `multicore` if you need maximum speed.
+  + **For debugging**: Use `sequential`.
+
+Let's set up a typical parallel session:
+
+
+``` r
+#check available cores
+n_cores <- future::availableCores()
+print(paste("Available cores:", n_cores))
+```
+
+```
+## [1] "Available cores: 16"
+```
+
+``` r
+#set up multisession plan (leaving one core free for system)
+plan(multisession, workers = n_cores - 1)
+
+#verify the plan
+print(plan())
+```
+
+```
+## multisession:
+## - args: function (..., workers = c(system = 15))
+## - tweaked: TRUE
+## - call: plan(multisession, workers = n_cores - 1)
+## MultisessionFutureBackend:
+## Inherits: ClusterFutureBackend, MultiprocessFutureBackend, FutureBackend
+## UUID: a82f09ced8ec1416ca61eae2940e4f76
+## Number of workers: 15
+## Number of free workers: 15
+## Available cores: 16
+## Automatic garbage collection: FALSE
+## Early signaling: FALSE
+## Interrupts are enabled: TRUE
+## Maximum total size of globals: +Inf
+## Maximum total size of value: +Inf
+## Argument 'rscript_libs': c("/home/blas/R/x86_64-pc-linux-gnu-library/4.5", "/usr/local/lib/R/site-library", "/usr/lib/R/site-library", "/usr/lib/R/library")
+## Argument 'persistent': FALSE
+## Argument 'wait.timeout': 86400
+## Argument 'wait.interval': 0.01
+## Argument 'wait.alpha': 1.01
+## Argument 'hooks': FALSE
+## Number of active futures: 0
+## Number of futures since start: 0 (0 created, 0 launched, 0 finished)
+## Total runtime of futures: 0 secs (NaN secs/finished future)
+## Workers of type RichSOCKcluster:
+## - Summary: Socket cluster with 15 nodes on host 'localhost' (R version 4.5.2 (2025-10-31), platform x86_64-pc-linux-gnu)
+## - [ OK ] Node 1/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149535 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #5 ('<-localhost:11970')]
+## - [ OK ] Node 2/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149542 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #6 ('<-localhost:11970')]
+## - [ OK ] Node 3/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149532 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #7 ('<-localhost:11970')]
+## - [ OK ] Node 4/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149536 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #8 ('<-localhost:11970')]
+## - [ OK ] Node 5/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149537 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #9 ('<-localhost:11970')]
+## - [ OK ] Node 6/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149533 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #10 ('<-localhost:11970')]
+## - [ OK ] Node 7/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149539 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #11 ('<-localhost:11970')]
+## - [ OK ] Node 8/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149543 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #12 ('<-localhost:11970')]
+## - [ OK ] Node 9/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149541 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #13 ('<-localhost:11970')]
+## - [ OK ] Node 10/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149544 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #14 ('<-localhost:11970')]
+## - [ OK ] Node 11/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149534 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #15 ('<-localhost:11970')]
+## - [ OK ] Node 12/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149538 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #16 ('<-localhost:11970')]
+## - [ OK ] Node 13/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149545 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #17 ('<-localhost:11970')]
+## - [ OK ] Node 14/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149531 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #18 ('<-localhost:11970')]
+## - [ OK ] Node 15/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149540 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #19 ('<-localhost:11970')]
+```
+
+&nbsp;
+
+## Parallelizing loops with `future.apply`
+
+Now that we understand plans, let's talk about actually parallelizing code. The `future.apply` package provides drop-in replacements for R's apply family of functions. If you know `lapply`, `sapply`, or `mapply`, you already know how to use `future.apply`.
+
+Here's the correspondence:
+
+
+|Base_R |future.apply  |Notes                 |
+|:------|:-------------|:---------------------|
+|lapply |future_lapply |Most common           |
+|sapply |future_sapply |Simplifies output     |
+|apply  |future_apply  |For matrices          |
+|mapply |future_mapply |Multiple inputs       |
+|Map    |future_Map    |Alternative to mapply |
+
+&nbsp;
+
+### Basic replacement: just add `future_`
+
+The simplest use case is taking existing code and adding the `future_` prefix. That said, let's see it in action:
+
+
+``` r
+#sequential version
+results <- lapply(1:1000, function(i) {
+  sort(runif(10000))
+})
+
+#parallel version (just add future_ prefix!)
+plan(multisession, workers = 7)
+results <- future_lapply(1:1000, function(i) {
+  sort(runif(10000))
+})
+```
+
+Notice that the only change is `lapply` → `future_lapply`. Everything else stays the same. The `future.apply` package handles all the complexity of distributing work to workers, collecting results, and managing resources.
+
+&nbsp;
+
+### Multiple iterators with `future_mapply`
+
+Sometimes you need to iterate over multiple vectors simultaneously. For this, `future_mapply` is your friend:
+
+
+``` r
+#create some data to iterate over
+numbers <- 1:10
+powers <- 2:11
+
+#parallel computation over two iterators
+results <- future_mapply(
+  function(x, y) x^y,
+  numbers,
+  powers,
+  SIMPLIFY = TRUE
+)
+
+results
+```
+
+```
+##  [1]            1            8           81         1024        15625
+##  [6]       279936      5764801    134217728   3486784401 100000000000
+```
+
+Each worker gets pairs of values from `numbers` and `powers` and computes the corresponding power. Simple and clean.
+
+&nbsp;
+
+### Handling globals and packages
+
+Here's where `future` really shines. It automatically detects which variables and packages your code needs and exports them to workers. But what the heck does that mean?
+
+
+``` r
+#define a custom function that uses an external variable
+custom_function <- function(x) x * multiplier
+
+#external variable
+multiplier <- 5
+
+#this just works! future auto-detects 'multiplier'
+results <- future_lapply(
+  1:10,
+  custom_function
+)
+
+results
+```
+
+```
+## [[1]]
+## [1] 5
+## 
+## [[2]]
+## [1] 10
+## 
+## [[3]]
+## [1] 15
+## 
+## [[4]]
+## [1] 20
+## 
+## [[5]]
+## [1] 25
+## 
+## [[6]]
+## [1] 30
+## 
+## [[7]]
+## [1] 35
+## 
+## [[8]]
+## [1] 40
+## 
+## [[9]]
+## [1] 45
+## 
+## [[10]]
+## [1] 50
+```
+
+In the old `foreach` approach, you'd need to explicitly export `multiplier` using `.export` arguments. Here, `future` figures it out automatically. Same goes for packages:
+
+
+``` r
+#ranger is auto-detected and loaded in workers
+results <- future_lapply(
+  1:10,
+  function(i) {
+    #ranger package is automatically exported to workers
+    ranger::ranger(Species ~ ., data = iris, num.trees = 100)
+  }
+)
+```
+
+That said, if you need fine control, you can still specify globals manually:
+
+
+``` r
+results <- future_lapply(
+  1:10,
+  custom_function,
+  future.globals = list(multiplier = multiplier)
+)
+```
+
+&nbsp;
+
+## Progress bars with `progressr`
+
+One of my favorite things about the `future` ecosystem is `progressr`. Parallel code is notoriously silent—you send off 1000 tasks and then... wait. Is it working? Is it stuck? Who knows!
+
+The `progressr` package solves this elegantly. It integrates seamlessly with `future` and works with **all** execution plans (even `sequential`, which is great for debugging).
+
+Here's the basic pattern:
+
+
+``` r
+library(progressr)
+
+#enable progress reporting
+handlers(global = TRUE)
+handlers("progress")
+
+#wrap your code with with_progress()
+with_progress({
+
+  #create a progressor
+  p <- progressor(along = 1:100)
+
+  #run your parallel task
+  results <- future_lapply(1:100, function(i) {
+
+    #do some work
+    Sys.sleep(0.1)
+
+    #signal progress
+    p(sprintf("Processing iteration %d", i))
+
+    #return result
+    return(i^2)
+  })
+})
+```
+
+You can choose different progress bar styles:
+
+
+``` r
+handlers("txtprogressbar")  #classic text-based bar
+handlers("progress")        #modern progress package style
+handlers("cli")             #fancy cli package style
+```
+
+And here's the beautiful part: the same code works whether you're running sequentially or in parallel. Change your `plan()`, and the progress bar still works. No special configuration needed.
+
+&nbsp;
+
+## Practical example 1: Hyperparameter tuning
+
+Alright, enough toy examples. Let's tackle something real. We're going to tune hyperparameters for a random forest model using the Palmer Penguins dataset.
+
+First, let's prepare the data:
+
+
+``` r
+#removing NA and subsetting columns
+penguins_clean <- as.data.frame(
+  na.omit(
+    penguins[, c(
+      "species",
+      "bill_length_mm",
+      "bill_depth_mm",
+      "flipper_length_mm",
+      "body_mass_g"
+    )]
+    )
+  )
+```
+
+
+|species | bill_length_mm| bill_depth_mm| flipper_length_mm| body_mass_g|
+|:-------|--------------:|-------------:|-----------------:|-----------:|
+|Adelie  |           39.1|          18.7|               181|        3750|
+|Adelie  |           39.5|          17.4|               186|        3800|
+|Adelie  |           40.3|          18.0|               195|        3250|
+|Adelie  |           36.7|          19.3|               193|        3450|
+|Adelie  |           39.3|          20.6|               190|        3650|
+|Adelie  |           38.9|          17.8|               181|        3625|
+|Adelie  |           39.2|          19.6|               195|        4675|
+|Adelie  |           34.1|          18.1|               193|        3475|
+|Adelie  |           42.0|          20.2|               190|        4250|
+|Adelie  |           37.8|          17.1|               186|        3300|
+|Adelie  |           37.8|          17.3|               180|        3700|
+|Adelie  |           41.1|          17.6|               182|        3200|
+|Adelie  |           38.6|          21.2|               191|        3800|
+|Adelie  |           34.6|          21.1|               198|        4400|
+|Adelie  |           36.6|          17.8|               185|        3700|
+|Adelie  |           38.7|          19.0|               195|        3450|
+|Adelie  |           42.5|          20.7|               197|        4500|
+|Adelie  |           34.4|          18.4|               184|        3325|
+|Adelie  |           46.0|          21.5|               194|        4200|
+|Adelie  |           37.8|          18.3|               174|        3400|
+
+&nbsp;
+
+Random forest models have several hyperparameters that affect performance:
+
+  + `num.trees`: number of trees to fit (default is 500).
+  + `mtry`: number of variables to consider at each split.
+  + `min.node.size`: minimum number of samples in terminal nodes.
+
+We want to find the combination that minimizes prediction error. Let's create a grid of parameter combinations:
+
+
+``` r
+#create parameter grid
+sensitivity_df <- expand.grid(
+  num.trees = c(500, 1000, 1500),
+  mtry = 2:4,
+  min.node.size = c(1, 10, 20)
+)
+```
+
+
+| num.trees| mtry| min.node.size|
+|---------:|----:|-------------:|
+|       500|    2|             1|
+|      1000|    2|             1|
+|      1500|    2|             1|
+|       500|    3|             1|
+|      1000|    3|             1|
+|      1500|    3|             1|
+|       500|    4|             1|
+|      1000|    4|             1|
+|      1500|    4|             1|
+|       500|    2|            10|
+|      1000|    2|            10|
+|      1500|    2|            10|
+|       500|    3|            10|
+|      1000|    3|            10|
+|      1500|    3|            10|
+|       500|    4|            10|
+|      1000|    4|            10|
+|      1500|    4|            10|
+|       500|    2|            20|
+|      1000|    2|            20|
+|      1500|    2|            20|
+|       500|    3|            20|
+|      1000|    3|            20|
+|      1500|    3|            20|
+|       500|    4|            20|
+|      1000|    4|            20|
+|      1500|    4|            20|
+
+&nbsp;
+
+Now here's where parallelization shines. We have 27 models to fit, and each takes a few seconds. Running sequentially would take a while, but in parallel it's much faster.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -249,7 +249,7 @@ PSOCK backends (Parallel Socket Cluster) are available for both UNIX and WINDOWS
 
 ## Setup of a parallel backend
 
-Here I explain how to setup the parallel backend for a simple computer and for a Beowulf cluster as [the one I described in a previous post]((https://www.blasbenito.com/post/01_home_cluster/)). 
+Here I explain how to setup the parallel backend for a simple computer and for a Beowulf cluster as [the one I described in a previous post](https://www.blasbenito.com/post/01_home_cluster/). 
 
 ### Setup for a single computer
 
@@ -591,7 +591,7 @@ m
 ## Target node size:                 1 
 ## Variable importance mode:         permutation 
 ## Splitrule:                        gini 
-## OOB prediction error:             2.34 %
+## OOB prediction error:             2.63 %
 ```
 
 ``` r
@@ -601,9 +601,9 @@ m$variable.importance
 
 ```
 ##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
-##        0.30895931        0.16370797        0.21093957        0.08085026
+##        0.30877000        0.17578953        0.19712170        0.08295177
 ```
-The output shows that the percentage of misclassified cases is 2.34, and that *bill_length_mm* is the variable that contributes the most to the accuracy of the classification.
+The output shows that the percentage of misclassified cases is 2.63, and that *bill_length_mm* is the variable that contributes the most to the accuracy of the classification.
 
 If you are not familiar with random forest, [this post](https://victorzhou.com/blog/intro-to-random-forests/) and the video below do a pretty good job in explaining the basics:
 
@@ -793,7 +793,7 @@ system.time(
 
 ```
 ##    user  system elapsed 
-##   0.286   0.058   3.867
+##   0.315   0.055   3.971
 ```
 
 The output of `system.time()` goes as follows:
@@ -851,7 +851,7 @@ system.time(
 
 ```
 ##    user  system elapsed 
-##  46.877   3.342   8.373
+##  51.604   3.571   9.215
 ```
 
 As you can see, `ranger()` takes longer to execute in a regular `for` loop using several cores at once than in a parallel `foreach` loop using one core at once. That's a win for the parallelized loop!

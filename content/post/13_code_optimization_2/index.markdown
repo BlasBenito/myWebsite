@@ -33,13 +33,17 @@ toc: true
 
 
 
-In the [first article](/2025/12/18/r-code-optimization-foundations-principles/) I covered the dimensions of code efficiency, and the three commandments of code optimization. This article focuses on the actual code features that shape efficiency: programming languages, code design, and algorithms.
+In the [first article](/2025/12/18/r-code-optimization-foundations-principles/) I covered the dimensions of code efficiency, and the three commandments of code optimization. This (very brief) article focuses on the actual code features that shape efficiency: programming languages, code design, and algorithms.
 
 ## Programming Language
 
 The choice between a compiled and an interpreted language (see [here](https://medium.com/basecs/a-deeper-inspection-into-compilation-and-interpretation-d98952ebc842) and [here](https://thevaluable.dev/difference-between-compiler-interpreter/)) shapes key aspects of code efficiency.
 
+![It's always C++](interpreted_vs_compiled.jpeg)
+
 In languages like C, C++, or Fortran, the code we write is translated into binary code by a [compiler](https://medium.com/@fivemoreminix/understanding-compilers-for-humans-ba970e045877) before execution. Compilers optimize the binary code for the given hardware, resulting in **very fast execution and a low memory overhead**. These are the hallmarks of efficient code for a machine! But on the other hand, compiled languages lack interactive execution, which makes them harder to debug.
+
+![Is it?](love_c++.jpeg)
 
 In contrast, languages like R and Python, much easier to write and read, are translated and executed line-by-line by an [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)). Interpreters enable interactive execution and facilitate debugging at the expense of speed and a higher memory usage. Here goes [a rabbit-hole on the R interpreter](https://www.codeproject.com/Articles/5338916/Introducing-Rsharp-Language) for the brave!
 
@@ -75,4 +79,4 @@ Choosing the right **data structure** for the job can make a huge difference in 
 
 A complete overview on the role of algorithm design and data structures in code optimization is well beyond the scope of this post. However, if you wish to go further, I strongly recommend the classic book [The Algorithm Design Manual](https://mimoza.marmara.edu.tr/~msakalli/cse706_12/SkienaTheAlgorithmDesignManual.pdf), which bridges theory and practice with elegance.
 
-In the [next article](/2025/12/20/r-code-optimization-hardware-performance/) I will tackle some juicy stuff: vectorization, parallelization, and memory management. 
+In the [next article](/2025/12/20/r-code-optimization-hardware-performance/) I will tackle some juicy stuff about how our code uses computational resources: vectorization, parallelization, and memory management. 

@@ -33,9 +33,11 @@ toc: true
 
 
 
-In the [first post](/2025/12/18/r-code-optimization-foundations-principles/) we established when and why to optimize, along with the three commandments that guide smart optimization decisions. The [second post](/2025/12/19/r-code-optimization-design-readability/) explored programming languages, clean code principles, and algorithm design. The [third post](/2025/12/20/r-code-optimization-hardware-performance/) tackled the heavy hitters: vectorization, parallelization, and memory management.
+In the [first post](/2025/12/18/r-code-optimization-foundations-principles/) we established the context of code optimization. In the [second post](/2025/12/19/r-code-optimization-design-readability/) we explored programming languages, clean code principles, and algorithm design. The [third post](/2025/12/20/r-code-optimization-hardware-performance/) tackled the heavy hitters: vectorization, parallelization, and memory management.
 
-Now it's time to bring theory into practice! This post focuses on the practical tools that transform optimization from guesswork into a systematic process. We'll cover profiling to find bottlenecks, benchmarking to validate improvements, and the iterative workflow that ties everything together.
+Now it's time to bring theory into practice! 
+
+This post focuses on the practical tools that transform optimization from guesswork into a systematic process. We'll cover profiling to find bottlenecks, benchmarking to validate improvements, and the iterative workflow that ties everything together.
 
 ## Requirements
 
@@ -48,13 +50,13 @@ install.packages(c("profvis", "microbenchmark", "bench"))
 
 ## Profiling and Benchmarking
 
-Profiling and benchmarking are methods to measure your code's performance and help guide optimization decisions. The former helps identify low-performance hot-spots in your code, while the latter helps make informed choices between alternative implementations.
+Profiling and benchmarking are methods to measure our code's performance and help guide optimization decisions. The former helps identify low-performance hot-spots in your code, while the latter helps make informed choices between alternative implementations.
 
 ### Profiling
 
-Profiling helps analyze your code to understand where the execution time and RAM memory are spent, and will help you answer the question: *Where should I start optimizing?* Profilers break down code execution into function calls, highlighting potential bottlenecks
+Profiling helps analyze our code to understand where the execution time and RAM memory are spent, and helps us answer the question: *Where should I start optimizing?* Profilers break down code execution into function calls, highlighting potential bottlenecks
 
-In R, the function `utils::Rprof()` is the default profiling tool. You can find a great explanation on this tool in the chapter [Profiling R Code](https://bookdown.org/rdpeng/rprogdatascience/profiling-r-code.html#profiling-r-code) of the book *R Programming for Data Science*, by [Roger D. Peng](https://rdpeng.org/).
+In R, the function `utils::Rprof()` is the default profiling tool. There is a comprehensive explanation on this tool in the chapter [Profiling R Code](https://bookdown.org/rdpeng/rprogdatascience/profiling-r-code.html#profiling-r-code) of the book *R Programming for Data Science*, by [Roger D. Peng](https://rdpeng.org/).
 
 The function [`profvis::profvis()`](https://profvis.r-lib.org/reference/profvis.html) is a modern alternative that still uses `Rprof()` underneath, but generates a neat HTML widget to facilitate the visualization and interpretation of profiling data. 
 
@@ -84,13 +86,13 @@ profvis::profvis(
 
 
 <iframe src="profiling.html" name="profiler"
-  width="600" height="600" scrolling="auto" frameborder="0">
+  width="600" height="400" scrolling="auto" frameborder="0">
    <p>Profiling result.</p>
 </iframe>
 
 <br>
 
-The **Flame Graph** shows the *call stack* of the profiled code. It indicates, from bottom to top, what functions are called by other functions, their run time, and memory allocated or deallocated. For example, on the lower right corner you can see how `cor.test.default` () calls the functions `complete.cases` and `cor`, and a gray block labelled `<GC>` wiht a negative memory number (indicating deallocated memory). These gray boxes show [garbage collection](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29) calls, used for memory housekeeping.
+The function returns an interactive **flame graph** showing the *call stack* of the profiled code. It indicates, from bottom to top, what functions are called by other functions, their run time, and memory allocated or deallocated. For example, on the lower right corner you can see how `cor.test.default()` calls the functions `complete.cases()` and `cor()`, and a gray block labelled `<GC>` with a negative memory number (indicating deallocated memory). These gray boxes show [garbage collection](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29) calls, used for memory housekeeping.
 
 The **Data** tab summarizes the profiling from top to bottom in a very intuitive way that highlights computational hot-spots in our code right away. 
 
@@ -122,17 +124,7 @@ This is where **benchmarking** comes in!
 
 Benchmarking is the process of running alternative versions of code multiple times to rigorously compare their performance. It helps us make data-driven optimization decisions rather than relying on hunches or one-off timing measurements. The key difference from profiling: profiling shows you *where* the problems are, benchmarking shows you *whether* your solution works.
 
-
-``` r
-f_alt <- function(n = 1e7){
-  stats::cor(
-    x = stats::rnorm(n = n), 
-    y = stats::runif(n = n)
-  )
-}
-```
-
-#### Benchmarking with microbenchmark
+#### Benchmarking with `microbenchmark`
 
 The [`microbenchmark`](https://cran.r-project.org/package=microbenchmark) package is the classic benchmarking tool in R. It runs each expression multiple times and provides statistical summaries of execution time.
 
@@ -155,6 +147,20 @@ microbenchmark::microbenchmark(
 )
 ```
 
+```
+## Unit: nanoseconds
+##                expr   min      lq       mean  median      uq       max neval
+##                df$x   331   409.0     549.65   523.0   631.0      2017   100
+##           df[["x"]]  2428  2753.5    3089.61  3028.5  3288.5      6204   100
+##           df[, "x"]  3583  4110.0    5151.01  4741.5  5256.0     19875   100
+##  dplyr::pull(df, x) 68698 71845.0 1157554.64 72775.5 74012.0 108484037   100
+##  cld
+##    a
+##    a
+##    a
+##    a
+```
+
 The output shows several timing statistics for each approach:
 
 - **min/max**: Fastest and slowest execution times across all runs
@@ -174,7 +180,7 @@ The [`bench`](https://bench.r-lib.org/) package is a modern alternative to `micr
 ``` r
 library(bench)
 
-benchmark_results <- bench::mark(
+y <- bench::mark(
   df$x,
   df[["x"]],
   df[, "x"],
@@ -183,7 +189,17 @@ benchmark_results <- bench::mark(
   check = FALSE  # skip checking that all results are identical
 )
 
-benchmark_results
+y
+```
+
+```
+## # A tibble: 4 × 6
+##   expression                min   median `itr/sec` mem_alloc `gc/sec`
+##   <bch:expr>           <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
+## 1 "df$x"               336.09ns 350.58ns  2481600.        0B        0
+## 2 "df[[\"x\"]]"          2.29µs   2.44µs   349249.        0B        0
+## 3 "df[, \"x\"]"          3.23µs   3.42µs   272013.        0B        0
+## 4 "dplyr::pull(df, x)"  68.86µs  70.73µs    13424.      216B        0
 ```
 
 The `bench::mark()` output includes several valuable columns beyond just execution time:
@@ -240,7 +256,7 @@ Before diving into optimization, ask yourself: *Does this code actually need to 
 
 Consider these factors:
 
-- **Execution time**: Is it genuinely slow enough to matter? Remember the [XKCD efficiency comic](https://xkcd.com/1445/)—don't spend hours optimizing code that saves seconds.
+- **Execution time**: Is it genuinely slow enough to matter? Remember the [XKCD efficiency comic](https://xkcd.com/1445/). Don't spend hours optimizing code that saves seconds!
 
 - **Frequency**: Does this code run once, or thousands of times? A function that runs once per day doesn't need the same optimization effort as one that runs thousands of times per hour.
 
@@ -255,13 +271,6 @@ If the answers suggest your code is fast enough and efficient enough for its use
 If optimization is genuinely needed, don't guess where the problems are—**measure**!
 
 Use `profvis::profvis()` to identify where execution time and memory are actually spent. The Pareto Principle applies here: typically 80% of your performance issues come from 20% of your code.
-
-
-``` r
-profvis::profvis({
-  # Your code here
-})
-```
 
 Focus your optimization efforts on the hot-spots revealed by profiling. Optimizing code that accounts for 2% of total runtime is rarely worth the complexity cost.
 
@@ -283,18 +292,9 @@ Apply the Third Commandment here: "Thou shall optimize wisely." Make changes tha
 
 ### Step 5: Benchmark Before and After
 
-This step is critical—**never skip benchmarking**!
+This step is critical: **never skip benchmarking**!
 
 Use `microbenchmark::microbenchmark()` or `bench::mark()` to rigorously compare your original code with the optimized version:
-
-
-``` r
-bench::mark(
-  original = original_function(data),
-  optimized = optimized_function(data),
-  iterations = 100
-)
-```
 
 Benchmarking tells you:
 
@@ -318,76 +318,12 @@ After benchmarking, you face a decision: continue optimizing or call it done?
 
 **Continue optimizing if:**
 
-- Performance still isn't adequate for your needs
-- Profiling reveals new bottlenecks after your changes (optimization can shift bottlenecks!)
-- You've identified additional high-impact optimization opportunities
-- You're still in the "easy wins" phase where small changes yield big gains
+- Performance still isn't adequate for your needs.
+- Profiling reveals new bottlenecks after your changes (optimization can shift bottlenecks!).
+- You've identified additional high-impact optimization opportunities.
+- You're still in the "easy wins" phase where small changes yield big gains.
 
-Remember: optimization is about balance. A 90% performance improvement might be more than enough, even if theoretically you could squeeze out another 5% at the cost of code maintainability.
-
-## Putting It All Together: A Complete Example
-
-Let's see the optimization loop in action with a concrete example. Here's some inefficient code that calculates rolling means on a vector:
-
-
-``` r
-# Original, inefficient version
-rolling_mean_slow <- function(x, window = 3) {
-  n <- length(x)
-  result <- numeric(n)  # pre-allocation: good!
-
-  for (i in window:n) {
-    # Repeated subsetting and mean calculation: slow!
-    result[i] <- mean(x[(i - window + 1):i])
-  }
-
-  return(result)
-}
-
-# Create test data
-test_data <- runif(10000)
-```
-
-**Step 1: Profile it**
-
-
-``` r
-profvis::profvis({
-  rolling_mean_slow(test_data)
-})
-```
-
-Profiling reveals that the bottleneck is the repeated subsetting `x[(i - window + 1):i]` and the `mean()` function calls inside the loop. Each iteration creates a new vector subset and calculates its mean—lots of unnecessary overhead!
-
-**Step 2: Optimize using vectorization**
-
-From Post III, we know that R has highly optimized functions for common operations. The `stats::filter()` function is specifically designed for this kind of rolling calculation:
-
-
-``` r
-# Optimized version using vectorization
-rolling_mean_fast <- function(x, window = 3) {
-  stats::filter(x, rep(1/window, window), sides = 1)
-}
-```
-
-This version leverages R's built-in, compiled C code for filtering operations. No loops in R-land, no repeated subsetting—just a single vectorized operation.
-
-**Step 3: Benchmark the results**
-
-
-``` r
-bench::mark(
-  slow = rolling_mean_slow(test_data),
-  fast = rolling_mean_fast(test_data),
-  iterations = 100,
-  check = FALSE
-)
-```
-
-The optimized version is typically **10-50x faster**, depending on data size and window size. And here's the beautiful part: it's not just faster, it's also *simpler and more readable*. The best optimizations often are!
-
-This is the optimization loop in practice: profile, optimize the bottleneck, benchmark to confirm improvement, and move on.
+Remember: optimization is about balance. A 20% performance improvement might be more than enough, even if theoretically you could squeeze out another 5% at the cost of code maintainability.
 
 ## Wrapping Up This Series
 

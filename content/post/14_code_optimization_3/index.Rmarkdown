@@ -38,7 +38,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Welcome to the third post in this series! In the [first article](/2025/12/18/r-code-optimization-foundations-principles/) we covered the foundational principles, in the [second](/2025/12/19/r-code-optimization-design-readability/) we explored language choices and algorithm design. Now we'll talk a bit about where the real performance gains happen: vectorization, parallelization, and memory management.
+Welcome to the third post in this series! In the [first article](/2025/12/18/r-code-optimization-foundations-principles/) we covered key concepts, in the [second](/2025/12/19/r-code-optimization-design-readability/) we explored language choices and algorithm design. Now we'll talk a bit about where the real performance gains happen: vectorization, parallelization, and memory management.
 
 ## Hardware Utilization
 
@@ -52,17 +52,13 @@ At the hardware level, vectorization is enabled by an architectural feature know
 
 At the software level, many languages implement **vectorized semantics**. Think of adding two vectors `b` and `c` with the expression `a = b + c`. This abstraction makes code concise, and can also unlock performance gains in different ways. In compiled languages like Fortran, such expressions are typically optimized for SIMD vectorization. In interpreted languages like R, many vectorized functions are backed by compiled code. For instance, primitives like `+` are implemented as fast C loops, that may or may not be optimized for SIMD by the compiler (see the section *R side: how can R possibly use SIMD?* in [this excellent StackOverflow answer](https://stackoverflow.com/a/37214261) for details). In contrast, matrix operations rely on [blazing-fast matrix algebra backends](https://medium.com/@shiansu/calling-blas-in-r-the-hard-way-da90e0206d99) such as [BLAS](https://brettklamer.com/diversions/statistical/faster-blas-in-r/) and [LAPACK](https://www.netlib.org/lapack/), which explicitly exploit SIMD vectorization (and parallelization!).
 
-### Vectorization in R
-
-Some functions offer vectorized semantics without performance gains. This is the case with R functions like `apply()`, `lapply()`, `purrr::map()`, and the likes, which are essentially loops in a trenchcoat.
+However, it's not uncommon to find vectorized semantics without performance gains. This is the case with R functions like `apply()`, `lapply()`, `purrr::map()`, and the likes, which are essentially loops in a trenchcoat.
 
 By combining SIMD vectorization for raw performance with semantics-level vectorization for expressiveness, we maximize hardware utilization while keeping our code clean and efficient.
 
 ## Parallelization
 
-[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading independent tasks across multiple cores.
-
-At the software level, parallelization can be achieved by spawning multiple processes, each with its own memory space, or by a [process spawning several threads](https://www.geeksforgeeks.org/difference-between-process-and-thread/), all them sharing the same memory space.
+[**Parallelization**](http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-R.html) accelerates execution by spreading independent tasks across multiple cores. At the software level, parallelization can be achieved by spawning multiple processes, each with its own memory space, or by a [process spawning several threads](https://www.geeksforgeeks.org/difference-between-process-and-thread/), all them sharing the same memory space.
 
 ### Explicit vs Implicit Parallelization
 
@@ -70,7 +66,7 @@ Parallelization can be **explicit** and **implicit**.
 
 **Explicit parallelization** requires the user to define how and where parallel tasks are executed. This approach offers fine control over execution but also demands more setup and understanding of parallel workflows. In R, [parallelized loops](https://www.blasbenito.com/post/parallelized-loops-r/) written with the packages [`doParallel`](https://cran.r-project.org/web/packages/doParallel/vignettes/gettingstartedParallel.pdf) and [`foreach`](https://cran.r-project.org/package=foreach) require defining a parallelization backend (a.k.a "cluster"), selecting a number of cores, and a specific syntax (`y <- foreach(...) %dopar% {...}`). That's pretty explicit if you ask me! Modern alternatives like [`future`](https://future.futureverse.org/) and [`future.apply`](https://future.apply.futureverse.org/) achieve the same results with a less involved code.
 
-On the other hand, **implicit parallelization** happens without user intervention or even knowledge. For example, the packages [`arrow`](https://cran.r-project.org/package=arrow) and [`data.table`](https://rdatatable.gitlab.io/data.table/) apply multithreading to parallelize many data operations. This is also the case of matrix operations in R (i.e. GAM fitting with `mgcv::gam()`), which are multithreaded by the matrix algebra libraries BLAS and Intel MKL.
+On the other hand, **implicit parallelization** happens without user intervention or even knowledge. For example, the packages [`arrow`](https://cran.r-project.org/package=arrow), [`data.table`](https://rdatatable.gitlab.io/data.table/), or [`ranger`](https://imbs-hl.github.io/ranger/) apply multithreading to parallelize many data operations. This is also the case of matrix operations in R (i.e. GAM fitting with `mgcv::gam()`), which are multithreaded by the matrix algebra libraries [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms) and [Intel MKL](https://en.wikipedia.org/wiki/Math_Kernel_Library).
 
 The [CRAN Task View: High-Performance and Parallel Computing with R](https://cran.r-project.org/web/views/HighPerformanceComputing.html) offers a more complete overview of the different parallelization options available in R.
 
@@ -86,9 +82,11 @@ Even under ideal conditions, parallelization has well-known diminishing returns 
 
 ## Memory Management
 
-Let's jump into what's IMHO the most interesting topic of this article: **Memory Management!**
+Let's jump into what's IMHO the most interesting topic of this article!
 
-Computers have a [short-term memory](https://en.wikipedia.org/wiki/Computer_memory) directly connected to the processor named *main memory*, *system memory*, or *RAM*. Any code and data required by a program *lives* (and sometimes *dies*) there during run time. For example, when you start an R session, the operating system assigns it a section of the system memory, and all functions of the packages `base`, `stats`, `graphics`, and a few others are read from disk and loaded there. So does the code of any package you load using `library()`, or the data your program reads from disk, or any results it generates via models or other computations.
+Computers have a [short-term memory](https://en.wikipedia.org/wiki/Computer_memory) directly connected to the processor named *main memory*, *system memory*, or *RAM*. Any code and data required by a program *lives* (and sometimes *dies*) there during run time. 
+
+For example, when we start an R session, the operating system assigns it a section of the system memory, and all functions of the packages `base`, `stats`, `graphics`, and a few others are read from disk and loaded there. So does the code of any package you load using `library()`, or the data your program reads from disk, or any results it generates via models or other computations.
 
 Main memory is FAST, but FINITE! If a program requires more memory than available, the operating system may start moving parts of the main memory to the hard disk (see [memory paging](https://en.wikipedia.org/wiki/Memory_paging) and [swap file](https://www.linux.com/news/all-about-linux-swap-space/)), slowing things down. In extreme cases, a program can [run out of memory](https://en.wikipedia.org/wiki/Out_of_memory) and crash.
 
@@ -102,7 +100,7 @@ If your code tries to use more RAM than your system has available, things slow d
 
 Efficient memory management can help avoid these issues by ensuring that our code uses the system's memory in a *sensible* manner.
 
-Being *memory aware* is a first step in the right direction. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) and the likes open during code development and testing helps build an intuition on how our program uses memory.
+Being *memory aware* is a first step in the right direction. And this is a silly concept, really, but keeping a memory monitor like [htop](https://htop.dev/) and the likes open during code development and testing helps build an intuition on how our program uses memory. There are more precise methods I'll talk about in a coming article, but really, that's a good start.
 
 Other good techniques we can apply to consistently improve memory management in R are in-place modification, pre-allocating object size, and on-demand data access.
 
@@ -137,7 +135,5 @@ Memory management in R is a deep rabbit hole, but there are several great resour
 ## Wrapping Up
 
 And that's it! We've covered the three major pillars of hardware utilization: vectorization, parallelization, and memory management. These techniques can deliver dramatic performance gains when applied appropriately.
-
-Throughout this series we've covered the theoretical foundations and key techniques. But knowing these techniques is one thing—knowing *when* and *how* to apply them in practice is another!
 
 The [final post](/2025/12/21/r-code-optimization-toolbox/) focuses on practical tools for code optimization: profiling to identify bottlenecks, benchmarking to validate improvements, and the iterative optimization workflow that ties all these concepts into a systematic process.

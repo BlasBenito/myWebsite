@@ -22,9 +22,38 @@ projects: []
 toc: true
 ---
 
-Back in 2020, I wrote [a post about parallelizing loops in R](https://www.blasbenito.com/post/02_parallelizing_loops_with_r/) using the `foreach` and `doParallel` packages. That approach still works perfectly fine, but the R ecosystem has evolved quite a bit since then. These days, there's a simpler, more elegant, and (dare I say it) MORE powerful way to parallelize your R code using the `future` ecosystem.
+<style>
+.alert-warning {
+  background-color: #f4f4f4;
+  color: #333333;
+  border-color: #333333;
+}
+</style>
 
-So why bother updating? Well, the `future` framework offers several advantages that make it worth the switch:
+Back in 2020, I wrote [a post about parallelizing loops in R](https://www.blasbenito.com/post/02_parallelizing_loops_with_r/) using the `foreach` and `doParallel` packages. That approach still works perfectly fine, but the R ecosystem has evolved quite a bit since then. These days there's a simpler and more elegant approach to parallelize your R code using the [`futureverse`](https://www.futureverse.org/) ecosystem. 
+
+In this post, I'll cover:
+
+  + The `future` philosophy and mental model.
+  + Setting up parallel execution with `future` plans.
+  + Replacing `foreach` loops with `doFuture`.
+  + Parallelizing loops with `future.apply`.
+  + Adding progress bars with `progressr`.
+  + Real-world examples: hyperparameter tuning and bootstrap confidence intervals.
+  + Bonus: `furrr` for tidyverse enthusiasts.
+  + Best practices and common pitfalls.
+
+## Understanding the `futureverse`
+
+The `futureverse` is a fully fledged parallelization ecosystem designed and maintained by [Henrik Bengtsson](https://bsky.app/profile/henrikbengtsson.bsky.social), MSc in Computer Science plus a PhD in Mathematical Statistics, [member of the R Foundation](https://www.r-project.org/foundation/), and [a heavy-weight R contributor](https://www.futureverse.org/about.html).
+
+The
+
+The rationale behind this framework [in this paper](https://journal.r-project.org/articles/RJ-2021-048/index.html)
+
+
+
+Switching from one parallelization ecosystem to the other takes some work, I know! However, `futureverse` offers several advantages that make it worth the switch:
 
   + **Write once, run anywhere**: Change execution strategy with literally one line of code.
   + **Simpler syntax**: No manual cluster management, no `.packages` juggling, just clean code.
@@ -32,15 +61,6 @@ So why bother updating? Well, the `future` framework offers several advantages t
   + **Progress bars built-in**: Thanks to `progressr`, you get real-time feedback on parallel tasks.
   + **Smarter defaults**: Automatic detection of globals and package dependencies.
 
-In this post, I'll show you how to leverage the modern parallelization stack in R for single-machine computing (laptops, workstations, or servers). We'll cover:
-
-  + Understanding the `future` philosophy and mental model.
-  + Setting up parallel execution with `future` plans.
-  + Parallelizing loops with `future.apply`.
-  + Adding progress bars with `progressr`.
-  + Real-world examples: hyperparameter tuning and bootstrap confidence intervals.
-  + Bonus: `furrr` for tidyverse enthusiasts.
-  + Best practices and common pitfalls.
 
 &nbsp;
 
@@ -54,6 +74,7 @@ list_of_packages <- c(
   "future",
   "future.apply",
   "progressr",
+  "doFuture",
   "furrr",
   "ranger",
   "palmerpenguins",

@@ -120,19 +120,18 @@ date_format = "Jan 2006"
   """
   
 [[experience]]
-  title = "Spatial Data Scientist"
+  title = "Senior Data Scientist & Team Lead"
   company = "Biome Makers Inc."
   company_url = "https://biomemakers.com"
-  location = "US and Spain"
-  date_start = "2022-01-03"
+  location = "Spain / US"
+  date_start = "2022-01-01"
   date_end = ""
   description = """
   
-  - **Geospatial Tech Lead**: Directed a high-performing team to drive innovation in soil microbiome mapping, leveraging remote sensing, spatial modeling, and machine learning.
-  - **Product Engineering**: Designed and deployed advanced remote sensing products, including high-resolution soil microbiome maps and automated sampling workflows.
-  - **Data Engineering**: Built and maintained BMK’s Environmental Data Infrastructure, integrating large-scale environmental and geospatial datasets.
-  - **Scientific Software Development**: Authored and maintained R packages and automated pipelines to optimize analyses and accelerate product development.
-  - **Stakeholder Collaboration**: Delivered impactful insights and solutions to stakeholders through clear communication and data-driven reporting.
+  - Built and led a distributed 4-person data science team, establishing code quality standards, review procedures, and aligning planning with strategic objectives.
+  - Architected production systems combining high-resolution Earth observation data and machine learning, mapping 200,000+ hectares of soil microbiome and crop disease worldwide.
+  - Delivered solutions that secured €2M+ in enterprise contracts, directly shaping company strategy and commercial expansion.
+  - Established operational stability procedures maintaining production system reliability across global deployments.
   """
 
 +++

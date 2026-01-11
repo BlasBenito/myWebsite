@@ -22,9 +22,38 @@ projects: []
 toc: true
 ---
 
-Back in 2020, I wrote [a post about parallelizing loops in R](https://www.blasbenito.com/post/02_parallelizing_loops_with_r/) using the `foreach` and `doParallel` packages. That approach still works perfectly fine, but the R ecosystem has evolved quite a bit since then. These days, there's a simpler, more elegant, and (dare I say it) MORE powerful way to parallelize your R code using the `future` ecosystem.
+<style>
+.alert-warning {
+  background-color: #f4f4f4;
+  color: #333333;
+  border-color: #333333;
+}
+</style>
 
-So why bother updating? Well, the `future` framework offers several advantages that make it worth the switch:
+Back in 2020, I wrote [a post about parallelizing loops in R](https://www.blasbenito.com/post/02_parallelizing_loops_with_r/) using the `foreach` and `doParallel` packages. That approach still works perfectly fine, but the R ecosystem has evolved quite a bit since then. These days there's a simpler and more elegant approach to parallelize your R code using the [`futureverse`](https://www.futureverse.org/) ecosystem. 
+
+In this post, I'll cover:
+
+  + The `future` philosophy and mental model.
+  + Setting up parallel execution with `future` plans.
+  + Replacing `foreach` loops with `doFuture`.
+  + Parallelizing loops with `future.apply`.
+  + Adding progress bars with `progressr`.
+  + Real-world examples: hyperparameter tuning and bootstrap confidence intervals.
+  + Bonus: `furrr` for tidyverse enthusiasts.
+  + Best practices and common pitfalls.
+
+## Understanding the `futureverse`
+
+The `futureverse` is a fully fledged parallelization ecosystem designed and maintained by [Henrik Bengtsson](https://bsky.app/profile/henrikbengtsson.bsky.social), MSc in Computer Science plus a PhD in Mathematical Statistics, [member of the R Foundation](https://www.r-project.org/foundation/), and [a heavy-weight R contributor](https://www.futureverse.org/about.html).
+
+The
+
+The rationale behind this framework [in this paper](https://journal.r-project.org/articles/RJ-2021-048/index.html)
+
+
+
+Switching from one parallelization ecosystem to the other takes some work, I know! However, `futureverse` offers several advantages that make it worth the switch:
 
   + **Write once, run anywhere**: Change execution strategy with literally one line of code.
   + **Simpler syntax**: No manual cluster management, no `.packages` juggling, just clean code.
@@ -32,15 +61,6 @@ So why bother updating? Well, the `future` framework offers several advantages t
   + **Progress bars built-in**: Thanks to `progressr`, you get real-time feedback on parallel tasks.
   + **Smarter defaults**: Automatic detection of globals and package dependencies.
 
-In this post, I'll show you how to leverage the modern parallelization stack in R for single-machine computing (laptops, workstations, or servers). We'll cover:
-
-  + Understanding the `future` philosophy and mental model.
-  + Setting up parallel execution with `future` plans.
-  + Parallelizing loops with `future.apply`.
-  + Adding progress bars with `progressr`.
-  + Real-world examples: hyperparameter tuning and bootstrap confidence intervals.
-  + Bonus: `furrr` for tidyverse enthusiasts.
-  + Best practices and common pitfalls.
 
 &nbsp;
 
@@ -55,6 +75,7 @@ list_of_packages <- c(
   "future",
   "future.apply",
   "progressr",
+  "doFuture",
   "furrr",
   "ranger",
   "palmerpenguins",
@@ -255,7 +276,7 @@ print(plan())
 ## - call: plan(multisession, workers = n_cores - 1)
 ## MultisessionFutureBackend:
 ## Inherits: ClusterFutureBackend, MultiprocessFutureBackend, FutureBackend
-## UUID: a82f09ced8ec1416ca61eae2940e4f76
+## UUID: de7bc39f4da11f691e3bf04ecad9021d
 ## Number of workers: 15
 ## Number of free workers: 15
 ## Available cores: 16
@@ -275,21 +296,21 @@ print(plan())
 ## Total runtime of futures: 0 secs (NaN secs/finished future)
 ## Workers of type RichSOCKcluster:
 ## - Summary: Socket cluster with 15 nodes on host 'localhost' (R version 4.5.2 (2025-10-31), platform x86_64-pc-linux-gnu)
-## - [ OK ] Node 1/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149535 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #5 ('<-localhost:11970')]
-## - [ OK ] Node 2/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149542 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #6 ('<-localhost:11970')]
-## - [ OK ] Node 3/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149532 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #7 ('<-localhost:11970')]
-## - [ OK ] Node 4/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149536 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #8 ('<-localhost:11970')]
-## - [ OK ] Node 5/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149537 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #9 ('<-localhost:11970')]
-## - [ OK ] Node 6/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149533 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #10 ('<-localhost:11970')]
-## - [ OK ] Node 7/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149539 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #11 ('<-localhost:11970')]
-## - [ OK ] Node 8/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149543 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #12 ('<-localhost:11970')]
-## - [ OK ] Node 9/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149541 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #13 ('<-localhost:11970')]
-## - [ OK ] Node 10/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149544 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #14 ('<-localhost:11970')]
-## - [ OK ] Node 11/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149534 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #15 ('<-localhost:11970')]
-## - [ OK ] Node 12/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149538 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #16 ('<-localhost:11970')]
-## - [ OK ] Node 13/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149545 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #17 ('<-localhost:11970')]
-## - [ OK ] Node 14/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149531 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #18 ('<-localhost:11970')]
-## - [ OK ] Node 15/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 149540 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #19 ('<-localhost:11970')]
+## - [ OK ] Node 1/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43404 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #5 ('<-localhost:11459')]
+## - [ OK ] Node 2/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43399 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #6 ('<-localhost:11459')]
+## - [ OK ] Node 3/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43397 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #7 ('<-localhost:11459')]
+## - [ OK ] Node 4/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43406 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #8 ('<-localhost:11459')]
+## - [ OK ] Node 5/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43393 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #9 ('<-localhost:11459')]
+## - [ OK ] Node 6/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43400 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #10 ('<-localhost:11459')]
+## - [ OK ] Node 7/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43395 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #11 ('<-localhost:11459')]
+## - [ OK ] Node 8/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43394 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #12 ('<-localhost:11459')]
+## - [ OK ] Node 9/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43407 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #13 ('<-localhost:11459')]
+## - [ OK ] Node 10/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43402 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #14 ('<-localhost:11459')]
+## - [ OK ] Node 11/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43398 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #15 ('<-localhost:11459')]
+## - [ OK ] Node 12/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43396 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #16 ('<-localhost:11459')]
+## - [ OK ] Node 13/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43405 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #17 ('<-localhost:11459')]
+## - [ OK ] Node 14/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43403 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #18 ('<-localhost:11459')]
+## - [ OK ] Node 15/15: valid connection, alive [RichSOCKnode of a socket cluster on local host 'localhost' with pid 43401 (R version 4.5.2 (2025-10-31), x86_64-pc-linux-gnu) using socket connection #19 ('<-localhost:11459')]
 ```
 
 &nbsp;

@@ -6,12 +6,15 @@ command = "hugo"
 HUGO_VERSION = "0.74.3"
 HUGO_ENV = "production"
 HUGO_ENABLEGITINFO = "true"
+NODE_VERSION = "22"
 
 [context.branch-deploy.environment]
 HUGO_VERSION = "0.74.3"
+NODE_VERSION = "22"
 
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.74.3"
+NODE_VERSION = "22"
 
 [context.deploy-preview]
 command = "hugo -b $DEPLOY_PRIME_URL --buildFuture"

@@ -1,5 +1,6 @@
 ---
-abstract: "When dealing with the northern boundary of Neanderthals (*Homo neanderthalensis*) and the question of whether or not they dispersed into Southern Scandinavia, two contradictory hypotheses can be identified. The first, and also the most widely endorsed, hereafter, hypothesis A, argues primarily that Neanderthals did not occupy regions above 55°N because of 1) climatic constraints and 2) dispersal barriers. The second, hypothesis B, argues that they possibly occasionally dispersed above 55°N, but that factors such as 1) research- and/or 2) taphonomic bias are responsible for their archaeological invisibility. Here, we report an evaluation of these competing hypotheses. To this end, we reconstruct the environment for the time period and region of interest (the Last Interglacial Complex and Northern Germany and Southern Scandinavia), based on three lines of evidence: palaeoenvironmental reconstruction combined with a novel habitat modelling approach, a review of relevant archaeological localities, and a discussion of the possible impacts of both research biases and the taphonomic effects on the archaeological data. We focus particularly on the climatic and geological explanatory factors relevant to the two hypotheses. Our results are inconsistent with the claim that climatic constraint and/or a lack of suitable habitats can fully explain the absence of Neanderthals in Southern Scandinavia during the Eemian Interglacial and Early Weichselian Glaciation. We do, however, find evidence that a geographic barrier may have impeded northerly migrations during the Eemian. The evidence reviewed here suggests that both research bias and taphonomy – consistent with hypothesis B – could account for the archaeological invisibility of Neanderthals in Southern Scandinavia, highlighting the need for further strategic survey and/or excavation efforts in the region."
+abstract: "In this paper, we investigate the role of climate and topography in shaping the distribution of Neanderthals (Homo neanderthalensis) at different spatial scales. To this end, we compiled the most comprehensive data set on the distribution of this species during the Last Interglacial optimum (MIS 5e) available to date. This was used to calibrate a palaeo-species distribution model, and analyse variable importance at continental and local scales. We used archaeological records and palaeoclimatic and topographic predictors to calibrate a model based on an ensemble of generalized linear models fitted with different combinations of predictors and weighted background data. Area under the curve scores computed by leave-one-out were used to assess variable importance at the continental scale, while local regression combined with recursive partition trees was used to assess variable importance at the local scale. Annual rainfall and winter temperatures were the most important predictors at the continental scale, while topography and summer rainfall defined habitat suitability at the local scale. The highest habitat suitability scores were observed along the Mediterranean coastlines. Mountain ranges and continental plains showed low habitat suitability values. The model results confirmed that abiotic drivers played an important role in shaping Neanderthals distribution during the Last Interglacial. The high suitability of the Mediterranean coastlines and the low suitability values of most sites at the northern and eastern distribution limits (Germany, Hungary, Ukraine) challenge the notion of Neanderthals as a species with preference for colder environments.
+."
 
 authors:
 - admin
@@ -11,7 +12,7 @@ authors:
 - Brody Sandel
 
 date: "2017-05-01T00:00:00Z"
-doi: "https://doi.org/10.1016/j.quaint.2015.10.039"
+doi: "https://doi.org/10.1111/jbi.12845"
 featured: true
 image:
   caption: 'Image credit: **Blas M. Benito**'
@@ -28,7 +29,7 @@ tags:
 - Biogeography
 - GIS
 title: 'The ecological niche and distribution of Neanderthals during the Last Interglacial'
-url_pdf: https://www.dropbox.com/s/p8zfrqb68gi23qr/2017_BMB_Quaternary_International.pdf?dl=1
+url_pdf: https://www.dropbox.com/scl/fi/vxe2hkgjbwqzv1d4i8497/2017_BMB_Journal_of_Biogeography.pdf?rlkey=ea6b9zrj2zc3j5dgi7zt5zu7o&st=4zbxvwxd&dl=1
 url_dataset: https://zenodo.org/record/4311198#.X89WmMIo-1c
 ---
 
